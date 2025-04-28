@@ -189,6 +189,143 @@ export default {
       historical: '历史人物名字',
       regional: '区域差异',
       taboos: '命名禁忌'
+    },
+    soundFormTaboos: {
+      title: '字音字形避讳',
+      subtitle: '避免与长辈、名人同名或与不吉利含义谐音的字',
+      sections: {
+        intro: '在中国传统文化中，取名是一件极为重要的事情，而名字的字音和字形避讳则是取名过程中不可忽视的关键环节。',
+        soundTaboos: '字音避讳',
+        formTaboos: '字形避讳',
+        combinationTaboos: '字音字形组合避讳',
+        modernConsiderations: '现代社会的避讳考量',
+        practicalGuidelines: '实用命名指南'
+      }
+    },
+    modernTraditional: {
+      title: '现代与传统的结合',
+      subtitle: '在名字选择中平衡传统文化元素与现代审美',
+      sections: {
+        historicalEvolution: '命名理念的历史演变',
+        balancePrinciples: '平衡传统与现代的命名原则',
+        practicalExamples: '现代传统结合的实践案例',
+        practicalApproaches: '实用的结合策略',
+        futureTrends: '未来趋势与展望'
+      }
+    },
+    professionalConsiderations: {
+      title: '职业与社会角色考量',
+      subtitle: '基于职业抱负和现代社会角色的名字选择',
+      sections: {
+        nameInfluence: '名字对职业发展的潜在影响',
+        differentFields: '不同职业领域的命名考量',
+        genderNeutrality: '性别中立与职业发展',
+        internationalContext: '国际职场背景下的命名策略',
+        digitalAge: '数字时代的职业命名新考量'
+      }
+    }
+  },
+  chineseSurnames: {
+    title: '中国姓氏',
+    intro: {
+      title: '中国姓氏的起源与演变',
+      content: '中国的姓氏文化源远流长，是世界上最古老、最丰富的姓氏体系之一。从夏商周三代到如今，中国姓氏经历了数千年的发展演变，形成了独具特色的姓氏文化体系。',
+      imageCaption: '中国古代姓氏文化示意图'
+    },
+    distinction: {
+      title: '姓氏与氏的区别',
+      content: '在中国古代，"姓"与"氏"原本是两个不同的概念：',
+      surname: '姓：最初源于母系社会，表示血缘关系，以女性为本。古代"女"字旁的字多为姓，如姬、姜、姚等。',
+      clan: '氏：起源于父系社会，代表家族、部落或封地，与社会地位和职业相关。',
+      merge: '周代以后，姓氏逐渐合流，形成今天我们所熟知的"姓氏"概念。'
+    },
+    origins: {
+      title: '中国姓氏的主要来源',
+      intro: '中国姓氏的形成途径多种多样，主要包括以下几种来源：',
+      totem: {
+        title: '1. 源于图腾崇拜',
+        content: '远古时期，各部落以自己崇拜的动植物或自然物作为图腾，这些图腾后来演变为姓氏。例如：',
+        examples: [
+          '熊氏（熊图腾）',
+          '马氏（马图腾）',
+          '龙氏（龙图腾）'
+        ]
+      },
+      ancestor: {
+        title: '2. 源于祖先名号',
+        content: '以祖先的名字或号作为后代的姓氏。例如：',
+        examples: [
+          '姬姓（黄帝名姬轩辕，其后代以姬为姓）',
+          '赵、钱、孙、李等源于先祖名字'
+        ]
+      },
+      territory: {
+        title: '3. 源于封地或国名',
+        content: '以封地或所属国家的名称作为姓氏。例如：',
+        examples: [
+          '齐姓（源于齐国）',
+          '鲁姓（源于鲁国）',
+          '卫姓（源于卫国）'
+        ]
+      },
+      official: {
+        title: '4. 源于官职',
+        content: '以祖先担任的官职为姓氏。例如：',
+        examples: [
+          '司马（掌管军事的官职）',
+          '司徒（掌管民政的官职）',
+          '司空（掌管工程的官职）'
+        ]
+      },
+      migration: {
+        title: '5. 源于迁徙改姓',
+        content: '由于战乱、政治因素或其他原因而改姓。例如：',
+        examples: [
+          '李唐皇室后裔避难时改为赵、郭等姓',
+          '汉末三国时期，曹操部下有人为避战乱改姓'
+        ]
+      },
+      minority: {
+        title: '6. 少数民族汉化',
+        content: '少数民族融入汉族后采用的汉姓。例如：',
+        examples: [
+          '完颜氏改为王氏',
+          '爱新觉罗氏改为金、金啸等'
+        ]
+      }
+    },
+    distribution: {
+      title: '中国姓氏的分布与特点',
+      intro: '中国姓氏呈现出"大姓千万家，小姓寥寥无几"的特点。据统计，当代中国大约有3000多个姓氏，其中使用人数最多的姓氏是：',
+      topSurnames: [
+        { rank: 1, name: '李', percentage: '约占总人口的7.9%' },
+        { rank: 2, name: '王', percentage: '约占总人口的7.4%' },
+        { rank: 3, name: '张', percentage: '约占总人口的7.1%' },
+        { rank: 4, name: '刘', percentage: '约占总人口的5.4%' },
+        { rank: 5, name: '陈', percentage: '约占总人口的4.5%' }
+      ],
+      conclusion: '前100个大姓覆盖了中国约85%的人口，这种分布特点与中国历史上的人口迁徙、政治变革等因素密切相关。'
+    },
+    significance: {
+      title: '姓氏文化的历史意义',
+      intro: '姓氏不仅是家族的标识，也承载着丰富的历史文化内涵：',
+      points: [
+        '血缘纽带：姓氏是血缘关系的象征，维系着家族的凝聚力',
+        '历史见证：不同姓氏的兴衰反映了中国社会的历史变迁',
+        '文化传承：姓氏家谱记录了家族历史和文化传统',
+        '地域特色：某些姓氏在特定地区高度集中，形成了独特的区域文化'
+      ]
+    },
+    modern: {
+      title: '现代社会中的姓氏文化',
+      intro: '在当代社会，姓氏文化依然发挥着重要作用：',
+      points: [
+        '家族观念的传承与家谱研究的兴起',
+        '寻根问祖活动的普及，增强文化认同感',
+        '姓氏作为个人身份的重要组成部分',
+        '海外华人通过姓氏维系与祖国的联系'
+      ],
+      conclusion: '随着社会的发展，姓氏文化也在不断创新和发展，姓氏研究已成为文化研究和历史研究的重要分支。'
     }
   },
   nameToPinyin: {
@@ -220,15 +357,31 @@ export default {
   zodiac: {
     title: '生肖计算器',
     birthYear: '出生年份',
-    calculateButton: '计算',
+    calculateButton: '计算生肖',
     results: {
-      title: '您的生肖',
-      sign: '生肖',
-      element: '五行',
+      title: '您的生肖信息',
       personality: '性格特点',
-      compatibility: '相配度',
+      compatibility: '相合与相冲',
       luckyNumbers: '幸运数字',
-      luckyColors: '幸运颜色'
+      luckyColors: '幸运颜色',
+      element: '五行属性',
+      year: '年份'
+    }
+  },
+  zodiacNaming: {
+    title: '生肖起名',
+    birthYear: '出生年份',
+    surname: '姓氏',
+    gender: '性别',
+    male: '男',
+    female: '女',
+    generateButton: '生成名字建议',
+    results: {
+      title: '生肖起名建议',
+      year: '年',
+      element: '属性',
+      nameRecommendations: '推荐名字',
+      namingTips: '起名小贴士'
     }
   },
   constellation: {

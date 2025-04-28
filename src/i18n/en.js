@@ -207,6 +207,143 @@ export default {
       historical: 'Historical Names',
       regional: 'Regional Differences',
       taboos: 'Naming Taboos'
+    },
+    soundFormTaboos: {
+      title: 'Sound and Form Taboos in Naming',
+      subtitle: 'Avoiding characters that sound like or look like unlucky meanings or names of elders',
+      sections: {
+        intro: 'In Chinese culture, naming is a significant affair, and avoiding taboos in sound and form is a crucial aspect of the naming process.',
+        soundTaboos: 'Sound Taboos',
+        formTaboos: 'Form Taboos',
+        combinationTaboos: 'Combined Sound and Form Taboos',
+        modernConsiderations: 'Modern Considerations',
+        practicalGuidelines: 'Practical Naming Guidelines'
+      }
+    },
+    modernTraditional: {
+      title: 'Balancing Tradition and Modernity',
+      subtitle: 'Finding harmony between traditional cultural elements and modern aesthetics in naming',
+      sections: {
+        historicalEvolution: 'Historical Evolution of Naming Concepts',
+        balancePrinciples: 'Principles for Balancing Tradition and Modernity',
+        practicalExamples: 'Practical Examples of Combining Modern and Traditional Elements',
+        practicalApproaches: 'Practical Strategies for Integration',
+        futureTrends: 'Future Trends and Outlook'
+      }
+    },
+    professionalConsiderations: {
+      title: 'Professional and Social Role Considerations',
+      subtitle: 'Name selection based on career aspirations and modern social roles',
+      sections: {
+        nameInfluence: 'Potential Influence of Names on Career Development',
+        differentFields: 'Naming Considerations for Different Professional Fields',
+        genderNeutrality: 'Gender Neutrality and Career Development',
+        internationalContext: 'Naming Strategies in International Work Contexts',
+        digitalAge: 'New Naming Considerations in the Digital Age'
+      }
+    }
+  },
+  chineseSurnames: {
+    title: 'Chinese Surnames',
+    intro: {
+      title: 'Origins and Evolution of Chinese Surnames',
+      content: 'Chinese surname culture has a long history and is one of the oldest and richest surname systems in the world. From the Xia, Shang, and Zhou dynasties to the present, Chinese surnames have undergone thousands of years of development and evolution, forming a distinctive cultural system.',
+      imageCaption: 'Illustration of ancient Chinese surname culture'
+    },
+    distinction: {
+      title: 'Difference Between Xing and Shi',
+      content: 'In ancient China, "Xing" (姓) and "Shi" (氏) were originally two different concepts:',
+      surname: 'Xing: Originally derived from matriarchal society, representing blood relationships, with women as the basis. Ancient characters with the "woman" radical were often surnames, such as Ji, Jiang, Yao, etc.',
+      clan: 'Shi: Originated from patriarchal society, representing family, tribe, or enfeoffed territory, related to social status and occupation.',
+      merge: 'After the Zhou Dynasty, Xing and Shi gradually merged, forming the concept of "surname" as we know it today.'
+    },
+    origins: {
+      title: 'Main Sources of Chinese Surnames',
+      intro: 'Chinese surnames were formed through various paths, mainly including the following sources:',
+      totem: {
+        title: '1. Derived from Totem Worship',
+        content: 'In ancient times, tribes used their worshipped animals, plants, or natural objects as totems, which later evolved into surnames. For example:',
+        examples: [
+          'Xiong (Bear totem)',
+          'Ma (Horse totem)',
+          'Long (Dragon totem)'
+        ]
+      },
+      ancestor: {
+        title: '2. Derived from Ancestor Names',
+        content: 'Using the name or title of ancestors as surnames for descendants. For example:',
+        examples: [
+          'Ji (Yellow Emperor was named Ji Xuanyuan, his descendants took Ji as their surname)',
+          'Zhao, Qian, Sun, Li, etc. derived from ancestral names'
+        ]
+      },
+      territory: {
+        title: '3. Derived from Territories or State Names',
+        content: 'Using the name of an enfeoffed territory or state as a surname. For example:',
+        examples: [
+          'Qi (derived from the State of Qi)',
+          'Lu (derived from the State of Lu)',
+          'Wei (derived from the State of Wei)'
+        ]
+      },
+      official: {
+        title: '4. Derived from Official Positions',
+        content: 'Using the official positions held by ancestors as surnames. For example:',
+        examples: [
+          'Sima (official in charge of military affairs)',
+          'Situ (official in charge of civilian affairs)',
+          'Sikong (official in charge of engineering works)'
+        ]
+      },
+      migration: {
+        title: '5. Name Changes Due to Migration',
+        content: 'Changing surnames due to war, political factors, or other reasons. For example:',
+        examples: [
+          'Descendants of the Li Tang imperial family changed to Zhao, Guo, etc. when seeking refuge',
+          'During the late Han and Three Kingdoms period, some of Cao Cao\'s subordinates changed their surnames to avoid war'
+        ]
+      },
+      minority: {
+        title: '6. Sinicization of Ethnic Minorities',
+        content: 'Adopting Han surnames after ethnic minorities integrated with the Han nationality. For example:',
+        examples: [
+          'Wanyan changed to Wang',
+          'Aisin Gioro changed to Jin, Jin Xiao, etc.'
+        ]
+      }
+    },
+    distribution: {
+      title: 'Distribution and Characteristics of Chinese Surnames',
+      intro: 'Chinese surnames show a characteristic of "many people sharing common surnames, few with rare surnames." According to statistics, there are about 3,000 surnames in contemporary China, among which the most common surnames are:',
+      topSurnames: [
+        { rank: 1, name: 'Li', percentage: 'About 7.9% of the total population' },
+        { rank: 2, name: 'Wang', percentage: 'About 7.4% of the total population' },
+        { rank: 3, name: 'Zhang', percentage: 'About 7.1% of the total population' },
+        { rank: 4, name: 'Liu', percentage: 'About 5.4% of the total population' },
+        { rank: 5, name: 'Chen', percentage: 'About 4.5% of the total population' }
+      ],
+      conclusion: 'The top 100 common surnames cover about 85% of the Chinese population. This distribution pattern is closely related to factors such as population migration and political changes throughout Chinese history.'
+    },
+    significance: {
+      title: 'Historical Significance of Surname Culture',
+      intro: 'Surnames are not only family identifiers but also carry rich historical and cultural connotations:',
+      points: [
+        'Blood Bond: Surnames are symbols of blood relationships that maintain family cohesion',
+        'Historical Witness: The rise and fall of different surnames reflect the historical changes in Chinese society',
+        'Cultural Heritage: Family genealogies record family history and cultural traditions',
+        'Regional Characteristics: Some surnames are highly concentrated in specific regions, forming unique regional cultures'
+      ]
+    },
+    modern: {
+      title: 'Surname Culture in Modern Society',
+      intro: 'In contemporary society, surname culture continues to play an important role:',
+      points: [
+        'Inheritance of family concepts and the rise of genealogical research',
+        'Popularization of root-seeking activities, strengthening cultural identity',
+        'Surnames as an important component of personal identity',
+        'Overseas Chinese maintain connections with their homeland through surnames'
+      ],
+      conclusion: 'With the development of society, surname culture is constantly innovating and developing. Surname research has become an important branch of cultural and historical research.'
     }
   },
   nameToPinyin: {
@@ -238,15 +375,31 @@ export default {
   zodiac: {
     title: 'Chinese Zodiac Calculator',
     birthYear: 'Birth Year',
-    calculateButton: 'Calculate',
+    calculateButton: 'Calculate Zodiac',
     results: {
-      title: 'Your Chinese Zodiac',
-      sign: 'Zodiac Sign',
-      element: 'Element',
+      title: 'Your Zodiac Information',
       personality: 'Personality Traits',
       compatibility: 'Compatibility',
       luckyNumbers: 'Lucky Numbers',
-      luckyColors: 'Lucky Colors'
+      luckyColors: 'Lucky Colors',
+      element: 'Element',
+      year: 'Year'
+    }
+  },
+  zodiacNaming: {
+    title: 'Zodiac-Based Naming',
+    birthYear: 'Birth Year',
+    surname: 'Surname',
+    gender: 'Gender',
+    male: 'Male',
+    female: 'Female',
+    generateButton: 'Generate Name Suggestions',
+    results: {
+      title: 'Zodiac-Based Name Suggestions',
+      year: 'Year',
+      element: 'Element',
+      nameRecommendations: 'Recommended Names',
+      namingTips: 'Naming Tips'
     }
   },
   constellation: {

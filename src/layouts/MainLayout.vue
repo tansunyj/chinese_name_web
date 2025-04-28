@@ -32,7 +32,13 @@ export default {
 
 .main-content {
   flex: 1;
-  padding-top: 0; /* 移除为固定头部导航留出的空间 */
+  padding-top: 70px; /* 为固定头部导航留出空间 */
   width: 100%;
+}
+
+@media (max-width: 980px) {
+  .main-content {
+    padding-top: 120px; /* 在移动设备上为扩展的导航栏留出更多空间 */
+  }
 }
 </style> 

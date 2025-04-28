@@ -133,19 +133,20 @@ export default {
 }
 
 .main-nav li {
-  margin: 0 6px;
+  margin: 0 2px;
 }
 
 .main-nav a {
   text-decoration: none;
   color: #333;
   font-weight: 500;
-  padding: 8px 3px;
+  padding: 8px 10px;
   position: relative;
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.3px;
   white-space: nowrap;
+  display: inline-block;
 }
 
 .main-nav a::after {
@@ -215,9 +216,44 @@ export default {
   border: 1px solid #e60012;
 }
 
+@media (max-width: 1200px) and (min-width: 981px) {
+  .main-nav a {
+    padding: 8px 6px;
+    font-size: 13px;
+  }
+  
+  .logo a {
+    font-size: 1.3rem;
+  }
+}
+
 @media (max-width: 980px) {
+  .app-header {
+    height: auto;
+    min-height: 70px;
+  }
+  
+  .container {
+    flex-wrap: wrap;
+    padding: 10px 20px;
+  }
+  
   .main-nav {
-    display: none;
+    order: 3;
+    width: 100%;
+    justify-content: flex-start;
+    padding: 10px 0;
+    display: block;
+    overflow-x: auto;
+  }
+  
+  .main-nav ul {
+    width: max-content;
+    padding-bottom: 5px;
+  }
+  
+  .logo, .actions {
+    flex: 0 0 auto;
   }
 }
 </style> 
