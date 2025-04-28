@@ -21,6 +21,14 @@ const routes = [
     component: () => import('../views/CustomName.vue')
   },
   {
+    path: '/ai-chinese-name',
+    name: 'AIChineseName',
+    component: () => import('../views/CustomChineseName.vue'),
+    meta: {
+      title: '定制中文名称 - AI智能生成'
+    }
+  },
+  {
     path: '/multilingual',
     name: 'MultilingualName',
     component: () => import('../views/MultilingualName.vue')

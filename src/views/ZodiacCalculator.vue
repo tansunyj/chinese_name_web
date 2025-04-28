@@ -13,7 +13,7 @@
                 id="birthYear" 
                 v-model.number="formData.birthYear" 
                 required
-                min="1900"
+                min="1990"
                 max="2100"
                 class="form-input"
                 placeholder="1990"
@@ -37,7 +37,7 @@
               </div>
               <div class="zodiac-name">
                 <h3>{{ results.sign }} {{ results.years }}</h3>
-                <p class="element">{{ results.element }}</p>
+                <p class="element" :class="'element-' + results.element">{{ results.element }}</p>
               </div>
             </div>
             
@@ -590,9 +590,41 @@ export default {
 }
 
 .element {
-  font-size: 1.2rem;
-  margin: 0;
-  opacity: 0.9;
+  display: inline-block;
+  min-width: 60px;
+  padding: 8px 22px;
+  border-radius: 16px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  margin-top: 8px;
+  margin-bottom: 0;
+  letter-spacing: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+
+/* 五行专属配色 */
+.element-土 {
+  background: linear-gradient(135deg, #c2b280 60%, #a67c52 100%);
+  color: #fff;
+}
+.element-木 {
+  background: linear-gradient(135deg, #43a047 60%, #2ecc40 100%);
+  color: #fff;
+}
+.element-水 {
+  background: linear-gradient(135deg, #2196f3 60%, #1565c0 100%);
+  color: #fff;
+}
+.element-金 {
+  background: linear-gradient(135deg, #ffd700 60%, #bfa640 100%);
+  color: #fff;
+  text-shadow: 0 1px 2px #bfa640;
+}
+.element-火 {
+  background: linear-gradient(135deg, #ff7043 60%, #d32f2f 100%);
+  color: #fff;
 }
 
 .zodiac-details {

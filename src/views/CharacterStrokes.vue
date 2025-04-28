@@ -18,7 +18,7 @@
               />
             </div>
             <button class="search-btn full-width" @click="searchStrokeOrder">
-              <span>Go</span>
+              <span>Generate</span>
             </button>
           </div>
         </div>
@@ -71,30 +71,24 @@
           </div>
           
           <div class="stroke-details-section">
-            <div class="stroke-sequence-container">
-              <div class="stroke-image-sequence">
-                <div v-if="characterData.strokeSequence && characterData.strokeSequence.length" class="stroke-images">
-                  <div 
-                    v-for="(stroke, index) in characterData.strokeSequence" 
-                    :key="index" 
-                    class="stroke-image-item"
-                    :class="{ 
-                      'stroke-current': index === currentStrokeIndex,
-                      'stroke-completed': index < currentStrokeIndex,
-                      'stroke-pending': index > currentStrokeIndex
-                    }"
-                    @click="goToStroke(index)"
-                  >
-                    <div class="stroke-image">
-                      <div class="stroke-char">{{ currentCharacter }}</div>
-                      <div class="stroke-number">{{ index + 1 }}</div>
-                    </div>
-                    <div class="stroke-name">{{ stroke }}</div>
-                  </div>
-                </div>
-                <div v-else class="no-data">
-                  No detailed stroke sequence data available
-                </div>
+            <div class="stroke-order-list">
+              <div
+                v-for="(stroke, idx) in strokes"
+                :key="idx"
+                class="stroke-block"
+                :class="{
+                  'stroke-done': idx < currentStrokeIndex,
+                  'stroke-current': idx === currentStrokeIndex,
+                  'stroke-todo': idx > currentStrokeIndex
+                }"
+              >
+                <!-- svg或图片展示笔画 -->
+                <svg v-if="stroke.svg" viewBox="0 0 60 60" width="40" height="40">
+                  <path :d="stroke.svg" />
+                </svg>
+                <!-- 可用图片替换svg -->
+                <div class="stroke-index">{{ idx + 1 }}</div>
+                <div class="stroke-name">{{ stroke.name }}</div>
               </div>
             </div>
           </div>
@@ -132,7 +126,14 @@ export default {
         strokeSequence: []
       },
       popularCharacters: ['爱', '福', '德', '智', '信', '义', '和', '美', '思', '诚'],
-      hasSearched: false
+      hasSearched: false,
+      strokes: [
+        { svg: 'M10,10 ...', name: '点' },
+        { svg: 'M20,20 ...', name: '点' },
+        { svg: 'M30,30 ...', name: '提' },
+        { svg: 'M40,40 ...', name: '横撇' },
+        { svg: 'M50,50 ...', name: '捺' }
+      ]
     }
   },
   computed: {
@@ -352,10 +353,19 @@ export default {
         wuxing: wuxing,
         strokeSequence: strokeSequence
       };
+    },
+    autoPlayStrokes() {
+      let timer = setInterval(() => {
+        if (this.currentStrokeIndex < this.strokes.length - 1) {
+          this.currentStrokeIndex++;
+        } else {
+          clearInterval(timer);
+        }
+      }, 1000);
     }
   },
   mounted() {
-    // 页面加载时不自动显示结果
+    this.autoPlayStrokes();
   }
 }
 </script>
@@ -596,124 +606,69 @@ export default {
   font-weight: 500;
 }
 
-.stroke-sequence-container {
-  width: 100%;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 20px;
-}
-
-.stroke-image-sequence {
-  background-color: white;
-  border-radius: 4px;
-  padding: 15px;
-}
-
-.stroke-images {
+.stroke-order-list {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-.stroke-image-item {
+.stroke-block {
+  width: 48px;
+  height: 70px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  text-align: center;
+  padding: 4px 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 70px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+  justify-content: flex-start;
 }
 
-.stroke-image-item:hover {
-  transform: translateY(-3px);
+.stroke-block svg path {
+  stroke-width: 3;
+  fill: none;
 }
 
-.stroke-image {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f9f9f9;
-  margin-bottom: 5px;
+.stroke-done svg path {
+  stroke: #222;
 }
 
-.stroke-char {
-  font-size: 2rem;
-  font-family: 'SimSun', 'Microsoft YaHei', sans-serif;
-  color: #ccc; /* 默认灰色 */
+.stroke-current svg path {
+  stroke: #e60012;
 }
 
-.stroke-number {
-  position: absolute;
-  left: 5px;
-  bottom: 5px;
-  width: 18px;
-  height: 18px;
-  background-color: #ccc; /* 默认灰色 */
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.7rem;
+.stroke-todo svg path {
+  stroke: #bbb;
+}
+
+.stroke-index {
+  font-size: 0.9rem;
+  color: #888;
+  margin-top: 2px;
 }
 
 .stroke-name {
-  font-size: 0.9rem;
-  color: #aaa; /* 默认灰色 */
-  text-align: center;
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 1px;
 }
 
-/* 笔画状态样式 */
-.stroke-current .stroke-char {
+.stroke-current .stroke-index,
+.stroke-current .stroke-name {
   color: #e60012;
   font-weight: bold;
 }
 
-.stroke-current .stroke-image {
-  border-color: #e60012;
-  box-shadow: 0 0 0 2px rgba(230, 0, 18, 0.2);
+.stroke-done .stroke-index,
+.stroke-done .stroke-name {
+  color: #222;
 }
 
-.stroke-current .stroke-number {
-  background-color: #e60012;
-}
-
-.stroke-completed .stroke-char {
-  color: #333; /* 已完成黑色 */
-}
-
-.stroke-completed .stroke-number {
-  background-color: #333; /* 已完成黑色 */
-}
-
-.stroke-completed .stroke-name {
-  color: #555; /* 已完成黑色 */
-}
-
-.stroke-pending .stroke-char {
-  color: #ccc; /* 未完成灰色 */
-}
-
-.stroke-pending .stroke-name {
-  color: #aaa; /* 未完成灰色 */
-}
-
-.stroke-pending .stroke-number {
-  background-color: #ccc; /* 未完成灰色 */
-}
-
-.no-data {
-  padding: 20px;
-  text-align: center;
-  color: #888;
-  background-color: white;
-  border-radius: 8px;
+.stroke-todo .stroke-index,
+.stroke-todo .stroke-name {
+  color: #bbb;
 }
 
 .error-section {
@@ -809,7 +764,7 @@ export default {
     height: 120px;
   }
   
-  .stroke-images {
+  .stroke-order-list {
     justify-content: center;
   }
 }

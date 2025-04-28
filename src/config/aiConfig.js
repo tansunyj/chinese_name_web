@@ -6,7 +6,7 @@ export default {
     proxyUrl: (window.__env && window.__env.VUE_APP_AI_PROXY_URL) || 'https://openkey.cloud/v1/chat/completions',
     apiKey: (window.__env && window.__env.VUE_APP_AI_API_KEY) || 'Bearer sk-KCRzQ9uj8zNGRFYW6674Bd591b7f4684Ad5cDaC9D1F90cDd',
     useProxy: (window.__env && window.__env.VUE_APP_USE_AI_PROXY === 'true') || false,
-    timeout: 60000, // 请求超时时间（毫秒）
+    timeout: 120000, // 请求超时时间（毫秒）
   },
   
   // 模型配置

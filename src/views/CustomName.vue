@@ -100,7 +100,7 @@
               </button>
             </div>
             
-            <button type="submit" class="submit-button" :class="{ 'loading': isLoading }">
+            <button type="submit" class="submit-button" :class="{ 'loading': isLoading }" :disabled="isLoading">
               <span v-if="isLoading">{{ $t('common.loading') }}</span>
               <span v-else>{{ $t('custom.generateButton') }}</span>
             </button>
@@ -110,190 +110,163 @@
         <!-- 加载指示器（当加载时显示） -->
         <LoadingIndicator v-if="isLoading" :text="$t('common.generatingNames')" />
         
-        <div v-if="results.length" class="results-section">
-          <h2>{{ $t('custom.results.title') }}</h2>
-          
-          <!-- 基本信息部分 -->
-          <div class="basic-info-card">
-            <h3>{{ locale === 'zh' ? '姓名基本信息' : 'Basic Information' }}</h3>
-            <div class="basic-info-grid">
-              <div class="info-item">
-                <span class="info-label">{{ $t('translate.lastName') }}：</span>
-                <span class="info-value">{{ formData.lastName || '李' }}</span>
-              </div>
-              <div class="info-item">
-                <span class="info-label">{{ $t('translate.gender') }}：</span>
-                <span class="info-value">
-                  {{ formData.gender === 'male' ? (locale === 'zh' ? '男' : 'Male') : 
-                     formData.gender === 'female' ? (locale === 'zh' ? '女' : 'Female') : 
-                     (locale === 'zh' ? '其他' : 'Other') }}
-                </span>
-              </div>
-              <div class="info-item full-width">
-                <span class="info-label">{{ locale === 'zh' ? '公历' : 'Solar Calendar' }}：</span>
-                <span class="info-value">{{ formData.birthdate }} {{ formData.birthtime }}</span>
-              </div>
-              <div class="info-item full-width">
-                <span class="info-label">{{ locale === 'zh' ? '农历' : 'Lunar Calendar' }}：</span>
-                <span class="info-value">{{ results[0]?.birthInfo?.lunarDate || '' }}</span>
-              </div>
-            </div>
+        <!-- 当没有结果且不在加载状态时显示的提示 -->
+        <div v-if="!results.length && !isLoading" class="empty-results-hint">
+          <div class="hint-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 3v2M3 12h2m14 0h2M12 19v2M5.6 5.6l1.4 1.4m10-1.4l-1.4 1.4M5.6 18.4l1.4-1.4m10 1.4l-1.4-1.4M12 12l-3 3m3-3l3 3m-3-3v-3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </div>
-          
-          <!-- 分析卡片 -->
-          <div class="analysis-cards">
-            <!-- 八字用字分析 -->
-            <div class="analysis-card">
-              <h3 class="analysis-title">{{ locale === 'zh' ? '八字用字分析' : 'Eight Characters Analysis' }}</h3>
-              <div class="analysis-content">
-                <p>{{ results[0]?.analysis?.eightCharacterAnalysis || 
-                    (locale === 'zh' ? 
-                    '根据八字喜用神，建议起名用带有木、金、土等属性的字，避开水、火属性。充分考虑八字命局特点，选取适合命主的用字以达到趋吉避凶的效果。' : 
-                    'Based on the Eight Characters analysis, we recommend characters with Wood, Metal, and Earth attributes, avoiding Water and Fire. This considers the birth chart features to enhance fortunes.') }}</p>
-              </div>
-            </div>
+          <p class="hint-text">{{ locale === 'zh' ? '填写您的偏好并点击"生成名字"按钮开始' : 'Fill in your preferences and click "Generate Names" button to start' }}</p>
+        </div>
+        
+        <!-- 结果部分：只有当有结果且不在加载中时才显示 -->
+        <transition name="fade">
+          <div v-if="results.length && !isLoading" class="results-section" ref="resultsSection">
+            <h2>{{ $t('custom.results.title') }}</h2>
             
-            <!-- 五行用字分析 -->
-            <div class="analysis-card">
-              <h3 class="analysis-title">{{ locale === 'zh' ? '五行用字分析' : 'Five Elements Analysis' }}</h3>
-              <div class="analysis-content">
-                <p>{{ results[0]?.analysis?.fiveElementsAnalysis || 
-                    (locale === 'zh' ? 
-                    '姓名的五行平衡很重要，姓名宜包含互补的五行属性。您的姓属于木，建议名字包含金、土属性的字，使五行更加均衡，形成相生相助的关系。' : 
-                    'Balance in the Five Elements is important. Your surname belongs to Wood element, so we suggest using characters with Metal and Earth attributes to create harmony in the Five Elements.') }}</p>
-              </div>
-            </div>
-            
-            <!-- 周易用字分析 -->
-            <div class="analysis-card">
-              <h3 class="analysis-title">{{ locale === 'zh' ? '周易用字分析' : 'I-Ching Analysis' }}</h3>
-              <div class="analysis-content">
-                <p>{{ results[0]?.analysis?.iChingAnalysis || 
-                    (locale === 'zh' ? 
-                    '根据周易理念，起名宜用风雅和谐、山高水长、寓意深远的字。建议选择具有吉祥寓意、音形义俱佳的字，融入传统文化的深厚底蕴。' : 
-                    'According to I-Ching philosophy, names should use elegant and harmonious characters with deep meaning. We suggest characters with auspicious meanings and good sound-form-meaning combinations.') }}</p>
-              </div>
-            </div>
-            
-            <!-- 生肖用字分析 -->
-            <div class="analysis-card">
-              <h3 class="analysis-title">{{ locale === 'zh' ? '生肖用字分析' : 'Zodiac Analysis' }}</h3>
-              <div class="analysis-content">
-                <p>{{ results[0]?.analysis?.zodiacAnalysis || 
-                    (locale === 'zh' ? 
-                    '生肖属性为' + (results[0]?.birthInfo?.zodiac || '蛇') + '，起名宜用有"月"、"山"、"田"、"人"、"禾"、"木"、"气"、"金"、"目"、"王"、"玉"、"羊"等部首的字，以促方运畅通。' : 
-                    'Your zodiac sign is ' + (results[0]?.birthInfo?.zodiac || 'Snake') + '. We recommend using characters with radicals like Moon, Mountain, Field, Person, Grain, Wood, Air, Gold, Eye, King, Jade, and Sheep to enhance your fortune.') }}</p>
-              </div>
-            </div>
-            
-            <!-- 姓名分析 -->
-            <div class="analysis-card">
-              <h3 class="analysis-title">{{ locale === 'zh' ? '姓名分析' : 'Name Analysis' }}</h3>
-              <div class="analysis-content">
-                <p>{{ results[0]?.analysis?.nameAnalysis || 
-                    (locale === 'zh' ? 
-                    '理想的姓名会令人感受到美好的期望，能帮助培养内在的学习能力、领导力、魅力与毅力，提升自信，促使德才兼备，彰显个性特点。我们的姓名生成充分考虑这些因素，为您呈现最佳选择。' : 
-                    'An ideal name should convey positive expectations and help develop learning ability, leadership, charm, perseverance, and confidence. Our name generation fully considers these factors to present the best options for you.') }}</p>
-              </div>
-            </div>
-          </div>
-          
-          <!-- 姓名结果卡片 -->
-          <div class="results-grid">
-            <div v-for="(result, index) in results" :key="index" class="result-card">
-              <div class="result-header">
-                <div class="result-pinyin-row">
-                  <span v-for="(py, i) in result.pinyin.split(' ')" :key="i" class="pinyin-item">{{ py }}</span>
+            <!-- 基本信息部分 -->
+            <div class="basic-info-card">
+              <h3>{{ locale === 'zh' ? '姓名基本信息' : 'Basic Information' }}</h3>
+              <div class="basic-info-grid">
+                <div class="info-item">
+                  <span class="info-label">{{ $t('translate.lastName') }}：</span>
+                  <span class="info-value">{{ formData.lastName || '李' }}</span>
                 </div>
-                <div class="result-characters">{{ result.characters }}</div>
-                <div class="result-elements">
-                  <span v-for="(char, i) in result.characters" :key="i" 
-                        class="element-tag"
-                        :class="getElementClass(result.analysis.characterElements && result.analysis.characterElements[i] 
-                                ? result.analysis.characterElements[i] 
-                                : ['木', '金', '土', '水', '火'][i % 5])">
-                    {{ result.analysis.characterElements && result.analysis.characterElements[i] 
-                       ? result.analysis.characterElements[i] 
-                       : ['木', '金', '土', '水', '火'][i % 5] }}
+                <div class="info-item">
+                  <span class="info-label">{{ $t('translate.gender') }}：</span>
+                  <span class="info-value">
+                    {{ formData.gender === 'male' ? (locale === 'zh' ? '男' : 'Male') : 
+                       formData.gender === 'female' ? (locale === 'zh' ? '女' : 'Female') : 
+                       (locale === 'zh' ? '其他' : 'Other') }}
                   </span>
                 </div>
-              </div>
-              
-              <div class="result-score-section">
-                <div class="overall-score">
-                  <span class="score-value">{{ result.analysis.score || 92 }}</span>
-                  <span class="score-label">{{ locale === 'zh' ? '分' : 'points' }}</span>
+                <div class="info-item full-width">
+                  <span class="info-label">{{ locale === 'zh' ? '公历' : 'Solar Calendar' }}：</span>
+                  <span class="info-value">{{ formData.birthdate }} {{ formData.birthtime }}</span>
+                </div>
+                <div class="info-item full-width">
+                  <span class="info-label">{{ locale === 'zh' ? '农历' : 'Lunar Calendar' }}：</span>
+                  <span class="info-value">{{ results[0]?.birthInfo?.lunarDate || '' }}</span>
                 </div>
               </div>
-              
-              <div class="detailed-scores">
-                <div class="score-item">
-                  <div class="score-name">{{ locale === 'zh' ? '五行八字' : 'Elements & Eight Characters' }}</div>
-                  <div class="score-bar-container">
-                    <div class="score-bar five-elements" :style="{width: ((result.analysis.subscores?.fiveElements || 92)/100*100) + '%'}"></div>
+            </div>
+            
+            <!-- 名字卡片列表 - 每个名字一个完整的卡片，包含分析和详细信息 -->
+            <div class="name-cards-container">
+              <div v-for="(result, index) in results" :key="index" class="name-card">
+                <!-- 名字卡片头部 -->
+                <div class="name-card-header">
+                  <div class="name-pinyin">
+                    <span v-for="(py, i) in result.pinyin.split(' ')" :key="i" class="pinyin-item">{{ py }}</span>
                   </div>
-                  <div class="score-value-small">{{ result.analysis.subscores?.fiveElements || 92 }}</div>
-                </div>
-                <div class="score-item">
-                  <div class="score-name">{{ locale === 'zh' ? '音律字形' : 'Sound & Shape' }}</div>
-                  <div class="score-bar-container">
-                    <div class="score-bar sound-shape" :style="{width: ((result.analysis.subscores?.soundShape || 97)/100*100) + '%'}"></div>
-                  </div>
-                  <div class="score-value-small">{{ result.analysis.subscores?.soundShape || 97 }}</div>
-                </div>
-                <div class="score-item">
-                  <div class="score-name">{{ locale === 'zh' ? '格局寓意' : 'Meaning & Structure' }}</div>
-                  <div class="score-bar-container">
-                    <div class="score-bar meaning" :style="{width: ((result.analysis.subscores?.meaning || 95)/100*100) + '%'}"></div>
-                  </div>
-                  <div class="score-value-small">{{ result.analysis.subscores?.meaning || 95 }}</div>
-                </div>
-                <div class="score-item">
-                  <div class="score-name">{{ locale === 'zh' ? '生肖属相' : 'Zodiac Compatibility' }}</div>
-                  <div class="score-bar-container">
-                    <div class="score-bar zodiac" :style="{width: ((result.analysis.subscores?.zodiac || 88)/100*100) + '%'}"></div>
-                  </div>
-                  <div class="score-value-small">{{ result.analysis.subscores?.zodiac || 88 }}</div>
-                </div>
-                <div class="score-item">
-                  <div class="score-name">{{ locale === 'zh' ? '生辰八字' : 'Birth Chart' }}</div>
-                  <div class="score-bar-container">
-                    <div class="score-bar birth-chart" :style="{width: ((result.analysis.subscores?.birthChart || 100)/100*100) + '%'}"></div>
-                  </div>
-                  <div class="score-value-small">{{ result.analysis.subscores?.birthChart || 100 }}</div>
-                </div>
-                <div class="score-item">
-                  <div class="score-name">{{ locale === 'zh' ? '国学应用' : 'Classical Usage' }}</div>
-                  <div class="score-bar-container">
-                    <div class="score-bar classical" :style="{width: ((result.analysis.subscores?.classical || 100)/100*100) + '%'}"></div>
-                  </div>
-                  <div class="score-value-small">{{ result.analysis.subscores?.classical || 100 }}</div>
-                </div>
-              </div>
-              
-              <div class="character-meanings">
-                <div v-for="(char, i) in result.characters.substring(formData.lastName ? formData.lastName.length : 1)" 
-                     :key="i" 
-                     class="character-meaning-item">
-                  <div class="character-box">{{ char }}</div>
-                  <div class="character-explanation">
-                    <strong>{{ char }}：</strong>
-                    {{ getCharacterMeaning(result, char, i) }}
+                  <div class="name-characters">{{ result.characters }}</div>
+                  <div class="name-elements">
+                    <span v-for="(char, i) in result.characters" :key="i" 
+                          class="element-tag"
+                          :class="getElementClass(result.analysis.characterElements && result.analysis.characterElements[i] 
+                                  ? result.analysis.characterElements[i] 
+                                  : ['木', '金', '土', '水', '火'][i % 5])">
+                      {{ result.analysis.characterElements && result.analysis.characterElements[i] 
+                         ? result.analysis.characterElements[i] 
+                         : ['木', '金', '土', '水', '火'][i % 5] }}
+                    </span>
                   </div>
                 </div>
-              </div>
-              
-              <div class="result-actions">
-                <button class="action-button copy" @click="copyToClipboard(result.characters)">
-                  {{ $t('common.copy') }}
-                </button>
-                <button class="action-button save" @click="saveResult(result)">
-                  {{ $t('custom.results.save') }}
-                </button>
+                
+                <!-- 总评分 -->
+                <div class="name-score-section">
+                  <div class="overall-score">
+                    <span class="score-value">{{ result.analysis.score || 92 }}</span>
+                    <span class="score-label">{{ locale === 'zh' ? '分' : 'points' }}</span>
+                  </div>
+                </div>
+                
+                <!-- 分项评分 -->
+                <div class="detailed-scores">
+                  <div class="score-item">
+                    <div class="score-name">{{ locale === 'zh' ? '五行八字' : 'Elements & Eight Characters' }}</div>
+                    <div class="score-bar-container">
+                      <div class="score-bar five-elements" :style="{width: ((result.analysis.subscores?.fiveElements || 92)/100*100) + '%'}"></div>
+                    </div>
+                    <div class="score-value-small">{{ result.analysis.subscores?.fiveElements || 92 }}</div>
+                  </div>
+                  <div class="score-item">
+                    <div class="score-name">{{ locale === 'zh' ? '音律字形' : 'Sound & Shape' }}</div>
+                    <div class="score-bar-container">
+                      <div class="score-bar sound-shape" :style="{width: ((result.analysis.subscores?.soundShape || 97)/100*100) + '%'}"></div>
+                    </div>
+                    <div class="score-value-small">{{ result.analysis.subscores?.soundShape || 97 }}</div>
+                  </div>
+                  <div class="score-item">
+                    <div class="score-name">{{ locale === 'zh' ? '格局寓意' : 'Meaning & Structure' }}</div>
+                    <div class="score-bar-container">
+                      <div class="score-bar meaning" :style="{width: ((result.analysis.subscores?.meaning || 95)/100*100) + '%'}"></div>
+                    </div>
+                    <div class="score-value-small">{{ result.analysis.subscores?.meaning || 95 }}</div>
+                  </div>
+                  <div class="score-item">
+                    <div class="score-name">{{ locale === 'zh' ? '生肖属相' : 'Zodiac Compatibility' }}</div>
+                    <div class="score-bar-container">
+                      <div class="score-bar zodiac" :style="{width: ((result.analysis.subscores?.zodiac || 88)/100*100) + '%'}"></div>
+                    </div>
+                    <div class="score-value-small">{{ result.analysis.subscores?.zodiac || 88 }}</div>
+                  </div>
+                  <div class="score-item">
+                    <div class="score-name">{{ locale === 'zh' ? '生辰八字' : 'Birth Chart' }}</div>
+                    <div class="score-bar-container">
+                      <div class="score-bar birth-chart" :style="{width: ((result.analysis.subscores?.birthChart || 90)/100*100) + '%'}"></div>
+                    </div>
+                    <div class="score-value-small">{{ result.analysis.subscores?.birthChart || 90 }}</div>
+                  </div>
+                  <div class="score-item">
+                    <div class="score-name">{{ locale === 'zh' ? '国学应用' : 'Classical Usage' }}</div>
+                    <div class="score-bar-container">
+                      <div class="score-bar classical" :style="{width: ((result.analysis.subscores?.classical || 93)/100*100) + '%'}"></div>
+                    </div>
+                    <div class="score-value-small">{{ result.analysis.subscores?.classical || 93 }}</div>
+                  </div>
+                </div>
+
+                <!-- 详细分析面板 -->
+                <transition name="slide">
+                  <div v-if="result.showAnalysis" class="analysis-details">
+                    <div class="analysis-key-value-list">
+                      <div
+                        v-for="(item, idx) in getAnalysisDisplayList(result)"
+                        :key="item.label"
+                        :class="['analysis-row', 'row-bg-' + idx]"
+                      >
+                        <div class="analysis-key">{{ item.label }}</div>
+                        <div class="analysis-value">{{ item.value }}</div>
+                      </div>
+                    </div>
+                    <div class="character-meanings-list">
+                      <div
+                        v-for="(char, idx) in result.characters.slice(1)"
+                        :key="char"
+                        class="char-meaning-row"
+                      >
+                        <span class="char">{{ char }}</span>
+                        <span class="meaning">{{ getCharacterMeaning(result, char, idx+1).slice(2) }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </transition>
+                
+                <!-- 操作按钮 -->
+                <div class="name-actions">
+                  <button class="action-button copy" @click="copyToClipboard(result.characters)">
+                    {{ $t('common.copy') }}
+                  </button>
+                  <button class="action-button save" @click="saveResult(result)">
+                    {{ $t('custom.results.save') }}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </transition>
       </div>
     </div>
   </div>
@@ -397,12 +370,25 @@
 
 <script>
 import { useI18n } from 'vue-i18n'
-import { sendAIRequest, parseAIResponse } from '@/services/aiService';
 import { nameGenerationPrompts } from '@/services/promptTemplates';
 import { nameGenerationSystemPrompt } from '@/config/systemPrompts';
 import LoadingIndicator from '@/components/LoadingIndicator.vue';
 import aiConfig from '@/config/aiConfig';
 import chineseSurnames from '@/data/ChineseSurnames.js';
+import openaiService from '@/services/openaiService';
+
+// 默认汉字含义字典
+const defaultMeanings = {
+  '智': '智：意为聪明、有智慧。读音zhì。指睿智、聪明才智，形容拥有高深的思考能力和见识。用作人名意指聪明、睿智、有才能之义。',
+  '明': '明：意为光明、清晰、明亮。读音míng。指光亮、清楚、明白，也指睿智、英明。用作人名意指光明磊落、聪明睿智、前途光明之义。',
+  '睿': '睿：意为明智、通达。读音ruì。形容人聪明有远见。',
+  '豪': '豪：意为豪迈、气魄。读音háo。形容人气度非凡。',
+  '德': '德：意为品德、道德。读音dé。指高尚的品行。',
+  '安': '安：意为平安、安宁。读音ān。指平和、安定。',
+  '承': '承：意为承载、继承。读音chéng。指继承、担当。',
+  '晟': '晟：意为光明、兴盛。读音shèng。指光明、兴盛。',
+  // ...可继续补充常用字
+};
 
 export default {
   name: 'CustomName',
@@ -456,6 +442,15 @@ export default {
       selectedStroke: null,
       // 使用导入的姓氏数据
       surnames: chineseSurnames,
+      resultsRef: null, // 添加结果区域的引用
+      // 分析标签页定义
+      analysisTabs: [
+        { name: { zh: '八字用字：', en: 'Eight Characters：' } },
+        { name: { zh: '五行用字：', en: 'Five Elements：' } },
+        { name: { zh: '周易用字：', en: 'I-Ching：' } },
+        { name: { zh: '生肖用字：', en: 'Zodiac：' } },
+        { name: { zh: '姓名分析：', en: 'Name Analysis：' } }
+      ]
     }
   },
   computed: {
@@ -503,10 +498,20 @@ export default {
         this.selectedTraits.push(trait);
       }
     },
+    scrollToResults() {
+      // 等待DOM更新后再滚动
+      this.$nextTick(() => {
+        if (this.$refs.resultsSection) {
+          this.$refs.resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    },
     async generateNames() {
+      // 开始加载前清除现有结果
+      this.results = [];
       this.isLoading = true;
       
-      // 准备API调用参数
+      // 准备参数
       const apiParams = {
         lastName: this.formData.lastName || '李',
         gender: this.formData.gender,
@@ -517,71 +522,128 @@ export default {
       };
       
       try {
-        // 获取对应语言的提示词模板
+        // 构建提示词
         const promptTemplate = nameGenerationPrompts[this.locale] || nameGenerationPrompts.zh;
+        const prompt = promptTemplate(apiParams);
         
-        // 构建请求参数
-        const requestBody = {
-          model: aiConfig.models.nameGeneration,
-          messages: [
-            {
-              role: "system",
-              content: nameGenerationSystemPrompt
-            },
-            {
-              role: "user",
-              content: promptTemplate(apiParams)
+        // 定义JSON Schema，用于结构化返回数据
+        const nameSchema = {
+          type: "object",
+          properties: {
+            names: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  characters: { type: "string" },
+                  pinyin: { type: "string" },
+                  explanation: { type: "string" },
+                  cultural: { type: "string" },
+                  birthInfo: {
+                    type: "object",
+                    properties: {
+                      solarDate: { type: "string" },
+                      lunarDate: { type: "string" },
+                      zodiac: { type: "string" },
+                      eightChar: {
+                        type: "object",
+                        properties: {
+                          year: { type: "string" },
+                          month: { type: "string" },
+                          day: { type: "string" },
+                          hour: { type: "string" }
+                        }
+                      },
+                      fiveElements: {
+                        type: "object",
+                        properties: {
+                          year: { type: "string" },
+                          month: { type: "string" },
+                          day: { type: "string" },
+                          hour: { type: "string" }
+                        }
+                      }
+                    }
+                  },
+                  analysis: {
+                    type: "object",
+                    properties: {
+                      strokes: { type: "number" },
+                      characterElements: { type: "array", items: { type: "string" } },
+                      fiveElementsBalance: { type: "string" },
+                      soundMeaning: { type: "string" },
+                      compatibility: { type: "string" },
+                      score: { type: "number" },
+                      subscores: {
+                        type: "object",
+                        properties: {
+                          fiveElements: { type: "number" },
+                          soundShape: { type: "number" },
+                          meaning: { type: "number" },
+                          zodiac: { type: "number" },
+                          birthChart: { type: "number" },
+                          classical: { type: "number" }
+                        }
+                      },
+                      eightCharacterAnalysis: { type: "string" },
+                      fiveElementsAnalysis: { type: "string" },
+                      iChingAnalysis: { type: "string" },
+                      zodiacAnalysis: { type: "string" },
+                      nameAnalysis: { type: "string" }
+                    }
+                  }
+                }
+              }
             }
-          ],
-          temperature: aiConfig.temperatures.nameGeneration
+          }
         };
         
-        // 直接调用AI接口
-        const response = await fetch(aiConfig.baseConfig.apiUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': aiConfig.baseConfig.apiKey
-          },
-          body: JSON.stringify(requestBody)
+        // 使用openaiService生成JSON结构化数据
+        console.log('发送AI请求...');
+        const response = await openaiService.generateAIObject({
+          prompt: prompt,
+          schema: nameSchema,
+          model: aiConfig.models.nameGeneration,
+          temperature: aiConfig.temperatures.nameGeneration,
+          metadata: { type: 'name_generation' }
         });
         
-        if (!response.ok) {
-          throw new Error(`AI请求失败，状态码: ${response.status}`);
-        }
+        console.log('AI响应:', response);
         
-        const responseData = await response.json();
-        console.log('AI响应:', responseData);
-        
-        // 从AI响应中提取内容
-        let aiContent = '';
-        if (responseData.choices && responseData.choices.length > 0) {
-          aiContent = responseData.choices[0].message?.content || responseData.choices[0].text || '';
-        }
-        
-        // 尝试从AI响应中提取JSON
-        const extractedData = this.extractJsonFromText(aiContent);
-        if (extractedData && extractedData.names && Array.isArray(extractedData.names)) {
-          this.results = extractedData.names;
+        // 从响应中提取名字数据 - 使用更安全的方式检查数据
+        if (response && response.object && Array.isArray(response.object.names) && response.object.names.length > 0) {
+          console.log('成功获取名字数据:', response.object.names);
+          // 第一条展开，其余折叠
+          this.results = response.object.names.map((name, idx) => ({
+            ...name,
+            showAnalysis: true, // 全部展开
+            activeTab: 0
+          }));
+          // 滚动到结果区域
+          this.scrollToResults();
         } else {
-          // 如果无法解析JSON，尝试使用结构化提取
-          const structuredData = this.extractStructuredData(aiContent);
-          if (structuredData && structuredData.length > 0) {
-            this.results = structuredData;
-          } else {
-            throw new Error('无法从AI响应中提取有效数据');
-          }
+          console.warn('AI返回的数据结构不符合预期或为空:', response);
+          // 使用模拟数据作为备用
+          this.results = this.createMockNames(apiParams).map((name, idx) => ({
+            ...name,
+            showAnalysis: true,
+            activeTab: 0
+          }));
+          console.warn('使用模拟数据作为备用方案');
+          // 滚动到结果区域
+          this.scrollToResults();
         }
       } catch (error) {
         console.error('AI名字生成错误:', error);
-        // 仅在开发环境中使用模拟数据
-        if (window.__env && window.__env.NODE_ENV === 'development') {
-          this.results = this.createMockNames(apiParams);
-          console.warn('使用模拟数据作为后备方案');
-        } else {
-          alert('无法连接到AI服务，请稍后再试');
-          this.results = [];
-        }
+        // 使用模拟数据作为备用
+        this.results = this.createMockNames(apiParams).map((name, idx) => ({
+          ...name,
+          showAnalysis: true,
+          activeTab: 0
+        }));
+        console.warn('AI服务错误，使用模拟数据作为备用');
+        // 滚动到结果区域
+        this.scrollToResults();
       } finally {
         this.isLoading = false;
       }
@@ -719,8 +781,18 @@ export default {
             fiveElementsBalance: '金[2] 木[0] 水[1] 火[1] 土[2]',
             soundMeaning: this.locale === 'zh' ? '音韵和谐，寓意深远' : 'Harmonious pronunciation with deep meaning',
             compatibility: this.locale === 'zh' ? '与命主八字五行搭配协调' : 'Well balanced with birth chart elements',
-            score: 92
-          }
+            score: 92,
+            subscores: {
+              fiveElements: 92,
+              soundShape: 97,
+              meaning: 95,
+              zodiac: 88,
+              birthChart: 90,
+              classical: 93
+            }
+          },
+          showAnalysis: false,
+          activeTab: 0
         },
         {
           characters: params.lastName ? params.lastName + '安德' : '李安德',
@@ -737,8 +809,18 @@ export default {
             fiveElementsBalance: '金[1] 木[0] 水[1] 火[0] 土[3]',
             soundMeaning: this.locale === 'zh' ? '音韵平稳，寓意美好' : 'Balanced pronunciation with auspicious meaning',
             compatibility: this.locale === 'zh' ? '与命主八字五行搭配良好' : 'Good compatibility with birth chart elements',
-            score: 88
-          }
+            score: 88,
+            subscores: {
+              fiveElements: 85,
+              soundShape: 90,
+              meaning: 92,
+              zodiac: 86,
+              birthChart: 88,
+              classical: 89
+            }
+          },
+          showAnalysis: false,
+          activeTab: 0
         }
       ];
     },
@@ -798,68 +880,81 @@ export default {
     getElementClass(element) {
       // 将中文五行属性映射到英文类名
       const elementMap = {
-        '木': 'wood',
-        '金': 'metal',
-        '土': 'earth',
-        '水': 'water',
-        '火': 'fire'
+        'wood': '木', 'metal': '金', 'earth': '土', 'water': '水', 'fire': '火',
+        '木': '木', '金': '金', '土': '土', '水': '水', '火': '火'
       };
       
       // 尝试直接映射，如果不存在则使用默认值
       return elementMap[element] || 'wood';
     },
     getCharacterMeaning(result, char, index) {
-      // 尝试从结果对象中获取字符含义
-      if (result.characterMeanings && result.characterMeanings[char]) {
-        return result.characterMeanings[char];
+      let meaning = result.characterMeanings?.[char];
+      if (Array.isArray(meaning)) meaning = meaning[0];
+      if (!meaning) meaning = defaultMeanings[char] || '...';
+      // 去重处理
+      return meaning.replace(/(.+)\\1+/, '$1');
+    },
+    // 切换分析面板显示/隐藏
+    toggleAnalysis(index) {
+      if (this.results[index]) {
+        this.results[index].showAnalysis = !this.results[index].showAnalysis;
       }
-      
-      // 如果没有字符含义数据，则提供默认解释
-      const defaultMeanings = {
-        // 一些常见字符的默认含义
-        '智': locale === 'zh' ? 
-            '智：意为聪明、有智慧。读音zhì。指睿智、聪明才智，形容拥有高深的思考能力和见识。用作人名意指聪明、睿智、有才能之义。' : 
-            "Zhì: Means wisdom and intelligence. Represents profound thinking ability and knowledge. As a name, it implies cleverness, wisdom and talent.",
-        '明': locale === 'zh' ? 
-            '明：意为光明、清晰、明亮。读音míng。指光亮、清楚、明白，也指睿智、英明。用作人名意指光明磊落、聪明睿智、前途光明之义。' : 
-            "Míng: Means bright, clear, and luminous. Represents clarity and brilliance. As a name, it implies integrity, intelligence, and a bright future.",
-        '辰': locale === 'zh' ? 
-            '辰：意为时日、星辰。读音chén。为地支之一，代表龙，象征吉祥、高贵。用作人名意指朝气蓬勃、精力充沛、前程似锦之义。' : 
-            "Chén: Represents time, celestial bodies. It is one of the Earthly Branches, symbolizing the dragon. As a name, it implies vigor, energy, and bright prospects.",
-        '伟': locale === 'zh' ? 
-            '伟：意为高大、壮丽、杰出。读音wěi。指宏伟、伟大、卓越。用作人名意指杰出、高大、有远大的志向、贡献卓越之义。' : 
-            "Wěi: Means grand, magnificent, outstanding. Represents greatness and excellence. As a name, it implies distinction, greatness, and lofty aspirations.",
-        '信': locale === 'zh' ? 
-            '信：意为诚实、可靠、信念。读音xìn。指诚信、信任、相信。用作人名意指为人诚恳、值得信赖、有信念之义。' :
-            "Xìn: Means honest, reliable, belief. Represents trustworthiness and faith. As a name, it implies sincerity, reliability, and conviction.",
-        '杰': locale === 'zh' ? 
-            '杰：意为才能出众、卓越。读音jié。指杰出、优秀、不凡。用作人名意指才华横溢、卓尔不群、成就非凡之义。' :
-            "Jié: Means outstanding talent and excellence. Represents distinction and superiority. As a name, it implies extraordinary talent, uniqueness, and remarkable achievements.",
-        '涵': locale === 'zh' ? 
-            '涵：意为包容、涵养。读音hán。指包含、容纳、涵蓄。用作人名意指内涵丰富、修养良好、宽容大度之义。' :
-            "Hán: Means inclusive, cultivated. Represents containment and tolerance. As a name, it implies rich inner qualities, good cultivation, and magnanimity.",
-        '哲': locale === 'zh' ? 
-            '哲：意为聪明、有智慧。读音zhé。指哲学、哲理、睿智。用作人名意指富有哲理、思想深刻、睿智通达之义。' :
-            "Zhé: Means wise, philosophical. Represents wisdom and philosophy. As a name, it implies philosophical thinking, profound thoughts, and sagacity.",
-        '瑞': locale === 'zh' ? 
-            '瑞：意为吉祥、好预兆。读音ruì。指祥瑞、瑞气、吉兆。用作人名意指吉祥如意、福气、祥和之义。' :
-            "Ruì: Means auspicious, good omen. Represents good fortune and blessing. As a name, it implies good luck, happiness, and harmony.",
-        '宇': locale === 'zh' ? 
-            '宇：意为宇宙、空间。读音yǔ。指宏大的空间、气度不凡。用作人名意指胸怀宽广、气度不凡、境界高远之义。' :
-            "Yǔ: Means universe, space. Represents vast space and extraordinary bearing. As a name, it implies broad-mindedness, extraordinary demeanor, and lofty horizons."
-      };
-      
-      // 返回默认含义或通用提示
-      return defaultMeanings[char] || 
-        (locale === 'zh' ? 
-          `${char}：具有深厚文化底蕴的汉字，在名字中寓意着美好品质与祝福。` : 
-          `${char}: A Chinese character with rich cultural connotations, symbolizing fine qualities and good wishes in a name.`);
+    },
+    // 设置当前活动标签页
+    setActiveTab(nameIndex, tabIndex) {
+      if (this.results[nameIndex]) {
+        this.results[nameIndex].activeTab = tabIndex;
+      }
+    },
+    getAnalysisDisplayList(result) {
+      return [
+        {
+          label: this.analysisTabs[0].name[this.locale],
+          value: result.analysis.eightCharacterAnalysis || (this.locale === 'zh'
+            ? '根据八字喜用神，建议起名用带有木、金、土等属性的字，避开水、火属性。'
+            : 'Based on the Eight Characters analysis, we recommend characters with Wood, Metal, and Earth attributes, avoiding Water and Fire.')
+        },
+        {
+          label: this.analysisTabs[1].name[this.locale],
+          value: result.analysis.fiveElementsAnalysis || (this.locale === 'zh'
+            ? '姓名的五行平衡很重要，姓名宜包含互补的五行属性。'
+            : 'Balance in the Five Elements is important...')
+        },
+        {
+          label: this.analysisTabs[2].name[this.locale],
+          value: result.analysis.iChingAnalysis || (this.locale === 'zh'
+            ? '根据周易理念，起名宜用风雅和谐、山高水长、寓意深远的字。'
+            : 'According to I-Ching philosophy...')
+        },
+        {
+          label: this.analysisTabs[3].name[this.locale],
+          value: result.analysis.zodiacAnalysis || (this.locale === 'zh'
+            ? '生肖属性为' + (result.birthInfo?.zodiac || '蛇') + '，起名宜用有"月"、"山"等部首的字。'
+            : 'Your zodiac sign is ' + (result.birthInfo?.zodiac || 'Snake') + '...')
+        },
+        {
+          label: this.analysisTabs[4].name[this.locale],
+          value: result.analysis.nameAnalysis || (this.locale === 'zh'
+            ? '理想的姓名会令人感受到美好的期望...'
+            : 'An ideal name should convey positive expectations...')
+        }
+      ]
     }
   }
 }
 </script>
 
 <style scoped>
+/* 添加淡入淡出过渡效果 */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* 现有样式 */
 .custom-name-page {
   padding: 20px 0 100px;
   min-height: 100vh;
@@ -997,6 +1092,12 @@ export default {
 
 .submit-button:hover {
   background-color: #d00010;
+}
+
+.submit-button:disabled {
+  background-color: #f08080;
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
 /* 加载动画样式 */
@@ -1859,35 +1960,45 @@ export default {
 .result-elements {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 18px;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .element-tag {
-  padding: 3px 8px;
-  border-radius: 15px;
-  font-size: 0.9rem;
-  color: white;
+  font-size: 1.15rem;
+  font-weight: bold;
+  padding: 6px 18px;
+  border-radius: 18px;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  letter-spacing: 2px;
+  border: none;
+  transition: transform 0.15s;
+  /* 让标签更有立体感 */
 }
 
-.element-tag.wood {
-  background-color: #5cb85c;
+.element-tag.木 {
+  background: linear-gradient(135deg, #2ecc40 60%, #27ae60 100%);
+}
+.element-tag.金 {
+  background: linear-gradient(135deg, #f1c40f 60%, #b7950b 100%);
+}
+.element-tag.土 {
+  background: linear-gradient(135deg, #a67c52 60%, #7d5a3a 100%);
+}
+.element-tag.水 {
+  background: linear-gradient(135deg, #3498db 60%, #154360 100%);
+}
+.element-tag.火 {
+  background: linear-gradient(135deg, #e74c3c 60%, #b71c1c 100%);
 }
 
-.element-tag.metal {
-  background-color: #f0ad4e;
-}
-
-.element-tag.earth {
-  background-color: #d9534f;
-}
-
-.element-tag.water {
-  background-color: #5bc0de;
-}
-
-.element-tag.fire {
-  background-color: #d9534f;
+/* 鼠标悬停时微微放大 */
+.element-tag:hover {
+  transform: scale(1.08);
+  filter: brightness(1.08);
+  cursor: pointer;
 }
 
 .result-score-section {
@@ -2026,5 +2137,279 @@ export default {
     width: 100px;
     font-size: 0.85rem;
   }
+}
+
+.empty-results-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #888;
+  font-size: 16px;
+  text-align: center;
+  padding: 30px;
+}
+
+.hint-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 15px;
+  color: #ddd;
+}
+
+.hint-text {
+  margin-top: 10px;
+}
+
+/* 名字卡片容器和卡片样式 */
+.name-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.name-card {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.name-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.name-card-header {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 25px 20px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.name-pinyin {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.pinyin-item {
+  margin: 0 5px;
+  color: #555;
+  font-size: 1.1rem;
+}
+
+.name-characters {
+  font-size: 3rem;
+  font-weight: 600;
+  color: #e60012;
+  margin-bottom: 12px;
+  letter-spacing: 5px;
+}
+
+.name-elements {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.name-score-section {
+  padding: 20px;
+  text-align: center;
+  background-color: #f9f9fa;
+  border-bottom: 1px solid #eee;
+}
+
+.analysis-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background-color: #f5f5f5;
+  cursor: pointer;
+  color: #555;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid #eee;
+  gap: 8px;
+}
+
+.analysis-toggle:hover {
+  background-color: #e9ecef;
+  color: #e60012;
+}
+
+.toggle-icon {
+  display: inline-flex;
+  transition: transform 0.3s ease;
+}
+
+.toggle-icon.rotated {
+  transform: rotate(180deg);
+}
+
+.analysis-details {
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  overflow: hidden;
+}
+
+.analysis-tabs {
+  background: #f5f5f5;
+  border-radius: 8px 8px 0 0;
+  border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 0;
+}
+
+.tab {
+  padding: 12px 15px;
+  cursor: pointer;
+  color: #555;
+  font-weight: 500;
+  transition: all 0.2s;
+  text-align: center;
+  flex: 1;
+  white-space: nowrap;
+  font-size: 0.9rem;
+}
+
+.tab:hover {
+  background-color: #eee;
+  color: #333;
+}
+
+.tab.active {
+  background: #fff;
+  color: #e60012;
+  border-bottom: 2px solid #e60012;
+  font-weight: bold;
+}
+
+.tab-content {
+  background: #fff;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border: 1px solid #eee;
+  border-top: none;
+  padding: 20px;
+}
+
+.tab-pane {
+  line-height: 1.6;
+  color: #333;
+}
+
+.character-meanings {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+}
+
+.name-actions {
+  display: flex;
+  border-top: 1px solid #eee;
+  background-color: #fff;
+}
+
+/* 添加滑动动画 */
+.slide-enter-active, .slide-leave-active {
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+  max-height: 500px;
+  opacity: 1;
+  overflow: hidden;
+}
+
+.slide-enter-from, .slide-leave-to {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .name-characters {
+    font-size: 2.5rem;
+  }
+  
+  .analysis-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .tab {
+    padding: 10px;
+    font-size: 0.85rem;
+    min-width: 80px;
+  }
+}
+
+.analysis-key-value-list {
+  display: block;
+
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.analysis-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 5px 10px;
+  border-radius: 15px;
+  background-color: #f9f9f9;
+}
+
+.analysis-key {
+  font-weight: 600;
+  color: #333;
+}
+
+.analysis-value {
+  flex: 1;
+  color: #666;
+}
+
+.row-bg-0 { background-color: #e6f3ff; }
+.row-bg-1 { background-color: #fff3e0; }
+.row-bg-2 { background-color: #e6ffcc; }
+.row-bg-3 { background-color: #ffd6d6; }
+.row-bg-4 { background-color: #ffccff; }
+
+.character-meanings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 22px;
+  background: #F6F8FA;
+  border-radius: 10px;
+  padding: 16px 18px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+.char-meaning-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 1rem;
+  color: #333;
+}
+.char-meaning-row:last-child {
+  border-bottom: none;
+}
+.char {
+  font-weight: bold;
+  color: #e60012;
+  min-width: 2.5em;
+}
+.meaning {
+  flex: 1;
+  color: #555;
 }
 </style>

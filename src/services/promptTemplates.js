@@ -11,18 +11,22 @@ export const nameGenerationPrompts = {
     const traits = (params.characteristics || []).join('、');
     const meaning = params.desiredMeaning || '';
     
-    return `请为一位${genderText}用户创建三个中文名字。
+    return `请为一位${genderText}用户创建两个中文名字。
 姓氏: ${params.lastName || ''}
 性格特点: ${traits}
 期望含义: ${meaning}
 出生信息: ${params.birthDateTime || ''}
 
-请创建三个独特的中文名字，要求：
+请创建两个独特的中文名字，要求：
 1. 名字符合中国传统命名习惯，音律和谐
 2. 提供每个名字的中文字符、拼音标注
 3. 详细解释每个字的含义和文化背景
 4. 分析名字与出生八字的匹配度
 5. 提供五行分析和姓名学评分
+6. 每个字的五行属性
+7. 各项评分子项(五行八字、音律字形、格局寓意、生肖属相、生辰八字、国学应用)
+8. 各分析项目的详细解释(八字用字分析、五行用字分析、周易用字分析、生肖用字分析、姓名分析)
+9. 每个字的文化意义和性格特点对应
 
 请以JSON格式返回结果，符合以下结构：
 \`\`\`json
@@ -33,12 +37,40 @@ export const nameGenerationPrompts = {
       "pinyin": "拼音标注",
       "explanation": "名字含义解释",
       "cultural": "文化背景说明",
+      "birthInfo": {
+        "lunarDate": "农历日期",
+        "zodiac": "生肖",
+        "eightChar": {
+          "year": "年柱",
+          "month": "月柱",
+          "day": "日柱",
+          "hour": "时柱"
+        }
+      },
       "analysis": {
         "strokes": 笔画总数,
+        "characterElements": ["第一个字的五行", "第二个字的五行", "第三个字的五行"],
         "fiveElementsBalance": "五行平衡分析",
         "soundMeaning": "音律与含义分析",
         "compatibility": "与生辰八字兼容性",
-        "score": 综合评分(0-100)
+        "score": 综合评分(0-100),
+        "subscores": {
+          "fiveElements": 五行八字评分(0-100),
+          "soundShape": 音律字形评分(0-100),
+          "meaning": 格局寓意评分(0-100),
+          "zodiac": 生肖属相评分(0-100),
+          "birthChart": 生辰八字评分(0-100),
+          "classical": 国学应用评分(0-100)
+        },
+        "eightCharacterAnalysis": "详细的八字用字分析解释",
+        "fiveElementsAnalysis": "详细的五行用字分析解释",
+        "iChingAnalysis": "详细的周易用字分析解释", 
+        "zodiacAnalysis": "详细的生肖用字分析解释",
+        "nameAnalysis": "详细的姓名分析解释"
+      },
+      "characterMeanings": {
+        "字1": "该字的详细含义解释",
+        "字2": "该字的详细含义解释"
       }
     }
   ]
@@ -63,6 +95,10 @@ Please create three unique Chinese names with:
 3. Detailed explanation of each character's meaning and cultural background
 4. Analysis of compatibility with birth information
 5. Five elements analysis and name score
+6. Five elements attribute for each character
+7. Subscores for different aspects (Five Elements & Eight Characters, Sound & Shape, Meaning & Structure, Zodiac Compatibility, Birth Chart, Classical Usage)
+8. Detailed explanation for each analysis section (Eight Characters Analysis, Five Elements Analysis, I-Ching Analysis, Zodiac Analysis, Name Analysis)
+9. Cultural meaning and personality traits for each character
 
 Please return the result in JSON format following this structure:
 \`\`\`json
@@ -73,12 +109,40 @@ Please return the result in JSON format following this structure:
       "pinyin": "Pinyin notation",
       "explanation": "Name meaning explanation",
       "cultural": "Cultural background",
+      "birthInfo": {
+        "lunarDate": "Lunar date",
+        "zodiac": "Chinese zodiac",
+        "eightChar": {
+          "year": "Year pillar",
+          "month": "Month pillar",
+          "day": "Day pillar",
+          "hour": "Hour pillar"
+        }
+      },
       "analysis": {
         "strokes": totalStrokeCount,
+        "characterElements": ["First character's element", "Second character's element", "Third character's element"],
         "fiveElementsBalance": "Five elements balance analysis",
         "soundMeaning": "Sound and meaning analysis",
         "compatibility": "Compatibility with birth chart",
-        "score": overallScore(0-100)
+        "score": overallScore(0-100),
+        "subscores": {
+          "fiveElements": fiveElementsScore(0-100),
+          "soundShape": soundShapeScore(0-100),
+          "meaning": meaningScore(0-100),
+          "zodiac": zodiacScore(0-100),
+          "birthChart": birthChartScore(0-100),
+          "classical": classicalScore(0-100)
+        },
+        "eightCharacterAnalysis": "Detailed eight characters analysis explanation",
+        "fiveElementsAnalysis": "Detailed five elements analysis explanation",
+        "iChingAnalysis": "Detailed I-Ching analysis explanation", 
+        "zodiacAnalysis": "Detailed zodiac analysis explanation",
+        "nameAnalysis": "Detailed name analysis explanation"
+      },
+      "characterMeanings": {
+        "char1": "Detailed meaning of this character",
+        "char2": "Detailed meaning of this character"
       }
     }
   ]

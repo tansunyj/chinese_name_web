@@ -126,7 +126,7 @@ export default {
   data() {
     return {
       formData: {
-        birthDate: ''
+        birthDate: '2000-01-01'
       },
       isLoading: false,
       results: null,
