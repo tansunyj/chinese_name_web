@@ -6,10 +6,11 @@ import es from './es'
 // 注意：实际项目中应该添加所有语言的翻译文件，这里暂时只添加西班牙语作为示例
 // 其他语言可以在实际项目中逐步添加完整翻译
 
+// 强制设置为英文
 const i18n = createI18n({
   legacy: false,
-  locale: 'en',
-  fallbackLocale: 'en',
+  locale: 'en', // 默认使用英文
+  fallbackLocale: 'en', // 回退语言为英文
   messages: {
     en,
     zh,

@@ -11,10 +11,10 @@ export default {
   
   // 模型配置
   models: {
-    default: (window.__env && window.__env.VUE_APP_AI_MODEL_VERSION) || 'o4-mini',
-    nameGeneration: (window.__env && window.__env.VUE_APP_NAME_GEN_MODEL) || 'o4-mini',
-    translation: (window.__env && window.__env.VUE_APP_TRANSLATION_MODEL) || 'o4-mini',
-    analysis: (window.__env && window.__env.VUE_APP_ANALYSIS_MODEL) || 'o4-mini',
+    default: (window.__env && window.__env.VUE_APP_AI_MODEL_VERSION) || 'gpt-4o-mini',
+    nameGeneration: (window.__env && window.__env.VUE_APP_NAME_GEN_MODEL) || 'gpt-4o-mini',
+    translation: (window.__env && window.__env.VUE_APP_TRANSLATION_MODEL) || 'gpt-4o-mini',
+    analysis: (window.__env && window.__env.VUE_APP_ANALYSIS_MODEL) || 'gpt-4o-mini',
   },
   
   // 温度参数配置（控制创造性）

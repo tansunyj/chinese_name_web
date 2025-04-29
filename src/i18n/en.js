@@ -7,7 +7,7 @@ export default {
     knowledgeBase: 'Knowledge',
     login: 'Login',
     signup: 'Sign Up',
-    siteName: 'ChineseName',
+    siteName: 'ChineseName.us',
     aboutUs: 'About Us'
   },
   footer: {
@@ -71,6 +71,10 @@ export default {
           description: 'Analyze your constellation traits based on your birth date, providing detailed interpretation and naming suggestions'
         }
       },
+      translateName: {
+        title: 'Translate Your Name to Chinese',
+        description: 'Translate foreign names into Chinese names with similar pronunciation, providing multiple options and detailed meaning explanations'
+      },
       multilingualName: {
         title: 'Multilingual Name Translation',
         description: 'Support for name translation in multiple languages, including English, French, German, Spanish and more'
@@ -97,6 +101,29 @@ export default {
       namingService: 'Personalized Naming Services',
       pinyinTools: 'Pinyin Conversion Tools',
       knowledge: 'Chinese Name Resources'
+    },
+    personalizedServices: {
+      title: 'Personalized Naming Services',
+      custom: {
+        title: 'Custom Chinese Name',
+        description: 'AI-powered personalized Chinese name creation based on your preferences'
+      },
+      zodiac: {
+        title: 'Zodiac Calculator',
+        description: 'Calculate your Chinese zodiac sign and learn about its characteristics and naming suggestions'
+      },
+      constellation: {
+        title: 'Constellation Analysis',
+        description: 'Analyze your constellation traits based on your birth date and get naming inspiration'
+      },
+      gender: {
+        title: 'Gender Analysis',
+        description: 'Explore naming options based on gender considerations and cultural preferences'
+      }
+    },
+    knowledgeBase: {
+      title: 'Chinese Name Knowledge Resources',
+      description: 'Comprehensive guides and references for understanding Chinese naming traditions and practices'
     },
     about: {
       title: 'About Us',
@@ -157,6 +184,7 @@ export default {
     generateButton: 'Generate Names',
     showMore: 'Show More Options',
     showLess: 'Show Less',
+    playPronunciation: 'Play Pronunciation',
     results: {
       title: 'Custom Name Suggestions',
       explanation: 'Name Explanation',
@@ -362,15 +390,42 @@ export default {
   pinyinToName: {
     title: 'Convert Pinyin to Chinese Name',
     pinyin: 'Pinyin Input',
-    tone: 'Tone',
-    gender: 'Gender',
+    gender: 'Gender Preference',
     convertButton: 'Find Characters',
+    actions: {
+      copyResults: 'Copy Results',
+      copyName: 'Copy Name',
+      newSearch: 'New Search',
+      tryAgain: 'Try Again',
+      share: 'Share'
+    },
     results: {
       title: 'Character Options',
+      found: '{count} characters found',
       character: 'Character',
       meaning: 'Meaning',
-      popularity: 'Popularity'
-    }
+      popularity: 'Popularity',
+      noResults: 'No characters found for this pinyin'
+    },
+    selected: {
+      title: 'Selected Characters',
+      finalize: 'Create Name'
+    },
+    finalName: {
+      title: 'Your Created Name',
+      meaning: 'Name Meaning'
+    },
+    errors: {
+      noPinyin: 'Please enter pinyin',
+      conversionFailed: 'Failed to convert pinyin to characters',
+      noNameSelected: 'Please select characters first'
+    },
+    share: {
+      title: 'My Chinese Name',
+      text: 'I created this Chinese name:'
+    },
+    nameFinalized: 'Name saved successfully',
+    noMeaningProvided: 'No meaning available'
   },
   zodiac: {
     title: 'Chinese Zodiac Calculator',
@@ -465,9 +520,11 @@ export default {
   },
   common: {
     loading: 'Loading',
+    searching: 'Searching...',
     copy: 'Copy',
     share: 'Share',
     copied: 'Copied to clipboard',
+    copyFailed: 'Failed to copy',
     generatingNames: 'Generating personalized Chinese names for you, please wait...',
     translatingName: 'Translating your name, please wait...',
     processing: 'Processing',

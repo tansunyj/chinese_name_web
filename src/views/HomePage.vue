@@ -34,7 +34,22 @@
               </div>
             </div>
           </router-link>
-          
+                    <!-- 名字翻译 -->
+          <router-link to="/translate" class="feature-card-link">
+            <div class="feature-card">
+              <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                </svg>
+              </div>
+              <h3>{{ $t('home.features.translateName.title') }}</h3>
+              <p>{{ $t('home.features.translateName.description') }}</p>
+              <div class="feature-link">
+                <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
+              </div>
+            </div>
+          </router-link>
+
           <!-- 生肖计算器 -->
           <router-link to="/zodiac-calculator" class="feature-card-link">
             <div class="feature-card">
@@ -67,69 +82,6 @@
             </div>
           </router-link>
           
-          <!-- 汉字笔画书写 -->
-          <!--router-link to="/character-strokes" class="feature-card-link">
-            <div class="feature-card">
-              <div class="icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                </svg>
-              </div>
-              <h3>Chinese Character Stroke Order</h3>
-              <p>View stroke order and pronunciation of Chinese characters, learn the correct writing method</p>
-              <div class="feature-link">
-                <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
-              </div>
-            </div>
-          </router-link-->
-        </div>
-      </div>
-    </section>
-
-    <!-- 翻译服务部分 -->
-    <section class="features">
-      <div class="container">
-        <h2 class="section-title">{{ $t('home.categories.translation') }}</h2>
-        <div class="feature-grid">
-          <router-link to="/translate" class="feature-card-link">
-            <div class="feature-card">
-              <div class="icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
-                </svg>
-              </div>
-              <h3>Translate Your Name to Chinese</h3>
-              <p>Translate foreign names into Chinese names with similar pronunciation, providing multiple options and detailed meaning explanations</p>
-              <div class="feature-link">
-                <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
-              </div>
-            </div>
-          </router-link>
-          
-          <router-link to="/multilingual" class="feature-card-link">
-            <div class="feature-card">
-              <div class="icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
-                </svg>
-              </div>
-              <h3>{{ $t('home.features.multilingualName.title') }}</h3>
-              <p>{{ $t('home.features.multilingualName.description') }}</p>
-              <div class="feature-link">
-                <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
-              </div>
-            </div>
-          </router-link>
-        </div>
-      </div>
-    </section>
-    
-
-    <!-- 拼音工具 -->
-    <section class="features features-alt">
-      <div class="container">
-        <h2 class="section-title">{{ $t('home.categories.pinyinTools') }}</h2>
-        <div class="feature-grid">
           <!-- 姓名转拼音 -->
           <router-link to="/name-to-pinyin" class="feature-card-link">
             <div class="feature-card">
@@ -145,22 +97,7 @@
               </div>
             </div>
           </router-link>
-          
-          <!-- 拼音转姓名 -->
-          <router-link to="/pinyin-to-name" class="feature-card-link">
-            <div class="feature-card">
-              <div class="icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h3>{{ $t('home.features.pinyinToName.title') }}</h3>
-              <p>{{ $t('home.features.pinyinToName.description') }}</p>
-              <div class="feature-link">
-                <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
-              </div>
-            </div>
-          </router-link>
+
         </div>
       </div>
     </section>
@@ -215,7 +152,7 @@ export default {
 }
 
 .hero .container {
-  max-width: 1200px;
+  max-width: 1000px; /* 与AppHeader中的容器宽度一致 */
   margin: 0 auto;
   padding: 0 20px;
   width: 100%;
@@ -228,7 +165,7 @@ export default {
 .hero-content {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* 修改为左对齐 */
   gap: 60px;
   width: 100%;
   height: 100%;
@@ -287,7 +224,7 @@ export default {
 }
 
 .features {
-  padding: 80px 0;
+  padding: 60px 0;
   background-color: #fff;
   position: relative;
 }
@@ -298,17 +235,16 @@ export default {
 }
 
 .features .container {
-  max-width: 1400px;
+  max-width: 1000px; /* 与AppHeader中的容器宽度一致 */
   margin: 0 auto;
   padding: 0 20px;
 }
 
 .section-title {
-  text-align: center;
-  font-size: 2.2rem;
-  margin-bottom: 40px;
+  font-size: 2.5rem;
   color: #333;
-  position: relative;
+  margin-bottom: 40px;
+  text-align: left; /* 修改为左对齐 */
 }
 
 .section-title::after {
@@ -317,7 +253,7 @@ export default {
   width: 60px;
   height: 3px;
   background-color: #e60012;
-  margin: 15px auto 0;
+  margin: 15px 0 0; /* 修改为左对齐 */
 }
 
 .feature-grid {

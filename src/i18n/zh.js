@@ -139,6 +139,7 @@ export default {
     generateButton: '生成名字',
     showMore: '显示更多选项',
     showLess: '收起选项',
+    playPronunciation: '播放发音',
     results: {
       title: '定制名字建议',
       explanation: '名字解释',

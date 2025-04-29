@@ -26,31 +26,14 @@
             </form>
           </div>
           
-          <div v-if="results.standard" class="results-section">
+          <div v-if="results.withTones" class="results-section">
             <h2 class="section-title">{{ $t('nameToPinyin.results.title') }}</h2>
             
             <div class="results-card">
               <!-- 拼音结果区域 -->
               <div class="pinyin-results">
                 <div class="results-row">
-                  <div class="result-item">
-                    <h3>
-                      <span class="result-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
-                        </svg>
-                      </span>
-                      {{ $t('nameToPinyin.results.standard') }}
-                    </h3>
-                    <div class="result-value">{{ results.standard }}</div>
-                    <button class="mini-action copy-btn" @click="copyToClipboard(results.standard)" title="复制标准拼音">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                      </svg>
-                    </button>
-                  </div>
-                  
+                  <!-- 删除标准拼音结果项 -->
                   <div class="result-item">
                     <h3>
                       <span class="result-icon">
@@ -133,7 +116,6 @@ export default {
     });
     const isLoading = ref(false);
     const results = ref({
-      standard: '',
       withTones: '',
       characters: []
     });
@@ -155,12 +137,6 @@ export default {
       
       setTimeout(() => {
         try {
-          const standardPinyin = pinyinPro.pinyin(formData.value.chineseName, {
-            toneType: "none",
-            type: "array",
-            separator: " "
-          });
-          
           const pinyinWithTone = pinyinPro.pinyin(formData.value.chineseName, {
             toneType: "symbol",
             type: "array",
@@ -180,7 +156,6 @@ export default {
           }
           
           results.value = {
-            standard: standardPinyin,
             withTones: pinyinWithTone,
             characters: pronunciation
           };
@@ -452,6 +427,7 @@ export default {
   border-left: 4px solid #e60012;
   transition: all 0.3s ease;
   flex: 1;
+  width: 100%;
   min-width: 250px;
 }
 

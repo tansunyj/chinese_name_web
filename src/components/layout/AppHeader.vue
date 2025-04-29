@@ -13,29 +13,20 @@
           <li><router-link to="/">{{ $t('header.home') }}</router-link></li>
           <li><router-link to="/custom">{{ $t('header.customName') }}</router-link></li>
           <li><router-link to="/translate">{{ $t('header.translateName') }}</router-link></li>
-          <li><router-link to="/multilingual">{{ $t('header.multilingualName') }}</router-link></li>
+          <!--li><router-link to="/multilingual">{{ $t('header.multilingualName') }}</router-link></li-->
           <li><router-link to="/knowledge">{{ $t('header.knowledgeBase') }}</router-link></li>
           <li><router-link to="/about">{{ $t('header.aboutUs') }}</router-link></li>
         </ul>
       </nav>
       
       <div class="actions">
-        <div class="language-switcher">
+        <!--div class="language-switcher">
           <select v-model="currentLanguage" @change="changeLanguage">
             <option value="en">English</option>
             <option value="zh">中文</option>
             <option value="es">Español</option>
-            <option value="fr">Français</option>
-            <option value="de">Deutsch</option>
-            <option value="ja">日本語</option>
-            <option value="ko">한국어</option>
-            <option value="ru">Русский</option>
-            <option value="ar">العربية</option>
-            <option value="pt">Português</option>
-            <option value="it">Italiano</option>
-            <option value="hi">हिन्दी</option>
           </select>
-        </div>
+        </div-->
         
         <!-- 暂时移除登录和注册按钮 -->
         <!-- <div class="auth-buttons">
@@ -58,11 +49,14 @@ export default {
   },
   data() {
     return {
-      currentLanguage: this.locale
+      currentLanguage: 'en'
     }
   },
   mounted() {
-    this.currentLanguage = this.locale;
+    // 强制使用英文
+    this.locale = 'en';
+    this.currentLanguage = 'en';
+    localStorage.setItem('userLanguage', 'en');
   },
   methods: {
     changeLanguage() {
@@ -88,7 +82,7 @@ export default {
 }
 
 .container {
-  max-width: 1400px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
@@ -122,7 +116,8 @@ export default {
 .main-nav {
   flex-grow: 1;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  margin-left: 50px;
 }
 
 .main-nav ul {
@@ -140,7 +135,7 @@ export default {
   text-decoration: none;
   color: #333;
   font-weight: 500;
-  padding: 8px 10px;
+  padding: 8px 15px;
   position: relative;
   font-size: 14px;
   text-transform: uppercase;
@@ -218,12 +213,16 @@ export default {
 
 @media (max-width: 1200px) and (min-width: 981px) {
   .main-nav a {
-    padding: 8px 6px;
+    padding: 8px 10px;
     font-size: 13px;
   }
   
   .logo a {
     font-size: 1.3rem;
+  }
+
+  .main-nav {
+    margin-left: 30px;
   }
 }
 
@@ -242,6 +241,7 @@ export default {
     order: 3;
     width: 100%;
     justify-content: flex-start;
+    margin-left: 0;
     padding: 10px 0;
     display: block;
     overflow-x: auto;
@@ -254,6 +254,54 @@ export default {
   
   .logo, .actions {
     flex: 0 0 auto;
+  }
+}
+
+.quick-links {
+  margin-top: 30px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.quick-links-title {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.links-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.quick-link {
+  display: inline-block;
+  padding: 8px 16px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  color: #666;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.quick-link:hover {
+  background: #e60012;
+  color: white;
+  border-color: #e60012;
+}
+
+@media (max-width: 768px) {
+  .quick-links {
+    padding: 15px;
+  }
+  
+  .quick-link {
+    font-size: 0.85rem;
+    padding: 6px 12px;
   }
 }
 </style> 

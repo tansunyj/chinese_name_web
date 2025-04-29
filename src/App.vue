@@ -1,10 +1,18 @@
 <script>
 import MainLayout from '@/layouts/MainLayout.vue'
+import { useI18n } from 'vue-i18n'
 
 export default {
   name: 'App',
   components: {
     MainLayout
+  },
+  setup() {
+    const { locale } = useI18n();
+    // 确保应用始终使用英文
+    locale.value = 'en';
+    localStorage.setItem('userLanguage', 'en');
+    return {};
   }
 }
 </script>
@@ -44,7 +52,7 @@ img {
 
 .container {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 20px;
 }
