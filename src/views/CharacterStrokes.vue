@@ -1,104 +1,63 @@
 <template>
   <div class="character-strokes-page">
-    <div class="container">
-      <h1 class="page-title">Chinese Character Stroke Order</h1>
-      <p class="page-subtitle">View stroke order and pronunciation of Chinese characters, learn the correct writing method</p>
-      
-      <div class="content">
-        <div class="form-section">
-          <div class="input-group">
-            <div class="character-input-wrapper">
-              <input 
-                type="text" 
-                v-model="searchCharacter" 
-                maxlength="20"
-                class="character-input"
-                placeholder="Enter Chinese characters" 
-                @input="onCharacterInput"
-              />
-            </div>
-            <button class="search-btn full-width" @click="searchStrokeOrder">
-              <span>Generate</span>
-            </button>
-          </div>
-        </div>
-        
-        <div v-if="isLoading" class="loading-section">
-          <div class="spinner"></div>
-          <p>Retrieving character information...</p>
-        </div>
-        
-        <div v-if="hasSearched && currentCharacter && !isLoading" class="results-section">
-          <div class="character-display-wrapper">
-            <div class="character-display-main">
-              <div class="large-character-container">
-                <div class="large-character">{{ currentCharacter }}</div>
-              </div>
-              
-              <div class="character-details">
-                <div class="character-pronunciation">
-                  <div class="pinyin-container">
-                    <span class="pinyin">{{ characterData.pinyin }}</span>
-                    <button class="sound-btn" @click="playPronunciation" title="播放发音">
-                      <span class="sound-icon">🔊</span>
-                    </button>
-                  </div>
-                </div>
-                
-                <div class="details-grid">
-                  <div class="detail-row">
-                    <div class="detail-label">笔画数</div>
-                    <div class="detail-value">{{ characterData.strokeCount }}</div>
-                  </div>
-                  
-                  <div class="detail-row">
-                    <div class="detail-label">部首</div>
-                    <div class="detail-value">{{ characterData.radical }}</div>
-                  </div>
-                  
-                  <div class="detail-row">
-                    <div class="detail-label">结构</div>
-                    <div class="detail-value">{{ characterData.structure }}</div>
-                  </div>
-                  
-                  <div class="detail-row">
-                    <div class="detail-label">五行</div>
-                    <div class="detail-value">{{ characterData.wuxing }}</div>
-                  </div>
-                </div>
+    <h1 class="page-title">汉字笔画书写顺序</h1>
+    <p class="page-subtitle">查看汉字的笔画书写顺序与拼音读法，学习正确的汉字书写方法</p>
+
+    <!-- 输入区域卡片 -->
+    <div class="content-card input-card">
+      <div class="form-group">
+        <label class="input-label">输入汉字</label>
+        <input 
+          type="text" 
+          v-model="searchCharacter" 
+          maxlength="1"
+          class="character-input"
+          placeholder="输入一个汉字"
+          @input="onCharacterInput"
+        />
+      </div>
+
+      <button class="generate-btn" @click="searchStrokeOrder">
+        生成笔画
+      </button>
+    </div>
+
+    <!-- 结果展示区域卡片 -->
+    <div v-if="hasSearched" class="content-card result-card">
+      <div class="result-content">
+        <!-- 左右布局容器 -->
+        <div class="result-layout">
+          <!-- 左侧汉字显示 -->
+          <div class="character-display">
+            <div class="character-container">
+              <div ref="writerContainer"></div>
+              <div class="pinyin-container" @click="playPronunciation">
+                <span class="pinyin">{{ characterData.pinyin }}</span>
+                <span class="tone">{{ characterData.tone }}</span>
+                <i class="audio-icon">🔊</i>
               </div>
             </div>
           </div>
-          
-          <div class="stroke-details-section">
-            <div class="stroke-order-list">
-              <div
-                v-for="(stroke, idx) in strokes"
-                :key="idx"
-                class="stroke-block"
-                :class="{
-                  'stroke-done': idx < currentStrokeIndex,
-                  'stroke-current': idx === currentStrokeIndex,
-                  'stroke-todo': idx > currentStrokeIndex
-                }"
-              >
-                <!-- svg或图片展示笔画 -->
-                <svg v-if="stroke.svg" viewBox="0 0 60 60" width="40" height="40">
-                  <path :d="stroke.svg" />
-                </svg>
-                <!-- 可用图片替换svg -->
-                <div class="stroke-index">{{ idx + 1 }}</div>
-                <div class="stroke-name">{{ stroke.name }}</div>
-              </div>
+
+          <!-- 右侧信息网格 -->
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-label">笔画数</div>
+              <div class="info-value">{{ characterData.strokeCount || 0 }}</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">部首</div>
+              <div class="info-value">{{ characterData.radical || '-' }}</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">结构</div>
+              <div class="info-value">{{ characterData.structure || '-' }}</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">五行</div>
+              <div class="info-value">{{ characterData.wuxing || '-' }}</div>
             </div>
           </div>
-        </div>
-        
-        <div v-if="hasError" class="error-section">
-          <div class="error-icon">!</div>
-          <h3>Search Error</h3>
-          <p>{{ errorMessage }}</p>
-          <button class="retry-btn" @click="searchStrokeOrder">Retry</button>
         </div>
       </div>
     </div>
@@ -106,6 +65,122 @@
 </template>
 
 <script>
+import axios from 'axios';
+import pinyin from 'pinyin';
+import HanziWriter from 'hanzi-writer';
+import { message } from 'ant-design-vue';
+
+// 添加汉字数据字典
+const characterDatabase = {
+  '顺': {
+    pinyin: 'shùn',
+    strokeCount: 9,
+    radical: '页',
+    structure: '左右结构',
+    wuxing: '水',
+    strokeSequence: ['竖', '横', '撇', '点', '横', '竖提', '横', '竖弯', '捺']
+  },
+  // ... 其他汉字数据
+};
+
+// 添加通用分析函数
+const analyzeCharacter = (character) => {
+  // 如果在数据库中存在，直接返回
+  if (characterDatabase[character]) {
+    return characterDatabase[character];
+  }
+
+  // 否则进行实时分析
+  const analysis = {
+    strokeCount: 0,
+    radical: '',
+    structure: '',
+    wuxing: ''
+  };
+
+  // 分析部首
+  const radicals = {
+    '亻': ['付', '仁', '休', '你', '他'],
+    '扌': ['打', '抱', '推', '拉'],
+    '氵': ['河', '海', '湖', '流'],
+    '木': ['树', '林', '森', '本'],
+    // ... 更多部首映射
+  };
+
+  // 查找部首
+  for (const [radical, chars] of Object.entries(radicals)) {
+    if (chars.includes(character)) {
+      analysis.radical = radical;
+      break;
+    }
+  }
+
+  // 分析结构
+  const structures = {
+    left_right: ['付', '树', '林', '湖'], // 左右结构
+    top_bottom: ['字', '学', '宝', '安'], // 上下结构
+    surroundLeft: ['区', '医', '匡', '匪'], // 包围结构
+    surroundFull: ['国', '回', '围', '圆'], // 全包围结构
+    // ... 更多结构映射
+  };
+
+  // 判断结构
+  for (const [structure, chars] of Object.entries(structures)) {
+    if (chars.includes(character)) {
+      switch(structure) {
+        case 'left_right':
+          analysis.structure = '左右结构';
+          break;
+        case 'top_bottom':
+          analysis.structure = '上下结构';
+          break;
+        case 'surroundLeft':
+          analysis.structure = '半包围结构';
+          break;
+        case 'surroundFull':
+          analysis.structure = '全包围结构';
+          break;
+      }
+      break;
+    }
+  }
+
+  // 分析五行
+  const wuxing = {
+    wood: ['木', '林', '森', '竹'],
+    fire: ['火', '炎', '焱', '灯'],
+    earth: ['土', '地', '坤', '垣'],
+    metal: ['付', '金', '铁', '银'],
+    water: ['水', '河', '湖', '海']
+  };
+
+  // 判断五行
+  for (const [element, chars] of Object.entries(wuxing)) {
+    if (chars.includes(character)) {
+      switch(element) {
+        case 'wood':
+          analysis.wuxing = '木';
+          break;
+        case 'fire':
+          analysis.wuxing = '火';
+          break;
+        case 'earth':
+          analysis.wuxing = '土';
+          break;
+        case 'metal':
+          analysis.wuxing = '金';
+          break;
+        case 'water':
+          analysis.wuxing = '水';
+          break;
+      }
+      break;
+    }
+  }
+
+  return analysis;
+};
+
 export default {
   name: 'CharacterStrokes',
   data() {
@@ -118,27 +193,18 @@ export default {
       currentStrokeIndex: 0,
       characterData: {
         pinyin: '',
+        tone: '',
         strokeCount: 0,
         radical: '',
-        meaning: '',
         structure: '',
-        wuxing: '',
-        strokeSequence: []
+        wuxing: ''
       },
       popularCharacters: ['爱', '福', '德', '智', '信', '义', '和', '美', '思', '诚'],
       hasSearched: false,
-      strokes: [
-        { svg: 'M10,10 ...', name: '点' },
-        { svg: 'M20,20 ...', name: '点' },
-        { svg: 'M30,30 ...', name: '提' },
-        { svg: 'M40,40 ...', name: '横撇' },
-        { svg: 'M50,50 ...', name: '捺' }
-      ]
-    }
-  },
-  computed: {
-    isPinyinAvailable() {
-      return !!this.characterData.pinyin;
+      writer: null,
+      strokeTimer: null,
+      hanziReady: true, // 直接设置为 true，因为不再依赖 hanzi 库
+      audio: null
     }
   },
   methods: {
@@ -149,44 +215,228 @@ export default {
       this.searchCharacter = char;
       this.searchStrokeOrder();
     },
-    playPronunciation() {
-      // 实际应用中应该使用真实的发音API
-      console.log(`播放 ${this.currentCharacter} 的发音`);
-      // 如果有Web Speech API可用
-      if ('speechSynthesis' in window) {
-        const utterance = new SpeechSynthesisUtterance(this.currentCharacter);
-        utterance.lang = 'zh-CN';
-        window.speechSynthesis.speak(utterance);
+    async getCharacterInfo(character) {
+      try {
+        // 使用汉字魔法API获取汉字信息
+        const response = await axios.get(`https://api.ctext.org/getcharacter?char=${encodeURIComponent(character)}&if=0`);
+        
+        if (response.data && response.data.success) {
+          const data = response.data;
+          return {
+            strokeCount: data.totalStrokes,
+            radical: data.radical,
+            structure: this.getStructureFromComponents(data.components),
+            wuxing: await this.getWuxingFromAPI(character)
+          };
+        }
+        
+        // 如果API调用失败，使用备用API
+        const backupResponse = await axios.get(`https://zi.tools/api/zi/${encodeURIComponent(character)}`);
+        return {
+          strokeCount: backupResponse.data.strokeCount,
+          radical: backupResponse.data.radical,
+          structure: backupResponse.data.structure,
+          wuxing: await this.getWuxingFromAPI(character)
+        };
+      } catch (error) {
+        console.error('获取汉字信息失败:', error);
+        throw error;
       }
     },
-    searchStrokeOrder() {
+
+    // 从字形结构判断结构类型
+    getStructureFromComponents(components) {
+      if (!components) return '未知结构';
+      
+      if (components.length === 2) {
+        if (components[0].position === 'left' && components[1].position === 'right') {
+          return '左右结构';
+        } else if (components[0].position === 'top' && components[1].position === 'bottom') {
+          return '上下结构';
+        }
+      } else if (components.length === 3) {
+        return '三部件结构';
+      }
+      
+      return '独体结构';
+    },
+
+    // 获取五行属性
+    async getWuxingFromAPI(character) {
+      try {
+        const response = await axios.get(`https://api.jisuapi.com/wuxing/query?appkey=YOUR_API_KEY&character=${encodeURIComponent(character)}`);
+        if (response.data && response.data.result) {
+          return response.data.result.wuxing;
+        }
+        return this.getDefaultWuxing(character);
+      } catch (error) {
+        return this.getDefaultWuxing(character);
+      }
+    },
+
+    // 备用的五行判断方法
+    getDefaultWuxing(character) {
+      const wuxingPatterns = {
+        '金': /[钅|金|铁|银|铜]/,
+        '木': /[木|林|森|竹|花]/,
+        '水': /[氵|水|河|湖|海]/,
+        '火': /[火|炎|焱|灯|热]/,
+        '土': /[土|地|城|垣|墙]/
+      };
+
+      for (const [element, pattern] of Object.entries(wuxingPatterns)) {
+        if (pattern.test(character)) {
+          return element;
+        }
+      }
+      
+      // 如果没有明显特征，根据笔画数判断
+      const strokeCount = this.getStrokeCount(character);
+      const remainder = strokeCount % 5;
+      const wuxingMap = ['水', '木', '火', '土', '金'];
+      return wuxingMap[remainder];
+    },
+
+    async searchStrokeOrder() {
       if (!this.searchCharacter) {
-        this.hasError = true;
-        this.errorMessage = 'Please enter a Chinese character';
+        message.error('请输入汉字');
         return;
       }
-      
-      // 检查输入是否为汉字
-      const chineseCharRegex = /^[\u4e00-\u9fa5]+$/;
+
+      const chineseCharRegex = /^[\u4e00-\u9fa5]{1}$/;
       if (!chineseCharRegex.test(this.searchCharacter)) {
-        this.hasError = true;
-        this.errorMessage = 'Please enter valid Chinese characters';
+        message.error('请输入单个有效的汉字');
         return;
       }
+
+      try {
+        this.isLoading = true;
+        this.currentCharacter = this.searchCharacter;
+        this.hasSearched = true;
+
+        // 获取拼音和声调
+        const pinyinResult = pinyin(this.currentCharacter, {
+          style: pinyin.STYLE_TONE2,
+          heteronym: false
+        })[0][0];
+
+        // 分离拼音和声调
+        const tone = pinyinResult.match(/[1-4]$/)?.[0] || '5';
+        const pinyinWithoutTone = pinyinResult.replace(/[1-4]$/, '');
+
+        // 获取汉字详细信息
+        const charInfo = await this.getCharacterInfo(this.currentCharacter);
+
+        // 更新数据
+        this.characterData = {
+          pinyin: pinyinWithoutTone,
+          tone: this.getToneSymbol(tone),
+          ...charInfo
+        };
+
+        // 初始化书写动画
+        await this.initWriter();
+        
+        this.isLoading = false;
+      } catch (error) {
+        console.error('查询汉字信息失败:', error);
+        message.error('获取汉字信息失败，请重试');
+        this.isLoading = false;
+      }
+    },
+
+    async initWriter() {
+      const container = this.$refs.writerContainer;
+      if (!container) return;
+
+      container.innerHTML = '';
+      return new Promise((resolve) => {
+        this.writer = HanziWriter.create(container, this.currentCharacter, {
+          width: 200,
+          height: 200,
+          padding: 10,
+          showOutline: true,
+          showCharacter: true,
+          strokeAnimationSpeed: 1,
+          delayBetweenStrokes: 300,
+          onLoadCharDataSuccess: resolve,
+          onLoadCharDataError: (err) => {
+            console.error('加载汉字数据失败:', err);
+            resolve();
+          }
+        });
+      });
+    },
+
+    getToneSymbol(tone) {
+      const toneSymbols = ['', 'ˉ', 'ˊ', 'ˇ', 'ˋ', '˙'];
+      return toneSymbols[parseInt(tone)] || '';
+    },
+
+    async playPronunciation() {
+      try {
+        if (this.audio) {
+          this.audio.pause();
+          this.audio = null;
+        }
+
+        // 使用在线文字转语音服务
+        const audioUrl = `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(this.currentCharacter)}&type=1`;
+        this.audio = new Audio(audioUrl);
+        await this.audio.play();
+      } catch (error) {
+        console.error('播放发音失败:', error);
+        message.error('播放发音失败，请重试');
+      }
+    },
+
+    animateStrokeSteps() {
+      if (!this.writer || !this.writer.character || !this.writer.character.strokes) {
+        console.error('HanziWriter 未正确初始化');
+        return;
+      }
+
+      const total = this.writer.character.strokes.length;
       
-      this.hasError = false;
-      this.isLoading = true;
-      this.currentCharacter = this.searchCharacter;
-      this.hasSearched = true;
+      // 清除之前的定时器
+      if (this.strokeTimer) {
+        clearInterval(this.strokeTimer);
+      }
+
+      // 重置所有笔画颜色
+      for (let i = 0; i < total; i++) {
+        this.writer.setStrokeColor(i, '#bbb');
+      }
+
       this.currentStrokeIndex = 0;
       
-      // 模拟API调用，获取汉字的笔画信息
-      setTimeout(() => {
-        this.isLoading = false;
+      // 开始动画
+      this.strokeTimer = setInterval(() => {
+        // 设置已完成笔画的颜色
+        for (let i = 0; i < this.currentStrokeIndex; i++) {
+          this.writer.setStrokeColor(i, '#222');
+        }
         
-        // 模拟数据 - 实际应用需要接入真实API
-        this.characterData = this.getMockCharacterData(this.currentCharacter);
-      }, 1000);
+        // 设置当前笔画的颜色
+        if (this.currentStrokeIndex < total) {
+          this.writer.setStrokeColor(this.currentStrokeIndex, '#e60012');
+          this.writer.animateStroke(this.currentStrokeIndex);
+        }
+        
+        // 设置未完成笔画的颜色
+        for (let i = this.currentStrokeIndex + 1; i < total; i++) {
+          this.writer.setStrokeColor(i, '#bbb');
+        }
+        
+        this.currentStrokeIndex++;
+        
+        // 动画结束
+        if (this.currentStrokeIndex > total) {
+          clearInterval(this.strokeTimer);
+          // 显示完整汉字
+          this.writer.showCharacter();
+        }
+      }, 800);
     },
     goToStroke(index) {
       this.currentStrokeIndex = index;
@@ -364,408 +614,197 @@ export default {
       }, 1000);
     }
   },
-  mounted() {
-    this.autoPlayStrokes();
+  beforeUnmount() {
+    if (this.strokeTimer) {
+      clearInterval(this.strokeTimer);
+    }
   }
 }
 </script>
 
 <style scoped>
 .character-strokes-page {
-  background-color: #f8f8f8;
-  padding: 80px 0 40px;
+  padding: 40px 20px;
   min-height: 100vh;
-}
-
-.container {
-  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
 }
 
 .page-title {
-  font-size: 2.5rem;
+  font-size: 32px;
   color: #333;
+  margin-bottom: 16px;
   text-align: center;
-  margin-top: 20px;
-  margin-bottom: 15px;
-  font-weight: 600;
-  padding: 0 20px;
 }
 
 .page-subtitle {
-  font-size: 1.2rem;
+  font-size: 16px;
   color: #666;
-  text-align: center;
   margin-bottom: 40px;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 20px;
+  text-align: center;
 }
 
-.content {
-  margin-top: 20px;
-}
-
-.form-section {
-  background-color: white;
+.content-card {
+  background: white;
+  border-radius: 8px;
   padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  margin-bottom: 30px;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
 }
 
-.input-group {
+.input-card {
   margin-bottom: 20px;
 }
 
-.character-input-wrapper {
+.form-group {
+  margin-bottom: 20px;
+}
+
+.input-label {
   display: block;
-  width: 100%;
-  margin-bottom: 15px;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 8px;
 }
 
 .character-input {
   width: 100%;
-  padding: 15px;
+  height: 44px;
+  padding: 8px 12px;
+  font-size: 16px;
   border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1.5rem;
-  text-align: center;
-  font-family: 'SimSun', 'Microsoft YaHei', sans-serif;
-}
-
-.character-input:focus {
-  border-color: #e60012;
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(230, 0, 18, 0.1);
-}
-
-.search-btn {
-  background-color: #e60012;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 15px 25px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-.search-btn.full-width {
-  width: 100%;
-  margin-top: 15px;
-}
-
-.search-btn:hover {
-  background-color: #d00010;
-  transform: translateY(-2px);
-}
-
-.loading-section {
-  text-align: center;
-  padding: 50px 0;
-}
-
-.spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid rgba(230, 0, 18, 0.2);
-  border-top: 3px solid #e60012;
-  border-radius: 50%;
-  margin: 0 auto 20px;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.results-section {
-  background-color: white;
-  border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-.character-display-wrapper {
-  margin-bottom: 40px;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 30px;
-}
-
-.character-display-main {
-  display: flex;
-  gap: 30px;
-}
-
-.large-character-container {
-  position: relative;
-  flex-shrink: 0;
-}
-
-.large-character {
-  font-size: 10rem;
-  font-family: 'SimSun', 'Microsoft YaHei', sans-serif;
-  line-height: 1;
-  color: #333;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 200px;
-  height: 200px;
-  border: 2px solid #f0f0f0;
-  border-radius: 10px;
-  background-color: #f9f9f9;
-}
-
-.character-correct {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(230, 0, 18, 0.9);
-  color: white;
-  padding: 4px 8px;
   border-radius: 4px;
-  font-size: 0.8rem;
-  white-space: nowrap;
+  transition: border-color 0.3s;
 }
 
-.arrow-down {
-  font-size: 0.7rem;
-  margin-left: 2px;
-}
-
-.character-details {
-  flex: 1;
-}
-
-.character-pronunciation {
-  margin-bottom: 15px;
-}
-
-.pinyin-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.pinyin {
-  font-size: 1.8rem;
-  font-weight: 500;
-  color: #333;
-  font-family: Arial, sans-serif;
-}
-
-.sound-btn {
-  background-color: #f0f0f0;
-  border: none;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.sound-btn:hover {
+.generate-btn {
+  width: 100%;
+  height: 44px;
   background-color: #e60012;
   color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.sound-icon {
-  font-size: 1.2rem;
-}
-
-.details-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
+.result-card {
   margin-top: 20px;
 }
 
-.detail-row {
-  display: flex;
-  align-items: center;
-}
-
-.detail-label {
-  font-size: 1rem;
-  color: #666;
-  width: 70px;
-}
-
-.detail-value {
-  font-size: 1.1rem;
-  color: #333;
-  font-weight: 500;
-}
-
-.stroke-order-list {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.stroke-block {
-  width: 48px;
-  height: 70px;
-  background: #f5f5f5;
-  border-radius: 8px;
-  text-align: center;
-  padding: 4px 2px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+.result-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
 }
 
-.stroke-block svg path {
-  stroke-width: 3;
-  fill: none;
-}
-
-.stroke-done svg path {
-  stroke: #222;
-}
-
-.stroke-current svg path {
-  stroke: #e60012;
-}
-
-.stroke-todo svg path {
-  stroke: #bbb;
-}
-
-.stroke-index {
-  font-size: 0.9rem;
-  color: #888;
-  margin-top: 2px;
-}
-
-.stroke-name {
-  font-size: 0.85rem;
-  color: #666;
-  margin-top: 1px;
-}
-
-.stroke-current .stroke-index,
-.stroke-current .stroke-name {
-  color: #e60012;
-  font-weight: bold;
-}
-
-.stroke-done .stroke-index,
-.stroke-done .stroke-name {
-  color: #222;
-}
-
-.stroke-todo .stroke-index,
-.stroke-todo .stroke-name {
-  color: #bbb;
-}
-
-.error-section {
-  background-color: #fff0f0;
-  border: 1px solid #ffcdd2;
-  border-radius: 12px;
-  padding: 30px;
-  text-align: center;
-  margin-top: 30px;
-}
-
-.error-icon {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: #e60012;
-  color: white;
-  font-size: 2rem;
+.result-layout {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 20px;
-  font-weight: bold;
+  align-items: flex-start;
+  gap: 30px;
+  width: 100%;
 }
 
-.error-section h3 {
-  font-size: 1.4rem;
-  color: #d32f2f;
-  margin-bottom: 10px;
+.character-display {
+  flex: 0 0 auto;
+  width: 200px;
 }
 
-.error-section p {
-  color: #666;
-  margin-bottom: 20px;
+.writer-container {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  background: #fff;
 }
 
-.retry-btn {
-  background-color: #e60012;
-  color: white;
-  border: none;
+.info-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+  background: #f8f8f8;
   border-radius: 8px;
-  padding: 12px 25px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.3s ease;
 }
 
-.retry-btn:hover {
-  background-color: #d00010;
+.info-item {
+  background: white;
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.info-label {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.info-value {
+  color: #333;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 @media (max-width: 768px) {
-  .character-display-main {
+  .result-layout {
     flex-direction: column;
-    align-items: center;
-    gap: 20px;
   }
-  
-  .large-character {
-    font-size: 8rem;
-    width: 150px;
-    height: 150px;
+
+  .character-display {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
-  
-  .page-title {
-    font-size: 2rem;
-  }
-  
-  .details-grid {
-    grid-template-columns: 1fr;
+
+  .info-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 480px) {
-  .character-input {
-    max-width: none;
-    width: 100%;
+  .info-grid {
+    grid-template-columns: 1fr;
   }
-  
-  .character-input-wrapper {
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .search-btn {
-    width: 100%;
-    margin-left: 0;
-  }
-  
-  .large-character {
-    font-size: 6rem;
-    width: 120px;
-    height: 120px;
-  }
-  
-  .stroke-order-list {
-    justify-content: center;
-  }
+}
+
+.pinyin-container {
+  text-align: center;
+  margin-top: 10px;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.pinyin {
+  font-size: 18px;
+  color: #333;
+}
+
+.tone {
+  font-size: 16px;
+  color: #666;
+}
+
+.audio-icon {
+  font-size: 16px;
+  color: #1890ff;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.audio-icon:hover {
+  color: #40a9ff;
 }
 </style> 

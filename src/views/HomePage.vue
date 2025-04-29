@@ -68,7 +68,7 @@
           </router-link>
           
           <!-- 汉字笔画书写 -->
-          <router-link to="/character-strokes" class="feature-card-link">
+          <!--router-link to="/character-strokes" class="feature-card-link">
             <div class="feature-card">
               <div class="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -81,7 +81,7 @@
                 <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
               </div>
             </div>
-          </router-link>
+          </router-link-->
         </div>
       </div>
     </section>
