@@ -32,36 +32,20 @@
           <h2>{{ $t('translate.results.title') }}</h2>
           
           <div class="results-grid">
-            <div v-for="(result, index) in results" :key="index" class="result-card">
+            <div class="result-card" v-for="(result, index) in results" :key="index">
               <div class="result-header">
-                <div class="result-characters">{{ result.characters }}</div>
-                <div class="result-pinyin">{{ result.pinyin }}</div>
+                <div class="result-characters">{{ result.translatedName }}</div>
+                <div class="result-pinyin">{{ result.pronunciationGuide }}</div>
               </div>
-              
               <div class="result-details">
                 <div class="result-item">
                   <h4>{{ $t('translate.results.meaning') }}</h4>
-                  <p>{{ result.meaning }}</p>
+                  <p>{{ result.explanation }}</p>
                 </div>
-                
-                <div class="result-item">
-                  <h4>{{ $t('translate.results.pronunciation') }}</h4>
-                  <button class="play-button" @click="playPronunciation(result.characters)">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </button>
+                <div class="result-item" v-if="result.cultural">
+                  <h4>{{ $t('translate.results.cultural') }}</h4>
+                  <p>{{ result.cultural }}</p>
                 </div>
-              </div>
-              
-              <div class="result-actions">
-                <button class="action-button copy" @click="copyToClipboard(result.characters)">
-                  {{ $t('common.copy') }}
-                </button>
-                <button class="action-button share" @click="shareResult(result)">
-                  {{ $t('common.share') }}
-                </button>
               </div>
             </div>
           </div>
@@ -72,11 +56,11 @@
 </template>
 
 <script>
-import { sendAIRequest, parseAIResponse } from '@/services/aiService';
+import { ref } from 'vue';
+import { message } from 'ant-design-vue';
+import { translateName } from '@/services/openaiService';
 import { nameTranslationPrompts } from '@/services/promptTemplates';
-import { nameTranslationSystemPrompt } from '@/config/systemPrompts';
 import LoadingIndicator from '@/components/LoadingIndicator.vue';
-import aiConfig from '@/config/aiConfig';
 
 export default {
   name: 'TranslateName',
@@ -86,8 +70,7 @@ export default {
   data() {
     return {
       formData: {
-        fullName: '',
-        gender: 'male' // 默认性别，可以在后续增加更多功能时使用
+        fullName: ''
       },
       isLoading: false,
       results: []
@@ -96,85 +79,71 @@ export default {
   methods: {
     async translateName() {
       if (!this.formData.fullName) {
-        alert(this.$t('translate.errors.fullNameRequired'));
+        message.error(this.$t('translate.errors.fullNameRequired'));
         return;
       }
       
       this.isLoading = true;
       
       try {
-        // 获取当前语言
-        const locale = localStorage.getItem('locale') || 'zh';
-        
-        // 获取对应语言的提示词模板
-        const promptTemplate = nameTranslationPrompts[locale] || nameTranslationPrompts.zh;
-        
-        // 分离全名中的名和姓
-        const nameParts = this.splitName(this.formData.fullName);
-        const requestParams = {
-          firstName: nameParts.firstName,
-          lastName: nameParts.lastName || '',
-          gender: this.formData.gender
-        };
-        
-        // 构建请求参数 (使用chat completion格式)
-        const requestBody = {
-          model: aiConfig.models.translation,
-          messages: [
-            {
-              role: "system",
-              content: nameTranslationSystemPrompt
-            },
-            {
-              role: "user",
-              content: promptTemplate(requestParams)
+        // 定义 JSON Schema，用于结构化返回数据
+        const nameSchema = {
+          type: "object",
+          properties: {
+            translations: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  translatedName: { type: "string" },        // 中文名字
+                  pronunciationGuide: { type: "string" },    // 拼音
+                  explanation: { type: "string" },           // 含义解释
+                  cultural: { type: "string" },              // 文化含义
+                  analysis: {
+                    type: "object",
+                    properties: {
+                      strokes: { type: "number" },           // 笔画数
+                      characterElements: {                    // 字的五行属性
+                        type: "array", 
+                        items: { type: "string" }
+                      },
+                      soundMeaning: { type: "string" },      // 音律含义
+                      compatibility: { type: "string" }       // 匹配度
+                    }
+                  }
+                },
+                required: ["translatedName", "pronunciationGuide", "explanation"]
+              }
             }
-          ],
-          temperature: aiConfig.temperatures.translation,
-          max_tokens: 800
-        };
-        
-        // 直接调用AI接口
-        const response = await fetch(aiConfig.baseConfig.apiUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': aiConfig.baseConfig.apiKey
-          },
-          body: JSON.stringify(requestBody)
-        });
-        
-        if (!response.ok) {
-          throw new Error(`AI请求失败，状态码: ${response.status}`);
-        }
-        
-        const responseData = await response.json();
-        console.log('AI响应:', responseData);
-        
-        // 从AI响应中提取内容
-        let aiContent = '';
-        if (responseData.choices && responseData.choices.length > 0) {
-          aiContent = responseData.choices[0].message?.content || responseData.choices[0].text || '';
-        }
-        
-        // 尝试从AI响应中提取JSON
-        const extractedData = this.extractJsonFromText(aiContent);
-        if (extractedData && extractedData.results && Array.isArray(extractedData.results)) {
-          this.results = extractedData.results;
-        } else {
-          // 如果无法解析JSON，尝试使用结构化提取
-          const structuredData = this.extractStructuredData(aiContent);
-          if (structuredData && structuredData.length > 0) {
-            this.results = structuredData;
-          } else {
-            // 使用后备数据
-            this.results = this.getFallbackResults();
           }
+        };
+
+        // 使用 openaiService 生成 JSON 结构化数据
+        const response = await translateName({
+          name: this.formData.fullName,
+          sourceLanguage: 'en',
+          targetLanguage: 'zh',
+          method: 'combined',
+          temperature: 1,
+          schema: nameSchema  // 添加 schema 参数
+        });
+
+        console.log('原始响应数据:', response);
+
+        // 检查并处理返回数据
+        if (!response?.object?.translations || !Array.isArray(response.object.translations)) {
+          throw new Error('translations 数据格式不正确');
         }
+
+        // 直接使用返回的数据，因为已经通过 schema 约束了格式
+        this.results = response.object.translations;
+        console.log('最终设置的结果:', this.results);
+
       } catch (error) {
         console.error('名字翻译错误:', error);
-        // 使用后备数据
-        this.results = this.getFallbackResults();
+        console.error('错误堆栈:', error.stack);
+        message.error(error.message || '翻译失败，请重试');
+        this.results = [];
       } finally {
         this.isLoading = false;
       }
@@ -335,15 +304,13 @@ export default {
     
     copyToClipboard(text) {
       navigator.clipboard.writeText(text).then(() => {
-        alert(this.$t('common.copied'));
+        message.success(this.$t('common.copied'));
       });
     },
     
     shareResult(result) {
-      // 构建分享文本
-      const shareText = `我的中文名字是 ${result.characters} (${result.pinyin})`;
+      const shareText = `我的中文名字是 ${result.name} (${result.pronunciation})`;
       
-      // 检查 Web Share API 是否可用
       if (navigator.share) {
         navigator.share({
           title: this.$t('translate.shareTitle'),
@@ -352,8 +319,7 @@ export default {
         })
         .catch((error) => console.log('分享失败:', error));
       } else {
-        // 后备选项
-        alert(`分享: ${shareText}`);
+        message.info(`分享: ${shareText}`);
       }
     }
   }

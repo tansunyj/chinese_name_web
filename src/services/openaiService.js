@@ -297,7 +297,8 @@ export const translateName = async (options) => {
     name,
     sourceLanguage = 'en',
     targetLanguage = 'zh',
-    method = 'phonetic'
+    method = 'phonetic',
+    temperature = 1
   } = options;
 
   if (!name) {
@@ -344,7 +345,7 @@ export const translateName = async (options) => {
   return generateAIObject({
     prompt,
     schema: translationSchema,
-    temperature: 0.7,
+    temperature: temperature,
     metadata: { type: 'name_translation' }
   });
 };

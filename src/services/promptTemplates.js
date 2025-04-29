@@ -153,71 +153,52 @@ Please return the result in JSON format following this structure:
 
 // 名字翻译提示词模板
 export const nameTranslationPrompts = {
-  // 中文版提示词
-  zh: (params) => {
-    return `请将以下${params.gender || ''}英文名字翻译成中文名字：
-姓氏: ${params.lastName || ''}
-名字: ${params.firstName || ''}
+  system: `你是一个专业的中文姓名翻译专家。请将外国名字翻译成中文名字。
 
-请提供3个最佳的中文翻译选项，要求：
-1. 发音要尽量接近原名
-2. 含义要积极正面
-3. 符合中国传统命名习惯
-4. 考虑名字的性别特征
+翻译规则：
+1. 优先使用音译方式：
+   - 对于人名，应该优先考虑音译而不是意译
+   - 即使这个名字有具体含义（如 Cook, Baker, Smith 等），也应该采用音译
+   - 音译时要选择读音相近且寓意优美的汉字
 
-对于每个翻译选项，请提供：
-- 中文字符
-- 拼音标注
-- 详细的含义解释
-- 发音相似度评分
+2. 音译原则：
+   - 选择声调优美、寓意积极的汉字
+   - 避免使用生僻字或负面含义的字
+   - 确保音译后的名字朗朗上口
+   - 尽量选用常用字，但要避免过于普通的翻译
 
-请以JSON格式返回结果：
-\`\`\`json
+3. 特殊情况处理：
+   - 如果名字中包含有特殊含义的部分（如 Angel, Rose 等），可以在音译的同时兼顾其美好含义
+   - 对于复合名字，要确保整体发音流畅
+   - 考虑中国传统文化中的用字习惯
+
+你必须严格按照以下JSON格式返回结果：
 {
-  "results": [
+  "translations": [
     {
-      "characters": "中文名字（包含姓氏）",
-      "pinyin": "拼音标注",
-      "meaning": "名字含义",
-      "pronunciationSimilarity": "发音相似度评分（1-10）"
+      "translatedName": "中文名字（音译）",
+      "pronunciationGuide": "拼音（带声调）",
+      "explanation": "说明这个音译名字的发音相似度，以及选用这些汉字的原因和寓意"
     }
   ]
 }
-\`\`\``;
-  },
-  
-  // 英文版提示词
-  en: (params) => {
-    return `Please translate the following ${params.gender || ''} English name into Chinese:
-Last name: ${params.lastName || ''}
-First name: ${params.firstName || ''}
 
-Please provide 3 best Chinese translation options with:
-1. Pronunciation should be as close as possible to the original name
-2. Meaning should be positive
-3. Should conform to Chinese naming conventions
-4. Consider gender characteristics of the name
+示例：
+1. Cook → 库克 (Kù Kè) 而不是 "厨师"
+2. Baker → 贝克 (Bèi Kè) 而不是 "面包师"
+3. Smith → 史密斯 (Shǐ Mì Sī) 而不是 "铁匠"
+4. Rose → 罗丝/露丝 (Luó Sī/Lù Sī) 可以保留"玫瑰"的优美联想
+5. Angel → 安吉尔 (Ān Jí Ěr) 可以体现"天使"的美好寓意
 
-For each translation option, please provide:
-- Chinese characters
-- Pinyin notation
-- Detailed meaning explanation
-- Pronunciation similarity score
+每个字段的具体要求：
+- translatedName: 2-3个汉字的音译名字，使用常见但优美的汉字
+- pronunciationGuide: 必须包含声调，例如"Kù Kè"
+- explanation: 解释选用这些汉字的原因，包括：
+  1. 与原名发音的对应关系
+  2. 选用这些汉字的文化考虑
+  3. 名字整体的寓意`,
 
-Please return the result in JSON format:
-\`\`\`json
-{
-  "results": [
-    {
-      "characters": "Chinese name (including surname)",
-      "pinyin": "Pinyin notation",
-      "meaning": "Name meaning",
-      "pronunciationSimilarity": "Pronunciation similarity score (1-10)"
-    }
-  ]
-}
-\`\`\``;
-  }
+  user: `请将名字 "{name}" 翻译成中文名字，给出3个音译方案。记住必须按照指定的JSON格式返回。每个方案都应该采用不同的用字，但都要保持发音相似度。`
 };
 
 // 名字分析提示词模板
