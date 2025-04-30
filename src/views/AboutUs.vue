@@ -48,7 +48,7 @@
         <div class="contact-section">
           <h2>{{ $t('about.contact.title') }}</h2>
           <p>{{ $t('about.contact.description') }}</p>
-          <a href="mailto:info@chinesename.us" class="contact-button">{{ $t('about.contact.button') }}</a>
+          <a href="mailto:591124281yj@gmail.com" class="contact-button">{{ $t('about.contact.button') }}</a>
         </div>
       </div>
     </div>

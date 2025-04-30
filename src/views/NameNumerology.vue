@@ -1,251 +1,251 @@
 <template>
   <div class="numerology-page">
     <div class="container">
-      <h1 class="page-title">姓名学数理</h1>
+      <h1 class="page-title">Chinese Name Numerology (姓名学数理)</h1>
       
       <div class="content-wrapper">
         <section class="intro-section">
           <div class="section-image">
-            <img src="../assets/images/xingming.png" alt="姓名学数理图示" />
+            <img src="../assets/images/xingming.png" alt="Chinese Name Numerology Illustration" />
           </div>
           <div class="section-content">
-            <h2>姓名学数理概述</h2>
-            <p>姓名学数理是中国传统命理学的重要分支，通过分析姓名汉字的笔画数，推算出相应的数值组合，以评估其对人生吉凶祸福的影响。这一理论在古代称为"姓名学"或"名学"，现代也常被称为"三才五格"或"姓名数理学"。</p>
-            <p>姓名学数理认为，每个汉字的笔画数量都蕴含着特定的能量场，这些能量会影响人的性格、命运和各方面的发展。通过科学的数理组合，可以为个人选择一个音律和谐、意义美好且数理吉祥的名字。</p>
+            <h2>Overview of Name Numerology (姓名学数理概述)</h2>
+            <p>Chinese Name Numerology is an important branch of traditional Chinese fate studies, which evaluates the fortune and destiny influences by analyzing the stroke count values of Chinese characters in a name. This theory was known as "Name Study" (姓名学) or "Ming Xue" (名学) in ancient times, and is now commonly referred to as "Three Talents and Five Elements" (三才五格) or "Name Numerology" (姓名数理学).</p>
+            <p>Name Numerology believes that the number of strokes in each Chinese character contains a specific energy field that influences a person's character, destiny, and various aspects of development. Through scientific numerical combinations, one can choose a name with harmonious pronunciation, beautiful meaning, and auspicious numerology.</p>
           </div>
         </section>
 
         <section class="theory-section">
-          <h2>笔画数与数理关系</h2>
-          <p>姓名学数理以汉字的笔画数为基础，每个数字被认为具有特定的五行属性和吉凶性质。</p>
+          <h2>Stroke Count and Numerological Relationships (笔画数与数理关系)</h2>
+          <p>Chinese Name Numerology is based on the stroke count of Chinese characters. Each number is believed to have specific Five Elements attributes and auspicious or inauspicious qualities.</p>
           
           <div class="numbers-grid">
             <div class="number-card">
               <div class="number-icon">1</div>
-              <h3>一画</h3>
-              <p><strong>五行属性：</strong>木</p>
-              <p><strong>数字象征：</strong>独立、创造、领导、阳刚</p>
-              <p><strong>吉凶评价：</strong>大吉</p>
-              <p><strong>相关字：</strong>一、乙</p>
+              <h3>One Stroke (一画)</h3>
+              <p><strong>Five Elements: </strong>Wood (木)</p>
+              <p><strong>Symbolism: </strong>Independence, Creativity, Leadership, Masculinity</p>
+              <p><strong>Fortune: </strong>Very Auspicious</p>
+              <p><strong>Related Characters: </strong>一, 乙</p>
             </div>
             <div class="number-card">
               <div class="number-icon">2</div>
-              <h3>二画</h3>
-              <p><strong>五行属性：</strong>木</p>
-              <p><strong>数字象征：</strong>合作、平衡、柔顺、直觉</p>
-              <p><strong>吉凶评价：</strong>凶</p>
-              <p><strong>相关字：</strong>二、人、刀</p>
+              <h3>Two Strokes (二画)</h3>
+              <p><strong>Five Elements: </strong>Wood (木)</p>
+              <p><strong>Symbolism: </strong>Cooperation, Balance, Flexibility, Intuition</p>
+              <p><strong>Fortune: </strong>Inauspicious</p>
+              <p><strong>Related Characters: </strong>二, 人, 刀</p>
             </div>
             <div class="number-card">
               <div class="number-icon">3</div>
-              <h3>三画</h3>
-              <p><strong>五行属性：</strong>木</p>
-              <p><strong>数字象征：</strong>活跃、表达、创意、乐观</p>
-              <p><strong>吉凶评价：</strong>吉</p>
-              <p><strong>相关字：</strong>三、干、口、马</p>
+              <h3>Three Strokes (三画)</h3>
+              <p><strong>Five Elements: </strong>Wood (木)</p>
+              <p><strong>Symbolism: </strong>Activity, Expression, Creativity, Optimism</p>
+              <p><strong>Fortune: </strong>Auspicious</p>
+              <p><strong>Related Characters: </strong>三, 干, 口, 马</p>
             </div>
             <div class="number-card">
               <div class="number-icon">4</div>
-              <h3>四画</h3>
-              <p><strong>五行属性：</strong>木</p>
-              <p><strong>数字象征：</strong>稳定、实际、勤奋、严谨</p>
-              <p><strong>吉凶评价：</strong>凶</p>
-              <p><strong>相关字：</strong>四、心、户、方</p>
+              <h3>Four Strokes (四画)</h3>
+              <p><strong>Five Elements: </strong>Wood (木)</p>
+              <p><strong>Symbolism: </strong>Stability, Practicality, Diligence, Rigor</p>
+              <p><strong>Fortune: </strong>Inauspicious</p>
+              <p><strong>Related Characters: </strong>四, 心, 户, 方</p>
             </div>
             <div class="number-card">
               <div class="number-icon">5</div>
-              <h3>五画</h3>
-              <p><strong>五行属性：</strong>土</p>
-              <p><strong>数字象征：</strong>变动、适应、自由、活力</p>
-              <p><strong>吉凶评价：</strong>吉</p>
-              <p><strong>相关字：</strong>五、田、平、加</p>
+              <h3>Five Strokes (五画)</h3>
+              <p><strong>Five Elements: </strong>Earth (土)</p>
+              <p><strong>Symbolism: </strong>Change, Adaptation, Freedom, Vitality</p>
+              <p><strong>Fortune: </strong>Auspicious</p>
+              <p><strong>Related Characters: </strong>五, 田, 平, 加</p>
             </div>
             <div class="number-card">
               <div class="number-icon">6</div>
-              <h3>六画</h3>
-              <p><strong>五行属性：</strong>土</p>
-              <p><strong>数字象征：</strong>和谐、责任、温暖、关怀</p>
-              <p><strong>吉凶评价：</strong>凶</p>
-              <p><strong>相关字：</strong>六、西、回、早</p>
+              <h3>Six Strokes (六画)</h3>
+              <p><strong>Five Elements: </strong>Earth (土)</p>
+              <p><strong>Symbolism: </strong>Harmony, Responsibility, Warmth, Care</p>
+              <p><strong>Fortune: </strong>Inauspicious</p>
+              <p><strong>Related Characters: </strong>六, 西, 回, 早</p>
             </div>
             <div class="number-card">
               <div class="number-icon">7</div>
-              <h3>七画</h3>
-              <p><strong>五行属性：</strong>金</p>
-              <p><strong>数字象征：</strong>智慧、分析、思考、神秘</p>
-              <p><strong>吉凶评价：</strong>吉</p>
-              <p><strong>相关字：</strong>七、见、言、利</p>
+              <h3>Seven Strokes (七画)</h3>
+              <p><strong>Five Elements: </strong>Metal (金)</p>
+              <p><strong>Symbolism: </strong>Wisdom, Analysis, Thinking, Mystery</p>
+              <p><strong>Fortune: </strong>Auspicious</p>
+              <p><strong>Related Characters: </strong>七, 见, 言, 利</p>
             </div>
             <div class="number-card">
               <div class="number-icon">8</div>
-              <h3>八画</h3>
-              <p><strong>五行属性：</strong>金</p>
-              <p><strong>数字象征：</strong>权威、财富、物质、成就</p>
-              <p><strong>吉凶评价：</strong>吉</p>
-              <p><strong>相关字：</strong>八、金、雨、青</p>
+              <h3>Eight Strokes (八画)</h3>
+              <p><strong>Five Elements: </strong>Metal (金)</p>
+              <p><strong>Symbolism: </strong>Authority, Wealth, Material, Achievement</p>
+              <p><strong>Fortune: </strong>Auspicious</p>
+              <p><strong>Related Characters: </strong>八, 金, 雨, 青</p>
             </div>
             <div class="number-card">
               <div class="number-icon">9</div>
-              <h3>九画</h3>
-              <p><strong>五行属性：</strong>火</p>
-              <p><strong>数字象征：</strong>完成、圆满、热情、理想</p>
-              <p><strong>吉凶评价：</strong>凶</p>
-              <p><strong>相关字：</strong>九、亭、柔、科</p>
+              <h3>Nine Strokes (九画)</h3>
+              <p><strong>Five Elements: </strong>Fire (火)</p>
+              <p><strong>Symbolism: </strong>Completion, Fulfillment, Passion, Idealism</p>
+              <p><strong>Fortune: </strong>Inauspicious</p>
+              <p><strong>Related Characters: </strong>九, 亭, 柔, 科</p>
             </div>
             <div class="number-card">
               <div class="number-icon">10</div>
-              <h3>十画</h3>
-              <p><strong>五行属性：</strong>水</p>
-              <p><strong>数字象征：</strong>圆满、完整、新起点</p>
-              <p><strong>吉凶评价：</strong>凶</p>
-              <p><strong>相关字：</strong>十、高、真、班</p>
+              <h3>Ten Strokes (十画)</h3>
+              <p><strong>Five Elements: </strong>Water (水)</p>
+              <p><strong>Symbolism: </strong>Perfection, Completeness, New Beginning</p>
+              <p><strong>Fortune: </strong>Inauspicious</p>
+              <p><strong>Related Characters: </strong>十, 高, 真, 班</p>
             </div>
           </div>
           
           <div class="note-box">
-            <h3>笔画计算说明</h3>
-            <p>在姓名学数理中，汉字笔画的计算是基于传统的写法，而非简化字。一些字的笔画数在不同的姓名学派系中可能有所差异，因此在实际应用中应参考专业姓名学术语或工具进行准确计算。</p>
+            <h3>Stroke Calculation Note</h3>
+            <p>In Chinese Name Numerology, stroke counting is based on traditional character writing rather than simplified characters. Some characters may have different stroke counts in different name numerology systems, so it's advisable to refer to professional numerological terms or tools for accurate calculation in practical applications.</p>
           </div>
         </section>
 
         <section class="formation-section">
-          <h2>五格数理</h2>
-          <p>姓名学数理通过计算姓名笔画得出五个数理，称为"五格"，分别是天格、地格、人格、外格和总格。每个格数都对人生的不同方面产生影响。</p>
+          <h2>The Five Formations (五格数理)</h2>
+          <p>Chinese Name Numerology calculates five numerical values from the strokes in a name, called the "Five Formations" (五格), which are Heavenly Formation (天格), Earthly Formation (地格), Human Formation (人格), External Formation (外格), and Total Formation (总格). Each formation influences different aspects of life.</p>
           
           <div class="formations-diagram">
-            <img src="../assets/images/wuge.png" alt="五格数理示意图" />
+            <img src="../assets/images/wuge.png" alt="Five Formations Illustration" />
           </div>
           
           <div class="formations-wrapper">
             <div class="formation-card">
-              <h3>天格（祖先运）</h3>
-              <p><strong>计算方法：</strong>姓氏的第一个字的笔画数+1</p>
-              <p><strong>影响范围：</strong>代表祖辈遗传下来的先天条件，影响青少年时期</p>
-              <p><strong>解读意义：</strong>反映一个人的先天性格、家庭背景和成长环境的影响，以及在人生早期所遇到的机遇与挑战。</p>
+              <h3>Heavenly Formation (天格) - Ancestral Fortune</h3>
+              <p><strong>Calculation: </strong>First character of surname's stroke count + 1</p>
+              <p><strong>Influence Range: </strong>Represents the inherited conditions from ancestors, influencing youth</p>
+              <p><strong>Interpretation: </strong>Reflects one's innate character, family background, and environmental influences during early life, as well as opportunities and challenges encountered in early years.</p>
             </div>
             
             <div class="formation-card">
-              <h3>人格（主运）</h3>
-              <p><strong>计算方法：</strong>姓氏最后一字的笔画数+名字第一个字的笔画数</p>
-              <p><strong>影响范围：</strong>代表个人命运的中心，影响最大，特别是成年期</p>
-              <p><strong>解读意义：</strong>反映个人的性格特质、行为模式、思维方式和人际关系，是五格中最重要的一个数理。</p>
+              <h3>Human Formation (人格) - Main Fortune</h3>
+              <p><strong>Calculation: </strong>Last character of surname's stroke count + first character of given name's stroke count</p>
+              <p><strong>Influence Range: </strong>Represents the core of personal destiny, with the greatest influence, especially in adulthood</p>
+              <p><strong>Interpretation: </strong>Reflects personal character traits, behavioral patterns, thinking modes, and interpersonal relationships. This is the most important formation.</p>
             </div>
             
             <div class="formation-card">
-              <h3>地格（前运）</h3>
-              <p><strong>计算方法：</strong>名字的全部笔画数之和</p>
-              <p><strong>影响范围：</strong>代表中年前期的机遇与挑战，影响事业发展</p>
-              <p><strong>解读意义：</strong>反映个人在青年时期的学业、职业选择和事业发展，以及在这个阶段可能遇到的机会与挑战。</p>
+              <h3>Earthly Formation (地格) - Early Fortune</h3>
+              <p><strong>Calculation: </strong>Sum of all stroke counts in the given name</p>
+              <p><strong>Influence Range: </strong>Represents opportunities and challenges in early middle age, affecting career development</p>
+              <p><strong>Interpretation: </strong>Reflects a person's studies, career choices, and professional development in youth, as well as opportunities and challenges faced during this stage.</p>
             </div>
             
             <div class="formation-card">
-              <h3>外格（副运）</h3>
-              <p><strong>计算方法：</strong>总格-人格（或：天格+地格-人格）</p>
-              <p><strong>影响范围：</strong>代表人际关系和外部环境的影响</p>
-              <p><strong>解读意义：</strong>反映一个人在社交圈中的表现、受外界评价的方式，以及与他人互动时的特点和优势劣势。</p>
+              <h3>External Formation (外格) - Secondary Fortune</h3>
+              <p><strong>Calculation: </strong>Total Formation - Human Formation (or: Heavenly Formation + Earthly Formation - Human Formation)</p>
+              <p><strong>Influence Range: </strong>Represents the influence of interpersonal relationships and external environment</p>
+              <p><strong>Interpretation: </strong>Reflects how a person performs in social circles, how they are evaluated by others, and their characteristics and strengths/weaknesses when interacting with others.</p>
             </div>
             
             <div class="formation-card">
-              <h3>总格（总运）</h3>
-              <p><strong>计算方法：</strong>姓名全部笔画数之和</p>
-              <p><strong>影响范围：</strong>代表人生总体趋势和晚年运势</p>
-              <p><strong>解读意义：</strong>反映一个人的人生总体走向、晚年状况，以及一生中可能达到的成就高度和最终的生活品质。</p>
+              <h3>Total Formation (总格) - Overall Fortune</h3>
+              <p><strong>Calculation: </strong>Sum of all stroke counts in the full name</p>
+              <p><strong>Influence Range: </strong>Represents the overall trend of life and late-life fortune</p>
+              <p><strong>Interpretation: </strong>Reflects the general direction of a person's life, late-life conditions, and the potential height of achievements and ultimate quality of life they may reach.</p>
             </div>
           </div>
         </section>
 
         <section class="talent-section">
-          <h2>三才配置</h2>
-          <p>"三才"是指天格、人格和地格这三个数理的组合关系，象征天、人、地三才。三才的配置反映了一个人先天条件、个人能力与后天环境的相互关系。</p>
+          <h2>Three Talents Configuration (三才配置)</h2>
+          <p>The "Three Talents" refers to the combination of Heavenly Formation, Human Formation, and Earthly Formation, symbolizing Heaven, Human, and Earth. The configuration of the Three Talents reflects the interrelationship between a person's innate conditions, personal abilities, and environmental development.</p>
           
           <div class="talents-wrapper">
             <div class="talent-card">
-              <h3>三才组合的意义</h3>
+              <h3>Meaning of Three Talents Combination</h3>
               <ul>
-                <li><strong>天才（天格）：</strong>代表先天条件、家庭背景、祖辈遗传</li>
-                <li><strong>人才（人格）：</strong>代表个人能力、性格特质、行为方式</li>
-                <li><strong>地才（地格）：</strong>代表后天发展、事业机遇、环境影响</li>
+                <li><strong>Heavenly Talent (天才): </strong>Represents innate conditions, family background, ancestral inheritance</li>
+                <li><strong>Human Talent (人才): </strong>Represents personal abilities, character traits, behavioral patterns</li>
+                <li><strong>Earthly Talent (地才): </strong>Represents later development, career opportunities, environmental influences</li>
               </ul>
             </div>
             
             <div class="talent-card">
-              <h3>三才配置基本原则</h3>
-              <p>理想的三才配置应当和谐互补，形成良性循环。根据五行生克关系，可以分析三才之间的相互作用：</p>
+              <h3>Basic Principles of Three Talents Configuration</h3>
+              <p>The ideal Three Talents configuration should be harmonious and complementary, forming a positive cycle. Based on the Five Elements' generating and controlling relationships, the interactions between the Three Talents can be analyzed:</p>
               <ul>
-                <li><strong>相生关系：</strong>如天生人，人生地，地生天，形成良性循环</li>
-                <li><strong>相克关系：</strong>如天克人，人克地，地克天，形成障碍与挑战</li>
-                <li><strong>平衡关系：</strong>三才数理在五行属性上保持平衡，不过分偏向某一元素</li>
+                <li><strong>Generating Relationship: </strong>Such as Heaven generating Human, Human generating Earth, Earth generating Heaven, forming a positive cycle</li>
+                <li><strong>Controlling Relationship: </strong>Such as Heaven controlling Human, Human controlling Earth, Earth controlling Heaven, creating obstacles and challenges</li>
+                <li><strong>Balanced Relationship: </strong>The Three Talents maintain balance in Five Elements attributes, not overly biased toward any one element</li>
               </ul>
             </div>
           </div>
           
           <div class="example-box">
-            <h3>三才配置实例</h3>
-            <p><strong>案例：</strong>某人姓"王"(4画)，名"建国"(8画+11画)</p>
-            <p><strong>计算：</strong></p>
+            <h3>Three Talents Configuration Example</h3>
+            <p><strong>Case: </strong>Someone with surname "王" (Wang, 4 strokes), given name "建国" (Jianguo, 8 strokes + 11 strokes)</p>
+            <p><strong>Calculation: </strong></p>
             <ul>
-              <li>天格 = 4 + 1 = 5（土）</li>
-              <li>人格 = 4 + 8 = 12（减数，1+2=3）（木）</li>
-              <li>地格 = 8 + 11 = 19（减数，1+9=10，1+0=1）（木）</li>
+              <li>Heavenly Formation = 4 + 1 = 5 (Earth/土)</li>
+              <li>Human Formation = 4 + 8 = 12 (reduced number, 1+2=3) (Wood/木)</li>
+              <li>Earthly Formation = 8 + 11 = 19 (reduced number, 1+9=10, 1+0=1) (Wood/木)</li>
             </ul>
-            <p><strong>三才配置：</strong>土-木-木</p>
-            <p><strong>分析：</strong>天格土生人格木，表示先天条件有利于个人能力的发展；人格木与地格木相同，表示个人能力与事业环境相协调。这是一个较为和谐的三才配置，预示着良好的发展前景。</p>
+            <p><strong>Three Talents Configuration: </strong>Earth-Wood-Wood (土-木-木)</p>
+            <p><strong>Analysis: </strong>Heavenly Formation's Earth generates Human Formation's Wood, indicating that innate conditions favor the development of personal abilities; Human Formation's Wood matches Earthly Formation's Wood, indicating harmony between personal abilities and career environment. This is a relatively harmonious Three Talents configuration, predicting good development prospects.</p>
           </div>
         </section>
 
         <section class="application-section">
-          <h2>姓名学数理在取名中的应用</h2>
+          <h2>Application of Name Numerology in Naming (姓名学数理在取名中的应用)</h2>
           <div class="application-content">
-            <h3>步骤一：确定姓氏笔画</h3>
-            <p>首先确定姓氏的笔画数，这是固定的，无法改变。了解姓氏笔画数对后续取名有重要指导意义。</p>
+            <h3>Step One: Determine Surname Stroke Count</h3>
+            <p>First, determine the stroke count of the surname, which is fixed and cannot be changed. Understanding the surname's stroke count provides important guidance for subsequent naming.</p>
             
-            <h3>步骤二：设定理想数理</h3>
-            <p>根据姓氏笔画，计算出能够形成吉祥数理的名字笔画组合。特别注意以下几点：</p>
+            <h3>Step Two: Set Ideal Numerology</h3>
+            <p>Based on the surname's stroke count, calculate the stroke combinations for a given name that can form auspicious numerology. Pay special attention to the following points:</p>
             <ul>
-              <li>人格数理最为重要，应优先考虑</li>
-              <li>三才配置应力求和谐，避免严重相克</li>
-              <li>总格与外格应尽量选择吉利数字</li>
+              <li>Human Formation numerology is most important and should be prioritized</li>
+              <li>Three Talents configuration should strive for harmony, avoiding severe controlling relationships</li>
+              <li>Total Formation and External Formation should preferably be auspicious numbers</li>
             </ul>
             
-            <h3>步骤三：选择合适汉字</h3>
-            <p>在确定了理想的笔画组合后，选择符合以下条件的汉字：</p>
+            <h3>Step Three: Choose Suitable Characters</h3>
+            <p>After determining the ideal stroke combination, select characters that meet the following conditions:</p>
             <ul>
-              <li>笔画数符合预设的数理需求</li>
-              <li>字义吉祥、寓意美好</li>
-              <li>发音优美、朗朗上口</li>
-              <li>字形美观、结构均衡</li>
-              <li>避免生僻字和难写的复杂字</li>
+              <li>Stroke count matches the preset numerological requirements</li>
+              <li>Meaning is auspicious and beautiful</li>
+              <li>Pronunciation is pleasant and rolls off the tongue</li>
+              <li>Character form is aesthetically pleasing with balanced structure</li>
+              <li>Avoid obscure characters and complex characters that are difficult to write</li>
             </ul>
           </div>
           <div class="example-box">
-            <h3>取名实例分析</h3>
-            <p><strong>案例：</strong>姓"陈"(10画)，想要一个数理吉祥的名字</p>
-            <p><strong>分析：</strong></p>
-            <p>天格 = 10 + 1 = 11（减数，1+1=2）（凶）</p>
-            <p>为了获得吉利的人格，可以尝试以下组合：</p>
+            <h3>Naming Example Analysis</h3>
+            <p><strong>Case: </strong>Surname "陈" (Chen, 10 strokes), wanting an auspicious name numerologically</p>
+            <p><strong>Analysis: </strong></p>
+            <p>Heavenly Formation = 10 + 1 = 11 (reduced number, 1+1=2) (Inauspicious)</p>
+            <p>To obtain an auspicious Human Formation, the following combinations can be tried:</p>
             <ul>
-              <li>人格 = 10 + 7 = 17（减数，1+7=8）（吉）</li>
-              <li>或：人格 = 10 + 11 = 21（减数，2+1=3）（吉）</li>
+              <li>Human Formation = 10 + 7 = 17 (reduced number, 1+7=8) (Auspicious)</li>
+              <li>Or: Human Formation = 10 + 11 = 21 (reduced number, 2+1=3) (Auspicious)</li>
             </ul>
-            <p><strong>取名建议：</strong></p>
-            <p>根据人格17（数理8），可考虑七画的字如：宏、杰、佳、沛、秀、辰、宇</p>
-            <p>根据人格21（数理3），可考虑十一画的字如：清、淳、彬、涵、烁、崇、健</p>
-            <p>例如，可以取名为"陈宏志"、"陈佳明"、"陈清华"、"陈涵雅"等，综合考虑笔画数理与字义的和谐统一。</p>
+            <p><strong>Naming Suggestions: </strong></p>
+            <p>Based on Human Formation 17 (numerology 8), consider characters with 7 strokes such as: 宏, 杰, 佳, 沛, 秀, 辰, 宇</p>
+            <p>Based on Human Formation 21 (numerology 3), consider characters with 11 strokes such as: 清, 淳, 彬, 涵, 烁, 崇, 健</p>
+            <p>For example, names like "陈宏志" (Chen Hongzhi), "陈佳明" (Chen Jiaming), "陈清华" (Chen Qinghua), "陈涵雅" (Chen Hanya), etc., comprehensively considering the harmony between numerology and character meaning.</p>
           </div>
         </section>
 
         <section class="modern-view-section">
-          <h2>现代视角下的姓名学数理</h2>
-          <p>从现代角度看，姓名学数理可以被理解为中国传统文化对数字象征意义的一种系统性阐释。虽然其科学依据尚未得到现代研究的完全证实，但它作为一种文化传统，仍然在中国人的取名活动中扮演着重要角色。</p>
-          <p>现代取名时，可以将姓名学数理作为参考因素之一，但不必过分拘泥。最重要的是选择一个音律和谐、意义美好、书写美观的名字，能够反映家长的期望和祝福。</p>
+          <h2>Name Numerology from a Modern Perspective (现代视角下的姓名学数理)</h2>
+          <p>From a modern perspective, Chinese Name Numerology can be understood as a systematic interpretation of the symbolic significance of numbers in Chinese traditional culture. Although its scientific basis has not been fully confirmed by modern research, it still plays an important role in Chinese naming practices as a cultural tradition.</p>
+          <p>When naming in modern times, name numerology can be used as one of the reference factors, but not overly adhered to. The most important thing is to choose a name with harmonious pronunciation, beautiful meaning, and aesthetic writing that reflects the parents' expectations and blessings.</p>
           <div class="tips-box">
-            <h3>现代取名建议</h3>
+            <h3>Modern Naming Suggestions</h3>
             <ul>
-              <li>数理吉凶只是取名的参考因素之一，不宜过分迷信</li>
-              <li>名字的含义和发音通常比数理更为重要</li>
-              <li>平衡传统与现代，选择既有文化底蕴又符合时代特点的名字</li>
-              <li>考虑名字在国际环境中的适应性，避免在其他语言中可能产生的负面联想</li>
-              <li>名字最终是为了表达父母的爱与期望，应体现对孩子未来的美好祝愿</li>
+              <li>Numerological auspiciousness is just one of the reference factors for naming, not something to be overly superstitious about</li>
+              <li>The meaning and pronunciation of a name are usually more important than numerology</li>
+              <li>Balance tradition and modernity, choosing names with cultural connotations that also match contemporary characteristics</li>
+              <li>Consider the adaptability of names in international environments, avoiding potential negative associations in other languages</li>
+              <li>A name ultimately expresses parents' love and expectations, and should reflect beautiful wishes for the child's future</li>
             </ul>
           </div>
         </section>
@@ -259,12 +259,13 @@ export default {
   name: 'NameNumerology',
   data() {
     return {
-      // 页面数据
+      // Page data
     }
   },
   mounted() {
-    // 页面加载完成后滚动到顶部
+    // Scroll to the top after page loading
     window.scrollTo(0, 0);
+    document.title = 'Chinese Name Numerology - Name Generator';
   }
 }
 </script>

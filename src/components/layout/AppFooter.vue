@@ -17,7 +17,6 @@
               <li><router-link to="/">{{ $t('header.home') }}</router-link></li>
               <li><router-link to="/translate">{{ $t('header.translateName') }}</router-link></li>
               <li><router-link to="/custom">{{ $t('header.customName') }}</router-link></li>
-              <li><router-link to="/multilingual">{{ $t('header.multilingualName') }}</router-link></li>
               <li><router-link to="/knowledge">{{ $t('header.knowledgeBase') }}</router-link></li>
             </ul>
           </div>
@@ -25,20 +24,17 @@
           <div class="links-group">
             <h3>{{ $t('footer.aboutUs') }}</h3>
             <ul>
-              <li><a href="#">{{ $t('footer.aboutUs') }}</a></li>
-              <li><a href="#">{{ $t('footer.contact') }}</a></li>
-              <li><a href="#">{{ $t('footer.privacy') }}</a></li>
-              <li><a href="#">{{ $t('footer.terms') }}</a></li>
+              <li><router-link to="/about">{{ $t('footer.aboutUs') }}</router-link></li>
+              <li><router-link to="/privacy">{{ $t('footer.privacy') }}</router-link></li>
+              <li><router-link to="/terms">{{ $t('footer.terms') }}</router-link></li>
             </ul>
           </div>
           
           <div class="links-group">
             <h3>{{ $t('footer.contact') }}</h3>
             <ul>
-              <li><a href="mailto:info@chinesename.us">info@chinesename.us</a></li>
-              <li><a href="#">Twitter</a></li>
-              <li><a href="#">Facebook</a></li>
-              <li><a href="#">Instagram</a></li>
+              <li><a href="mailto:591124281yj@gmail.com">591124281yj@gmail.com</a></li>
+              <li><a href="https://x.com/yangjerry2025" target="_blank">Twitter</a></li>
             </ul>
           </div>
         </div>
@@ -65,7 +61,7 @@ export default {
 }
 
 .container {
-  max-width: 1400px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 20px;
 }

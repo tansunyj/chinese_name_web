@@ -1,189 +1,189 @@
 <template>
   <div class="wuxing-page">
     <div class="container">
-      <h1 class="page-title">五行八字理论</h1>
+      <h1 class="page-title">Five Elements and Eight Characters Theory (五行八字理论)</h1>
       
       <div class="content-wrapper">
         <section class="intro-section">
           <div class="section-image">
-            <img src="../assets/images/zhanbu.png" alt="五行八字示意图" />
+            <img src="../assets/images/zhanbu.png" alt="Five Elements and Eight Characters Illustration" />
           </div>
           <div class="section-content">
-            <h2>五行八字概述</h2>
-            <p>五行八字理论是中国传统文化中的核心哲学体系之一，融合了宇宙观、命理学和名学等多方面的智慧。它以阴阳五行为基础，通过分析一个人出生时的年、月、日、时所对应的天干地支，来解读个人命运特质和人生走向。</p>
-            <p>在取名实践中，五行八字理论被用来选择能够平衡或补充个人命盘的汉字，以期达到"扶其不足，抑其太过"的效果，从而帮助个人更好地发展潜能，规避潜在的不利因素。</p>
+            <h2>Overview of Wu Xing Ba Zi (五行八字概述)</h2>
+            <p>The Five Elements and Eight Characters theory is one of the core philosophical systems in traditional Chinese culture, integrating cosmic views, fate studies, and naming philosophy. Based on Yin-Yang and the Five Elements (Wu Xing 五行), it analyzes a person's destiny and life path through the Heavenly Stems and Earthly Branches corresponding to the year, month, day, and hour of birth.</p>
+            <p>In naming practices, the Five Elements theory is used to select characters that balance or complement an individual's birth chart, achieving the effect of "supporting what is lacking and restraining what is excessive" (扶其不足，抑其太过), helping individuals better develop their potential and avoid potential unfavorable factors.</p>
           </div>
         </section>
 
         <section class="theory-section">
-          <h2>五行基本概念</h2>
+          <h2>Basic Concepts of Five Elements (五行基本概念)</h2>
           <div class="elements-grid">
             <div class="element-card">
               <div class="element-icon wood-icon">木</div>
-              <h3>木</h3>
-              <p>代表生长、发展、向上、伸展</p>
-              <p>性质：温和、柔软、生发、条达</p>
-              <p>方位：东方</p>
-              <p>季节：春季</p>
-              <p>相关字：林、森、桐、松、柏、梁、楚、栋</p>
+              <h3>Wood (木)</h3>
+              <p>Represents: Growth, Development, Upward Movement, Extension</p>
+              <p>Nature: Mild, Soft, Germinating, Expanding</p>
+              <p>Direction: East</p>
+              <p>Season: Spring</p>
+              <p>Related Characters: 林, 森, 桐, 松, 柏, 梁, 楚, 栋</p>
             </div>
             <div class="element-card">
               <div class="element-icon fire-icon">火</div>
-              <h3>火</h3>
-              <p>代表热情、光明、上升、扩张</p>
-              <p>性质：炎热、上炎、光明、温暖</p>
-              <p>方位：南方</p>
-              <p>季节：夏季</p>
-              <p>相关字：炎、燕、焱、煜、熙、晖、昊、晓</p>
+              <h3>Fire (火)</h3>
+              <p>Represents: Passion, Brightness, Rising, Expansion</p>
+              <p>Nature: Hot, Upward, Bright, Warm</p>
+              <p>Direction: South</p>
+              <p>Season: Summer</p>
+              <p>Related Characters: 炎, 燕, 焱, 煜, 熙, 晖, 昊, 晓</p>
             </div>
             <div class="element-card">
               <div class="element-icon earth-icon">土</div>
-              <h3>土</h3>
-              <p>代表稳定、包容、中正、厚重</p>
-              <p>性质：厚重、包容、承载、中和</p>
-              <p>方位：中央</p>
-              <p>季节：四季末月</p>
-              <p>相关字：坤、坚、城、垣、境、墨、基、垚</p>
+              <h3>Earth (土)</h3>
+              <p>Represents: Stability, Inclusiveness, Righteousness, Substance</p>
+              <p>Nature: Heavy, Inclusive, Supportive, Balancing</p>
+              <p>Direction: Center</p>
+              <p>Season: Late months of all seasons</p>
+              <p>Related Characters: 坤, 坚, 城, 垣, 境, 墨, 基, 垚</p>
             </div>
             <div class="element-card">
               <div class="element-icon metal-icon">金</div>
-              <h3>金</h3>
-              <p>代表坚固、刚毅、收敛、肃杀</p>
-              <p>性质：坚固、锐利、果断、清洁</p>
-              <p>方位：西方</p>
-              <p>季节：秋季</p>
-              <p>相关字：钧、铭、锐、钊、铿、锋、钱、鉴</p>
+              <h3>Metal (金)</h3>
+              <p>Represents: Firmness, Determination, Contraction, Sharpness</p>
+              <p>Nature: Solid, Sharp, Decisive, Clean</p>
+              <p>Direction: West</p>
+              <p>Season: Autumn</p>
+              <p>Related Characters: 钧, 铭, 锐, 钊, 铿, 锋, 钱, 鉴</p>
             </div>
             <div class="element-card">
               <div class="element-icon water-icon">水</div>
-              <h3>水</h3>
-              <p>代表智慧、流动、柔韧、下行</p>
-              <p>性质：寒冷、向下、流动、滋润</p>
-              <p>方位：北方</p>
-              <p>季节：冬季</p>
-              <p>相关字：潮、泽、洋、淼、涵、渊、源、清</p>
+              <h3>Water (水)</h3>
+              <p>Represents: Wisdom, Fluidity, Flexibility, Downward Movement</p>
+              <p>Nature: Cold, Downward, Flowing, Moisturizing</p>
+              <p>Direction: North</p>
+              <p>Season: Winter</p>
+              <p>Related Characters: 潮, 泽, 洋, 淼, 涵, 渊, 源, 清</p>
             </div>
           </div>
         </section>
 
         <section class="cycle-section">
-          <h2>五行相生相克关系</h2>
+          <h2>Five Elements Generating and Controlling Relationships (五行相生相克关系)</h2>
           <div class="cycle-diagram">
-            <img src="../assets/images/wuxing.png" alt="五行相生相克图" />
+            <img src="../assets/images/wuxing.png" alt="Five Elements Cycle Diagram" />
           </div>
           <div class="cycle-content">
             <div class="cycle-card">
-              <h3>相生关系（促进）</h3>
+              <h3>Generating Relationships (相生关系)</h3>
               <ul>
-                <li><strong>木生火：</strong>木材燃烧产生火</li>
-                <li><strong>火生土：</strong>火焚烧后产生灰烬沉积为土</li>
-                <li><strong>土生金：</strong>金属矿藏蕴含在土中</li>
-                <li><strong>金生水：</strong>金属在寒冷时会凝结水珠</li>
-                <li><strong>水生木：</strong>水滋养树木生长</li>
+                <li><strong>Wood generates Fire (木生火): </strong>Wood burns to produce fire</li>
+                <li><strong>Fire generates Earth (火生土): </strong>Fire burning creates ashes which become earth</li>
+                <li><strong>Earth generates Metal (土生金): </strong>Metal ores are contained within earth</li>
+                <li><strong>Metal generates Water (金生水): </strong>Metal condenses dew when cold</li>
+                <li><strong>Water generates Wood (水生木): </strong>Water nourishes trees to grow</li>
               </ul>
             </div>
             <div class="cycle-card">
-              <h3>相克关系（抑制）</h3>
+              <h3>Controlling Relationships (相克关系)</h3>
               <ul>
-                <li><strong>木克土：</strong>树根穿透土壤</li>
-                <li><strong>土克水：</strong>土堤可以阻挡水流</li>
-                <li><strong>水克火：</strong>水可以熄灭火焰</li>
-                <li><strong>火克金：</strong>火能够熔化金属</li>
-                <li><strong>金克木：</strong>金属工具可以砍伐树木</li>
+                <li><strong>Wood controls Earth (木克土): </strong>Tree roots penetrate soil</li>
+                <li><strong>Earth controls Water (土克水): </strong>Earth dams can block water flow</li>
+                <li><strong>Water controls Fire (水克火): </strong>Water can extinguish fire</li>
+                <li><strong>Fire controls Metal (火克金): </strong>Fire can melt metal</li>
+                <li><strong>Metal controls Wood (金克木): </strong>Metal tools can cut down trees</li>
               </ul>
             </div>
           </div>
         </section>
 
         <section class="bazi-section">
-          <h2>八字基础知识</h2>
-          <p>"八字"，又称"四柱"，是指一个人出生时的年、月、日、时四个时间单位，每个单位由一个天干和一个地支组成，共八个字，因此称为"八字"。</p>
+          <h2>Basic Knowledge of Ba Zi (八字基础知识)</h2>
+          <p>"Ba Zi" (八字), also known as "Four Pillars" (四柱), refers to the year, month, day, and hour of a person's birth. Each time unit consists of one Heavenly Stem and one Earthly Branch, totaling eight characters, hence the name "Ba Zi" (Eight Characters).</p>
           
           <div class="columns-wrapper">
             <div class="column">
-              <h3>十天干</h3>
+              <h3>Ten Heavenly Stems (十天干)</h3>
               <ul class="basic-list">
-                <li><strong>甲(木)：</strong>阳木，如参天大树</li>
-                <li><strong>乙(木)：</strong>阴木，如绿草藤蔓</li>
-                <li><strong>丙(火)：</strong>阳火，如烈日当空</li>
-                <li><strong>丁(火)：</strong>阴火，如烛光灯火</li>
-                <li><strong>戊(土)：</strong>阳土，如高山大地</li>
-                <li><strong>己(土)：</strong>阴土，如田园土地</li>
-                <li><strong>庚(金)：</strong>阳金，如刀剑兵器</li>
-                <li><strong>辛(金)：</strong>阴金，如首饰金器</li>
-                <li><strong>壬(水)：</strong>阳水，如江河湖海</li>
-                <li><strong>癸(水)：</strong>阴水，如雨露霜雪</li>
+                <li><strong>甲 (Wood): </strong>Yang Wood, like tall trees</li>
+                <li><strong>乙 (Wood): </strong>Yin Wood, like grass and vines</li>
+                <li><strong>丙 (Fire): </strong>Yang Fire, like the blazing sun</li>
+                <li><strong>丁 (Fire): </strong>Yin Fire, like candle light</li>
+                <li><strong>戊 (Earth): </strong>Yang Earth, like mountains and land</li>
+                <li><strong>己 (Earth): </strong>Yin Earth, like farmland</li>
+                <li><strong>庚 (Metal): </strong>Yang Metal, like weapons and swords</li>
+                <li><strong>辛 (Metal): </strong>Yin Metal, like jewelry</li>
+                <li><strong>壬 (Water): </strong>Yang Water, like rivers and oceans</li>
+                <li><strong>癸 (Water): </strong>Yin Water, like rain and dew</li>
               </ul>
             </div>
             
             <div class="column">
-              <h3>十二地支</h3>
+              <h3>Twelve Earthly Branches (十二地支)</h3>
               <ul class="basic-list">
-                <li><strong>子(水)：</strong>子时23-1点，属鼠</li>
-                <li><strong>丑(土)：</strong>丑时1-3点，属牛</li>
-                <li><strong>寅(木)：</strong>寅时3-5点，属虎</li>
-                <li><strong>卯(木)：</strong>卯时5-7点，属兔</li>
-                <li><strong>辰(土)：</strong>辰时7-9点，属龙</li>
-                <li><strong>巳(火)：</strong>巳时9-11点，属蛇</li>
-                <li><strong>午(火)：</strong>午时11-13点，属马</li>
-                <li><strong>未(土)：</strong>未时13-15点，属羊</li>
-                <li><strong>申(金)：</strong>申时15-17点，属猴</li>
-                <li><strong>酉(金)：</strong>酉时17-19点，属鸡</li>
-                <li><strong>戌(土)：</strong>戌时19-21点，属狗</li>
-                <li><strong>亥(水)：</strong>亥时21-23点，属猪</li>
+                <li><strong>子 (Water): </strong>11pm-1am, Rat</li>
+                <li><strong>丑 (Earth): </strong>1am-3am, Ox</li>
+                <li><strong>寅 (Wood): </strong>3am-5am, Tiger</li>
+                <li><strong>卯 (Wood): </strong>5am-7am, Rabbit</li>
+                <li><strong>辰 (Earth): </strong>7am-9am, Dragon</li>
+                <li><strong>巳 (Fire): </strong>9am-11am, Snake</li>
+                <li><strong>午 (Fire): </strong>11am-1pm, Horse</li>
+                <li><strong>未 (Earth): </strong>1pm-3pm, Goat</li>
+                <li><strong>申 (Metal): </strong>3pm-5pm, Monkey</li>
+                <li><strong>酉 (Metal): </strong>5pm-7pm, Rooster</li>
+                <li><strong>戌 (Earth): </strong>7pm-9pm, Dog</li>
+                <li><strong>亥 (Water): </strong>9pm-11pm, Pig</li>
               </ul>
             </div>
           </div>
         </section>
 
         <section class="application-section">
-          <h2>五行八字在取名中的应用</h2>
+          <h2>Application of Wu Xing Ba Zi in Naming (五行八字在取名中的应用)</h2>
           <div class="application-content">
-            <h3>步骤一：确定八字命盘</h3>
-            <p>根据出生年、月、日、时确定一个人的八字命盘，分析其中五行的强弱和平衡状况。</p>
+            <h3>Step One: Determine the Birth Chart</h3>
+            <p>Determine a person's birth chart based on their year, month, day, and hour of birth, analyzing the strength and balance of the Five Elements within it.</p>
             
-            <h3>步骤二：找出喜用神</h3>
-            <p>"喜用神"是指能够帮助平衡命盘的五行元素。一般来说：</p>
+            <h3>Step Two: Identify the Favorable Elements (喜用神)</h3>
+            <p>"Favorable Elements" (喜用神) refers to the Five Elements that can help balance the birth chart. Generally speaking:</p>
             <ul>
-              <li>如果命盘中某种五行太强，需要用其所克的五行来制约</li>
-              <li>如果命盘中某种五行太弱，需要用生它的五行来扶助</li>
-              <li>如果命盘中某种五行缺失，需要在名字中补充</li>
+              <li>If a certain element is too strong in the chart, use the element that controls it to restrain it</li>
+              <li>If a certain element is too weak, use the element that generates it to strengthen it</li>
+              <li>If a certain element is missing, supplement it in the name</li>
             </ul>
             
-            <h3>步骤三：选择合适的汉字</h3>
-            <p>在确定了喜用神后，选择符合以下条件的汉字：</p>
+            <h3>Step Three: Choose Suitable Characters</h3>
+            <p>After identifying the favorable elements, select characters that meet the following conditions:</p>
             <ul>
-              <li>五行属性与喜用神相符</li>
-              <li>字义吉祥、寓意美好</li>
-              <li>读音优美、易于发音</li>
-              <li>字形美观、笔画适中</li>
+              <li>The Five Element attributes match the favorable elements</li>
+              <li>The meaning is auspicious and beautiful</li>
+              <li>The pronunciation is pleasant and easy to pronounce</li>
+              <li>The character form is aesthetically pleasing with appropriate stroke count</li>
             </ul>
           </div>
           <div class="example-box">
-            <h3>实例分析</h3>
-            <p><strong>案例：</strong>一个出生在冬季的人，八字中"水"元素过旺，而"火"元素不足。</p>
-            <p><strong>分析：</strong>根据五行相克原理，火克金，金克木，木克土，土克水。因此，可以选择具有"火"属性的字来制约过旺的"水"，或者选择"土"属性的字直接克制"水"。</p>
-            <p><strong>取名建议：</strong></p>
+            <h3>Case Analysis</h3>
+            <p><strong>Case: </strong>A person born in winter with excessive "Water" element and insufficient "Fire" element in their birth chart.</p>
+            <p><strong>Analysis: </strong>According to the Five Elements controlling principle, Fire controls Metal, Metal controls Wood, Wood controls Earth, and Earth controls Water. Therefore, characters with "Fire" attributes can be chosen to restrain the excessive "Water," or characters with "Earth" attributes can directly control "Water."</p>
+            <p><strong>Naming Suggestions: </strong></p>
             <ul>
-              <li>火属性字：炎、焱、煜、晖、熙、昊、晗、炫</li>
-              <li>土属性字：坤、垣、城、境、培、坚、均、圆</li>
+              <li>Fire attribute characters: 炎, 焱, 煜, 晖, 熙, 昊, 晗, 炫</li>
+              <li>Earth attribute characters: 坤, 垣, 城, 境, 培, 坚, 均, 圆</li>
             </ul>
-            <p>例如，可以取名为"李焱城"、"张熙坤"、"王晖垣"等，既平衡了命盘中的五行，又有美好的寓意。</p>
+            <p>For example, names like "李焱城" (Li Yancheng), "张熙坤" (Zhang Xikun), "王晖垣" (Wang Huiyuan) both balance the Five Elements in the birth chart and have beautiful meanings.</p>
           </div>
         </section>
 
         <section class="modern-view-section">
-          <h2>现代视角下的五行八字</h2>
-          <p>从现代角度看，五行八字理论可以被理解为一种古代智慧对人生平衡的探索。虽然其科学性仍有争议，但它所蕴含的平衡哲学、系统思维和整体观念，对现代人仍有启示意义。</p>
-          <p>在现代取名实践中，我们可以将五行八字理论视为一种文化传统和取名参考系统，而非绝对遵循的规则。最重要的是选择寓意美好、音律和谐、书写美观的名字，同时尊重传统文化元素。</p>
+          <h2>Wu Xing Ba Zi from a Modern Perspective (现代视角下的五行八字)</h2>
+          <p>From a modern perspective, the Five Elements and Eight Characters theory can be understood as ancient wisdom's exploration of life balance. Although its scientific validity remains controversial, the philosophy of balance, systematic thinking, and holistic concepts it embodies still have inspirational value for modern people.</p>
+          <p>In modern naming practices, we can view the Five Elements theory as a cultural tradition and naming reference system, rather than rules to be strictly followed. The most important thing is to choose names with beautiful meanings, harmonious pronunciation, and aesthetic writing, while respecting traditional cultural elements.</p>
           <div class="tips-box">
-            <h3>取名小贴士</h3>
+            <h3>Naming Tips</h3>
             <ul>
-              <li>平衡五行只是取名的参考因素之一，不必过分拘泥</li>
-              <li>名字的意义和读音往往比五行属性更为重要</li>
-              <li>考虑家族传统和父母期望，但也要注重孩子的个性发展</li>
-              <li>兼顾传统文化和现代审美，选择既有文化底蕴又易于当代社会接受的名字</li>
-              <li>避免生僻字和难写字，减少未来可能的不便</li>
+              <li>Balancing the Five Elements is just one of the reference factors for naming, not something to be overly adhered to</li>
+              <li>The meaning and pronunciation of a name are often more important than its Five Element attributes</li>
+              <li>Consider family traditions and parental expectations, but also pay attention to the child's personality development</li>
+              <li>Balance traditional culture and modern aesthetics, choosing names with cultural connotations that are also acceptable in contemporary society</li>
+              <li>Avoid obscure characters and difficult-to-write characters to reduce potential inconvenience in the future</li>
             </ul>
           </div>
         </section>
@@ -197,12 +197,13 @@ export default {
   name: 'WuXingBaZi',
   data() {
     return {
-      // 页面数据
+      // Page data
     }
   },
   mounted() {
-    // 页面加载完成后滚动到顶部
+    // Scroll to the top after page loading
     window.scrollTo(0, 0);
+    document.title = 'Five Elements and Eight Characters Theory - Name Generator';
   }
 }
 </script>

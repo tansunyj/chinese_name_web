@@ -1,58 +1,58 @@
 <template>
   <div class="seasonal-characters">
     <header class="page-header">
-      <h1>季节时令用字</h1>
-      <p class="subtitle">探索与四季时令相关的汉字，为您的孩子取一个契合出生季节的美名</p>
+      <h1>Seasonal Characters for Naming (季节时令用字)</h1>
+      <p class="subtitle">Explore Chinese characters related to the four seasons and create a beautiful name for your child that matches their birth season</p>
     </header>
 
     <section class="content-section">
-      <h2 class="section-title">季节与名字的天然联系</h2>
-      <p>中国传统文化中，人与自然的关系密不可分。人们常常将自然的气息融入到名字中，尤其是与出生季节相关的元素。这不仅赋予名字美好的寓意，也建立了人与自然的和谐关系。</p>
-      <p>根据孩子出生的季节选择相应的汉字，可以让名字更加贴合自然规律，也能体现父母对孩子出生时节的纪念与祝福。</p>
+      <h2 class="section-title">The Natural Connection Between Seasons and Names (季节与名字的天然联系)</h2>
+      <p>In traditional Chinese culture, the relationship between humans and nature is inseparable. People often incorporate elements of nature into names, especially those related to the birth season. This not only gives the name beautiful meaning but also establishes a harmonious relationship between humans and nature.</p>
+      <p>Choosing characters based on a child's birth season can make the name more in tune with natural rhythms and also reflects parents' commemoration and blessing of their child's birth season.</p>
     </section>
 
     <section class="season-grid">
       <div class="season-card">
         <div class="season-header spring">
-          <h2>春季 (立春至立夏)</h2>
-          <p>生机勃勃，万物复苏</p>
+          <h2>Spring (春季) - Beginning of Spring to Beginning of Summer</h2>
+          <p>Vibrant vitality, nature's revival</p>
         </div>
         <div class="season-content">
           <div class="character-section">
-            <h3>春季特点</h3>
-            <p>春季是万物复苏、生机勃勃的季节，象征着新生、希望和成长。</p>
+            <h3>Spring Characteristics (春季特点)</h3>
+            <p>Spring is the season of revival and vitality, symbolizing new life, hope, and growth.</p>
           </div>
           <div class="character-section">
-            <h3>代表字</h3>
+            <h3>Representative Characters (代表字)</h3>
             <div class="character-grid">
-              <div class="character-item"><span>春</span><p>春天，生机</p></div>
-              <div class="character-item"><span>芽</span><p>萌芽，新生</p></div>
-              <div class="character-item"><span>萌</span><p>初生，可爱</p></div>
-              <div class="character-item"><span>蕾</span><p>花蕾，含苞待放</p></div>
-              <div class="character-item"><span>绿</span><p>翠绿，生机</p></div>
-              <div class="character-item"><span>泽</span><p>润泽，恩惠</p></div>
-              <div class="character-item"><span>雨</span><p>春雨，滋润</p></div>
-              <div class="character-item"><span>阳</span><p>阳光，温暖</p></div>
+              <div class="character-item"><span>春</span><p>Spring, vitality</p></div>
+              <div class="character-item"><span>芽</span><p>Sprout, new life</p></div>
+              <div class="character-item"><span>萌</span><p>Budding, adorable</p></div>
+              <div class="character-item"><span>蕾</span><p>Bud, waiting to bloom</p></div>
+              <div class="character-item"><span>绿</span><p>Green, vitality</p></div>
+              <div class="character-item"><span>泽</span><p>Moisture, blessing</p></div>
+              <div class="character-item"><span>雨</span><p>Spring rain, nourishment</p></div>
+              <div class="character-item"><span>阳</span><p>Sunshine, warmth</p></div>
             </div>
           </div>
           <div class="character-section">
-            <h3>春季花卉用字</h3>
+            <h3>Spring Flower Characters (春季花卉用字)</h3>
             <div class="character-grid">
-              <div class="character-item"><span>梅</span><p>梅花，坚韧</p></div>
-              <div class="character-item"><span>兰</span><p>兰花，高雅</p></div>
-              <div class="character-item"><span>桃</span><p>桃花，美丽</p></div>
-              <div class="character-item"><span>杏</span><p>杏花，希望</p></div>
-              <div class="character-item"><span>荷</span><p>荷花，清新</p></div>
-              <div class="character-item"><span>菊</span><p>菊花，坚毅</p></div>
+              <div class="character-item"><span>梅</span><p>Plum blossom, resilience</p></div>
+              <div class="character-item"><span>兰</span><p>Orchid, elegance</p></div>
+              <div class="character-item"><span>桃</span><p>Peach blossom, beauty</p></div>
+              <div class="character-item"><span>杏</span><p>Apricot blossom, hope</p></div>
+              <div class="character-item"><span>荷</span><p>Lotus, freshness</p></div>
+              <div class="character-item"><span>菊</span><p>Chrysanthemum, perseverance</p></div>
             </div>
           </div>
           <div class="name-examples">
-            <h3>春季名字示例</h3>
+            <h3>Spring Name Examples (春季名字示例)</h3>
             <ul>
-              <li><span>李春晓</span> - 春天的黎明，充满希望</li>
-              <li><span>张雨桐</span> - 春雨滋润桐树，生机盎然</li>
-              <li><span>王泽萌</span> - 滋润万物，孕育新生</li>
-              <li><span>刘芳绿</span> - 春天的芳香与翠绿</li>
+              <li><span>李春晓 (Li Chunxiao)</span> - Spring dawn, full of hope</li>
+              <li><span>张雨桐 (Zhang Yutong)</span> - Spring rain nourishing the paulownia tree, vibrant with life</li>
+              <li><span>王泽萌 (Wang Zemeng)</span> - Moistening all things, nurturing new life</li>
+              <li><span>刘芳绿 (Liu Fanglü)</span> - Spring fragrance and verdant green</li>
             </ul>
           </div>
         </div>
@@ -60,45 +60,45 @@
 
       <div class="season-card">
         <div class="season-header summer">
-          <h2>夏季 (立夏至立秋)</h2>
-          <p>热情似火，蓬勃向上</p>
+          <h2>Summer (夏季) - Beginning of Summer to Beginning of Autumn</h2>
+          <p>Passionate as fire, vigorous growth</p>
         </div>
         <div class="season-content">
           <div class="character-section">
-            <h3>夏季特点</h3>
-            <p>夏季阳光灿烂、热情似火，代表着活力、热情与成长的高峰。</p>
+            <h3>Summer Characteristics (夏季特点)</h3>
+            <p>Summer is bright with sunshine and passionate as fire, representing vitality, enthusiasm, and the peak of growth.</p>
           </div>
           <div class="character-section">
-            <h3>代表字</h3>
+            <h3>Representative Characters (代表字)</h3>
             <div class="character-grid">
-              <div class="character-item"><span>夏</span><p>夏天，热情</p></div>
-              <div class="character-item"><span>炎</span><p>炎热，光明</p></div>
-              <div class="character-item"><span>阳</span><p>阳光，明媚</p></div>
-              <div class="character-item"><span>旭</span><p>旭日，朝气</p></div>
-              <div class="character-item"><span>熙</span><p>兴盛，和乐</p></div>
-              <div class="character-item"><span>焱</span><p>火焰，热情</p></div>
-              <div class="character-item"><span>晴</span><p>晴朗，明媚</p></div>
-              <div class="character-item"><span>朗</span><p>明朗，开阔</p></div>
+              <div class="character-item"><span>夏</span><p>Summer, passion</p></div>
+              <div class="character-item"><span>炎</span><p>Heat, brightness</p></div>
+              <div class="character-item"><span>阳</span><p>Sunshine, radiance</p></div>
+              <div class="character-item"><span>旭</span><p>Rising sun, vigor</p></div>
+              <div class="character-item"><span>熙</span><p>Prosperous, harmonious</p></div>
+              <div class="character-item"><span>焱</span><p>Flame, passion</p></div>
+              <div class="character-item"><span>晴</span><p>Clear sky, bright</p></div>
+              <div class="character-item"><span>朗</span><p>Clear, open</p></div>
             </div>
           </div>
           <div class="character-section">
-            <h3>夏季花卉用字</h3>
+            <h3>Summer Flower Characters (夏季花卉用字)</h3>
             <div class="character-grid">
-              <div class="character-item"><span>荷</span><p>荷花，清廉</p></div>
-              <div class="character-item"><span>莲</span><p>莲花，纯洁</p></div>
-              <div class="character-item"><span>棠</span><p>海棠，华贵</p></div>
-              <div class="character-item"><span>槿</span><p>木槿，坚韧</p></div>
-              <div class="character-item"><span>蓉</span><p>芙蓉，优雅</p></div>
-              <div class="character-item"><span>茉</span><p>茉莉，芬芳</p></div>
+              <div class="character-item"><span>荷</span><p>Lotus, integrity</p></div>
+              <div class="character-item"><span>莲</span><p>Lotus, purity</p></div>
+              <div class="character-item"><span>棠</span><p>Begonia, splendor</p></div>
+              <div class="character-item"><span>槿</span><p>Hibiscus, resilience</p></div>
+              <div class="character-item"><span>蓉</span><p>Hibiscus, elegance</p></div>
+              <div class="character-item"><span>茉</span><p>Jasmine, fragrance</p></div>
             </div>
           </div>
           <div class="name-examples">
-            <h3>夏季名字示例</h3>
+            <h3>Summer Name Examples (夏季名字示例)</h3>
             <ul>
-              <li><span>陈炎阳</span> - 如夏日阳光般热情</li>
-              <li><span>吴荷晴</span> - 荷花盛开于晴朗夏日</li>
-              <li><span>林旭朗</span> - 朝气蓬勃，明朗开阔</li>
-              <li><span>黄熙茉</span> - 和乐兴盛，如茉莉芬芳</li>
+              <li><span>陈炎阳 (Chen Yanyang)</span> - Passionate as summer sunshine</li>
+              <li><span>吴荷晴 (Wu Heqing)</span> - Lotus blooming on a clear summer day</li>
+              <li><span>林旭朗 (Lin Xulang)</span> - Vigorous and bright as the rising sun</li>
+              <li><span>黄熙茉 (Huang Ximo)</span> - Harmonious prosperity, fragrant as jasmine</li>
             </ul>
           </div>
         </div>
@@ -106,45 +106,45 @@
 
       <div class="season-card">
         <div class="season-header autumn">
-          <h2>秋季 (立秋至立冬)</h2>
-          <p>丰收成熟，金色硕果</p>
+          <h2>Autumn (秋季) - Beginning of Autumn to Beginning of Winter</h2>
+          <p>Harvest and maturity, golden fruits</p>
         </div>
         <div class="season-content">
           <div class="character-section">
-            <h3>秋季特点</h3>
-            <p>秋季是收获的季节，金黄色的景象象征着成熟、丰收与沉稳。</p>
+            <h3>Autumn Characteristics (秋季特点)</h3>
+            <p>Autumn is the season of harvest, with golden scenery symbolizing maturity, abundance, and steadiness.</p>
           </div>
           <div class="character-section">
-            <h3>代表字</h3>
+            <h3>Representative Characters (代表字)</h3>
             <div class="character-grid">
-              <div class="character-item"><span>秋</span><p>秋天，成熟</p></div>
-              <div class="character-item"><span>实</span><p>果实，充实</p></div>
-              <div class="character-item"><span>稻</span><p>稻谷，丰收</p></div>
-              <div class="character-item"><span>穗</span><p>麦穗，成果</p></div>
-              <div class="character-item"><span>果</span><p>果实，成就</p></div>
-              <div class="character-item"><span>丰</span><p>丰收，富足</p></div>
-              <div class="character-item"><span>硕</span><p>硕大，丰盛</p></div>
-              <div class="character-item"><span>金</span><p>金色，尊贵</p></div>
+              <div class="character-item"><span>秋</span><p>Autumn, maturity</p></div>
+              <div class="character-item"><span>实</span><p>Fruit, substantial</p></div>
+              <div class="character-item"><span>稻</span><p>Rice, harvest</p></div>
+              <div class="character-item"><span>穗</span><p>Ear of grain, achievement</p></div>
+              <div class="character-item"><span>果</span><p>Fruit, accomplishment</p></div>
+              <div class="character-item"><span>丰</span><p>Abundant, plentiful</p></div>
+              <div class="character-item"><span>硕</span><p>Plump, abundant</p></div>
+              <div class="character-item"><span>金</span><p>Golden, precious</p></div>
             </div>
           </div>
           <div class="character-section">
-            <h3>秋季花卉用字</h3>
+            <h3>Autumn Flower Characters (秋季花卉用字)</h3>
             <div class="character-grid">
-              <div class="character-item"><span>菊</span><p>菊花，高洁</p></div>
-              <div class="character-item"><span>桂</span><p>桂花，清香</p></div>
-              <div class="character-item"><span>萸</span><p>茱萸，吉祥</p></div>
-              <div class="character-item"><span>蓝</span><p>蓝花，沉静</p></div>
-              <div class="character-item"><span>枫</span><p>枫叶，绚丽</p></div>
-              <div class="character-item"><span>柿</span><p>柿子，甜美</p></div>
+              <div class="character-item"><span>菊</span><p>Chrysanthemum, noble</p></div>
+              <div class="character-item"><span>桂</span><p>Osmanthus, fragrant</p></div>
+              <div class="character-item"><span>萸</span><p>Cornus, auspicious</p></div>
+              <div class="character-item"><span>蓝</span><p>Blue flower, serene</p></div>
+              <div class="character-item"><span>枫</span><p>Maple leaf, splendid</p></div>
+              <div class="character-item"><span>柿</span><p>Persimmon, sweet</p></div>
             </div>
           </div>
           <div class="name-examples">
-            <h3>秋季名字示例</h3>
+            <h3>Autumn Name Examples (秋季名字示例)</h3>
             <ul>
-              <li><span>张秋实</span> - 秋天的收获与充实</li>
-              <li><span>周金硕</span> - 金色秋天的丰硕成果</li>
-              <li><span>赵桂丰</span> - 桂花飘香，丰收季节</li>
-              <li><span>孙菊穗</span> - 菊花与麦穗的秋日意象</li>
+              <li><span>张秋实 (Zhang Qiushi)</span> - Autumn harvest and fullness</li>
+              <li><span>周金硕 (Zhou Jinshuo)</span> - Golden autumn's abundant fruits</li>
+              <li><span>赵桂丰 (Zhao Guifeng)</span> - Osmanthus fragrance, harvest season</li>
+              <li><span>孙菊穗 (Sun Jusui)</span> - Chrysanthemum and grain ear, autumn imagery</li>
             </ul>
           </div>
         </div>
@@ -152,45 +152,45 @@
 
       <div class="season-card">
         <div class="season-header winter">
-          <h2>冬季 (立冬至立春)</h2>
-          <p>静谧沉稳，蓄势待发</p>
+          <h2>Winter (冬季) - Beginning of Winter to Beginning of Spring</h2>
+          <p>Tranquil and steady, storing energy for future growth</p>
         </div>
         <div class="season-content">
           <div class="character-section">
-            <h3>冬季特点</h3>
-            <p>冬季是万物蛰伏的季节，白雪皑皑的景象象征着纯洁、静谧与蕴藏的力量。</p>
+            <h3>Winter Characteristics (冬季特点)</h3>
+            <p>Winter is the season when all things hibernate, with snow-white scenery symbolizing purity, tranquility, and stored strength.</p>
           </div>
           <div class="character-section">
-            <h3>代表字</h3>
+            <h3>Representative Characters (代表字)</h3>
             <div class="character-grid">
-              <div class="character-item"><span>冬</span><p>冬天，蕴藏</p></div>
-              <div class="character-item"><span>雪</span><p>白雪，纯洁</p></div>
-              <div class="character-item"><span>霜</span><p>霜冻，坚毅</p></div>
-              <div class="character-item"><span>寒</span><p>寒冷，沉静</p></div>
-              <div class="character-item"><span>冰</span><p>冰晶，清澈</p></div>
-              <div class="character-item"><span>松</span><p>松树，坚韧</p></div>
-              <div class="character-item"><span>柏</span><p>柏树，长青</p></div>
-              <div class="character-item"><span>梅</span><p>梅花，坚强</p></div>
+              <div class="character-item"><span>冬</span><p>Winter, storage</p></div>
+              <div class="character-item"><span>雪</span><p>Snow, pure</p></div>
+              <div class="character-item"><span>霜</span><p>Frost, fortitude</p></div>
+              <div class="character-item"><span>寒</span><p>Cold, calm</p></div>
+              <div class="character-item"><span>冰</span><p>Ice, clear</p></div>
+              <div class="character-item"><span>松</span><p>Pine, resilient</p></div>
+              <div class="character-item"><span>柏</span><p>Cypress, evergreen</p></div>
+              <div class="character-item"><span>梅</span><p>Plum blossom, strong</p></div>
             </div>
           </div>
           <div class="character-section">
-            <h3>冬季花卉用字</h3>
+            <h3>Winter Flower Characters (冬季花卉用字)</h3>
             <div class="character-grid">
-              <div class="character-item"><span>梅</span><p>梅花，傲雪</p></div>
-              <div class="character-item"><span>兰</span><p>兰花，高雅</p></div>
-              <div class="character-item"><span>松</span><p>松树，常青</p></div>
-              <div class="character-item"><span>竹</span><p>竹子，坚毅</p></div>
-              <div class="character-item"><span>菊</span><p>菊花，坚强</p></div>
-              <div class="character-item"><span>腊</span><p>腊梅，坚韧</p></div>
+              <div class="character-item"><span>梅</span><p>Plum blossom, snow-defying</p></div>
+              <div class="character-item"><span>兰</span><p>Orchid, elegant</p></div>
+              <div class="character-item"><span>松</span><p>Pine, evergreen</p></div>
+              <div class="character-item"><span>竹</span><p>Bamboo, resilient</p></div>
+              <div class="character-item"><span>菊</span><p>Chrysanthemum, strong</p></div>
+              <div class="character-item"><span>腊</span><p>Winter plum, tenacious</p></div>
             </div>
           </div>
           <div class="name-examples">
-            <h3>冬季名字示例</h3>
+            <h3>Winter Name Examples (冬季名字示例)</h3>
             <ul>
-              <li><span>李雪松</span> - 雪中挺立的松树，坚韧不拔</li>
-              <li><span>王冰梅</span> - 冰雪中绽放的梅花</li>
-              <li><span>郑寒竹</span> - 寒冬中傲立的竹子</li>
-              <li><span>马霜兰</span> - 霜冻中依然高雅的兰花</li>
+              <li><span>李雪松 (Li Xuesong)</span> - Pine tree standing in snow, unbending resilience</li>
+              <li><span>王冰梅 (Wang Bingmei)</span> - Plum blossom blooming in ice and snow</li>
+              <li><span>郑寒竹 (Zheng Hanzhu)</span> - Bamboo standing proudly in cold winter</li>
+              <li><span>马霜兰 (Ma Shuanglan)</span> - Orchid remaining elegant in frost</li>
             </ul>
           </div>
         </div>
@@ -198,126 +198,126 @@
     </section>
 
     <section class="content-section">
-      <h2 class="section-title">节气与名字</h2>
-      <p>中国传统文化中的二十四节气更细致地划分了一年中的气候变化，每个节气都有其独特的自然特点和文化内涵。根据出生节气选择名字，可以更精准地捕捉季节特点。</p>
+      <h2 class="section-title">Solar Terms and Names (节气与名字)</h2>
+      <p>The twenty-four solar terms in traditional Chinese culture divide the climate changes of the year more precisely. Each solar term has its unique natural characteristics and cultural connotations. Choosing a name based on the birth solar term can capture seasonal features more accurately.</p>
       
       <div class="solar-terms">
         <div class="term-group">
-          <h3>春季节气</h3>
+          <h3>Spring Solar Terms (春季节气)</h3>
           <div class="term-list">
             <div class="term-item">
-              <h4>立春</h4>
-              <p>推荐用字：春、立、始、新、元、启、发</p>
+              <h4>Beginning of Spring (立春)</h4>
+              <p>Recommended characters: 春, 立, 始, 新, 元, 启, 发</p>
             </div>
             <div class="term-item">
-              <h4>雨水</h4>
-              <p>推荐用字：雨、润、泽、霖、沐、洁、清</p>
+              <h4>Rain Water (雨水)</h4>
+              <p>Recommended characters: 雨, 润, 泽, 霖, 沐, 洁, 清</p>
             </div>
             <div class="term-item">
-              <h4>惊蛰</h4>
-              <p>推荐用字：惊、醒、动、震、启、蛰、雷</p>
+              <h4>Insects Awakening (惊蛰)</h4>
+              <p>Recommended characters: 惊, 醒, 动, 震, 启, 蛰, 雷</p>
             </div>
             <div class="term-item">
-              <h4>春分</h4>
-              <p>推荐用字：分、均、和、平、茗、艺、茵</p>
+              <h4>Spring Equinox (春分)</h4>
+              <p>Recommended characters: 分, 均, 和, 平, 茗, 艺, 茵</p>
             </div>
             <div class="term-item">
-              <h4>清明</h4>
-              <p>推荐用字：清、明、澈、亮、澄、皓、洁</p>
+              <h4>Clear and Bright (清明)</h4>
+              <p>Recommended characters: 清, 明, 澈, 亮, 澄, 皓, 洁</p>
             </div>
             <div class="term-item">
-              <h4>谷雨</h4>
-              <p>推荐用字：谷、雨、丰、沛、润、滋、灌</p>
+              <h4>Grain Rain (谷雨)</h4>
+              <p>Recommended characters: 谷, 雨, 丰, 沛, 润, 滋, 灌</p>
             </div>
           </div>
         </div>
         
         <div class="term-group">
-          <h3>夏季节气</h3>
+          <h3>Summer Solar Terms (夏季节气)</h3>
           <div class="term-list">
             <div class="term-item">
-              <h4>立夏</h4>
-              <p>推荐用字：夏、立、阳、炎、热、朗、昱</p>
+              <h4>Beginning of Summer (立夏)</h4>
+              <p>Recommended characters: 夏, 立, 阳, 炎, 热, 朗, 昱</p>
             </div>
             <div class="term-item">
-              <h4>小满</h4>
-              <p>推荐用字：满、盈、充、实、丰、盛、畅</p>
+              <h4>Grain Buds (小满)</h4>
+              <p>Recommended characters: 满, 盈, 充, 实, 丰, 盛, 畅</p>
             </div>
             <div class="term-item">
-              <h4>芒种</h4>
-              <p>推荐用字：芒、种、耘、稼、植、艺、禾</p>
+              <h4>Grain in Ear (芒种)</h4>
+              <p>Recommended characters: 芒, 种, 耘, 稼, 植, 艺, 禾</p>
             </div>
             <div class="term-item">
-              <h4>夏至</h4>
-              <p>推荐用字：至、极、盛、顶、峰、炎、烈</p>
+              <h4>Summer Solstice (夏至)</h4>
+              <p>Recommended characters: 至, 极, 盛, 顶, 峰, 炎, 烈</p>
             </div>
             <div class="term-item">
-              <h4>小暑</h4>
-              <p>推荐用字：暑、热、炎、晴、朗、照、晖</p>
+              <h4>Minor Heat (小暑)</h4>
+              <p>Recommended characters: 暑, 热, 炎, 晴, 朗, 照, 晖</p>
             </div>
             <div class="term-item">
-              <h4>大暑</h4>
-              <p>推荐用字：暑、炽、焱、炫、烁、焰、煌</p>
+              <h4>Major Heat (大暑)</h4>
+              <p>Recommended characters: 暑, 炽, 焱, 炫, 烁, 焰, 煌</p>
             </div>
           </div>
         </div>
         
         <div class="term-group">
-          <h3>秋季节气</h3>
+          <h3>Autumn Solar Terms (秋季节气)</h3>
           <div class="term-list">
             <div class="term-item">
-              <h4>立秋</h4>
-              <p>推荐用字：秋、立、凉、爽、宁、静、肃</p>
+              <h4>Beginning of Autumn (立秋)</h4>
+              <p>Recommended characters: 秋, 立, 凉, 爽, 宁, 静, 肃</p>
             </div>
             <div class="term-item">
-              <h4>处暑</h4>
-              <p>推荐用字：处、退、收、敛、凉、怡、爽</p>
+              <h4>End of Heat (处暑)</h4>
+              <p>Recommended characters: 处, 退, 收, 敛, 凉, 怡, 爽</p>
             </div>
             <div class="term-item">
-              <h4>白露</h4>
-              <p>推荐用字：白、露、润、清、晶、莹、珠</p>
+              <h4>White Dew (白露)</h4>
+              <p>Recommended characters: 白, 露, 润, 清, 晶, 莹, 珠</p>
             </div>
             <div class="term-item">
-              <h4>秋分</h4>
-              <p>推荐用字：分、均、衡、和、平、中、正</p>
+              <h4>Autumn Equinox (秋分)</h4>
+              <p>Recommended characters: 分, 均, 衡, 和, 平, 中, 正</p>
             </div>
             <div class="term-item">
-              <h4>寒露</h4>
-              <p>推荐用字：寒、露、凝、清、冷、爽、凛</p>
+              <h4>Cold Dew (寒露)</h4>
+              <p>Recommended characters: 寒, 露, 凝, 清, 冷, 爽, 凛</p>
             </div>
             <div class="term-item">
-              <h4>霜降</h4>
-              <p>推荐用字：霜、降、凝、素、洁、白、皑</p>
+              <h4>Frost's Descent (霜降)</h4>
+              <p>Recommended characters: 霜, 降, 凝, 素, 洁, 白, 皑</p>
             </div>
           </div>
         </div>
         
         <div class="term-group">
-          <h3>冬季节气</h3>
+          <h3>Winter Solar Terms (冬季节气)</h3>
           <div class="term-list">
             <div class="term-item">
-              <h4>立冬</h4>
-              <p>推荐用字：冬、立、藏、蓄、敛、聚、蕴</p>
+              <h4>Beginning of Winter (立冬)</h4>
+              <p>Recommended characters: 冬, 立, 藏, 蓄, 敛, 聚, 蕴</p>
             </div>
             <div class="term-item">
-              <h4>小雪</h4>
-              <p>推荐用字：雪、小、晶、白、洁、纯、柔</p>
+              <h4>Minor Snow (小雪)</h4>
+              <p>Recommended characters: 雪, 小, 晶, 白, 洁, 纯, 柔</p>
             </div>
             <div class="term-item">
-              <h4>大雪</h4>
-              <p>推荐用字：雪、大、皑、素、漫、飘、积</p>
+              <h4>Major Snow (大雪)</h4>
+              <p>Recommended characters: 雪, 大, 皑, 素, 漫, 飘, 积</p>
             </div>
             <div class="term-item">
-              <h4>冬至</h4>
-              <p>推荐用字：至、极、冬、深、寒、静、祀</p>
+              <h4>Winter Solstice (冬至)</h4>
+              <p>Recommended characters: 至, 极, 冬, 深, 寒, 静, 祀</p>
             </div>
             <div class="term-item">
-              <h4>小寒</h4>
-              <p>推荐用字：寒、冷、凛、凝、冰、清、澈</p>
+              <h4>Minor Cold (小寒)</h4>
+              <p>Recommended characters: 寒, 冷, 凛, 凝, 冰, 清, 澈</p>
             </div>
             <div class="term-item">
-              <h4>大寒</h4>
-              <p>推荐用字：寒、冽、严、峻、凛、冬、凝</p>
+              <h4>Major Cold (大寒)</h4>
+              <p>Recommended characters: 寒, 冽, 严, 峻, 凛, 冬, 凝</p>
             </div>
           </div>
         </div>
@@ -325,30 +325,30 @@
     </section>
 
     <section class="content-section">
-      <h2 class="section-title">季节时令名字的现代意义</h2>
-      <p>在现代社会，选择与季节时令相关的名字，不仅能够传承中国传统文化的精髓，也能使名字更具个性和意义。</p>
-      <p>这样的名字往往给人以亲近自然、热爱生活的印象，也寄托了父母对孩子的美好祝愿，希望他们如同自然季节般循环往复、生生不息。</p>
-      <p>在为孩子起名时，可以结合出生季节的特点，选择具有相应意象和寓意的汉字，创造一个独特而有意义的名字。</p>
+      <h2 class="section-title">Modern Significance of Seasonal Names (季节时令名字的现代意义)</h2>
+      <p>In modern society, choosing names related to seasons and solar terms not only preserves the essence of traditional Chinese culture but also makes names more distinctive and meaningful.</p>
+      <p>Such names often give an impression of closeness to nature and love of life, and also embody parents' good wishes for their children, hoping they will flourish in cycles like the natural seasons, continuously renewing and growing.</p>
+      <p>When naming a child, you can combine characteristics of the birth season to select characters with corresponding imagery and meaning, creating a unique and meaningful name.</p>
     </section>
 
     <section class="content-section guidelines">
-      <h2 class="section-title">起名指导原则</h2>
+      <h2 class="section-title">Naming Guidelines (起名指导原则)</h2>
       <div class="guideline-cards">
         <div class="guideline-card">
-          <h3>尊重季节特性</h3>
-          <p>选择能够真实反映该季节特点的汉字，避免违背季节规律的组合。</p>
+          <h3>Respect Seasonal Characteristics (尊重季节特性)</h3>
+          <p>Choose characters that truly reflect the characteristics of the season, avoiding combinations that go against seasonal patterns.</p>
         </div>
         <div class="guideline-card">
-          <h3>寓意积极向上</h3>
-          <p>季节变化本身就蕴含着生命力和希望，名字应当传递积极、阳光的情感。</p>
+          <h3>Positive and Uplifting Meanings (寓意积极向上)</h3>
+          <p>Seasonal changes themselves contain vitality and hope; names should convey positive, bright emotions.</p>
         </div>
         <div class="guideline-card">
-          <h3>避免过于直白</h3>
-          <p>可以选择季节的意象而非直接使用季节名称，如用"梅"代替"冬"，更为含蓄优雅。</p>
+          <h3>Avoid Being Too Direct (避免过于直白)</h3>
+          <p>You can choose seasonal imagery rather than directly using season names, such as using "梅" (plum blossom) instead of "冬" (winter), which is more subtle and elegant.</p>
         </div>
         <div class="guideline-card">
-          <h3>结合其他因素</h3>
-          <p>季节元素可以与家族传统、生肖属相、五行八字等其他命名元素相结合，创造更加和谐完整的名字。</p>
+          <h3>Combine with Other Factors (结合其他因素)</h3>
+          <p>Seasonal elements can be combined with other naming elements such as family traditions, zodiac signs, and the Five Elements and Eight Characters theory to create more harmonious and complete names.</p>
         </div>
       </div>
     </section>

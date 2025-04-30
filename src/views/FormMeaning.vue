@@ -1,204 +1,204 @@
 <template>
   <div class="form-meaning-page">
     <div class="container">
-      <h1 class="page-title">形义结合</h1>
+      <h1 class="page-title">Form and Meaning Integration (形义结合)</h1>
       
       <div class="content-wrapper">
         <section class="intro-section">
           <div class="section-image">
-            <img src="../assets/images/name.png" alt="形义结合图示" />
+            <img src="../assets/images/name.png" alt="Form and Meaning Integration Illustration" />
           </div>
           <div class="section-content">
-            <h2>形义结合概述</h2>
-            <p>形义结合是中国传统取名学中的重要原则，强调名字的字形美学和字义内涵的和谐统一。汉字作为表意文字，不仅有其发音和意义，还具有独特的结构美学和视觉艺术价值。一个理想的名字应当在字形结构上美观平衡，在字义内涵上深刻贴切，二者相辅相成，相得益彰。</p>
-            <p>自古以来，中国人在取名时就重视"形神兼备"，即名字不仅要蕴含美好寓意，还要在书写呈现时具有美感。特别是在文人雅士阶层，常常将名字视为一种艺术品，追求字形的结构之美与字义的内涵之深的完美统一。</p>
+            <h2>Overview of Form and Meaning Integration (形义结合概述)</h2>
+            <p>Form and Meaning Integration (形义结合) is an important principle in traditional Chinese naming theory, emphasizing the harmonious unity between the aesthetic form of characters and their semantic connotations. Chinese characters, as ideographic writing, possess not only pronunciation and meaning but also unique structural aesthetics and visual artistic value. An ideal name should be visually balanced in character structure while being profound and appropriate in meaning, with both aspects complementing and enhancing each other.</p>
+            <p>Since ancient times, Chinese people have valued "unity of form and spirit" (形神兼备) in naming, meaning that a name should not only contain auspicious meanings but also be aesthetically pleasing when written. Especially among scholars and literati, names were often viewed as works of art, pursuing the perfect unity of structural beauty and profound meaning.</p>
           </div>
         </section>
 
         <section class="structure-section">
-          <h2>汉字结构美学</h2>
-          <p>汉字结构的美学平衡是形义结合的重要一环。一个美观的名字应当在视觉上呈现和谐、平衡的结构美。</p>
+          <h2>Character Structure Aesthetics (汉字结构美学)</h2>
+          <p>The aesthetic balance of Chinese character structure is an important element of Form and Meaning Integration. A beautiful name should present harmonic and balanced structural beauty visually.</p>
           
           <div class="structures-wrapper">
             <div class="structure-card">
-              <h3>汉字结构分类</h3>
-              <p>汉字的基本结构类型包括：</p>
+              <h3>Chinese Character Structure Classification (汉字结构分类)</h3>
+              <p>The basic structure types of Chinese characters include:</p>
               <ul>
-                <li><strong>独体字：</strong>如"人、山、水"等，结构简单，笔画相对较少</li>
-                <li><strong>左右结构：</strong>如"好、明、清"等，左右两部分并列</li>
-                <li><strong>上下结构：</strong>如"字、安、室"等，上下两部分排列</li>
-                <li><strong>半包围结构：</strong>如"问、同、闻"等，一部分包围另一部分三面</li>
-                <li><strong>全包围结构：</strong>如"国、围、圆"等，一部分包围另一部分四面</li>
-                <li><strong>品字结构：</strong>如"品、森、晶"等，三个部分排列成三角形</li>
+                <li><strong>Single-component characters (独体字): </strong>Such as "人, 山, 水", with simple structure and relatively few strokes</li>
+                <li><strong>Left-right structure (左右结构): </strong>Such as "好, 明, 清", with two components arranged side by side</li>
+                <li><strong>Top-bottom structure (上下结构): </strong>Such as "字, 安, 室", with two components arranged vertically</li>
+                <li><strong>Semi-enclosure structure (半包围结构): </strong>Such as "问, 同, 闻", with one component surrounding three sides of another</li>
+                <li><strong>Full enclosure structure (全包围结构): </strong>Such as "国, 围, 圆", with one component completely surrounding another</li>
+                <li><strong>Three-component structure (品字结构): </strong>Such as "品, 森, 晶", with three components arranged in a triangular pattern</li>
               </ul>
-              <p>在取名时，可根据姓氏的结构特点，选择与之形成良好视觉平衡的名字用字。</p>
+              <p>When naming, one can choose characters for the given name based on the structural characteristics of the surname to achieve good visual balance.</p>
             </div>
             
             <div class="structure-card">
-              <h3>结构平衡原则</h3>
-              <p>汉字结构平衡的基本原则包括：</p>
+              <h3>Principles of Structural Balance (结构平衡原则)</h3>
+              <p>The basic principles of structural balance in Chinese characters include:</p>
               <ul>
-                <li><strong>对称平衡：</strong>字形整体呈现左右或上下对称的视觉感</li>
-                <li><strong>均衡分布：</strong>字的笔画在空间中均匀分布，避免过于集中或空疏</li>
-                <li><strong>疏密适中：</strong>笔画的疏密程度适中，既不过于拥挤，也不过于稀疏</li>
-                <li><strong>结构协调：</strong>不同结构类型的字搭配使用，形成视觉节奏</li>
+                <li><strong>Symmetrical balance (对称平衡): </strong>The character's overall form presents a visual sense of left-right or top-bottom symmetry</li>
+                <li><strong>Even distribution (均衡分布): </strong>The strokes are evenly distributed in space, avoiding excessive concentration or sparseness</li>
+                <li><strong>Moderate density (疏密适中): </strong>The density of strokes is moderate, neither too crowded nor too sparse</li>
+                <li><strong>Structural coordination (结构协调): </strong>Different structure types combined to create visual rhythm</li>
               </ul>
-              <p>例如，姓氏为左右结构（如"刘"），名字可选用上下结构的字（如"安"）来形成结构上的变化与平衡。</p>
+              <p>For example, if the surname has a left-right structure (such as "刘" Liu), the given name can use characters with a top-bottom structure (such as "安" An) to create structural variation and balance.</p>
             </div>
           </div>
         </section>
 
         <section class="stroke-section">
-          <h2>笔画美学与平衡</h2>
-          <p>除了整体结构外，汉字的笔画数量和分布也影响名字的视觉美感。笔画美学强调在名字中创造和谐的视觉节奏。</p>
+          <h2>Stroke Aesthetics and Balance (笔画美学与平衡)</h2>
+          <p>Besides the overall structure, the number and distribution of strokes in Chinese characters also affect the visual aesthetics of names. Stroke aesthetics emphasizes creating harmonious visual rhythm in names.</p>
           
           <div class="strokes-wrapper">
             <div class="stroke-card">
-              <h3>笔画数量平衡</h3>
-              <p>笔画数量的平衡考虑以下几个方面：</p>
+              <h3>Stroke Count Balance (笔画数量平衡)</h3>
+              <p>Balance in stroke counts considers the following aspects:</p>
               <ul>
-                <li><strong>简繁相济：</strong>将简单字（笔画少）与复杂字（笔画多）搭配，避免全用简单字显得单薄，或全用复杂字显得繁重</li>
-                <li><strong>渐进式搭配：</strong>笔画数量呈现一定规律变化，如递增或递减，创造视觉节奏</li>
-                <li><strong>姓名总体平衡：</strong>考虑姓氏的笔画数量，名字的笔画数量应与之形成整体平衡</li>
+                <li><strong>Balance of simplicity and complexity (简繁相济): </strong>Combining simple characters (few strokes) with complex ones (many strokes), avoiding the thinness of all simple characters or the heaviness of all complex characters</li>
+                <li><strong>Progressive arrangement (渐进式搭配): </strong>Stroke counts showing a pattern of change, such as increasing or decreasing, creating visual rhythm</li>
+                <li><strong>Overall balance with surname (姓名总体平衡): </strong>Considering the stroke count of the surname, the stroke count of the given name should form an overall balance</li>
               </ul>
-              <p>例如，姓氏笔画较多（如"黄"，12画），名字可选用笔画较少的字（如"力"，2画）与笔画适中的字（如"文"，4画）组合，形成"黄力文"，体现笔画由多到少再到中的节奏感。</p>
+              <p>For example, if a surname has many strokes (such as "黄" Huang, 12 strokes), the given name can use characters with fewer strokes (such as "力" Li, 2 strokes) and moderate strokes (such as "文" Wen, 4 strokes), forming "黄力文" (Huang Li Wen), showing a rhythm of many-few-moderate strokes.</p>
             </div>
             
             <div class="stroke-card">
-              <h3>笔画流畅性</h3>
-              <p>笔画的流畅性影响名字的整体美感：</p>
+              <h3>Stroke Fluidity (笔画流畅性)</h3>
+              <p>The fluidity of strokes affects the overall aesthetics of names:</p>
               <ul>
-                <li><strong>线条流畅：</strong>选择笔画线条流畅、书写自然的字</li>
-                <li><strong>转折适度：</strong>避免过多尖锐转折或繁复交叉的笔画</li>
-                <li><strong>空间呼应：</strong>字与字之间笔画走向形成呼应或互补</li>
+                <li><strong>Fluid lines (线条流畅): </strong>Choosing characters with fluid, naturally written strokes</li>
+                <li><strong>Moderate turns (转折适度): </strong>Avoiding too many sharp turns or complex crossings in strokes</li>
+                <li><strong>Spatial resonance (空间呼应): </strong>The stroke directions between characters form resonance or complementation</li>
               </ul>
-              <p>例如，"云"字的笔画以曲线为主，流畅飘逸；"山"字的笔画则以直线为主，挺拔有力。二者搭配为"云山"，形成曲直结合的视觉美感。</p>
+              <p>For example, the character "云" (cloud) has mainly curved strokes, flowing and elegant; the character "山" (mountain) has mainly straight strokes, upright and powerful. Combined as "云山" (Yun Shan), they create a visual beauty of curved and straight integration.</p>
             </div>
           </div>
         </section>
 
         <section class="meaning-section">
-          <h2>字义内涵与象形</h2>
-          <p>汉字的字义内涵与其形态往往有内在联系，特别是象形字和会意字。理想的名字应当在字形与字义之间建立和谐的关联。</p>
+          <h2>Character Meaning and Pictographic Quality (字义内涵与象形)</h2>
+          <p>The semantic connotations of Chinese characters often have intrinsic connections with their forms, especially in pictographic and ideographic characters. An ideal name should establish a harmonious relationship between character form and meaning.</p>
           
           <div class="meaning-wrapper">
             <div class="meaning-card">
-              <h3>象形性与意象</h3>
-              <p>许多汉字保留了其象形特性，能够唤起特定的视觉意象：</p>
+              <h3>Pictographic Quality and Imagery (象形性与意象)</h3>
+              <p>Many Chinese characters retain their pictographic features and can evoke specific visual imagery:</p>
               <ul>
-                <li><strong>自然象形：</strong>如"山、水、木、火、日、月"等，直接描绘自然物象</li>
-                <li><strong>动态象形：</strong>如"飞、跃、流、升"等，表现动态特征</li>
-                <li><strong>抽象象形：</strong>如"永、心、思"等，抽象化的意象表达</li>
+                <li><strong>Natural pictographs (自然象形): </strong>Such as "山, 水, 木, 火, 日, 月", directly depicting natural objects</li>
+                <li><strong>Dynamic pictographs (动态象形): </strong>Such as "飞, 跃, 流, 升", expressing dynamic characteristics</li>
+                <li><strong>Abstract pictographs (抽象象形): </strong>Such as "永, 心, 思", abstract expression of ideas</li>
               </ul>
-              <p>取名时可选择象形特征鲜明的字，使名字具有生动的意象。例如，"林泽"一名中，"林"字双木并立，象征茂盛；"泽"字水旁，表水泽广阔。二者结合，既有视觉形象，又有丰富内涵。</p>
+              <p>When naming, one can choose characters with distinctive pictographic features to give the name vivid imagery. For example, in the name "林泽" (Lin Ze), "林" has two "木" (tree) side by side, symbolizing luxuriance; "泽" has a water radical, representing extensive water or wetlands. Together, they combine visual imagery with rich connotations.</p>
             </div>
             
             <div class="meaning-card">
-              <h3>字义关联与层次</h3>
-              <p>汉字字义的关联与层次性也是形义结合的重要方面：</p>
+              <h3>Semantic Connections and Layers (字义关联与层次)</h3>
+              <p>The associations and layering of character meanings are also important aspects of Form and Meaning Integration:</p>
               <ul>
-                <li><strong>义理相通：</strong>名字中的字在意义上相通或相关，形成内在联系</li>
-                <li><strong>义理互补：</strong>不同字义之间形成互补关系，相得益彰</li>
-                <li><strong>隐喻关联：</strong>通过隐喻或联想建立字义之间的深层联系</li>
-                <li><strong>字形字义呼应：</strong>字的形态与其含义形成呼应，加强表达效果</li>
+                <li><strong>Semantic coherence (义理相通): </strong>Characters in a name share related meanings, forming internal connections</li>
+                <li><strong>Semantic complementation (义理互补): </strong>Different character meanings form complementary relationships, enhancing each other</li>
+                <li><strong>Metaphorical connection (隐喻关联): </strong>Establishing deeper connections between character meanings through metaphor or association</li>
+                <li><strong>Form-meaning resonance (字形字义呼应): </strong>A character's form resonates with its meaning, strengthening the expressive effect</li>
               </ul>
-              <p>例如，"德馨"一名中，"德"表道德品性，"馨"表芳香，含义相通且互补，寓意品德如香气般芬芳四溢；同时"馨"字带有"香"字旁，形义高度统一。</p>
+              <p>For example, in the name "德馨" (De Xin), "德" represents moral character, "馨" means fragrance, their meanings are related and complementary, symbolizing that virtue is as fragrant as a good scent; meanwhile, "馨" contains the "香" (fragrance) radical, showing high unity of form and meaning.</p>
             </div>
           </div>
         </section>
 
         <section class="classic-examples">
-          <h2>经典案例分析</h2>
-          <p>以下是一些形义结合的经典名字案例分析，展示了字形美学与字义内涵的完美统一。</p>
+          <h2>Classic Case Analysis (经典案例分析)</h2>
+          <p>The following are analyses of some classic names that demonstrate the perfect unity of character form aesthetics and semantic connotation.</p>
           
           <div class="examples-wrapper">
             <div class="example-card">
-              <h3>文人雅士名字</h3>
+              <h3>Names of Scholars and Literati (文人雅士名字)</h3>
               <div class="example-item">
-                <h4>苏轼 (苏东坡)</h4>
-                <p><strong>形态分析：</strong>"苏"为左右结构,"轼"为左右结构，整体视觉均衡；"苏"草字头清雅，"轼"车字旁显厚重，形成轻重对比。</p>
-                <p><strong>意义分析：</strong>"轼"指车前扶手，取名用意为能扶危济困，有担当。与苏轼文学才华横溢、为人正直的一生相符。</p>
+                <h4>苏轼 (Su Shi, also known as Su Dongpo)</h4>
+                <p><strong>Form analysis: </strong>"苏" has a left-right structure, "轼" also has a left-right structure, creating visual balance; "苏" with its grass radical appears elegant, while "轼" with its cart radical appears substantial, forming a light-heavy contrast.</p>
+                <p><strong>Meaning analysis: </strong>"轼" refers to the front handle of a carriage, suggesting the ability to help others in danger and take responsibility. This corresponds with Su Shi's literary talent and upright character throughout his life.</p>
               </div>
               <div class="example-item">
-                <h4>王羲之</h4>
-                <p><strong>形态分析：</strong>"羲"字上部为"羊"，下部为"义"，上下结构平衡；"之"字短小精悍，与前面复杂字形成对比。</p>
-                <p><strong>意义分析：</strong>"羲"为上古帝王伏羲氏，含高贵之意；"之"表示助词，柔化名字语感。王羲之被誉为"书圣"，其书法流畅自然，名字的形义结合与其艺术成就呼应。</p>
+                <h4>王羲之 (Wang Xizhi)</h4>
+                <p><strong>Form analysis: </strong>"羲" has "羊" (sheep) at the top and "义" (righteousness) at the bottom, creating a balanced top-bottom structure; "之" is short and concise, contrasting with the complex character before it.</p>
+                <p><strong>Meaning analysis: </strong>"羲" refers to the ancient emperor Fu Xi, implying nobility; "之" is a particle that softens the name's sound. Wang Xizhi was honored as the "Sage of Calligraphy," and his flowing, natural calligraphy echoes the form-meaning integration of his name.</p>
               </div>
             </div>
             
             <div class="example-card">
-              <h3>现代名人名字</h3>
+              <h3>Names of Modern Celebrities (现代名人名字)</h3>
               <div class="example-item">
-                <h4>张艺谋</h4>
-                <p><strong>形态分析：</strong>三个字分别为左右结构、上下结构、左右结构，形成韵律变化；笔画数逐渐增加（8-16-18），形成递增节奏。</p>
-                <p><strong>意义分析：</strong>"艺"指艺术才能，"谋"指谋划思考，与其作为电影导演的艺术创造力和策划才能高度契合。</p>
+                <h4>张艺谋 (Zhang Yimou)</h4>
+                <p><strong>Form analysis: </strong>The three characters have left-right, top-bottom, and left-right structures respectively, creating rhythmic variation; stroke counts increase gradually (8-16-18), forming an incremental rhythm.</p>
+                <p><strong>Meaning analysis: </strong>"艺" refers to artistic talent, "谋" refers to planning and thinking, highly matching his artistic creativity and planning abilities as a film director.</p>
               </div>
               <div class="example-item">
-                <h4>李健</h4>
-                <p><strong>形态分析：</strong>"李"为木字旁，自然清新；"健"字结构紧凑有力。二者一轻一重，形成平衡。</p>
-                <p><strong>意义分析：</strong>"健"表示健康强壮，也含健美、健全之意。李健的音乐风格温润内敛却有力量，与其名字形义特点相呼应。</p>
+                <h4>李健 (Li Jian)</h4>
+                <p><strong>Form analysis: </strong>"李" has a wood radical, natural and fresh; "健" has a compact and powerful structure. One light, one heavy, they form a balance.</p>
+                <p><strong>Meaning analysis: </strong>"健" means healthy and strong, also implying beauty and wholeness. Li Jian's music style is gentle yet powerful, echoing the form and meaning characteristics of his name.</p>
               </div>
             </div>
           </div>
         </section>
 
         <section class="practice-section">
-          <h2>形义结合的实践指南</h2>
-          <p>在实际取名过程中，如何实现形义结合的理想效果？以下是一些实用的指导原则。</p>
+          <h2>Practical Guide to Form and Meaning Integration (形义结合的实践指南)</h2>
+          <p>How can we achieve the ideal effect of Form and Meaning Integration in the actual naming process? Here are some practical guiding principles.</p>
           
           <div class="practice-wrapper">
             <div class="practice-card">
-              <h3>取名步骤</h3>
+              <h3>Naming Steps (取名步骤)</h3>
               <ol>
-                <li><strong>分析姓氏特点：</strong>首先分析姓氏的结构特点、笔画数量及发音特点</li>
-                <li><strong>确定名字主题：</strong>基于对孩子的期望和家族传统确定名字的主题和核心寓意</li>
-                <li><strong>字库初选：</strong>根据主题和寓意选择一批候选字，注意字义的丰富性和积极性</li>
-                <li><strong>结构搭配：</strong>考虑与姓氏的结构搭配，筛选出结构平衡的组合</li>
-                <li><strong>笔画分析：</strong>分析笔画数量是否合理，是否形成良好的视觉节奏</li>
-                <li><strong>形义整合：</strong>检验字形与字义是否和谐统一，相互强化</li>
-                <li><strong>整体评估：</strong>从发音、意义、形态等多角度整体评估名字的协调性和独特性</li>
+                <li><strong>Analyze surname characteristics: </strong>First analyze the structural features, stroke count, and pronunciation of the surname</li>
+                <li><strong>Determine name theme: </strong>Based on expectations for the child and family traditions, determine the theme and core meaning of the name</li>
+                <li><strong>Initial character selection: </strong>Select a batch of candidate characters based on theme and meaning, noting the richness and positivity of the character meanings</li>
+                <li><strong>Structural matching: </strong>Consider structural matching with the surname, filtering out balanced combinations</li>
+                <li><strong>Stroke analysis: </strong>Analyze whether the stroke count is reasonable and creates a good visual rhythm</li>
+                <li><strong>Form-meaning integration: </strong>Check whether the character form and meaning are harmoniously unified and mutually reinforcing</li>
+                <li><strong>Overall assessment: </strong>Evaluate the name's harmony and uniqueness from multiple perspectives such as pronunciation, meaning, and form</li>
               </ol>
             </div>
             
             <div class="practice-card">
-              <h3>常见误区与建议</h3>
+              <h3>Common Pitfalls and Recommendations (常见误区与建议)</h3>
               <ul>
-                <li><strong>避免过于复杂：</strong>不要选用过于繁复的字，尤其是生僻字，虽形态独特但不便书写和识别</li>
-                <li><strong>避免结构单调：</strong>避免所有字都是同一结构，如全部是左右结构或上下结构</li>
-                <li><strong>避免笔画极端：</strong>避免使用笔画过少（显得单薄）或过多（显得繁重）的字组合</li>
-                <li><strong>避免字义脱节：</strong>避免字义之间缺乏内在联系，形成割裂感</li>
-                <li><strong>重视整体感：</strong>名字应当作为一个整体来考量，而非简单的字的堆砌</li>
-                <li><strong>考虑时代特点：</strong>名字的形义结合应当既尊重传统，又符合时代审美</li>
+                <li><strong>Avoid excessive complexity: </strong>Don't choose overly complex characters, especially uncommon ones, which may have unique forms but are difficult to write and recognize</li>
+                <li><strong>Avoid structural monotony: </strong>Avoid using all characters with the same structure, such as all left-right or all top-bottom structures</li>
+                <li><strong>Avoid extreme stroke counts: </strong>Avoid using combinations of characters with too few strokes (appearing thin) or too many strokes (appearing heavy)</li>
+                <li><strong>Avoid semantic disconnection: </strong>Avoid character meanings that lack internal connection, creating a sense of fragmentation</li>
+                <li><strong>Emphasize holistic sense: </strong>A name should be considered as a whole, not simply a pile of characters</li>
+                <li><strong>Consider contemporary features: </strong>The integration of form and meaning in names should respect tradition while conforming to contemporary aesthetics</li>
               </ul>
             </div>
           </div>
         </section>
 
         <section class="contemporary-section">
-          <h2>当代形义结合的新趋势</h2>
-          <p>随着时代发展，形义结合的理念也在不断创新和拓展，呈现出一些新的趋势和特点。</p>
+          <h2>New Trends in Contemporary Form-Meaning Integration (当代形义结合的新趋势)</h2>
+          <p>With the development of the times, the concept of Form and Meaning Integration is constantly innovating and expanding, presenting some new trends and characteristics.</p>
           
           <div class="contemporary-wrapper">
             <div class="contemporary-card">
-              <h3>简约美学</h3>
-              <p>当代名字趋向于简约而不简单的美学风格：</p>
+              <h3>Minimalist Aesthetics (简约美学)</h3>
+              <p>Contemporary names tend toward a minimalist aesthetic that is simple but not simplistic:</p>
               <ul>
-                <li><strong>精简字形：</strong>倾向于选择笔画适中、结构清晰的字</li>
-                <li><strong>留白之美：</strong>注重字形间的空间关系，讲究疏密得当</li>
-                <li><strong>简洁表达：</strong>通过简约的字形表达丰富的内涵</li>
+                <li><strong>Streamlined character forms: </strong>Tendency to choose characters with moderate strokes and clear structures</li>
+                <li><strong>Beauty of white space: </strong>Attention to spatial relationships between character forms, emphasizing appropriate density</li>
+                <li><strong>Concise expression: </strong>Expressing rich connotations through minimalist character forms</li>
               </ul>
-              <p>例如，"晨曦"一名，两字均为左右结构但内部构造各异，笔画适中，形态简约优雅，意境明亮美好。</p>
+              <p>For example, the name "晨曦" (Chen Xi), both characters have left-right structures but different internal constructions, moderate stroke counts, minimalist and elegant form, with bright and beautiful imagery.</p>
             </div>
             
             <div class="contemporary-card">
-              <h3>跨文化考量</h3>
-              <p>在全球化背景下，名字的形义结合也需考虑跨文化因素：</p>
+              <h3>Cross-cultural Considerations (跨文化考量)</h3>
+              <p>In the context of globalization, Form and Meaning Integration in names also needs to consider cross-cultural factors:</p>
               <ul>
-                <li><strong>国际辨识度：</strong>选择在形态上容易被非汉语使用者辨识和记忆的字</li>
-                <li><strong>翻译友好性：</strong>考虑名字在翻译后的含义和美感是否保留</li>
-                <li><strong>文化融合：</strong>在保持中华文化特色的同时，兼顾国际视野</li>
+                <li><strong>International recognizability: </strong>Choosing characters that are easily recognized and remembered by non-Chinese speakers</li>
+                <li><strong>Translation friendliness: </strong>Considering whether the meaning and beauty of the name are preserved after translation</li>
+                <li><strong>Cultural fusion: </strong>Maintaining Chinese cultural characteristics while accommodating an international perspective</li>
               </ul>
-              <p>如"雨桐"一名，字形清晰，笔画适中，易于国际场合书写和识别；意义优美，表达自然之美，跨文化理解无障碍。</p>
+              <p>For example, the name "雨桐" (Yu Tong) has clear character forms and moderate stroke counts, making it easy to write and recognize in international settings; its meaning is beautiful, expressing natural beauty, with no cross-cultural barriers to understanding.</p>
             </div>
           </div>
         </section>
@@ -213,9 +213,9 @@ export default {
   data() {
     return {
       examples: [
-        { name: '李白', analysis: '李为木字旁，表生命力；白为独体字，简洁明快。一繁一简，寓意才华横溢且清新脱俗。' },
-        { name: '张爱玲', analysis: '张为左右结构，爱为上下结构，玲为左右结构，形成结构变化；笔画呈8-13-14递增趋势，寓意感情细腻且品味高雅。' },
-        { name: '周树人', analysis: '周为口字旁，树为木字旁，人为独体，结构由复杂到简单，暗合鲁迅先生的"人"本思想和朴实文风。' }
+        { name: '李白', analysis: '"李" has a wood radical, representing vitality; "白" is a single-component character, concise and bright. One complex and one simple, symbolizing overflowing talent and natural elegance.' },
+        { name: '张爱玲', analysis: '"张" has a left-right structure, "爱" a top-bottom structure, "玲" a left-right structure, creating structural variation; stroke counts increase 8-13-14, symbolizing delicate emotions and refined taste.' },
+        { name: '周树人', analysis: '"周" has a mouth radical, "树" a wood radical, "人" is a single-component character, structure moving from complex to simple, echoing Lu Xun\'s human-centered philosophy and plain writing style.' }
       ]
     }
   },
@@ -226,6 +226,9 @@ export default {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     }
+  },
+  mounted() {
+    document.title = 'Form and Meaning Integration - Chinese Name Generator';
   }
 }
 </script>

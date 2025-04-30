@@ -1,301 +1,301 @@
 <template>
   <div class="classical-characters-page">
     <div class="container">
-      <h1 class="page-title">典籍用字</h1>
+      <h1 class="page-title">Characters from Classical Texts (典籍用字)</h1>
       
       <div class="content-wrapper">
         <section class="intro-section">
           <div class="section-image">
-            <img src="../assets/images/name.png" alt="典籍用字图示" />
+            <img src="../assets/images/name.png" alt="Classical Text Characters Illustration" />
           </div>
           <div class="section-content">
-            <h2>典籍用字概述</h2>
-            <p>典籍用字是中国传统取名学的重要来源，指从古代经典著作、诗词文赋中选取具有深厚文化底蕴的字词来命名。这种取名方式不仅赋予了名字厚重的文化内涵和美学价值，还体现了家族对孩子的文化期许和精神寄托。</p>
-            <p>自古以来，文人雅士就喜欢从经典著作中选字取名，以彰显自身的文化修养和对子女的期望。这种命名方式既传承了中华文化的精髓，又能赋予名字特殊的韵味与深意，使其成为孩子人生旅途中的精神财富和文化标识。</p>
+            <h2>Overview of Classical Text Characters (典籍用字概述)</h2>
+            <p>Characters from classical texts are an important source in traditional Chinese naming theory, referring to the selection of characters with profound cultural connotations from ancient classics, poetry, and prose for naming. This naming approach not only endows names with rich cultural heritage and aesthetic value but also reflects a family's cultural expectations and spiritual aspirations for their children.</p>
+            <p>Since ancient times, scholars and literati have preferred to select characters from classical works for naming, to demonstrate their cultural refinement and expectations for their children. This naming method both preserves the essence of Chinese culture and gives names special charm and profound meaning, making them spiritual wealth and cultural identifiers on a child's life journey.</p>
           </div>
         </section>
 
         <section class="classics-section">
-          <h2>中国古典文献与取名</h2>
-          <p>中国历史悠久，典籍浩如烟海，主要可分为以下几类经典文献，它们都是取名的重要来源。</p>
+          <h2>Chinese Classical Literature and Naming (中国古典文献与取名)</h2>
+          <p>With its long history, China has a vast collection of classical texts that can be divided into the following categories, all of which are important sources for naming.</p>
           
           <div class="classics-wrapper">
             <div class="classics-card">
-              <h3>儒家经典</h3>
-              <p>儒家经典被称为"五经"和"四书"，是中国传统文化的核心典籍：</p>
+              <h3>Confucian Classics (儒家经典)</h3>
+              <p>Confucian classics, known as the "Five Classics" and "Four Books," are the core texts of traditional Chinese culture:</p>
               <ul>
-                <li><strong>《诗经》：</strong>中国最早的诗歌总集，收录了西周至春秋时期的诗歌305篇，其中不乏优美词句可用于取名</li>
-                <li><strong>《尚书》：</strong>我国最早的一部历史文献，记载了上古至商周时期的重要文献和历史事件</li>
-                <li><strong>《礼记》：</strong>记录了先秦礼仪制度和思想观念的经典，包含丰富的道德理念</li>
-                <li><strong>《周易》：</strong>阐述八卦与六十四卦的系统占筮著作，蕴含深邃的哲学思想</li>
-                <li><strong>《春秋》：</strong>记载鲁国历史的编年体著作，由孔子编纂</li>
-                <li><strong>《论语》：</strong>记录孔子及其弟子言行的语录集，充满智慧箴言</li>
-                <li><strong>《孟子》：</strong>记录孟子及其弟子言行的著作，强调仁政与人性善论</li>
-                <li><strong>《大学》《中庸》：</strong>儒家重要经典，探讨修身、齐家、治国、平天下的道理</li>
+                <li><strong>《诗经》 (Book of Songs): </strong>China's earliest poetry anthology, containing 305 poems from the Western Zhou to Spring and Autumn periods, with many beautiful phrases suitable for naming</li>
+                <li><strong>《尚书》 (Book of Documents): </strong>China's earliest historical document, recording important documents and historical events from ancient times to the Shang and Zhou dynasties</li>
+                <li><strong>《礼记》 (Book of Rites): </strong>A classic recording pre-Qin ritual systems and ideological concepts, containing rich moral principles</li>
+                <li><strong>《周易》 (I Ching or Book of Changes): </strong>A systematic divination work explaining the Eight Trigrams and Sixty-Four Hexagrams, containing profound philosophical thoughts</li>
+                <li><strong>《春秋》 (Spring and Autumn Annals): </strong>A chronological history of the State of Lu, compiled by Confucius</li>
+                <li><strong>《论语》 (Analects): </strong>A collection of sayings and dialogues of Confucius and his disciples, full of wisdom and aphorisms</li>
+                <li><strong>《孟子》 (Mencius): </strong>A record of the words and deeds of Mencius and his disciples, emphasizing benevolent governance and the innate goodness of human nature</li>
+                <li><strong>《大学》《中庸》 (Great Learning and Doctrine of the Mean): </strong>Important Confucian classics exploring the principles of self-cultivation, family regulation, state governance, and world peace</li>
               </ul>
-              <p>例如，《论语》中"德行"、"志远"、"博学"等词句常被用于取名，寓意道德高尚、志向远大、学识渊博。</p>
+              <p>For example, phrases like "德行" (moral character), "志远" (lofty aspiration), and "博学" (broad learning) from the Analects are often used for naming, symbolizing noble character, lofty ambitions, and profound scholarship.</p>
             </div>
             
             <div class="classics-card">
-              <h3>诗词歌赋</h3>
-              <p>中国古代诗词歌赋是取名的重要来源，主要包括：</p>
+              <h3>Poetry, Lyrics, and Prose (诗词歌赋)</h3>
+              <p>Ancient Chinese poetry and prose are important sources for naming, mainly including:</p>
               <ul>
-                <li><strong>唐诗：</strong>唐代诗歌是中国古代文学的巅峰，李白、杜甫、王维等诗人的作品意境优美，用词精炼</li>
-                <li><strong>宋词：</strong>宋代词作抒情深婉，苏轼、李清照、辛弃疾等词人的作品感情细腻，表达丰富</li>
-                <li><strong>元曲：</strong>元代戏曲和散曲，表达方式自然活泼，更贴近生活</li>
-                <li><strong>汉赋：</strong>汉代的骈文体裁，辞藻华丽，内容丰富</li>
+                <li><strong>唐诗 (Tang Poetry): </strong>Tang Dynasty poetry represents the pinnacle of ancient Chinese literature, with works by poets like Li Bai, Du Fu, and Wang Wei featuring beautiful imagery and refined wording</li>
+                <li><strong>宋词 (Song Lyrics): </strong>Song Dynasty lyrics are deeply emotional and delicate, with works by Su Shi, Li Qingzhao, and Xin Qiji showing refined feelings and rich expression</li>
+                <li><strong>元曲 (Yuan Drama): </strong>Yuan Dynasty dramatic songs and operas, with more natural and lively expressions closer to everyday life</li>
+                <li><strong>汉赋 (Han Fu): </strong>Han Dynasty parallel prose style, with gorgeous rhetoric and rich content</li>
               </ul>
-              <p>如唐诗"海阔天空"、"明月松间照"，宋词"如梦令"、"钗头凤"等，都可以提取优美字词用于命名。</p>
+              <p>Beautiful phrases from Tang poetry like "海阔天空" (vast sea and sky) and "明月松间照" (bright moon shining through pines), Song lyrics like "如梦令" (Like a Dream) and "钗头凤" (Phoenix Hairpin) can all provide elegant characters for naming.</p>
             </div>
           </div>
         </section>
 
         <section class="philosophy-section">
-          <h2>哲学典籍与思想精髓</h2>
-          <p>中国古代哲学典籍蕴含深厚的思想内涵，是高雅名字的重要来源。</p>
+          <h2>Philosophical Classics and Essential Thoughts (哲学典籍与思想精髓)</h2>
+          <p>Ancient Chinese philosophical classics contain profound intellectual connotations and are important sources for elegant names.</p>
           
           <div class="philosophy-wrapper">
             <div class="philosophy-card">
-              <h3>道家典籍</h3>
-              <p>道家思想强调自然、无为、道法自然，主要典籍包括：</p>
+              <h3>Taoist Classics (道家典籍)</h3>
+              <p>Taoist thought emphasizes naturalness, non-action, and following the way of nature. Main classics include:</p>
               <ul>
-                <li><strong>《道德经》：</strong>老子的哲学著作，阐述"道"与"德"的关系，包含如"上善若水"、"柔弱胜刚强"等经典理念</li>
-                <li><strong>《庄子》：</strong>庄子的著作，充满浪漫主义色彩，如"逍遥游"、"齐物论"等篇章充满想象力和哲理</li>
+                <li><strong>《道德经》 (Tao Te Ching): </strong>Laozi's philosophical work explaining the relationship between "Tao" and "virtue," containing classic concepts like "上善若水" (supreme good is like water) and "柔弱胜刚强" (the soft and weak overcome the hard and strong)</li>
+                <li><strong>《庄子》 (Zhuangzi): </strong>Zhuangzi's work full of romantic colors, with chapters like "逍遥游" (Free and Easy Wandering) and "齐物论" (Discussion on Treating All Things as Equal) filled with imagination and philosophy</li>
               </ul>
-              <p>道家典籍中"清静"、"自然"、"无为"、"逍遥"等理念常被用于取名，寓意超然物外、随性自然的人生态度。</p>
+              <p>Concepts from Taoist classics like "清静" (purity and tranquility), "自然" (naturalness), "无为" (non-action), and "逍遥" (carefree wandering) are often used for naming, symbolizing a transcendent and natural life attitude.</p>
             </div>
             
             <div class="philosophy-card">
-              <h3>其他哲学流派</h3>
-              <p>除儒、道外，其他哲学流派也有丰富的思想资源：</p>
+              <h3>Other Philosophical Schools (其他哲学流派)</h3>
+              <p>Besides Confucianism and Taoism, other philosophical schools also offer rich intellectual resources:</p>
               <ul>
-                <li><strong>法家：</strong>《韩非子》等著作强调法治、秩序，如"法治"、"明断"等概念</li>
-                <li><strong>墨家：</strong>《墨子》强调"兼爱"、"非攻"、"尚贤"等理念</li>
-                <li><strong>兵家：</strong>《孙子兵法》等军事著作包含"谋略"、"智胜"等智慧</li>
-                <li><strong>名家：</strong>公孙龙等人的著作强调逻辑思辨，如"辩析"、"明辨"等概念</li>
+                <li><strong>法家 (Legalism): </strong>Works like 《韩非子》 (Han Feizi) emphasize rule of law and order, with concepts like "法治" (rule of law) and "明断" (clear judgment)</li>
+                <li><strong>墨家 (Mohism): </strong>《墨子》 (Mozi) emphasizes "兼爱" (universal love), "非攻" (condemnation of offensive war), and "尚贤" (elevation of the worthy)</li>
+                <li><strong>兵家 (School of Military): </strong>Military works like 《孙子兵法》 (The Art of War) contain wisdom like "谋略" (strategy) and "智胜" (victory through wisdom)</li>
+                <li><strong>名家 (School of Names): </strong>Works by Gongsun Long and others emphasize logical reasoning, with concepts like "辩析" (analysis) and "明辨" (clear discrimination)</li>
               </ul>
-              <p>这些典籍中的思想精髓可以成为取名的灵感来源，如"兼爱"、"尚贤"、"明辨"等，表达对理性思考和道德品质的重视。</p>
+              <p>The essential thoughts from these classics can inspire naming, with terms like "兼爱" (universal love), "尚贤" (elevation of the worthy), and "明辨" (clear discrimination) expressing respect for rational thinking and moral qualities.</p>
             </div>
           </div>
         </section>
 
         <section class="historical-section">
-          <h2>历史文献与人物典范</h2>
-          <p>中国历史典籍记录了无数杰出人物的事迹和品格，成为后人取名的重要参考。</p>
+          <h2>Historical Texts and Exemplary Figures (历史文献与人物典范)</h2>
+          <p>Chinese historical classics record the deeds and characters of countless outstanding figures, becoming important references for naming by later generations.</p>
           
           <div class="historical-wrapper">
             <div class="historical-card">
-              <h3>史书典籍</h3>
-              <p>中国重要的历史文献包括：</p>
+              <h3>Historical Books (史书典籍)</h3>
+              <p>Important Chinese historical documents include:</p>
               <ul>
-                <li><strong>《史记》：</strong>司马迁的"史家之绝唱"，记录了上古至汉武帝时期的历史，人物传记生动传神</li>
-                <li><strong>《汉书》：</strong>班固撰写的西汉历史，详尽记录了西汉时期的历史事件和人物</li>
-                <li><strong>《后汉书》：</strong>范晔撰写的东汉历史，记录了东汉的兴衰与人物事迹</li>
-                <li><strong>《三国志》：</strong>陈寿撰写的三国历史，记录了魏、蜀、吴三国的历史与人物</li>
-                <li><strong>二十四史：</strong>中国历代官修正史，记录了从上古至明代的完整历史</li>
+                <li><strong>《史记》 (Records of the Grand Historian): </strong>Sima Qian's "supreme achievement in historical writing," recording history from ancient times to Emperor Wu of Han, with vivid biographical accounts</li>
+                <li><strong>《汉书》 (Book of Han): </strong>Ban Gu's history of the Western Han, detailing historical events and figures of the Western Han period</li>
+                <li><strong>《后汉书》 (Book of Later Han): </strong>Fan Ye's history of the Eastern Han, recording the rise and fall of the Eastern Han and the deeds of its historical figures</li>
+                <li><strong>《三国志》 (Records of the Three Kingdoms): </strong>Chen Shou's history of the Three Kingdoms, recording the history and figures of Wei, Shu, and Wu</li>
+                <li><strong>二十四史 (Twenty-Four Histories): </strong>China's officially compiled histories, recording complete history from ancient times to the Ming Dynasty</li>
               </ul>
-              <p>从这些史书中可以找到如"忠义"、"贤良"、"淑德"、"明智"等彰显品格的词语用于取名。</p>
+              <p>From these historical works, terms like "忠义" (loyalty and righteousness), "贤良" (virtuous and good), "淑德" (gentle virtue), and "明智" (wisdom) that highlight character can be used for naming.</p>
             </div>
             
             <div class="historical-card">
-              <h3>历史人物特质</h3>
-              <p>历史典籍中记载的杰出人物往往具有鲜明的品格特质，这些特质常被用于取名：</p>
+              <h3>Historical Figures' Qualities (历史人物特质)</h3>
+              <p>Outstanding figures recorded in historical classics often possess distinctive character traits that are frequently used for naming:</p>
               <ul>
-                <li><strong>忠义：</strong>如岳飞"精忠报国"、诸葛亮"鞠躬尽瘁"的忠诚品质</li>
-                <li><strong>智慧：</strong>如诸葛亮的"神机妙算"、王安石的"变法图强"</li>
-                <li><strong>仁德：</strong>如包拯的"刚正不阿"、范仲淹的"先天下之忧而忧"</li>
-                <li><strong>勇毅：</strong>如霍去病的"封狼居胥"、文天祥的"人生自古谁无死"</li>
-                <li><strong>坚韧：</strong>如屈原的"虽九死其犹未悔"、司马迁的"究天人之际"</li>
+                <li><strong>忠义 (Loyalty): </strong>Such as Yue Fei's "精忠报国" (utmost loyalty to the country) and Zhuge Liang's "鞠躬尽瘁" (dedicating oneself completely)</li>
+                <li><strong>智慧 (Wisdom): </strong>Such as Zhuge Liang's "神机妙算" (divine calculation) and Wang Anshi's "变法图强" (reform for strength)</li>
+                <li><strong>仁德 (Benevolence): </strong>Such as Bao Zheng's "刚正不阿" (upright and unyielding) and Fan Zhongyan's "先天下之忧而忧" (worry before the world worries)</li>
+                <li><strong>勇毅 (Courage): </strong>Such as Huo Qubing's "封狼居胥" (conquering the Xiongnu) and Wen Tianxiang's "人生自古谁无死" (all men are mortal)</li>
+                <li><strong>坚韧 (Perseverance): </strong>Such as Qu Yuan's "虽九死其犹未悔" (though dying nine times I would have no regret) and Sima Qian's "究天人之际" (exploring the boundary between heaven and humanity)</li>
               </ul>
-              <p>这些历史人物的品格特质是命名的优质素材，如"仲景"（取自东汉医学家张仲景）、"子瑜"（取自唐代书法家怀素，字子瑜）等。</p>
+              <p>These character traits of historical figures provide excellent naming material, such as "仲景" (taken from the Eastern Han medical scientist Zhang Zhongjing) and "子瑜" (taken from the Tang Dynasty calligrapher Huaisu, styled Ziyu).</p>
             </div>
           </div>
         </section>
 
         <section class="literary-section">
-          <h2>古代典籍中的文学意象</h2>
-          <p>中国古代文学作品中蕴含着丰富的意象和美学元素，它们被广泛用于取名，赋予名字独特的文化底蕴和美学价值。</p>
+          <h2>Literary Imagery in Ancient Classics (古代典籍中的文学意象)</h2>
+          <p>Ancient Chinese literary works contain rich imagery and aesthetic elements that are widely used for naming, giving names unique cultural heritage and aesthetic value.</p>
           
           <div class="literary-wrapper">
             <div class="literary-card">
-              <h3>自然意象</h3>
-              <p>古代文学作品中充满了对自然景物的描绘和赞美，这些意象常被用于取名：</p>
+              <h3>Natural Imagery (自然意象)</h3>
+              <p>Ancient literary works are full of depictions and praise of natural scenery, and these images are often used for naming:</p>
               <ul>
-                <li><strong>山水：</strong>如"山"、"岳"、"峰"、"河"、"湖"、"海"等，象征挺拔俊秀、博大宽广</li>
-                <li><strong>日月星辰：</strong>如"日"、"月"、"星"、"辰"等，象征光明、恒久、璀璨</li>
-                <li><strong>花草树木：</strong>如"松"、"竹"、"梅"、"兰"、"菊"等，象征坚韧、高洁、芬芳</li>
-                <li><strong>四季气象：</strong>如"春"、"夏"、"秋"、"冬"、"霜"、"雪"、"风"、"雨"等，表达时令变化和生命历程</li>
+                <li><strong>山水 (Mountains and Waters): </strong>Such as "山" (mountain), "岳" (peak), "峰" (summit), "河" (river), "湖" (lake), "海" (sea), symbolizing towering grace and vast breadth</li>
+                <li><strong>日月星辰 (Sun, Moon, and Stars): </strong>Such as "日" (sun), "月" (moon), "星" (star), "辰" (celestial body), symbolizing brightness, constancy, and brilliance</li>
+                <li><strong>花草树木 (Flowers, Grass, and Trees): </strong>Such as "松" (pine), "竹" (bamboo), "梅" (plum blossom), "兰" (orchid), "菊" (chrysanthemum), symbolizing resilience, nobility, and fragrance</li>
+                <li><strong>四季气象 (Four Seasons and Weather): </strong>Such as "春" (spring), "夏" (summer), "秋" (autumn), "冬" (winter), "霜" (frost), "雪" (snow), "风" (wind), "雨" (rain), expressing seasonal changes and life's journey</li>
               </ul>
-              <p>例如，"明月松间照，清泉石上流"中的"月"、"松"、"泉"、"石"等都是优美的自然意象，可用于取名。</p>
+              <p>For example, characters like "月" (moon), "松" (pine), "泉" (spring), and "石" (stone) from the line "明月松间照，清泉石上流" (bright moon shines through pines, clear spring flows over stones) are all beautiful natural images suitable for naming.</p>
             </div>
             
             <div class="literary-card">
-              <h3>抽象意象</h3>
-              <p>除具象的自然景物外，古代文学中还有许多抽象的意象和概念：</p>
+              <h3>Abstract Imagery (抽象意象)</h3>
+              <p>Besides concrete natural scenes, ancient literature also contains many abstract images and concepts:</p>
               <ul>
-                <li><strong>情感意象：</strong>如"怀"、"思"、"忆"、"愁"、"喜"等，表达丰富的情感体验</li>
-                <li><strong>品格意象：</strong>如"志"、"节"、"义"、"仁"、"德"等，表达高尚的人格追求</li>
-                <li><strong>文化意象：</strong>如"文"、"史"、"诗"、"书"、"琴"、"棋"、"书"、"画"等，表达文化修养</li>
-                <li><strong>哲理意象：</strong>如"道"、"理"、"象"、"数"、"玄"、"妙"等，表达深刻的思想境界</li>
+                <li><strong>情感意象 (Emotional Imagery): </strong>Such as "怀" (cherish), "思" (think), "忆" (remember), "愁" (sorrow), "喜" (joy), expressing rich emotional experiences</li>
+                <li><strong>品格意象 (Character Imagery): </strong>Such as "志" (aspiration), "节" (integrity), "义" (righteousness), "仁" (benevolence), "德" (virtue), expressing noble character pursuit</li>
+                <li><strong>文化意象 (Cultural Imagery): </strong>Such as "文" (literature), "史" (history), "诗" (poetry), "书" (writing), "琴" (zither), "棋" (chess), "书" (calligraphy), "画" (painting), expressing cultural cultivation</li>
+                <li><strong>哲理意象 (Philosophical Imagery): </strong>Such as "道" (way), "理" (principle), "象" (image), "数" (number), "玄" (profound), "妙" (subtle), expressing deep philosophical realms</li>
               </ul>
-              <p>如"胸中有丘壑"中的"丘壑"，表达胸怀宽广；"志在千里"中的"志"，表达远大抱负，都是很好的取名素材。</p>
+              <p>Terms like "丘壑" (hills and valleys) from "胸中有丘壑" (having hills and valleys in one's heart), symbolizing broad-mindedness, and "志" (aspiration) from "志在千里" (aspiration lies a thousand miles away), symbolizing great ambition, are both excellent naming materials.</p>
             </div>
           </div>
         </section>
 
         <section class="naming-method-section">
-          <h2>典籍取名方法与技巧</h2>
-          <p>从古代典籍中选字取名有多种方法和技巧，以下是一些常见的命名策略。</p>
+          <h2>Methods and Techniques of Naming from Classics (典籍取名方法与技巧)</h2>
+          <p>There are various methods and techniques for selecting characters from ancient classics for naming. Below are some common naming strategies.</p>
           
           <div class="method-wrapper">
             <div class="method-card">
-              <h3>直接引用法</h3>
-              <p>直接从经典著作中提取单字或词组用于取名：</p>
+              <h3>Direct Quotation Method (直接引用法)</h3>
+              <p>Directly extract single characters or phrases from classic works for naming:</p>
               <ul>
-                <li><strong>单字提取：</strong>从诗词句子中选取一个有特殊含义的字，如"李白"中的"白"字取自《论语》"白圭之玷，尚可磨也"</li>
-                <li><strong>词组提取：</strong>从经典著作中选取两个或多个连续的字，如"子墨"取自《论语》"子墨子言俭"</li>
-                <li><strong>典故名：</strong>直接用典故中的关键字命名，如"子期"取自伯牙子期知音故事</li>
+                <li><strong>Single Character Extraction (单字提取): </strong>Select a character with special meaning from poetic sentences, such as the character "白" (white) in "李白" (Li Bai) from the Analects' "白圭之玷，尚可磨也" (a white jade with a flaw can still be polished)</li>
+                <li><strong>Phrase Extraction (词组提取): </strong>Select two or more consecutive characters from classic works, such as "子墨" (Zi Mo) from the Analects' "子墨子言俭" (Master Mo spoke of frugality)</li>
+                <li><strong>Allusion Names (典故名): </strong>Directly use key characters from allusions for naming, such as "子期" (Zi Qi) from the story of Boya and Ziqi's friendship</li>
               </ul>
-              <p>例如，诸葛亮的"亮"字，取自《诗经·大雅·文王》："文王在上，於昭于天"中的"昭"义，表示明亮、显著。</p>
+              <p>For example, the character "亮" (bright) in Zhuge Liang's name comes from the meaning of "昭" (shine) in the Book of Songs' "文王在上，於昭于天" (King Wen is above, shining in heaven), indicating brightness and prominence.</p>
             </div>
             
             <div class="method-card">
-              <h3>意境提取法</h3>
-              <p>不直接引用原文，而是提炼其意境或主题：</p>
+              <h3>Imagery Extraction Method (意境提取法)</h3>
+              <p>Rather than directly quoting the original text, this method distills its imagery or theme:</p>
               <ul>
-                <li><strong>意境转化：</strong>将诗词的意境转化为名字，如"月明"取自"月出照兮，佼人僚兮"的意境</li>
-                <li><strong>主题提炼：</strong>从文学作品的主题中提炼命名元素，如"志远"取自"志当存高远"的主题</li>
-                <li><strong>形象塑造：</strong>基于文学作品中的形象塑造名字，如"松雪"取自诗句中松树傲雪的形象</li>
+                <li><strong>Imagery Transformation (意境转化): </strong>Transform the imagery of poetry into a name, such as "月明" (Bright Moon) derived from the imagery of "月出照兮，佼人僚兮" (the moon comes out and shines, beautiful is the person)</li>
+                <li><strong>Theme Distillation (主题提炼): </strong>Extract naming elements from the theme of literary works, such as "志远" (Lofty Aspiration) from the theme of "志当存高远" (one's aspiration should aim high)</li>
+                <li><strong>Image Creation (形象塑造): </strong>Create names based on images depicted in literary works, such as "松雪" (Pine and Snow) based on the image of pine trees standing proudly in snow</li>
               </ul>
-              <p>例如，"清风"一名，虽然可能不是直接引用某一句诗词，但体现了诗词中常见的"清风徐来"的意境。</p>
+              <p>For example, the name "清风" (Pure Wind) may not directly quote a specific line of poetry, but it embodies the commonly seen imagery of "清风徐来" (gentle pure breeze comes) in poetry.</p>
             </div>
           </div>
         </section>
 
         <section class="case-studies-section">
-          <h2>典籍取名案例分析</h2>
-          <p>以下是一些从古代典籍中选字取名的经典案例，展示了典籍用字的艺术与文化内涵。</p>
+          <h2>Case Analysis of Names from Classical Texts (典籍取名案例分析)</h2>
+          <p>Below are some classic examples of selecting characters from ancient classics for naming, demonstrating the art and cultural connotations of using characters from classical texts.</p>
           
           <div class="cases-wrapper">
             <div class="case-card">
-              <h3>古代名人案例</h3>
+              <h3>Ancient Celebrity Cases (古代名人案例)</h3>
               <div class="case-item">
-                <h4>李白</h4>
-                <p><strong>出处分析：</strong>"白"字可见于《论语》"白圭之玷，尚可磨也"，意为白玉上的斑点尚可磨去，比喻人的过失可以改正。</p>
-                <p><strong>文化内涵：</strong>取此字寓意品性纯洁如白玉，即使有瑕疵也可以通过自身努力改正，体现了儒家推崇的完善人格的理念。</p>
+                <h4>李白 (Li Bai)</h4>
+                <p><strong>Source Analysis: </strong>The character "白" can be found in the Analects' "白圭之玷，尚可磨也", meaning that a flaw on white jade can still be polished away, metaphorically suggesting that a person's faults can be corrected.</p>
+                <p><strong>Cultural Connotation: </strong>This character symbolizes a character as pure as white jade, and even if there are flaws, they can be corrected through one's own efforts, reflecting the Confucian ideal of perfecting one's character.</p>
               </div>
               <div class="case-item">
-                <h4>王维</h4>
-                <p><strong>出处分析：</strong>"维"字见于《诗经·小雅·车攻》："徐方绎，震方包。维以不永，矧伊戎兵？"，意为维系、维持。</p>
-                <p><strong>文化内涵：</strong>取此字寓意能够维系、连接和支持，符合王维在诗画艺术上的成就，他被称为"诗中有画，画中有诗"，实现了不同艺术形式的连接与融合。</p>
+                <h4>王维 (Wang Wei)</h4>
+                <p><strong>Source Analysis: </strong>The character "维" appears in the Book of Songs' "徐方绎，震方包。维以不永，矧伊戎兵？", meaning to connect, maintain.</p>
+                <p><strong>Cultural Connotation: </strong>This character symbolizes the ability to connect, link, and support, fitting Wang Wei's achievements in poetry and painting, as he was known for "诗中有画，画中有诗" (poetry in painting and painting in poetry), achieving the connection and fusion of different art forms.</p>
               </div>
             </div>
             
             <div class="case-card">
-              <h3>现代命名案例</h3>
+              <h3>Modern Naming Cases (现代命名案例)</h3>
               <div class="case-item">
-                <h4>李子衿</h4>
-                <p><strong>出处分析：</strong>"子衿"取自《诗经·郑风·子衿》："青青子衿，悠悠我心"，原指青领的衣服，后引申为思念之情。</p>
-                <p><strong>文化内涵：</strong>取这个名字不仅体现了对《诗经》经典的传承，还寓意深情、文雅，适合女孩取名。</p>
+                <h4>李子衿 (Li Zi Jin)</h4>
+                <p><strong>Source Analysis: </strong>"子衿" is taken from the Book of Songs' "青青子衿，悠悠我心" (green, green is your collar, long, long is my yearning), originally referring to a blue-collared garment, later extended to symbolize yearning emotions.</p>
+                <p><strong>Cultural Connotation: </strong>This name not only reflects the inheritance of the Book of Songs classic but also symbolizes deep emotion and elegance, suitable for naming girls.</p>
               </div>
               <div class="case-item">
-                <h4>陈明远</h4>
-                <p><strong>出处分析：</strong>"明远"取自《尚书·尧典》："明四目，达四聪，辟四门，明通四方"和《论语》："见贤思齐焉，见不贤而内自省"中的理念。</p>
-                <p><strong>文化内涵：</strong>寓意目光远大、见识广博，有明辨是非的能力，同时具有自省精神，是富有儒家智慧的命名。</p>
+                <h4>陈明远 (Chen Ming Yuan)</h4>
+                <p><strong>Source Analysis: </strong>"明远" is derived from the Book of Documents' "明四目，达四聪，辟四门，明通四方" (bright in four eyes, acute in four ears, opening four gates, clearly connecting four directions) and the Analects' concept of "见贤思齐焉，见不贤而内自省" (when seeing the worthy, think of emulating them; when seeing the unworthy, inwardly examine yourself).</p>
+                <p><strong>Cultural Connotation: </strong>This symbolizes having far-reaching vision, broad knowledge, the ability to discriminate right from wrong, and a spirit of self-reflection—a naming rich in Confucian wisdom.</p>
               </div>
             </div>
           </div>
         </section>
 
         <section class="practical-section">
-          <h2>典籍取名实用指南</h2>
-          <p>从典籍中选字取名需要注意一些实际问题，以下是一些实用的建议和技巧。</p>
+          <h2>Practical Guide to Naming from Classical Texts (典籍取名实用指南)</h2>
+          <p>Selecting characters from classics for naming requires attention to some practical issues. Below are some useful suggestions and tips.</p>
           
           <div class="practical-wrapper">
             <div class="practical-card">
-              <h3>选字原则</h3>
+              <h3>Character Selection Principles (选字原则)</h3>
               <ul>
-                <li><strong>寓意适宜：</strong>选择寓意吉祥、积极向上的字词，避免带有消极或不祥暗示的字</li>
-                <li><strong>文化内涵：</strong>选择具有深厚文化内涵和历史底蕴的字，能够彰显文化修养</li>
-                <li><strong>音韵和谐：</strong>注意字的读音与姓氏搭配是否和谐，避免拗口或谐音不雅</li>
-                <li><strong>形体美观：</strong>选择字形结构平衡、美观的字，便于书写和识别</li>
-                <li><strong>避免过于生僻：</strong>过于生僻的字可能难以书写和识别，日常使用不便</li>
+                <li><strong>Appropriate Meaning (寓意适宜): </strong>Choose characters with auspicious and positive meanings, avoiding those with negative or inauspicious implications</li>
+                <li><strong>Cultural Connotation (文化内涵): </strong>Choose characters with rich cultural heritage and historical depth that can demonstrate cultural refinement</li>
+                <li><strong>Phonetic Harmony (音韵和谐): </strong>Pay attention to whether the character's pronunciation harmonizes with the surname, avoiding awkward combinations or homophones with inappropriate meanings</li>
+                <li><strong>Aesthetically Pleasing Form (形体美观): </strong>Choose characters with balanced and aesthetically pleasing structures that are easy to write and recognize</li>
+                <li><strong>Avoid Excessive Obscurity (避免过于生僻): </strong>Excessively obscure characters may be difficult to write and recognize, causing inconvenience in daily use</li>
               </ul>
             </div>
             
             <div class="practical-card">
-              <h3>典籍取名步骤</h3>
+              <h3>Steps for Naming from Classical Texts (典籍取名步骤)</h3>
               <ol>
-                <li><strong>确定取名方向：</strong>根据对孩子的期望确定想要表达的品质或特点，如才学、德行、志向等</li>
-                <li><strong>选择合适典籍：</strong>根据取名方向选择合适的典籍类型，如儒家经典、诗词歌赋、历史文献等</li>
-                <li><strong>精读细选：</strong>细读选定的典籍，找出符合期望的词句和字</li>
-                <li><strong>音韵搭配：</strong>考虑所选字与姓氏的音韵搭配是否和谐</li>
-                <li><strong>字形分析：</strong>分析所选字的字形结构是否美观，与姓氏搭配是否协调</li>
-                <li><strong>寓意深思：</strong>深入思考所选字在不同语境下的含义，确保无歧义或不良寓意</li>
-                <li><strong>文化查证：</strong>查证所选字在文化传统中的地位和象征意义</li>
-                <li><strong>综合评估：</strong>从发音、字形、含义、文化内涵等多角度综合评估名字的品质</li>
+                <li><strong>Determine Naming Direction (确定取名方向): </strong>Based on expectations for the child, determine the qualities or characteristics you want to express, such as talent, virtue, or aspiration</li>
+                <li><strong>Select Appropriate Classics (选择合适典籍): </strong>Based on the naming direction, select appropriate types of classics, such as Confucian classics, poetry and prose, or historical documents</li>
+                <li><strong>Close Reading and Selection (精读细选): </strong>Carefully read the selected classics and find phrases and characters that match your expectations</li>
+                <li><strong>Phonetic Matching (音韵搭配): </strong>Consider whether the phonetic matching of the selected characters with the surname is harmonious</li>
+                <li><strong>Character Form Analysis (字形分析): </strong>Analyze whether the structure of the selected characters is aesthetically pleasing and whether they coordinate well with the surname</li>
+                <li><strong>Deep Meaning Consideration (寓意深思): </strong>Deeply consider the meanings of the selected characters in different contexts to ensure there are no ambiguities or negative connotations</li>
+                <li><strong>Cultural Verification (文化查证): </strong>Verify the status and symbolic meanings of the selected characters in cultural traditions</li>
+                <li><strong>Comprehensive Evaluation (综合评估): </strong>Comprehensively evaluate the quality of the name from multiple perspectives such as pronunciation, form, meaning, and cultural connotation</li>
               </ol>
             </div>
           </div>
         </section>
 
         <section class="modern-section">
-          <h2>典籍用字与现代生活</h2>
-          <p>在现代社会，如何让古典典籍中的智慧与现代生活相结合，为当代命名注入新的活力？</p>
+          <h2>Classical Characters and Modern Life (典籍用字与现代生活)</h2>
+          <p>In modern society, how can we combine the wisdom from ancient classics with modern life to infuse contemporary naming with new vitality?</p>
           
           <div class="modern-wrapper">
             <div class="modern-card">
-              <h3>传统与现代的融合</h3>
-              <p>古代典籍中的字词如何与现代价值观和生活方式结合：</p>
+              <h3>Integration of Tradition and Modernity (传统与现代的融合)</h3>
+              <p>How characters from ancient classics can be combined with modern values and lifestyles:</p>
               <ul>
-                <li><strong>现代解读：</strong>对古典概念进行现代化解读，如"德"可以理解为现代社会的道德感和责任感</li>
-                <li><strong>价值观更新：</strong>选择与现代核心价值观相符的古典概念，如"和"、"合"、"共"等强调和谐共处的理念</li>
-                <li><strong>新旧结合：</strong>将古典字词与现代字词组合，如"明哲"（古典）与"创新"（现代）结合</li>
+                <li><strong>Modern Interpretation (现代解读): </strong>Give modern interpretations to classical concepts, such as understanding "德" (virtue) as the sense of morality and responsibility in modern society</li>
+                <li><strong>Value Updates (价值观更新): </strong>Select classical concepts that align with modern core values, such as "和" (harmony), "合" (unity), "共" (togetherness) that emphasize harmonious coexistence</li>
+                <li><strong>Old and New Combination (新旧结合): </strong>Combine classical terms with modern terms, such as combining "明哲" (classical, meaning wise and discerning) with "创新" (modern, meaning innovation)</li>
               </ul>
-              <p>如"雨桐"一名，"雨"取自古诗"好雨知时节，当春乃发生"，"桐"则与现代环保意识相连，体现了传统与现代的融合。</p>
+              <p>For example, the name "雨桐" (Yu Tong), where "雨" (rain) is taken from the ancient poem "好雨知时节，当春乃发生" (good rain knows the best season and comes in spring), and "桐" (paulownia) connects with modern environmental awareness, exemplifying the fusion of tradition and modernity.</p>
             </div>
             
             <div class="modern-card">
-              <h3>典籍命名的当代价值</h3>
-              <p>典籍命名在当代社会的独特价值和意义：</p>
+              <h3>Contemporary Value of Classical Naming (典籍命名的当代价值)</h3>
+              <p>The unique value and significance of classical naming in contemporary society:</p>
               <ul>
-                <li><strong>文化传承：</strong>通过名字传承中华优秀传统文化，增强文化自信和认同</li>
-                <li><strong>精神寄托：</strong>在物质丰富的今天，名字承载着对精神价值的追求和向往</li>
-                <li><strong>个性表达：</strong>在名字雷同的现代社会，典籍用字可以彰显独特的个人品味和文化素养</li>
-                <li><strong>家族期望：</strong>通过典籍命名表达家族对下一代的期望和祝福，延续家族精神</li>
+                <li><strong>Cultural Inheritance (文化传承): </strong>Pass down excellent traditional Chinese culture through names, enhancing cultural confidence and identity</li>
+                <li><strong>Spiritual Aspiration (精神寄托): </strong>In today's materially abundant world, names carry the pursuit and yearning for spiritual values</li>
+                <li><strong>Expression of Individuality (个性表达): </strong>In a modern society where names are similar, characters from classics can highlight unique personal taste and cultural accomplishment</li>
+                <li><strong>Family Expectations (家族期望): </strong>Express family expectations and blessings for the next generation through classical naming, continuing the family spirit</li>
               </ul>
-              <p>如著名导演张艺谋为女儿取名"张末"，取自《道德经》"知其白，守其黑，为天下式。为天下式，常德不忒，复归于无极"，体现了对道家"返璞归真"思想的现代传承。</p>
+              <p>For example, famous director Zhang Yimou named his daughter "张末" (Zhang Mo), taking from the Tao Te Ching's "知其白，守其黑，为天下式。为天下式，常德不忒，复归于无极" (knowing the white, maintaining the black, becoming the model for the world. Being the model for the world, constant virtue will not fail, returning to the infinite), reflecting the modern inheritance of the Taoist thought of "returning to simplicity."</p>
             </div>
           </div>
         </section>
 
         <section class="resources-section">
-          <h2>典籍取名参考资源</h2>
-          <p>以下是一些适合从中选字取名的经典著作和资源，可以帮助有意从典籍中取名的人找到灵感和素材。</p>
+          <h2>Reference Resources for Naming from Classical Texts (典籍取名参考资源)</h2>
+          <p>Below are some classic works and resources suitable for selecting characters for naming, which can help those interested in naming from classical texts find inspiration and materials.</p>
           
           <div class="resources-wrapper">
             <div class="resource-card">
-              <h3>经典著作推荐</h3>
+              <h3>Recommended Classic Works (经典著作推荐)</h3>
               <ul>
-                <li><strong>《诗经》：</strong>中国最早的诗歌总集，语言优美，意境深远，尤其适合女孩取名</li>
-                <li><strong>《论语》：</strong>记录孔子言行的语录集，充满智慧格言，适合表达对德行和智慧的期望</li>
-                <li><strong>《楚辞》：</strong>以屈原作品为主的南方文学集，想象丰富，语言华丽，适合有文学气质的名字</li>
-                <li><strong>《唐诗三百首》：</strong>收录唐代优秀诗歌，意境优美，适合从中选取典雅字词</li>
-                <li><strong>《宋词三百首》：</strong>收录宋代优秀词作，感情丰富，适合抒情性的名字</li>
-                <li><strong>《古文观止》：</strong>收录先秦至明清的优秀散文，文字精粹，适合提取有文化内涵的字</li>
+                <li><strong>《诗经》 (Book of Songs): </strong>China's earliest poetry anthology, with beautiful language and profound imagery, especially suitable for naming girls</li>
+                <li><strong>《论语》 (Analects): </strong>A collection recording the sayings and deeds of Confucius, full of wise aphorisms, suitable for expressing expectations for virtue and wisdom</li>
+                <li><strong>《楚辞》 (Songs of Chu): </strong>A southern literary collection mainly consisting of Qu Yuan's works, rich in imagination and with gorgeous language, suitable for names with literary quality</li>
+                <li><strong>《唐诗三百首》 (Three Hundred Tang Poems): </strong>A collection of outstanding Tang Dynasty poems, with beautiful imagery, suitable for selecting elegant terms</li>
+                <li><strong>《宋词三百首》 (Three Hundred Song Lyrics): </strong>A collection of outstanding Song Dynasty lyrics, rich in emotion, suitable for emotive names</li>
+                <li><strong>《古文观止》 (Finest of Ancient Prose): </strong>A collection of outstanding prose from pre-Qin to Ming-Qing periods, with refined language, suitable for extracting characters with cultural connotations</li>
               </ul>
             </div>
             
             <div class="resource-card">
-              <h3>现代参考工具</h3>
+              <h3>Modern Reference Tools (现代参考工具)</h3>
               <ul>
-                <li><strong>典籍全文数据库：</strong>如"中国哲学书电子化计划"提供的典籍全文检索，便于快速查找</li>
-                <li><strong>典籍注释与译注：</strong>选择现代学者注释的典籍版本，有助于准确理解原文含义</li>
-                <li><strong>古代典籍用字词典：</strong>专门整理古代典籍中适合取名的字词的工具书</li>
-                <li><strong>古诗词名句鉴赏：</strong>解析古诗词名句的文化内涵和美学价值，帮助深入理解</li>
-                <li><strong>名家取名实例集：</strong>收集历代名人从典籍中取名的实例和分析，可供借鉴</li>
+                <li><strong>典籍全文数据库 (Full-Text Database of Classical Texts): </strong>Such as the "Chinese Text Project" providing full-text search of classical texts, convenient for quick searching</li>
+                <li><strong>典籍注释与译注 (Annotations and Translations of Classical Texts): </strong>Choose versions of classical texts annotated by modern scholars to help accurately understand the original meanings</li>
+                <li><strong>古代典籍用字词典 (Dictionaries of Characters from Ancient Classics): </strong>Reference books specifically organizing characters from ancient classics suitable for naming</li>
+                <li><strong>古诗词名句鉴赏 (Appreciation of Famous Lines from Ancient Poetry): </strong>Works analyzing the cultural connotations and aesthetic values of famous lines from ancient poetry, helping deepen understanding</li>
+                <li><strong>名家取名实例集 (Collections of Naming Examples by Famous People): </strong>Collections of examples and analyses of historical figures naming from classics, which can serve as references</li>
               </ul>
-              <p>这些资源可以帮助现代人更好地理解和运用古典典籍中的智慧进行命名，实现传统文化的创造性转化与创新性发展。</p>
+              <p>These resources can help modern people better understand and apply the wisdom from classical texts in naming, achieving creative transformation and innovative development of traditional culture.</p>
             </div>
           </div>
         </section>

@@ -41,8 +41,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
-          <h2>历史人物名字</h2>
-          <p>探索中国文化中著名历史人物的名字及其背后的含义。</p>
+          <h2>Historical Figures</h2>
+          <p>Explore the names of famous historical figures in Chinese culture and their meanings.</p>
         </router-link>
         
         <router-link to="/regional-naming-differences" class="category-card">
@@ -51,8 +51,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
-          <h2>区域差异</h2>
-          <p>探索中国不同地区和少数民族的命名习俗差异。</p>
+          <h2>Regional Differences</h2>
+          <p>Explore naming customs differences across various regions and ethnic minorities in China.</p>
         </router-link>
         
         <router-link to="/naming-taboos" class="category-card">
@@ -61,8 +61,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
             </svg>
           </div>
-          <h2>命名禁忌</h2>
-          <p>了解取中文名时应避免的文化禁忌和潜在陷阱。</p>
+          <h2>Naming Taboos</h2>
+          <p>Learn about cultural taboos and potential pitfalls to avoid when choosing a Chinese name.</p>
         </router-link>
 
         <!-- 修改五行八字理论卡片 -->
@@ -72,8 +72,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
-          <h2>五行八字理论</h2>
-          <p>根据出生时间和日期，学习如何选择平衡或补充八字命盘的汉字。</p>
+          <h2>Five Elements and Eight Characters Theory</h2>
+          <p>Learn how to choose characters that balance or complement your birth chart based on your birth time and date.</p>
         </router-link>
 
         <!-- 修改姓名学数理卡片 -->
@@ -83,8 +83,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
             </svg>
           </div>
-          <h2>姓名学数理</h2>
-          <p>解读姓名笔画的数值意义，包括天格、地格、人格、外格和总格的解析。</p>
+          <h2>Name Numerology</h2>
+          <p>Understand the numerical significance of name strokes, including analysis of celestial, terrestrial, human, outer and total patterns.</p>
         </router-link>
 
         <!-- 新增音韵和谐卡片 -->
@@ -94,8 +94,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
             </svg>
           </div>
-          <h2>音韵和谐</h2>
-          <p>名字中音调和声音的和谐，包括平仄音和语音美学的运用。</p>
+          <h2>Sound Harmony</h2>
+          <p>Harmony of tones and sounds in names, including the use of level and oblique tones and vocal aesthetics.</p>
         </router-link>
 
         <!-- 新增形义结合卡片 -->
@@ -105,8 +105,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
           </div>
-          <h2>形义结合</h2>
-          <p>汉字结构的美学平衡与字义搭配的艺术。</p>
+          <h2>Form and Meaning Integration</h2>
+          <p>The aesthetic balance of Chinese character structure and the art of character meaning combinations.</p>
         </router-link>
 
         <!-- 新增典籍用字卡片 -->
@@ -116,8 +116,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
             </svg>
           </div>
-          <h2>典籍用字</h2>
-          <p>从古典文学、诗词和散文中选择具有深厚文化意义的字。</p>
+          <h2>Classical Literature Characters</h2>
+          <p>Selecting characters with profound cultural significance from classical literature, poetry and prose.</p>
         </router-link>
 
         <!-- 新增季节时令用字卡片 -->
@@ -127,8 +127,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
             </svg>
           </div>
-          <h2>季节时令用字</h2>
-          <p>选择与出生季节及其对应自然元素相关的汉字。</p>
+          <h2>Seasonal Characters</h2>
+          <p>Choosing Chinese characters related to the birth season and its corresponding natural elements.</p>
         </router-link>
 
         <!-- 新增家族命名规则卡片 -->
@@ -138,8 +138,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
             </svg>
           </div>
-          <h2>家族命名规则</h2>
-          <p>家族谱系、辈分字和传统家族命名习俗的解析与应用。</p>
+          <h2>Family Naming Conventions</h2>
+          <p>Analysis and application of family genealogy, generational characters and traditional family naming customs.</p>
         </router-link>
 
         <!-- 新增生肖属相相配卡片 -->
@@ -149,8 +149,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
           </div>
-          <h2>生肖属相相配</h2>
-          <p>与个人生肖相关的取名建议和禁忌。</p>
+          <h2>Chinese Zodiac Compatibility</h2>
+          <p>Naming suggestions and taboos related to individual Chinese zodiac signs.</p>
         </router-link>
 
         <!-- 新增字音字形避讳卡片 -->
@@ -160,8 +160,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
           </div>
-          <h2>字音字形避讳</h2>
-          <p>避免与长辈、名人同名或与不吉利含义谐音的字。</p>
+          <h2>Sound and Form Avoidance</h2>
+          <p>Avoiding characters that share names with elders or celebrities, or have homophonic associations with unlucky meanings.</p>
         </router-link>
 
         <!-- 新增现代与传统的结合卡片 -->
@@ -171,8 +171,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
             </svg>
           </div>
-          <h2>现代与传统的结合</h2>
-          <p>在名字选择中平衡传统文化元素与现代审美。</p>
+          <h2>Blending Modern and Traditional</h2>
+          <p>Balancing traditional cultural elements with modern aesthetics in name selection.</p>
         </router-link>
 
         <!-- 新增时代取名风格卡片 -->
@@ -182,8 +182,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
-          <h2>时代取名风格</h2>
-          <p>探索中国不同历史时期的流行取名风格与时代特征。</p>
+          <h2>Era Naming Styles</h2>
+          <p>Explore popular naming styles and era characteristics from different historical periods in China.</p>
         </router-link>
       </div>
       

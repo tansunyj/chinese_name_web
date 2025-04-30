@@ -1,158 +1,158 @@
 <template>
   <div class="naming-taboos-page">
     <div class="container">
-      <h1 class="page-title">中国传统命名禁忌</h1>
+      <h1 class="page-title">Chinese Traditional Naming Taboos</h1>
       
       <div class="intro-section">
         <div class="intro-text">
-          <h2>命名禁忌的文化背景</h2>
-          <p>在中国传统文化中，名字不仅仅是一个称呼，更被视为与一个人命运息息相关的重要符号。因此，命名时需要避开各种禁忌，以免给孩子带来不利影响。这些禁忌反映了中国人的文化观念、社会规范和对生活的期望。</p>
-          <p>了解这些命名禁忌，有助于我们在取名时既尊重传统，又避免潜在的文化冲突和不良暗示。</p>
+          <h2>Cultural Background of Naming Taboos</h2>
+          <p>In Chinese traditional culture, a name is not just a form of address but is considered an important symbol closely related to a person's destiny. Therefore, when naming a child, various taboos must be avoided to prevent unfavorable influences. These taboos reflect Chinese cultural concepts, social norms, and expectations for life.</p>
+          <p>Understanding these naming taboos helps us both respect tradition and avoid potential cultural conflicts and negative implications when choosing a name.</p>
         </div>
         <div class="intro-image">
-          <img src="../assets/images/jinji.png" alt="命名禁忌" onerror="this.onerror=null; this.src='https://placehold.co/600x400?text=命名禁忌';" />
+          <img src="../assets/images/jinji.png" alt="Naming Taboos" onerror="this.onerror=null; this.src='https://placehold.co/600x400?text=Naming Taboos';" />
         </div>
       </div>
 
-      <!-- 分类导航 -->
+      <!-- Category Navigation -->
       <div class="category-nav">
         <div class="nav-item" @click="scrollToCategory('ancestral')">
           <div class="nav-icon ancestral-icon"></div>
-          <span>长辈名讳</span>
+          <span>Ancestral Name Taboos (长辈名讳)</span>
         </div>
         <div class="nav-item" @click="scrollToCategory('homophones')">
           <div class="nav-icon homophones-icon"></div>
-          <span>谐音忌讳</span>
+          <span>Homophone Taboos (谐音忌讳)</span>
         </div>
         <div class="nav-item" @click="scrollToCategory('zodiac')">
           <div class="nav-icon zodiac-icon"></div>
-          <span>生肖禁忌</span>
+          <span>Zodiac Taboos (生肖禁忌)</span>
         </div>
         <div class="nav-item" @click="scrollToCategory('meaning')">
           <div class="nav-icon meaning-icon"></div>
-          <span>含义忌讳</span>
+          <span>Meaning Taboos (含义忌讳)</span>
         </div>
         <div class="nav-item" @click="scrollToCategory('structure')">
           <div class="nav-icon structure-icon"></div>
-          <span>结构禁忌</span>
+          <span>Structure Taboos (结构禁忌)</span>
         </div>
         <div class="nav-item" @click="scrollToCategory('modern')">
           <div class="nav-icon modern-icon"></div>
-          <span>现代考量</span>
+          <span>Modern Considerations (现代考量)</span>
         </div>
       </div>
 
-      <!-- 长辈名讳 -->
+      <!-- Ancestral Name Taboos -->
       <section id="ancestral" class="taboo-section">
-        <h2 class="section-title">长辈名讳</h2>
-        <p class="section-intro">在中国传统文化中，避讳是对长辈和帝王的一种尊重。子女不能使用与父母、祖父母等长辈相同的名字，这被视为不敬之举。</p>
+        <h2 class="section-title">Ancestral Name Taboos (长辈名讳)</h2>
+        <p class="section-intro">In Chinese traditional culture, name avoidance is a form of respect for elders and emperors. Children cannot use names that are the same as their parents, grandparents, or other elders, as this is considered disrespectful.</p>
         
         <div class="taboo-content">
           <div class="taboo-feature">
-            <h3>基本原则</h3>
-            <p>中国传统文化强调"不犯长辈名讳"，即不使用与长辈相同的字作为名字，以示尊重。这一传统可以追溯到先秦时期，并在漫长的历史中逐渐形成了一套复杂的避讳规则。</p>
+            <h3>Basic Principles</h3>
+            <p>Chinese traditional culture emphasizes "not violating the taboo names of elders" (不犯长辈名讳), meaning not using the same characters as elders' names, as a sign of respect. This tradition can be traced back to the pre-Qin period and has gradually formed a complex system of taboo rules throughout history.</p>
           </div>
           
           <div class="taboo-example">
-            <h3>避讳形式</h3>
+            <h3>Forms of Name Avoidance</h3>
             <ul>
-              <li><strong>完全避讳：</strong>彻底避免使用与长辈名字相同的字</li>
-              <li><strong>部分避讳：</strong>避免使用与长辈名字相同音的字</li>
-              <li><strong>改字避讳：</strong>将相同的字在书写时略加改动</li>
-              <li><strong>革音避讳：</strong>将相同的字在读音上略加改变</li>
+              <li><strong>Complete avoidance (完全避讳): </strong>Completely avoiding the use of characters identical to elders' names</li>
+              <li><strong>Partial avoidance (部分避讳): </strong>Avoiding characters with the same pronunciation as elders' names</li>
+              <li><strong>Character modification (改字避讳): </strong>Slightly modifying the writing of identical characters</li>
+              <li><strong>Pronunciation alteration (革音避讳): </strong>Slightly changing the pronunciation of identical characters</li>
             </ul>
           </div>
           
           <div class="taboo-details">
             <div class="detail-card">
-              <h4>皇家避讳</h4>
-              <p>在中国古代，皇帝名字中的字是全社会必须避讳的。例如，清朝康熙皇帝名为"玄烨"，因此"玄"字被改为"元"，如"玄武门"改称"元武门"，"玄奘"改称"元奘"等。</p>
-              <p>有些朝代甚至规定避讳皇帝祖先的名字，使得避讳系统更加复杂。</p>
+              <h4>Imperial Taboos</h4>
+              <p>In ancient China, characters in an emperor's name were taboo for the entire society. For example, during the Qing Dynasty, Emperor Kangxi's name was "玄烨" (Xuanye), so the character "玄" (xuan) was changed to "元" (yuan). For instance, "玄武门" (Xuanwu Gate) was renamed "元武门" (Yuanwu Gate), and "玄奘" (Xuanzang) became "元奘" (Yuanzang).</p>
+              <p>Some dynasties even required avoiding the names of the emperor's ancestors, making the taboo system more complex.</p>
             </div>
             
             <div class="detail-card">
-              <h4>家族避讳</h4>
-              <p>在家族内部，对祖先的名讳尤其重视。许多家族有族谱记载祖先名字，子孙取名时需查阅族谱以避免重名。例如，如果祖父名为"志明"，孙辈则不应使用"志"或"明"字。</p>
-              <p>由于这种避讳传统，可以通过分析一个家族中不同辈分的名字使用情况，了解该家族的辈分关系和传承历史。</p>
+              <h4>Family Taboos</h4>
+              <p>Within families, the taboo names of ancestors were especially important. Many families kept genealogical records documenting ancestors' names, and descendants needed to consult these records to avoid duplicate names. For example, if a grandfather's name was "志明" (Zhiming), grandchildren should not use either "志" (zhi) or "明" (ming) in their names.</p>
+              <p>Due to this taboo tradition, analyzing the use of different characters in names across generations can help understand family generational relationships and inheritance history.</p>
             </div>
           </div>
           
           <div class="taboo-case">
-            <h3>现代应用</h3>
-            <p>现代社会中，虽然对皇帝的避讳已不再严格执行，但对家族长辈的避讳在许多家庭中仍然保留。在为新生儿取名时，许多家庭仍会考虑避开父母、祖父母等直系长辈的名字。</p>
-            <p>当代避讳更多体现为一种对传统的尊重和对家族秩序的认同，而非严格的文化禁忌。一些现代家庭也开始采取更灵活的方式，例如避开完全相同的字，但允许使用同音不同字的情况。</p>
+            <h3>Modern Application</h3>
+            <p>In modern society, while taboos regarding emperors' names are no longer strictly observed, taboos regarding family elders' names are still maintained in many families. When naming newborns, many families still consider avoiding the names of parents, grandparents, and other direct elders.</p>
+            <p>Contemporary name avoidance is more of a respect for tradition and recognition of family order, rather than a strict cultural taboo. Some modern families have also begun to adopt more flexible approaches, such as avoiding completely identical characters but allowing characters with the same pronunciation but different writing.</p>
           </div>
         </div>
       </section>
 
-      <!-- 谐音忌讳 -->
+      <!-- Homophone Taboos -->
       <section id="homophones" class="taboo-section">
-        <h2 class="section-title">谐音忌讳</h2>
-        <p class="section-intro">中国语言中同音字非常丰富，在命名时需要特别注意避免使用与不吉利词语谐音的字，以免产生不良联想。</p>
+        <h2 class="section-title">Homophone Taboos (谐音忌讳)</h2>
+        <p class="section-intro">Chinese language is rich in homophones. When naming, special attention must be paid to avoid using characters that sound like inauspicious words, preventing negative associations.</p>
         
         <div class="taboo-content">
           <div class="taboo-feature">
-            <h3>谐音问题的重要性</h3>
-            <p>汉语是一种同音字丰富的语言，许多字尽管写法不同，但发音相同或相近。因此，在取名时不仅要考虑字的本义，还要考虑其谐音可能带来的联想，避免与不吉利、负面或尴尬的词语谐音。</p>
+            <h3>Importance of Homophone Issues</h3>
+            <p>Chinese is a language rich in homophones, where many characters have the same or similar pronunciations despite different writings. Therefore, when naming, one must consider not only the literal meaning of the character but also the associations its sound might evoke, avoiding homophones with inauspicious, negative, or embarrassing connotations.</p>
           </div>
           
           <div class="taboo-example">
-            <h3>常见谐音忌讳</h3>
+            <h3>Common Homophone Taboos</h3>
             <ul>
-              <li><strong>与"死"谐音：</strong>避免使用与"死(sǐ)"谐音的字，如"思(sī)"、"四(sì)"等，特别是在名字的末尾</li>
-              <li><strong>与"苦"谐音：</strong>避免使用与"苦(kǔ)"谐音的字，如"库(kù)"等</li>
-              <li><strong>与"穷"谐音：</strong>避免使用与"穷(qióng)"谐音的字，如"琼(qióng)"等</li>
-              <li><strong>与"败"谐音：</strong>避免使用与"败(bài)"谐音的字，如"拜(bài)"等</li>
-              <li><strong>特定组合谐音：</strong>某些字单独使用没问题，但组合后可能产生不良谐音，如"安息"谐音"暗死"，"家贵"谐音"加鬼"等</li>
+              <li><strong>Homophones with "死" (death): </strong>Avoiding characters that sound like "死" (sǐ/death), such as "思" (sī/think), "四" (sì/four), especially at the end of a name</li>
+              <li><strong>Homophones with "苦" (suffering): </strong>Avoiding characters that sound like "苦" (kǔ/bitter), such as "库" (kù/storehouse)</li>
+              <li><strong>Homophones with "穷" (poverty): </strong>Avoiding characters that sound like "穷" (qióng/poor), such as "琼" (qióng/jade)</li>
+              <li><strong>Homophones with "败" (failure): </strong>Avoiding characters that sound like "败" (bài/defeat), such as "拜" (bài/to pay respect)</li>
+              <li><strong>Specific combination homophones: </strong>Some characters may be fine when used alone but create unfortunate homophones when combined, such as "安息" (anxi/rest in peace) sounding like "暗死" (ansi/die in darkness), or "家贵" (jiagui/family prosperity) sounding like "加鬼" (jiagui/add ghost)</li>
             </ul>
           </div>
           
           <div class="taboo-details">
             <div class="detail-card">
-              <h4>方言考量</h4>
-              <p>不同地区的方言发音存在差异，在取名时还需考虑当地方言中可能产生的谐音问题。例如，普通话中的"诗"在某些南方方言里可能与"尸"发音相似。</p>
-              <p>如果家庭有多地方言背景，或未来可能在不同地区生活，则需要在多种方言语境下检查名字的发音。</p>
+              <h4>Dialect Considerations</h4>
+              <p>Different regional dialects have pronunciation variations, so potential homophone issues in local dialects should also be considered when naming. For example, the character "诗" (shi/poem) in Standard Mandarin might sound similar to "尸" (shi/corpse) in some southern dialects.</p>
+              <p>If a family has multiple dialect backgrounds or might live in different regions in the future, the name should be checked in multiple dialect contexts.</p>
             </div>
             
             <div class="detail-card">
-              <h4>数字谐音</h4>
-              <p>中国文化中对数字谐音尤为敏感。例如，"四"因与"死"谐音被视为不吉利，而"八"因与"发"谐音被视为吉利。</p>
-              <p>这种数字谐音的禁忌也会影响到名字的选择，尤其是那些与数字字形或数字含义相关的字。例如，含"四"字根的字如"肆"、"泗"等可能会被避免使用。</p>
+              <h4>Numeric Homophones</h4>
+              <p>Chinese culture is particularly sensitive to numeric homophones. For example, "四" (si/four) is considered unlucky because it sounds like "死" (si/death), while "八" (ba/eight) is considered lucky because it sounds like "发" (fa/prosperity).</p>
+              <p>This numeric homophone taboo also affects name choices, especially for characters related to numeric forms or meanings. For instance, characters containing the "四" radical, such as "肆" (si/unbridled) or "泗" (si/name of a river), might be avoided.</p>
             </div>
           </div>
           
           <div class="taboo-case">
-            <h3>实例分析</h3>
-            <p><strong>不良谐音示例：</strong>"王军"在某些方言中可能听起来像"亡军"；"高健"在某些方言中可能听起来像"告捡"；"陈寿"可能让人联想到"陈述"或与"寿终"相关的不吉利含义。</p>
-            <p><strong>谐音检查方法：</strong>在确定名字时，最好以普通话和可能接触到的方言分别读出全名，检查是否有不良谐音。还可以将名字与常见词语、成语结合，看是否会产生不良联想。同时，也可以咨询不同年龄层、不同地区的人对这个名字的第一印象。</p>
+            <h3>Case Analysis</h3>
+            <p><strong>Examples of unfortunate homophones: </strong>The name "王军" (Wang Jun) might sound like "亡军" (wang jun/defeated army) in some dialects; "高健" (Gao Jian) might sound like "告捡" (gao jian/inform and pick up) in some dialects; "陈寿" (Chen Shou) might evoke associations with "陈述" (chenshu/state) or the inauspicious concept of "寿终" (shouzhong/end of life).</p>
+            <p><strong>Homophone checking methods: </strong>When finalizing a name, it's best to pronounce the full name in Standard Mandarin and any relevant dialects to check for unfortunate homophones. The name can also be combined with common words and idioms to see if it creates negative associations. Additionally, consulting people of different age groups and regions about their first impressions of the name can be helpful.</p>
           </div>
         </div>
       </section>
 
-      <!-- 其他章节会在后续继续添加，这里先只展示两个章节作为模板 -->
+      <!-- Other sections will be added later; here we're only showing two sections as templates -->
       
       <div class="conclusion-section">
-        <h2>避讳与智慧：古人命名的谨慎态度</h2>
-        <p>中国传统的命名禁忌反映了古人对语言的敬畏和对人生的谨慎态度。这些禁忌不仅是文化传统的体现，也包含了丰富的生活智慧和审美取向。</p>
+        <h2>Taboos and Wisdom: The Cautious Attitude of Ancient Chinese Naming</h2>
+        <p>Chinese traditional naming taboos reflect ancient people's reverence for language and cautious attitude toward life. These taboos are not only manifestations of cultural traditions but also contain rich life wisdom and aesthetic orientations.</p>
         
         <div class="significance-points">
           <div class="significance-item">
-            <h3>文化传承意义</h3>
-            <p>命名禁忌是中华文化的重要组成部分，了解并尊重这些禁忌，有助于我们传承和弘扬中华文化的精髓。</p>
+            <h3>Cultural Heritage Significance</h3>
+            <p>Naming taboos are an important part of Chinese culture. Understanding and respecting these taboos helps us inherit and promote the essence of Chinese culture.</p>
           </div>
           
           <div class="significance-item">
-            <h3>实用价值</h3>
-            <p>避开命名禁忌，可以帮助孩子避免潜在的社交困扰和心理压力，为孩子创造更好的生活和成长环境。</p>
+            <h3>Practical Value</h3>
+            <p>Avoiding naming taboos can help children avoid potential social difficulties and psychological pressure, creating a better living and growing environment for them.</p>
           </div>
           
           <div class="significance-item">
-            <h3>现代应用与包容</h3>
-            <p>在现代社会，我们可以辩证地看待这些禁忌，既尊重传统，又不拘泥于形式，灵活运用这些智慧，为孩子取一个既有文化内涵又适应现代社会的好名字。</p>
+            <h3>Modern Application and Inclusiveness</h3>
+            <p>In modern society, we can view these taboos dialectically, both respecting tradition and not being bound by formalities, flexibly applying this wisdom to give children names that have cultural connotations while being suitable for modern society.</p>
           </div>
         </div>
         
-        <p class="final-note">命名是父母送给孩子的第一份礼物，了解命名禁忌，不仅是对传统的尊重，更是对孩子未来的负责。希望本文介绍的各种命名禁忌能够为您的命名之旅提供有益的参考。</p>
+        <p class="final-note">Naming is the first gift parents give to their children. Understanding naming taboos is not only a respect for tradition but also a responsibility for the child's future. We hope that the various naming taboos introduced in this article will provide valuable reference for your naming journey.</p>
       </div>
     </div>
   </div>
@@ -163,22 +163,22 @@ export default {
   name: 'NamingTaboos',
   data() {
     return {
-      // 数据
+      // Data
     }
   },
   methods: {
     scrollToCategory(category) {
       const element = document.getElementById(category);
       if (element) {
-        const yOffset = -80; // 考虑顶部导航栏的高度
+        const yOffset = -80; // Consider the height of the top navigation bar
         const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
         window.scrollTo({top: y, behavior: 'smooth'});
       }
     }
   },
   mounted() {
-    // 页面加载后执行的代码
-    document.title = '中国传统命名禁忌 - 起名网';
+    // Code executed after page loading
+    document.title = 'Chinese Traditional Naming Taboos - Name Generator';
   }
 }
 </script>

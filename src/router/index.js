@@ -136,7 +136,26 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    component: () => import('../views/AboutUs.vue')
+    component: () => import('../views/pages/About.vue'),
+    meta: {
+      title: 'About Us - ChineseName.us'
+    }
+  },
+  {
+    path: '/privacy',
+    name: 'Privacy',
+    component: () => import('../views/pages/Privacy.vue'),
+    meta: {
+      title: 'Privacy Policy - ChineseName.us'
+    }
+  },
+  {
+    path: '/terms',
+    name: 'Terms',
+    component: () => import('../views/pages/Terms.vue'),
+    meta: {
+      title: 'Terms of Service - ChineseName.us'
+    }
   },
   {
     path: '/family-naming-rules',

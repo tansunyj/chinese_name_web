@@ -1,29 +1,29 @@
 <template>
   <div class="zodiac-compatibility-page">
     <div class="container">
-      <h1 class="page-title">生肖属相相配</h1>
+      <h1 class="page-title">Chinese Zodiac Compatibility (生肖属相相配)</h1>
       
       <div class="content">
         <div class="intro-section">
           <p class="intro-text">
-            在中国传统文化中，生肖不仅代表出生年份的标志，还被广泛应用于姓名学、婚配、事业选择等多个方面。其中，生肖与姓氏的搭配被认为会影响一个人的命运。本文将详细介绍生肖与姓氏的关系，以及如何根据生肖特性选择适合的名字。
+            In traditional Chinese culture, the zodiac sign not only represents the year of birth, but is also widely applied in naming studies, marriage matching, career choices, and many other aspects. Among these, the compatibility between zodiac signs and surnames is believed to affect a person's destiny. This article will introduce in detail the relationship between zodiac signs and surnames, and how to choose appropriate names based on zodiac characteristics.
           </p>
         </div>
 
         <div class="section">
-          <h2 class="section-title">生肖与姓氏的传统关系</h2>
+          <h2 class="section-title">Traditional Relationship Between Zodiac Signs and Surnames (生肖与姓氏的传统关系)</h2>
           <div class="content-block">
-            <p>在传统观念中，特定的姓氏与特定的生肖之间存在着相生相克的关系。这种关系主要基于以下几个方面：</p>
+            <p>In traditional concepts, there are relationships of mutual generation and mutual restraint between specific surnames and specific zodiac signs. These relationships are mainly based on the following aspects:</p>
             <ul>
-              <li><strong>姓氏的五行属性</strong>：每个汉字都有对应的五行属性（金、木、水、火、土），姓氏的五行属性与生肖的五行属性相配合，可以达到相生相助的效果。</li>
-              <li><strong>姓氏的字形结构</strong>：某些姓氏的字形与某些生肖有象形或含义上的联系，可能会形成相生或相克关系。</li>
-              <li><strong>历史文化渊源</strong>：一些姓氏与特定生肖之间有历史典故或文化联系，这些联系在民间被视为吉祥或不吉祥的象征。</li>
+              <li><strong>Five Elements of Surnames (姓氏的五行属性)</strong>: Each Chinese character corresponds to one of the Five Elements (Metal, Wood, Water, Fire, Earth). The Five Elements of surnames working in harmony with the Five Elements of zodiac signs can achieve a mutually beneficial effect.</li>
+              <li><strong>Character Structure of Surnames (姓氏的字形结构)</strong>: Some surnames have pictographic or meaningful connections with certain zodiac signs, which may form relationships of mutual generation or mutual restraint.</li>
+              <li><strong>Historical and Cultural Origins (历史文化渊源)</strong>: There are historical anecdotes or cultural connections between some surnames and specific zodiac signs, which are regarded in folk culture as auspicious or inauspicious symbols.</li>
             </ul>
           </div>
         </div>
 
         <div class="section">
-          <h2 class="section-title">十二生肖与姓氏的相配关系</h2>
+          <h2 class="section-title">Compatibility Relationships Between the Twelve Zodiac Signs and Surnames (十二生肖与姓氏的相配关系)</h2>
           
           <div class="zodiac-section" v-for="(zodiac, index) in zodiacData" :key="index">
             <div class="zodiac-header">
@@ -31,30 +31,30 @@
                 <img :src="getZodiacImage(zodiac.englishName)" :alt="zodiac.name" />
               </div>
               <div class="zodiac-info">
-                <h3>{{ zodiac.name }}年</h3>
-                <p>五行属性：<span class="element">{{ zodiac.element }}</span></p>
+                <h3>{{ zodiac.name }} Year ({{ zodiac.name }}年)</h3>
+                <p>Five Elements: <span class="element">{{ zodiac.element }} ({{ zodiac.element }})</span></p>
               </div>
             </div>
             
             <div class="compatibility-content">
               <div class="compatible-surnames">
-                <h4>相配姓氏</h4>
+                <h4>Compatible Surnames (相配姓氏)</h4>
                 <p>{{ zodiac.compatibleSurnames.join('、') }}</p>
                 <p class="explanation">{{ zodiac.compatibleExplanation }}</p>
               </div>
               
               <div class="naming-principles">
-                <h4>取名原则</h4>
+                <h4>Naming Principles (取名原则)</h4>
                 <ul>
                   <li v-for="(principle, i) in zodiac.namingPrinciples" :key="i">{{ principle }}</li>
                 </ul>
               </div>
               
               <div class="example-names">
-                <h4>名字示例</h4>
+                <h4>Name Examples (名字示例)</h4>
                 <div class="name-examples">
                   <div class="name-group">
-                    <h5>男孩</h5>
+                    <h5>Boys (男孩)</h5>
                     <ul>
                       <li v-for="(name, i) in zodiac.maleNames" :key="i">
                         <span class="name">{{ name.characters }}</span>
@@ -64,7 +64,7 @@
                     </ul>
                   </div>
                   <div class="name-group">
-                    <h5>女孩</h5>
+                    <h5>Girls (女孩)</h5>
                     <ul>
                       <li v-for="(name, i) in zodiac.femaleNames" :key="i">
                         <span class="name">{{ name.characters }}</span>
@@ -80,17 +80,17 @@
         </div>
 
         <div class="section">
-          <h2 class="section-title">生肖属相相配的重要性</h2>
+          <h2 class="section-title">Importance of Zodiac Compatibility (生肖属相相配的重要性)</h2>
           <div class="content-block">
-            <p>在给孩子取名时，考虑生肖与姓氏的匹配有以下几点意义：</p>
+            <p>When naming a child, considering the compatibility between zodiac sign and surname has the following significance:</p>
             <ol>
-              <li><strong>文化传承</strong>：遵循传统命名文化，传承中华文明的精髓。</li>
-              <li><strong>和谐共生</strong>：追求人与自然、个人与社会的和谐共生理念。</li>
-              <li><strong>心理暗示</strong>：良好的姓名匹配可以给人带来正面的心理暗示和自信。</li>
-              <li><strong>特色独特</strong>：根据生肖特点取名，使名字更有个人特色和文化内涵。</li>
+              <li><strong>Cultural Inheritance (文化传承)</strong>: Following traditional naming culture, inheriting the essence of Chinese civilization.</li>
+              <li><strong>Harmonious Coexistence (和谐共生)</strong>: Pursuing the concept of harmony between humans and nature, individuals and society.</li>
+              <li><strong>Psychological Suggestion (心理暗示)</strong>: Good name matching can bring positive psychological suggestions and confidence.</li>
+              <li><strong>Distinctive Characteristics (特色独特)</strong>: Naming based on zodiac characteristics makes the name more personal and culturally meaningful.</li>
             </ol>
             <p class="note">
-              需要注意的是，生肖相配理论源于民间文化，并非科学理论。在现代社会，取名更应注重名字的实用性、审美性和对孩子成长的积极影响，将传统文化视为参考而非绝对准则。
+              It should be noted that zodiac compatibility theory originates from folk culture, not scientific theory. In modern society, naming should focus more on the practicality, aesthetics, and positive impact on a child's growth, viewing traditional culture as a reference rather than an absolute rule.
             </p>
           </div>
         </div>
@@ -155,22 +155,22 @@ export default {
           englishName: 'Rat',
           element: '水',
           compatibleSurnames: ['赵', '钱', '孙', '李', '周', '吴', '郑', '王'],
-          compatibleExplanation: '鼠年出生的人适合与五行属水或属木的姓氏相配，这些姓氏能增强鼠的灵活机智特性，达到相生相助的效果。',
+          compatibleExplanation: 'People born in the Year of the Rat are suitable for surnames with Water or Wood elements, which can enhance the flexible and clever characteristics of the Rat, achieving a mutually beneficial effect.',
           namingPrinciples: [
-            '宜用带"氵"、"冫"、"水"等与水相关的字，如：洋、清、润、泽等',
-            '宜用带"艹"、"木"、"林"等与木相关的字，体现木生水的五行相生',
-            '避免使用与"猫"、"蛇"等天敌相关的字',
-            '适合有"智"、"灵"、"慧"等字根的名字，象征聪明机智'
+            'It is advisable to use characters with "氵", "冫", "水" and other water-related components, such as: 洋 (yang), 清 (qing), 润 (run), 泽 (ze), etc.',
+            'It is advisable to use characters with "艹", "木", "林" and other wood-related components, reflecting the mutual generation of Wood producing Water in the Five Elements theory',
+            'Avoid using characters related to natural enemies such as "猫" (cat), "蛇" (snake), etc.',
+            'Names with components like "智" (wisdom), "灵" (clever), "慧" (intelligent) are suitable, symbolizing intelligence and cleverness'
           ],
           maleNames: [
-            { characters: '智远', pinyin: 'Zhì Yuǎn', meaning: '聪明睿智，有远见' },
-            { characters: '泽宇', pinyin: 'Zé Yǔ', meaning: '恩泽广如宇宙' },
-            { characters: '哲瀚', pinyin: 'Zhé Hàn', meaning: '哲学的智慧如海般深邃' }
+            { characters: '智远', pinyin: 'Zhì Yuǎn', meaning: 'Intelligent and wise, with foresight' },
+            { characters: '泽宇', pinyin: 'Zé Yǔ', meaning: 'Grace as vast as the universe' },
+            { characters: '哲瀚', pinyin: 'Zhé Hàn', meaning: 'Philosophical wisdom as deep as the sea' }
           ],
           femaleNames: [
-            { characters: '灵秀', pinyin: 'Líng Xiù', meaning: '灵动秀气' },
-            { characters: '慧莲', pinyin: 'Huì Lián', meaning: '聪慧如莲花般纯净' },
-            { characters: '雨婷', pinyin: 'Yǔ Tíng', meaning: '如雨般清丽，亭亭玉立' }
+            { characters: '灵秀', pinyin: 'Líng Xiù', meaning: 'Clever and elegant' },
+            { characters: '慧莲', pinyin: 'Huì Lián', meaning: 'Intelligent, pure as a lotus' },
+            { characters: '雨婷', pinyin: 'Yǔ Tíng', meaning: 'Beautiful as rain, gracefully standing' }
           ]
         },
         {
@@ -178,22 +178,22 @@ export default {
           englishName: 'Ox',
           element: '土',
           compatibleSurnames: ['张', '刘', '陈', '杨', '黄', '赵', '吴', '周'],
-          compatibleExplanation: '牛年出生的人适合与五行属土或属金的姓氏相配，这些姓氏能增强牛的踏实勤勉特性，达到相生相助的效果。',
+          compatibleExplanation: 'People born in the Year of the Ox are suitable for surnames with Earth or Metal elements, which can enhance the solid and diligent characteristics of the Ox, achieving a mutually beneficial effect.',
           namingPrinciples: [
-            '宜用带"土"、"田"、"阜"等与土相关的字，如：坤、坚、培、岩等',
-            '宜用带"金"、"钅"等与金相关的字，体现金生土的五行相生',
-            '避免使用与"虎"等相冲动物相关的字',
-            '适合有"勤"、"德"、"诚"等字根的名字，象征勤劳诚实'
+            'It is advisable to use characters with "土", "田", "阜" and other earth-related components, such as: 坤 (kun), 坚 (jian), 培 (pei), 岩 (yan), etc.',
+            'It is advisable to use characters with "金", "钅" and other metal-related components, reflecting the mutual generation of Metal producing Earth in the Five Elements theory',
+            'Avoid using characters related to conflicting animals such as "虎" (tiger), etc.',
+            'Names with components like "勤" (diligent), "德" (virtue), "诚" (honest) are suitable, symbolizing diligence and honesty'
           ],
           maleNames: [
-            { characters: '铸鼎', pinyin: 'Zhù Dǐng', meaning: '如铸造鼎器般坚固有力' },
-            { characters: '耕德', pinyin: 'Gēng Dé', meaning: '勤耕不辍，德行高尚' },
-            { characters: '坚毅', pinyin: 'Jiān Yì', meaning: '坚定毅力，不屈不挠' }
+            { characters: '铸鼎', pinyin: 'Zhù Dǐng', meaning: 'As strong and solid as cast tripods' },
+            { characters: '耕德', pinyin: 'Gēng Dé', meaning: 'Cultivating diligently, of high virtue' },
+            { characters: '坚毅', pinyin: 'Jiān Yì', meaning: 'Firm and resolute, unyielding' }
           ],
           femaleNames: [
-            { characters: '琼瑶', pinyin: 'Qióng Yáo', meaning: '如美玉般珍贵纯净' },
-            { characters: '嘉励', pinyin: 'Jiā Lì', meaning: '嘉美勉励，不断进取' },
-            { characters: '恬静', pinyin: 'Tián Jìng', meaning: '恬淡宁静，温和淡雅' }
+            { characters: '琼瑶', pinyin: 'Qióng Yáo', meaning: 'As precious and pure as beautiful jade' },
+            { characters: '嘉励', pinyin: 'Jiā Lì', meaning: 'Excellence and encouragement, constantly improving' },
+            { characters: '恬静', pinyin: 'Tián Jìng', meaning: 'Serene and quiet, mild and elegant' }
           ]
         },
         {
@@ -201,22 +201,22 @@ export default {
           englishName: 'Tiger',
           element: '木',
           compatibleSurnames: ['李', '杨', '吴', '刘', '陈', '郑', '孙', '高'],
-          compatibleExplanation: '虎年出生的人适合与五行属木或属火的姓氏相配，这些姓氏能增强虎的勇猛威严特性，达到相生相助的效果。',
+          compatibleExplanation: 'People born in the Year of the Tiger are suitable for surnames with Wood or Fire elements, which can enhance the brave and majestic characteristics of the Tiger, achieving a mutually beneficial effect.',
           namingPrinciples: [
-            '宜用带"木"、"林"、"艹"等与木相关的字，如：森、林、茂、华等',
-            '宜用带"火"、"灬"等与火相关的字，体现木生火的五行相生',
-            '避免使用与"猴"等相冲动物相关的字',
-            '适合有"威"、"猛"、"力"等字根的名字，象征威猛有力'
+            'It is advisable to use characters with "木", "林", "艹" and other wood-related components, such as: 森 (sen), 林 (lin), 茂 (mao), 华 (hua), etc.',
+            'It is advisable to use characters with "火", "灬" and other fire-related components, reflecting the mutual generation of Wood producing Fire in the Five Elements theory',
+            'Avoid using characters related to conflicting animals such as "猴" (monkey), etc.',
+            'Names with components like "威" (might), "猛" (fierce), "力" (strength) are suitable, symbolizing might and power'
           ],
           maleNames: [
-            { characters: '林彪', pinyin: 'Lín Biāo', meaning: '如森林般茂盛，迅捷如虎' },
-            { characters: '烨辉', pinyin: 'Yè Huī', meaning: '光彩照人，辉煌灿烂' },
-            { characters: '涵柏', pinyin: 'Hán Bǎi', meaning: '包容宽广，坚韧如柏' }
+            { characters: '林彪', pinyin: 'Lín Biāo', meaning: 'Abundant as forests, swift as tigers' },
+            { characters: '烨辉', pinyin: 'Yè Huī', meaning: 'Radiant and brilliant, splendid and luminous' },
+            { characters: '涵柏', pinyin: 'Hán Bǎi', meaning: 'Broad and encompassing, as firm as cypress' }
           ],
           femaleNames: [
-            { characters: '雅竹', pinyin: 'Yǎ Zhú', meaning: '优雅如竹，清雅挺拔' },
-            { characters: '炎玉', pinyin: 'Yán Yù', meaning: '火焰般热情，美玉般纯洁' },
-            { characters: '菲华', pinyin: 'Fēi Huá', meaning: '芬芳华美，气质出众' }
+            { characters: '雅竹', pinyin: 'Yǎ Zhú', meaning: 'Elegant as bamboo, refined and upright' },
+            { characters: '炎玉', pinyin: 'Yán Yù', meaning: 'Passionate as flames, pure as jade' },
+            { characters: '菲华', pinyin: 'Fēi Huá', meaning: 'Fragrant and magnificent, outstanding in quality' }
           ]
         },
         {
@@ -224,22 +224,22 @@ export default {
           englishName: 'Rabbit',
           element: '木',
           compatibleSurnames: ['杨', '张', '王', '刘', '陈', '赵', '钱', '孙'],
-          compatibleExplanation: '兔年出生的人适合与五行属木或属水的姓氏相配，这些姓氏能增强兔的温和敏感特性，达到相生相助的效果。',
+          compatibleExplanation: 'People born in the Year of the Rabbit are suitable for surnames with Wood or Water elements, which can enhance the gentle and sensitive characteristics of the Rabbit, achieving a mutually beneficial effect.',
           namingPrinciples: [
-            '宜用带"木"、"林"、"艹"等与木相关的字，如：柔、樱、苏、菲等',
-            '宜用带"氵"、"冫"、"水"等与水相关的字，体现水生木的五行相生',
-            '避免使用与"鹰"、"狼"等捕食者相关的字',
-            '适合有"柔"、"雅"、"美"等字根的名字，象征温柔优雅'
+            'It is advisable to use characters with "木", "林", "艹" and other wood-related components, such as: 柔 (rou), 樱 (ying), 苏 (su), 菲 (fei), etc.',
+            'It is advisable to use characters with "氵", "冫", "水" and other water-related components, reflecting the mutual generation of Water producing Wood in the Five Elements theory',
+            'Avoid using characters related to predators such as "鹰" (eagle), "狼" (wolf), etc.',
+            'Names with components like "柔" (gentle), "雅" (elegant), "美" (beautiful) are suitable, symbolizing gentleness and elegance'
           ],
           maleNames: [
-            { characters: '宸宇', pinyin: 'Chén Yǔ', meaning: '如宫殿一般宏伟，包容宇宙' },
-            { characters: '君茂', pinyin: 'Jūn Mào', meaning: '如君王一般高贵，茂盛发达' },
-            { characters: '安和', pinyin: 'Ān Hé', meaning: '安宁和顺，温和谦逊' }
+            { characters: '宸宇', pinyin: 'Chén Yǔ', meaning: 'Majestic as a palace, encompassing as the universe' },
+            { characters: '君茂', pinyin: 'Jūn Mào', meaning: 'Noble as a lord, flourishing and prosperous' },
+            { characters: '安和', pinyin: 'Ān Hé', meaning: 'Peaceful and harmonious, gentle and modest' }
           ],
           femaleNames: [
-            { characters: '芷若', pinyin: 'Zhǐ Ruò', meaning: '如同香草般芬芳，婉若清风' },
-            { characters: '琳琅', pinyin: 'Lín Láng', meaning: '美玉琳琅，美丽动人' },
-            { characters: '舒雅', pinyin: 'Shū Yǎ', meaning: '舒适自然，雅致大方' }
+            { characters: '芷若', pinyin: 'Zhǐ Ruò', meaning: 'Fragrant as herbs, gentle as a breeze' },
+            { characters: '琳琅', pinyin: 'Lín Láng', meaning: 'Beautiful jade treasures, beautiful and captivating' },
+            { characters: '舒雅', pinyin: 'Shū Yǎ', meaning: 'Comfortable and natural, elegant and graceful' }
           ]
         },
         {
@@ -247,22 +247,22 @@ export default {
           englishName: 'Dragon',
           element: '土',
           compatibleSurnames: ['陈', '黄', '吴', '刘', '李', '赵', '孙', '周'],
-          compatibleExplanation: '龙年出生的人适合与五行属土或属火的姓氏相配，这些姓氏能增强龙的尊贵威严特性，达到相生相助的效果。',
+          compatibleExplanation: 'People born in the Year of the Dragon are suitable for surnames with Earth or Fire elements, which can enhance the noble and majestic characteristics of the Dragon, achieving a mutually beneficial effect.',
           namingPrinciples: [
-            '宜用带"土"、"田"、"阜"等与土相关的字，如：基、坤、峰、岳等',
-            '宜用带"火"、"灬"等与火相关的字，体现火生土的五行相生',
-            '宜用带"龙"、"云"、"天"等高贵显赫的字',
-            '适合有"威"、"宏"、"嘉"等字根的名字，象征威严宏大'
+            'It is advisable to use characters with "土", "田", "阜" and other earth-related components, such as: 基 (ji), 坤 (kun), 峰 (feng), 岳 (yue), etc.',
+            'It is advisable to use characters with "火", "灬" and other fire-related components, reflecting the mutual generation of Fire producing Earth in the Five Elements theory',
+            'It is advisable to use characters with "龙" (dragon), "云" (cloud), "天" (sky) and other noble and prominent components',
+            'Names with components like "威" (might), "宏" (grand), "嘉" (excellent) are suitable, symbolizing majesty and grandeur'
           ],
           maleNames: [
-            { characters: '天翔', pinyin: 'Tiān Xiáng', meaning: '翱翔于天空，志向高远' },
-            { characters: '嘉鸿', pinyin: 'Jiā Hóng', meaning: '美好吉祥，如大鸿鹄展翅高飞' },
-            { characters: '鸿运', pinyin: 'Hóng Yùn', meaning: '宏大鸿达，运势亨通' }
+            { characters: '天翔', pinyin: 'Tiān Xiáng', meaning: 'Soaring in the sky, with lofty aspirations' },
+            { characters: '嘉鸿', pinyin: 'Jiā Hóng', meaning: 'Excellent and auspicious, like a great wild goose spreading its wings' },
+            { characters: '鸿运', pinyin: 'Hóng Yùn', meaning: 'Great and magnificent, with prosperous fortune' }
           ],
           femaleNames: [
-            { characters: '瑾萱', pinyin: 'Jǐn Xuān', meaning: '美玉般珍贵，如萱草般温暖' },
-            { characters: '凤仪', pinyin: 'Fèng Yí', meaning: '如凤凰般高贵，仪态万千' },
-            { characters: '熙雯', pinyin: 'Xī Wén', meaning: '光明美好，文雅秀丽' }
+            { characters: '瑾萱', pinyin: 'Jǐn Xuān', meaning: 'Precious as jade, warm as daylilies' },
+            { characters: '凤仪', pinyin: 'Fèng Yí', meaning: 'Noble as a phoenix, with dignified bearing' },
+            { characters: '熙雯', pinyin: 'Xī Wén', meaning: 'Bright and beautiful, refined and elegant' }
           ]
         },
         {
@@ -270,22 +270,22 @@ export default {
           englishName: 'Snake',
           element: '火',
           compatibleSurnames: ['杨', '高', '赵', '钱', '孙', '李', '陈', '王'],
-          compatibleExplanation: '蛇年出生的人适合与五行属火或属土的姓氏相配，这些姓氏能增强蛇的智慧敏锐特性，达到相生相助的效果。',
+          compatibleExplanation: 'People born in the Year of the Snake are suitable for surnames with Fire or Earth elements, which can enhance the wisdom and acuity characteristics of the Snake, achieving a mutually beneficial effect.',
           namingPrinciples: [
-            '宜用带"火"、"灬"等与火相关的字，如：炫、煜、炜、焱等',
-            '宜用带"土"、"田"、"阜"等与土相关的字，体现土生火的五行相生',
-            '避免使用与"鹤"、"猫"等天敌相关的字',
-            '适合有"智"、"巧"、"灵"等字根的名字，象征智慧灵动'
+            'It is advisable to use characters with "火", "灬" and other fire-related components, such as: 炫 (xuan), 煜 (yu), 炜 (wei), 焱 (yan), etc.',
+            'It is advisable to use characters with "土", "田", "阜" and other earth-related components, reflecting the mutual generation of Earth producing Fire in the Five Elements theory',
+            'Avoid using characters related to natural enemies such as "鹤" (crane), "猫" (cat), etc.',
+            'Names with components like "智" (wisdom), "巧" (clever), "灵" (clever) are suitable, symbolizing wisdom and agility'
           ],
           maleNames: [
-            { characters: '炎焱', pinyin: 'Yán Yàn', meaning: '火焰熊熊，气势不凡' },
-            { characters: '展鹏', pinyin: 'Zhǎn Péng', meaning: '展翅高飞，如大鹏展翅' },
-            { characters: '睿智', pinyin: 'Ruì Zhì', meaning: '明睿聪智，见识广博' }
+            { characters: '炎焱', pinyin: 'Yán Yàn', meaning: 'Raging flames, extraordinary presence' },
+            { characters: '展鹏', pinyin: 'Zhǎn Péng', meaning: 'Spreading wings, like a great bird soaring' },
+            { characters: '睿智', pinyin: 'Ruì Zhì', meaning: 'Wise and intelligent, with broad knowledge' }
           ],
           femaleNames: [
-            { characters: '妙菡', pinyin: 'Miào Hàn', meaning: '巧妙灵动，如莲花般美丽' },
-            { characters: '欣妍', pinyin: 'Xīn Yán', meaning: '欣喜美好，容颜秀丽' },
-            { characters: '芊雅', pinyin: 'Qiān Yǎ', meaning: '草木丰茂，雅致优美' }
+            { characters: '妙菡', pinyin: 'Miào Hàn', meaning: 'Wonderful and clever, beautiful as lotus' },
+            { characters: '欣妍', pinyin: 'Xīn Yán', meaning: 'Joyful and beautiful, with a beautiful countenance' },
+            { characters: '芊雅', pinyin: 'Qiān Yǎ', meaning: 'Luxuriant vegetation, elegant and refined' }
           ]
         },
         {
@@ -293,22 +293,22 @@ export default {
           englishName: 'Horse',
           element: '火',
           compatibleSurnames: ['李', '刘', '赵', '钱', '孙', '杨', '高', '王'],
-          compatibleExplanation: '马年出生的人适合与五行属火或属木的姓氏相配，这些姓氏能增强马的活力奔放特性，达到相生相助的效果。',
+          compatibleExplanation: 'People born in the Year of the Horse are suitable for surnames with Fire or Wood elements, which can enhance the vitality and passion characteristics of the Horse, achieving a mutually beneficial effect.',
           namingPrinciples: [
-            '宜用带"火"、"灬"等与火相关的字，如：炎、煌、炫、晖等',
-            '宜用带"木"、"林"、"艹"等与木相关的字，体现木生火的五行相生',
-            '避免使用与"鼠"等相冲动物相关的字',
-            '适合有"奔"、"驰"、"行"等字根的名字，象征奔腾活力'
+            'It is advisable to use characters with "火", "灬" and other fire-related components, such as: 炎 (yan), 煌 (huang), 炫 (xuan), 晖 (hui), etc.',
+            'It is advisable to use characters with "木", "林", "艹" and other wood-related components, reflecting the mutual generation of Wood producing Fire in the Five Elements theory',
+            'Avoid using characters related to conflicting animals such as "鼠" (rat), etc.',
+            'Names with components like "奔" (gallop), "驰" (race), "行" (travel) are suitable, symbolizing galloping vitality'
           ],
           maleNames: [
-            { characters: '奔腾', pinyin: 'Bēn Téng', meaning: '如马奔腾，气势磅礴' },
-            { characters: '烨磊', pinyin: 'Yè Lěi', meaning: '光芒四射，如磊石般坚实' },
-            { characters: '锋煜', pinyin: 'Fēng Yù', meaning: '锋芒毕露，光明炽热' }
+            { characters: '奔腾', pinyin: 'Bēn Téng', meaning: 'Galloping like a horse, powerful and magnificent' },
+            { characters: '烨磊', pinyin: 'Yè Lěi', meaning: 'Radiant splendor, solid as stones' },
+            { characters: '锋煜', pinyin: 'Fēng Yù', meaning: 'Sharp and prominent, bright and hot' }
           ],
           femaleNames: [
-            { characters: '骊萱', pinyin: 'Lí Xuān', meaning: '黑色骏马，如萱草般温暖' },
-            { characters: '梦驰', pinyin: 'Mèng Chí', meaning: '梦中驰骋，自由奔放' },
-            { characters: '熙雅', pinyin: 'Xī Yǎ', meaning: '光明美好，高雅大方' }
+            { characters: '骊萱', pinyin: 'Lí Xuān', meaning: 'Black steed, warm as daylilies' },
+            { characters: '梦驰', pinyin: 'Mèng Chí', meaning: 'Galloping in dreams, free-spirited' },
+            { characters: '熙雅', pinyin: 'Xī Yǎ', meaning: 'Bright and beautiful, elegant and graceful' }
           ]
         },
         {
@@ -316,22 +316,22 @@ export default {
           englishName: 'Goat',
           element: '土',
           compatibleSurnames: ['张', '陈', '赵', '钱', '孙', '李', '周', '吴'],
-          compatibleExplanation: '羊年出生的人适合与五行属土或属火的姓氏相配，这些姓氏能增强羊的温和善良特性，达到相生相助的效果。',
+          compatibleExplanation: 'People born in the Year of the Goat are suitable for surnames with Earth or Fire elements, which can enhance the gentle and kind characteristics of the Goat, achieving a mutually beneficial effect.',
           namingPrinciples: [
-            '宜用带"土"、"田"、"阜"等与土相关的字，如：坤、培、岩、壤等',
-            '宜用带"火"、"灬"等与火相关的字，体现火生土的五行相生',
-            '避免使用与"虎"、"狼"等天敌相关的字',
-            '适合有"美"、"善"、"优"等字根的名字，象征温顺优雅'
+            'It is advisable to use characters with "土", "田", "阜" and other earth-related components, such as: 坤 (kun), 培 (pei), 岩 (yan), 壤 (rang), etc.',
+            'It is advisable to use characters with "火", "灬" and other fire-related components, reflecting the mutual generation of Fire producing Earth in the Five Elements theory',
+            'Avoid using characters related to natural enemies such as "虎" (tiger), "狼" (wolf), etc.',
+            'Names with components like "美" (beautiful), "善" (kind), "优" (excellent) are suitable, symbolizing gentleness and elegance'
           ],
           maleNames: [
-            { characters: '俊彦', pinyin: 'Jùn Yàn', meaning: '英俊卓越，才貌双全' },
-            { characters: '善和', pinyin: 'Shàn Hé', meaning: '善良和睦，平易近人' },
-            { characters: '煜祺', pinyin: 'Yù Qí', meaning: '光明照耀，吉祥如意' }
+            { characters: '俊彦', pinyin: 'Jùn Yàn', meaning: 'Handsome and outstanding, talented in both appearance and ability' },
+            { characters: '善和', pinyin: 'Shàn Hé', meaning: 'Kind and harmonious, amiable and approachable' },
+            { characters: '煜祺', pinyin: 'Yù Qí', meaning: 'Bright radiance, auspicious and fortunate' }
           ],
           femaleNames: [
-            { characters: '美琳', pinyin: 'Měi Lín', meaning: '美丽漂亮，如美玉般珍贵' },
-            { characters: '柔婷', pinyin: 'Róu Tíng', meaning: '柔和温婉，亭亭玉立' },
-            { characters: '雅萱', pinyin: 'Yǎ Xuān', meaning: '优雅大方，如萱草般温暖' }
+            { characters: '美琳', pinyin: 'Měi Lín', meaning: 'Beautiful and pretty, precious as jade' },
+            { characters: '柔婷', pinyin: 'Róu Tíng', meaning: 'Gentle and soft, gracefully standing' },
+            { characters: '雅萱', pinyin: 'Yǎ Xuān', meaning: 'Elegant and graceful, warm as daylilies' }
           ]
         },
         {
@@ -339,22 +339,22 @@ export default {
           englishName: 'Monkey',
           element: '金',
           compatibleSurnames: ['王', '高', '陈', '杨', '赵', '钱', '孙', '李'],
-          compatibleExplanation: '猴年出生的人适合与五行属金或属水的姓氏相配，这些姓氏能增强猴的聪明灵活特性，达到相生相助的效果。',
+          compatibleExplanation: 'People born in the Year of the Monkey are suitable for surnames with Metal or Water elements, which can enhance the clever and agile characteristics of the Monkey, achieving a mutually beneficial effect.',
           namingPrinciples: [
-            '宜用带"金"、"钅"等与金相关的字，如：铭、锐、钧、铮等',
-            '宜用带"氵"、"冫"、"水"等与水相关的字，体现金生水的五行相生',
-            '避免使用与"蛇"、"虎"等相冲动物相关的字',
-            '适合有"巧"、"捷"、"敏"等字根的名字，象征机智灵活'
+            'It is advisable to use characters with "金", "钅" and other metal-related components, such as: 铭 (ming), 锐 (rui), 钧 (jun), 铮 (zheng), etc.',
+            'It is advisable to use characters with "氵", "冫", "水" and other water-related components, reflecting the mutual generation of Metal producing Water in the Five Elements theory',
+            'Avoid using characters related to conflicting animals such as "蛇" (snake), "虎" (tiger), etc.',
+            'Names with components like "巧" (clever), "捷" (quick), "敏" (agile) are suitable, symbolizing cleverness and agility'
           ],
           maleNames: [
-            { characters: '聪睿', pinyin: 'Cōng Ruì', meaning: '聪明智慧，睿智过人' },
-            { characters: '锐志', pinyin: 'Ruì Zhì', meaning: '锐利坚定，意志坚强' },
-            { characters: '金鑫', pinyin: 'Jīn Xīn', meaning: '金光闪闪，财富兴盛' }
+            { characters: '聪睿', pinyin: 'Cōng Ruì', meaning: 'Clever and intelligent, exceptionally wise' },
+            { characters: '锐志', pinyin: 'Ruì Zhì', meaning: 'Sharp and determined, with strong will' },
+            { characters: '金鑫', pinyin: 'Jīn Xīn', meaning: 'Shining gold, prosperous wealth' }
           ],
           femaleNames: [
-            { characters: '巧琳', pinyin: 'Qiǎo Lín', meaning: '灵巧聪明，如美玉般珍贵' },
-            { characters: '慧颖', pinyin: 'Huì Yǐng', meaning: '聪慧颖悟，反应敏捷' },
-            { characters: '瑾瑜', pinyin: 'Jǐn Yú', meaning: '美好珍贵，如美玉无瑕' }
+            { characters: '巧琳', pinyin: 'Qiǎo Lín', meaning: 'Clever and ingenious, precious as jade' },
+            { characters: '慧颖', pinyin: 'Huì Yǐng', meaning: 'Intelligent and perceptive, quick in response' },
+            { characters: '瑾瑜', pinyin: 'Jǐn Yú', meaning: 'Precious and beautiful, like flawless jade' }
           ]
         },
         {
@@ -362,22 +362,22 @@ export default {
           englishName: 'Rooster',
           element: '金',
           compatibleSurnames: ['陈', '杨', '黄', '赵', '钱', '孙', '李', '周'],
-          compatibleExplanation: '鸡年出生的人适合与五行属金或属土的姓氏相配，这些姓氏能增强鸡的勤勉自信特性，达到相生相助的效果。',
+          compatibleExplanation: 'People born in the Year of the Rooster are suitable for surnames with Metal or Earth elements, which can enhance the diligent and confident characteristics of the Rooster, achieving a mutually beneficial effect.',
           namingPrinciples: [
-            '宜用带"金"、"钅"等与金相关的字，如：钟、铭、锋、铄等',
-            '宜用带"土"、"田"、"阜"等与土相关的字，体现土生金的五行相生',
-            '避免使用与"狐"、"狼"等天敌相关的字',
-            '适合有"勤"、"晨"、"明"等字根的名字，象征早起勤奋'
+            'It is advisable to use characters with "金", "钅" and other metal-related components, such as: 钟 (zhong), 铭 (ming), 锋 (feng), 铄 (shuo), etc.',
+            'It is advisable to use characters with "土", "田", "阜" and other earth-related components, reflecting the mutual generation of Earth producing Metal in the Five Elements theory',
+            'Avoid using characters related to natural enemies such as "狐" (fox), "狼" (wolf), etc.',
+            'Names with components like "勤" (diligent), "晨" (morning), "明" (bright) are suitable, symbolizing early rising and diligence'
           ],
           maleNames: [
-            { characters: '金鸣', pinyin: 'Jīn Míng', meaning: '金玉满堂，声名远播' },
-            { characters: '晨阳', pinyin: 'Chén Yáng', meaning: '清晨阳光，朝气蓬勃' },
-            { characters: '铭志', pinyin: 'Míng Zhì', meaning: '铭记于心，志向远大' }
+            { characters: '金鸣', pinyin: 'Jīn Míng', meaning: 'Gold abundance, widely known' },
+            { characters: '晨阳', pinyin: 'Chén Yáng', meaning: 'Morning sunshine, full of vitality' },
+            { characters: '铭志', pinyin: 'Míng Zhì', meaning: 'Inscribed in heart, with lofty aspirations' }
           ],
           femaleNames: [
-            { characters: '曦瑶', pinyin: 'Xī Yáo', meaning: '旭日东升，如美玉般珍贵' },
-            { characters: '慧颖', pinyin: 'Huì Yǐng', meaning: '聪慧颖悟，才智过人' },
-            { characters: '锦媛', pinyin: 'Jǐn Yuán', meaning: '锦绣华丽，贤淑美丽' }
+            { characters: '曦瑶', pinyin: 'Xī Yáo', meaning: 'Rising sun, precious as jade' },
+            { characters: '慧颖', pinyin: 'Huì Yǐng', meaning: 'Intelligent and perceptive, exceptionally talented' },
+            { characters: '锦媛', pinyin: 'Jǐn Yuán', meaning: 'Splendid and beautiful, graceful and beautiful' }
           ]
         },
         {
@@ -385,22 +385,22 @@ export default {
           englishName: 'Dog',
           element: '土',
           compatibleSurnames: ['刘', '张', '周', '赵', '钱', '孙', '李', '王'],
-          compatibleExplanation: '狗年出生的人适合与五行属土或属金的姓氏相配，这些姓氏能增强狗的忠诚可靠特性，达到相生相助的效果。',
+          compatibleExplanation: 'People born in the Year of the Dog are suitable for surnames with Earth or Metal elements, which can enhance the loyal and reliable characteristics of the Dog, achieving a mutually beneficial effect.',
           namingPrinciples: [
-            '宜用带"土"、"田"、"阜"等与土相关的字，如：均、坚、岗、培等',
-            '宜用带"金"、"钅"等与金相关的字，体现金克木(敌人)的五行相生',
-            '避免使用与"兔"等相冲动物相关的字',
-            '适合有"忠"、"诚"、"信"等字根的名字，象征忠诚守信'
+            'It is advisable to use characters with "土", "田", "阜" and other earth-related components, such as: 均 (jun), 坚 (jian), 岗 (gang), 培 (pei), etc.',
+            'It is advisable to use characters with "金", "钅" and other metal-related components, reflecting the Five Elements theory where Metal conquers Wood (enemies)',
+            'Avoid using characters related to conflicting animals such as "兔" (rabbit), etc.',
+            'Names with components like "忠" (loyal), "诚" (honest), "信" (trustworthy) are suitable, symbolizing loyalty and honesty'
           ],
           maleNames: [
-            { characters: '忠毅', pinyin: 'Zhōng Yì', meaning: '忠诚坚毅，刚强不屈' },
-            { characters: '信然', pinyin: 'Xìn Rán', meaning: '诚信无疑，坦然自若' },
-            { characters: '铮诚', pinyin: 'Zhēng Chéng', meaning: '铮铮铁骨，诚实可靠' }
+            { characters: '忠毅', pinyin: 'Zhōng Yì', meaning: 'Loyal and resolute, strong and unyielding' },
+            { characters: '信然', pinyin: 'Xìn Rán', meaning: 'Trustworthy and assured, calm and composed' },
+            { characters: '铮诚', pinyin: 'Zhēng Chéng', meaning: 'Strong as iron, honest and reliable' }
           ],
           femaleNames: [
-            { characters: '慧真', pinyin: 'Huì Zhēn', meaning: '聪慧真诚，本性纯真' },
-            { characters: '依林', pinyin: 'Yī Lín', meaning: '温顺依人，如林般庇护' },
-            { characters: '珺瑶', pinyin: 'Jùn Yáo', meaning: '美好珍贵，如美玉般纯净' }
+            { characters: '慧真', pinyin: 'Huì Zhēn', meaning: 'Intelligent and sincere, genuinely pure' },
+            { characters: '依林', pinyin: 'Yī Lín', meaning: 'Gentle and dependent, sheltering like a forest' },
+            { characters: '珺瑶', pinyin: 'Jùn Yáo', meaning: 'Good and precious, pure as beautiful jade' }
           ]
         },
         {
@@ -408,22 +408,22 @@ export default {
           englishName: 'Pig',
           element: '水',
           compatibleSurnames: ['张', '王', '赵', '钱', '孙', '李', '周', '吴'],
-          compatibleExplanation: '猪年出生的人适合与五行属水或属木的姓氏相配，这些姓氏能增强猪的温厚诚实特性，达到相生相助的效果。',
+          compatibleExplanation: 'People born in the Year of the Pig are suitable for surnames with Water or Wood elements, which can enhance the kind and honest characteristics of the Pig, achieving a mutually beneficial effect.',
           namingPrinciples: [
-            '宜用带"氵"、"冫"、"水"等与水相关的字，如：涵、润、泽、清等',
-            '宜用带"木"、"林"、"艹"等与木相关的字，体现水生木的五行相生',
-            '避免使用与"蛇"等相冲动物相关的字',
-            '适合有"福"、"安"、"和"等字根的名字，象征富足和美'
+            'It is advisable to use characters with "氵", "冫", "水" and other water-related components, such as: 涵 (han), 润 (run), 泽 (ze), 清 (qing), etc.',
+            'It is advisable to use characters with "木", "林", "艹" and other wood-related components, reflecting the mutual generation of Water producing Wood in the Five Elements theory',
+            'Avoid using characters related to conflicting animals such as "蛇" (snake), etc.',
+            'Names with components like "福" (fortune), "安" (peace), "和" (harmony) are suitable, symbolizing wealth and harmony'
           ],
           maleNames: [
-            { characters: '福泽', pinyin: 'Fú Zé', meaning: '福气深厚，恩泽广被' },
-            { characters: '安然', pinyin: 'Ān Rán', meaning: '安宁祥和，坦然自若' },
-            { characters: '宏济', pinyin: 'Hóng Jì', meaning: '宏大博远，济世利人' }
+            { characters: '福泽', pinyin: 'Fú Zé', meaning: 'Fortune and blessing, widespread beneficence' },
+            { characters: '安然', pinyin: 'Ān Rán', meaning: 'Peaceful and calm, composed and at ease' },
+            { characters: '宏济', pinyin: 'Hóng Jì', meaning: 'Great and vast, helping the world and benefiting people' }
           ],
           femaleNames: [
-            { characters: '雅琳', pinyin: 'Yǎ Lín', meaning: '优雅大方，如美玉般珍贵' },
-            { characters: '安芮', pinyin: 'Ān Ruì', meaning: '安宁美好，如嫩芽般生机' },
-            { characters: '涵蕊', pinyin: 'Hán Ruǐ', meaning: '包容涵养，如花蕊般美丽' }
+            { characters: '雅琳', pinyin: 'Yǎ Lín', meaning: 'Elegant and graceful, precious as jade' },
+            { characters: '安芮', pinyin: 'Ān Ruì', meaning: 'Peaceful and beautiful, like tender sprouts full of vitality' },
+            { characters: '涵蕊', pinyin: 'Hán Ruǐ', meaning: 'Inclusive and nurturing, beautiful as flower buds' }
           ]
         }
       ]
