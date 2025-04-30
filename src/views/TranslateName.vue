@@ -34,7 +34,7 @@
             
             <button type="submit" class="submit-button" :class="{ 'loading': isLoading }">
               <span v-if="isLoading">{{ $t('common.loading') }}</span>
-              <span v-else>{{ $t('translate.translateButton') }}</span>
+              <span v-else>{{ translateButtonText }}</span>
             </button>
           </form>
         </div>
@@ -77,35 +77,7 @@
                   </svg>
                   {{ locale === 'zh' ? '复制' : 'Copy' }}
                 </button>
-                
-                <button class="action-btn share-btn" @click="shareResult">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="18" cy="5" r="3"></circle>
-                    <circle cx="6" cy="12" r="3"></circle>
-                    <circle cx="18" cy="19" r="3"></circle>
-                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                  </svg>
-                  {{ locale === 'zh' ? '分享' : 'Share' }}
-                </button>
               </div>
-              <div class="name-explanation">
-                <div class="meaning-text">
-                  <span v-if="result.explanation">{{ result.explanation }}</span>
-                  <span v-else>{{ locale === 'zh' ? '名字含义加载中...' : 'Loading name meaning...' }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 将结果解释显示在底部的组件中 -->
-        <div class="name-analysis-container" v-if="results.length">
-          <div class="name-analysis-box">
-            <div class="name-analysis-icon">命</div>
-            <div class="name-analysis-content">
-              <div v-if="results[0] && results[0].explanation">{{ results[0].explanation }}</div>
-              <div v-else>名字分析加载中...</div>
             </div>
           </div>
         </div>
@@ -121,11 +93,16 @@ import { translateName } from '@/services/openaiService';
 import * as openaiService from '@/services/openaiService';
 import { nameTranslationPrompts } from '@/services/promptTemplates';
 import LoadingIndicator from '@/components/LoadingIndicator.vue';
+import { useI18n } from 'vue-i18n';
 
 export default {
   name: 'TranslateName',
   components: {
     LoadingIndicator
+  },
+  setup() {
+    const { locale } = useI18n();
+    return { locale };
   },
   data() {
     return {
@@ -136,17 +113,17 @@ export default {
       results: [],
       errorMessage: '',
       languageOptions: [
-        { code: 'us', displayCode: 'US', icon: 'USA', text: '将英语名字翻译成中文名', fullName: '美国英语 (American English)' },
-        { code: 'fr', displayCode: 'FR', icon: '🇫🇷', text: '将法语名字翻译成中文名', fullName: '法语 (French)' },
-        { code: 'de', displayCode: 'DE', icon: '🇩🇪', text: '将德语名字翻译成中文名', fullName: '德语 (German)' },
-        { code: 'ru', displayCode: 'RU', icon: '🇷🇺', text: '将俄语名字翻译成中文名', fullName: '俄语 (Russian)' },
-        { code: 'jp', displayCode: 'JP', icon: '🇯🇵', text: '将日语名字翻译成中文名', fullName: '日语 (Japanese)' },
-        { code: 'kr', displayCode: 'KR', icon: '🇰🇷', text: '将韩语名字翻译成中文名', fullName: '韩语 (Korean)' },        
-        { code: 'es', displayCode: 'ES', icon: '🇪🇸', text: '将西班牙语名字翻译成中文名', fullName: '西班牙语 (Spanish)' },
-        { code: 'ar', displayCode: 'AE', icon: '🇦🇪', text: '将阿拉伯语名字翻译成中文名', fullName: '阿拉伯语 (Arabic)' },
-        { code: 'pt', displayCode: 'PT', icon: '🇵🇹', text: '将葡萄牙语名字翻译成中文名', fullName: '葡萄牙语 (Portuguese)' },
-        { code: 'it', displayCode: 'IT', icon: '🇮🇹', text: '将意大利语名字翻译成中文名', fullName: '意大利语 (Italian)' },
-        { code: 'hi', displayCode: 'IN', icon: '🇮🇳', text: '将印地语名字翻译成中文名', fullName: '印地语 (Hindi)' }
+        { code: 'us', displayCode: 'US', text: 'Translate English name to Chinese', fullName: '美国英语 (American English)' },
+        { code: 'fr', displayCode: 'FR', text: 'Traduire un nom français en chinois', fullName: '法语 (French)' },
+        { code: 'de', displayCode: 'DE', icon: '🇩🇪', text: 'Deutschen Namen ins Chinesische übersetzen', fullName: '德语 (German)' },
+        { code: 'ru', displayCode: 'RU', icon: '🇷🇺', text: 'Перевести русское имя на китайский', fullName: '俄语 (Russian)' },
+        { code: 'jp', displayCode: 'JP', icon: '🇯🇵', text: '日本語の名前を中国語に翻訳する', fullName: '日语 (Japanese)' },
+        { code: 'kr', displayCode: 'KR', icon: '🇰🇷', text: '한국어 이름을 중국어로 번역', fullName: '韩语 (Korean)' },        
+        { code: 'es', displayCode: 'ES', icon: '🇪🇸', text: 'Traducir nombre español al chino', fullName: '西班牙语 (Spanish)' },
+        { code: 'ae', displayCode: 'AE', icon: '🇦🇪', text: 'ترجمة الاسم العربي إلى الصينية', fullName: '阿拉伯语 (Arabic)' },
+        { code: 'pt', displayCode: 'PT', icon: '🇵🇹', text: 'Traduzir nome português para chinês', fullName: '葡萄牙语 (Portuguese)' },
+        { code: 'it', displayCode: 'IT', icon: '🇮🇹', text: 'Traduci nome italiano in cinese', fullName: '意大利语 (Italian)' },
+        { code: 'in', displayCode: 'IN', icon: '🇮🇳', text: 'हिंदी नाम को चीनी में अनुवाद करें', fullName: '印地语 (Hindi)' }
       ],
       currentLanguage: 'us'
     }
@@ -157,23 +134,40 @@ export default {
       return lang ? lang.text : this.$t('translate.fullName');
     },
     currentLanguagePlaceholder() {
-      // 根据不同语言返回不同的占位符
+      // 根据不同语言返回不同语言的占位符
       const placeholders = {
-        us: '请输入英语名字...',
-        jp: '请输入日语名字...',
-        kr: '请输入韩语名字...',
-        gb: '请输入英语名字...',
-        fr: '请输入法语名字...',
-        de: '请输入德语名字...',
-        ru: '请输入俄语名字...',
-        es: '请输入西班牙语名字...',
-        ar: '请输入阿拉伯语名字...',
-        pt: '请输入葡萄牙语名字...',
-        it: '请输入意大利语名字...',
-        hi: '请输入印地语名字...',
-        zh: '请输入中文名字(将优化重新设计)...'
+        us: 'Enter your English name...',
+        jp: '日本語の名前を入力してください...',
+        kr: '한국어 이름을 입력하세요...',
+        fr: 'Entrez votre nom français...',
+        de: 'Geben Sie Ihren deutschen Namen ein...',
+        ru: 'Введите ваше русское имя...',
+        es: 'Ingrese su nombre en español...',
+        ae: 'أدخل اسمك باللغة العربية...',
+        pt: 'Digite seu nome em português...',
+        it: 'Inserisci il tuo nome italiano...',
+        in: 'अपना हिंदी नाम दर्ज करें...',
+        zh: '请输入中文名字...'
       };
       return placeholders[this.currentLanguage] || this.$t('translate.fullNamePlaceholder');
+    },
+    translateButtonText() {
+      // 根据不同语言返回对应语言的翻译按钮文字
+      const buttonTexts = {
+        us: 'Translate',
+        jp: '翻訳する',
+        kr: '번역하기',
+        fr: 'Traduire',
+        de: 'Übersetzen',
+        ru: 'Перевести',
+        es: 'Traducir',
+        ae: 'ترجمة',
+        pt: 'Traduzir',
+        it: 'Traduci',
+        in: 'अनुवाद करें',
+        zh: '翻译'
+      };
+      return buttonTexts[this.currentLanguage] || this.$t('translate.translateButton');
     }
   },
   methods: {
@@ -183,6 +177,8 @@ export default {
         return;
       }
       
+      // 清空之前的结果
+      this.results = [];
       this.isLoading = true;
       this.errorMessage = ''; // 清除之前的错误信息
       
@@ -224,15 +220,14 @@ export default {
           us: 'en', // 美国英语
           jp: 'ja', // 日语
           kr: 'ko', // 韩语
-          gb: 'en', // 英国英语
           fr: 'fr', // 法语
           de: 'de', // 德语
           ru: 'ru', // 俄语
           es: 'es', // 西班牙语
-          ar: 'ar', // 阿拉伯语
+          ae: 'ar', // 阿拉伯语
           pt: 'pt', // 葡萄牙语
           it: 'it', // 意大利语
-          hi: 'hi', // 印地语
+          in: 'hi', // 印地语
           zh: 'zh'  // 中文
         };
 
@@ -570,23 +565,95 @@ export default {
       return pinyinMap[surname] || 'Lǐ';
     },
     
-    playPronunciation(characters) {
-      // 未来实现: 接入文字转语音API
-      console.log(`播放发音: ${characters}`);
-      alert(`播放发音: ${characters}`);
+    playPronunciation(text) {
+      if (!text) {
+        console.error('无法播放：文本为空');
+        return;
+      }
       
-      // 示例实现方向:
-      // 1. 调用语音合成API（如百度、讯飞等）
-      // 2. 播放返回的音频
+      console.log(`尝试播放发音: ${text}`);
+      
+      if ('speechSynthesis' in window) {
+        // 停止当前正在播放的语音
+        window.speechSynthesis.cancel();
+        
+        // 创建新的语音对象
+        const utterance = new SpeechSynthesisUtterance();
+        
+        // 保存utterance引用，防止垃圾回收
+        this.currentUtterance = utterance;
+        
+        // 获取可用的声音
+        const voices = window.speechSynthesis.getVoices();
+        
+        // 查找中文声音优先级：
+        // 1. 首选普通话(中国大陆)
+        // 2. 其次中文（台湾）或其他中文声音
+        // 3. 如果没有中文声音，使用默认声音
+        let chineseVoice = voices.find(voice => voice.lang.match(/zh[-_]CN/i) && voice.localService);
+        
+        if (!chineseVoice) {
+          chineseVoice = voices.find(voice => voice.lang.match(/zh[-_]CN/i));
+        }
+        
+        if (!chineseVoice) {
+          chineseVoice = voices.find(voice => voice.lang.match(/zh[-_]/i));
+        }
+        
+        // 如果有中文声音，使用它
+        if (chineseVoice) {
+          utterance.voice = chineseVoice;
+          utterance.lang = chineseVoice.lang.replace('_', '-');
+        } else {
+          utterance.lang = 'zh-CN';
+        }
+        
+        // 设置发音内容
+        utterance.text = text;
+        
+        // 设置语音参数 - 调整以获得更好的发音
+        utterance.volume = 1;    // 音量: 0 到 1
+        utterance.rate = 0.8;    // 语速: 0.1 到 10 (稍微放慢语速使发音更清晰)
+        utterance.pitch = 1.2;   // 音调: 0 到 2 (稍微提高音调增强清晰度)
+        
+        // 添加错误处理
+        utterance.onerror = (event) => {
+          console.error('语音合成错误:', event.error);
+          message.error(this.locale === 'zh' ? '发音失败，请重试' : 'Pronunciation failed, please try again');
+        };
+        
+        // 添加完成事件处理
+        utterance.onend = () => {
+          this.currentUtterance = null;
+        };
+        
+        // 播放语音
+        window.speechSynthesis.speak(utterance);
+      } else {
+        console.warn('当前浏览器不支持语音合成API');
+        message.warning(this.locale === 'zh' ? '您的浏览器不支持语音合成' : 'Your browser does not support speech synthesis');
+      }
     },
     
     // 添加处理播放发音的点击事件方法
     handlePlayClick(result) {
-      if (result && result.characters) {
-        this.playPronunciation(result.characters);
+      if (!result) {
+        console.error('无法播放：结果对象为空');
+        return;
+      }
+      
+      // 尝试多种可能的属性名来获取中文名
+      const textToPlay = result.translatedName || result.characters || result.name;
+      
+      if (textToPlay) {
+        this.playPronunciation(textToPlay);
       } else if (this.results && this.results.length > 0) {
         // 如果没有单个结果对象但有结果数组，播放第一个结果的发音
-        this.playPronunciation(this.results[0].characters || this.results[0].translatedName);
+        const firstResult = this.results[0];
+        this.playPronunciation(firstResult.translatedName || firstResult.characters || firstResult.name);
+      } else {
+        console.error('无法找到要播放的文本');
+        message.error(this.locale === 'zh' ? '找不到要播放的文本' : 'No text to play');
       }
     },
     
@@ -611,11 +678,17 @@ export default {
       }
     },
     switchLanguage(code) {
+      // 更新当前语言
       this.currentLanguage = code;
       // 清空已有结果
       this.results = [];
-      // 可以选择是否要清空输入框
-      // this.formData.fullName = '';
+      // 保存当前表单数据
+      const currentName = this.formData.fullName;
+      // 清空输入框中的文字
+      this.formData.fullName = '';
+      // 获取新语言的label文本
+      const languageLabel = this.languageOptions.find(l => l.code === code)?.text || '';
+      console.log(`切换到语言: ${code}, 提示文本: ${languageLabel}`);
     }
   }
 }

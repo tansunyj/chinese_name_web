@@ -12,6 +12,15 @@ export default {
     // 确保应用始终使用英文
     locale.value = 'en';
     localStorage.setItem('userLanguage', 'en');
+    
+    // 监听路由变化，确保每次路由变化时也使用英文
+    const forceEnglish = () => {
+      locale.value = 'en';
+    };
+    
+    // 添加页面加载完成后的处理
+    setTimeout(forceEnglish, 100);
+    
     return {};
   }
 }
