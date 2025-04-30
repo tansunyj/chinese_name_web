@@ -8,7 +8,7 @@ export default {
     login: 'Login',
     signup: 'Sign Up',
     siteName: 'ChineseName.us',
-    aboutUs: 'About Us'
+    aboutUs: 'About'
   },
   footer: {
     aboutUs: 'About Us',

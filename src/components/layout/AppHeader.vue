@@ -10,7 +10,7 @@
       
       <nav class="main-nav">
         <ul>
-          <li><router-link to="/">Chinese Names</router-link></li>
+          <li><router-link to="/">Home</router-link></li>
           <li><router-link to="/custom">{{ $t('header.customName') }} Generator</router-link></li>
           <li><router-link to="/translate">Translate to Chinese</router-link></li>
           <!--li><router-link to="/multilingual">{{ $t('header.multilingualName') }}</router-link></li-->
