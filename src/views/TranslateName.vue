@@ -1,7 +1,7 @@
 <template>
   <div class="translate-page">
     <div class="container">
-      <h1 class="page-title">{{ $t('translate.title') }}</h1>
+      <h1 class="page-title">{{ titleText }}</h1>
       
       <div class="content">
         <div class="form-section">
@@ -48,8 +48,8 @@
           <div class="results-grid">
             <div class="result-card" v-for="(result, index) in results" :key="index">
               <div class="result-header">
-                <div class="result-characters">{{ result.translatedName }}</div>
-                <div class="result-pinyin">{{ result.pronunciationGuide }}</div>
+                <div class="result-characters">{{ result.translate }}</div>
+                <div class="result-pinyin">{{ result.pronunciation }}</div>
               </div>
               <div class="result-details">
                 <div class="result-item">
@@ -70,7 +70,7 @@
                   {{ locale === 'zh' ? '播放读音' : 'Play' }}
                 </button>
                 
-                <button class="action-btn" @click="copyToClipboard(result.characters)">
+                <button class="action-btn" @click="copyToClipboard(result.translate)">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                     <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -113,22 +113,26 @@ export default {
       results: [],
       errorMessage: '',
       languageOptions: [
-        { code: 'us', displayCode: 'US', text: 'Translate English name to Chinese', fullName: '美国英语 (American English)' },
-        { code: 'fr', displayCode: 'FR', text: 'Traduire un nom français en chinois', fullName: '法语 (French)' },
-        { code: 'de', displayCode: 'DE', icon: '🇩🇪', text: 'Deutschen Namen ins Chinesische übersetzen', fullName: '德语 (German)' },
-        { code: 'ru', displayCode: 'RU', icon: '🇷🇺', text: 'Перевести русское имя на китайский', fullName: '俄语 (Russian)' },
-        { code: 'jp', displayCode: 'JP', icon: '🇯🇵', text: '日本語の名前を中国語に翻訳する', fullName: '日语 (Japanese)' },
-        { code: 'kr', displayCode: 'KR', icon: '🇰🇷', text: '한국어 이름을 중국어로 번역', fullName: '韩语 (Korean)' },        
-        { code: 'es', displayCode: 'ES', icon: '🇪🇸', text: 'Traducir nombre español al chino', fullName: '西班牙语 (Spanish)' },
-        { code: 'ae', displayCode: 'AE', icon: '🇦🇪', text: 'ترجمة الاسم العربي إلى الصينية', fullName: '阿拉伯语 (Arabic)' },
-        { code: 'pt', displayCode: 'PT', icon: '🇵🇹', text: 'Traduzir nome português para chinês', fullName: '葡萄牙语 (Portuguese)' },
-        { code: 'it', displayCode: 'IT', icon: '🇮🇹', text: 'Traduci nome italiano in cinese', fullName: '意大利语 (Italian)' },
-        { code: 'in', displayCode: 'IN', icon: '🇮🇳', text: 'हिंदी नाम को चीनी में अनुवाद करें', fullName: '印地语 (Hindi)' }
+        { code: 'us', displayCode: 'US', text: 'Translate English name to Chinese', title: 'Translate Your Name to Chinese', fullName: '美国英语 (American English)' },
+        { code: 'fr', displayCode: 'FR', text: 'Traduire un nom français en chinois', title: 'Traduisez Votre Nom en Chinois', fullName: '法语 (French)' },
+        { code: 'de', displayCode: 'DE', icon: '🇩🇪', text: 'Deutschen Namen ins Chinesische übersetzen', title: 'Übersetzen Sie Ihren Namen ins Chinesische', fullName: '德语 (German)' },
+        { code: 'ru', displayCode: 'RU', icon: '🇷🇺', text: 'Перевести русское имя на китайский', title: 'Переведите Ваше Имя на Китайский', fullName: '俄语 (Russian)' },
+        { code: 'jp', displayCode: 'JP', icon: '🇯🇵', text: '日本語の名前を中国語に翻訳する', title: 'あなたの名前を中国語に翻訳', fullName: '日语 (Japanese)' },
+        { code: 'kr', displayCode: 'KR', icon: '🇰🇷', text: '한국어 이름을 중국어로 번역', title: '당신의 이름을 중국어로 번역', fullName: '韩语 (Korean)' },        
+        { code: 'es', displayCode: 'ES', icon: '🇪🇸', text: 'Traducir nombre español al chino', title: 'Traduce Tu Nombre al Chino', fullName: '西班牙语 (Spanish)' },
+        { code: 'ae', displayCode: 'AE', icon: '🇦🇪', text: 'ترجمة الاسم العربي إلى الصينية', title: 'ترجم اسمك إلى اللغة الصينية', fullName: '阿拉伯语 (Arabic)' },
+        { code: 'pt', displayCode: 'PT', icon: '🇵🇹', text: 'Traduzir nome português para chinês', title: 'Traduza Seu Nome para Chinês', fullName: '葡萄牙语 (Portuguese)' },
+        { code: 'it', displayCode: 'IT', icon: '🇮🇹', text: 'Traduci nome italiano in cinese', title: 'Traduci il Tuo Nome in Cinese', fullName: '意大利语 (Italian)' },
+        { code: 'in', displayCode: 'IN', icon: '🇮🇳', text: 'हिंदी नाम को चीनी में अनुवाद करें', title: 'अपने नाम का चीनी में अनुवाद करें', fullName: '印地语 (Hindi)' }
       ],
       currentLanguage: 'us'
     }
   },
   computed: {
+    titleText() {
+      const lang = this.languageOptions.find(l => l.code === this.currentLanguage);
+      return lang ? lang.title : this.$t('translate.title');
+    },
     currentLanguageTitle() {
       const lang = this.languageOptions.find(l => l.code === this.currentLanguage);
       return lang ? lang.text : this.$t('translate.fullName');
@@ -192,8 +196,8 @@ export default {
               items: {
                 type: "object",
                 properties: {
-                  translatedName: { type: "string" },        // 中文名字
-                  pronunciationGuide: { type: "string" },    // 拼音
+                  translate: { type: "string" },        // 中文名字
+                  pronunciation: { type: "string" },    // 拼音
                   explanation: { type: "string" },           // 含义解释
                   cultural: { type: "string" },              // 文化含义
                   analysis: {
@@ -209,7 +213,7 @@ export default {
                     }
                   }
                 },
-                required: ["translatedName", "pronunciationGuide", "explanation"]
+                required: ["translate", "pronunciation", "explanation"]
               }
             }
           }
@@ -252,31 +256,46 @@ export default {
         const prompt = `请将${languageNames[sourceLanguage] || sourceLanguage}名字"${this.formData.fullName}"翻译成中文，
 使用音义结合（同时考虑发音和含义）方法。
 请提供3个不同的翻译方案，每个方案包括:
-1. 翻译后的中文名字 (translatedName字段)
-2. 拼音发音指南 (pronunciationGuide字段)
-3. 含义解释 (explanation字段)
-4. 文化含义 (cultural字段，可选)
+1. 翻译后的中文名字 (translate字段)
+2. 拼音发音指南 (pronunciation字段)
+3. 含义解释 (explanation字段)，**这是最重要的部分，必须严格遵守以下要求**：
+   - 你必须完全站在${sourceLanguage}语言使用者的视角，以其母语思维方式来思考和表达
+   - 使用${sourceLanguage}语言的表达习惯、思维方式和文化视角解释名字的意义和选字原因
+   - 绝对不能简单地将中文思维方式的解释翻译成${sourceLanguage}语言
+   - 要像对一个只懂${sourceLanguage}语言且不了解中文的人解释这个中文名字一样去撰写解释
+   - 解释应包含音译对应关系、汉字含义以及中国文化背景，但表达方式必须符合${sourceLanguage}语言的习惯
+   - 撰写时应该思考：如果${sourceLanguage}语言的专业翻译者来解释这个名字，他们会怎么表达
+   - 整体解释应当让${sourceLanguage}语言的原生使用者感到自然流畅，没有翻译腔
+
+针对不同语言的示例：
+- 英语："The name 'John' is translated to '约翰' (Yuē Hàn) in Chinese. This translation was chosen to match the sound of the original name. In Chinese naming culture, they look for characters that not only sound similar, but also carry positive meanings. Here, '约' suggests 'promise' or 'appointment', while '翰' refers to a 'writing brush' - a symbol of scholarship in traditional Chinese culture."
+
+- 日语："「Suzuki」という名前は中国語で「铃木」(Líng Mù)と翻訳されます。これは音の類似性に基づいた翻訳で、「铃」は「鈴、ベル」を意味し、「木」は「木、自然」を表します。この名前は日本語の「鈴木」と同じ漢字を使っていますが、発音が若干異なります。中国では外国人の名前を翻訳する際、良い意味を持つ漢字を選ぶことが重視されます。"
+
+- 法语："Le nom 'Pierre' est traduit en chinois comme '皮埃尔' (Pí Āi Ěr). Cette traduction est basée sur la similarité phonétique, où chaque caractère chinois représente une partie du son original. En chinois, '皮' (pí) évoque la 'peau' ou 'surface', '埃' (āi) est souvent utilisé pour les sons étrangers, et '尔' (ěr) est un caractère élégant utilisé dans de nombreux noms. Dans la culture chinoise, on choisit des caractères qui non seulement reproduisent la sonorité du nom original, mais qui portent aussi des connotations positives."
+
+4. 文化含义 (cultural字段，也必须完全从${sourceLanguage}语言视角出发描述，比解释更侧重于文化内涵)
 
 请严格按照以下JSON结构返回，确保字段名称完全一致：
 {
   "translations": [
     {
-      "translatedName": "中文名字1",
-      "pronunciationGuide": "拼音1",
-      "explanation": "含义解释1",
-      "cultural": "文化含义1"
+      "translate": "中文名字1",
+      "pronunciation": "拼音1",
+      "explanation": "完全以${sourceLanguage}语言用户视角的解释1",
+      "cultural": "以${sourceLanguage}语言为主的文化含义解释1"
     },
     {
-      "translatedName": "中文名字2",
-      "pronunciationGuide": "拼音2",
-      "explanation": "含义解释2",
-      "cultural": "文化含义2"
+      "translate": "中文名字2",
+      "pronunciation": "拼音2",
+      "explanation": "完全以${sourceLanguage}语言用户视角的解释2",
+      "cultural": "以${sourceLanguage}语言为主的文化含义解释2"
     },
     {
-      "translatedName": "中文名字3",
-      "pronunciationGuide": "拼音3",
-      "explanation": "含义解释3",
-      "cultural": "文化含义3"
+      "translate": "中文名字3",
+      "pronunciation": "拼音3",
+      "explanation": "完全以${sourceLanguage}语言用户视角的解释3",
+      "cultural": "以${sourceLanguage}语言为主的文化含义解释3"
     }
   ]
 }`;
@@ -304,23 +323,104 @@ export default {
           if (!item) return null; // 跳过空项
           
           try {
-            // 尝试从各种可能的字段名提取数据
-            const translatedName = item.translatedName || item.characters || item.name || item.chineseName || '';
-            const pronunciationGuide = item.pronunciationGuide || item.pinyin || item.pronunciation || '';
-            const explanation = item.explanation || item.meaning || item.meanings || item.description || '';
-            const cultural = item.cultural || item.culturalMeaning || item.culture || '';
+            // 智能匹配字段名称：查找包含指定子字符串的字段
+            const findField = (obj, substrings, defaultValue = '') => {
+              // 首先检查直接匹配
+              for (const substr of substrings) {
+                if (obj[substr]) return obj[substr];
+              }
+              
+              // 然后查找包含子字符串的字段
+              const keys = Object.keys(obj);
+              for (const substr of substrings) {
+                const matchedKey = keys.find(key => key.toLowerCase().includes(substr.toLowerCase()));
+                if (matchedKey) return obj[matchedKey];
+              }
+              
+              return defaultValue;
+            };
+            
+            // 查找翻译名字字段
+            const translate = findField(
+              item, 
+              ['translate', 'translatedName', 'characters', 'name', 'chineseName']
+            );
+            
+            // 查找发音指南字段
+            const pronunciation = findField(
+              item, 
+              ['pronunciation', 'pronunciationGuide', 'pinyin']
+            );
+            
+            // 查找解释字段
+            const explanation = findField(
+              item, 
+              ['explanation', 'meaning', 'meanings', 'description']
+            );
+            
+            // 查找文化含义字段
+            const cultural = findField(
+              item, 
+              ['cultural', 'culturalMeaning', 'culture']
+            );
             
             // 如果没有翻译名称，跳过此项
-            if (!translatedName) {
+            if (!translate) {
               console.warn('跳过没有翻译名称的结果项:', item);
               return null;
             }
             
             // 创建标准化的结果对象
+            const translatedName = translate;
+            
+            // 确保explanation是从源语言视角解释的格式
+            let formattedExplanation = explanation;
+            if (explanation) {
+              // 判断是否已经是从源语言视角解释的格式
+              const hasSourceLanguageFormat = 
+                // 检查是否已包含明显的源语言特征
+                (sourceLanguage === 'en' && explanation.match(/^(The|This|In Chinese|When translated|Your name)/i)) ||
+                (sourceLanguage === 'ja' && (explanation.includes('という名前') || explanation.includes('翻訳されます') || explanation.includes('中国語で'))) ||
+                (sourceLanguage === 'ko' && (explanation.includes('이름은') || explanation.includes('번역됩니다') || explanation.includes('중국어로'))) ||
+                (sourceLanguage === 'fr' && explanation.match(/^(Le nom|En chinois|Votre nom|Cette traduction)/i)) ||
+                (sourceLanguage === 'de' && explanation.match(/^(Der Name|Im Chinesischen|Ihr Name|Diese Übersetzung)/i)) ||
+                (sourceLanguage === 'ru' && explanation.match(/^(Имя|В китайском|Ваше имя|Этот перевод)/i)) ||
+                (sourceLanguage === 'es' && explanation.match(/^(El nombre|En chino|Su nombre|Esta traducción)/i)) ||
+                (sourceLanguage === 'pt' && explanation.match(/^(O nome|Em chinês|Seu nome|Esta tradução)/i)) ||
+                (sourceLanguage === 'it' && explanation.match(/^(Il nome|In cinese|Il tuo nome|Questa traduzione)/i)) ||
+                (sourceLanguage === 'ar' && explanation.match(/^(الاسم|في الصينية|اسمك|هذه الترجمة)/i)) ||
+                (sourceLanguage === 'hi' && explanation.match(/^(नाम|चीनी में|आपका नाम|यह अनुवाद)/i)) ||
+                (sourceLanguage === 'zh' && /[\u4e00-\u9fa5]/.test(explanation.substring(0, 10)));
+              
+              if (!hasSourceLanguageFormat) {
+                // 根据当前选择的语言设置从该语言视角的解释格式
+                const sourceLangPerspectives = {
+                  'en': (name, chinese, expl) => `The name "${name}" is translated to "${chinese}" in Chinese. This translation is based on phonetic similarity between the languages. ${expl.replace(/意为|象征/g, 'The characters mean').replace(/，/g, ' and ')}. In Chinese culture, these characters are considered to have positive connotations and create a name that sounds pleasant to the ear.`,
+                  'fr': (name, chinese, expl) => `Le nom "${name}" est traduit en chinois par "${chinese}". Cette traduction est basée sur la similitude phonétique entre les langues. ${expl.replace(/意为|象征/g, 'Les caractères signifient').replace(/，/g, ' et ')}. Dans la culture chinoise, ces caractères sont considérés comme ayant des connotations positives et créent un nom agréable à l'oreille.`,
+                  'de': (name, chinese, expl) => `Der Name "${name}" wird im Chinesischen als "${chinese}" übersetzt. Diese Übersetzung basiert auf der phonetischen Ähnlichkeit zwischen den Sprachen. ${expl.replace(/意为|象征/g, 'Die Zeichen bedeuten').replace(/，/g, ' und ')}. In der chinesischen Kultur werden diese Zeichen als positiv angesehen und ergeben einen Namen, der angenehm klingt.`,
+                  'ru': (name, chinese, expl) => `Имя "${name}" переводится на китайский как "${chinese}". Этот перевод основан на фонетическом сходстве между языками. ${expl.replace(/意为|象征/g, 'Эти иероглифы означают').replace(/，/g, ' и ')}. В китайской культуре эти иероглифы считаются имеющими положительные коннотации и создают имя, которое приятно звучит.`,
+                  'ja': (name, chinese, expl) => `"${name}"という名前は中国語で"${chinese}"と翻訳されます。この翻訳は言語間の音声的な類似性に基づいています。${expl.replace(/意为|象征/g, 'これらの漢字は').replace(/，/g, '、')}という意味があります。中国文化ではこれらの漢字はポジティブな意味を持ち、耳に心地よい名前になります。`,
+                  'ko': (name, chinese, expl) => `"${name}" 이름은 중국어로 "${chinese}"로 번역됩니다. 이 번역은 언어 간의 음성적 유사성을 기반으로 합니다. ${expl.replace(/意为|象征/g, '이 한자들은').replace(/，/g, ', ')} 의미가 있습니다. 중국 문화에서 이 한자들은 긍정적인 의미를 가지며 듣기 좋은 이름을 만듭니다.`,
+                  'es': (name, chinese, expl) => `El nombre "${name}" se traduce al chino como "${chinese}". Esta traducción se basa en la similitud fonética entre los idiomas. ${expl.replace(/意为|象征/g, 'Los caracteres significan').replace(/，/g, ' y ')}. En la cultura china, estos caracteres se consideran que tienen connotaciones positivas y crean un nombre que suena agradable.`,
+                  'pt': (name, chinese, expl) => `O nome "${name}" é traduzido para chinês como "${chinese}". Esta tradução é baseada na similaridade fonética entre os idiomas. ${expl.replace(/意为|象征/g, 'Os caracteres significam').replace(/，/g, ' e ')}. Na cultura chinesa, estes caracteres são considerados como tendo conotações positivas e criam um nome que soa agradável.`,
+                  'it': (name, chinese, expl) => `Il nome "${name}" viene tradotto in cinese come "${chinese}". Questa traduzione si basa sulla somiglianza fonetica tra le lingue. ${expl.replace(/意为|象征/g, 'I caratteri significano').replace(/，/g, ' e ')}. Nella cultura cinese, questi caratteri sono considerati avere connotazioni positive e creano un nome dal suono gradevole.`,
+                  'ar': (name, chinese, expl) => `يتم ترجمة الاسم "${name}" إلى الصينية كـ "${chinese}". تعتمد هذه الترجمة على التشابه الصوتي بين اللغات. ${expl.replace(/意为|象征/g, 'تعني هذه الأحرف').replace(/，/g, ' و ')}. في الثقافة الصينية، تعتبر هذه الأحرف ذات دلالات إيجابية وتخلق اسمًا يبدو جميلًا عند النطق.`,
+                  'hi': (name, chinese, expl) => `नाम "${name}" का चीनी में अनुवाद "${chinese}" है। यह अनुवाद भाषाओं के बीच ध्वनि समानता पर आधारित है। ${expl.replace(/意为|象征/g, 'इन अक्षरों का अर्थ है').replace(/，/g, ' और ')}। चीनी संस्कृति में, इन अक्षरों को सकारात्मक अर्थ वाला माना जाता है और वे एक नाम बनाते हैं जो सुनने में सुखद लगता है।`,
+                  'zh': (name, chinese, expl) => `"${name}"翻译成中文是"${chinese}"。这个翻译基于语言之间的发音相似性。${expl}。在中国文化中，这些汉字被认为具有积极的含义，并创造了一个听起来悦耳的名字。`
+                };
+                
+                const formatFn = sourceLangPerspectives[sourceLanguage] || sourceLangPerspectives['en'];
+                
+                // 使用原名、中文翻译和解释，从源语言视角生成解释文本
+                const originalName = this.formData.fullName;
+                formattedExplanation = formatFn(originalName, translatedName, explanation);
+              }
+            }
+            
             return {
-              translatedName,
-              pronunciationGuide: pronunciationGuide || `${translatedName}的拼音`, // 提供默认值
-              explanation: explanation || `${translatedName}是一个优美的中文名字`,  // 提供默认值
+              translate,
+              pronunciation: pronunciation || `${translate}的拼音`, // 提供默认值
+              explanation: formattedExplanation || this.formatExplanation(translate, pronunciation || '拼音', `${translate}是一个优美的中文名字`, this.currentLanguage),
               cultural: cultural || '',
               // 保留其他可能的字段
               ...(item.analysis ? { analysis: item.analysis } : {})
@@ -335,12 +435,7 @@ export default {
         if (normalizedResults.length === 0) {
           console.warn('没有有效的翻译结果，使用后备结果');
           const fallbackResults = this.getFallbackResults();
-          this.results = fallbackResults.map(item => ({
-            translatedName: item.characters,
-            pronunciationGuide: item.pinyin,
-            explanation: item.meaning,
-            cultural: ''
-          }));
+          this.results = fallbackResults;
           
           // 设置友好的提示信息
           this.errorMessage = this.$t('translate.errors.usingFallback');
@@ -359,12 +454,7 @@ export default {
         
         // 生成后备结果
         const fallbackResults = this.getFallbackResults();
-        this.results = fallbackResults.map(item => ({
-          translatedName: item.characters,
-          pronunciationGuide: item.pinyin,
-          explanation: item.meaning,
-          cultural: ''
-        }));
+        this.results = fallbackResults;
       } finally {
         this.isLoading = false;
       }
@@ -434,6 +524,74 @@ export default {
         console.error('解析JSON失败:', error);
         return null;
       }
+    },
+    
+    // 添加后备翻译解释的格式化函数
+    formatExplanation(char, pinyin, meaning, sourceLanguage) {
+      // 获取原名（用户输入的名字）
+      const originalName = this.formData.fullName || '';
+      
+      // 根据不同的源语言，提供完全以该语言视角的解释
+      const nativeExplanations = {
+        'en': (name, c, p, m) => {
+          return `The name "${name}" is translated to Chinese as "${c}" (pronounced "${p}"). ${m.replace(/意为|象征/g, 'This character means').replace(/，/g, ' and ')}. When translating Western names into Chinese, linguists look for characters that not only sound similar to the original name, but also have positive meanings. This creates a name that both preserves the original pronunciation and has cultural significance in Chinese society.`;
+        },
+        'fr': (name, c, p, m) => {
+          return `Le nom "${name}" est traduit en chinois par "${c}" (prononcé "${p}"). ${m.replace(/意为|象征/g, 'Ce caractère signifie').replace(/，/g, ' et ')}. Dans la culture chinoise, la traduction des noms occidentaux ne se limite pas à la simple phonétique. On choisit des caractères qui évoquent non seulement le son original, mais qui possèdent également des significations positives et auspicieuses, créant ainsi un nom à la fois reconnaissable et porteur de sens.`;
+        },
+        'de': (name, c, p, m) => {
+          return `Der Name "${name}" wird im Chinesischen als "${c}" (ausgesprochen "${p}") wiedergegeben. ${m.replace(/意为|象征/g, 'Dieses Zeichen bedeutet').replace(/，/g, ' und ')}. Bei der Übersetzung westlicher Namen ins Chinesische werden Zeichen gewählt, die nicht nur ähnlich klingen, sondern auch positive Bedeutungen tragen. Dies ist ein wichtiger kultureller Aspekt, da Namen in China traditionell eine tiefere Bedeutung haben und oft Wünsche für das Leben des Namensträgers ausdrücken.`;
+        },
+        'ru': (name, c, p, m) => {
+          return `Имя "${name}" переводится на китайский как "${c}" (произносится "${p}"). ${m.replace(/意为|象征/g, 'Этот иероглиф означает').replace(/，/g, ' и ')}. В китайской традиции перевода иностранных имён важно не только фонетическое соответствие, но и положительное значение используемых иероглифов. Это создаёт имя, которое не только звучит похоже на оригинал, но и несёт в себе благоприятный смысл в контексте китайской культуры.`;
+        },
+        'ja': (name, c, p, m) => {
+          return `"${name}"という名前は中国語で"${c}"（発音："${p}"）と表記されます。${m.replace(/意为|象征/g, 'この漢字は').replace(/，/g, '、')}という意味があります。中国語での外国人名の翻訳では、単に音が似ているだけでなく、良い意味を持つ漢字を選ぶことが重視されます。日本人の名前の場合は、漢字の意味が両国で共通していることもありますが、発音や文化的背景が異なる場合もあります。この翻訳では、原名の発音を保ちながら、中国文化においても好ましい意味を持つ名前となっています。`;
+        },
+        'ko': (name, c, p, m) => {
+          return `"${name}" 이름은 중국어로 "${c}"(발음: "${p}")로 번역됩니다. ${m.replace(/意为|象征/g, '이 글자는').replace(/，/g, ', ')} 등의 의미가 있습니다. 중국어로 외국 이름을 번역할 때는 단순히 비슷한 발음뿐만 아니라, 긍정적인 의미를 가진 글자를 선택하는 것이 중요합니다. 한국과 중국은 한자 문화권이지만, 같은 글자라도 발음과 의미가 다를 수 있으므로, 이 번역은 원래 이름의 발음을 유지하면서도 중국 문화에서 좋은 의미를 가진 이름이 되도록 선택되었습니다.`;
+        },
+        'es': (name, c, p, m) => {
+          return `El nombre "${name}" se traduce al chino como "${c}" (pronunciado "${p}"). ${m.replace(/意为|象征/g, 'Este carácter significa').replace(/，/g, ' y ')}. En la cultura china, cuando se traducen nombres extranjeros, no solo se busca una similitud fonética, sino también caracteres que tengan significados positivos. Esto es muy diferente a la tradición hispana, donde los nombres suelen traducirse por su equivalente sin cambiar su sonido original. Esta traducción ha sido elegida para preservar la sonoridad de tu nombre mientras transmite cualidades positivas en el contexto cultural chino.`;
+        },
+        'pt': (name, c, p, m) => {
+          return `O nome "${name}" é traduzido para chinês como "${c}" (pronunciado "${p}"). ${m.replace(/意为|象征/g, 'Este caractere significa').replace(/，/g, ' e ')}. Na tradição chinesa de tradução de nomes estrangeiros, não basta apenas encontrar sons semelhantes; os caracteres escolhidos devem também ter significados positivos. Diferente da tradição portuguesa onde os nomes geralmente mantêm sua pronúncia original, na China a tradução busca harmonizar o som com significados auspiciosos, criando um nome que soa familiar mas também tem um valor cultural positivo.`;
+        },
+        'it': (name, c, p, m) => {
+          return `Il nome "${name}" viene tradotto in cinese come "${c}" (pronunciato "${p}"). ${m.replace(/意为|象征/g, 'Questo carattere significa').replace(/，/g, ' e ')}. Nella cultura cinese, quando si traducono i nomi stranieri, si cercano caratteri che non solo suonino simili all'originale, ma che abbiano anche significati positivi. Diversamente dalla tradizione italiana, dove i nomi mantengono di solito la loro pronuncia originale, in Cina la traduzione mira a creare un nome che sia sia foneticamente simile sia culturalmente significativo.`;
+        },
+        'ar': (name, c, p, m) => {
+          return `تتم ترجمة الاسم "${name}" إلى اللغة الصينية كـ "${c}" (ينطق "${p}"). ${m.replace(/意为|象征/g, 'هذا الحرف يعني').replace(/，/g, ' و ')}. في الثقافة الصينية، عند ترجمة الأسماء الأجنبية، لا يتم البحث عن التشابه الصوتي فقط، بل أيضًا عن الأحرف ذات المعاني الإيجابية. على عكس التقليد العربي حيث غالبًا ما تحافظ الأسماء على نطقها الأصلي، في الصين تهدف الترجمة إلى إنشاء اسم يشبه صوتيًا الاسم الأصلي ويحمل معنى ثقافيًا إيجابيًا.`;
+        },
+        'hi': (name, c, p, m) => {
+          return `नाम "${name}" का चीनी में अनुवाद "${c}" (उच्चारण: "${p}") है। ${m.replace(/意为|象征/g, 'इस अक्षर का अर्थ है').replace(/，/g, ' और ')}। चीनी संस्कृति में, विदेशी नामों का अनुवाद करते समय, न केवल समान ध्वनि वाले अक्षरों की तलाश की जाती है, बल्कि सकारात्मक अर्थ वाले अक्षरों की भी। भारतीय परंपरा से अलग, जहां नाम अक्सर अपने मूल उच्चारण को बनाए रखते हैं, चीन में अनुवाद का उद्देश्य एक ऐसा नाम बनाना है जो ध्वनि में समान हो और सांस्कृतिक रूप से भी सार्थक हो।`;
+        },
+        'zh': (name, c, p, m) => {
+          return `"${name}"翻译成中文是"${c}"(读音："${p}")。${m}。在中文翻译外国名字时，不仅要考虑发音的相似度，还要选择具有美好含义的汉字，这样既能保留原名的发音特点，又能符合中国传统起名的文化内涵，给人以美好的印象和寓意。`;
+        }
+      };
+      
+      // 首先将currentLanguage转换为标准化的语言代码
+      const languageCodeMap = {
+        'us': 'en',
+        'jp': 'ja', 
+        'kr': 'ko',
+        'fr': 'fr',
+        'de': 'de',
+        'ru': 'ru',
+        'es': 'es',
+        'ae': 'ar',
+        'pt': 'pt',
+        'it': 'it',
+        'in': 'hi',
+        'zh': 'zh'
+      };
+      
+      const standardLanguageCode = languageCodeMap[sourceLanguage] || 'en';
+      
+      // 使用源语言的解释格式，如果没有对应的则使用英语
+      const explanationGenerator = nativeExplanations[standardLanguageCode] || nativeExplanations['en'];
+      return explanationGenerator(originalName, char, pinyin, meaning);
     },
     
     // 获取后备结果数据
@@ -508,9 +666,10 @@ export default {
         // 添加基于首字母的结果
         charOptions.forEach(option => {
           results.push({
-            characters: lastName + option.char,
-            pinyin: this.getSurnamePinyin(lastName) + ' ' + option.pinyin,
-            meaning: option.char + '(' + option.pinyin + ')' + option.meaning,
+            translate: lastName + option.char,
+            pronunciation: this.getSurnamePinyin(lastName) + ' ' + option.pinyin,
+            explanation: this.formatExplanation(option.char, option.pinyin, option.meaning, this.currentLanguage),
+            cultural: '',
             pronunciationSimilarity: 8
           });
         });
@@ -519,27 +678,30 @@ export default {
       // 确保至少有三个结果
       if (results.length < 3) {
         results.push({
-          characters: lastName + '安',
-          pinyin: this.getSurnamePinyin(lastName) + ' Ān',
-          meaning: '安(ān)意为"平安、安宁"，象征平安幸福的生活。',
+          translate: lastName + '安',
+          pronunciation: this.getSurnamePinyin(lastName) + ' Ān',
+          explanation: this.formatExplanation('安', 'Ān', '意为"平安、安宁"，象征平安幸福的生活。', this.currentLanguage),
+          cultural: '',
           pronunciationSimilarity: 6
         });
       }
       
       if (results.length < 3) {
         results.push({
-          characters: lastName + '德',
-          pinyin: this.getSurnamePinyin(lastName) + ' Dé',
-          meaning: '德(dé)意为"道德、品德"，象征高尚的品德和修养。',
+          translate: lastName + '德',
+          pronunciation: this.getSurnamePinyin(lastName) + ' Dé',
+          explanation: this.formatExplanation('德', 'Dé', '意为"道德、品德"，象征高尚的品德和修养。', this.currentLanguage),
+          cultural: '',
           pronunciationSimilarity: 5
         });
       }
       
       if (results.length < 3) {
         results.push({
-          characters: lastName + '宇',
-          pinyin: this.getSurnamePinyin(lastName) + ' Yǔ',
-          meaning: '宇(yǔ)意为"宇宙、空间"，象征广阔的胸怀和远大的志向。',
+          translate: lastName + '宇',
+          pronunciation: this.getSurnamePinyin(lastName) + ' Yǔ',
+          explanation: this.formatExplanation('宇', 'Yǔ', '意为"宇宙、空间"，象征广阔的胸怀和远大的志向。', this.currentLanguage),
+          cultural: '',
           pronunciationSimilarity: 7
         });
       }
@@ -642,15 +804,15 @@ export default {
         return;
       }
       
-      // 尝试多种可能的属性名来获取中文名
-      const textToPlay = result.translatedName || result.characters || result.name;
+      // 使用translate作为文本来播放
+      const textToPlay = result.translate;
       
       if (textToPlay) {
         this.playPronunciation(textToPlay);
       } else if (this.results && this.results.length > 0) {
         // 如果没有单个结果对象但有结果数组，播放第一个结果的发音
         const firstResult = this.results[0];
-        this.playPronunciation(firstResult.translatedName || firstResult.characters || firstResult.name);
+        this.playPronunciation(firstResult.translate);
       } else {
         console.error('无法找到要播放的文本');
         message.error(this.locale === 'zh' ? '找不到要播放的文本' : 'No text to play');

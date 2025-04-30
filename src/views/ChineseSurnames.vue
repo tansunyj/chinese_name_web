@@ -32,13 +32,13 @@
             <h3>{{ $t('chineseSurnames.origins.totem.title') }}</h3>
             <p>{{ $t('chineseSurnames.origins.totem.content') }}</p>
             <ul>
-              <li v-if="$i18n.locale === 'zh'">熊氏（熊图腾）</li>
-              <li v-if="$i18n.locale === 'zh'">马氏（马图腾）</li>
-              <li v-if="$i18n.locale === 'zh'">龙氏（龙图腾）</li>
+              <li v-if="$i18n.locale === 'zh'">熊（熊图腾）</li>
+              <li v-if="$i18n.locale === 'zh'">马（马图腾）</li>
+              <li v-if="$i18n.locale === 'zh'">龙（龙图腾）</li>
               
-              <li v-if="$i18n.locale === 'en'">Xiong (Bear totem)</li>
-              <li v-if="$i18n.locale === 'en'">Ma (Horse totem)</li>
-              <li v-if="$i18n.locale === 'en'">Long (Dragon totem)</li>
+              <li v-if="$i18n.locale === 'en'">熊 (Xiong) (Bear totem)</li>
+              <li v-if="$i18n.locale === 'en'">马 (Ma) (Horse totem)</li>
+              <li v-if="$i18n.locale === 'en'">龙 (Long) (Dragon totem)</li>
             </ul>
           </div>
           
@@ -46,11 +46,11 @@
             <h3>{{ $t('chineseSurnames.origins.ancestor.title') }}</h3>
             <p>{{ $t('chineseSurnames.origins.ancestor.content') }}</p>
             <ul>
-              <li v-if="$i18n.locale === 'zh'">姬姓（黄帝名姬轩辕，其后代以姬为姓）</li>
-              <li v-if="$i18n.locale === 'zh'">赵、钱、孙、李等源于先祖名字</li>
+              <li v-if="$i18n.locale === 'zh'">姬（黄帝名姬轩辕，其后代以姬为姓）</li>
+              <li v-if="$i18n.locale === 'zh'">赵、钱、孙、李等源于祖先名</li>
               
-              <li v-if="$i18n.locale === 'en'">Ji (Yellow Emperor was named Ji Xuanyuan, his descendants took Ji as their surname)</li>
-              <li v-if="$i18n.locale === 'en'">Zhao, Qian, Sun, Li, etc. derived from ancestral names</li>
+              <li v-if="$i18n.locale === 'en'">姬 (Ji) (Yellow Emperor was named Ji Xuanyuan, his descendants took Ji as their surname)</li>
+              <li v-if="$i18n.locale === 'en'">赵 (Zhao)、钱 (Qian)、孙 (Sun)、李 (Li) etc. derived from ancestral names</li>
             </ul>
           </div>
           
@@ -58,13 +58,13 @@
             <h3>{{ $t('chineseSurnames.origins.territory.title') }}</h3>
             <p>{{ $t('chineseSurnames.origins.territory.content') }}</p>
             <ul>
-              <li v-if="$i18n.locale === 'zh'">齐姓（源于齐国）</li>
-              <li v-if="$i18n.locale === 'zh'">鲁姓（源于鲁国）</li>
-              <li v-if="$i18n.locale === 'zh'">卫姓（源于卫国）</li>
+              <li v-if="$i18n.locale === 'zh'">齐（源于齐国）</li>
+              <li v-if="$i18n.locale === 'zh'">鲁（源于鲁国）</li>
+              <li v-if="$i18n.locale === 'zh'">卫（源于卫国）</li>
               
-              <li v-if="$i18n.locale === 'en'">Qi (derived from the State of Qi)</li>
-              <li v-if="$i18n.locale === 'en'">Lu (derived from the State of Lu)</li>
-              <li v-if="$i18n.locale === 'en'">Wei (derived from the State of Wei)</li>
+              <li v-if="$i18n.locale === 'en'">齐 (Qi) (derived from the State of Qi)</li>
+              <li v-if="$i18n.locale === 'en'">鲁 (Lu) (derived from the State of Lu)</li>
+              <li v-if="$i18n.locale === 'en'">卫 (Wei) (derived from the State of Wei)</li>
             </ul>
           </div>
           
@@ -72,25 +72,25 @@
             <h3>{{ $t('chineseSurnames.origins.official.title') }}</h3>
             <p>{{ $t('chineseSurnames.origins.official.content') }}</p>
             <ul>
-              <li v-if="$i18n.locale === 'zh'">司马（掌管军事的官职）</li>
-              <li v-if="$i18n.locale === 'zh'">司徒（掌管民政的官职）</li>
-              <li v-if="$i18n.locale === 'zh'">司空（掌管工程的官职）</li>
+              <li v-if="$i18n.locale === 'zh'">司马（主管军事的官员）</li>
+              <li v-if="$i18n.locale === 'zh'">司徒（主管民事的官员）</li>
+              <li v-if="$i18n.locale === 'zh'">司空（主管工程的官员）</li>
               
-              <li v-if="$i18n.locale === 'en'">Sima (official in charge of military affairs)</li>
-              <li v-if="$i18n.locale === 'en'">Situ (official in charge of civilian affairs)</li>
-              <li v-if="$i18n.locale === 'en'">Sikong (official in charge of engineering works)</li>
+              <li v-if="$i18n.locale === 'en'">司马 (Sima) (official in charge of military affairs)</li>
+              <li v-if="$i18n.locale === 'en'">司徒 (Situ) (official in charge of civilian affairs)</li>
+              <li v-if="$i18n.locale === 'en'">司空 (Sikong) (official in charge of engineering works)</li>
             </ul>
           </div>
           
-          <div class="origin-card">
+          <div class="origin-card migration-origins">
             <h3>{{ $t('chineseSurnames.origins.migration.title') }}</h3>
             <p>{{ $t('chineseSurnames.origins.migration.content') }}</p>
             <ul>
-              <li v-if="$i18n.locale === 'zh'">李唐皇室后裔避难时改为赵、郭等姓</li>
-              <li v-if="$i18n.locale === 'zh'">汉末三国时期，曹操部下有人为避战乱改姓</li>
+              <li v-if="$i18n.locale === 'zh'">完颜氏改为王氏</li>
+              <li v-if="$i18n.locale === 'zh'">爱新觉罗氏改为金、金啸等</li>
               
-              <li v-if="$i18n.locale === 'en'">Descendants of the Li Tang imperial family changed to Zhao, Guo, etc. when seeking refuge</li>
-              <li v-if="$i18n.locale === 'en'">During the late Han and Three Kingdoms period, some of Cao Cao's subordinates changed their surnames to avoid war</li>
+              <li v-if="$i18n.locale === 'en'">完颜 (Wanyan) changed to 王 (Wang)</li>
+              <li v-if="$i18n.locale === 'en'">爱新觉罗 (Aisin Gioro) changed to 金 (Jin), 金啸 (Jin Xiao), etc.</li>
             </ul>
           </div>
           
@@ -140,27 +140,27 @@
             
             <div v-if="$i18n.locale === 'en'" class="surname-item">
               <div class="surname-rank">1</div>
-              <div class="surname-char">Li</div>
+              <div class="surname-char">李 (Li)</div>
               <div class="surname-info">About 7.9% of the total population</div>
             </div>
             <div v-if="$i18n.locale === 'en'" class="surname-item">
               <div class="surname-rank">2</div>
-              <div class="surname-char">Wang</div>
+              <div class="surname-char">王 (Wang)</div>
               <div class="surname-info">About 7.4% of the total population</div>
             </div>
             <div v-if="$i18n.locale === 'en'" class="surname-item">
               <div class="surname-rank">3</div>
-              <div class="surname-char">Zhang</div>
+              <div class="surname-char">张 (Zhang)</div>
               <div class="surname-info">About 7.1% of the total population</div>
             </div>
             <div v-if="$i18n.locale === 'en'" class="surname-item">
               <div class="surname-rank">4</div>
-              <div class="surname-char">Liu</div>
+              <div class="surname-char">刘 (Liu)</div>
               <div class="surname-info">About 5.4% of the total population</div>
             </div>
             <div v-if="$i18n.locale === 'en'" class="surname-item">
               <div class="surname-rank">5</div>
-              <div class="surname-char">Chen</div>
+              <div class="surname-char">陈 (Chen)</div>
               <div class="surname-info">About 4.5% of the total population</div>
             </div>
           </div>
@@ -169,7 +169,7 @@
         </section>
         
         <section>
-          <h2>百家姓与姓氏文化</h2>
+          <h2>Hundred Family Surnames and Surname Culture</h2>
           <p v-if="$i18n.locale === 'zh'">《百家姓》是中国古代姓氏文化的重要载体，成书于北宋初年，按照"赵钱孙李，周吴郑王..."的顺序记录了宋代常见的姓氏。这部启蒙读物不仅记录了姓氏，也成为中国传统文化的重要组成部分。</p>
           <p v-if="$i18n.locale === 'en'">The "Hundred Family Surnames" (Bai Jia Xing) is an important carrier of ancient Chinese surname culture. Compiled in the early Northern Song Dynasty, it records common surnames of the Song Dynasty in the order of "Zhao, Qian, Sun, Li, Zhou, Wu, Zheng, Wang...". This primer not only records surnames but has also become an important part of traditional Chinese culture.</p>
           
@@ -187,10 +187,10 @@
             <div v-if="$i18n.locale === 'en'" class="bajia-poem">
               <h3>Opening of "Hundred Family Surnames"</h3>
               <p class="poem-text">
-                Zhao, Qian, Sun, Li, Zhou, Wu, Zheng, Wang.<br>
-                Feng, Chen, Chu, Wei, Jiang, Shen, Han, Yang.<br>
-                Zhu, Qin, You, Xu, He, Lü, Shi, Zhang.<br>
-                Kong, Cao, Yan, Hua, Jin, Wei, Tao, Jiang.
+                赵 (Zhao), 钱 (Qian), 孙 (Sun), 李 (Li), 周 (Zhou), 吴 (Wu), 郑 (Zheng), 王 (Wang).<br>
+                冯 (Feng), 陈 (Chen), 褚 (Chu), 卫 (Wei), 蒋 (Jiang), 沈 (Shen), 韩 (Han), 杨 (Yang).<br>
+                朱 (Zhu), 秦 (Qin), 尤 (You), 许 (Xu), 何 (He), 吕 (Lü), 施 (Shi), 张 (Zhang).<br>
+                孔 (Kong), 曹 (Cao), 严 (Yan), 华 (Hua), 金 (Jin), 魏 (Wei), 陶 (Tao), 姜 (Jiang).
               </p>
             </div>
             
@@ -269,10 +269,10 @@
               <li v-if="$i18n.locale === 'zh'">江西的钟、吴姓聚集区</li>
               <li v-if="$i18n.locale === 'zh'">山东曲阜的孔姓（孔子后裔）</li>
               
-              <li v-if="$i18n.locale === 'en'">The Zhang clan in Nanjing County, Fujian (Hakka Zhang clan)</li>
-              <li v-if="$i18n.locale === 'en'">The Hakka Huang clan in Mei County, Guangdong</li>
-              <li v-if="$i18n.locale === 'en'">The Zhong and Wu surname clusters in Jiangxi</li>
-              <li v-if="$i18n.locale === 'en'">The Kong surname in Qufu, Shandong (descendants of Confucius)</li>
+              <li v-if="$i18n.locale === 'en'">The 张 (Zhang) clan in Nanjing County, Fujian (Hakka Zhang clan)</li>
+              <li v-if="$i18n.locale === 'en'">The Hakka 黄 (Huang) clan in Mei County, Guangdong</li>
+              <li v-if="$i18n.locale === 'en'">The 钟 (Zhong) and 吴 (Wu) surname clusters in Jiangxi</li>
+              <li v-if="$i18n.locale === 'en'">The 孔 (Kong) surname in Qufu, Shandong (descendants of Confucius)</li>
             </ul>
             <p v-if="$i18n.locale === 'zh'">这种姓氏聚集现象与中国传统的家族观念、宗族聚居的生活方式以及历史上的人口迁徙密切相关。</p>
             <p v-if="$i18n.locale === 'en'">This surname clustering phenomenon is closely related to traditional Chinese family concepts, the lifestyle of clan settlements, and historical population migrations.</p>

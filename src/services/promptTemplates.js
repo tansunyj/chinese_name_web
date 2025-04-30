@@ -172,13 +172,19 @@ export const nameTranslationPrompts = {
    - 对于复合名字，要确保整体发音流畅
    - 考虑中国传统文化中的用字习惯
 
+4. 翻译解释的文化适配：
+   - 必须完全从源语言用户的思维和文化视角出发构建解释
+   - 不能简单地将中文思维方式的解释翻译成源语言
+   - 解释必须自然地使用源语言的表达习惯、文化参照和思维模式
+   - 要像在对一个只懂该源语言的人解释这个翻译一样撰写解释
+
 你必须严格按照以下JSON格式返回结果：
 {
   "translations": [
     {
-      "translatedName": "中文名字（音译）",
-      "pronunciationGuide": "拼音（带声调）",
-      "explanation": "说明这个音译名字的发音相似度，以及选用这些汉字的原因和寓意"
+      "translate": "中文名字（音译）",
+      "pronunciation": "拼音（带声调）",
+      "explanation": "必须完全从源语言用户的视角解释这个名字。例如，对于英文用户，应该用英文思维方式解释：'The name is translated phonetically to Chinese as... These characters were chosen because they sound similar to the original name while also having positive meanings in Chinese culture...'，而不是简单翻译中文解释。解释内容必须反映源语言使用者的表达习惯、思维方式和文化理解框架，让源语言使用者感到这个解释是为他们量身定制的，而不是机械翻译的。"
     }
   ]
 }
@@ -190,13 +196,21 @@ export const nameTranslationPrompts = {
 4. Rose → 罗丝/露丝 (Luó Sī/Lù Sī) 可以保留"玫瑰"的优美联想
 5. Angel → 安吉尔 (Ān Jí Ěr) 可以体现"天使"的美好寓意
 
+每个源语言的解释风格示例：
+- 英语用户: "The name 'Karl' is translated to '卡尔' in Chinese. This translation is based on phonetic similarity, where '卡' (kǎ) sounds like the first syllable 'Ka' and '尔' (ěr) resembles the ending 'rl'. In Chinese culture, these characters also carry positive meanings - '卡' suggests precision or exactness, while '尔' has literary connotations and appears in classical poetry."
+
+- 日语用户: "「Michael」という名前は中国語で「迈克尔」と翻訳されます。'迈'(mài)は'マイ'の音に、'克'(kè)は'ケ'の音に、'尔'(ěr)は'ル'の音に近いです。中国では外国の名前を翻訳する際、単に音が似ているだけでなく、良い意味を持つ漢字を選ぶ傾向があります。この場合、'迈'は「前進する」、'克'は「克服する」、'尔'は「あなた」という意味があり、全体として前向きな印象を与えます。"
+
+- 法语用户: "Le nom 'Marie' est traduit en chinois par '玛丽'. La traduction suit la phonétique du nom original, où '玛' (mǎ) correspond au son 'Ma' et '丽' (lì) au son 'rie'. Dans la culture chinoise, ces caractères ont été choisis non seulement pour leur similitude sonore, mais aussi pour leurs connotations positives. '玛' évoque souvent des pierres précieuses, tandis que '丽' signifie 'beau' ou 'élégant', ce qui crée un nom harmonieux et agréable en chinois."
+
 每个字段的具体要求：
-- translatedName: 2-3个汉字的音译名字，使用常见但优美的汉字
-- pronunciationGuide: 必须包含声调，例如"Kù Kè"
-- explanation: 解释选用这些汉字的原因，包括：
-  1. 与原名发音的对应关系
-  2. 选用这些汉字的文化考虑
-  3. 名字整体的寓意`,
+- translate: 2-3个汉字的音译名字，使用常见但优美的汉字
+- pronunciation: 必须包含声调，例如"Kù Kè"
+- explanation: 必须从源语言用户视角出发，使用源语言的表达习惯和文化参照解释这个翻译。内容要涵盖：
+  1. 发音对应关系（原名的哪个音节对应中文的哪个字）
+  2. 所选汉字的含义和文化内涵
+  3. 必要时解释中国名字翻译的文化特点
+  4. 使用源语言特有的表达方式，让该语言使用者觉得自然流畅`,
 
   user: `请将名字 "{name}" 翻译成中文名字，给出3个音译方案。记住必须按照指定的JSON格式返回。每个方案都应该采用不同的用字，但都要保持发音相似度。`
 };
