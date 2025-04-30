@@ -122,8 +122,6 @@
         </p>
         <div class="social-links">
           <a href="https://x.com/yangjerry2025" target="_blank" class="social-link">Twitter</a>
-          <a href="#" class="social-link">Facebook</a>
-          <a href="#" class="social-link">Instagram</a>
         </div>
       </section>
     </div>

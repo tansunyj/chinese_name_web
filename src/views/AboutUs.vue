@@ -1,10 +1,11 @@
 <template>
   <div class="about-page">
     <div class="container">
-      <h1 class="page-title">{{ $t('home.about.title') }}</h1>
+      <h1 class="page-title">{{ $t('home.about.title') }} | Chinese Names Translation Service | Service de Traduction de Noms Chinois | 中国語名前翻訳サービス | Сервис Перевода Китайских Имен</h1>
       
       <div class="about-content">
         <div class="about-description">
+          <p class="seo-introduction">We are experts in Chinese name translation and creation. Our services include translating English names to Chinese, helping you learn how to say your name in Chinese, and providing personalized Chinese name recommendations. Nous sommes spécialistes de la traduction et création de noms chinois. Wir übersetzen Namen ins Chinesische. Мы переводим имена на китайский язык. 私たちは中国語の名前の翻訳と作成の専門家です。</p>
           <p>{{ $t('home.about.description') }}</p>
         </div>
         

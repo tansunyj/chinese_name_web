@@ -2,7 +2,8 @@
   <div class="name-to-pinyin-page">
     <div class="content">
       <div class="container">
-        <h1 class="page-title">{{ $t('nameToPinyin.title') }}</h1>
+        <h1 class="page-title">{{ $t('nameToPinyin.title') }} | Chinese Name Translation | Traduction de Nom Chinois | 中国語名前翻訳 | Транскрипция Китайских Имен</h1>
+        <p class="seo-description">Convert Chinese names to pinyin with accurate pronunciation guides. Learn how to say your name in Chinese. Convertir les noms chinois en pinyin. Chinesische Namen in Pinyin umwandeln. Преобразование китайских имен в пиньинь. 中国語の名前をピンインに変換。</p>
         
         <div class="main-content">
           <div class="form-section">

@@ -37,6 +37,13 @@
               <li><a href="https://x.com/yangjerry2025" target="_blank">Twitter</a></li>
             </ul>
           </div>
+          
+          <div class="links-group">
+            <h3>{{ $t('footer.friendlyLinks') }}</h3>
+            <ul>
+              <li><a href="https://toolkit-hub-liard.vercel.app/#/" target="_blank">Toolkit Hub</a></li>
+            </ul>
+          </div>
         </div>
       </div>
       
@@ -61,9 +68,9 @@ export default {
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1600px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 30px;
 }
 
 .footer-content {
@@ -74,7 +81,7 @@ export default {
 }
 
 .footer-logo {
-  flex: 0 0 300px;
+  flex: 0 0 350px;
   margin-bottom: 30px;
 }
 
@@ -109,7 +116,7 @@ export default {
 }
 
 .links-group {
-  flex: 0 0 200px;
+  flex: 0 0 250px;
   margin-bottom: 30px;
 }
 
@@ -148,6 +155,23 @@ export default {
 
 .links-group a:hover {
   color: #e60012;
+}
+
+.links-group a[target="_blank"] {
+  display: flex;
+  align-items: center;
+}
+
+.links-group a[target="_blank"]::after {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-left: 5px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23aaa'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14'%3E%3C/path%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.7;
 }
 
 .footer-bottom {

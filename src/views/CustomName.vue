@@ -1,7 +1,8 @@
 <template>
   <div class="custom-name-page">
     <div class="container">
-      <h1 class="page-title">{{ $t('custom.title') }}</h1>
+      <h1 class="page-title">{{ $t('custom.title') }} | Chinese Names</h1>
+      <p class="seo-description">Create your personalized Chinese name with our custom name generator. Perfect for English to Chinese name translation. Créez votre nom chinois personnalisé. Erstellen Sie Ihren personalisierten chinesischen Namen. Создайте свое персонализированное китайское имя. パーソナライズされた中国語の名前を作成します.</p>
       
       <div class="content">
         <div class="form-section">

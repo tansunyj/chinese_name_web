@@ -15,7 +15,8 @@ export default {
     contact: 'Contact',
     privacy: 'Privacy Policy',
     terms: 'Terms of Service',
-    copyright: '© 2025 ChineseName.us. All rights reserved.'
+    copyright: '© 2025 ChineseName.us. All rights reserved.',
+    friendlyLinks: 'Friendly Links'
   },
   home: {
     hero: {

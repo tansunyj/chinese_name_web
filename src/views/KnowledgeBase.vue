@@ -1,7 +1,8 @@
 <template>
   <div class="knowledge-page">
     <div class="container">
-      <h1 class="page-title">{{ $t('knowledge.title') }}</h1>
+      <h1 class="page-title">Chinese Names Guide</h1>
+      <p class="seo-description">Discover the art of Chinese naming traditions, character meanings, and cultural practices. Learn how Chinese names are translated and how to say your name in Chinese. Découvrez l'art des traditions de nommage chinois. Entdecken Sie die Kunst der chinesischen Namenstraditionen. Узнайте о традициях китайских имен. 中国の名前の伝統と文化的意義を発見しましょう。</p>
       
       <div class="knowledge-grid">
         <router-link to="/chinese-surnames" class="category-card">

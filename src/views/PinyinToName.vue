@@ -1,7 +1,8 @@
 <template>
   <div class="pinyin-to-name-page">
     <div class="container">
-      <h1 class="page-title">{{ $t('pinyinToName.title') }}</h1>
+      <h1 class="page-title">{{ $t('pinyinToName.title') }} | Chinese Name Finder | Chercheur de Noms Chinois | 中国語名前検索 | Поиск Китайских Имен</h1>
+      <p class="seo-description">Find perfect Chinese characters for your name based on pinyin. Translate your name into Chinese. Trouvez des caractères chinois parfaits basés sur le pinyin. Finden Sie chinesische Zeichen für Ihren Namen. Найдите идеальные китайские иероглифы для вашего имени. 拼音から完璧な漢字を見つけましょう。</p>
       
       <div class="content">
         <div class="form-section">

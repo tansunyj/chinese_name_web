@@ -1,7 +1,8 @@
 <template>
   <div class="chinese-surnames-page">
     <div class="container">
-      <h1 class="page-title">{{ $t('chineseSurnames.title') }}</h1>
+      <h1 class="page-title">{{ $t('chineseSurnames.title') }} | Translating Chinese Names | Noms de Famille Chinois | 中国の姓 | Китайские Фамилии</h1>
+      <p class="seo-description">Explore Chinese surnames, their meanings, and origins. Learn how to translate your name into Chinese. Explorez les noms de famille chinois. Entdecken Sie chinesische Nachnamen. Исследуйте китайские фамилии. 中国の姓の意味と起源を探りましょう。</p>
       
       <div class="article-content">
         <section class="intro-section">

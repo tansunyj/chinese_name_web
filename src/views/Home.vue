@@ -4,8 +4,8 @@
     <section class="hero-section">
       <div class="container">
         <div class="hero-content">
-          <h1 class="hero-title">传承中华文化，智能起名一站式服务</h1>
-          <p class="hero-description">融合传统文化精髓与现代科技，为您的孩子创造一个美好的名字</p>
+          <h1 class="hero-title">Chinese Names: 传承中华文化，智能起名一站式服务 | Noms Chinois | Chinesische Namen | Китайские Имена | 中国語の名前</h1>
+          <p class="hero-description">Translate English Name to Chinese, find how to say your name in Chinese. Traduire votre nom en chinois. Übersetzen Sie Ihren Namen ins Chinesische. Переведите ваше имя на китайский. 融合传统文化精髓与现代科技，为您创造一个美好的中文名字。</p>
           <div class="hero-buttons">
             <router-link to="/name-generator" class="btn-primary">开始免费起名</router-link>
             <router-link to="/name-meanings" class="btn-secondary">了解名字寓意</router-link>
@@ -17,39 +17,39 @@
     <!-- 服务特点 -->
     <section class="features-section">
       <div class="container">
-        <h2 class="section-title">我们的服务特点</h2>
+        <h2 class="section-title">Chinese Name Translation Services | Services de Traduction de Noms | 名前翻訳サービス</h2>
         
         <div class="features-grid">
           <div class="feature-card">
             <div class="feature-icon">
               <i class="icon-culture"></i>
             </div>
-            <h3 class="feature-title">传统文化精髓</h3>
-            <p class="feature-description">根据中国传统文化、诗词歌赋及经典典籍，挑选寓意吉祥的字词组合。</p>
+            <h3 class="feature-title">Translate English Name to Chinese | Traduire le nom anglais en chinois | 英語名を中国語に翻訳</h3>
+            <p class="feature-description">我们使用中国传统文化、诗词歌赋及经典典籍，为您的英文名字找到最匹配的中文音译和意译组合。</p>
           </div>
           
           <div class="feature-card">
             <div class="feature-icon">
               <i class="icon-tech"></i>
             </div>
-            <h3 class="feature-title">智能分析技术</h3>
-            <p class="feature-description">运用先进的智能分析算法，为您推荐符合音律、字形和寓意的最佳名字。</p>
+            <h3 class="feature-title">How to Say My Name in Chinese | Comment dire mon nom en chinois | Как сказать мое имя по-китайски</h3>
+            <p class="feature-description">学习如何用中文发音您的名字，我们提供精准的拼音指导和发音示例。</p>
           </div>
           
           <div class="feature-card">
             <div class="feature-icon">
               <i class="icon-personalize"></i>
             </div>
-            <h3 class="feature-title">个性化定制</h3>
-            <p class="feature-description">根据您的姓氏、家族传统和个人喜好，提供个性化的名字推荐服务。</p>
+            <h3 class="feature-title">Chinese Language Name Translation | Chinesische Sprachnamenübersetzung | 中国語での名前の翻訳</h3>
+            <p class="feature-description">根据您的姓氏、家族传统和个人喜好，提供个性化的中文名字翻译和创建服务。</p>
           </div>
           
           <div class="feature-card">
             <div class="feature-icon">
               <i class="icon-fortune"></i>
             </div>
-            <h3 class="feature-title">命理分析</h3>
-            <p class="feature-description">提供名字五行分析、吉凶评测，助您选择一个吉祥如意的好名字。</p>
+            <h3 class="feature-title">Translating Chinese Names | Traduction des noms chinois | Перевод китайских имен</h3>
+            <p class="feature-description">提供名字五行分析、吉凶评测，帮助您理解中文名字的文化内涵和寓意。</p>
           </div>
         </div>
       </div>
@@ -278,20 +278,23 @@ export default {
 }
 
 .hero-content {
-  max-width: 800px;
+  max-width: 1600px;
   margin: 0 auto;
 }
 
 .hero-title {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   color: #333;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .hero-description {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: #555;
   margin-bottom: 40px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-buttons {
@@ -333,8 +336,8 @@ export default {
 /* 通用部分样式 */
 .section-title {
   text-align: center;
-  font-size: 2rem;
-  margin-bottom: 50px;
+  font-size: 2.3rem;
+  margin-bottom: 60px;
   position: relative;
   padding-bottom: 15px;
 }
@@ -364,14 +367,16 @@ export default {
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 40px;
+  margin: 0 auto;
+  max-width: 1600px;
 }
 
 .feature-card {
   background: #fff;
   border-radius: 10px;
-  padding: 30px;
+  padding: 45px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
   text-align: center;
@@ -386,19 +391,20 @@ export default {
 }
 
 .feature-icon {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+  font-size: 3rem;
+  margin-bottom: 25px;
   color: #e74c3c;
 }
 
 .feature-title {
   margin: 15px 0;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
 .feature-description {
   color: #666;
   line-height: 1.6;
+  font-size: 1.05rem;
 }
 
 .feature-link {
@@ -426,7 +432,7 @@ export default {
 .process-steps {
   display: flex;
   justify-content: space-between;
-  max-width: 1000px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -482,15 +488,18 @@ export default {
 
 .name-showcase {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 40px;
   margin-bottom: 40px;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .name-card {
   background: #fff;
   border-radius: 10px;
-  padding: 25px;
+  padding: 40px;
   text-align: center;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   transition: all 0.3s;
@@ -502,15 +511,16 @@ export default {
 }
 
 .name {
-  font-size: 1.8rem;
-  margin-bottom: 15px;
+  font-size: 2rem;
+  margin-bottom: 20px;
   color: #333;
 }
 
 .name-meaning {
   color: #666;
-  margin-bottom: 15px;
-  line-height: 1.6;
+  margin-bottom: 20px;
+  line-height: 1.7;
+  font-size: 1.05rem;
 }
 
 .name-tags {
@@ -552,18 +562,19 @@ export default {
 }
 
 .testimonial {
-  flex: 0 0 350px;
+  flex: 0 0 500px;
   background: #fff;
   border-radius: 10px;
-  padding: 30px;
+  padding: 45px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
 .testimonial-text {
   font-style: italic;
   color: #555;
-  line-height: 1.6;
-  margin-bottom: 20px;
+  line-height: 1.7;
+  margin-bottom: 25px;
+  font-size: 1.05rem;
 }
 
 .testimonial-author {
@@ -588,9 +599,12 @@ export default {
 
 .blog-posts {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 40px;
   margin-bottom: 40px;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .blog-card {
@@ -622,7 +636,7 @@ export default {
 }
 
 .blog-content {
-  padding: 25px;
+  padding: 30px;
 }
 
 .blog-title {
@@ -653,7 +667,7 @@ export default {
 }
 
 .consultation-content {
-  max-width: 700px;
+  max-width: 900px;
   margin: 0 auto;
 }
 

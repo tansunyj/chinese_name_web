@@ -147,14 +147,14 @@ export default {
   align-items: center;
   justify-content: center;
   padding: 0;
-  height: 280px;
+  height: 320px;
   margin-top: 70px; /* 与AppHeader的高度一致 */
 }
 
 .hero .container {
-  max-width: 1000px; /* 与AppHeader中的容器宽度一致 */
+  max-width: 1600px; /* 与全局容器宽度一致 */
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 30px;
   width: 100%;
   height: 100%;
   display: flex;
@@ -166,7 +166,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: flex-start; /* 修改为左对齐 */
-  gap: 60px;
+  gap: 80px;
   width: 100%;
   height: 100%;
 }
@@ -180,28 +180,28 @@ export default {
 
 .hero-image img {
   display: block;
-  width: 180px;
+  width: 220px;
   height: auto;
 }
 
 .hero-text {
   flex: 0 0 auto;
-  max-width: 500px;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .hero h1 {
-  font-size: 2.8rem;
+  font-size: 3.2rem;
   color: #333;
   margin-top: 0;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   line-height: 1.2;
 }
 
 .hero .subtitle {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   color: #555;
   margin-top: 0;
   margin-bottom: 0;
@@ -224,7 +224,7 @@ export default {
 }
 
 .features {
-  padding: 60px 0;
+  padding: 80px 0;
   background-color: #fff;
   position: relative;
 }
@@ -232,35 +232,36 @@ export default {
 .features-alt {
   background-color: #f2f4f8;
   position: relative;
+  padding: 90px 0;
 }
 
 .features .container {
-  max-width: 1000px; /* 与AppHeader中的容器宽度一致 */
+  max-width: 1600px; /* 与全局容器宽度一致 */
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 30px;
 }
 
 .section-title {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   color: #333;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   text-align: left; /* 修改为左对齐 */
 }
 
 .section-title::after {
   content: '';
   display: block;
-  width: 60px;
-  height: 3px;
+  width: 70px;
+  height: 4px;
   background-color: #e60012;
-  margin: 15px 0 0; /* 修改为左对齐 */
+  margin: 18px 0 0; /* 修改为左对齐 */
 }
 
 .feature-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  margin-bottom: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 40px;
+  margin-bottom: 30px;
 }
 
 .feature-card-link {
@@ -277,10 +278,10 @@ export default {
 .feature-card {
   background-color: white;
   border-radius: 12px;
-  padding: 30px;
+  padding: 40px;
   transition: all 0.3s ease;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
-  height: 280px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   border: 1px solid #e1e1e1;
@@ -312,33 +313,34 @@ export default {
 }
 
 .feature-card .icon {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   background-color: rgba(230, 0, 18, 0.1);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .feature-card .icon svg {
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   color: #e60012;
 }
 
 .feature-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
+  font-size: 1.6rem;
+  margin-bottom: 18px;
   color: #333;
 }
 
 .feature-card p {
   color: #666;
-  margin-bottom: 20px;
-  line-height: 1.6;
+  margin-bottom: 25px;
+  line-height: 1.7;
   flex-grow: 1;
+  font-size: 1.05rem;
 }
 
 .feature-link {
@@ -349,28 +351,31 @@ export default {
   margin-top: auto;
   display: flex;
   align-items: center;
+  font-size: 1.1rem;
 }
 
 .ming-icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 5px;
+  width: 28px;
+  height: 28px;
+  margin-right: 8px;
 }
 
 .naming-services-grid {
   grid-template-columns: repeat(2, 1fr);
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
 @media (max-width: 768px) {
   .hero {
     height: auto;
-    padding: 40px 0;
+    padding: 50px 0;
     margin-top: 70px;
   }
   
   .hero-content {
     flex-direction: column;
-    gap: 30px;
+    gap: 40px;
     height: auto;
   }
   
@@ -384,19 +389,24 @@ export default {
   }
   
   .hero h1 {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
   }
   
   .hero .subtitle {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
   }
   
   .section-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
   
   .naming-services-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .feature-card {
+    height: auto;
+    min-height: 300px;
   }
 }
 </style> 

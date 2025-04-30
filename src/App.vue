@@ -61,8 +61,26 @@ img {
 
 .container {
   width: 100%;
-  max-width: 1000px;
+  max-width: 1600px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 30px;
+}
+
+/* SEO优化相关样式 */
+.seo-description {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 30px;
+  text-align: center;
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.seo-introduction {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 15px;
 }
 </style>

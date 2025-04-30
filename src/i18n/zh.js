@@ -15,7 +15,8 @@ export default {
     contact: '联系我们',
     privacy: '隐私政策',
     terms: '服务条款',
-    copyright: '© 2023 ChineseName.us. 保留所有权利。'
+    copyright: '© 2023 ChineseName.us. 保留所有权利。',
+    friendlyLinks: '友情链接'
   },
   home: {
     hero: {

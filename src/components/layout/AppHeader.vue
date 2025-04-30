@@ -3,18 +3,18 @@
     <div class="container">
       <div class="logo">
         <router-link to="/">
-          <img src="@/assets/images/logo2.png" alt="Logo" />
+          <img src="@/assets/images/logo2.png" alt="Chinese Names | 中文名字 | 漢字名前" />
           <span>{{ $t('header.siteName') }}</span>
         </router-link>
       </div>
       
       <nav class="main-nav">
         <ul>
-          <li><router-link to="/">{{ $t('header.home') }}</router-link></li>
-          <li><router-link to="/custom">{{ $t('header.customName') }}</router-link></li>
-          <li><router-link to="/translate">{{ $t('header.translateName') }}</router-link></li>
+          <li><router-link to="/">Chinese Names</router-link></li>
+          <li><router-link to="/custom">{{ $t('header.customName') }} Generator</router-link></li>
+          <li><router-link to="/translate">Translate to Chinese</router-link></li>
           <!--li><router-link to="/multilingual">{{ $t('header.multilingualName') }}</router-link></li-->
-          <li><router-link to="/knowledge">{{ $t('header.knowledgeBase') }}</router-link></li>
+          <li><router-link to="/knowledge">Chinese Name Guide</router-link></li>
           <li><router-link to="/about">{{ $t('header.aboutUs') }}</router-link></li>
         </ul>
       </nav>
@@ -82,9 +82,9 @@ export default {
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1600px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;

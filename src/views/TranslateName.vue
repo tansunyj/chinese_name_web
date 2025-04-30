@@ -1,7 +1,8 @@
 <template>
   <div class="translate-page">
     <div class="container">
-      <h1 class="page-title">{{ titleText }}</h1>
+      <h1 class="page-title">{{ titleText }} | Chinese Names Translator</h1>
+      <p class="seo-description">Translate your English name to Chinese characters. Learn how to say your name in Chinese with accurate pronunciation guides. Traduire votre nom en caractères chinois. Übersetzen Sie Ihren Namen in chinesische Zeichen. Как произносится ваше имя на китайском языке. 日本語の名前を中国語に翻訳します。</p>
       
       <div class="content">
         <div class="form-section">
@@ -886,8 +887,11 @@ export default {
 .form-section {
   background-color: white;
   border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  padding: 30px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  transition: all 0.3s ease;
+  max-width: 1000px;
+  margin: 0 auto 40px;
 }
 
 .language-select-buttons {
@@ -1130,15 +1134,17 @@ export default {
 }
 
 .results-section h2 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: #333;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .results-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 40px;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
 .result-card {
@@ -1156,41 +1162,42 @@ export default {
 
 .result-header {
   background-color: #f8f9fa;
-  padding: 20px;
+  padding: 35px;
   text-align: center;
   border-bottom: 1px solid #eee;
 }
 
 .result-characters {
-  font-size: 2.5rem;
+  font-size: 4rem;
   font-weight: 600;
   color: #e60012;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .result-pinyin {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: #666;
 }
 
 .result-details {
-  padding: 20px;
+  padding: 35px;
 }
 
 .result-item {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .result-item h4 {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #555;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .result-item p {
   margin: 0;
   color: #333;
-  line-height: 1.6;
+  line-height: 1.7;
+  font-size: 1.05rem;
 }
 
 .play-button {
