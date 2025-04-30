@@ -6,7 +6,7 @@
       <div class="content-wrapper">
         <section class="intro-section">
           <div class="section-image">
-            <img src="../assets/images/name.png" alt="Form and Meaning Integration Illustration" />
+            <img src="../assets/images/xingyi.png" alt="Form and Meaning Integration Illustration" />
           </div>
           <div class="section-content">
             <h2>Overview of Form and Meaning Integration (形义结合概述)</h2>

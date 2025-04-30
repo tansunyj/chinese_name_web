@@ -49,7 +49,7 @@
         
         <div class="historical-figures">
           <div class="figure-card">
-            <div class="figure-image"><img src="../assets/images/ming.png" alt="Qin Shi Huang" /></div>
+            <div class="figure-image"><img src="../assets/images/yingzheng.png" alt="Qin Shi Huang" /></div>
             <div class="figure-content">
               <h3>嬴政 (Ying Zheng / First Emperor of Qin)</h3>
               <p><strong>Life: </strong>259 BCE - 210 BCE, renowned politician, strategist, and reformer in Chinese history who achieved the unification of China.</p>
@@ -59,7 +59,7 @@
           </div>
           
           <div class="figure-card">
-            <div class="figure-image"><img src="../assets/images/ming.png" alt="Emperor Wu of Han" /></div>
+            <div class="figure-image"><img src="../assets/images/liuche.png" alt="Emperor Wu of Han" /></div>
             <div class="figure-content">
               <h3>刘彻 (Liu Che / Emperor Wu of Han)</h3>
               <p><strong>Life: </strong>156 BCE - 87 BCE, the seventh emperor of the Han Dynasty, whose reign marked the most prosperous period of the Western Han Dynasty.</p>
@@ -69,7 +69,7 @@
           </div>
           
           <div class="figure-card">
-            <div class="figure-image"><img src="../assets/images/ming.png" alt="Emperor Taizong of Tang" /></div>
+            <div class="figure-image"><img src="../assets/images/lishimin.png" alt="Emperor Taizong of Tang" /></div>
             <div class="figure-content">
               <h3>李世民 (Li Shimin / Emperor Taizong of Tang)</h3>
               <p><strong>Life: </strong>598 CE - 649 CE, the second emperor of the Tang Dynasty who created the prosperous "Zhenguan Era."</p>
@@ -79,7 +79,7 @@
           </div>
           
           <div class="figure-card">
-            <div class="figure-image"><img src="../assets/images/ming.png" alt="Emperor Kangxi" /></div>
+            <div class="figure-image"><img src="../assets/images/kangxi.png" alt="Emperor Kangxi" /></div>
             <div class="figure-content">
               <h3>爱新觉罗·玄烨 (Aisin Gioro Xuanye / Emperor Kangxi)</h3>
               <p><strong>Life: </strong>1654 - 1722, the fourth emperor of the Qing Dynasty who reigned for 61 years and initiated the first phase of the "Kangxi-Qianlong Prosperity."</p>
@@ -96,7 +96,7 @@
         
         <div class="historical-figures" v-if="showMoreEmperors">
           <div class="figure-card">
-            <div class="figure-image"><img src="../assets/images/ming.png" alt="King Wen of Zhou" /></div>
+            <div class="figure-image"><img src="../assets/images/jichang.png" alt="King Wen of Zhou" /></div>
             <div class="figure-content">
               <h3>姬昌 (Ji Chang / King Wen of Zhou)</h3>
               <p><strong>Life: </strong>Approximately 1152 BCE - 1056 BCE, founder of the Zhou Dynasty and one of the authors of the "Book of Changes" (I Ching).</p>
@@ -106,7 +106,7 @@
           </div>
           
           <div class="figure-card">
-            <div class="figure-image"><img src="../assets/images/wming.png" alt="Cao Cao" /></div>
+            <div class="figure-image"><img src="../assets/images/caocao.png" alt="Cao Cao" /></div>
             <div class="figure-content">
               <h3>曹操 (Cao Cao / Emperor Wu of Wei)</h3>
               <p><strong>Life: </strong>155 - 220, outstanding politician and military strategist of the late Eastern Han Dynasty, and founder of the Wei state during the Three Kingdoms period.</p>
@@ -116,7 +116,7 @@
           </div>
           
           <div class="figure-card">
-            <div class="figure-image"><img src="../assets/images/ming.png" alt="Zhuge Liang" /></div>
+            <div class="figure-image"><img src="../assets/images/zhugeliang.png" alt="Zhuge Liang" /></div>
             <div class="figure-content">
               <h3>诸葛亮 (Zhuge Liang / Kongming)</h3>
               <p><strong>Life: </strong>181 - 234, outstanding politician and military strategist of Shu Han during the Three Kingdoms period, honored as the "Sage of Wisdom."</p>
@@ -126,7 +126,7 @@
           </div>
           
           <div class="figure-card">
-            <div class="figure-image"><img src="../assets/images/ming.png" alt="Zeng Guofan" /></div>
+            <div class="figure-image"><img src="../assets/images/zengguofan.png" alt="Zeng Guofan" /></div>
             <div class="figure-content">
               <h3>曾国藩 (Zeng Guofan / Disheng)</h3>
               <p><strong>Life: </strong>1811 - 1872, late Qing Dynasty official, founder of the Xiang Army, and a prominent statesman of the Tongzhi Restoration.</p>
@@ -154,7 +154,7 @@
           </div>
           
           <div class="figure-card">
-            <div class="figure-image"><img src="../assets/images/ming.png" alt="Li Bai" /></div>
+            <div class="figure-image"><img src="../assets/images/libai.png" alt="Li Bai" /></div>
             <div class="figure-content">
               <h3>李白 (Li Bai / Taibai)</h3>
               <p><strong>Life: </strong>701 - 762, great romantic poet of the Tang Dynasty, known as the "Immortal Poet."</p>
@@ -164,7 +164,7 @@
           </div>
           
           <div class="figure-card">
-            <div class="figure-image"><img src="../assets/images/ming.png" alt="Du Fu" /></div>
+            <div class="figure-image"><img src="../assets/images/dufu.png" alt="Du Fu" /></div>
             <div class="figure-content">
               <h3>杜甫 (Du Fu / Zimei)</h3>
               <p><strong>Life: </strong>712 - 770, great realist poet of the Tang Dynasty, known as the "Sage Poet."</p>
@@ -174,7 +174,7 @@
           </div>
           
           <div class="figure-card">
-            <div class="figure-image"><img src="../assets/images/ming.png" alt="Su Shi" /></div>
+            <div class="figure-image"><img src="../assets/images/sushi.png" alt="Su Shi" /></div>
             <div class="figure-content">
               <h3>苏轼 (Su Shi / Zizhan)</h3>
               <p><strong>Life: </strong>1037 - 1101, Northern Song Dynasty literary master, painter, and gourmet, one of the "Eight Great Masters of Tang and Song."</p>
@@ -191,7 +191,7 @@
         
         <div class="historical-figures" v-if="showMoreScholars">
           <div class="figure-card">
-            <div class="figure-image"><img src="../assets/images/ming.png" alt="Laozi" /></div>
+            <div class="figure-image"><img src="../assets/images/lier.png" alt="Laozi" /></div>
             <div class="figure-content">
               <h3>李耳 (Li Er / Laozi)</h3>
               <p><strong>Life: </strong>Approximately 571 BCE - ?, philosopher and thinker of the Spring and Autumn Period, founder of Taoism.</p>
@@ -201,7 +201,7 @@
           </div>
           
           <div class="figure-card">
-            <div class="figure-image"><img src="../assets/images/ming.png" alt="Qu Yuan" /></div>
+            <div class="figure-image"><img src="../assets/images/quyuan.png" alt="Qu Yuan" /></div>
             <div class="figure-content">
               <h3>屈原 (Qu Yuan / Ping)</h3>
               <p><strong>Life: </strong>Approximately 340 BCE - 278 BCE, poet and politician of the Warring States Period from the state of Chu, China's earliest patriotic poet.</p>
@@ -211,7 +211,7 @@
           </div>
           
           <div class="figure-card">
-            <div class="figure-image"><img src="../assets/images/ming.png" alt="Li Qingzhao" /></div>
+            <div class="figure-image"><img src="../assets/images/liqingzhao.png" alt="Li Qingzhao" /></div>
             <div class="figure-content">
               <h3>李清照 (Li Qingzhao / Yi'an)</h3>
               <p><strong>Life: </strong>1084 - approximately 1155, female poet of the Song Dynasty, known as the "Greatest Female Talent in History."</p>
@@ -221,7 +221,7 @@
           </div>
           
           <div class="figure-card">
-            <div class="figure-image"><img src="../assets/images/ming.png" alt="Lu Xun" /></div>
+            <div class="figure-image"><img src="../assets/images/luxun.png" alt="Lu Xun" /></div>
             <div class="figure-content">
               <h3>周树人 (Zhou Shuren / Lu Xun)</h3>
               <p><strong>Life: </strong>1881 - 1936, modern writer, thinker, and revolutionary, important participant in the New Culture Movement.</p>
@@ -239,7 +239,7 @@
         
         <div class="historical-figures">
           <div class="figure-card">
-            <div class="figure-image"><img src="../assets/images/ming.png" alt="Yue Fei" /></div>
+            <div class="figure-image"><img src="../assets/images/yuefei.png" alt="Yue Fei" /></div>
             <div class="figure-content">
               <h3>岳飞 (Yue Fei / Pengju)</h3>
               <p><strong>Life: </strong>1103 - 1142, famous general who resisted the Jin invasion during the Southern Song Dynasty, renowned national hero in Chinese history.</p>
@@ -249,7 +249,7 @@
           </div>
           
           <div class="figure-card">
-            <div class="figure-image"><img src="../assets/images/ming.png" alt="Wen Tianxiang" /></div>
+            <div class="figure-image"><img src="../assets/images/wentianxiang.png" alt="Wen Tianxiang" /></div>
             <div class="figure-content">
               <h3>文天祥 (Wen Tianxiang / Songrui)</h3>
               <p><strong>Life: </strong>1236 - 1283, politician, military strategist, and patriotic poet of the late Southern Song Dynasty, a national hero.</p>
@@ -259,7 +259,7 @@
           </div>
           
           <div class="figure-card">
-            <div class="figure-image"><img src="../assets/images/ming.png" alt="Zhang Sanfeng" /></div>
+            <div class="figure-image"><img src="../assets/images/zhangsanfeng.png" alt="Zhang Sanfeng" /></div>
             <div class="figure-content">
               <h3>张三丰 (Zhang Sanfeng / Junbao)</h3>
               <p><strong>Life: </strong>Approximately 1247 - ?, famous Taoist priest of the late Yuan and early Ming dynasties, founder of the Wudang School of martial arts.</p>
@@ -269,7 +269,7 @@
           </div>
           
           <div class="figure-card">
-            <div class="figure-image"><img src="../assets/images/ming.png" alt="Liu Hulan" /></div>
+            <div class="figure-image"><img src="../assets/images/liuhulan.png" alt="Liu Hulan" /></div>
             <div class="figure-content">
               <h3>刘胡兰 (Liu Hulan)</h3>
               <p><strong>Life: </strong>1932 - 1947, underground worker for the Chinese Communist Party, revolutionary martyr.</p>
@@ -286,7 +286,7 @@
         
         <div class="historical-figures" v-if="showMoreGenerals">
           <div class="figure-card">
-            <div class="figure-image"><img src="../assets/images/ming.png" alt="Guan Yu" /></div>
+            <div class="figure-image"><img src="../assets/images/guanyu.png" alt="Guan Yu" /></div>
             <div class="figure-content">
               <h3>关羽 (Guan Yu / Yunchang)</h3>
               <p><strong>Life: </strong>Approximately 160 - 220, famous general of Shu Han during the Three Kingdoms period, one of Liu Bei's important advisers.</p>
@@ -296,12 +296,12 @@
           </div>
           
           <div class="figure-card">
-            <div class="figure-image"><img src="../assets/images/ming.png" alt="Zhuge Liang" /></div>
+            <div class="figure-image"><img src="../assets/images/zhougong.png" alt="Duke of Zhou" /></div>
             <div class="figure-content">
-              <h3>诸葛亮 (Zhuge Liang / Kongming)</h3>
-              <p><strong>Life: </strong>181 - 234, Prime Minister of Shu Han during the Three Kingdoms period, outstanding politician, military strategist, and inventor.</p>
-              <p><strong>Name Analysis: </strong>"诸葛" (Zhuge) is the compound surname; "亮" (Liang) means bright and clever, symbolizing wisdom; courtesy name "孔明" (Kongming) means profound wisdom and extensive knowledge.</p>
-              <p><strong>Title Evolution: </strong>Honored as "Sleeping Dragon" (卧龙), "Marquis of Wuxiang" (武乡侯), and "Loyal Martial Marquis" (忠武侯), later generations called him "Marquis Zhuge Wu" (诸葛武侯) or "Master Kongming" (孔明先生).</p>
+              <h3>姬旦 (Ji Dan / Duke of Zhou)</h3>
+              <p><strong>Life: </strong>Approximately 1100 BCE - 1043 BCE, statesman, regent, and philosopher of the early Western Zhou Dynasty, regarded as a model of loyalty and good governance.</p>
+              <p><strong>Name Analysis: </strong>"姬" (Ji) is the surname of the Zhou royal family; "旦" (Dan) means dawn or morning, symbolizing the beginning of a new era; he is better known as the "Duke of Zhou" (周公) in Chinese history.</p>
+              <p><strong>Title Evolution: </strong>Honored as "Perfect Duke" (周公旦) and "Cultural Saint" (文圣), respected by Confucius as the ideal ruler and statesman who established the foundations of Zhou Dynasty's political system.</p>
             </div>
           </div>
         </div>

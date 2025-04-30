@@ -6,7 +6,7 @@
       <div class="content-wrapper">
         <section class="intro-section">
           <div class="section-image">
-            <img src="../assets/images/name.png" alt="Classical Text Characters Illustration" />
+            <img src="../assets/images/guji.png" alt="Classical Text Characters Illustration" />
           </div>
           <div class="section-content">
             <h2>Overview of Classical Text Characters (典籍用字概述)</h2>

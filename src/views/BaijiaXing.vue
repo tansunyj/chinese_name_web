@@ -68,7 +68,7 @@
           <h2>Detailed Explanation of Major Surname Origins</h2>
           <div class="surnames-grid">
             <div class="surname-card">
-              <h3>赵氏 (Zhao)</h3>
+              <h3>赵 (Zhao)</h3>
               <div class="surname-content">
                 <p><strong>Origin: </strong>Derived from Ying surname, traditionally descended from Zhao Cui, a meritorious official good at horse breeding during the time of King Wu of Zhou.</p>
                 <p><strong>Development: </strong>The Zhao clan had a prominent position in Chinese history. During the Spring and Autumn Period, they established the State of Zhao, one of the Seven Warring States. During the Northern Song Dynasty, Zhao Kuangyin established the Song Dynasty, making Zhao the imperial surname.</p>
@@ -78,7 +78,7 @@
             </div>
             
             <div class="surname-card">
-              <h3>钱氏 (Qian)</h3>
+              <h3>钱 (Qian)</h3>
               <div class="surname-content">
                 <p><strong>Origin: </strong>Derived from Ji surname, traditionally descended from Qian Bo, a nobleman of the State of Chu during the Spring and Autumn Period.</p>
                 <p><strong>Development: </strong>Qian Liu, the founding ruler of the Wuyue Kingdom during the Five Dynasties and Ten Kingdoms period, made this surname widely spread in the Jiangsu and Zhejiang regions. The Qian clan produced scholars and officials throughout the Song, Yuan, Ming, and Qing dynasties, becoming a prestigious family.</p>
@@ -88,7 +88,7 @@
             </div>
             
             <div class="surname-card">
-              <h3>孙氏 (Sun)</h3>
+              <h3>孙 (Sun)</h3>
               <div class="surname-content">
                 <p><strong>Origin: </strong>Derived from Zi surname, traditionally descended from Wei Zikai of the Shang Dynasty. During the Spring and Autumn Period, the princes of the State of Song took the surname Sun due to their enfeoffment.</p>
                 <p><strong>Development: </strong>The Sun clan is a famous military family in Chinese history. During the Three Kingdoms period, Sun Ce and Sun Quan established the state of Eastern Wu. In modern times, Sun Yat-sen led the Xinhai Revolution that overthrew the Qing Dynasty.</p>
@@ -98,7 +98,7 @@
             </div>
             
             <div class="surname-card">
-              <h3>李氏 (Li)</h3>
+              <h3>李 (Li)</h3>
               <div class="surname-content">
                 <p><strong>Origin: </strong>Originated from Ying surname, said to be descended from the Lingyang clan, descendants of Emperor Yao of Tang. The character "李" is related to "杏" (apricot), traditionally associated with planting plum trees.</p>
                 <p><strong>Development: </strong>Li is the most common surname in China. The imperial family of the Tang Dynasty had the surname Li, and the 400-year rule of the Li Tang Dynasty made the Li clan prosperous. After the fall of the Tang Dynasty, people of the Li clan spread throughout the country.</p>
@@ -108,7 +108,7 @@
             </div>
             
             <div class="surname-card">
-              <h3>周氏 (Zhou)</h3>
+              <h3>周 (Zhou)</h3>
               <div class="surname-content">
                 <p><strong>Origin: </strong>Derived from Ji surname, traditionally descended from King Wen of Zhou. Another theory suggests that it is related to the ancient State of Zhou, taking the state name as the surname.</p>
                 <p><strong>Development: </strong>The Zhou clan has a long history. The Zhou Dynasty was the longest-ruling dynasty in Chinese history. The Duke of Zhou established rites and music, laying the foundation for Chinese culture.</p>
@@ -118,7 +118,7 @@
             </div>
             
             <div class="surname-card">
-              <h3>吴氏 (Wu)</h3>
+              <h3>吴 (Wu)</h3>
               <div class="surname-content">
                 <p><strong>Origin: </strong>Derived from Ji surname, traditionally descended from Ji Zha, the youngest son of King Cheng of Zhou. There is also a theory that it is related to the ancient State of Wu.</p>
                 <p><strong>Development: </strong>The Wu clan grew and flourished in the Jiangnan region, especially during the Spring and Autumn Period when the State of Wu thrived, causing the Wu surname to spread widely in southern Jiangsu.</p>
@@ -128,7 +128,7 @@
             </div>
             
             <div class="surname-card">
-              <h3>郑氏 (Zheng)</h3>
+              <h3>郑 (Zheng)</h3>
               <div class="surname-content">
                 <p><strong>Origin: </strong>Derived from Ji surname, traditionally descended from Kang Shu, brother of King Wu of Zhou. Kang Shu was enfeoffed in Wei, and his descendants took the surname Zheng because they lived in the Zheng region.</p>
                 <p><strong>Development: </strong>During the Spring and Autumn Period, there was the State of Zheng, which made the Zheng clan prosper. During the Ming and Qing dynasties, many people with the Zheng surname migrated to Taiwan, becoming one of the main surnames in Taiwan.</p>
@@ -138,7 +138,7 @@
             </div>
             
             <div class="surname-card">
-              <h3>王氏 (Wang)</h3>
+              <h3>王 (Wang)</h3>
               <div class="surname-content">
                 <p><strong>Origin: </strong>Derived from Ji surname, traditionally dating back to the time of King Wen of Zhou. The character "王" originally meant ruler, first as a title, later becoming a surname.</p>
                 <p><strong>Development: </strong>Wang is the second most common surname in China. Important historical events include Wang Mang of the Sixteen Kingdoms period establishing the Former Qin, and Wang Jian of the Five Dynasties and Ten Kingdoms period establishing Former Shu.</p>

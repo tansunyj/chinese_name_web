@@ -9,7 +9,11 @@
       <section class="content-section">
         <h2 class="section-title">Cultural Significance of Family Naming (家族命名的文化意义)</h2>
         <p>Family naming is an important component of traditional Chinese culture. It is not merely a method of personal identification, but also an embodiment of cultural heritage and family bonds. The Chinese family naming system has a history of thousands of years. Through strict naming rules, family members can clearly understand generational relationships and maintain family cohesion.</p>
-        
+        <div>
+          <div>
+            <img src="@/assets/images/kongfu.png" alt="Confucian" />
+          </div>
+        </div>
         <div class="info-card">
           <h3>Main Characteristics of Family Naming:</h3>
           <ul>

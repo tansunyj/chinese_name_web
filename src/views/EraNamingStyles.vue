@@ -14,7 +14,11 @@
           <div class="timeline-content">
             <h2>Pre-Qin to Han Dynasty (Circa 21st Century BC-220 AD)</h2>
             <div class="era-card">
-              <div class="era-image" style="background-image: url('https://placehold.co/800x400')"></div>
+              <div class="era-image">
+                <div class="img-wrapper">
+                  <img src="@/assets/images/bingmayong.png" alt="兵马俑时代" />
+                </div>
+              </div>
               <div class="era-details">
                 <h3>Pre-Qin Period (Circa 21st Century BC-221 BC)</h3>
                 <p><strong>Historical Background:</strong> Clan society gradually dissolved, slave-based states formed, and Zhou ritual systems began to establish.</p>
@@ -27,10 +31,10 @@
                 </ul>
                 <p><strong>Representative Names:</strong></p>
                 <ul>
-                  <li>Bo Yi, Shu Qi (ancient sages)</li>
-                  <li>Kong Qiu, courtesy name Zhongni (Confucius)</li>
-                  <li>Ying Zheng (First Emperor of Qin)</li>
-                  <li>Lü Buwei (merchant and politician)</li>
+                  <li>伯夷 (Bo Yi), 叔齐 (Shu Qi) (ancient sages)</li>
+                  <li>孔丘 (Kong Qiu), courtesy name 仲尼 (Zhongni) (Confucius)</li>
+                  <li>嬴政 (Ying Zheng) (First Emperor of Qin)</li>
+                  <li>吕不韦 (Lü Buwei) (merchant and politician)</li>
                 </ul>
 
                 <h3>Qin-Han Period (221 BC-220 AD)</h3>
@@ -44,11 +48,11 @@
                 </ul>
                 <p><strong>Representative Names:</strong></p>
                 <ul>
-                  <li>Liu Bang, courtesy name Ji (Emperor Gaozu of Han)</li>
-                  <li>Sima Qian, courtesy name Zichang (author of "Records of the Grand Historian")</li>
-                  <li>Wang Zhaojun (one of the Four Beauties)</li>
-                  <li>Wei Qing, Huo Qubing (famous Han generals)</li>
-                  <li>Ban Gu, courtesy name Mengjian (author of "Book of Han")</li>
+                  <li>刘邦 (Liu Bang), courtesy name 季 (Ji) (Emperor Gaozu of Han)</li>
+                  <li>司马迁 (Sima Qian), courtesy name 子长 (Zichang) (author of "Records of the Grand Historian")</li>
+                  <li>王昭君 (Wang Zhaojun) (one of the Four Beauties)</li>
+                  <li>卫青 (Wei Qing), 霍去病 (Huo Qubing) (famous Han generals)</li>
+                  <li>班固 (Ban Gu), courtesy name 孟坚 (Mengjian) (author of "Book of Han")</li>
                 </ul>
               </div>
             </div>
@@ -60,7 +64,11 @@
           <div class="timeline-content">
             <h2>Wei-Jin Southern and Northern Dynasties to Sui-Tang (220-907 AD)</h2>
             <div class="era-card">
-              <div class="era-image" style="background-image: url('https://placehold.co/800x400')"></div>
+              <div class="era-image">
+                <div class="img-wrapper">
+                  <img src="@/assets/images/weijinfengliu.png" alt="魏晋南北朝至隋唐时期" />
+                </div>
+              </div>
               <div class="era-details">
                 <h3>Wei-Jin Southern and Northern Dynasties Period (220-589 AD)</h3>
                 <p><strong>Historical Background:</strong> Political division, scholar-officials' prominence, Seven Sages of the Bamboo Grove, flourishing of metaphysics.</p>
@@ -68,16 +76,16 @@
                 <ul>
                   <li>Widespread use of courtesy names and literary names, emphasis on phonetic beauty</li>
                   <li>Admiration for elegant and profound meanings</li>
-                  <li>Frequent use of particles like "zhi" and "ruo" in names</li>
+                  <li>Frequent use of particles like "之 (zhi)" and "若 (ruo)" in names</li>
                   <li>Names derived from natural scenery, such as wind, moon, bamboo, pine, etc.</li>
                 </ul>
                 <p><strong>Representative Names:</strong></p>
                 <ul>
-                  <li>Ji Kang, courtesy name Shuye (one of the Seven Sages)</li>
-                  <li>Ruan Ji (one of the Seven Sages)</li>
-                  <li>Tao Yuanming, courtesy name Yuanliang (pastoral poet)</li>
-                  <li>Xie Daoyun (talented woman)</li>
-                  <li>Wang Xizhi, courtesy name Yishao (calligrapher)</li>
+                  <li>嵇康 (Ji Kang), courtesy name 叔夜 (Shuye) (one of the Seven Sages)</li>
+                  <li>阮籍 (Ruan Ji) (one of the Seven Sages)</li>
+                  <li>陶渊明 (Tao Yuanming), courtesy name 元亮 (Yuanliang) (pastoral poet)</li>
+                  <li>谢道韫 (Xie Daoyun) (talented woman)</li>
+                  <li>王羲之 (Wang Xizhi), courtesy name 逸少 (Yishao) (calligrapher)</li>
                 </ul>
 
                 <h3>Sui-Tang Period (589-907 AD)</h3>
@@ -91,12 +99,12 @@
                 </ul>
                 <p><strong>Representative Names:</strong></p>
                 <ul>
-                  <li>Li Shimin, courtesy name Shuming (Emperor Taizong of Tang)</li>
-                  <li>Li Bai, courtesy name Taibai (Immortal Poet)</li>
-                  <li>Du Fu, courtesy name Zimei (Sage Poet)</li>
-                  <li>Wang Wei, courtesy name Mojie (Buddha Poet)</li>
-                  <li>Wu Zetian (China's only female emperor)</li>
-                  <li>Yang Yuhuan (Imperial Consort)</li>
+                  <li>李世民 (Li Shimin), courtesy name 叔明 (Shuming) (Emperor Taizong of Tang)</li>
+                  <li>李白 (Li Bai), courtesy name 太白 (Taibai) (Immortal Poet)</li>
+                  <li>杜甫 (Du Fu), courtesy name 子美 (Zimei) (Sage Poet)</li>
+                  <li>王维 (Wang Wei), courtesy name 摩诘 (Mojie) (Buddha Poet)</li>
+                  <li>武则天 (Wu Zetian) (China's only female emperor)</li>
+                  <li>杨玉环 (Yang Yuhuan) (Imperial Consort)</li>
                 </ul>
               </div>
             </div>
@@ -108,7 +116,11 @@
           <div class="timeline-content">
             <h2>Song, Yuan, Ming, and Qing Dynasties (960-1911 AD)</h2>
             <div class="era-card">
-              <div class="era-image" style="background-image: url('https://placehold.co/800x400')"></div>
+              <div class="era-image">
+                <div class="img-wrapper">
+                  <img src="@/assets/images/manjianghong.png" alt="宋元明清时期" />
+                </div>
+              </div>
               <div class="era-details">
                 <h3>Song Dynasty (960-1279 AD)</h3>
                 <p><strong>Historical Background:</strong> Rise of Neo-Confucianism, prosperous urban economy, emergence of literati and scholar-officials.</p>
@@ -121,11 +133,11 @@
                 </ul>
                 <p><strong>Representative Names:</strong></p>
                 <ul>
-                  <li>Zhao Kuangyin (Emperor Taizu of Song)</li>
-                  <li>Su Shi, courtesy name Zizhan (Su Dongpo)</li>
-                  <li>Li Qingzhao (female poet of Song)</li>
-                  <li>Zhu Xi, courtesy name Yuanhui (Neo-Confucian philosopher)</li>
-                  <li>Xin Qiji, courtesy name You'an (poet)</li>
+                  <li>赵匡胤 (Zhao Kuangyin) (Emperor Taizu of Song)</li>
+                  <li>苏轼 (Su Shi), courtesy name 子瞻 (Zizhan) (苏东坡 (Su Dongpo))</li>
+                  <li>李清照 (Li Qingzhao) (female poet of Song)</li>
+                  <li>朱熹 (Zhu Xi), courtesy name 元晦 (Yuanhui) (Neo-Confucian philosopher)</li>
+                  <li>辛弃疾 (Xin Qiji), courtesy name 幼安 (You'an) (poet)</li>
                 </ul>
 
                 <h3>Yuan Dynasty (1271-1368 AD)</h3>
@@ -138,10 +150,10 @@
                 </ul>
                 <p><strong>Representative Names:</strong></p>
                 <ul>
-                  <li>Kublai Khan (Emperor Shizu of Yuan)</li>
-                  <li>Guo Shoujing (astronomer)</li>
-                  <li>Ma Zhiyuan (Yuan drama writer)</li>
-                  <li>Wang Shifu (author of "Romance of the Western Chamber")</li>
+                  <li>忽必烈 (Kublai Khan) (Emperor Shizu of Yuan)</li>
+                  <li>郭守敬 (Guo Shoujing) (astronomer)</li>
+                  <li>马致远 (Ma Zhiyuan) (Yuan drama writer)</li>
+                  <li>王实甫 (Wang Shifu) (author of "Romance of the Western Chamber")</li>
                 </ul>
 
                 <h3>Ming Dynasty (1368-1644 AD)</h3>
@@ -150,16 +162,16 @@
                 <ul>
                   <li>Pursuit of elegance, reverence for antiquity</li>
                   <li>Emphasis on family genealogy, clear generational order</li>
-                  <li>Scholars often adopted literary names, such as "Qinglian Jushi" or "Banqiao Jushi"</li>
+                  <li>Scholars often adopted literary names, such as "青莲居士 (Qinglian Jushi)" or "板桥居士 (Banqiao Jushi)"</li>
                   <li>With commodity economy development, commoner names became more diverse</li>
                 </ul>
                 <p><strong>Representative Names:</strong></p>
                 <ul>
-                  <li>Zhu Yuanzhang (Emperor Taizu of Ming)</li>
-                  <li>Qi Jiguang (anti-piracy military commander)</li>
-                  <li>Tang Bohu, courtesy name Zihua (painter)</li>
-                  <li>Li Shizhen (medical scientist)</li>
-                  <li>Tang Xianzu (playwright)</li>
+                  <li>朱元璋 (Zhu Yuanzhang) (Emperor Taizu of Ming)</li>
+                  <li>戚继光 (Qi Jiguang) (anti-piracy military commander)</li>
+                  <li>唐伯虎 (Tang Bohu), courtesy name 子华 (Zihua) (painter)</li>
+                  <li>李时珍 (Li Shizhen) (medical scientist)</li>
+                  <li>汤显祖 (Tang Xianzu) (playwright)</li>
                 </ul>
 
                 <h3>Qing Dynasty (1644-1911 AD)</h3>
@@ -173,11 +185,11 @@
                 </ul>
                 <p><strong>Representative Names:</strong></p>
                 <ul>
-                  <li>Aisin Gioro Xuanye (Emperor Kangxi)</li>
-                  <li>Cao Xueqin (author of "Dream of the Red Chamber")</li>
-                  <li>Lin Zexu (anti-opium official)</li>
-                  <li>Liang Qichao (reform movement representative)</li>
-                  <li>Tan Sitong (one of the Six Gentlemen of the 1898 Reform)</li>
+                  <li>爱新觉罗·玄烨 (Aisin Gioro Xuanye) (Emperor Kangxi)</li>
+                  <li>曹雪芹 (Cao Xueqin) (author of "Dream of the Red Chamber")</li>
+                  <li>林则徐 (Lin Zexu) (anti-opium official)</li>
+                  <li>梁启超 (Liang Qichao) (reform movement representative)</li>
+                  <li>谭嗣同 (Tan Sitong) (one of the Six Gentlemen of the 1898 Reform)</li>
                 </ul>
               </div>
             </div>
@@ -189,25 +201,29 @@
           <div class="timeline-content">
             <h2>Modern Era (1912-1978 AD)</h2>
             <div class="era-card">
-              <div class="era-image" style="background-image: url('https://placehold.co/800x400')"></div>
+              <div class="era-image">
+                <div class="img-wrapper">
+                  <img src="@/assets/images/tiananmen.png" alt="现代时期" />
+                </div>
+              </div>
               <div class="era-details">
                 <h3>Republic of China Period (1912-1949 AD)</h3>
                 <p><strong>Historical Background:</strong> Early establishment of democratic republic, May Fourth Movement, New Culture Movement.</p>
                 <p><strong>Naming Characteristics:</strong></p>
                 <ul>
-                  <li>Patriotism and revolutionary spirit in names, such as "Jianguo" (Building the Nation), "Aimin" (Loving the People)</li>
-                  <li>Western thought influence, with terms like "Minzhu" (Democracy), "Kexue" (Science) appearing in names</li>
+                  <li>Patriotism and revolutionary spirit in names, such as "建国 (Jianguo)" (Building the Nation), "爱民 (Aimin)" (Loving the People)</li>
+                  <li>Western thought influence, with terms like "民主 (Minzhu)" (Democracy), "科学 (Kexue)" (Science) appearing in names</li>
                   <li>Fusion of traditional culture and modern thought</li>
                   <li>Reduced use of courtesy names, simplified naming systems</li>
                 </ul>
                 <p><strong>Representative Names:</strong></p>
                 <ul>
-                  <li>Sun Zhongshan (Sun Wen, literary name Yixian)</li>
-                  <li>Cai Yuanpei (educator)</li>
-                  <li>Lu Xun (Zhou Shuren)</li>
-                  <li>Hu Shi (New Culture Movement leader)</li>
-                  <li>Zhang Xueliang (patriotic general)</li>
-                  <li>Song Qingling, Song Meiling (Song sisters)</li>
+                  <li>孙中山 (Sun Zhongshan) (孙文 (Sun Wen), literary name 逸仙 (Yixian))</li>
+                  <li>蔡元培 (Cai Yuanpei) (educator)</li>
+                  <li>鲁迅 (Lu Xun) (周树人 (Zhou Shuren))</li>
+                  <li>胡适 (Hu Shi) (New Culture Movement leader)</li>
+                  <li>张学良 (Zhang Xueliang) (patriotic general)</li>
+                  <li>宋庆龄 (Song Qingling), 宋美龄 (Song Meiling) (Song sisters)</li>
                 </ul>
 
                 <h3>Revolutionary War Period (1927-1949 AD)</h3>
@@ -221,30 +237,30 @@
                 </ul>
                 <p><strong>Representative Names and Aliases:</strong></p>
                 <ul>
-                  <li>Mao Zedong (courtesy name Runzhi)</li>
-                  <li>Zhou Enlai</li>
-                  <li>Zhu De</li>
-                  <li>Liu Shaoqi</li>
-                  <li>Deng Xiaoping (original name Deng Xiansheng)</li>
-                  <li>Jiang Jie (Jiang Zhuyun)</li>
+                  <li>毛泽东 (Mao Zedong) (courtesy name 润之 (Runzhi))</li>
+                  <li>周恩来 (Zhou Enlai)</li>
+                  <li>朱德 (Zhu De)</li>
+                  <li>刘少奇 (Liu Shaoqi)</li>
+                  <li>邓小平 (Deng Xiaoping) (original name 邓先圣 (Deng Xiansheng))</li>
+                  <li>江姐 (Jiang Jie) (江竹筠 (Jiang Zhuyun))</li>
                 </ul>
 
                 <h3>Early PRC to Pre-Cultural Revolution (1949-1966 AD)</h3>
                 <p><strong>Historical Background:</strong> New China established, post-war reconstruction, socialist construction.</p>
                 <p><strong>Naming Characteristics:</strong></p>
                 <ul>
-                  <li>Names like "Jianguo," "Jianshe" (Construction), "Jianhua" appeared in large numbers</li>
-                  <li>Names reflecting industrial and agricultural development became popular, such as "Tieqiang" (Iron Strong), "Gang" (Steel)</li>
-                  <li>Names embodying international friendship, like "Youyi" (Friendship), "Heping" (Peace)</li>
+                  <li>Names like "建国 (Jianguo)," "建设 (Jianshe)" (Construction), "建华 (Jianhua)" appeared in large numbers</li>
+                  <li>Names reflecting industrial and agricultural development became popular, such as "铁强 (Tieqiang)" (Iron Strong), "钢 (Gang)" (Steel)</li>
+                  <li>Names embodying international friendship, like "友谊 (Youyi)" (Friendship), "和平 (Heping)" (Peace)</li>
                   <li>Combination of revolutionary tradition and national pride</li>
                 </ul>
                 <p><strong>Common Popular Names:</strong></p>
                 <ul>
-                  <li>Jianguo, Jianhua, Jianjun</li>
-                  <li>Weidong, Weihong</li>
-                  <li>Zhiqiang, Zhigang</li>
-                  <li>Hongmei, Hongjun</li>
-                  <li>Yuejin, Weiguo</li>
+                  <li>建国 (Jianguo), 建华 (Jianhua), 建军 (Jianjun)</li>
+                  <li>卫东 (Weidong), 卫红 (Weihong)</li>
+                  <li>志强 (Zhiqiang), 志刚 (Zhigang)</li>
+                  <li>红梅 (Hongmei), 红军 (Hongjun)</li>
+                  <li>跃进 (Yuejin), 卫国 (Weiguo)</li>
                 </ul>
 
                 <h3>Cultural Revolution Period (1966-1976 AD)</h3>
@@ -258,11 +274,11 @@
                 </ul>
                 <p><strong>Common Popular Names:</strong></p>
                 <ul>
-                  <li>Weidong, Weihong, Weiguo</li>
-                  <li>Xiangyang, Xianghong</li>
-                  <li>Dongfanghong</li>
-                  <li>Yuejin, Jinbu</li>
-                  <li>Tiejun, Tiemei</li>
+                  <li>卫东 (Weidong), 卫红 (Weihong), 卫国 (Weiguo)</li>
+                  <li>向阳 (Xiangyang), 向红 (Xianghong)</li>
+                  <li>东方红 (Dongfanghong)</li>
+                  <li>跃进 (Yuejin), 进步 (Jinbu)</li>
+                  <li>铁军 (Tiejun), 铁梅 (Tiemei)</li>
                 </ul>
               </div>
             </div>
@@ -274,7 +290,11 @@
           <div class="timeline-content">
             <h2>Reform and Opening Up Era (1978 to Present)</h2>
             <div class="era-card">
-              <div class="era-image" style="background-image: url('https://placehold.co/800x400')"></div>
+              <div class="era-image">
+                <div class="img-wrapper">
+                  <img src="@/assets/images/feichuan.png" alt="改革开放时期" />
+                </div>
+              </div>
               <div class="era-details">
                 <h3>1980s</h3>
                 <p><strong>Historical Background:</strong> Early reform and opening up, liberation of thought, return to traditional culture.</p>
@@ -283,15 +303,15 @@
                   <li>Pursuit of cultural connotation, incorporation of classical poetry into names</li>
                   <li>Emphasis on personal ideals and aspirations</li>
                   <li>Importance of phonetic beauty</li>
-                  <li>Popularity of characters like "Wei" (Great), "Qiang" (Strong), "Yong" (Brave) conveying positive advancement</li>
+                  <li>Popularity of characters like "伟 (Wei)" (Great), "强 (Qiang)" (Strong), "勇 (Yong)" (Brave) conveying positive advancement</li>
                 </ul>
                 <p><strong>Common Popular Names:</strong></p>
                 <ul>
-                  <li>Weiming, Weihua</li>
-                  <li>Wenjing, Wenhui</li>
-                  <li>Yanan, Yanan</li>
-                  <li>Xiaoping, Xiaojun</li>
-                  <li>Tingting, Fangfang</li>
+                  <li>伟明 (Weiming), 伟华 (Weihua)</li>
+                  <li>文静 (Wenjing), 文慧 (Wenhui)</li>
+                  <li>亚男 (Yanan), 雅楠 (Yanan)</li>
+                  <li>小平 (Xiaoping), 小军 (Xiaojun)</li>
+                  <li>婷婷 (Tingting), 芳芳 (Fangfang)</li>
                 </ul>
 
                 <h3>1990s</h3>
@@ -301,33 +321,33 @@
                   <li>Emphasis on aesthetic value and cultural taste</li>
                   <li>Increased use of unique and rare characters</li>
                   <li>Double-character structure names mainstream</li>
-                  <li>Hong Kong and Taiwan celebrity influence, with widespread use of characters like "Jia" and "Jun"</li>
+                  <li>Hong Kong and Taiwan celebrity influence, with widespread use of characters like "佳 (Jia)" and "俊 (Jun)"</li>
                 </ul>
                 <p><strong>Common Popular Names:</strong></p>
                 <ul>
-                  <li>Junjie, Junzhe</li>
-                  <li>Jiaxin, Jiayi</li>
-                  <li>Mengting, Mengqi</li>
-                  <li>Zhiyuan, Zhiqiang</li>
-                  <li>Xuelian, Xuemei</li>
+                  <li>俊杰 (Junjie), 俊哲 (Junzhe)</li>
+                  <li>佳欣 (Jiaxin), 佳怡 (Jiayi)</li>
+                  <li>梦婷 (Mengting), 梦琪 (Mengqi)</li>
+                  <li>志远 (Zhiyuan), 志强 (Zhiqiang)</li>
+                  <li>雪莲 (Xuelian), 雪梅 (Xuemei)</li>
                 </ul>
 
                 <h3>2000s</h3>
                 <p><strong>Historical Background:</strong> Internet rise, deepening globalization, educational emphasis.</p>
                 <p><strong>Naming Characteristics:</strong></p>
                 <ul>
-                  <li>Emphasis on traditional cultural elements, such as classical characters like "Xuan" and "Chen"</li>
+                  <li>Emphasis on traditional cultural elements, such as classical characters like "轩 (Xuan)" and "宸 (Chen)"</li>
                   <li>Focus on the uniqueness and distinctiveness of names</li>
                   <li>Harmony of tone and rhythm, avoiding obscure and difficult-to-read characters</li>
-                  <li>Reflection of social competitiveness, popularity of characters like "Rui" (Wise), "Zhi" (Intelligent), "Bo" (Extensive)</li>
+                  <li>Reflection of social competitiveness, popularity of characters like "睿 (Rui)" (Wise), "智 (Zhi)" (Intelligent), "博 (Bo)" (Extensive)</li>
                 </ul>
                 <p><strong>Common Popular Names:</strong></p>
                 <ul>
-                  <li>Haoran, Haoyu</li>
-                  <li>Zixuan, Zixuan</li>
-                  <li>Zihan, Zihan</li>
-                  <li>Xinyi, Xinran</li>
-                  <li>Bowen, Boyu</li>
+                  <li>浩然 (Haoran), 浩宇 (Haoyu)</li>
+                  <li>子轩 (Zixuan), 紫轩 (Zixuan)</li>
+                  <li>子涵 (Zihan), 梓涵 (Zihan)</li>
+                  <li>欣怡 (Xinyi), 欣然 (Xinran)</li>
+                  <li>博文 (Bowen), 博宇 (Boyu)</li>
                 </ul>
 
                 <h3>2010s to Present</h3>
@@ -341,12 +361,12 @@
                 </ul>
                 <p><strong>Common Popular Names:</strong></p>
                 <ul>
-                  <li>Chenyu, Chenxi</li>
-                  <li>Zihan, Zixuan</li>
-                  <li>Muen, Muyang</li>
-                  <li>Zhiruo, Zhiqing</li>
-                  <li>Shengrui, Shengxuan</li>
-                  <li>Yichen, Yiran</li>
+                  <li>宸宇 (Chenyu), 宸熙 (Chenxi)</li>
+                  <li>子涵 (Zihan), 子轩 (Zixuan)</li>
+                  <li>沐恩 (Muen), 沐阳 (Muyang)</li>
+                  <li>芷若 (Zhiruo), 芷晴 (Zhiqing)</li>
+                  <li>圣瑞 (Shengrui), 圣轩 (Shengxuan)</li>
+                  <li>一辰 (Yichen), 依然 (Yiran)</li>
                 </ul>
               </div>
             </div>
@@ -465,14 +485,41 @@ export default {
   background-color: white;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
 }
 
 .era-image {
-  height: 250px;
-  background-size: cover;
-  background-position: center;
+  background-color: #f9f9f9;
+  height: auto;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.img-wrapper {
+  width: 100%;
+  height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.era-card:hover .img-wrapper img {
+  transform: scale(1.03);
 }
 
 .era-details {
@@ -537,6 +584,10 @@ export default {
   
   .timeline-content {
     margin-left: 40px;
+  }
+  
+  .img-wrapper {
+    height: 220px;
   }
   
   .page-title {
