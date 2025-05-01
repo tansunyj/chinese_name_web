@@ -6,6 +6,11 @@ import EraNamingStyles from '../views/EraNamingStyles.vue'
 
 const routes = [
   {
+    path: '/popular-chinese-names',
+    name: 'popular-chinese-names',
+    component: () => import('../views/PopularChineseNames.vue')
+  },
+  {
     path: '/',
     name: 'Home',
     component: () => import('../views/HomePage.vue')
@@ -222,4 +227,4 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-export default router 
+export default router

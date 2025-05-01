@@ -5,6 +5,17 @@
       <p class="seo-description">Discover the art of Chinese naming traditions, character meanings, and cultural practices. Learn how Chinese names are translated and how to say your name in Chinese. Découvrez l'art des traditions de nommage chinois. Entdecken Sie die Kunst der chinesischen Namenstraditionen. Узнайте о традициях китайских имен. 中国の名前の伝統と文化的意義を発見しましょう。</p>
       
       <div class="knowledge-grid">
+        <!-- 新增热门中文名字卡片 -->
+        <router-link to="/popular-chinese-names" class="category-card">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+            </svg>
+          </div>
+          <h2>150 Popular Chinese Names for Boys and Girls</h2>
+          <p>Discover the most popular Chinese names with their meanings and pronunciations for both boys and girls.</p>
+        </router-link>
+        
         <router-link to="/chinese-surnames" class="category-card">
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -786,4 +797,4 @@ export default {
     font-size: 1.5rem;
   }
 }
-</style> 
+</style>
