@@ -611,8 +611,19 @@ export default {
           language: this.locale
         };
         
+        // 从日期时间中提取年、月、日、时、分
+        const dateTimeParts = apiParams.birthDateTime.split('T');
+        const dateParts = dateTimeParts[0].split('-');
+        const timeParts = dateTimeParts[1].split(':');
+        
+        const year = parseInt(dateParts[0]);
+        const month = parseInt(dateParts[1]);
+        const day = parseInt(dateParts[2]);
+        const hour = parseInt(timeParts[0]);
+        const minute = parseInt(timeParts[1]);
+        
         // 提前计算正确的农历日期信息
-        const correctBirthInfo = this.generateBirthInfo(year, month, day, hour, minute);
+        const correctBirthInfo = this.createBirthInfo(apiParams.birthDateTime);
         log("已计算的农历日期：", correctBirthInfo.lunarDate);
         
         // 构建提示词

@@ -96,6 +96,30 @@ import { nameTranslationPrompts } from '@/services/promptTemplates';
 import LoadingIndicator from '@/components/LoadingIndicator.vue';
 import { useI18n } from 'vue-i18n';
 
+// 判断当前是否为开发环境
+const isDevelopment = process.env.NODE_ENV === 'development';
+
+// 定义日志函数，只在开发环境中输出
+const log = (...args) => {
+  if (isDevelopment) {
+    console.log(...args);
+  }
+};
+
+// 定义警告日志函数
+const logWarn = (...args) => {
+  if (isDevelopment) {
+    console.warn(...args);
+  }
+};
+
+// 定义错误日志函数
+const logError = (...args) => {
+  if (isDevelopment) {
+    console.error(...args);
+  }
+};
+
 export default {
   name: 'TranslateName',
   components: {
@@ -302,7 +326,7 @@ export default {
 }`;
 
         // 使用 openaiService 生成 JSON 结构化数据
-        console.log('发送AI请求:', prompt);
+        log('发送AI请求:', prompt);
         const response = await translateName({
           name: this.formData.fullName,
           prompt: prompt,
@@ -312,7 +336,7 @@ export default {
           metadata: { type: 'name_translation' }
         });
 
-        console.log('原始响应数据:', response);
+        log('原始响应数据:', response);
 
         // 检查并处理返回数据
         if (!response?.object?.translations || !Array.isArray(response.object.translations)) {
@@ -367,7 +391,7 @@ export default {
             
             // 如果没有翻译名称，跳过此项
             if (!translate) {
-              console.warn('跳过没有翻译名称的结果项:', item);
+              logWarn('跳过没有翻译名称的结果项:', item);
               return null;
             }
             
@@ -427,14 +451,14 @@ export default {
               ...(item.analysis ? { analysis: item.analysis } : {})
             };
           } catch (e) {
-            console.error('处理翻译结果项时出错:', e);
+            logError('处理翻译结果项时出错:', e);
             return null;
           }
         }).filter(Boolean); // 过滤掉null项
 
         // 如果没有有效结果，使用后备方案并显示友好提示
         if (normalizedResults.length === 0) {
-          console.warn('没有有效的翻译结果，使用后备结果');
+          logWarn('没有有效的翻译结果，使用后备结果');
           const fallbackResults = this.getFallbackResults();
           this.results = fallbackResults;
           
@@ -445,11 +469,11 @@ export default {
           this.results = normalizedResults;
         }
 
-        console.log('最终处理后的结果:', this.results);
+        log('最终处理后的结果:', this.results);
 
       } catch (error) {
-        console.error('名字翻译错误:', error);
-        console.error('错误堆栈:', error.stack);
+        logError('名字翻译错误:', error);
+        logError('错误堆栈:', error.stack);
         message.error(error.message || '翻译失败，请重试');
         this.errorMessage = this.$t('translate.errors.translationFailed');
         
@@ -506,7 +530,7 @@ export default {
         
         return results;
       } catch (error) {
-        console.error('结构化提取失败:', error);
+        logError('结构化提取失败:', error);
         return null;
       }
     },
@@ -522,7 +546,7 @@ export default {
         }
         return null;
       } catch (error) {
-        console.error('解析JSON失败:', error);
+        logError('解析JSON失败:', error);
         return null;
       }
     },
@@ -730,11 +754,11 @@ export default {
     
     playPronunciation(text) {
       if (!text) {
-        console.error('无法播放：文本为空');
+        logError('无法播放：文本为空');
         return;
       }
       
-      console.log(`尝试播放发音: ${text}`);
+      log(`尝试播放发音: ${text}`);
       
       if ('speechSynthesis' in window) {
         // 停止当前正在播放的语音
@@ -781,7 +805,7 @@ export default {
         
         // 添加错误处理
         utterance.onerror = (event) => {
-          console.error('语音合成错误:', event.error);
+          logError('语音合成错误:', event.error);
           message.error(this.locale === 'zh' ? '发音失败，请重试' : 'Pronunciation failed, please try again');
         };
         
@@ -793,7 +817,7 @@ export default {
         // 播放语音
         window.speechSynthesis.speak(utterance);
       } else {
-        console.warn('当前浏览器不支持语音合成API');
+        logWarn('当前浏览器不支持语音合成API');
         message.warning(this.locale === 'zh' ? '您的浏览器不支持语音合成' : 'Your browser does not support speech synthesis');
       }
     },
@@ -801,7 +825,7 @@ export default {
     // 添加处理播放发音的点击事件方法
     handlePlayClick(result) {
       if (!result) {
-        console.error('无法播放：结果对象为空');
+        logError('无法播放：结果对象为空');
         return;
       }
       
@@ -815,7 +839,7 @@ export default {
         const firstResult = this.results[0];
         this.playPronunciation(firstResult.translate);
       } else {
-        console.error('无法找到要播放的文本');
+        logError('无法找到要播放的文本');
         message.error(this.locale === 'zh' ? '找不到要播放的文本' : 'No text to play');
       }
     },
@@ -835,7 +859,7 @@ export default {
           text: shareText,
           url: window.location.href
         })
-        .catch((error) => console.log('分享失败:', error));
+        .catch((error) => logError('分享失败:', error));
       } else {
         message.info(`分享: ${shareText}`);
       }
@@ -851,7 +875,7 @@ export default {
       this.formData.fullName = '';
       // 获取新语言的label文本
       const languageLabel = this.languageOptions.find(l => l.code === code)?.text || '';
-      console.log(`切换到语言: ${code}, 提示文本: ${languageLabel}`);
+      log(`切换到语言: ${code}, 提示文本: ${languageLabel}`);
     }
   }
 }
