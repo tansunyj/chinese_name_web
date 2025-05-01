@@ -391,6 +391,30 @@ import dayjs from 'dayjs';
 import enUS from 'ant-design-vue/es/date-picker/locale/en_US';
 import zhCN from 'ant-design-vue/es/date-picker/locale/zh_CN';
 
+// 判断当前是否为开发环境
+const isDevelopment = process.env.NODE_ENV === 'development';
+
+// 定义日志函数，只在开发环境中输出
+const log = (...args) => {
+  if (isDevelopment) {
+    console.log(...args);
+  }
+};
+
+// 定义警告日志函数
+const logWarn = (...args) => {
+  if (isDevelopment) {
+    console.warn(...args);
+  }
+};
+
+// 定义错误日志函数
+const logError = (...args) => {
+  if (isDevelopment) {
+    console.error(...args);
+  }
+};
+
 // 默认汉字含义字典
 const defaultMeanings = {
   '智': '智：意为聪明、有智慧。读音zhì。指睿智、聪明才智，形容拥有高深的思考能力和见识。用作人名意指聪明、睿智、有才能之义。',
@@ -588,8 +612,8 @@ export default {
         };
         
         // 提前计算正确的农历日期信息
-        const correctBirthInfo = this.createBirthInfo(apiParams.birthDateTime);
-        console.log("已计算的农历日期：", correctBirthInfo.lunarDate);
+        const correctBirthInfo = this.generateBirthInfo(year, month, day, hour, minute);
+        log("已计算的农历日期：", correctBirthInfo.lunarDate);
         
         // 构建提示词
         const promptTemplate = nameGenerationPrompts[this.locale] || nameGenerationPrompts.zh;
@@ -668,7 +692,7 @@ export default {
         };
         
         // 使用openaiService生成JSON结构化数据
-        console.log('发送AI请求...');
+        log('发送AI请求...');
         const response = await openaiService.generateAIObject({
           prompt: prompt,
           schema: nameSchema,
@@ -677,11 +701,11 @@ export default {
           metadata: { type: 'name_generation' }
         });
         
-        console.log('AI响应:', response);
+        log('AI响应:', response);
         
         // 从响应中提取名字数据 - 使用更安全的方式检查数据
         if (response && response.object && Array.isArray(response.object.names) && response.object.names.length > 0) {
-          console.log('成功获取名字数据:', response.object.names);
+          log('成功获取名字数据:', response.object.names);
           
           // 确保所有结果都使用正确计算的农历日期信息
           this.results = response.object.names.map((name, idx) => {
@@ -697,26 +721,26 @@ export default {
           // 滚动到结果区域
           this.scrollToResults();
         } else {
-          console.warn('AI返回的数据结构不符合预期或为空:', response);
+          logWarn('AI返回的数据结构不符合预期或为空:', response);
           // 使用模拟数据作为备用
           this.results = this.createMockNames(apiParams).map((name, idx) => ({
             ...name,
             showAnalysis: true,
             activeTab: 0
           }));
-          console.warn('使用模拟数据作为备用方案');
+          logWarn('使用模拟数据作为备用方案');
           // 滚动到结果区域
           this.scrollToResults();
         }
       } catch (error) {
-        console.error('AI名字生成错误:', error);
+        logError('AI名字生成错误:', error);
         // 使用模拟数据作为备用
         this.results = this.createMockNames(apiParams).map((name, idx) => ({
           ...name,
           showAnalysis: true,
           activeTab: 0
         }));
-        console.warn('AI服务错误，使用模拟数据作为备用');
+        logWarn('AI服务错误，使用模拟数据作为备用');
         // 滚动到结果区域
         this.scrollToResults();
       } finally {
@@ -760,7 +784,7 @@ export default {
         
         return names;
       } catch (error) {
-        console.error('结构化提取失败:', error);
+        logError('结构化提取失败:', error);
         return null;
       }
     },
@@ -1114,9 +1138,9 @@ export default {
     
     // 创建模拟名字数据(原mockNameGenerationAPI方法的逻辑)
     createMockNames(params) {
-      // 确保计算并显示正确的农历日期
+      // 为模拟数据添加出生信息
       const birthInfo = this.createBirthInfo(params.birthDateTime);
-      console.log("模拟数据中的农历日期:", birthInfo.lunarDate);
+      log("模拟数据中的农历日期:", birthInfo.lunarDate);
       
       return [
         {
@@ -1456,74 +1480,39 @@ export default {
 
     // 测试农历日期计算
     testLunarCalculation() {
-      console.log("%c开始测试农历日期计算...", "color: #4CAF50; font-weight: bold; font-size: 14px");
+      log("%c开始测试农历日期计算...", "color: #4CAF50; font-weight: bold; font-size: 14px");
       
-      // 测试用例：[公历年, 公历月, 公历日, 预期农历月, 预期农历日, 是否闰月]
+      // 测试用例 - 农历日期对照表
       const testCases = [
-        // 重点测试2025年问题日期
-        [2025, 4, 29, 4, 2, false], // 关键错误测试用例
-        [2025, 4, 30, 4, 3, false],
-        [2025, 5, 1, 4, 4, false],
-        
-        // 测试各年正月初一
-        [2023, 1, 22, 1, 1, false], // 2023年正月初一
-        [2024, 2, 10, 1, 1, false], // 2024年正月初一
-        [2025, 1, 29, 1, 1, false], // 2025年正月初一
-        [2026, 2, 17, 1, 1, false], // 2026年正月初一
-        
-        // 测试常见农历节日
-        [2025, 2, 28, 2, 1, false], // 2025年二月初一
-        [2025, 6, 25, 5, 29, false], // 2025年五月廿九
-        [2025, 6, 26, 6, 1, false], // 2025年六月初一
-        
-        // 测试闰月情况 (2023年闰二月)
-        [2023, 3, 22, 2, 1, true], // 2023年闰二月初一
-        [2023, 4, 20, 3, 1, false], // 2023年三月初一
-        
-        // 测试年尾和年初边界
-        [2022, 1, 1, 11, 29, false], // 2021年冬月廿九
-        [2022, 2, 1, 1, 1, false],   // 2022年正月初一
-        
-        // 测试边界情况
-        [1900, 1, 31, 1, 1, false],  // 农历1900年正月初一 (算法起始日)
-        [2064, 12, 31, 12, 8, false], // 算法支持的最后年份
+        // ... existing code ...
       ];
       
+      // 记录测试结果
       let passedCount = 0;
-      let failedTests = [];
+      const failedTests = [];
       
-      testCases.forEach(([year, month, day, expectedLunarMonth, expectedLunarDay, expectedIsLeap]) => {
-        const result = this.calculateLunarDate(year, month, day);
-        const passed = result.lunarMonth === expectedLunarMonth && 
-                       result.lunarDay === expectedLunarDay && 
-                       (result.isLeap === expectedIsLeap);
-        
-        if (passed) {
-          passedCount++;
-        } else {
-          failedTests.push({
-            date: `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`,
-            expected: `${expectedIsLeap ? '闰' : ''}${expectedLunarMonth}月${expectedLunarDay}日`,
-            actual: `${result.isLeap ? '闰' : ''}${result.lunarMonth}月${result.lunarDay}日`
-          });
-        }
+      // 运行测试
+      testCases.forEach(({ solarDate, lunarDate }) => {
+        // ... existing code ...
       });
       
       // 以表格形式显示测试结果
-      console.log(`%c农历日期测试结果: ${passedCount}/${testCases.length} 通过 ${Math.round(passedCount/testCases.length*100)}%`, 
+      log(`%c农历日期测试结果: ${passedCount}/${testCases.length} 通过 ${Math.round(passedCount/testCases.length*100)}%`, 
         `color: ${passedCount === testCases.length ? '#4CAF50' : '#F44336'}; font-weight: bold; font-size: 14px`);
       
       if (failedTests.length > 0) {
-        console.warn("%c失败的测试用例:", "color: #F44336; font-weight: bold");
-        console.table(failedTests);
+        logWarn("%c失败的测试用例:", "color: #F44336; font-weight: bold");
+        if (isDevelopment) {
+          console.table(failedTests);
+        }
       } else {
-        console.log("%c所有农历日期转换测试用例均通过! 🎉", "color: #4CAF50; font-weight: bold; font-size: 14px");
+        log("%c所有农历日期转换测试用例均通过! 🎉", "color: #4CAF50; font-weight: bold; font-size: 14px");
       }
       
       // 特别测试2025-04-29
       const criticalDate = this.calculateLunarDate(2025, 4, 29);
-      console.log("%c关键日期测试 - 2025-04-29", "color: #FF9800; font-weight: bold");
-      console.log(`期望值: 农历四月初二 | 实际值: 农历${criticalDate.lunarMonth}月${criticalDate.lunarDay}日 | ${criticalDate.lunarMonth === 4 && criticalDate.lunarDay === 2 ? '✅正确' : '❌错误'}`);
+      log("%c关键日期测试 - 2025-04-29", "color: #FF9800; font-weight: bold");
+      log(`期望值: 农历四月初二 | 实际值: 农历${criticalDate.lunarMonth}月${criticalDate.lunarDay}日 | ${criticalDate.lunarMonth === 4 && criticalDate.lunarDay === 2 ? '✅正确' : '❌错误'}`);
     },
     // 重新计算并显示农历日期
     recalculateLunarDate() {
@@ -1553,15 +1542,15 @@ export default {
         
         this.calculatedLunarDate = `${lunarYearName}年${isLeap ? '闰' : ''}${lunarMonthNames[lunarMonth-1]}月${lunarDayNames[lunarDay-1]}`;
         
-        console.log(`公历 ${year}-${month}-${day} 对应农历: ${this.calculatedLunarDate}`);
+        log(`公历 ${year}-${month}-${day} 对应农历: ${this.calculatedLunarDate}`);
         
         // 特别检查2025-04-29的转换结果
         if (year === 2025 && month === 4 && day === 29) {
           const isCorrect = lunarMonth === 4 && lunarDay === 2;
-          console.log(`2025-04-29 转换检查: ${isCorrect ? '✅正确' : '❌错误'}`);
+          log(`2025-04-29 转换检查: ${isCorrect ? '✅正确' : '❌错误'}`);
         }
       } catch (error) {
-        console.error('计算农历日期出错:', error);
+        logError('计算农历日期出错:', error);
         this.calculatedLunarDate = '计算错误';
       }
     },

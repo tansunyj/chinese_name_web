@@ -10,6 +10,14 @@ import { DatePicker, TimePicker } from 'ant-design-vue'
 import 'ant-design-vue/es/date-picker/style/css'
 import 'ant-design-vue/es/time-picker/style/css'
 
+// 设置调试选项默认值
+if (window.localStorage.getItem('enableDebugLogs') === null) {
+  window.localStorage.setItem('enableDebugLogs', 'false');
+}
+if (window.localStorage.getItem('enableDetailedLogs') === null) {
+  window.localStorage.setItem('enableDetailedLogs', 'false');
+}
+
 // 强制设置默认语言为英文
 i18n.global.locale.value = 'en';
 

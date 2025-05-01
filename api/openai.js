@@ -4,16 +4,26 @@
 // 判断当前是否为生产环境
 const isProduction = process.env.NODE_ENV === 'production';
 
-// 定义日志函数，在生产环境中不输出
+// 定义日志函数，在生产环境中完全不输出
 const log = (...args) => {
   if (!isProduction) {
     console.log(...args);
   }
 };
 
-// 定义错误日志函数，在生产环境中也输出，但可以考虑接入正式的日志系统
+// 定义错误日志函数，在生产环境中只输出关键错误信息
 const logError = (...args) => {
-  console.error(...args);
+  if (!isProduction) {
+    console.error(...args);
+  } else {
+    // 生产环境只记录错误消息，不记录详细堆栈
+    const errorMessage = args.map(arg => 
+      typeof arg === 'object' && arg instanceof Error 
+        ? arg.message 
+        : String(arg)
+    ).join(' ');
+    console.error('Error:', errorMessage);
+  }
 };
 
 export default async function handler(req, res) {

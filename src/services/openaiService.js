@@ -15,9 +15,9 @@ import aiConfig from '@/config/aiConfig';
 // 判断当前是否为开发环境
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-// 定义日志函数，在生产环境中不输出
+// 定义日志函数，只在开发环境中输出，且支持不同级别的日志
 const log = (...args) => {
-  if (isDevelopment) {
+  if (isDevelopment && window.localStorage.getItem('enableDebugLogs') === 'true') {
     console.log(...args);
   }
 };
@@ -184,8 +184,10 @@ export const generateAIObject = async (options) => {
     
     // 处理响应
     const data = await response.json();
-    log('==== OpenAI响应 ====');
-    log('响应数据:', data);
+    if (isDevelopment && window.localStorage.getItem('enableDetailedLogs') === 'true') {
+      log('==== OpenAI响应 ====');
+      log('响应数据:', data);
+    }
     
     // 解析内容
     let content = '';
