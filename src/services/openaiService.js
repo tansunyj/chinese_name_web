@@ -120,9 +120,6 @@ export const generateAIObject = async (options) => {
     
     // 打印请求信息
     console.log('==== 发送到本地代理的请求 ====');
-    console.log('代理URL:', proxyUrl);
-    console.log('OpenAI目标URL:', targetUrl);
-    console.log('请求头:', headers);
     console.log('请求体:', openaiRequestBody);
     
     // 发送请求到本地代理服务器
