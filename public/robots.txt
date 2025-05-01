@@ -1,0 +1,10 @@
+# https://chinesename.us
+User-agent: *
+Allow: /
+
+# 禁止搜索引擎抓取登录和注册页面
+Disallow: /login
+Disallow: /signup
+
+# Allow sitemap
+Sitemap: https://chinesename.us/sitemap.xml 
