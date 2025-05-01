@@ -1,7 +1,7 @@
 <template>
   <div class="custom-name-page">
     <div class="container">
-      <h1 class="page-title">{{ $t('custom.title') }} | Chinese Names</h1>
+      <h1 class="page-title">{{ $t('custom.title') }}</h1>
       <p class="seo-description">Create your personalized Chinese name with our custom name generator. Perfect for English to Chinese name translation. Créez votre nom chinois personnalisé. Erstellen Sie Ihren personalisierten chinesischen Namen. Создайте свое персонализированное китайское имя. パーソナライズされた中国語の名前を作成します.</p>
       
       <div class="content">
@@ -113,11 +113,11 @@
           </form>
         </div>
         
-        <!-- 加载指示器（当加载时显示） -->
+        <!-- 加载指示器（只有在isLoading为true时才显示） -->
         <LoadingIndicator v-if="isLoading" :text="$t('common.generatingNames')" />
         
-        <!-- 当没有结果且不在加载状态时显示的提示 -->
-        <div v-if="!results.length && !isLoading" class="empty-results-hint">
+        <!-- 当没有结果且不在加载状态时显示的提示，但只有在用户已经点击过生成按钮后才显示 -->
+        <div v-if="!results.length && !isLoading && formData.submitted" class="empty-results-hint">
           <div class="hint-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
               <path d="M12 3v2M3 12h2m14 0h2M12 19v2M5.6 5.6l1.4 1.4m10-1.4l-1.4 1.4M5.6 18.4l1.4-1.4m10 1.4l-1.4-1.4M12 12l-3 3m3-3l3 3m-3-3v-3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -448,7 +448,8 @@ export default {
         birthtime: '',
         birthdateText: '',
         birthtimeText: '',
-        meaning: ''
+        meaning: '',
+        submitted: false // 标记用户是否已提交表单
       },
       calculatedLunarDate: '', // 存储计算出的农历日期，用于调试显示
       traits: [
@@ -596,6 +597,7 @@ export default {
       
       this.isLoading = true;
       this.error = '';
+      this.formData.submitted = true; // 标记用户已提交表单
       
       try {
         // 开始加载前清除现有结果

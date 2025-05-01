@@ -1,7 +1,7 @@
 <template>
   <div class="about-page">
     <div class="container">
-      <h1 class="page-title">{{ $t('home.about.title') }} | Chinese Names Translation Service | Service de Traduction de Noms Chinois | 中国語名前翻訳サービス | Сервис Перевода Китайских Имен</h1>
+      <h1 class="page-title">{{ $t('home.about.title') }} | Chinese Names Translation Service</h1>
       
       <div class="about-content">
         <div class="about-description">
@@ -198,4 +198,4 @@ export default {
     font-size: 2rem;
   }
 }
-</style> 
+</style>

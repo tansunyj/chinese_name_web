@@ -9,9 +9,9 @@
           </div>
           <div class="hero-text">
             <h1>Chinese Names: Free Chinese Name Generator</h1>
-            <h1>Translate Your English Name to Chinese</h1>
-            <h1>Find Your Perfect Chinese Name</h1>
-            <h1>中文起名 | 英文名翻译中文</h1>
+            <h2 class="hero-subtitle">Translate Your Name to Chinese</h2>
+            <h2 class="hero-subtitle">Find Your Perfect Chinese Name</h2>
+            <h2 class="hero-subtitle">中文起名 | 英文名翻译</h2>
             <p class="subtitle">{{ $t('home.hero.subtitle') }}</p>
           </div>
         </div>
@@ -1048,4 +1048,4 @@ export default {
     font-size: 1.3rem;
   }
 }
-</style> 
+</style>

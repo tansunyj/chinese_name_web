@@ -1,8 +1,8 @@
 <template>
   <div class="translate-page">
     <div class="container">
-      <h1 class="page-title">{{ titleText }} | Chinese Names Translator</h1>
-      <p class="seo-description">Translate your English name to Chinese characters. Learn how to say your name in Chinese with accurate pronunciation guides. Traduire votre nom en caractères chinois. Übersetzen Sie Ihren Namen in chinesische Zeichen. Как произносится ваше имя на китайском языке. 日本語の名前を中国語に翻訳します。</p>
+      <h1 class="page-title">{{ titleText }} | Chinese Names</h1>
+      <p class="seo-description">Translate your English name to Chinese characters. Learn how to say your name in Chinese with accurate pronunciation guides. Chinese names into English translation service. Translate English name to Chinese and Chinese name into English. Name translate in Chinese with cultural meaning. How to say my name is in Chinese. Translating Chinese names with professional service. Chinese language name translation for all purposes. Traduire votre nom en caractères chinois. Übersetzen Sie Ihren Namen in chinesische Zeichen. Как произносится ваше имя на китайском языке. 日本語の名前を中国語に翻訳します。</p>
       
       <div class="content">
         <div class="form-section">
@@ -244,21 +244,21 @@ export default {
           }
         };
 
-        // 根据当前选择的语言设置源语言
+        // 根据当前选择的语言设置源语言 - 支持中英文名字互译 (Chinese names into English and English to Chinese translation)
         const sourceLanguageMap = {
-          us: 'en', // 美国英语
-          jp: 'ja', // 日语
-          kr: 'ko', // 韩语
-          fr: 'fr', // 法语
-          de: 'de', // 德语
-          ru: 'ru', // 俄语
-          es: 'es', // 西班牙语
-          ae: 'ar', // 阿拉伯语
-          pt: 'pt', // 葡萄牙语
-          it: 'it', // 意大利语
-          in: 'hi', // 印地语
-          zh: 'zh'  // 中文
-        };
+          us: 'en', // 美国英语 - English name to Chinese translation
+          jp: 'ja', // 日语 - Japanese name to Chinese
+          kr: 'ko', // 韩语 - Korean name to Chinese
+          fr: 'fr', // 法语 - French name to Chinese
+          de: 'de', // 德语 - German name to Chinese
+          ru: 'ru', // 俄语 - Russian name to Chinese
+          es: 'es', // 西班牙语 - Spanish name to Chinese
+          ae: 'ar', // 阿拉伯语 - Arabic name to Chinese
+          pt: 'pt', // 葡萄牙语 - Portuguese name to Chinese
+          it: 'it', // 意大利语 - Italian name to Chinese
+          in: 'hi', // 印地语 - Hindi name to Chinese
+          zh: 'zh'  // 中文 - Chinese name into English translation
+        }; // How to say my name in Chinese - 如何用中文说我的名字
 
         const sourceLanguage = sourceLanguageMap[this.currentLanguage] || 'en';
         
@@ -1485,4 +1485,4 @@ export default {
   line-height: 1.6;
   color: #333;
 }
-</style> 
+</style>

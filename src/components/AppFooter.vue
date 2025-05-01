@@ -10,28 +10,32 @@
         <h3 class="footer-title">快速链接</h3>
         <ul class="footer-links">
           <li><router-link to="/">首页</router-link></li>
-          <li><router-link to="/name-generator">姓名生成</router-link></li>
-          <li><router-link to="/name-meanings">姓名寓意</router-link></li>
-          <li><router-link to="/articles">命理文章</router-link></li>
+          <li><router-link to="/translate">名字翻译</router-link></li>
+          <li><router-link to="/custom">定制名字</router-link></li>
+          <li><router-link to="/ai-chinese-name">AI智能生成</router-link></li>
+          <li><router-link to="/knowledge">命名知识</router-link></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3 class="footer-title">更多资源</h3>
+        <ul class="footer-links">
+          <li><router-link to="/chinese-surnames">中国姓氏</router-link></li>
+          <li><router-link to="/naming-traditions">命名传统</router-link></li>
+          <li><router-link to="/wuxing-bazi">五行八字</router-link></li>
+          <li><router-link to="/name-numerology">姓名数理</router-link></li>
+          <li><router-link to="/sound-harmony">音韵和谐</router-link></li>
         </ul>
       </div>
       
       <div class="footer-section">
         <h3 class="footer-title">联系我们</h3>
         <ul class="footer-links">
-          <li>邮箱: contact@chinesename.com</li>
-          <li>电话: 123-456-7890</li>
-          <li>地址: 中国北京市朝阳区</li>
+          <li>邮箱: contact@chinesename.us</li>
+          <li><router-link to="/about">关于我们</router-link></li>
+          <li><router-link to="/terms">服务条款</router-link></li>
+          <li><router-link to="/privacy">隐私政策</router-link></li>
         </ul>
-      </div>
-      
-      <div class="footer-section">
-        <h3 class="footer-title">关注我们</h3>
-        <div class="social-icons">
-          <a href="#" class="social-icon">微信</a>
-          <a href="#" class="social-icon">微博</a>
-          <a href="#" class="social-icon">抖音</a>
-        </div>
       </div>
     </div>
     
@@ -177,4 +181,4 @@ export default {
     gap: 10px;
   }
 }
-</style> 
+</style>

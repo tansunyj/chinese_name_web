@@ -7,15 +7,16 @@
       <nav class="nav">
         <ul class="nav-list">
           <li class="nav-item"><router-link to="/">首页</router-link></li>
-          <li class="nav-item"><router-link to="/name-generator">姓名生成</router-link></li>
-          <li class="nav-item"><router-link to="/name-meanings">姓名寓意</router-link></li>
-          <li class="nav-item"><router-link to="/articles">命理文章</router-link></li>
-          <li class="nav-item"><router-link to="/about">关于我们</router-link></li>
+          <li class="nav-item"><router-link to="/translate">名字翻译</router-link></li>
+          <li class="nav-item"><router-link to="/custom">定制名字</router-link></li>
+          <li class="nav-item"><router-link to="/knowledge">命名知识</router-link></li>
+          <li class="nav-item"><router-link to="/chinese-surnames">中国姓氏</router-link></li>
+          <li class="nav-item"><router-link to="/naming-traditions">命名传统</router-link></li>
         </ul>
       </nav>
       <div class="user-actions">
-        <button class="btn-login">登录</button>
-        <button class="btn-signup">注册</button>
+        <router-link to="/login" class="btn-login">登录</router-link>
+        <router-link to="/signup" class="btn-signup">注册</router-link>
       </div>
     </div>
   </header>
@@ -126,4 +127,4 @@ export default {
     display: none;
   }
 }
-</style> 
+</style>
