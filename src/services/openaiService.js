@@ -12,6 +12,9 @@ import { generateText, generateObject } from 'ai';
 import { openai } from '@ai-sdk/openai';
 import aiConfig from '@/config/aiConfig';
 
+// 判断当前是否为开发环境
+const isDevelopment = process.env.NODE_ENV === 'development';
+
 /**
  * 获取配置的OpenAI模型
  * @param {string} modelName - 模型名称，如果未指定使用默认模型
@@ -21,8 +24,8 @@ const getModel = (modelName) => {
   // 使用配置文件中的API密钥
   const modelConfig = {
     apiKey: aiConfig.baseConfig.apiKey,
-    // 如果存在代理URL，则使用代理
-    baseURL: aiConfig.baseConfig.useProxy ? aiConfig.baseConfig.proxyUrl : undefined
+    // 只在开发环境中使用代理
+    baseURL: isDevelopment && aiConfig.baseConfig.useProxy ? aiConfig.baseConfig.proxyUrl : undefined
   };
   
   return openai(modelName || aiConfig.models.default, modelConfig);
@@ -104,42 +107,58 @@ export const generateAIObject = async (options) => {
     // 创建请求头
     const headers = {
       'Content-Type': 'application/json',
-      'Authorization': modelCfg.apiKey || aiConfig.baseConfig.apiKey
+      'Authorization': `Bearer ${modelCfg.apiKey || aiConfig.baseConfig.apiKey}`
     };
     
     // 目标API地址
     const targetUrl = modelCfg.baseURL || aiConfig.baseConfig.apiUrl;
     
-    // 创建代理请求
-    const proxyUrl = 'http://localhost:3001/api/openai';
-    const proxyRequestBody = {
-      url: targetUrl,
-      headers: headers,
-      body: openaiRequestBody
-    };
+    let response;
     
-    // 打印请求信息
-    console.log('==== 发送到本地代理的请求 ====');
-    console.log('请求体:', openaiRequestBody);
-    
-    // 发送请求到本地代理服务器
-    const response = await fetch(proxyUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(proxyRequestBody)
-    });
+    // 根据环境选择请求方式
+    if (isDevelopment) {
+      // 开发环境：使用本地代理
+      // 创建代理请求
+      const proxyUrl = 'http://localhost:3001/api/openai';
+      const proxyRequestBody = {
+        url: targetUrl,
+        headers: headers,
+        body: openaiRequestBody
+      };
+      
+      // 打印请求信息
+      console.log('==== 发送到本地代理的请求 ====');
+      console.log('请求体:', openaiRequestBody);
+      
+      // 发送请求到本地代理服务器
+      response = await fetch(proxyUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(proxyRequestBody)
+      });
+    } else {
+      // 生产环境：直接请求OpenAI API
+      console.log('==== 直接请求OpenAI API ====');
+      console.log('请求体:', openaiRequestBody);
+      
+      response = await fetch(targetUrl, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(openaiRequestBody)
+      });
+    }
     
     // 检查响应状态
     if (!response.ok) {
       const errorText = await response.text();
-      throw new Error(`代理请求失败: ${response.status} ${response.statusText}, ${errorText}`);
+      throw new Error(`请求失败: ${response.status} ${response.statusText}, ${errorText}`);
     }
     
     // 处理响应
     const data = await response.json();
-    console.log('==== 代理返回的OpenAI响应 ====');
+    console.log('==== OpenAI响应 ====');
     console.log('响应数据:', data);
     
     // 解析内容

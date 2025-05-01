@@ -1,6 +1,9 @@
 import axios from 'axios';
 import aiConfig from '@/config/aiConfig';
 
+// 判断当前是否为开发环境
+const isDevelopment = process.env.NODE_ENV === 'development';
+
 // 创建axios实例 - 直接访问AI接口
 const aiClient = axios.create({
   baseURL: aiConfig.baseConfig.apiUrl,
@@ -34,6 +37,13 @@ proxyClient.interceptors.request.use(config => {
   return config;
 });
 
+// 为直接调用的客户端添加相同的拦截器
+aiClient.interceptors.request.use(config => {
+  const locale = localStorage.getItem('locale') || 'zh';
+  config.headers['Accept-Language'] = locale;
+  return config;
+});
+
 /**
  * 发送AI请求的通用方法
  * @param {Object} options - 请求选项
@@ -56,8 +66,12 @@ export const sendAIRequest = async (options) => {
   } = options;
 
   try {
-    const client = aiConfig.baseConfig.useProxy ? proxyClient : aiClient;
-    const endpoint = aiConfig.baseConfig.useProxy ? '/generate' : '/completions';
+    // 根据环境选择客户端
+    // 开发环境使用代理，生产环境直接调用
+    const client = isDevelopment && aiConfig.baseConfig.useProxy ? proxyClient : aiClient;
+    
+    // 根据客户端选择合适的endpoint
+    const endpoint = client === proxyClient ? '/generate' : '/completions';
     
     const params = {
       prompt: prompt,
@@ -76,9 +90,11 @@ export const sendAIRequest = async (options) => {
       headers: {}
     };
     
-    if (aiConfig.baseConfig.useProxy) {
+    if (client === proxyClient) {
       config.headers['X-Model-Version'] = model;
     }
+    
+    console.log(`使用${client === proxyClient ? '代理' : '直接'}请求AI接口`, endpoint);
     
     const response = await client.post(endpoint, params, config);
     return response.data;
