@@ -6,10 +6,15 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 // 如果是开发环境，默认使用本地代理
 const defaultUseProxy = isDevelopment;
 
+// 默认API URL，在生产环境中使用OpenKey代理
+const defaultApiUrl = isDevelopment 
+  ? 'https://api.openai.com/v1/chat/completions' 
+  : 'https://openkey.cloud/v1/chat/completions';
+
 export default {
   // 基础配置
   baseConfig: {
-    apiUrl: (window.__env && window.__env.VUE_APP_AI_API_URL) || 'https://api.openai.com/v1/chat/completions',
+    apiUrl: (window.__env && window.__env.VUE_APP_AI_API_URL) || defaultApiUrl,
     proxyUrl: (window.__env && window.__env.VUE_APP_AI_PROXY_URL) || 'http://localhost:3001/api/openai',
     apiKey: (window.__env && window.__env.VUE_APP_AI_API_KEY) || 'sk-KCRzQ9uj8zNGRFYW6674Bd591b7f4684Ad5cDaC9D1F90cDd',
     useProxy: (window.__env && window.__env.VUE_APP_USE_AI_PROXY === 'true') || defaultUseProxy,

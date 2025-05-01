@@ -139,8 +139,8 @@ export const generateAIObject = async (options) => {
         body: JSON.stringify(proxyRequestBody)
       });
     } else {
-      // 生产环境：直接请求OpenAI API
-      console.log('==== 直接请求OpenAI API ====');
+      // 生产环境：使用OpenKey代理服务
+      console.log('==== 通过OpenKey代理请求OpenAI API ====');
       console.log('请求体:', openaiRequestBody);
       
       response = await fetch(targetUrl, {
