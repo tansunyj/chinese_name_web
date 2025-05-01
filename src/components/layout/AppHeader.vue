@@ -82,9 +82,9 @@ export default {
 }
 
 .container {
-  max-width: 1600px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 0 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -222,7 +222,7 @@ export default {
   }
 
   .main-nav {
-    margin-left: 30px;
+    margin-left: 20px;
   }
 }
 

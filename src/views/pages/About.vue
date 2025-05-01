@@ -7,7 +7,7 @@
         <h2>Welcome to ChineseName.us</h2>
         <div class="about-content">
           <div class="about-image">
-            <img src="https://placehold.co/600x400/e60012/ffffff?text=Chinese+Name" alt="Chinese Name" />
+            <img src="@/assets/images/zhujian.png" alt="Chinese Name" />
           </div>
           <div class="about-text">
             <p>
@@ -66,7 +66,8 @@
         <h2>About the Founder</h2>
         <div class="founder-content">
           <div class="founder-image">
-            <img src="https://placehold.co/400x500/e60012/ffffff?text=Founder" alt="Founder" />
+            <!--img src="https://placehold.co/400x500/e60012/ffffff?text=Founder" alt="Founder" /-->
+            <img src="@/assets/images/chinese_name.png" alt="Founder" />
           </div>
           <div class="founder-bio">
             <p>

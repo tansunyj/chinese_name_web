@@ -61,4 +61,45 @@
 1. 如果AI服务返回错误，查看控制台日志
 2. 验证API密钥和URL配置是否正确
 3. 检查网络连接和代理设置
-4. 确认提示词模板格式正确 
+4. 确认提示词模板格式正确
+
+## 日志控制
+
+为了减少生产环境中的控制台输出和网络请求日志，系统提供了条件性日志记录机制：
+
+### 日志级别
+
+- `enableDebugLogs`: 控制基本调试日志输出
+- `enableDetailedLogs`: 控制详细的网络请求和响应日志输出
+
+### 如何启用/禁用日志
+
+在开发环境中，您可以通过浏览器控制台手动切换日志状态：
+
+```javascript
+// 启用基本调试日志
+localStorage.setItem('enableDebugLogs', 'true');
+
+// 启用详细日志（包括网络请求和响应数据）
+localStorage.setItem('enableDetailedLogs', 'true');
+
+// 禁用所有日志
+localStorage.setItem('enableDebugLogs', 'false');
+localStorage.setItem('enableDetailedLogs', 'false');
+```
+
+### 日志控制函数
+
+日志控制已应用于所有服务文件，确保生产环境中不会输出不必要的日志信息。如果需要添加新的日志输出，请使用以下模式：
+
+```javascript
+// 基本调试信息
+if (isDevelopment && window.localStorage.getItem('enableDebugLogs') === 'true') {
+  console.log('调试信息:', data);
+}
+
+// 详细网络请求/响应日志
+if (isDevelopment && window.localStorage.getItem('enableDetailedLogs') === 'true') {
+  console.log('API响应数据:', response);
+}
+``` 

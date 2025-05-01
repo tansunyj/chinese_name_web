@@ -68,9 +68,9 @@ export default {
 }
 
 .container {
-  max-width: 1600px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 0 40px;
 }
 
 .footer-content {
@@ -78,10 +78,11 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: 40px;
+  gap: 20px;
 }
 
 .footer-logo {
-  flex: 0 0 350px;
+  flex: 0 0 300px;
   margin-bottom: 30px;
 }
 
@@ -112,11 +113,12 @@ export default {
   display: flex;
   flex-wrap: wrap;
   flex: 1;
-  justify-content: space-around;
+  justify-content: flex-start;
+  gap: 40px;
 }
 
 .links-group {
-  flex: 0 0 250px;
+  flex: 0 0 200px;
   margin-bottom: 30px;
 }
 
@@ -188,6 +190,7 @@ export default {
 @media (max-width: 768px) {
   .footer-content {
     flex-direction: column;
+    gap: 10px;
   }
   
   .footer-logo {
@@ -197,11 +200,12 @@ export default {
   
   .footer-links {
     flex-direction: column;
+    gap: 20px;
   }
   
   .links-group {
     flex: 0 0 100%;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 }
 </style> 

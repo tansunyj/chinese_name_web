@@ -8,7 +8,10 @@
             <img src="@/assets/images/name.png" alt="ChineseName Logo" />
           </div>
           <div class="hero-text">
-            <h1>{{ $t('home.hero.title') }}</h1>
+            <h1>Chinese Names: Free Chinese Name Generator</h1>
+            <h1>Translate Your English Name to Chinese</h1>
+            <h1>Find Your Perfect Chinese Name</h1>
+            <h1>中文起名 | 英文名翻译中文</h1>
             <p class="subtitle">{{ $t('home.hero.subtitle') }}</p>
           </div>
         </div>
@@ -34,7 +37,7 @@
               </div>
             </div>
           </router-link>
-                    <!-- 名字翻译 -->
+          <!-- 名字翻译 -->
           <router-link to="/translate" class="feature-card-link">
             <div class="feature-card">
               <div class="icon">
@@ -98,6 +101,83 @@
             </div>
           </router-link>
 
+          <!-- 为未来可能增加的第六个卡片预留位置 -->
+          <div class="empty-card-placeholder"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 新增SEO优化:文本内容丰富的部分 -->
+    <section class="about-chinese-names">
+      <div class="container">
+        <h2 class="section-title">About Chinese Names and Name Translation</h2>
+        <div class="introduction-text">
+          <p>Chinese names carry profound cultural significance, combining phonetic beauty with deep symbolic meanings. Unlike Western naming traditions, Chinese names traditionally consist of a family surname followed by a given name that often reflects aspirations, virtues, or natural elements.</p>
+        </div>
+        
+        <div class="two-column-content">
+          <div class="column">
+            <div class="collapsible-section">
+              <h3 class="collapsible-title" @click="toggleSection('nameStructure')">
+                Understanding Chinese Name Structure
+                <span class="toggle-icon">{{ isExpanded.nameStructure ? '−' : '+' }}</span>
+              </h3>
+              <div class="collapsible-content" v-show="isExpanded.nameStructure">
+                <p>Most Chinese names follow a structure of a single-character surname followed by a one or two-character given name. With over 100 common surnames like Li (李), Wang (王), Zhang (张), and Chen (陈), these family names are passed down through generations. The given name, carefully selected by parents or family elders, carries hopes and wishes for the child's future.</p>
+              </div>
+            </div>
+            
+            <div class="collapsible-section">
+              <h3 class="collapsible-title" @click="toggleSection('characterMeaning')">
+                The Significance of Chinese Characters in Names
+                <span class="toggle-icon">{{ isExpanded.characterMeaning ? '−' : '+' }}</span>
+              </h3>
+              <div class="collapsible-content" v-show="isExpanded.characterMeaning">
+                <p>Each Chinese character used in names has its own meaning, pronunciation, and written form. Parents often consider factors such as:</p>
+                <ul>
+                  <li><strong>Character meaning</strong> - Characters representing virtues (wisdom, kindness), natural elements (mountain, water), or desirable qualities are popular choices.</li>
+                  <li><strong>Five Elements (Wu Xing)</strong> - Traditional naming considers the balance of wood, fire, earth, metal, and water elements.</li>
+                  <li><strong>Sound harmony</strong> - How the name sounds when pronounced in Chinese, including tonal aspects.</li>
+                  <li><strong>Stroke count</strong> - The number of strokes in writing each character can have numerological significance.</li>
+                  <li><strong>Visual balance</strong> - The aesthetic appearance of the written characters together.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="column">
+            <div class="collapsible-section">
+              <h3 class="collapsible-title" @click="toggleSection('nameTranslation')">
+                Translating English Names to Chinese
+                <span class="toggle-icon">{{ isExpanded.nameTranslation ? '−' : '+' }}</span>
+              </h3>
+              <div class="collapsible-content" v-show="isExpanded.nameTranslation">
+                <p>When translating English or other Western names into Chinese, several approaches are used:</p>
+                <ul>
+                  <li><strong>Phonetic translation</strong> - Choosing Chinese characters that sound similar to the original name.</li>
+                  <li><strong>Semantic translation</strong> - Selecting characters based on the meaning of the original name.</li>
+                  <li><strong>Combined approach</strong> - Using characters that both sound similar and carry meaningful symbolism.</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="collapsible-section">
+              <h3 class="collapsible-title" @click="toggleSection('namingService')">
+                Our Chinese Name Translation Services
+                <span class="toggle-icon">{{ isExpanded.namingService ? '−' : '+' }}</span>
+              </h3>
+              <div class="collapsible-content" v-show="isExpanded.namingService">
+                <p>Our Chinese name translation services provide personalized options that respect both linguistic and cultural traditions. Whether you're looking for a Chinese name for business, travel, or personal interest, our tools help you find a name that resonates with Chinese cultural sensibilities while connecting to your identity.</p>
+                <p>Explore our comprehensive resources on Chinese naming traditions, surname meanings, character symbolism, and pronunciation guides to better understand the rich cultural heritage behind Chinese names.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="see-more-wrapper">
+          <button class="see-more-btn" @click="toggleAllSections">
+            {{ allSectionsExpanded ? 'Show Less' : 'Show More' }}
+          </button>
         </div>
       </div>
     </section>
@@ -124,6 +204,82 @@
         </div>
       </div>
     </section>
+
+    <!-- 新增SEO优化: FAQ部分 -->
+    <section class="faq-section">
+      <div class="container">
+        <h2 class="section-title">Frequently Asked Questions About Chinese Names</h2>
+        
+        <div class="faq-columns">
+          <div class="faq-column">
+            <div class="faq-item" :class="{'faq-expanded': isExpanded.faq1}" @click="toggleFaq('faq1')">
+              <h3 class="faq-question">
+                <span class="faq-q-marker">Q:</span> 
+                How do I choose a Chinese name that sounds like my English name?
+                <span class="faq-toggle">{{ isExpanded.faq1 ? '−' : '+' }}</span>
+              </h3>
+              <div class="faq-answer" v-show="isExpanded.faq1">
+                <p><span class="faq-a-marker">A:</span> To choose a Chinese name that sounds similar to your English name, our translator considers Chinese characters with similar phonetics while ensuring the characters have positive meanings. For example, the name "Michael" might be translated as "麦克" (Mài Kè), which sounds similar while using characters with good connotations. Our translation tools analyze both sound and meaning to provide you with appropriate options.</p>
+              </div>
+            </div>
+            
+            <div class="faq-item" :class="{'faq-expanded': isExpanded.faq2}" @click="toggleFaq('faq2')">
+              <h3 class="faq-question">
+                <span class="faq-q-marker">Q:</span>
+                What's the difference between a phonetic and meaningful Chinese name translation?
+                <span class="faq-toggle">{{ isExpanded.faq2 ? '−' : '+' }}</span>
+              </h3>
+              <div class="faq-answer" v-show="isExpanded.faq2">
+                <p><span class="faq-a-marker">A:</span> A phonetic translation focuses primarily on matching the sounds of your original name using Chinese characters, prioritizing pronunciation similarity. A meaningful translation, on the other hand, selects characters based on their symbolic significance and cultural relevance, sometimes at the expense of exact pronunciation. The best Chinese names often balance both approaches, finding characters that sound similar to your original name while also conveying positive meanings and cultural resonance.</p>
+              </div>
+            </div>
+            
+            <div class="faq-item" :class="{'faq-expanded': isExpanded.faq3}" @click="toggleFaq('faq3')">
+              <h3 class="faq-question">
+                <span class="faq-q-marker">Q:</span>
+                Is it better to have a one-character or two-character given name in Chinese?
+                <span class="faq-toggle">{{ isExpanded.faq3 ? '−' : '+' }}</span>
+              </h3>
+              <div class="faq-answer" v-show="isExpanded.faq3">
+                <p><span class="faq-a-marker">A:</span> Both one-character and two-character given names are common in Chinese culture, with two-character names being more prevalent in modern times. Single-character names can be more distinctive and straightforward, while two-character names offer more flexibility for creating balance in meaning, sound, and five-element theory. Our name generator provides both options, allowing you to choose based on your preference and cultural considerations.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="faq-column">
+            <div class="faq-item" :class="{'faq-expanded': isExpanded.faq4}" @click="toggleFaq('faq4')">
+              <h3 class="faq-question">
+                <span class="faq-q-marker">Q:</span>
+                How important is the meaning of characters in a Chinese name?
+                <span class="faq-toggle">{{ isExpanded.faq4 ? '−' : '+' }}</span>
+              </h3>
+              <div class="faq-answer" v-show="isExpanded.faq4">
+                <p><span class="faq-a-marker">A:</span> The meaning of characters is extremely important in Chinese naming culture. Unlike in some Western cultures where names are chosen primarily for their sound or family heritage, Chinese names are selected with careful consideration of the characters' meanings, which often express parents' hopes and wishes for their child. Characters with positive connotations related to virtues, strength, beauty, intelligence, or success are commonly chosen. This is why our translation service emphasizes both phonetic similarity and meaningful character selection.</p>
+              </div>
+            </div>
+            
+            <div class="faq-item" :class="{'faq-expanded': isExpanded.faq5}" @click="toggleFaq('faq5')">
+              <h3 class="faq-question">
+                <span class="faq-q-marker">Q:</span>
+                Can I use the same Chinese name for both personal and business purposes?
+                <span class="faq-toggle">{{ isExpanded.faq5 ? '−' : '+' }}</span>
+              </h3>
+              <div class="faq-answer" v-show="isExpanded.faq5">
+                <p><span class="faq-a-marker">A:</span> You can use the same Chinese name for both personal and business contexts, but it's worth considering whether different names might be advantageous. Business names in Chinese might prioritize professional qualities or industry relevance, while personal names might focus more on individual characteristics. Many foreigners doing business in China choose Chinese names that reflect professionalism while maintaining personal identity. Our service can help you generate appropriate options for both contexts.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="see-more-wrapper">
+          <button class="see-more-btn" @click="toggleAllFaqs">
+            {{ allFaqsExpanded ? 'Show Less FAQs' : 'Show All FAQs' }}
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 咨询服务 -->
   </div>
 </template>
 
@@ -131,44 +287,171 @@
 import 'ant-design-vue/dist/antd.css';
 
 export default {
-  name: 'HomePage'
+  name: 'HomePage',
+  
+  data() {
+    return {
+      isExpanded: {
+        nameStructure: false,
+        characterMeaning: false,
+        nameTranslation: false,
+        namingService: false,
+        faq1: false,
+        faq2: false,
+        faq3: false,
+        faq4: false,
+        faq5: false
+      }
+    };
+  },
+  
+  computed: {
+    allSectionsExpanded() {
+      return ['nameStructure', 'characterMeaning', 'nameTranslation', 'namingService']
+        .every(section => this.isExpanded[section] === true);
+    },
+    
+    allFaqsExpanded() {
+      return ['faq1', 'faq2', 'faq3', 'faq4', 'faq5']
+        .every(faq => this.isExpanded[faq] === true);
+    }
+  },
+  
+  methods: {
+    toggleSection(section) {
+      this.isExpanded[section] = !this.isExpanded[section];
+    },
+    
+    toggleAllSections() {
+      const newValue = !this.allSectionsExpanded;
+      ['nameStructure', 'characterMeaning', 'nameTranslation', 'namingService']
+        .forEach(key => {
+          this.isExpanded[key] = newValue;
+        });
+    },
+    
+    toggleFaq(faq) {
+      this.isExpanded[faq] = !this.isExpanded[faq];
+    },
+    
+    toggleAllFaqs() {
+      const newValue = !this.allFaqsExpanded;
+      ['faq1', 'faq2', 'faq3', 'faq4', 'faq5']
+        .forEach(key => {
+          this.isExpanded[key] = newValue;
+        });
+    },
+    
+    // 添加JSON-LD结构化数据
+    addJsonLdScript() {
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I choose a Chinese name that sounds like my English name?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "To choose a Chinese name that sounds similar to your English name, our translator considers Chinese characters with similar phonetics while ensuring the characters have positive meanings. For example, the name 'Michael' might be translated as '麦克' (Mài Kè), which sounds similar while using characters with good connotations. Our translation tools analyze both sound and meaning to provide you with appropriate options."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What's the difference between a phonetic and meaningful Chinese name translation?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A phonetic translation focuses primarily on matching the sounds of your original name using Chinese characters, prioritizing pronunciation similarity. A meaningful translation, on the other hand, selects characters based on their symbolic significance and cultural relevance, sometimes at the expense of exact pronunciation. The best Chinese names often balance both approaches, finding characters that sound similar to your original name while also conveying positive meanings and cultural resonance."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is it better to have a one-character or two-character given name in Chinese?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Both one-character and two-character given names are common in Chinese culture, with two-character names being more prevalent in modern times. Single-character names can be more distinctive and straightforward, while two-character names offer more flexibility for creating balance in meaning, sound, and five-element theory. Our name generator provides both options, allowing you to choose based on your preference and cultural considerations."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How important is the meaning of characters in a Chinese name?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The meaning of characters is extremely important in Chinese naming culture. Unlike in some Western cultures where names are chosen primarily for their sound or family heritage, Chinese names are selected with careful consideration of the characters' meanings, which often express parents' hopes and wishes for their child. Characters with positive connotations related to virtues, strength, beauty, intelligence, or success are commonly chosen. This is why our translation service emphasizes both phonetic similarity and meaningful character selection."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use the same Chinese name for both personal and business purposes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can use the same Chinese name for both personal and business contexts, but it's worth considering whether different names might be advantageous. Business names in Chinese might prioritize professional qualities or industry relevance, while personal names might focus more on individual characteristics. Many foreigners doing business in China choose Chinese names that reflect professionalism while maintaining personal identity. Our service can help you generate appropriate options for both contexts."
+            }
+          }
+        ]
+      });
+      document.head.appendChild(script);
+    }
+  },
+  
+  // 添加FAQ结构化数据
+  mounted() {
+    this.addJsonLdScript();
+  }
 }
 </script>
 
 <style scoped>
 .home-page {
-  padding-top: 0; /* 移除Header height补偿 */
+  padding-top: 0;
+  font-family: 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .hero {
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
-  height: 320px;
-  margin-top: 70px; /* 与AppHeader的高度一致 */
+  padding: 40px 0;
+  min-height: 280px;
+  margin-top: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 30%;
+  background: linear-gradient(135deg, rgba(255,240,240,0.6) 0%, rgba(255,255,255,0) 100%);
+  z-index: 0;
 }
 
 .hero .container {
-  max-width: 1600px; /* 与全局容器宽度一致 */
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 0 40px;
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-content {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* 修改为左对齐 */
-  gap: 80px;
+  justify-content: flex-start;
+  gap: 5%;
   width: 100%;
-  height: 100%;
 }
 
 .hero-image {
@@ -176,92 +459,104 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+
+.hero-image::after {
+  content: '';
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  background: rgba(200, 50, 50, 0.07);
+  border-radius: 50%;
+  z-index: -1;
 }
 
 .hero-image img {
   display: block;
-  width: 220px;
+  width: 300px;
   height: auto;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.12));
 }
 
 .hero-text {
-  flex: 0 0 auto;
-  max-width: 600px;
+  flex: 1 1 auto;
+  max-width: 900px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .hero h1 {
-  font-size: 3.2rem;
-  color: #333;
+  font-size: 2.5rem;
+  color: #222;
   margin-top: 0;
-  margin-bottom: 20px;
-  line-height: 1.2;
+  margin-bottom: 15px;
+  line-height: 1.3;
+  font-weight: 700;
 }
 
 .hero .subtitle {
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   color: #555;
   margin-top: 0;
   margin-bottom: 0;
-  line-height: 1.4;
-}
-
-.cta-button {
-  display: inline-block;
-  background-color: #e60012;
-  color: white;
-  font-weight: 600;
-  padding: 15px 30px;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background-color 0.3s;
-}
-
-.cta-button:hover {
-  background-color: #d00010;
+  line-height: 1.5;
 }
 
 .features {
-  padding: 80px 0;
+  padding: 70px 0;
   background-color: #fff;
   position: relative;
 }
 
 .features-alt {
-  background-color: #f2f4f8;
+  background-color: #f8f9fa;
   position: relative;
-  padding: 90px 0;
+  padding: 80px 0;
+  margin-top: 0;
+}
+
+.features::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.09), rgba(0,0,0,0));
 }
 
 .features .container {
-  max-width: 1600px; /* 与全局容器宽度一致 */
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 0 40px;
 }
 
 .section-title {
-  font-size: 2.8rem;
-  color: #333;
-  margin-bottom: 50px;
-  text-align: left; /* 修改为左对齐 */
+  font-size: 2.4rem;
+  color: #222;
+  margin-bottom: 60px;
+  text-align: center;
+  position: relative;
+  font-weight: 700;
 }
 
 .section-title::after {
   content: '';
   display: block;
-  width: 70px;
-  height: 4px;
-  background-color: #e60012;
-  margin: 18px 0 0; /* 修改为左对齐 */
+  width: 60px;
+  height: 3px;
+  background-color: #d10a11;
+  margin: 20px auto 0;
+  border-radius: 2px;
 }
 
 .feature-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-  gap: 40px;
-  margin-bottom: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 35px;
+  margin-bottom: 40px;
 }
 
 .feature-card-link {
@@ -272,19 +567,20 @@ export default {
 }
 
 .feature-card-link:hover {
-  transform: translateY(-5px);
+  transform: translateY(-7px);
 }
 
 .feature-card {
   background-color: white;
-  border-radius: 12px;
+  border-radius: 16px;
   padding: 40px;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
-  height: 300px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  height: auto;
+  min-height: 300px;
   display: flex;
   flex-direction: column;
-  border: 1px solid #e1e1e1;
+  border: 1px solid rgba(0,0,0,0.06);
   position: relative;
   z-index: 1;
   overflow: hidden;
@@ -292,13 +588,12 @@ export default {
 
 .features-alt .feature-card {
   background-color: white;
-  border: 1px solid #e1e1e1;
+  border: 1px solid rgba(0,0,0,0.06);
 }
 
 .feature-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
-  border-color: #d1d1d1;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  border-color: rgba(0,0,0,0.08);
 }
 
 .feature-card::before {
@@ -306,37 +601,46 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 5px;
-  background-color: #e60012;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(to bottom, #d10a11, #f05252);
   z-index: 2;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
 }
 
 .feature-card .icon {
-  width: 70px;
-  height: 70px;
-  background-color: rgba(230, 0, 18, 0.1);
-  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  background-color: rgba(209, 10, 17, 0.08);
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 25px;
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover .icon {
+  background-color: rgba(209, 10, 17, 0.12);
+  transform: scale(1.05);
 }
 
 .feature-card .icon svg {
-  width: 35px;
-  height: 35px;
-  color: #e60012;
+  width: 32px;
+  height: 32px;
+  color: #d10a11;
 }
 
 .feature-card h3 {
-  font-size: 1.6rem;
-  margin-bottom: 18px;
-  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  color: #222;
+  font-weight: 600;
 }
 
 .feature-card p {
-  color: #666;
+  color: #555;
   margin-bottom: 25px;
   line-height: 1.7;
   flex-grow: 1;
@@ -344,69 +648,404 @@ export default {
 }
 
 .feature-link {
-  color: #e60012;
+  color: #d10a11;
   text-decoration: none;
   font-weight: 600;
   display: inline-block;
   margin-top: auto;
   display: flex;
   align-items: center;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
+  transition: all 0.2s ease;
+}
+
+.feature-card:hover .feature-link {
+  color: #b80000;
 }
 
 .ming-icon {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   margin-right: 8px;
+  transition: transform 0.3s ease;
+}
+
+.feature-link:hover .ming-icon {
+  transform: translateX(5px);
 }
 
 .naming-services-grid {
   grid-template-columns: repeat(2, 1fr);
-  max-width: 1600px;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 40px;
+}
+
+/* 文本内容丰富部分样式 */
+.about-chinese-names {
+  padding: 100px 0;
+  background-color: #fdf8f8;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-chinese-names::before {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  right: -200px;
+  top: -200px;
+  background: radial-gradient(circle, rgba(209,10,17,0.03) 0%, rgba(209,10,17,0) 70%);
+  border-radius: 50%;
+}
+
+.about-chinese-names::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  left: -150px;
+  bottom: -150px;
+  background: radial-gradient(circle, rgba(209,10,17,0.03) 0%, rgba(209,10,17,0) 70%);
+  border-radius: 50%;
+}
+
+.introduction-text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #333;
+  max-width: 900px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.two-column-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-@media (max-width: 768px) {
+.column {
+  flex: 1 1 calc(50% - 20px);
+  min-width: 300px;
+}
+
+.collapsible-section {
+  margin-bottom: 25px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.collapsible-title {
+  font-size: 1.3rem;
+  color: #d10a11;
+  margin: 0;
+  padding: 18px 20px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+}
+
+.toggle-icon {
+  font-size: 1.4rem;
+  color: #d10a11;
+  font-weight: bold;
+}
+
+.collapsible-content {
+  padding: 0 20px 20px;
+  line-height: 1.7;
+  color: #444;
+}
+
+.collapsible-content p {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.collapsible-content ul {
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+.collapsible-content li {
+  margin-bottom: 8px;
+}
+
+.see-more-wrapper {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.see-more-btn {
+  background-color: transparent;
+  border: 2px solid #d10a11;
+  color: #d10a11;
+  padding: 10px 25px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.see-more-btn:hover {
+  background-color: #d10a11;
+  color: white;
+}
+
+/* FAQ 部分样式 */
+.faq-section {
+  padding: 100px 0;
+  background-color: #f8f9fa;
+  position: relative;
+}
+
+.faq-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto 30px;
+}
+
+.faq-column {
+  flex: 1 1 calc(50% - 15px);
+  min-width: 300px;
+}
+
+.faq-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.05);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.faq-item:hover {
+  box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+  transform: translateY(-3px);
+}
+
+.faq-expanded {
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.faq-question {
+  font-size: 1.15rem;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  font-weight: 600;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+}
+
+.faq-q-marker, .faq-a-marker {
+  color: #d10a11;
+  font-weight: 700;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.faq-toggle {
+  margin-left: auto;
+  color: #d10a11;
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding-left: 10px;
+  flex-shrink: 0;
+}
+
+.faq-answer {
+  padding: 0 20px 20px 20px;
+  color: #444;
+  line-height: 1.7;
+}
+
+.faq-answer p {
+  margin: 0;
+  display: flex;
+  align-items: flex-start;
+}
+
+@media (max-width: 1200px) {
+  .hero-content {
+    gap: 4%;
+  }
+  
+  .hero-image img {
+    width: 200px;
+  }
+  
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 992px) {
   .hero {
-    height: auto;
-    padding: 50px 0;
-    margin-top: 70px;
+    padding: 40px 0;
+    min-height: auto;
+    margin-top: 15px;
   }
   
   .hero-content {
     flex-direction: column;
-    gap: 40px;
-    height: auto;
-  }
-  
-  .hero-image {
-    margin-bottom: 0;
+    gap: 30px;
+    text-align: center;
   }
   
   .hero-text {
-    text-align: center;
     align-items: center;
+    max-width: 100%;
   }
   
   .hero h1 {
-    font-size: 2.4rem;
-  }
-  
-  .hero .subtitle {
-    font-size: 1.3rem;
+    font-size: 2rem;
   }
   
   .section-title {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
   
   .naming-services-grid {
     grid-template-columns: 1fr;
   }
   
+  .rich-text-content {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 30px 0;
+    margin-top: 10px;
+  }
+  
+  .hero-content {
+    gap: 30px;
+  }
+  
+  .hero-image img {
+    width: 160px;
+  }
+  
+  .hero h1 {
+    font-size: 1.9rem;
+  }
+  
+  .hero .subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .features, .features-alt, .about-chinese-names, .faq-section {
+    padding: 70px 0;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+  }
+  
   .feature-card {
-    height: auto;
-    min-height: 300px;
+    padding: 25px;
+  }
+  
+  .faq-item {
+    padding: 25px;
+  }
+  
+  .faq-question, .faq-answer {
+    padding-left: 25px;
+  }
+  
+  .faq-question {
+    font-size: 1.2rem;
+  }
+  
+  .naming-services-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .empty-card-placeholder {
+    display: none;
+  }
+  
+  .two-column-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .column {
+    flex: 1 1 100%;
+  }
+  
+  .collapsible-title {
+    font-size: 1.2rem;
+    padding: 15px;
+  }
+  
+  .collapsible-content {
+    padding: 0 15px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 30px 0;
+  }
+  
+  .hero .container, .features .container {
+    padding: 0 20px;
+  }
+  
+  .hero-image img {
+    width: 130px;
+  }
+  
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+  
+  .hero .subtitle {
+    font-size: 1rem;
+  }
+  
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .section-title {
+    font-size: 1.6rem;
+  }
+  
+  .feature-card .icon {
+    width: 55px;
+    height: 55px;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.3rem;
   }
 }
 </style> 
