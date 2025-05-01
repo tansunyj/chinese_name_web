@@ -4,6 +4,20 @@ import aiConfig from '@/config/aiConfig';
 // 判断当前是否为开发环境
 const isDevelopment = process.env.NODE_ENV === 'development';
 
+// 定义日志函数，在生产环境中不输出
+const log = (...args) => {
+  if (isDevelopment) {
+    console.log(...args);
+  }
+};
+
+// 定义错误日志函数
+const logError = (...args) => {
+  if (isDevelopment) {
+    console.error(...args);
+  }
+};
+
 // 创建axios实例 - 直接访问AI接口
 const aiClient = axios.create({
   baseURL: aiConfig.baseConfig.apiUrl,
@@ -94,12 +108,12 @@ export const sendAIRequest = async (options) => {
       config.headers['X-Model-Version'] = model;
     }
     
-    console.log(`使用${client === proxyClient ? '代理' : '直接'}请求AI接口`, endpoint);
+    log(`使用${client === proxyClient ? '代理' : '直接'}请求AI接口`, endpoint);
     
     const response = await client.post(endpoint, params, config);
     return response.data;
   } catch (error) {
-    console.error(`AI请求错误 (${requestType}):`, error);
+    logError(`AI请求错误 (${requestType}):`, error);
     throw error;
   }
 };
@@ -136,14 +150,14 @@ export const parseAIResponse = (response, parserFunction, fallbackData) => {
       try {
         return JSON.parse(jsonMatch[1]);
       } catch (e) {
-        console.error('JSON解析错误:', e);
+        logError('JSON解析错误:', e);
       }
     }
     
     // 返回原始文本作为对象
     return { text: responseText };
   } catch (error) {
-    console.error('解析AI响应错误:', error);
+    logError('解析AI响应错误:', error);
     return fallbackData || { error: '解析失败' };
   }
 }; 

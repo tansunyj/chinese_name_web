@@ -1,6 +1,21 @@
 // Vercel Serverless Function作为OpenAI API的代理
 // 该函数将在Vercel平台上运行，解决跨域问题
 
+// 判断当前是否为生产环境
+const isProduction = process.env.NODE_ENV === 'production';
+
+// 定义日志函数，在生产环境中不输出
+const log = (...args) => {
+  if (!isProduction) {
+    console.log(...args);
+  }
+};
+
+// 定义错误日志函数，在生产环境中也输出，但可以考虑接入正式的日志系统
+const logError = (...args) => {
+  console.error(...args);
+};
+
 export default async function handler(req, res) {
   // 设置CORS头，允许客户端网站访问
   res.setHeader('Access-Control-Allow-Origin', 'https://www.chinesename.us');
@@ -26,9 +41,9 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Missing required parameters' });
     }
 
-    // 记录请求信息（生产环境可考虑关闭）
-    console.log('代理请求到:', url);
-    console.log('请求体:', JSON.stringify(body).slice(0, 200) + '...');
+    // 记录请求信息（仅在非生产环境中输出）
+    log('代理请求到:', url);
+    log('请求体:', JSON.stringify(body).slice(0, 200) + '...');
 
     // 发送请求到OpenAI API
     const openaiResponse = await fetch(url, {
@@ -47,7 +62,8 @@ export default async function handler(req, res) {
     // 返回OpenAI的响应
     return res.status(openaiResponse.status).json(data);
   } catch (error) {
-    console.error('代理请求错误:', error);
+    // 错误日志在生产环境中也需要记录，便于问题排查
+    logError('代理请求错误:', error);
     return res.status(500).json({ error: 'Proxy request failed', message: error.message });
   }
 } 

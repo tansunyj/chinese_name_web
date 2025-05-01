@@ -15,6 +15,20 @@ import aiConfig from '@/config/aiConfig';
 // 判断当前是否为开发环境
 const isDevelopment = process.env.NODE_ENV === 'development';
 
+// 定义日志函数，在生产环境中不输出
+const log = (...args) => {
+  if (isDevelopment) {
+    console.log(...args);
+  }
+};
+
+// 定义错误日志函数
+const logError = (...args) => {
+  if (isDevelopment) {
+    console.error(...args);
+  }
+};
+
 /**
  * 获取配置的OpenAI模型
  * @param {string} modelName - 模型名称，如果未指定使用默认模型
@@ -61,7 +75,7 @@ export const generateAIText = async (options) => {
     
     return { text, metadata };
   } catch (error) {
-    console.error(`AI文本生成错误:`, error);
+    logError(`AI文本生成错误:`, error);
     throw error;
   }
 };
@@ -127,8 +141,8 @@ export const generateAIObject = async (options) => {
       };
       
       // 打印请求信息
-      console.log('==== 发送到本地代理的请求 ====');
-      console.log('请求体:', openaiRequestBody);
+      log('==== 发送到本地代理的请求 ====');
+      log('请求体:', openaiRequestBody);
       
       // 发送请求到本地代理服务器
       response = await fetch(proxyUrl, {
@@ -140,7 +154,7 @@ export const generateAIObject = async (options) => {
       });
     } else {
       // 生产环境：使用Vercel Serverless Function作为代理
-      console.log('==== 通过Vercel Serverless Function代理请求OpenAI API ====');
+      log('==== 通过Vercel Serverless Function代理请求OpenAI API ====');
       
       // 创建代理请求
       const proxyUrl = '/api/openai'; // Vercel Serverless Function路径
@@ -150,7 +164,7 @@ export const generateAIObject = async (options) => {
         body: openaiRequestBody
       };
       
-      console.log('请求体:', openaiRequestBody);
+      log('请求体:', openaiRequestBody);
       
       // 通过Vercel Serverless Function发送请求
       response = await fetch(proxyUrl, {
@@ -170,8 +184,8 @@ export const generateAIObject = async (options) => {
     
     // 处理响应
     const data = await response.json();
-    console.log('==== OpenAI响应 ====');
-    console.log('响应数据:', data);
+    log('==== OpenAI响应 ====');
+    log('响应数据:', data);
     
     // 解析内容
     let content = '';
@@ -189,9 +203,9 @@ export const generateAIObject = async (options) => {
         .trim();
         
       jsonObject = JSON.parse(cleanedContent);
-      console.log('成功解析JSON:', jsonObject);
+      log('成功解析JSON:', jsonObject);
     } catch (jsonError) {
-      console.error('JSON解析错误:', jsonError, '原始内容:', content);
+      logError('JSON解析错误:', jsonError, '原始内容:', content);
       jsonObject = { parseError: true };
     }
     
@@ -202,7 +216,7 @@ export const generateAIObject = async (options) => {
     };
   } catch (error) {
     // 记录错误但不抛出异常
-    console.error('AI结构化数据生成错误:', error);
+    logError('AI结构化数据生成错误:', error);
     
     // 返回一个空对象作为应急方案
     return {
