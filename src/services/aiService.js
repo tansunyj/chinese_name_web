@@ -67,8 +67,8 @@ export const sendAIRequest = async (options) => {
 
   try {
     // 根据环境选择客户端
-    // 开发环境使用代理，生产环境直接调用
-    const client = isDevelopment && aiConfig.baseConfig.useProxy ? proxyClient : aiClient;
+    // 由于CORS问题，现在无论开发还是生产环境都使用代理
+    const client = aiConfig.baseConfig.useProxy ? proxyClient : aiClient;
     
     // 根据客户端选择合适的endpoint
     const endpoint = client === proxyClient ? '/generate' : '/completions';

@@ -139,14 +139,26 @@ export const generateAIObject = async (options) => {
         body: JSON.stringify(proxyRequestBody)
       });
     } else {
-      // 生产环境：使用OpenKey代理服务
-      console.log('==== 通过OpenKey代理请求OpenAI API ====');
+      // 生产环境：使用Vercel Serverless Function作为代理
+      console.log('==== 通过Vercel Serverless Function代理请求OpenAI API ====');
+      
+      // 创建代理请求
+      const proxyUrl = '/api/openai'; // Vercel Serverless Function路径
+      const proxyRequestBody = {
+        url: targetUrl,
+        headers: headers,
+        body: openaiRequestBody
+      };
+      
       console.log('请求体:', openaiRequestBody);
       
-      response = await fetch(targetUrl, {
+      // 通过Vercel Serverless Function发送请求
+      response = await fetch(proxyUrl, {
         method: 'POST',
-        headers: headers,
-        body: JSON.stringify(openaiRequestBody)
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(proxyRequestBody)
       });
     }
     

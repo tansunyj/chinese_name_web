@@ -3,19 +3,25 @@
 // 判断当前环境
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-// 如果是开发环境，默认使用本地代理
-const defaultUseProxy = isDevelopment;
+// 默认使用代理设置 - 开发环境使用本地代理，生产环境使用Vercel API路由代理
+// 由于CORS问题，生产环境也需要通过代理访问OpenKey
+const defaultUseProxy = true;
 
 // 默认API URL，在生产环境中使用OpenKey代理
 const defaultApiUrl = isDevelopment 
   ? 'https://api.openai.com/v1/chat/completions' 
   : 'https://openkey.cloud/v1/chat/completions';
 
+// 默认代理URL，开发环境使用本地代理，生产环境使用Vercel API路由
+const defaultProxyUrl = isDevelopment
+  ? 'http://localhost:3001/api/openai'
+  : '/api/openai';
+
 export default {
   // 基础配置
   baseConfig: {
     apiUrl: (window.__env && window.__env.VUE_APP_AI_API_URL) || defaultApiUrl,
-    proxyUrl: (window.__env && window.__env.VUE_APP_AI_PROXY_URL) || 'http://localhost:3001/api/openai',
+    proxyUrl: (window.__env && window.__env.VUE_APP_AI_PROXY_URL) || defaultProxyUrl,
     apiKey: (window.__env && window.__env.VUE_APP_AI_API_KEY) || 'sk-KCRzQ9uj8zNGRFYW6674Bd591b7f4684Ad5cDaC9D1F90cDd',
     useProxy: (window.__env && window.__env.VUE_APP_USE_AI_PROXY === 'true') || defaultUseProxy,
     timeout: 120000, // 请求超时时间（毫秒）
