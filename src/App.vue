@@ -27,9 +27,41 @@ export default {
 </script>
 
 <template>
-  <MainLayout>
-    <router-view />
-  </MainLayout>
+  <div class="container">
+    <MainLayout>
+      <!-- SEO优化内容区块 -->
+      <div class="seo-content" role="complementary">
+        <h1 class="seo-title">Chinese Name Translator - Convert Name to Chinese</h1>
+        <p class="seo-description">
+          Transform your name into Chinese with our professional Chinese name translator. 
+          Get personalized Chinese names with meanings and pronunciations. Learn how to 
+          translate names into Chinese using our free Chinese name generator.
+        </p>
+        <div class="seo-features">
+          <p>Key features:</p>
+          <ul>
+            <li>Translate name into Chinese with accurate pronunciation</li>
+            <li>Convert English names to Chinese characters</li>
+            <li>Chinese name generator with meaning explanation</li>
+            <li>Names translated to Chinese with cultural context</li>
+            <li>Chinese to English name translation support</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 保持原有的路由视图 -->
+      <router-view></router-view>
+      
+      <!-- 使用现有的footer结构,仅优化内容 -->
+      <footer class="site-footer">
+        <p>Professional Chinese name translation service. Convert English names to Chinese characters with cultural meanings and proper pronunciations.</p>
+        <div class="footer-features">
+          <p>Services: Name Translator in Chinese • Chinese Name Generator • 
+          Single Character Names • Chinese Names to English • Mandarin Name Translation</p>
+        </div>
+      </footer>
+    </MainLayout>
+  </div>
 </template>
 
 <style>
@@ -67,6 +99,14 @@ img {
 }
 
 /* SEO优化相关样式 */
+.seo-title {
+  font-size: 1.8rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 1rem;
+  display: none; /* 对用户隐藏,对搜索引擎可见 */
+}
+
 .seo-description {
   font-size: 1.1rem;
   color: #555;
@@ -77,10 +117,50 @@ img {
   margin-right: auto;
 }
 
+.seo-features {
+  margin: 1rem 0;
+  display: none; /* 对用户隐藏,对搜索引擎可见 */
+}
+
+.seo-features ul {
+  margin-left: 1.5rem;
+}
+
+.seo-features li {
+  margin: 0.5rem 0;
+}
+
 .seo-introduction {
   font-size: 1.15rem;
   line-height: 1.6;
   color: #444;
   margin-bottom: 15px;
+}
+
+.seo-content {
+  padding: 20px 0;
+  margin-bottom: 20px;
+  display: none; /* 默认隐藏，只对搜索引擎可见 */
+}
+
+@media screen and (max-width: 768px) {
+  .seo-content {
+    padding: 15px 0;
+  }
+}
+
+.footer-features {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+}
+
+/* 增强现有样式 */
+.site-footer {
+  padding: 20px 0;
+  margin-top: 40px;
+  border-top: 1px solid #eee;
+  text-align: center;
 }
 </style>
