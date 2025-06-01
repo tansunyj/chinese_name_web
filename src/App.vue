@@ -29,9 +29,9 @@ export default {
 <template>
   <div class="container">
     <MainLayout>
-      <!-- SEO优化内容区块 -->
       <div class="seo-content" role="complementary">
-        <h1 class="seo-title">Chinese Name Translator - Convert Name to Chinese</h1>
+        <!-- 修改 H1 标签和样式 -->
+        <h1 class="main-title">Chinese Name Translator - Convert Name to Chinese</h1>
         <p class="seo-description">
           Transform your name into Chinese with our professional Chinese name translator. 
           Get personalized Chinese names with meanings and pronunciations. Learn how to 
@@ -99,12 +99,24 @@ img {
 }
 
 /* SEO优化相关样式 */
-.seo-title {
-  font-size: 1.8rem;
-  color: #333;
+.main-title {
+  font-size: 2rem;
+  color: #2c3e50;
   text-align: center;
-  margin-bottom: 1rem;
-  display: none; /* 对用户隐藏,对搜索引擎可见 */
+  margin: 2rem 0;
+  font-weight: 600;
+  line-height: 1.4;
+  /* 视觉优化 */
+  padding: 0.5rem 1rem;
+  border-bottom: 2px solid #eee;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  /* 响应式设计 */
+  @media screen and (max-width: 768px) {
+    font-size: 1.5rem;
+    margin: 1.5rem 0;
+  }
 }
 
 .seo-description {
