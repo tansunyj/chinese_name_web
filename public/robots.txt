@@ -1,10 +1,12 @@
-# https://chinesename.us
+# www.robotstxt.org/
+
 User-agent: *
 Allow: /
 
-# 禁止搜索引擎抓取登录和注册页面
+# 指定网站地图
+Sitemap: https://www.chinesename.us/sitemap.xml
+
+# 禁止爬取特定页面
 Disallow: /login
 Disallow: /signup
-
-# Allow sitemap
-Sitemap: https://chinesename.us/sitemap.xml 
+Disallow: /api/ 

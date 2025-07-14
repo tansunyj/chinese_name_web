@@ -3,6 +3,23 @@
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" }
   ],
+  "redirects": [
+    { 
+      "source": "https://chinesename.us/:path*", 
+      "destination": "https://www.chinesename.us/:path*",
+      "permanent": true
+    },
+    { 
+      "source": "http://chinesename.us/:path*", 
+      "destination": "https://www.chinesename.us/:path*",
+      "permanent": true
+    },
+    { 
+      "source": "http://www.chinesename.us/:path*", 
+      "destination": "https://www.chinesename.us/:path*",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/api/(.*)",
@@ -11,6 +28,16 @@
         { "key": "Access-Control-Allow-Origin", "value": "https://www.chinesename.us" },
         { "key": "Access-Control-Allow-Methods", "value": "GET,POST,OPTIONS" },
         { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization" }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Strict-Transport-Security", "value": "max-age=31536000; includeSubDomains; preload" }
       ]
     }
   ]

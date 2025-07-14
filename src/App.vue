@@ -1,6 +1,9 @@
 <script>
 import MainLayout from '@/layouts/MainLayout.vue'
 import { useI18n } from 'vue-i18n'
+import { setCanonicalLink } from './plugins/canonicalManager'
+import { onMounted, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
 export default {
   name: 'App',
@@ -9,6 +12,8 @@ export default {
   },
   setup() {
     const { locale } = useI18n();
+    const route = useRoute();
+    
     // 确保应用始终使用英文
     locale.value = 'en';
     localStorage.setItem('userLanguage', 'en');
@@ -17,6 +22,17 @@ export default {
     const forceEnglish = () => {
       locale.value = 'en';
     };
+    
+    // 初始化canonical链接
+    onMounted(() => {
+      // 设置初始canonical链接，传入路由元数据
+      setCanonicalLink(route.path, route.meta);
+    });
+    
+    // 监听路由变化，更新canonical链接
+    watch(() => route.path, (newPath) => {
+      setCanonicalLink(newPath, route.meta);
+    });
     
     // 添加页面加载完成后的处理
     setTimeout(forceEnglish, 100);

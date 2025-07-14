@@ -4,6 +4,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import i18n from './i18n'
+// 导入规范链接管理插件
+import { CanonicalPlugin } from './plugins/canonicalManager'
 
 // 导入 Ant Design Vue 组件
 import { DatePicker, TimePicker } from 'ant-design-vue'
@@ -43,5 +45,6 @@ const app = createApp(App)
   .use(i18n)
   .use(DatePicker)  // 注册 DatePicker 组件
   .use(TimePicker)  // 注册 TimePicker 组件
+  .use(CanonicalPlugin, { router }) // 注册规范链接管理插件
 
 app.mount('#app')
