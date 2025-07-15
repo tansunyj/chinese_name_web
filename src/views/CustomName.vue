@@ -1305,9 +1305,65 @@ export default {
     
     copyToClipboard(text) {
       navigator.clipboard.writeText(text).then(() => {
-        alert(this.$t('common.copied'));
+        // 创建一个自定义的提示元素
+        this.showCopyToast(this.locale === 'zh' ? '已复制到剪贴板' : 'Copied to clipboard');
+      }).catch(err => {
+        console.error('复制文本失败: ', err);
+        
+        // 降级方案：使用传统的复制方法
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        
+        try {
+          document.execCommand('copy');
+          // 创建一个自定义的提示元素
+          this.showCopyToast(this.locale === 'zh' ? '已复制到剪贴板' : 'Copied to clipboard');
+        } catch (e) {
+          console.error('备用复制方法失败:', e);
+          // 使用alert作为最后的备选方案
+          alert(this.locale === 'zh' ? '复制失败，请手动复制' : 'Copy failed, please copy manually');
+        } finally {
+          document.body.removeChild(textarea);
+        }
       });
     },
+    
+    // 显示自定义Toast提示
+    showCopyToast(message) {
+      // 创建一个toast元素
+      const toast = document.createElement('div');
+      toast.textContent = message;
+      toast.style.cssText = `
+        position: fixed;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(76, 175, 80, 0.9);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 4px;
+        z-index: 9999;
+        font-size: 16px;
+        transition: opacity 0.3s ease-in-out;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      `;
+      
+      // 添加到body
+      document.body.appendChild(toast);
+      
+      // 2秒后淡出并移除
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => {
+          document.body.removeChild(toast);
+        }, 300);
+      }, 2000);
+    },
+    
     saveResult(result) {
       // 模拟保存功能
       alert(`${this.$t('custom.results.save')}: ${result.characters}`);

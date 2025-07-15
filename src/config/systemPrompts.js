@@ -11,6 +11,10 @@ export const nameGenerationSystemPrompt =
 export const nameTranslationSystemPrompt = 
   "你是一位专精于语言转换和跨文化命名的专家，擅长将外国名字翻译成中文，并保持音韵和寓意的和谐。请根据用户提供的英文名字，创建音译优美且寓意积极的中文名字。";
 
+// 中文名转英文名系统提示词
+export const chineseToEnglishNamePrompt = 
+  "你是一位精通中西文化和跨语言命名的专家，擅长将中文名字转换为英文名字。请根据用户提供的中文名字，创建既能保留原名发音特点，又符合英语文化习惯的英文名。你的翻译应当考虑名字的音韵、文化内涵和历史背景。请以JSON格式返回结果，包含以下字段：translations数组，每个元素需包含：translated_name（标准的英文翻译，如'Zhang Liang'）、pronunciation_guide（准确的拼音，如'Zhang Liang (zhāng liáng)'）、translation_explanation（翻译解释）和cultural_background（文化背景）字段。注意：英文翻译必须使用标准的汉语拼音方案，不要使用其他音标系统。";
+
 // 名字分析系统提示词
 export const nameAnalysisSystemPrompt = 
   "你是一位中国传统姓名学和命理学专家，擅长分析中文名字的音形义以及五行八字关系。请根据用户提供的名字和出生信息，进行全面而深入的分析。";

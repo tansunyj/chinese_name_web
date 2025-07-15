@@ -127,6 +127,7 @@ export default {
       pinyin: '拼音',
       meaning: '含义',
       pronunciation: '发音',
+      cultural: '文化背景',
       alternatives: '备选方案'
     }
   },

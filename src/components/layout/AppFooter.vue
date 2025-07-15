@@ -35,6 +35,7 @@
             <ul>
               <li><a href="mailto:591124281yj@gmail.com">591124281yj@gmail.com</a></li>
               <li><a href="https://x.com/yangjerry2025" target="_blank">Twitter</a></li>
+              <li><a href="https://t.me/yangjerry666" target="_blank">Telegram</a></li>
             </ul>
           </div>
           
@@ -42,6 +43,8 @@
             <h3>{{ $t('footer.friendlyLinks') }}</h3>
             <ul>
               <li><a href="https://toolkit-hub-liard.vercel.app/#/" target="_blank">Toolkit Hub</a></li>
+              <li><a href="https://www.baixarvideoyoutube.video/" target="_blank">Baixar Video</a></li>
+              <li><a href="https://www.j10c.net/" target="_blank">J10C</a></li>
             </ul>
           </div>
         </div>

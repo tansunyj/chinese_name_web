@@ -8,7 +8,9 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "build:prod": "vite build --mode production",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "proxy": "node src/server/proxy.js",
+    "dev:all": "concurrently \"npm run dev\" \"npm run proxy\""
   },
   "dependencies": {
     "@ai-sdk/openai": "^1.3.20",
@@ -29,6 +31,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.3",
+    "concurrently": "^9.2.0",
     "vite": "^6.2.4",
     "vite-plugin-vue-devtools": "^7.7.2"
   }

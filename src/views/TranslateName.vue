@@ -1,8 +1,11 @@
 <template>
   <div class="translate-page">
     <div class="container">
-      <h1 class="page-title">{{ titleText }} | Chinese Names</h1>
-      <p class="seo-description">Translate your English name to Chinese characters. Learn how to say your name in Chinese with accurate pronunciation guides. Chinese names into English translation service. Translate English name to Chinese and Chinese name into English. Name translate in Chinese with cultural meaning. How to say my name is in Chinese. Translating Chinese names with professional service. Chinese language name translation for all purposes. Traduire votre nom en caractères chinois. Übersetzen Sie Ihren Namen in chinesische Zeichen. Как произносится ваше имя на китайском языке. 日本語の名前を中国語に翻訳します。</p>
+      <h1 class="page-title">English to Chinese Name Translator | Translate Your Name to Chinese</h1>
+      
+      <div class="seo-intro">
+        <p class="seo-description">Translate your English name to Chinese characters with our professional name translation tool. Get accurate Chinese name translations with proper pronunciation and cultural meaning. We also offer Chinese to English name translation services.</p>
+      </div>
       
       <div class="content">
         <div class="form-section">
@@ -44,7 +47,7 @@
         <LoadingIndicator v-if="isLoading" :text="$t('common.translatingName')" />
         
         <div v-if="results.length" class="results-section">
-          <h2>{{ $t('translate.results.title') }}</h2>
+          <h2>Your Chinese Name Translation Results</h2>
           
           <div class="results-grid">
             <div class="result-card" v-for="(result, index) in results" :key="index">
@@ -81,6 +84,22 @@
               </div>
             </div>
           </div>
+        </div>
+        
+        <div class="translation-guide">
+          <h2>How Our English to Chinese Name Translation Works</h2>
+          <p>Our name translation service uses advanced linguistic algorithms to convert your English name into an authentic Chinese name that preserves both pronunciation and meaning. Unlike simple phonetic transliteration, we consider cultural context and character meanings to create a name that sounds natural to Chinese speakers.</p>
+          
+          <h3>The Translation Process</h3>
+          <ol>
+            <li><strong>Phonetic Analysis</strong> - We analyze the sounds in your name to find the closest Chinese phonetic equivalents.</li>
+            <li><strong>Character Selection</strong> - We carefully select Chinese characters that not only sound similar to your name but also carry positive meanings.</li>
+            <li><strong>Cultural Adaptation</strong> - We ensure the translated name follows Chinese naming conventions and cultural practices.</li>
+            <li><strong>Pronunciation Guide</strong> - We provide pinyin (romanization) to help you pronounce your Chinese name correctly.</li>
+          </ol>
+          
+          <h3>Why Proper Name Translation Matters</h3>
+          <p>In Chinese culture, names carry significant meaning. The characters used in your Chinese name can influence how you're perceived. Our translation service ensures your Chinese name has positive connotations and sounds natural to native speakers.</p>
         </div>
       </div>
     </div>
@@ -279,7 +298,8 @@ export default {
         };
         
         const prompt = `请将${languageNames[sourceLanguage] || sourceLanguage}名字"${this.formData.fullName}"翻译成中文，
-使用音义结合（同时考虑发音和含义）方法。
+使用音义结合（同时考虑发音和含义）方法，并以JSON格式返回结果。
+
 请提供3个不同的翻译方案，每个方案包括:
 1. 翻译后的中文名字 (translate字段)
 2. 拼音发音指南 (pronunciation字段)
@@ -329,6 +349,8 @@ export default {
         log('发送AI请求:', prompt);
         const response = await translateName({
           name: this.formData.fullName,
+          sourceLanguage: sourceLanguage,
+          targetLanguage: 'zh',
           prompt: prompt,
           schema: nameSchema,
           model: 'gpt-4o',  // 使用高级模型确保更好的结构化输出
@@ -846,8 +868,63 @@ export default {
     
     copyToClipboard(text) {
       navigator.clipboard.writeText(text).then(() => {
-        message.success(this.$t('common.copied'));
+        // 创建一个自定义的提示元素
+        this.showCopyToast(this.locale === 'zh' ? '已复制到剪贴板' : 'Copied to clipboard');
+      }).catch(err => {
+        console.error('复制文本失败: ', err);
+        
+        // 降级方案：使用传统的复制方法
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        
+        try {
+          document.execCommand('copy');
+          // 创建一个自定义的提示元素
+          this.showCopyToast(this.locale === 'zh' ? '已复制到剪贴板' : 'Copied to clipboard');
+        } catch (e) {
+          console.error('备用复制方法失败:', e);
+          // 使用alert作为最后的备选方案
+          alert(this.locale === 'zh' ? '复制失败，请手动复制' : 'Copy failed, please copy manually');
+        } finally {
+          document.body.removeChild(textarea);
+        }
       });
+    },
+    
+    // 显示自定义Toast提示
+    showCopyToast(message) {
+      // 创建一个toast元素
+      const toast = document.createElement('div');
+      toast.textContent = message;
+      toast.style.cssText = `
+        position: fixed;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(76, 175, 80, 0.9);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 4px;
+        z-index: 9999;
+        font-size: 16px;
+        transition: opacity 0.3s ease-in-out;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      `;
+      
+      // 添加到body
+      document.body.appendChild(toast);
+      
+      // 2秒后淡出并移除
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => {
+          document.body.removeChild(toast);
+        }, 300);
+      }, 2000);
     },
     
     shareResult(result) {

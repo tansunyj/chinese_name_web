@@ -20,9 +20,9 @@ const routes = [
     name: 'Home',
     component: () => import('../views/HomePage.vue'),
     meta: {
-      title: 'Free Chinese Name Generator | Chinese Name Translation',
+      title: 'English to Chinese Name Translator | Free Chinese Name Generator',
       canonicalPath: '/',
-      description: 'Transform your name into Chinese with our free name generator. Get personalized Chinese names with meanings and learn how to translate Chinese names into English.'
+      description: 'Translate your English name to Chinese with our free name generator. Get accurate Chinese name translations with proper pronunciation and cultural meanings.'
     }
   },
   {
@@ -30,9 +30,19 @@ const routes = [
     name: 'TranslateName',
     component: () => import('../views/TranslateName.vue'),
     meta: {
-      title: 'Chinese Name Translator | English to Chinese Name Translation',
+      title: 'English to Chinese Name Translator | Translate Your Name to Chinese',
       canonicalPath: '/translate',
-      description: 'Translate your name to Chinese with our professional name translator. Convert English names to Chinese characters with accurate pronunciation and cultural meaning.'
+      description: 'Translate your English name to Chinese with our professional name translator. Convert English names to Chinese characters with accurate pronunciation and cultural meaning.'
+    }
+  },
+  {
+    path: '/chinese-to-english',
+    name: 'ChineseToEnglishName',
+    component: () => import('../views/ChineseToEnglishName.vue'),
+    meta: {
+      title: 'Chinese to English Name Translator | Convert Chinese Names to English',
+      canonicalPath: '/chinese-to-english',
+      description: 'Translate Chinese names to English with our professional name translation tool. Get accurate English translations of Chinese names with proper pronunciation and meaning.'
     }
   },
   {
@@ -323,6 +333,16 @@ const routes = [
     meta: {
       title: 'Professional Considerations for Chinese Names',
       canonicalPath: '/professional-considerations'
+    }
+  },
+  {
+    path: '/name-generator',
+    name: 'NameGenerator',
+    component: () => import('../views/NameGenerator.vue'),
+    meta: {
+      title: 'Chinese Name Generator | Create Your Authentic Chinese Name',
+      canonicalPath: '/name-generator',
+      description: 'Generate authentic Chinese names with our free Chinese name generator. Create personalized Chinese names with proper meanings and cultural significance based on your preferences.'
     }
   },
   {

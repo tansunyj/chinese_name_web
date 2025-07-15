@@ -96,7 +96,8 @@ export const generateAIObject = async (options) => {
     schema,
     model,
     temperature = 0.7,
-    metadata = {}
+    metadata = {},
+    customRequestBody = null
   } = options;
   
   if (!schema) {
@@ -108,7 +109,7 @@ export const generateAIObject = async (options) => {
     const modelCfg = getModel(model);
     
     // 创建OpenAI API请求体
-    const openaiRequestBody = {
+    const openaiRequestBody = customRequestBody || {
       model: modelCfg.modelName || model || aiConfig.models.default,
       temperature: temperature,
       messages: [
@@ -189,33 +190,52 @@ export const generateAIObject = async (options) => {
       log('响应数据:', data);
     }
     
-    // 解析内容
-    let content = '';
+    // 对于某些情况，我们可能需要直接返回原始响应
     if (data.choices && data.choices[0] && data.choices[0].message) {
-      content = data.choices[0].message.content || '';
+      // 如果是OpenAI的完整响应格式，可以选择直接返回它
+      if (metadata.returnRawResponse) {
+        return {
+          object: data,
+          metadata
+        };
+      }
+      
+      // 尝试解析内容
+      let content = data.choices[0].message.content || '';
+      
+      // 尝试解析JSON
+      let jsonObject = {};
+      try {
+        // 移除可能存在的Markdown格式或前后缀
+        const cleanedContent = content
+          .replace(/```json\n?/g, '')
+          .replace(/```\n?/g, '')
+          .trim();
+          
+        jsonObject = JSON.parse(cleanedContent);
+        log('成功解析JSON:', jsonObject);
+      } catch (jsonError) {
+        // 如果解析失败，返回原始响应
+        logError('JSON解析错误:', jsonError, '原始内容:', content);
+        return {
+          object: data,
+          metadata,
+          parseError: true
+        };
+      }
+      
+      // 返回解析后的结果
+      return {
+        object: jsonObject,
+        metadata
+      };
+    } else {
+      // 如果不是标准OpenAI响应格式，直接返回
+      return {
+        object: data,
+        metadata
+      };
     }
-    
-    // 尝试解析JSON
-    let jsonObject = {};
-    try {
-      // 移除可能存在的Markdown格式或前后缀
-      const cleanedContent = content
-        .replace(/```json\n?/g, '')
-        .replace(/```\n?/g, '')
-        .trim();
-        
-      jsonObject = JSON.parse(cleanedContent);
-      log('成功解析JSON:', jsonObject);
-    } catch (jsonError) {
-      logError('JSON解析错误:', jsonError, '原始内容:', content);
-      jsonObject = { parseError: true };
-    }
-    
-    // 返回结果
-    return {
-      object: jsonObject,
-      metadata
-    };
   } catch (error) {
     // 记录错误但不抛出异常
     logError('AI结构化数据生成错误:', error);
@@ -334,64 +354,89 @@ export const analyzeCharacterStrokes = async (options) => {
  * @param {string} options.sourceLanguage - 源语言
  * @param {string} options.targetLanguage - 目标语言
  * @param {string} options.method - 翻译方法（音译/意译）
+ * @param {string} options.prompt - 自定义提示词
+ * @param {Object} options.schema - 自定义JSON Schema
  * @returns {Promise<Object>} - 返回翻译结果
  */
 export const translateName = async (options) => {
   const {
     name,
-    sourceLanguage = 'en',
-    targetLanguage = 'zh',
-    method = 'phonetic',
-    temperature = 1
+    sourceLanguage,
+    targetLanguage,
+    method = 'combined',
+    systemPrompt,
+    prompt,
+    schema,
+    options: translationOptions = {}
   } = options;
 
-  if (!name) {
-    throw new Error('请提供需要翻译的名字');
+  // 使用传入的schema或默认schema
+  const translationSchema = schema || {
+    type: 'object',
+    properties: {
+      translations: {
+        type: 'array',
+        items: {
+          type: 'object',
+          properties: {
+            translated_name: {
+              type: 'string',
+              description: '翻译后的名字'
+            },
+            pronunciation_guide: {
+              type: 'string',
+              description: '发音指南'
+            },
+            translation_explanation: {
+              type: 'string',
+              description: '翻译选择的解释'
+            },
+            cultural_background: {
+              type: 'string',
+              description: '相关的文化背景信息'
+            }
+          },
+          required: ['translated_name', 'pronunciation_guide', 'translation_explanation']
+        }
+      }
+    },
+    required: ['translations']
+  };
+
+  try {
+    // 构建请求体
+    const requestBody = {
+      model: aiConfig.models.default,
+      messages: [
+        {
+          role: 'system',
+          content: systemPrompt || '你是一个专业的名字翻译专家，请将名字翻译成目标语言并以JSON格式返回结果。'
+        },
+        {
+          role: 'user',
+          content: prompt || `请将"${name}"从${sourceLanguage}翻译成${targetLanguage}，并以json格式返回结果。`
+        }
+      ],
+      temperature: 0.7,
+      response_format: { type: 'json_object' }
+    };
+
+    // 使用generateAIObject发送请求
+    return await generateAIObject({
+      customRequestBody: requestBody,
+      schema: translationSchema,  // 使用传入的schema或默认schema
+      metadata: {
+        name,
+        sourceLanguage,
+        targetLanguage,
+        method,
+        options: translationOptions
+      }
+    });
+  } catch (error) {
+    logError('名字翻译错误:', error);
+    throw error;
   }
-
-  const translationSchema = {
-    type: 'array',
-    items: {
-      type: 'object',
-      properties: {
-        translated: { type: 'string' },
-        pronunciation: { type: 'string' },
-        explanation: { type: 'string' }
-      },
-      required: ['translated', 'pronunciation', 'explanation']
-    }
-  };
-
-  // 获取语言名称
-  const languageNames = {
-    zh: '中文',
-    en: '英文',
-    ja: '日文',
-    ko: '韩文',
-    fr: '法文',
-    de: '德文',
-    es: '西班牙文',
-    ru: '俄文'
-  };
-
-  const methodDesc = {
-    phonetic: '音译（基于发音相似度）',
-    semantic: '意译（基于名字含义）',
-    combined: '音义结合（同时考虑发音和含义）'
-  };
-
-  const prompt = `请将${languageNames[sourceLanguage] || sourceLanguage}名字"${name}"翻译成${languageNames[targetLanguage] || targetLanguage}，
-使用${methodDesc[method] || method}方法。提供3个不同的翻译方案，每个方案包括:
-1. 翻译后的名字
-2. 发音指南
-3. 翻译选择的详细解释`;
-
-  return generateAIObject({
-    prompt,
-    schema: translationSchema,
-    temperature: temperature,
-    metadata: { type: 'name_translation' }
-  });
 };
 
 /**

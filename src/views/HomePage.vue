@@ -99,9 +99,22 @@
               </div>
             </div>
           </router-link>
-
-          <!-- 为未来可能增加的第六个卡片预留位置 -->
-          <div class="empty-card-placeholder"></div>
+          
+          <!-- 中文名转英文名 -->
+          <router-link to="/chinese-to-english" class="feature-card-link">
+            <div class="feature-card">
+              <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                </svg>
+              </div>
+              <h3>Chinese to English Name</h3>
+              <p>Convert your Chinese name to English with accurate pronunciation and cultural meaning</p>
+              <div class="feature-link">
+                <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
+              </div>
+            </div>
+          </router-link>
         </div>
       </div>
     </section>
@@ -279,6 +292,31 @@
     </section>
 
     <!-- 咨询服务 -->
+    <div class="service-section">
+      <h2>Our Chinese Name Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>English to Chinese Name Translation</h3>
+          <p>Translate your English name to Chinese with accurate pronunciation and cultural meaning.</p>
+          <router-link to="/translate" class="service-link">Translate Your Name</router-link>
+        </div>
+        <div class="service-card">
+          <h3>Chinese to English Name Translation</h3>
+          <p>Convert Chinese names to English with proper meaning and pronunciation guides.</p>
+          <router-link to="/chinese-to-english" class="service-link">Translate Chinese Names</router-link>
+        </div>
+        <div class="service-card">
+          <h3>Chinese Name Generator</h3>
+          <p>Create authentic Chinese names based on your preferences and cultural meanings.</p>
+          <router-link to="/name-generator" class="service-link">Generate Chinese Names</router-link>
+        </div>
+        <div class="service-card">
+          <h3>Custom Chinese Name Creation</h3>
+          <p>Get a personalized Chinese name tailored to your specific requirements.</p>
+          <router-link to="/custom" class="service-link">Create Custom Name</router-link>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -886,6 +924,154 @@ export default {
   align-items: flex-start;
 }
 
+/* 咨询服务部分样式 */
+.service-section {
+  padding: 100px 0;
+  background-color: #fdf8f8;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-section::before {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  left: -200px;
+  top: -200px;
+  background: radial-gradient(circle, rgba(209,10,17,0.03) 0%, rgba(209,10,17,0) 70%);
+  border-radius: 50%;
+}
+
+.service-section::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  right: -150px;
+  bottom: -150px;
+  background: radial-gradient(circle, rgba(209,10,17,0.03) 0%, rgba(209,10,17,0) 70%);
+  border-radius: 50%;
+}
+
+.service-section h2 {
+  font-size: 2.4rem;
+  color: #222;
+  margin-bottom: 60px;
+  text-align: center;
+  position: relative;
+  font-weight: 700;
+}
+
+.service-section h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #d10a11;
+  margin: 20px auto 0;
+  border-radius: 2px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 35px;
+  margin-bottom: 40px;
+}
+
+.service-card {
+  background-color: white;
+  border-radius: 16px;
+  padding: 40px;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  height: auto;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0,0,0,0.06);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.service-card:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  border-color: rgba(0,0,0,0.08);
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(to bottom, #d10a11, #f05252);
+  z-index: 2;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+
+.service-card .icon {
+  width: 65px;
+  height: 65px;
+  background-color: rgba(209, 10, 17, 0.08);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .icon {
+  background-color: rgba(209, 10, 17, 0.12);
+  transform: scale(1.05);
+}
+
+.service-card .icon svg {
+  width: 32px;
+  height: 32px;
+  color: #d10a11;
+}
+
+.service-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  color: #222;
+  font-weight: 600;
+}
+
+.service-card p {
+  color: #555;
+  margin-bottom: 25px;
+  line-height: 1.7;
+  flex-grow: 1;
+  font-size: 1.05rem;
+}
+
+.service-link {
+  color: #d10a11;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  font-size: 1.05rem;
+  transition: all 0.2s ease;
+}
+
+.service-card:hover .service-link {
+  color: #b80000;
+}
+
+.service-link:hover .ming-icon {
+  transform: translateX(5px);
+}
+
 @media (max-width: 1200px) {
   .hero-content {
     gap: 4%;
@@ -957,7 +1143,7 @@ export default {
     font-size: 1.1rem;
   }
   
-  .features, .features-alt, .about-chinese-names, .faq-section {
+  .features, .features-alt, .about-chinese-names, .faq-section, .service-section {
     padding: 70px 0;
   }
   
@@ -1007,6 +1193,10 @@ export default {
   .collapsible-content {
     padding: 0 15px 15px;
   }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1045,6 +1235,14 @@ export default {
   
   .feature-card h3 {
     font-size: 1.3rem;
+  }
+
+  .service-card {
+    padding: 25px;
+  }
+
+  .service-card h3 {
+    font-size: 1.2rem;
   }
 }
 </style>

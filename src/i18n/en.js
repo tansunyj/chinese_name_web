@@ -171,6 +171,7 @@ export default {
       characters: 'Chinese Characters',
       pinyin: 'Pinyin',
       meaning: 'Meaning',
+      cultural: 'Cultural Background',
       pronunciation: 'Pronunciation',
       alternatives: 'Alternative Options'
     }

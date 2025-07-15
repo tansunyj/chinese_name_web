@@ -2,75 +2,79 @@
   <div class="name-generator-page">
     <div class="container">
       <div class="page-header">
-        <h1 class="page-title">智能起名</h1>
-        <p class="page-description">根据您提供的信息，我们将为您推荐最合适的名字</p>
+        <h1 class="page-title">Chinese Name Generator | Create Your Authentic Chinese Name</h1>
+        <p class="page-description">Our intelligent Chinese name generator creates personalized Chinese names based on your preferences and cultural meanings</p>
+      </div>
+
+      <div class="seo-intro">
+        <p>Looking for the perfect Chinese name? Our free Chinese name generator creates authentic Chinese names with proper meanings and cultural significance. Whether you need a Chinese name for business, travel, or personal interest, our tool helps you find the perfect match.</p>
       </div>
 
       <div class="generator-content">
         <!-- 左侧表单 -->
         <div class="input-section">
           <div class="form-card">
-            <h2 class="form-title">基本信息</h2>
+            <h2 class="form-title">Generate Your Chinese Name</h2>
             
             <div class="form-group">
-              <label for="surname">姓氏</label>
-              <input type="text" id="surname" v-model="formData.surname" placeholder="请输入姓氏" />
+              <label for="surname">Family Name (Optional)</label>
+              <input type="text" id="surname" v-model="formData.surname" placeholder="Enter Chinese surname or leave blank" />
             </div>
             
             <div class="form-group">
-              <label>性别</label>
+              <label>Gender</label>
               <div class="radio-group">
                 <label class="radio-label">
                   <input type="radio" v-model="formData.gender" value="male" />
-                  <span>男孩</span>
+                  <span>Male</span>
                 </label>
                 <label class="radio-label">
                   <input type="radio" v-model="formData.gender" value="female" />
-                  <span>女孩</span>
+                  <span>Female</span>
                 </label>
               </div>
             </div>
             
             <div class="form-group">
-              <label for="birthdate">出生日期</label>
+              <label for="birthdate">Birth Date (Optional)</label>
               <input type="date" id="birthdate" v-model="formData.birthdate" />
             </div>
             
             <div class="form-group">
-              <label for="birthtime">出生时间</label>
+              <label for="birthtime">Birth Time (Optional)</label>
               <input type="time" id="birthtime" v-model="formData.birthtime" />
             </div>
             
-            <h2 class="form-title form-section-title">名字偏好</h2>
+            <h2 class="form-title form-section-title">Name Preferences</h2>
             
             <div class="form-group">
-              <label>名字字数</label>
+              <label>Name Length</label>
               <div class="radio-group">
                 <label class="radio-label">
                   <input type="radio" v-model="formData.nameLength" value="1" />
-                  <span>单字</span>
+                  <span>Single Character</span>
                 </label>
                 <label class="radio-label">
                   <input type="radio" v-model="formData.nameLength" value="2" />
-                  <span>双字</span>
+                  <span>Two Characters</span>
                 </label>
               </div>
             </div>
             
             <div class="form-group">
-              <label>名字风格</label>
+              <label>Name Style</label>
               <select v-model="formData.style">
-                <option value="">请选择名字风格</option>
-                <option value="traditional">古典文雅</option>
-                <option value="modern">现代时尚</option>
-                <option value="poetry">诗词典故</option>
-                <option value="nature">自然灵动</option>
-                <option value="fortune">吉祥如意</option>
+                <option value="">Select a name style</option>
+                <option value="traditional">Classical & Elegant</option>
+                <option value="modern">Modern & Contemporary</option>
+                <option value="poetry">Poetic & Literary</option>
+                <option value="nature">Nature-Inspired</option>
+                <option value="fortune">Auspicious & Lucky</option>
               </select>
             </div>
             
             <div class="form-group">
-              <label>期望寓意</label>
+              <label>Desired Meanings</label>
               <div class="tag-selector">
                 <div 
                   v-for="(tag, index) in meaningTags" 
@@ -85,18 +89,18 @@
             </div>
             
             <div class="form-group">
-              <label for="avoidChars">避免使用的字</label>
-              <input type="text" id="avoidChars" v-model="formData.avoidChars" placeholder="例如：同音字、家族已有名字中的字等" />
+              <label for="avoidChars">Characters to Avoid</label>
+              <input type="text" id="avoidChars" v-model="formData.avoidChars" placeholder="Characters to avoid in your name" />
             </div>
             
             <div class="form-group">
-              <label for="additionalInfo">其他要求</label>
-              <textarea id="additionalInfo" v-model="formData.additionalInfo" rows="3" placeholder="请输入您的其他特殊要求"></textarea>
+              <label for="additionalInfo">Additional Requirements</label>
+              <textarea id="additionalInfo" v-model="formData.additionalInfo" rows="3" placeholder="Any special requirements for your Chinese name"></textarea>
             </div>
             
             <div class="form-actions">
-              <button class="btn-primary" @click="generateNames">开始智能起名</button>
-              <button class="btn-secondary" @click="resetForm">重置表单</button>
+              <button class="btn-primary" @click="generateNames">Generate Chinese Names</button>
+              <button class="btn-secondary" @click="resetForm">Reset Form</button>
             </div>
           </div>
         </div>
@@ -104,8 +108,8 @@
         <!-- 右侧结果 -->
         <div class="result-section" v-if="showResults">
           <div class="result-header">
-            <h2>为您推荐的名字</h2>
-            <p>根据您提供的信息，我们为您精选了以下名字</p>
+            <h2>Your Chinese Name Recommendations</h2>
+            <p>Based on your preferences, we've generated these personalized Chinese names for you</p>
           </div>
           
           <div class="result-list">
@@ -117,19 +121,19 @@
               </div>
               <div class="name-details" v-if="selectedNameIndex === index">
                 <div class="detail-item">
-                  <h4>字义分析</h4>
+                  <h4>Character Meaning Analysis</h4>
                   <p>{{ result.details.meanings }}</p>
                 </div>
                 <div class="detail-item">
-                  <h4>五行分析</h4>
+                  <h4>Five Elements Analysis</h4>
                   <p>{{ result.details.fiveElements }}</p>
                 </div>
                 <div class="detail-item">
-                  <h4>音律分析</h4>
+                  <h4>Pronunciation Analysis</h4>
                   <p>{{ result.details.pronunciation }}</p>
                 </div>
                 <div class="detail-item">
-                  <h4>诗词出处</h4>
+                  <h4>Literary Origin</h4>
                   <p>{{ result.details.origin }}</p>
                 </div>
                 <div class="name-tags">
@@ -137,25 +141,51 @@
                 </div>
               </div>
               <div class="name-actions" v-if="selectedNameIndex === index">
-                <button class="btn-secondary">收藏此名</button>
-                <button class="btn-primary">查看完整分析</button>
+                <button class="btn-secondary">Save This Name</button>
+                <button class="btn-primary">View Full Analysis</button>
               </div>
               <div class="name-expand" v-else>
-                <span>查看分析 <i class="icon-arrow-down"></i></span>
+                <span>View Analysis <i class="icon-arrow-down"></i></span>
               </div>
             </div>
           </div>
           
           <div class="result-pagination" v-if="nameResults.length > 0">
-            <button class="btn-pagination" :disabled="currentPage === 1" @click="prevPage">上一页</button>
+            <button class="btn-pagination" :disabled="currentPage === 1" @click="prevPage">Previous</button>
             <span class="page-info">{{ currentPage }}/{{ totalPages }}</span>
-            <button class="btn-pagination" :disabled="currentPage === totalPages" @click="nextPage">下一页</button>
+            <button class="btn-pagination" :disabled="currentPage === totalPages" @click="nextPage">Next</button>
           </div>
           
           <div class="result-actions">
-            <button class="btn-tertiary">重新生成</button>
-            <button class="btn-primary">保存结果</button>
+            <button class="btn-tertiary">Generate Again</button>
+            <button class="btn-primary">Save Results</button>
           </div>
+        </div>
+      </div>
+      
+      <div class="name-generator-guide">
+        <h2>How Our Chinese Name Generator Works</h2>
+        <p>Our Chinese name generator creates authentic Chinese names based on cultural traditions and linguistic principles. Unlike simple transliteration tools, we consider the meaning, pronunciation, and cultural significance of each character to create a name that truly represents you.</p>
+        
+        <div class="guide-section">
+          <h3>Why Chinese Names Matter</h3>
+          <p>In Chinese culture, names carry significant meaning and are believed to influence a person's destiny. A good Chinese name should have positive connotations, pleasing sounds, and balanced structure. Our generator follows traditional Chinese naming principles to create names that are both authentic and meaningful.</p>
+        </div>
+        
+        <div class="guide-section">
+          <h3>Chinese Name Structure</h3>
+          <p>A traditional Chinese name consists of a family name (surname) followed by a given name. The family name is typically one character, while the given name can be one or two characters. For example, in the name "Wang Wei," "Wang" is the family name and "Wei" is the given name.</p>
+        </div>
+        
+        <div class="guide-section">
+          <h3>Factors We Consider</h3>
+          <ul>
+            <li><strong>Gender</strong> - Different characters are traditionally used for male and female names</li>
+            <li><strong>Five Elements</strong> - Balance of wood, fire, earth, metal, and water elements</li>
+            <li><strong>Character Meaning</strong> - Positive connotations and cultural significance</li>
+            <li><strong>Pronunciation</strong> - Harmonious sounds and tones</li>
+            <li><strong>Stroke Count</strong> - Traditional numerology for balance and luck</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -179,22 +209,31 @@ export default {
         additionalInfo: ''
       },
       meaningTags: [
-        { label: '才华智慧', value: 'wisdom' },
-        { label: '品德高尚', value: 'virtue' },
-        { label: '勇敢坚强', value: 'brave' },
-        { label: '秀丽气质', value: 'beauty' },
-        { label: '事业成功', value: 'success' },
-        { label: '健康平安', value: 'health' },
-        { label: '家庭和睦', value: 'family' },
-        { label: '财富丰裕', value: 'wealth' },
-        { label: '快乐幸福', value: 'happy' },
-        { label: '文雅诗意', value: 'poetic' }
+        { label: 'Wisdom & Intelligence', value: 'wisdom' },
+        { label: 'Virtue & Morality', value: 'virtue' },
+        { label: 'Courage & Strength', value: 'brave' },
+        { label: 'Beauty & Elegance', value: 'beauty' },
+        { label: 'Success & Achievement', value: 'success' },
+        { label: 'Health & Longevity', value: 'health' },
+        { label: 'Family & Harmony', value: 'family' },
+        { label: 'Wealth & Prosperity', value: 'wealth' },
+        { label: 'Happiness & Joy', value: 'happy' },
+        { label: 'Literary & Poetic', value: 'poetic' }
       ],
       showResults: false,
       nameResults: [],
       selectedNameIndex: null,
       currentPage: 1,
       totalPages: 1
+    }
+  },
+  metaInfo() {
+    return {
+      title: 'Chinese Name Generator | Create Your Authentic Chinese Name',
+      meta: [
+        { name: 'description', content: 'Generate authentic Chinese names with our free Chinese name generator. Create personalized Chinese names with proper meanings and cultural significance based on your preferences.' },
+        { name: 'keywords', content: 'chinese name generator, chinese name, generate chinese name, chinese name maker, chinese name creator, mandarin name generator, chinese name with meaning' }
+      ]
     }
   },
   methods: {
@@ -364,6 +403,15 @@ export default {
 .page-description {
   color: #666;
   font-size: 1.1rem;
+}
+
+.seo-intro {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
 }
 
 .generator-content {
@@ -700,6 +748,47 @@ export default {
 
 .result-actions button {
   flex: 1;
+}
+
+.name-generator-guide {
+  margin-top: 4rem;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.name-generator-guide h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.guide-section {
+  margin-top: 1.5rem;
+}
+
+.guide-section h3 {
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 0.75rem;
+}
+
+.guide-section p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.guide-section ul {
+  padding-left: 1.5rem;
+}
+
+.guide-section li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #555;
 }
 
 /* 响应式调整 */
