@@ -59,7 +59,11 @@ export default defineConfig(({ command, mode }) => {
       // 添加预加载指令
       modulePreload: {
         polyfill: true
-      }
+      },
+      // 添加 SPA 回退配置
+      target: 'esnext',
+      ssrManifest: false,
+      emptyOutDir: true
     },
     // 添加 CSS 相关配置
     css: {
@@ -76,7 +80,9 @@ export default defineConfig(({ command, mode }) => {
       port: 5173,
       strictPort: true,
       // 添加 CORS 头
-      cors: true
+      cors: true,
+      // 添加 SPA 回退
+      historyApiFallback: true
     }
   }
 })
