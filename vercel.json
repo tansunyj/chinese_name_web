@@ -5,17 +5,24 @@
   ],
   "redirects": [
     { 
-      "source": "https://chinesename.us/:path*", 
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "chinesename.us"
+        }
+      ],
       "destination": "https://www.chinesename.us/:path*",
       "permanent": true
     },
     { 
-      "source": "http://chinesename.us/:path*", 
-      "destination": "https://www.chinesename.us/:path*",
-      "permanent": true
-    },
-    { 
-      "source": "http://www.chinesename.us/:path*", 
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.chinesename.us"
+        }
+      ],
       "destination": "https://www.chinesename.us/:path*",
       "permanent": true
     }
