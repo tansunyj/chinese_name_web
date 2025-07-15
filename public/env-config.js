@@ -16,4 +16,7 @@ window.__env.VUE_APP_NAME_GEN_MODEL = 'gpt-4o-mini';
 window.__env.VUE_APP_TRANSLATION_MODEL = 'gpt-4o-mini';
 window.__env.VUE_APP_ANALYSIS_MODEL = 'gpt-4o-mini';
 
+// 添加时间戳以确保不会被缓存
+window.__env.BUILD_TIMESTAMP = new Date().toISOString();
+
 // 开发环境的配置可以在本地开发服务器启动时通过.env文件覆盖 

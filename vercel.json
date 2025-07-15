@@ -1,21 +1,9 @@
 {
   "version": 2,
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*\\.(js|css|ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|xml))",
-      "dest": "/$1"
-    },
-    {
-      "src": ".*",
-      "dest": "/index.html"
-    }
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/(.*\\.js|.*\\.css|.*\\.ico|.*\\.png|.*\\.jpg|.*\\.jpeg|.*\\.gif|.*\\.svg|.*\\.woff|.*\\.woff2|.*\\.ttf|.*\\.xml)", "destination": "/$1" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [
     {
@@ -28,7 +16,7 @@
       ]
     },
     {
-      "source": "/(.*\\.(js|css|svg|jpg|jpeg|gif|png|ico|woff|woff2|ttf))",
+      "source": "/(.*\\.js|.*\\.css|.*\\.svg|.*\\.jpg|.*\\.jpeg|.*\\.gif|.*\\.png|.*\\.ico|.*\\.woff|.*\\.woff2|.*\\.ttf)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
