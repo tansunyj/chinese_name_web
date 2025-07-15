@@ -96,6 +96,109 @@
             </div>
           </div>
         </div>
+        
+        <!-- 添加星座指南部分 -->
+        <div class="constellation-guide">
+          <h2 class="guide-main-title">Understanding Western Astrology</h2>
+          
+          <div class="guide-content">
+            <p class="guide-intro">Western astrology is a system that uses the positions of celestial bodies, primarily the Sun, Moon, and planets, at the time of a person's birth to gain insights into their character, relationships, and life path. The zodiac is divided into twelve signs, each representing different personality traits and characteristics.</p>
+            
+            <div class="guide-section">
+              <h3 class="guide-section-title">The History of Western Astrology</h3>
+              <p>Western astrology has its roots in Mesopotamian culture, dating back to at least the 2nd millennium BCE. It was later influenced by Hellenistic (Ancient Greek) and Egyptian traditions, before being formalized by Ptolemy in his work "Tetrabiblos" around 140 CE. Throughout history, astrology has been practiced by many cultures and has evolved into the system we recognize today.</p>
+            </div>
+            
+            <div class="guide-section">
+              <h3 class="guide-section-title">The Four Elements</h3>
+              <p>The twelve zodiac signs are categorized into four elements: Fire, Earth, Air, and Water. Each element represents different qualities and characteristics:</p>
+              
+              <div class="elements-container">
+                <div class="element-box fire">
+                  <h4>Fire Signs</h4>
+                  <p>Aries, Leo, Sagittarius</p>
+                  <p class="element-traits">Passionate, dynamic, temperamental</p>
+                </div>
+                <div class="element-box earth">
+                  <h4>Earth Signs</h4>
+                  <p>Taurus, Virgo, Capricorn</p>
+                  <p class="element-traits">Practical, loyal, stable</p>
+                </div>
+                <div class="element-box air">
+                  <h4>Air Signs</h4>
+                  <p>Gemini, Libra, Aquarius</p>
+                  <p class="element-traits">Intellectual, communicative, social</p>
+                </div>
+                <div class="element-box water">
+                  <h4>Water Signs</h4>
+                  <p>Cancer, Scorpio, Pisces</p>
+                  <p class="element-traits">Emotional, intuitive, sensitive</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="guide-section">
+              <h3 class="guide-section-title">Modalities: Cardinal, Fixed, and Mutable</h3>
+              <p>Each zodiac sign also belongs to one of three modalities (or qualities), which describe how the signs express their energy:</p>
+              
+              <div class="modalities-grid">
+                <div class="modality-item">
+                  <h4>Cardinal Signs</h4>
+                  <p>Aries, Cancer, Libra, Capricorn</p>
+                  <p>Initiators, leaders, dynamic, active</p>
+                </div>
+                <div class="modality-item">
+                  <h4>Fixed Signs</h4>
+                  <p>Taurus, Leo, Scorpio, Aquarius</p>
+                  <p>Stable, determined, persistent, resistant to change</p>
+                </div>
+                <div class="modality-item">
+                  <h4>Mutable Signs</h4>
+                  <p>Gemini, Virgo, Sagittarius, Pisces</p>
+                  <p>Adaptable, flexible, versatile, changeable</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="guide-section">
+              <h3 class="guide-section-title">Beyond Sun Signs</h3>
+              <p>While most people are familiar with their "sun sign" (determined by the position of the Sun at birth), a complete astrological chart includes many other factors:</p>
+              <ul class="beyond-list">
+                <li><strong>Moon Sign:</strong> Represents emotions, instincts, and subconscious</li>
+                <li><strong>Rising Sign (Ascendant):</strong> How you present yourself to the world</li>
+                <li><strong>Mercury:</strong> Communication style and thinking patterns</li>
+                <li><strong>Venus:</strong> Love language, relationships, and values</li>
+                <li><strong>Mars:</strong> Energy, drive, and passion</li>
+                <li><strong>Jupiter:</strong> Growth, expansion, and philosophy</li>
+                <li><strong>Saturn:</strong> Discipline, responsibility, and limitations</li>
+              </ul>
+            </div>
+            
+            <div class="guide-section faq-section">
+              <h3 class="guide-section-title">Frequently Asked Questions</h3>
+              
+              <div class="faq-item">
+                <h4>How is Western astrology different from Chinese astrology?</h4>
+                <p>Western astrology is based on the solar year and divides the zodiac into 12 signs corresponding to months. Chinese astrology is based on a 12-year lunar cycle with each year represented by an animal. Western astrology focuses more on personality traits and psychological tendencies, while Chinese astrology traditionally emphasizes life path and destiny.</p>
+              </div>
+              
+              <div class="faq-item">
+                <h4>Why do some people not identify with their sun sign?</h4>
+                <p>Your sun sign is just one aspect of your complete astrological chart. Other significant factors include your moon sign, rising sign, and the positions of planets at your birth. These can strongly influence your personality and may sometimes overshadow sun sign traits. Additionally, cultural and environmental factors shape personality beyond astrological influences.</p>
+              </div>
+              
+              <div class="faq-item">
+                <h4>How can astrology be used in naming?</h4>
+                <p>Some parents consider astrological elements when naming their children, choosing names that complement or balance their child's zodiac traits. For example, a water sign child might be given a name with fiery meanings to create balance, or a name that enhances their natural intuitive qualities. In Chinese culture, this practice is even more established, with specific characters recommended based on a person's birth chart.</p>
+              </div>
+              
+              <div class="faq-item">
+                <h4>Is there scientific evidence supporting astrology?</h4>
+                <p>The scientific community generally does not support astrology as a predictive science due to lack of empirical evidence. However, many people find value in astrology as a psychological tool for self-reflection and understanding personality patterns. Carl Jung, the famous psychologist, viewed astrology as representing symbolic archetypes that resonate with the human psyche.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -557,7 +660,7 @@ export default {
 }
 
 .constellation-container {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
   background-color: #f8f9fb;
@@ -594,8 +697,11 @@ export default {
   background-color: white;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
   margin-bottom: 30px;
+  max-width: 1000px;
+  margin: 0 auto 30px;
+  width: 100%;
 }
 
 .form-title {
@@ -607,6 +713,7 @@ export default {
 
 .input-group {
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .input-group label {
@@ -622,7 +729,8 @@ export default {
   border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 1rem;
-  transition: border 0.3s ease;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 .input-field:focus {
@@ -670,9 +778,11 @@ export default {
 .results-section {
   background-color: white;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   animation: fadeIn 0.5s ease-in-out;
+  max-width: 1000px;
+  margin: 30px auto 0;
 }
 
 @keyframes fadeIn {
@@ -990,6 +1100,179 @@ export default {
   transform: translateY(-2px);
 }
 
+/* 添加星座指南样式 */
+.constellation-guide {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  margin-top: 40px;
+  max-width: 1000px;
+  margin: 40px auto 0;
+}
+
+.guide-main-title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.guide-main-title:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: #e60012;
+  border-radius: 2px;
+}
+
+.guide-content {
+  color: #555;
+  line-height: 1.7;
+}
+
+.guide-intro {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  text-align: justify;
+}
+
+.guide-section {
+  margin-bottom: 40px;
+}
+
+.guide-section-title {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+  position: relative;
+  padding-left: 18px;
+}
+
+.guide-section-title:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 24px;
+  background-color: #e60012;
+  border-radius: 3px;
+}
+
+.elements-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.element-box {
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.element-box:hover {
+  transform: translateY(-5px);
+}
+
+.element-box h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.element-box p {
+  margin: 10px 0;
+}
+
+.element-traits {
+  font-style: italic;
+  opacity: 0.9;
+}
+
+.modalities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 25px;
+}
+
+.modality-item {
+  background-color: #f9fafc;
+  border-radius: 10px;
+  padding: 20px;
+  transition: all 0.3s;
+}
+
+.modality-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.modality-item h4 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.modality-item p {
+  margin: 10px 0;
+  line-height: 1.5;
+}
+
+.beyond-list {
+  padding-left: 20px;
+  margin-top: 15px;
+}
+
+.beyond-list li {
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.faq-section {
+  background-color: #f9fafc;
+  border-radius: 12px;
+  padding: 30px;
+  margin-top: 40px;
+}
+
+.faq-item {
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px dashed #ddd;
+}
+
+.faq-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.faq-item h4 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.faq-item p {
+  margin: 0;
+  line-height: 1.6;
+}
+
 /* 移动端适配 */
 @media (max-width: 768px) {
   .results-header {
@@ -1014,6 +1297,23 @@ export default {
   .characters-grid {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
+  
+  .constellation-guide {
+    padding: 25px;
+  }
+  
+  .guide-main-title {
+    font-size: 1.6rem;
+  }
+  
+  .guide-section-title {
+    font-size: 1.3rem;
+  }
+  
+  .elements-container,
+  .modalities-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1032,6 +1332,10 @@ export default {
   
   .characters-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .guide-intro {
+    font-size: 1rem;
   }
 }
 </style> 

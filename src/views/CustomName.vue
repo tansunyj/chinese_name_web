@@ -1,8 +1,8 @@
 <template>
   <div class="custom-name-page">
     <div class="container">
-      <h1 class="page-title">{{ $t('custom.title') }}</h1>
-      <p class="seo-description">Create your personalized Chinese name with our custom name generator. Perfect for English to Chinese name translation. Créez votre nom chinois personnalisé. Erstellen Sie Ihren personalisierten chinesischen Namen. Создайте свое персонализированное китайское имя. パーソナライズされた中国語の名前を作成します.</p>
+      <h1 class="page-title">{{ $t('custom.title') }} | Chinese Name Generator with Meaning</h1>
+      <p class="seo-description">Create your personalized Chinese name with our professional Chinese name generator. Get a meaningful Chinese name based on your preferences, personality traits, and birth information. Our custom Chinese name creator provides names with cultural significance and proper pronunciation. Perfect for English to Chinese name translation.</p>
       
       <div class="content">
         <div class="form-section">
@@ -19,6 +19,7 @@
                     v-model="formData.lastName"
                     class="form-input"
                     :placeholder="locale === 'zh' ? '请输入您的姓氏(如：张、王、李)，不填则默认为李' : 'Enter your family name (e.g., Li, Wang, Zhang), defaults to Li if empty'"
+                    aria-label="Your family name"
                   />
                   <button 
                     type="button" 
@@ -42,6 +43,7 @@
                   id="gender" 
                   v-model="formData.gender"
                   class="form-input"
+                  aria-label="Your gender"
                 >
                   <option value="male">{{ $t('translate.male') }}</option>
                   <option value="female">{{ $t('translate.female') }}</option>
@@ -60,6 +62,7 @@
                     :placeholder="'YYYY-MM-DD'"
                     format="YYYY-MM-DD"
                     @change="updateBirthdate"
+                    aria-label="Your birth date"
                   />
                   <!-- 使用 Ant Design Vue 的时间选择器 -->
                   <a-time-picker
@@ -69,6 +72,7 @@
                     format="HH:mm"
                     :placeholder="'HH:MM'"
                     @change="updateBirthtime"
+                    aria-label="Your birth time"
                   />
                 </div>
               </div>
@@ -81,6 +85,7 @@
                 v-model="formData.meaning"
                 class="form-input"
                 rows="3"
+                aria-label="Desired name meaning"
               ></textarea>
             </div>
             
@@ -276,101 +281,143 @@
           </div>
         </transition>
       </div>
-    </div>
-  </div>
-
-  <!-- 姓氏选择对话框 -->
-  <div v-if="showSurnameSelector" class="surname-dialog-container">
-    <div class="surname-dialog">
-      <div class="dialog-header">
-        <h3>{{ locale === 'zh' ? '选择常用姓氏' : 'Select Common Surname' }}</h3>
-        <button class="dialog-close" @click="showSurnameSelector = false">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor">
-            <path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </div>
       
-      <div class="dialog-body">
-        <!-- 搜索框 -->
-        <div class="search-bar">
-          <div class="search-input-container">
-            <input 
-              type="text" 
-              v-model="surnameSearch" 
-              :placeholder="locale === 'zh' ? '搜索姓氏...' : 'Search surname...'"
-              class="search-input"
-            />
-            <span class="search-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor">
-                <circle cx="11" cy="11" r="7" stroke-width="2"/>
-                <path d="M16 16l4 4" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </span>
-            <!-- 添加清除按钮 -->
-            <button 
-              v-if="surnameSearch || selectedStroke !== null" 
-              class="clear-filter-btn" 
-              @click="clearFilters"
-              :title="locale === 'zh' ? '清除筛选条件' : 'Clear filters'"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </button>
-          </div>
-        </div>
+      <!-- 添加常见问题FAQ部分 -->
+      <div class="custom-name-faq">
+        <h2>Frequently Asked Questions About Chinese Name Creation</h2>
         
-        <!-- 筛选选项 -->
-        <div class="filter-options">
-          <div class="filter-group">
-            <span class="filter-label">{{ locale === 'zh' ? '按笔画' : 'By Strokes' }}</span>
-            <div class="filter-buttons">
-              <button 
-                v-for="stroke in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]" 
-                :key="stroke"
-                class="stroke-btn"
-                :class="{ active: selectedStroke === stroke }"
-                @click="filterByStroke(stroke)"
-              >
-                {{ stroke }}
-              </button>
-              <button 
-                class="stroke-btn all-btn" 
-                :class="{ active: selectedStroke === null }"
-                @click="filterByStroke(null)"
-              >
-                {{ locale === 'zh' ? '全部' : 'All' }}
-              </button>
+        <div class="faq-section">
+          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h4 itemprop="name">What makes a good Chinese name?</h4>
+            <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <p itemprop="text">A good Chinese name combines pleasing sounds, positive meanings, and appropriate character combinations. It should reflect personal qualities, aspirations, or family values while being easy to pronounce and write. Traditional Chinese naming also considers balance of the Five Elements (Wood, Fire, Earth, Metal, Water) and stroke count for harmony.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h4 itemprop="name">How does birth date influence Chinese names?</h4>
+            <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <p itemprop="text">In traditional Chinese culture, a person's birth date and time determine their Eight Characters (Ba Zi), which reveals their elemental composition. Names are often chosen to balance or strengthen weak elements in one's birth chart. For example, someone with weak Water element might benefit from a name containing Water-related characters.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h4 itemprop="name">How do Chinese names differ for males and females?</h4>
+            <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <p itemprop="text">While Chinese names don't have strict gender distinctions like many Western names, certain characters are traditionally preferred for each gender. Male names often use characters suggesting strength, ambition, and integrity (如：强、志、伟). Female names frequently include characters conveying beauty, grace, and gentleness (如：美、婷、雅). However, many characters are gender-neutral.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h4 itemprop="name">Can foreigners have authentic Chinese names?</h4>
+            <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <p itemprop="text">Yes, foreigners can have authentic Chinese names that sound natural to native speakers. The best approach is to create a name that phonetically resembles your original name while using characters with positive meanings. Our custom name generator considers both sound and meaning to create culturally appropriate Chinese names for people from any background.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h4 itemprop="name">How important is the number of strokes in Chinese names?</h4>
+            <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <p itemprop="text">In traditional Chinese naming practices, the number of strokes in each character and the total stroke count are considered important. Certain numbers are believed to bring good fortune based on the person's birth date and Chinese numerology. Our name generator analyzes stroke counts to ensure harmony with your birth information for optimal balance and luck.</p>
             </div>
           </div>
         </div>
-        
-        <!-- 姓氏列表 -->
-        <div class="surname-list">
-          <template v-if="filteredSurnames.length > 0">
-            <button 
-              v-for="surname in filteredSurnames" 
-              :key="surname.char"
-              class="surname-item"
-              @click="selectSurname(surname.char)"
-            >
-              <span class="surname-char">{{ surname.char }}</span>
-              <span class="surname-pinyin">{{ surname.pinyin }}</span>
-              <span class="stroke-count">{{ locale === 'zh' ? '笔画: ' : 'Strokes: ' }}{{ surname.strokes }}</span>
-            </button>
-          </template>
-        </div>
       </div>
-      
-      <div class="dialog-footer">
-        <button class="btn-cancel" @click="showSurnameSelector = false">
-          {{ locale === 'zh' ? '取消' : 'Cancel' }}
-        </button>
-        <button class="btn-primary" @click="showSurnameSelector = false">
-          {{ locale === 'zh' ? '确定' : 'Confirm' }}
-        </button>
+    </div>
+    
+    <!-- 姓氏选择对话框 -->
+    <div v-if="showSurnameSelector" class="surname-dialog-container">
+      <div class="surname-dialog">
+        <div class="dialog-header">
+          <h3>{{ locale === 'zh' ? '选择常用姓氏' : 'Select Common Surname' }}</h3>
+          <button class="dialog-close" @click="showSurnameSelector = false">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor">
+              <path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="dialog-body">
+          <!-- 搜索框 -->
+          <div class="search-bar">
+            <div class="search-input-container">
+              <input 
+                type="text" 
+                v-model="surnameSearch" 
+                :placeholder="locale === 'zh' ? '搜索姓氏...' : 'Search surname...'"
+                class="search-input"
+              />
+              <span class="search-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor">
+                  <circle cx="11" cy="11" r="7" stroke-width="2"/>
+                  <path d="M16 16l4 4" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <!-- 添加清除按钮 -->
+              <button 
+                v-if="surnameSearch || selectedStroke !== null" 
+                class="clear-filter-btn" 
+                @click="clearFilters"
+                :title="locale === 'zh' ? '清除筛选条件' : 'Clear filters'"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- 筛选选项 -->
+          <div class="filter-options">
+            <div class="filter-group">
+              <span class="filter-label">{{ locale === 'zh' ? '按笔画' : 'By Strokes' }}</span>
+              <div class="filter-buttons">
+                <button 
+                  v-for="stroke in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]" 
+                  :key="stroke"
+                  class="stroke-btn"
+                  :class="{ active: selectedStroke === stroke }"
+                  @click="filterByStroke(stroke)"
+                >
+                  {{ stroke }}
+                </button>
+                <button 
+                  class="stroke-btn all-btn" 
+                  :class="{ active: selectedStroke === null }"
+                  @click="filterByStroke(null)"
+                >
+                  {{ locale === 'zh' ? '全部' : 'All' }}
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 姓氏列表 -->
+          <div class="surname-list">
+            <template v-if="filteredSurnames.length > 0">
+              <button 
+                v-for="surname in filteredSurnames" 
+                :key="surname.char"
+                class="surname-item"
+                @click="selectSurname(surname.char)"
+              >
+                <span class="surname-char">{{ surname.char }}</span>
+                <span class="surname-pinyin">{{ surname.pinyin }}</span>
+                <span class="stroke-count">{{ locale === 'zh' ? '笔画: ' : 'Strokes: ' }}{{ surname.strokes }}</span>
+              </button>
+            </template>
+          </div>
+        </div>
+        
+        <div class="dialog-footer">
+          <button class="btn-cancel" @click="showSurnameSelector = false">
+            {{ locale === 'zh' ? '取消' : 'Cancel' }}
+          </button>
+          <button class="btn-primary" @click="showSurnameSelector = false">
+            {{ locale === 'zh' ? '确定' : 'Confirm' }}
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -548,8 +595,44 @@ export default {
     if (process.env.NODE_ENV === 'development') {
       this.testLunarCalculation();
     }
+    
+    // 动态添加结构化数据
+    this.addStructuredData();
   },
   methods: {
+    // 添加结构化数据到head
+    addStructuredData() {
+      const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Chinese Name Generator",
+        "url": "https://chinesename.us/custom",
+        "applicationCategory": "UtilityApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Create your personalized Chinese name with our professional Chinese name generator. Get a meaningful Chinese name based on your preferences, personality traits, and birth information."
+      };
+      
+      // 创建script元素
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify(structuredData);
+      
+      // 添加到head
+      document.head.appendChild(script);
+      
+      // 保存引用以便在组件卸载时移除
+      this.structuredDataScript = script;
+    },
+    // 在组件卸载时移除结构化数据
+    beforeUnmount() {
+      if (this.structuredDataScript && this.structuredDataScript.parentNode) {
+        this.structuredDataScript.parentNode.removeChild(this.structuredDataScript);
+      }
+    },
     toggleTraitsExpand() {
       this.expandedTraits = !this.expandedTraits;
       this.updateVisibleTraits();
@@ -1657,6 +1740,8 @@ export default {
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .page-title {
@@ -3418,5 +3503,86 @@ export default {
 .test-btn:hover {
   background-color: #bae0ff;
   border-color: #0958d9;
+}
+
+/* 添加常见问题FAQ部分 */
+.custom-name-faq {
+  margin: 30px auto 0;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  padding: 30px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.custom-name-faq h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 25px;
+  text-align: center;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.custom-name-faq h2:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #e60012;
+  border-radius: 2px;
+}
+
+.faq-section {
+  margin: 0;
+  padding: 0;
+}
+
+.faq-item {
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px dashed #ddd;
+}
+
+.faq-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.faq-item h4 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.faq-item p {
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .custom-name-faq {
+    padding: 20px;
+    margin-top: 20px;
+  }
+
+  .custom-name-faq h2 {
+    font-size: 1.5rem;
+  }
+
+  .faq-item h4 {
+    font-size: 1.1rem;
+  }
 }
 </style>

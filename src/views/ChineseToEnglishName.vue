@@ -4,14 +4,14 @@
       <h1 class="page-title">Chinese to English Name Translator | Convert Chinese Names to English</h1>
       
       <div class="seo-intro">
-        <p class="seo-description">Translate Chinese names to English with our professional name translation tool. Get accurate English translations of Chinese names with proper pronunciation and meaning. Our Chinese to English name converter helps you understand the meaning behind Chinese names.</p>
+        <p class="seo-description">Translate Chinese names to English with our professional Chinese to English name translation tool. Get accurate English translations of Chinese names with proper pronunciation and cultural meaning. Our free Chinese to English name converter helps you understand the cultural significance behind Chinese names and find the perfect English equivalent. Convert Chinese name to English name easily with our advanced name translation technology.</p>
       </div>
       
       <div class="content">
         <div class="form-section">
           <form @submit.prevent="translateName">
             <div class="form-group fullWidth">
-              <label for="chineseName">Enter Your Chinese Name to Translate</label>
+              <label for="chineseName">Enter Your Chinese Name to Translate to English</label>
               <input 
                 type="text" 
                 id="chineseName" 
@@ -19,12 +19,13 @@
                 required
                 class="form-input"
                 placeholder="输入中文名字..."
+                aria-label="Your Chinese name to translate to English"
               />
             </div>
             
             <button type="submit" class="submit-button" :class="{ 'loading': isLoading }">
               <span v-if="isLoading">{{ $t('common.loading') }}</span>
-              <span v-else>Translate to English</span>
+              <span v-else>Convert Chinese Name to English</span>
             </button>
           </form>
         </div>
@@ -73,35 +74,87 @@
         
         <div class="translation-guide">
           <h2>How Our Chinese to English Name Translation Works</h2>
-          <p>Our Chinese to English name translation service uses advanced linguistic analysis to convert Chinese names into appropriate English equivalents. We focus on preserving both the meaning and phonetic qualities of the original Chinese name.</p>
+          <p>Our Chinese to English name translation service uses advanced linguistic analysis to convert Chinese names into appropriate English equivalents. We focus on preserving both the meaning and phonetic qualities of the original Chinese name when creating an English translation.</p>
           
-          <h3>The Translation Process</h3>
+          <h3>The Chinese to English Name Translation Process</h3>
           <ol>
             <li><strong>Character Analysis</strong> - We analyze each Chinese character in your name to understand its meaning and cultural significance.</li>
-            <li><strong>Phonetic Conversion</strong> - We determine how your Chinese name sounds when pronounced correctly.</li>
+            <li><strong>Phonetic Conversion</strong> - We determine how your Chinese name sounds when pronounced correctly to create a phonetically accurate English version.</li>
             <li><strong>Meaning Preservation</strong> - We find English names or words that capture the essence and meaning of your Chinese name.</li>
-            <li><strong>Cultural Context</strong> - We provide explanations of the cultural significance behind your Chinese name.</li>
+            <li><strong>Cultural Context</strong> - We provide explanations of the cultural significance behind your Chinese name to enhance understanding.</li>
           </ol>
           
-          <h3>Why Chinese Name Translation Matters</h3>
-          <p>Chinese names are rich with meaning and cultural significance. Each character is carefully chosen for its sound and meaning. Our translation service helps bridge cultural gaps by making Chinese names more accessible to English speakers while preserving their original essence.</p>
+          <div class="benefits-section">
+            <h3>Benefits of Using Our Chinese Name to English Converter</h3>
+            <ul>
+              <li><strong>Accuracy</strong> - Our translation system understands the nuances of Chinese characters and their meanings.</li>
+              <li><strong>Cultural Sensitivity</strong> - We preserve the cultural significance of your Chinese name in its English translation.</li>
+              <li><strong>Multiple Options</strong> - Get several English name alternatives based on different translation approaches.</li>
+              <li><strong>Detailed Explanations</strong> - Understand the meaning behind each character in your Chinese name.</li>
+              <li><strong>Easy to Use</strong> - Simply enter your Chinese name and get instant English translations.</li>
+            </ul>
+          </div>
+          
+          <h3>Why Chinese to English Name Translation Matters</h3>
+          <p>Chinese names are rich with meaning and cultural significance. Each character is carefully chosen for its sound and meaning. Our Chinese name to English translation service helps bridge cultural gaps by making Chinese names more accessible to English speakers while preserving their original essence.</p>
           
           <h3>Common Questions About Chinese to English Name Translation</h3>
           
           <div class="faq-section">
-            <div class="faq-item">
-              <h4>How are Chinese names structured?</h4>
-              <p>Traditional Chinese names typically consist of a family name (surname) followed by a given name. The family name is usually one character, while the given name can be one or two characters. For example, in the name "Wang Wei," "Wang" is the family name and "Wei" is the given name.</p>
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <h4 itemprop="name">How are Chinese names structured compared to English names?</h4>
+              <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">Traditional Chinese names typically consist of a family name (surname) followed by a given name. The family name is usually one character, while the given name can be one or two characters. For example, in the name "Wang Wei," "Wang" is the family name and "Wei" is the given name. This is the opposite of English names, where the given name comes first followed by the surname. When converting Chinese names to English, this structure is often maintained to preserve cultural authenticity.</p>
+              </div>
             </div>
             
-            <div class="faq-item">
-              <h4>Can all Chinese names be translated to English?</h4>
-              <p>While all Chinese names can be transliterated (writing the sounds using English letters), capturing the exact meaning and cultural nuance in an English name can be challenging. Our service provides both transliteration and meaning-based translations to give you a complete understanding.</p>
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <h4 itemprop="name">Can all Chinese names be translated to English accurately?</h4>
+              <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">While all Chinese names can be transliterated (writing the sounds using English letters), capturing the exact meaning and cultural nuance in an English name can be challenging. Our Chinese to English name translator provides both transliteration and meaning-based translations to give you a complete understanding. Some Chinese characters have meanings that don't directly correspond to English concepts, so our translator offers the closest possible equivalents while explaining any cultural nuances that might be lost in translation.</p>
+              </div>
             </div>
             
-            <div class="faq-item">
-              <h4>How do I choose an English name that reflects my Chinese name?</h4>
-              <p>The best approach is to consider both the sound and meaning of your Chinese name. Our translator provides suggestions based on phonetic similarity, meaning equivalence, or a combination of both, allowing you to choose the option that feels most authentic to you.</p>
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <h4 itemprop="name">How do I choose an English name that reflects my Chinese name?</h4>
+              <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">The best approach is to consider both the sound and meaning of your Chinese name. Our Chinese name to English converter provides suggestions based on phonetic similarity, meaning equivalence, or a combination of both, allowing you to choose the option that feels most authentic to you. For professional or academic contexts, a phonetic translation that sounds natural in English while preserving your name's essence often works best. For more casual situations, you might prefer an English name that captures the meaning of your Chinese name.</p>
+              </div>
+            </div>
+            
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <h4 itemprop="name">What's the difference between transliteration and translation of Chinese names?</h4>
+              <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">Transliteration converts Chinese characters to English letters based on pronunciation, like "Li Wei" for "李伟". Translation focuses on meaning, converting "李伟" to "Strong Plum" based on character meanings. Our Chinese name to English name translator provides both approaches to give you a complete understanding of your Chinese name. For professional use, transliteration is generally preferred as it maintains your identity while being accessible to English speakers.</p>
+              </div>
+            </div>
+            
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <h4 itemprop="name">Why do Chinese people sometimes adopt English names?</h4>
+              <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">Many Chinese people adopt English names to make it easier for non-Chinese speakers to address them, particularly in international business, education, or when living abroad. Having an English name can facilitate communication and create cultural connections in global contexts. Some choose English names that sound similar to their Chinese names, while others select names based on meaning or personal preference. Our Chinese to English name converter can help find appropriate English equivalents that maintain connection to the original Chinese name.</p>
+              </div>
+            </div>
+            
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <h4 itemprop="name">How do different Chinese dialects affect name translation to English?</h4>
+              <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">Chinese has many dialects including Mandarin, Cantonese, Shanghainese, and others. Each dialect pronounces the same characters differently, which affects how names are transliterated into English. Our Chinese name to English translation tool primarily uses Mandarin (Standard Chinese) pronunciation as it's the most widely spoken dialect. However, if you prefer your name translated based on another dialect, you can specify this in your translation request, and we'll provide alternatives based on that dialect's pronunciation.</p>
+              </div>
+            </div>
+            
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <h4 itemprop="name">Is it better to use pinyin or Wade-Giles for Chinese to English name conversion?</h4>
+              <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">Pinyin is the modern standard romanization system for Mandarin Chinese and is generally preferred for contemporary Chinese to English name translation. Wade-Giles is an older system still found in some historical contexts and in Taiwan. Our converter primarily uses pinyin for transliteration as it's more widely recognized and used internationally. For example, "李" would be "Li" in pinyin but "Lee" in Wade-Giles. Most modern Chinese name to English translations use pinyin for consistency and clarity.</p>
+              </div>
+            </div>
+            
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <h4 itemprop="name">How should I format my Chinese name in English for official documents?</h4>
+              <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">For official documents, it's generally recommended to use the pinyin transliteration of your Chinese name, maintaining the traditional Chinese order (surname first, then given name). For example, "张伟" would be "Zhang Wei". Some people choose to adopt Western name order (given name first, then surname) to avoid confusion, writing it as "Wei Zhang". Our Chinese to English name converter provides both formats, allowing you to choose the one that best suits your needs for different contexts.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -111,7 +164,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { message } from 'ant-design-vue';
 import { translateName } from '@/services/openaiService';
 import LoadingIndicator from '@/components/LoadingIndicator.vue';
@@ -135,6 +188,50 @@ export default {
   },
   setup() {
     const { locale } = useI18n();
+    
+    // 结构化数据脚本引用
+    let structuredDataScript = null;
+    
+    // 在组件挂载后添加结构化数据
+    onMounted(() => {
+      addStructuredData();
+    });
+    
+    // 在组件卸载前移除结构化数据
+    onBeforeUnmount(() => {
+      if (structuredDataScript && structuredDataScript.parentNode) {
+        structuredDataScript.parentNode.removeChild(structuredDataScript);
+      }
+    });
+    
+    // 添加结构化数据到head
+    const addStructuredData = () => {
+      const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Chinese to English Name Translator",
+        "url": "https://chinesename.us/chinese-to-english",
+        "applicationCategory": "UtilityApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Translate Chinese names to English with our professional name translation tool. Get accurate English translations of Chinese names with proper pronunciation and meaning."
+      };
+      
+      // 创建script元素
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify(structuredData);
+      
+      // 添加到head
+      document.head.appendChild(script);
+      
+      // 保存引用以便在组件卸载时移除
+      structuredDataScript = script;
+    };
+    
     return { locale };
   },
   data() {
@@ -427,12 +524,14 @@ export default {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
   padding: 40px;
   transition: all 0.3s ease;
-  width: 100%;
+  max-width: 1000px;
   margin: 0 auto 40px;
+  width: 100%;
 }
 
 .form-group {
   margin-bottom: 25px;
+  width: 100%;
 }
 
 .form-group.fullWidth {
@@ -518,6 +617,8 @@ label {
 
 .results-section {
   margin-top: 30px;
+  max-width: 1000px;
+  margin: 30px auto 0;
 }
 
 .results-section h2 {
@@ -644,7 +745,9 @@ label {
   padding: 40px;
   background-color: #fff;
   border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  max-width: 1000px;
+  margin: 60px auto 0;
 }
 
 .translation-guide h2 {
@@ -689,6 +792,42 @@ label {
   font-size: 1.05rem;
   line-height: 1.6;
   color: #555;
+}
+
+.benefits-section {
+  margin-top: 30px;
+  padding: 25px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  border: 1px solid #eee;
+}
+
+.benefits-section h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.benefits-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.benefits-section li {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #555;
+  position: relative;
+  padding-left: 20px;
+}
+
+.benefits-section li::before {
+  content: "•";
+  color: #e60012;
+  position: absolute;
+  left: 0;
 }
 
 .faq-section {

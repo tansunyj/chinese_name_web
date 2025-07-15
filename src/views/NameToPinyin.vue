@@ -97,6 +97,61 @@
             </div>
           </div>
         </div>
+        
+        <!-- 添加底部说明部分 -->
+        <div class="guide-section">
+          <h2 class="guide-title">Chinese Name Pinyin Guide</h2>
+          
+          <div class="guide-content">
+            <p class="guide-intro">Understanding the pronunciation of Chinese names is essential for proper communication and respect in Chinese culture. Our pinyin converter helps you accurately transcribe Chinese characters into their phonetic representation using the standardized pinyin system.</p>
+            
+            <div class="guide-block">
+              <h3 class="block-title">What is Pinyin?</h3>
+              <p>Pinyin is the official romanization system for Standard Chinese. It was developed in the 1950s and adopted by the Chinese government in 1958. Pinyin uses the Latin alphabet to represent the sounds of Chinese characters, making it easier for non-Chinese speakers to learn and pronounce Chinese words correctly.</p>
+            </div>
+            
+            <div class="guide-block">
+              <h3 class="block-title">Understanding Tone Marks</h3>
+              <p>Chinese is a tonal language with four main tones plus a neutral tone. Each tone is represented by a different mark above the vowel:</p>
+              <ul class="tone-list">
+                <li><strong>First tone (ā):</strong> High level tone</li>
+                <li><strong>Second tone (á):</strong> Rising tone</li>
+                <li><strong>Third tone (ǎ):</strong> Falling-rising tone</li>
+                <li><strong>Fourth tone (à):</strong> Falling tone</li>
+                <li><strong>Neutral tone (a):</strong> No mark</li>
+              </ul>
+            </div>
+            
+            <div class="guide-block">
+              <h3 class="block-title">Common Chinese Name Structures</h3>
+              <p>Traditional Chinese names typically follow a specific structure:</p>
+              <ul class="name-structure">
+                <li><strong>Family Name (姓):</strong> Usually one character, comes first</li>
+                <li><strong>Given Name (名):</strong> One or two characters, follows the family name</li>
+                <li><strong>Example:</strong> 张伟 (Zhāng Wěi) - Zhang is the family name, Wei is the given name</li>
+              </ul>
+            </div>
+            
+            <div class="guide-block faq-section">
+              <h3 class="block-title">Frequently Asked Questions</h3>
+              
+              <div class="faq-item">
+                <h4>Why are tone marks important in pinyin?</h4>
+                <p>Tone marks are crucial because they indicate the pitch pattern of each syllable. In Chinese, the same syllable pronounced with different tones can have completely different meanings. For example, "ma" can mean "mother" (mā), "hemp" (má), "horse" (mǎ), or "scold" (mà) depending on the tone.</p>
+              </div>
+              
+              <div class="faq-item">
+                <h4>How do I type Chinese characters with pinyin?</h4>
+                <p>Most modern devices support Chinese input methods that use pinyin. Simply type the pinyin without tone marks, and the input method will suggest corresponding Chinese characters. For example, typing "zhang" will suggest characters like 张, 章, 长, etc.</p>
+              </div>
+              
+              <div class="faq-item">
+                <h4>Can all Chinese characters be converted to pinyin?</h4>
+                <p>Yes, all standard Chinese characters have corresponding pinyin representations. However, some characters may have multiple pronunciations (多音字) depending on the context. Our converter uses the most common pronunciation for names.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -282,7 +337,7 @@ export default {
 }
 
 .container {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -305,6 +360,8 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .form-section {
@@ -313,10 +370,14 @@ export default {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
   padding: 30px;
   transition: all 0.3s ease;
+  max-width: 1000px;
+  margin: 0 auto 30px;
+  width: 100%;
 }
 
 .form-group {
   margin-bottom: 25px;
+  width: 100%;
 }
 
 .form-group label {
@@ -329,12 +390,12 @@ export default {
 
 .form-input {
   width: 100%;
-  padding: 14px 18px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  font-size: 1.1rem;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
   transition: all 0.3s ease;
-  background-color: #f9f9fa;
+  box-sizing: border-box;
 }
 
 .form-input:focus {
@@ -373,7 +434,9 @@ export default {
 }
 
 .results-section {
-  margin-top: 10px;
+  margin-top: 30px;
+  max-width: 1000px;
+  margin: 30px auto 0;
 }
 
 .section-title {
@@ -637,6 +700,134 @@ export default {
   height: 20px;
 }
 
+/* 添加新的样式 */
+.guide-section {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  margin-top: 60px;
+  max-width: 1000px;
+  margin: 60px auto 0;
+}
+
+.guide-title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.guide-title:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #e60012;
+  border-radius: 2px;
+}
+
+.guide-content {
+  color: #555;
+  line-height: 1.7;
+}
+
+.guide-intro {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  text-align: justify;
+}
+
+.guide-block {
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.guide-block:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.block-title {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 20px;
+  position: relative;
+  padding-left: 15px;
+}
+
+.block-title:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 24px;
+  background-color: #e60012;
+  border-radius: 3px;
+}
+
+.tone-list,
+.name-structure {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.tone-list li,
+.name-structure li {
+  margin-bottom: 12px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.tone-list li:before,
+.name-structure li:before {
+  content: "•";
+  color: #e60012;
+  position: absolute;
+  left: 0;
+  font-size: 1.2em;
+}
+
+.faq-section {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 25px;
+  margin-top: 30px;
+}
+
+.faq-item {
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px dashed #ddd;
+}
+
+.faq-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.faq-item h4 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.faq-item p {
+  margin: 0;
+  line-height: 1.6;
+}
+
 @media (max-width: 768px) {
   .name-to-pinyin-page {
     padding: 70px 0;
@@ -665,6 +856,27 @@ export default {
   
   .result-value {
     font-size: 1.2rem;
+  }
+
+  .guide-title {
+    font-size: 1.6rem;
+  }
+  
+  .guide-section {
+    padding: 25px;
+    margin-top: 40px;
+  }
+  
+  .block-title {
+    font-size: 1.3rem;
+  }
+  
+  .guide-intro {
+    font-size: 1rem;
+  }
+  
+  .faq-item h4 {
+    font-size: 1.1rem;
   }
 }
 </style> 

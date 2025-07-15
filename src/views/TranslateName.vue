@@ -1,10 +1,10 @@
 <template>
   <div class="translate-page">
     <div class="container">
-      <h1 class="page-title">English to Chinese Name Translator | Translate Your Name to Chinese</h1>
+      <h1 class="page-title">English to Chinese Name Translator | Translate Your Name to Chinese Characters</h1>
       
       <div class="seo-intro">
-        <p class="seo-description">Translate your English name to Chinese characters with our professional name translation tool. Get accurate Chinese name translations with proper pronunciation and cultural meaning. We also offer Chinese to English name translation services.</p>
+        <p class="seo-description">Translate your English name to Chinese characters with our professional name translation tool. Get accurate Chinese name translations with proper pronunciation and cultural meaning. Our free English to Chinese name translator creates names that sound natural to native speakers while preserving your name's essence.</p>
       </div>
       
       <div class="content">
@@ -33,6 +33,7 @@
                 required
                 class="form-input"
                 :placeholder="currentLanguagePlaceholder"
+                aria-label="Your name to translate"
               />
             </div>
             
@@ -100,6 +101,39 @@
           
           <h3>Why Proper Name Translation Matters</h3>
           <p>In Chinese culture, names carry significant meaning. The characters used in your Chinese name can influence how you're perceived. Our translation service ensures your Chinese name has positive connotations and sounds natural to native speakers.</p>
+          
+          <!-- 添加常见问题FAQ部分 -->
+          <h3>Frequently Asked Questions About Chinese Name Translation</h3>
+          
+          <div class="faq-section">
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <h4 itemprop="name">How do Chinese names differ from Western names?</h4>
+              <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">Chinese names typically consist of a family name (surname) followed by a given name. The family name is usually one character, while the given name is one or two characters. Each character has its own meaning, making Chinese names rich with symbolism and cultural significance.</p>
+              </div>
+            </div>
+            
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <h4 itemprop="name">How do I choose the best Chinese name translation?</h4>
+              <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">The best Chinese name translation should balance phonetic similarity to your original name with positive meaning. Consider the characters' meanings, how they sound together, and cultural appropriateness. Our translator provides multiple options so you can choose the one that resonates with you most.</p>
+              </div>
+            </div>
+            
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <h4 itemprop="name">Can any English name be translated to Chinese?</h4>
+              <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">Yes, any English name can be translated to Chinese through phonetic translation (transliteration). Our system finds Chinese characters that sound similar to your English name while also having positive meanings, creating a culturally appropriate Chinese name.</p>
+              </div>
+            </div>
+            
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <h4 itemprop="name">What makes a good Chinese name?</h4>
+              <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">A good Chinese name should have positive meanings, pleasing sounds, appropriate character combinations, and balanced elements according to Chinese tradition. It should also be easy for Chinese speakers to pronounce and remember, while reflecting personal qualities or aspirations.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -107,7 +141,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { message } from 'ant-design-vue';
 import { translateName } from '@/services/openaiService';
 import * as openaiService from '@/services/openaiService';
@@ -146,6 +180,50 @@ export default {
   },
   setup() {
     const { locale } = useI18n();
+    
+    // 结构化数据脚本引用
+    let structuredDataScript = null;
+    
+    // 在组件挂载后添加结构化数据
+    onMounted(() => {
+      addStructuredData();
+    });
+    
+    // 在组件卸载前移除结构化数据
+    onBeforeUnmount(() => {
+      if (structuredDataScript && structuredDataScript.parentNode) {
+        structuredDataScript.parentNode.removeChild(structuredDataScript);
+      }
+    });
+    
+    // 添加结构化数据到head
+    const addStructuredData = () => {
+      const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "English to Chinese Name Translator",
+        "url": "https://chinesename.us/translate",
+        "applicationCategory": "UtilityApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Translate your English name to Chinese characters with our professional name translation tool. Get accurate Chinese name translations with proper pronunciation and cultural meaning."
+      };
+      
+      // 创建script元素
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify(structuredData);
+      
+      // 添加到head
+      document.head.appendChild(script);
+      
+      // 保存引用以便在组件卸载时移除
+      structuredDataScript = script;
+    };
+    
     return { locale };
   },
   data() {

@@ -104,6 +104,71 @@
             </div>
           </div>
         </div>
+        
+        <!-- 添加文字说明部分 -->
+        <div class="zodiac-guide-section">
+          <h2 class="guide-title">Chinese Zodiac Culture and Astrology</h2>
+          
+          <div class="guide-content">
+            <p class="guide-intro">The Chinese zodiac is an important part of traditional Chinese culture with a history spanning thousands of years. The twelve zodiac signs are arranged in a cycle: Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, and Pig. Each zodiac represents one year and corresponds to a person's birth year.</p>
+            
+            <div class="guide-block">
+              <h3 class="block-title">Origin and Legend of the Chinese Zodiac</h3>
+              <p>There are many legends about the origin of the twelve zodiac signs, with the most well-known being the "Great Race" story. According to legend, in ancient times, the Jade Emperor decided to select twelve animals as guardians of the years. He organized a race and invited all animals to participate. The first twelve animals to reach the finish line would be selected as zodiac signs in order of arrival. This is why the Rat ranks first and the Pig comes last.</p>
+            </div>
+            
+            <div class="guide-block">
+              <h3 class="block-title">Zodiac and the Five Elements</h3>
+              <p>In traditional Chinese culture, the Five Elements (Metal, Wood, Water, Fire, and Earth) are combined with the twelve zodiac signs to form a complex astrological system. Each zodiac sign is associated with specific elemental properties, which influence a person's character traits, destiny, and compatibility with others.</p>
+              <div class="element-grid">
+                <div class="element-item element-金">
+                  <h4>Metal</h4>
+                  <p>Monkey, Rooster</p>
+                </div>
+                <div class="element-item element-木">
+                  <h4>Wood</h4>
+                  <p>Tiger, Rabbit</p>
+                </div>
+                <div class="element-item element-水">
+                  <h4>Water</h4>
+                  <p>Rat, Pig</p>
+                </div>
+                <div class="element-item element-火">
+                  <h4>Fire</h4>
+                  <p>Snake, Horse</p>
+                </div>
+                <div class="element-item element-土">
+                  <h4>Earth</h4>
+                  <p>Ox, Dragon, Goat, Dog</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="guide-block">
+              <h3 class="block-title">Application of Zodiac Signs in Modern Life</h3>
+              <p>Although modern society has entered the technological age, zodiac culture still plays an important role in Chinese people's daily lives. From naming children and marriage matching to career choices, many people still refer to the characteristics and related advice of zodiac signs. During each Lunar New Year, people pay special attention to the fortune predictions for that year's zodiac sign.</p>
+            </div>
+            
+            <div class="guide-block faq-block">
+              <h3 class="block-title">Frequently Asked Questions</h3>
+              
+              <div class="faq-item">
+                <h4 class="faq-question">What's the difference between Chinese zodiac and Western astrology?</h4>
+                <p class="faq-answer">The Chinese zodiac is determined by birth year, with each zodiac cycle lasting 12 years, while Western astrology signs are determined by birth date (month and day), with each sign cycle lasting one year. The Chinese zodiac originates from traditional Chinese culture, while Western astrology comes from Western astrological traditions. The two represent different astrological systems from Eastern and Western cultures.</p>
+              </div>
+              
+              <div class="faq-item">
+                <h4 class="faq-question">Why do some people refer to their "lunar zodiac"?</h4>
+                <p class="faq-answer">Traditional Chinese zodiac signs are calculated according to the lunar calendar. If a person is born around the time of the Lunar New Year, their zodiac sign might differ when calculated by the Gregorian calendar versus the lunar calendar. For example, if someone was born on January 22, 2023, but the Lunar New Year fell on January 23, 2023, then according to the lunar calendar, they would belong to the Year of the Rabbit rather than the Year of the Tiger.</p>
+              </div>
+              
+              <div class="faq-item">
+                <h4 class="faq-question">Is zodiac compatibility truly accurate?</h4>
+                <p class="faq-answer">Zodiac compatibility is part of traditional Chinese culture and provides a perspective for understanding interpersonal relationships. While many people believe it has some reference value, modern science has not provided evidence supporting the accuracy of zodiac compatibility in predicting relationship development. In modern society, compatibility of personality, values, and lifestyle often proves more important.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -477,7 +542,7 @@ export default {
 }
 
 .container {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -499,12 +564,16 @@ export default {
 .form-section {
   background-color: white;
   border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
   padding: 30px;
+  max-width: 1000px;
+  margin: 0 auto 30px;
+  width: 100%;
 }
 
 .form-group {
   margin-bottom: 25px;
+  width: 100%;
 }
 
 .form-group label {
@@ -521,6 +590,7 @@ export default {
   border-radius: 6px;
   font-size: 1rem;
   transition: border-color 0.3s;
+  box-sizing: border-box;
 }
 
 .form-input:focus {
@@ -547,7 +617,9 @@ export default {
 }
 
 .results-section {
-  margin-top: 20px;
+  margin-top: 30px;
+  max-width: 1000px;
+  margin: 30px auto 0;
 }
 
 .results-section h2 {
@@ -792,6 +864,162 @@ export default {
   text-align: center;
 }
 
+/* 添加新的样式 */
+.zodiac-guide-section {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  margin-top: 40px;
+  max-width: 1000px;
+  margin: 40px auto 0;
+}
+
+.guide-title {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 25px;
+  text-align: center;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.guide-title:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #e60012;
+  border-radius: 2px;
+}
+
+.guide-content {
+  color: #555;
+  line-height: 1.7;
+}
+
+.guide-intro {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  text-align: justify;
+}
+
+.guide-block {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.guide-block:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.block-title {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 15px;
+  position: relative;
+  padding-left: 15px;
+}
+
+.block-title:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 20px;
+  background-color: #e60012;
+  border-radius: 2px;
+}
+
+.element-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.element-item {
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  color: white;
+  transition: transform 0.3s;
+}
+
+.element-item:hover {
+  transform: translateY(-5px);
+}
+
+.element-item h4 {
+  margin: 0 0 10px 0;
+  font-size: 1.2rem;
+  border-bottom: none;
+}
+
+.element-item p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.element-金 {
+  background: linear-gradient(135deg, #ffd700 60%, #bfa640 100%);
+}
+
+.element-木 {
+  background: linear-gradient(135deg, #43a047 60%, #2ecc40 100%);
+}
+
+.element-水 {
+  background: linear-gradient(135deg, #2196f3 60%, #1565c0 100%);
+}
+
+.element-火 {
+  background: linear-gradient(135deg, #ff7043 60%, #d32f2f 100%);
+}
+
+.element-土 {
+  background: linear-gradient(135deg, #c2b280 60%, #a67c52 100%);
+}
+
+.faq-block {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.faq-item {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed #ddd;
+}
+
+.faq-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.faq-question {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.faq-answer {
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+}
+
 @media (max-width: 768px) {
   .page-title {
     font-size: 2rem;
@@ -815,6 +1043,18 @@ export default {
   .lucky-section {
     flex-direction: column;
     gap: 20px;
+  }
+  
+  .element-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .block-title {
+    font-size: 1.3rem;
+  }
+  
+  .guide-title {
+    font-size: 1.6rem;
   }
 }
 </style> 

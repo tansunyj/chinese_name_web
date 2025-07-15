@@ -1,12 +1,34 @@
 <template>
   <div class="about-page">
     <div class="container">
-      <h1 class="page-title">{{ $t('home.about.title') }} | Chinese Names Translation Service</h1>
+      <h1 class="page-title">{{ $t('home.about.title') }} | English to Chinese Name Translation Service</h1>
       
       <div class="about-content">
         <div class="about-description">
-          <p class="seo-introduction">We are experts in Chinese name translation and creation. Our services include translating English names to Chinese, helping you learn how to say your name in Chinese, and providing personalized Chinese name recommendations. Nous sommes spécialistes de la traduction et création de noms chinois. Wir übersetzen Namen ins Chinesische. Мы переводим имена на китайский язык. 私たちは中国語の名前の翻訳と作成の専門家です。</p>
+          <p class="seo-introduction">We are experts in Chinese name translation and creation. Our professional services include translating English names to Chinese, converting Chinese names to English, and providing personalized Chinese name recommendations with our Chinese name generator. Learn how to say your name in Chinese characters with cultural meaning and proper pronunciation. Nous sommes spécialistes de la traduction et création de noms chinois. Wir übersetzen Namen ins Chinesische. Мы переводим имена на китайский язык. 私たちは中国語の名前の翻訳と作成の専門家です。</p>
           <p>{{ $t('home.about.description') }}</p>
+          
+          <div class="about-services">
+            <h2>Our Chinese Name Translation Services</h2>
+            <ul class="services-list">
+              <li>
+                <h3>English to Chinese Name Translation</h3>
+                <p>We provide accurate and culturally appropriate translations of English names to Chinese characters. Our professional translators consider pronunciation, meaning, and cultural context to create authentic Chinese names that preserve the essence of your original name.</p>
+              </li>
+              <li>
+                <h3>Chinese to English Name Translation</h3>
+                <p>Our Chinese to English name translation service helps you convert your Chinese name into an English equivalent that maintains its cultural significance while being easy to pronounce for English speakers.</p>
+              </li>
+              <li>
+                <h3>Chinese Name Generator with Meaning</h3>
+                <p>Using our advanced Chinese name generator with meaning, you can create a personalized Chinese name based on your preferences, personality traits, and birth information. Each name comes with detailed explanations of character meanings and cultural significance.</p>
+              </li>
+              <li>
+                <h3>Mandarin Name Translator</h3>
+                <p>Our professional Mandarin name translator service ensures accurate phonetic representation of your name in Chinese characters, with special attention to proper tones and pronunciation in standard Mandarin Chinese.</p>
+              </li>
+            </ul>
+          </div>
         </div>
         
         <div class="about-features">
@@ -17,7 +39,7 @@
               </svg>
             </div>
             <h3>{{ $t('about.expertise.title') }}</h3>
-            <p>{{ $t('about.expertise.description') }}</p>
+            <p>Our team includes experts in Chinese linguistics, cultural traditions, and name translation. We understand the nuances of translating names between English and Chinese, ensuring that your Chinese name is not only phonetically accurate but also culturally appropriate and meaningful.</p>
           </div>
           
           <div class="feature">
@@ -27,7 +49,7 @@
               </svg>
             </div>
             <h3>{{ $t('about.quality.title') }}</h3>
-            <p>{{ $t('about.quality.description') }}</p>
+            <p>We take pride in delivering high-quality Chinese name translations that respect both linguistic accuracy and cultural sensitivity. Whether you need to translate your name to Chinese or convert a Chinese name to English, our service ensures meaningful and appropriate results.</p>
           </div>
           
           <div class="feature">
@@ -37,18 +59,40 @@
               </svg>
             </div>
             <h3>{{ $t('about.global.title') }}</h3>
-            <p>{{ $t('about.global.description') }}</p>
+            <p>Our Chinese name translation services are available to clients worldwide. We understand the importance of names across different cultures and provide solutions that bridge linguistic and cultural gaps, helping you communicate effectively in both Chinese and English contexts.</p>
+          </div>
+        </div>
+        
+        <div class="why-choose-us">
+          <h2>Why Choose Our Chinese Name Translation Service</h2>
+          <div class="reasons-grid">
+            <div class="reason">
+              <h3>Cultural Authenticity</h3>
+              <p>We ensure your translated name respects Chinese naming traditions and cultural sensitivities, avoiding inappropriate characters or meanings.</p>
+            </div>
+            <div class="reason">
+              <h3>Linguistic Precision</h3>
+              <p>Our Chinese name translator tools consider proper pronunciation, tonal patterns, and character selection to create names that sound natural to native speakers.</p>
+            </div>
+            <div class="reason">
+              <h3>Personalized Approach</h3>
+              <p>Each name translation or generation is customized to reflect your identity, preferences, and personal significance, not just a generic conversion.</p>
+            </div>
+            <div class="reason">
+              <h3>Comprehensive Service</h3>
+              <p>From English to Chinese name translation to Chinese to English name conversion, we offer a complete range of naming services to meet your needs.</p>
+            </div>
           </div>
         </div>
         
         <div class="team-section">
           <h2>{{ $t('about.team.title') }}</h2>
-          <p>{{ $t('about.team.description') }}</p>
+          <p>Our team combines expertise in Chinese linguistics, cultural studies, and translation to provide the most accurate and culturally appropriate Chinese name translations. We are passionate about helping people bridge cultural gaps through meaningful name translations.</p>
         </div>
         
         <div class="contact-section">
           <h2>{{ $t('about.contact.title') }}</h2>
-          <p>{{ $t('about.contact.description') }}</p>
+          <p>Have questions about our Chinese name translation services? Need help translating your English name to Chinese or converting a Chinese name to English? Contact our team for personalized assistance with your Chinese name translation needs.</p>
           <a href="mailto:591124281yj@gmail.com" class="contact-button">{{ $t('about.contact.button') }}</a>
         </div>
       </div>
@@ -108,6 +152,45 @@ export default {
   margin: 0 auto;
 }
 
+.about-services {
+  margin-top: 40px;
+  text-align: left;
+}
+
+.about-services h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.services-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.services-list li {
+  background-color: white;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.services-list h3 {
+  font-size: 1.3rem;
+  color: #e60012;
+  margin-bottom: 15px;
+}
+
+.services-list p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+}
+
 .about-features {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -154,6 +237,38 @@ export default {
   line-height: 1.6;
 }
 
+.why-choose-us {
+  background-color: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.why-choose-us h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.reasons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.reason h3 {
+  font-size: 1.3rem;
+  color: #e60012;
+  margin-bottom: 15px;
+}
+
+.reason p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+}
+
 .team-section, .contact-section {
   background-color: white;
   border-radius: 12px;
@@ -162,7 +277,7 @@ export default {
 }
 
 .team-section h2, .contact-section h2 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #333;
   margin-bottom: 20px;
 }
@@ -196,6 +311,10 @@ export default {
   
   .page-title {
     font-size: 2rem;
+  }
+  
+  .services-list, .reasons-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>

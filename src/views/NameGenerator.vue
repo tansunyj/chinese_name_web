@@ -2,19 +2,19 @@
   <div class="name-generator-page">
     <div class="container">
       <div class="page-header">
-        <h1 class="page-title">Chinese Name Generator | Create Your Authentic Chinese Name</h1>
-        <p class="page-description">Our intelligent Chinese name generator creates personalized Chinese names based on your preferences and cultural meanings</p>
+        <h1 class="page-title">Chinese Name Generator | Create Your Authentic Chinese Name with Meaning</h1>
+        <p class="page-description">Our intelligent Chinese name generator creates personalized Chinese names based on your preferences with proper cultural meanings and pronunciation</p>
       </div>
 
       <div class="seo-intro">
-        <p>Looking for the perfect Chinese name? Our free Chinese name generator creates authentic Chinese names with proper meanings and cultural significance. Whether you need a Chinese name for business, travel, or personal interest, our tool helps you find the perfect match.</p>
+        <p>Looking for the perfect Chinese name? Our free Chinese name generator with meaning creates authentic Chinese names with proper cultural significance and pronunciation. Whether you need a Chinese name for business, travel, academic purposes, or personal interest, our Chinese name generator tool helps you find the perfect match that resonates with your personality and preferences. Generate a meaningful Chinese name that native speakers will appreciate and respect.</p>
       </div>
 
       <div class="generator-content">
         <!-- 左侧表单 -->
         <div class="input-section">
           <div class="form-card">
-            <h2 class="form-title">Generate Your Chinese Name</h2>
+            <h2 class="form-title">Generate Your Chinese Name with Meaning</h2>
             
             <div class="form-group">
               <label for="surname">Family Name (Optional)</label>
@@ -109,7 +109,7 @@
         <div class="result-section" v-if="showResults">
           <div class="result-header">
             <h2>Your Chinese Name Recommendations</h2>
-            <p>Based on your preferences, we've generated these personalized Chinese names for you</p>
+            <p>Based on your preferences, we've generated these personalized Chinese names with meanings for you</p>
           </div>
           
           <div class="result-list">
@@ -164,28 +164,92 @@
       </div>
       
       <div class="name-generator-guide">
-        <h2>How Our Chinese Name Generator Works</h2>
-        <p>Our Chinese name generator creates authentic Chinese names based on cultural traditions and linguistic principles. Unlike simple transliteration tools, we consider the meaning, pronunciation, and cultural significance of each character to create a name that truly represents you.</p>
+        <h2>How Our Chinese Name Generator with Meaning Works</h2>
+        <p>Our advanced Chinese name generator creates authentic Chinese names based on cultural traditions and linguistic principles. Unlike simple transliteration tools, we consider the meaning, pronunciation, and cultural significance of each character to create a name that truly represents you. Our Chinese name generator with meaning ensures that your Chinese name will be both beautiful and culturally appropriate.</p>
         
         <div class="guide-section">
           <h3>Why Chinese Names Matter</h3>
-          <p>In Chinese culture, names carry significant meaning and are believed to influence a person's destiny. A good Chinese name should have positive connotations, pleasing sounds, and balanced structure. Our generator follows traditional Chinese naming principles to create names that are both authentic and meaningful.</p>
+          <p>In Chinese culture, names carry significant meaning and are believed to influence a person's destiny. A good Chinese name should have positive connotations, pleasing sounds, and balanced structure. Our Chinese name generator follows traditional Chinese naming principles to create names that are both authentic and meaningful, respecting thousands of years of naming traditions.</p>
         </div>
         
         <div class="guide-section">
           <h3>Chinese Name Structure</h3>
-          <p>A traditional Chinese name consists of a family name (surname) followed by a given name. The family name is typically one character, while the given name can be one or two characters. For example, in the name "Wang Wei," "Wang" is the family name and "Wei" is the given name.</p>
+          <p>A traditional Chinese name consists of a family name (surname) followed by a given name. The family name is typically one character, while the given name can be one or two characters. For example, in the name "Wang Wei," "Wang" is the family name and "Wei" is the given name. Our Chinese name generator can create names with or without a surname, depending on your preference.</p>
         </div>
         
         <div class="guide-section">
-          <h3>Factors We Consider</h3>
+          <h3>Factors Our Chinese Name Generator Considers</h3>
           <ul>
             <li><strong>Gender</strong> - Different characters are traditionally used for male and female names</li>
-            <li><strong>Five Elements</strong> - Balance of wood, fire, earth, metal, and water elements</li>
-            <li><strong>Character Meaning</strong> - Positive connotations and cultural significance</li>
-            <li><strong>Pronunciation</strong> - Harmonious sounds and tones</li>
-            <li><strong>Stroke Count</strong> - Traditional numerology for balance and luck</li>
+            <li><strong>Five Elements</strong> - Balance of wood, fire, earth, metal, and water elements based on birth information</li>
+            <li><strong>Character Meaning</strong> - Positive connotations and cultural significance appropriate for your personality</li>
+            <li><strong>Pronunciation</strong> - Harmonious sounds and tones that flow naturally in Mandarin Chinese</li>
+            <li><strong>Stroke Count</strong> - Traditional numerology for balance and luck according to Chinese traditions</li>
+            <li><strong>Cultural Context</strong> - Ensuring the name is culturally appropriate and avoids unfortunate associations</li>
           </ul>
+        </div>
+        
+        <div class="guide-section">
+          <h3>Benefits of Using Our Chinese Name Generator</h3>
+          <div class="benefits-grid">
+            <div class="benefit-card">
+              <h4>Cultural Authenticity</h4>
+              <p>Our Chinese name generator creates names that native Chinese speakers would recognize as authentic and appropriate, not awkward translations.</p>
+            </div>
+            <div class="benefit-card">
+              <h4>Personalized Meanings</h4>
+              <p>Each name is created with specific meanings that align with your preferences, personality traits, and aspirations.</p>
+            </div>
+            <div class="benefit-card">
+              <h4>Proper Pronunciation</h4>
+              <p>We ensure the names generated have balanced tones and are easy to pronounce for both Chinese and non-Chinese speakers.</p>
+            </div>
+            <div class="benefit-card">
+              <h4>Traditional Principles</h4>
+              <p>Our algorithm incorporates traditional Chinese naming principles including the Five Elements theory and character stroke balance.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="guide-section">
+          <h3>Frequently Asked Questions About Chinese Name Generation</h3>
+          
+          <div class="faq-section">
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <h4 itemprop="name">How does a Chinese name generator work?</h4>
+              <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">A Chinese name generator uses algorithms to select appropriate Chinese characters based on your preferences, gender, birth information, and desired meanings. Our advanced generator analyzes thousands of Chinese characters, considering their meanings, pronunciations, and cultural associations to create authentic names that follow traditional Chinese naming principles.</p>
+              </div>
+            </div>
+            
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <h4 itemprop="name">Why should I use a Chinese name generator instead of just translating my name?</h4>
+              <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">Direct translation or transliteration of non-Chinese names often results in awkward combinations that may have unintended meanings or sound strange to native speakers. A Chinese name generator creates culturally appropriate names that consider phonetics, meaning, and cultural context, resulting in a name that Chinese speakers will find natural and meaningful.</p>
+              </div>
+            </div>
+            
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <h4 itemprop="name">Can I get a Chinese name that sounds similar to my English name?</h4>
+              <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">Yes, our Chinese name generator can create names that sound phonetically similar to your original name while still maintaining proper Chinese structure and meaning. However, perfect sound matches are sometimes difficult due to the different phonetic systems of Chinese and English. We balance phonetic similarity with cultural appropriateness to create the best possible Chinese name for you.</p>
+              </div>
+            </div>
+            
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <h4 itemprop="name">How important is the meaning of Chinese names?</h4>
+              <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">The meaning of Chinese names is extremely important in Chinese culture. Unlike many Western names where the original meaning may be forgotten or irrelevant, Chinese people regularly consider the literal meaning of name characters. A well-chosen Chinese name conveys positive qualities, aspirations, or beautiful imagery. Our Chinese name generator with meaning ensures that each character has positive connotations and appropriate cultural significance.</p>
+              </div>
+            </div>
+            
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <h4 itemprop="name">Do I need a Chinese surname when using a Chinese name generator?</h4>
+              <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">While traditional Chinese names include a surname, foreigners adopting Chinese names often use just a given name without a Chinese surname. However, if you prefer a complete Chinese name, our generator allows you to either specify a Chinese surname or have one suggested based on common Chinese surnames. The choice depends on your personal preference and how you plan to use your Chinese name.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -789,6 +853,58 @@ export default {
   font-size: 1rem;
   line-height: 1.5;
   color: #555;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.benefit-card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.benefit-card h4 {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.benefit-card p {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+.faq-section {
+  margin-top: 2rem;
+}
+
+.faq-item {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  border: 1px solid #eee;
+}
+
+.faq-item h4 {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.faq-item p {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 10px;
 }
 
 /* 响应式调整 */
