@@ -1,0 +1,18 @@
+# 静态资源直接提供
+/*.js              /   200
+/*.css             /   200
+/*.svg             /   200
+/*.png             /   200
+/*.jpg             /   200
+/*.ico             /   200
+/*.woff            /   200
+/*.woff2           /   200
+/*.ttf             /   200
+/*.xml             /   200
+/sitemap.xml       /sitemap.xml   200
+
+# API路由
+/api/*            /api/:splat  200
+
+# 所有其他路由交由 SPA 处理
+/*                /index.html   200 
