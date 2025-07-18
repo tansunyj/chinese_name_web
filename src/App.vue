@@ -47,7 +47,6 @@ export default {
     <MainLayout>
       <div class="seo-content" role="complementary">
         <!-- 修改 H1 标签和样式 -->
-        <h1 class="main-title">Chinese Name Translator - Convert Name to Chinese</h1>
         <p class="seo-description">
           Transform your name into Chinese with our professional Chinese name translator. 
           Get personalized Chinese names with meanings and pronunciations. Learn how to 

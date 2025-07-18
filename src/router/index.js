@@ -20,7 +20,7 @@ const routes = [
     name: 'Home',
     component: () => import('../views/HomePage.vue'),
     meta: {
-      title: 'English to Chinese Name Translator | Free Chinese Name Generator',
+      title: 'Translate Names to Chinese: Free Generator & Meanings',
       canonicalPath: '/',
       description: 'Translate your English name to Chinese with our free name generator. Get accurate Chinese name translations with proper pronunciation and cultural meanings.'
     }

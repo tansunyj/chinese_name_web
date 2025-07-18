@@ -8,7 +8,7 @@
             <img src="@/assets/images/name.png" alt="ChineseName Logo" />
           </div>
           <div class="hero-text">
-            <h1>Chinese Names: Free Chinese Name Generator</h1>
+            <h1>Free Chinese Name Generator & Translator: Convert English to Chinese</h1>
             <h2 class="hero-subtitle">Translate Your Name to Chinese | Find Your Perfect Chinese Name</h2>
             <h2 class="hero-subtitle">中文起名 | 英文名翻译</h2>
             <p class="subtitle">{{ $t('home.hero.subtitle') }}</p>
