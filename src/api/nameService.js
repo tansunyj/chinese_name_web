@@ -57,9 +57,8 @@ export const generateChineseName = async (params) => {
 // 使用AI代理生成中文名字
 async function generateChineseNameWithAI(params) {
   try {
-    // 创建OpenAI API请求体
-    const openaiRequestBody = {
-      model: 'gpt-4o-mini',
+    // 只传递业务参数，后端负责构建完整请求
+    const requestParams = {
       messages: [
         { role: 'system', content: '你是一个专业的中文名字生成助手。' },
         { role: 'user', content: createNameGenerationPrompt(params) }
@@ -69,10 +68,8 @@ async function generateChineseNameWithAI(params) {
       top_p: 0.9
     };
 
-    // 发送到代理，只传递请求体
-    const response = await aiProxyClient.post('', {
-      body: openaiRequestBody
-    });
+    // 直接发送业务参数到后端
+    const response = await aiProxyClient.post('', requestParams);
 
     // 解析AI返回的文本内容为结构化数据
     return parseAINameResponse(response.data, params);
@@ -213,9 +210,8 @@ async function getZodiacWithAI(birthYear) {
   try {
     const locale = localStorage.getItem('locale') || 'zh';
 
-    // 创建OpenAI API请求体
-    const openaiRequestBody = {
-      model: 'gpt-4o-mini',
+    // 只传递业务参数，后端负责构建完整请求
+    const requestParams = {
       messages: [
         { role: 'system', content: '你是一个专业的中国生肖分析师。' },
         { role: 'user', content: `请根据农历出生年份${birthYear}详细分析对应的中国生肖，包括生肖特点、五行属性、性格特点、相配生肖，以及幸运数字和颜色。请使用${locale === 'zh' ? '中文' : '英文'}回答。` }
@@ -224,10 +220,8 @@ async function getZodiacWithAI(birthYear) {
       temperature: 0.7
     };
 
-    // 发送到代理，只传递请求体
-    const response = await aiProxyClient.post('', {
-      body: openaiRequestBody
-    });
+    // 直接发送业务参数到后端
+    await aiProxyClient.post('', requestParams);
     
     // 返回简化的模拟数据，实际应用需解析AI响应
     return {
@@ -289,9 +283,8 @@ async function analyzeNameWithAI(name, birthDate) {
   try {
     const locale = localStorage.getItem('locale') || 'zh';
 
-    // 创建OpenAI API请求体
-    const openaiRequestBody = {
-      model: 'gpt-4o-mini',
+    // 只传递业务参数，后端负责构建完整请求
+    const requestParams = {
       messages: [
         { role: 'system', content: '你是一个专业的中文名字分析师。' },
         { role: 'user', content: `请详细分析这个中文名字: ${name}。出生日期: ${birthDate}。
@@ -306,10 +299,8 @@ async function analyzeNameWithAI(name, birthDate) {
       temperature: 0.7
     };
 
-    // 发送到代理，只传递请求体
-    const response = await aiProxyClient.post('', {
-      body: openaiRequestBody
-    });
+    // 直接发送业务参数到后端
+    await aiProxyClient.post('', requestParams);
     
     // 简化处理，返回基本分析结果
     return {

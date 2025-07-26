@@ -94,7 +94,6 @@ export const generateAIObject = async (options) => {
   const {
     prompt,
     schema,
-    model,
     temperature = 0.7,
     metadata = {},
     customRequestBody = null
@@ -105,42 +104,33 @@ export const generateAIObject = async (options) => {
   }
   
   try {
-    // 获取模型配置
-    const modelCfg = getModel(model);
-
-    // 创建OpenAI API请求体
-    const openaiRequestBody = customRequestBody || {
-      model: modelCfg.modelName || model || aiConfig.models.default,
-      temperature: temperature,
+    // 只传递业务参数，不传递任何敏感配置
+    const requestParams = customRequestBody || {
       messages: [
         { role: 'system', content: '你是一个专业的结构化数据生成助手。请按照用户提供的JSON Schema格式返回数据。' },
         { role: 'user', content: prompt }
       ],
+      temperature: temperature,
       response_format: { type: 'json_object' }
     };
 
     let response;
 
-    // 统一使用代理方式，不再传递敏感信息
+    // 统一使用代理方式
     const proxyUrl = aiConfig.baseConfig.proxyUrl;
-
-    // 创建代理请求 - 只传递请求体，敏感信息由后端处理
-    const proxyRequestBody = {
-      body: openaiRequestBody
-    };
 
     // 打印请求信息
     log('==== 发送到代理的请求 ====');
     log('代理URL:', proxyUrl);
-    log('请求体:', openaiRequestBody);
+    log('请求参数:', requestParams);
 
-    // 发送请求到代理服务器
+    // 直接发送业务参数到后端，后端负责构建完整的OpenAI请求
     response = await fetch(proxyUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(proxyRequestBody)
+      body: JSON.stringify(requestParams)
     });
     
     // 检查响应状态
