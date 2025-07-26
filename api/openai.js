@@ -54,6 +54,20 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'API key not configured' });
     }
 
+    // 🛡️ 安全检查：严格验证请求体，拒绝包含敏感参数的请求
+    const securityCheck = validateRequestSecurity(req.body);
+    if (!securityCheck.isValid) {
+      logError('🚨 安全威胁检测:', securityCheck.reason);
+      logError('🚨 可疑请求体:', JSON.stringify(req.body, null, 2));
+      logError('🚨 请求来源IP:', req.headers['x-forwarded-for'] || req.connection.remoteAddress);
+
+      return res.status(403).json({
+        error: 'Request rejected for security reasons',
+        message: 'Invalid parameters detected',
+        code: 'SECURITY_VIOLATION'
+      });
+    }
+
     // 从请求体中获取业务类型和参数
     const { type, ...businessParams } = req.body;
 
@@ -150,6 +164,152 @@ function buildRequestByType(type, params, modelVersion) {
     default:
       return null;
   }
+}
+
+/**
+ * 🛡️ 安全验证函数：检查请求体是否包含敏感参数
+ */
+function validateRequestSecurity(requestBody) {
+  // 危险参数列表 - 这些参数可能被恶意用户用来绕过限制
+  const dangerousParams = [
+    // OpenAI API相关敏感参数
+    'api_key', 'apiKey', 'api-key', 'openai_api_key', 'openaiApiKey',
+    'authorization', 'Authorization', 'bearer', 'Bearer',
+    'token', 'access_token', 'accessToken', 'auth_token', 'authToken',
+
+    // 模型相关参数 - 防止指定昂贵模型
+    'model', 'Model', 'MODEL', 'engine', 'Engine',
+    'gpt-4', 'gpt-4-turbo', 'gpt-4-32k', 'gpt-3.5-turbo-16k',
+    'claude', 'Claude', 'anthropic',
+
+    // Token和成本相关参数
+    'max_tokens', 'maxTokens', 'max-tokens', 'maximum_tokens',
+    'tokens', 'token_limit', 'tokenLimit',
+    'temperature', 'Temperature', 'top_p', 'topP', 'top-p',
+    'frequency_penalty', 'frequencyPenalty', 'presence_penalty', 'presencePenalty',
+
+    // 系统级参数
+    'system', 'System', 'system_prompt', 'systemPrompt', 'system-prompt',
+    'messages', 'Messages', 'MESSAGES',
+    'prompt', 'Prompt', 'PROMPT', 'user_prompt', 'userPrompt',
+
+    // 响应格式参数
+    'response_format', 'responseFormat', 'response-format',
+    'format', 'Format', 'output_format', 'outputFormat',
+
+    // 流式响应参数
+    'stream', 'Stream', 'streaming', 'Streaming',
+
+    // 其他可能的绕过参数
+    'functions', 'function_call', 'functionCall', 'tools', 'tool_choice',
+    'logit_bias', 'logitBias', 'logprobs', 'echo', 'stop', 'suffix',
+    'best_of', 'bestOf', 'n', 'N', 'user', 'User'
+  ];
+
+  // 递归检查对象的所有键和值
+  function checkObjectRecursively(obj, path = '') {
+    if (typeof obj !== 'object' || obj === null) {
+      return null;
+    }
+
+    for (const [key, value] of Object.entries(obj)) {
+      const currentPath = path ? `${path}.${key}` : key;
+
+      // 检查键名是否包含危险参数
+      const lowerKey = key.toLowerCase();
+      for (const dangerousParam of dangerousParams) {
+        if (lowerKey.includes(dangerousParam.toLowerCase()) ||
+            dangerousParam.toLowerCase().includes(lowerKey)) {
+          return {
+            isValid: false,
+            reason: `Dangerous parameter detected in key: ${currentPath}`,
+            parameter: key,
+            value: typeof value === 'string' ? value.substring(0, 100) : value
+          };
+        }
+      }
+
+      // 检查字符串值是否包含危险内容
+      if (typeof value === 'string') {
+        const lowerValue = value.toLowerCase();
+
+        // 检查是否包含API密钥模式
+        if (lowerValue.includes('sk-') ||
+            lowerValue.includes('api_key') ||
+            lowerValue.includes('bearer ') ||
+            lowerValue.includes('authorization:') ||
+            /gpt-[0-9]/.test(lowerValue) ||
+            lowerValue.includes('claude') ||
+            lowerValue.includes('anthropic')) {
+          return {
+            isValid: false,
+            reason: `Suspicious content detected in value: ${currentPath}`,
+            parameter: key,
+            value: value.substring(0, 100)
+          };
+        }
+
+        // 检查是否尝试注入系统提示词
+        if (lowerValue.includes('system:') ||
+            lowerValue.includes('assistant:') ||
+            lowerValue.includes('you are') ||
+            lowerValue.includes('ignore previous') ||
+            lowerValue.includes('forget everything')) {
+          return {
+            isValid: false,
+            reason: `Prompt injection attempt detected: ${currentPath}`,
+            parameter: key,
+            value: value.substring(0, 100)
+          };
+        }
+      }
+
+      // 递归检查嵌套对象
+      if (typeof value === 'object' && value !== null) {
+        const nestedCheck = checkObjectRecursively(value, currentPath);
+        if (nestedCheck && !nestedCheck.isValid) {
+          return nestedCheck;
+        }
+      }
+    }
+
+    return null;
+  }
+
+  // 执行安全检查
+  const securityIssue = checkObjectRecursively(requestBody);
+
+  if (securityIssue) {
+    return securityIssue;
+  }
+
+  // 额外检查：确保只包含允许的业务类型
+  const allowedTypes = [
+    'nameGeneration', 'nameAnalysis', 'zodiacAnalysis',
+    'characterAnalysis', 'nameTranslation', 'chineseToEnglish'
+  ];
+
+  if (requestBody.type && !allowedTypes.includes(requestBody.type)) {
+    return {
+      isValid: false,
+      reason: `Invalid business type: ${requestBody.type}`,
+      parameter: 'type',
+      value: requestBody.type
+    };
+  }
+
+  // 检查请求体大小（防止过大的请求）
+  const requestSize = JSON.stringify(requestBody).length;
+  if (requestSize > 10000) { // 10KB限制
+    return {
+      isValid: false,
+      reason: `Request body too large: ${requestSize} bytes`,
+      parameter: 'body_size',
+      value: requestSize
+    };
+  }
+
+  return { isValid: true };
 }
 
 /**
