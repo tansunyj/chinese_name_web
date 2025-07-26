@@ -445,7 +445,7 @@ Please create three unique Chinese names with detailed analysis and return in JS
       { role: 'user', content: userPrompt }
     ],
     temperature: 0.8,
-    max_tokens: 1500,
+    max_tokens: 1200, // 减少token数量以提高响应速度
     response_format: { type: 'json_object' }
   };
 }

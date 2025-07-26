@@ -711,27 +711,39 @@ export default {
         const correctBirthInfo = this.createBirthInfo(apiParams.birthDateTime);
         log("已计算的农历日期：", correctBirthInfo.lunarDate);
         
-        // 直接发送业务类型和原始参数到后端，让后端完整构建请求
-        log('发送AI请求...');
-        const response = await fetch(aiConfig.baseConfig.proxyUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            type: 'nameGeneration',
-            // 传递原始用户输入参数，不传递拼接好的prompt
-            inputName: apiParams.lastName,
-            gender: apiParams.gender === 'male' ? '男' : apiParams.gender === 'female' ? '女' : '中性',
-            characteristics: apiParams.characteristics,
-            desiredMeaning: apiParams.desiredMeaning,
-            birthDateTime: apiParams.birthDateTime,
-            locale: this.locale
-          })
-        });
+        // 创建超时控制器
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => {
+          controller.abort();
+        }, 65000); // 65秒超时，略大于Vercel的60秒限制
 
-        const responseData = await response.json();
-        log('AI原始响应:', responseData);
+        try {
+          // 直接发送业务类型和原始参数到后端，让后端完整构建请求
+          log('发送AI请求...');
+          const response = await fetch(aiConfig.baseConfig.proxyUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              type: 'nameGeneration',
+              // 传递原始用户输入参数，不传递拼接好的prompt
+              inputName: apiParams.lastName,
+              gender: apiParams.gender === 'male' ? '男' : apiParams.gender === 'female' ? '女' : '中性',
+              characteristics: apiParams.characteristics,
+              desiredMeaning: apiParams.desiredMeaning,
+              birthDateTime: apiParams.birthDateTime,
+              locale: this.locale
+            }),
+            signal: controller.signal
+          });
+
+          clearTimeout(timeoutId); // 清除超时定时器
+
+          const responseData = await response.json();
+        log('🔍 AI原始响应:', responseData);
+        log('🔍 响应数据类型:', typeof responseData);
+        log('🔍 响应数据键:', Object.keys(responseData || {}));
 
         let parsedData = null;
 
@@ -739,20 +751,29 @@ export default {
         if (responseData && responseData.choices && responseData.choices[0] && responseData.choices[0].message) {
           try {
             const contentString = responseData.choices[0].message.content;
-            log('提取的content字符串:', contentString);
+            log('🎯 提取的content字符串:', contentString);
+            log('🎯 content字符串长度:', contentString?.length);
+            log('🎯 content字符串类型:', typeof contentString);
 
             // 解析JSON字符串
             parsedData = JSON.parse(contentString);
-            log('解析后的JSON数据:', parsedData);
+            log('✅ 解析后的JSON数据:', parsedData);
+            log('✅ 解析后数据类型:', typeof parsedData);
+            log('✅ 解析后数据键:', Object.keys(parsedData || {}));
           } catch (parseError) {
-            logError('解析choices[0].message.content中的JSON失败:', parseError);
-            logError('原始content内容:', responseData.choices[0].message.content);
+            logError('❌ 解析choices[0].message.content中的JSON失败:', parseError);
+            logError('❌ 原始content内容:', responseData.choices[0].message.content);
+            logError('❌ content内容前500字符:', responseData.choices[0].message.content?.substring(0, 500));
           }
         }
         // 如果不是OpenAI格式，直接使用responseData
         else if (responseData && responseData.names) {
           parsedData = responseData;
-          log('直接使用响应数据:', parsedData);
+          log('📋 直接使用响应数据:', parsedData);
+        }
+        else {
+          logWarn('⚠️ 响应数据格式不符合预期');
+          logWarn('⚠️ 响应数据结构:', JSON.stringify(responseData, null, 2));
         }
 
         // 从解析后的数据中提取名字数据
@@ -785,6 +806,28 @@ export default {
           // 滚动到结果区域
           this.scrollToResults();
         }
+
+        } catch (fetchError) {
+          clearTimeout(timeoutId); // 确保清除超时定时器
+
+          if (fetchError.name === 'AbortError') {
+            logError('请求超时:', fetchError);
+            this.$message.error(this.locale === 'zh' ? '请求超时，请稍后重试' : 'Request timeout, please try again');
+          } else {
+            logError('网络请求错误:', fetchError);
+            this.$message.error(this.locale === 'zh' ? '网络请求失败' : 'Network request failed');
+          }
+
+          // 使用模拟数据作为备用
+          this.results = this.createMockNames(apiParams).map((name, idx) => ({
+            ...name,
+            showAnalysis: true,
+            activeTab: 0
+          }));
+          logWarn('网络错误，使用模拟数据作为备用');
+          this.scrollToResults();
+        }
+
       } catch (error) {
         logError('AI名字生成错误:', error);
         // 使用模拟数据作为备用

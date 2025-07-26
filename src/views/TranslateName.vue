@@ -442,7 +442,9 @@ export default {
         });
 
         const responseData = await response.json();
-        log('AI原始响应:', responseData);
+        log('🔍 AI原始响应:', responseData);
+        log('🔍 响应数据类型:', typeof responseData);
+        log('🔍 响应数据键:', Object.keys(responseData || {}));
 
         let parsedData = null;
 
@@ -450,20 +452,26 @@ export default {
         if (responseData && responseData.choices && responseData.choices[0] && responseData.choices[0].message) {
           try {
             const contentString = responseData.choices[0].message.content;
-            log('提取的content字符串:', contentString);
+            log('🎯 提取的content字符串:', contentString);
+            log('🎯 content字符串长度:', contentString?.length);
 
             // 解析JSON字符串
             parsedData = JSON.parse(contentString);
-            log('解析后的JSON数据:', parsedData);
+            log('✅ 解析后的JSON数据:', parsedData);
+            log('✅ 解析后数据键:', Object.keys(parsedData || {}));
           } catch (parseError) {
-            logError('解析choices[0].message.content中的JSON失败:', parseError);
-            logError('原始content内容:', responseData.choices[0].message.content);
+            logError('❌ 解析choices[0].message.content中的JSON失败:', parseError);
+            logError('❌ 原始content内容:', responseData.choices[0].message.content);
           }
         }
         // 如果不是OpenAI格式，直接使用responseData
         else if (responseData && responseData.translations) {
           parsedData = responseData;
-          log('直接使用响应数据:', parsedData);
+          log('📋 直接使用响应数据:', parsedData);
+        }
+        else {
+          logWarn('⚠️ 响应数据格式不符合预期');
+          logWarn('⚠️ 响应数据结构:', JSON.stringify(responseData, null, 2));
         }
 
         // 检查并处理解析后的数据
