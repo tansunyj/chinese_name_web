@@ -49,9 +49,19 @@ export default async function handler(req, res) {
     const API_URL = process.env.OPENAI_API_URL || 'https://openkey.cloud/v1/chat/completions';
     const MODEL_VERSION = process.env.OPENAI_MODEL_VERSION || 'gpt-4o-mini';
 
+    // 增强的环境变量检查和调试信息
+    log('🔧 环境变量检查:');
+    log('API_KEY存在:', !!API_KEY);
+    log('API_URL:', API_URL);
+    log('MODEL_VERSION:', MODEL_VERSION);
+    log('请求体:', JSON.stringify(req.body, null, 2));
+
     if (!API_KEY) {
-      log('错误: 未配置OPENAI_API_KEY环境变量');
-      return res.status(500).json({ error: 'API key not configured' });
+      logError('❌ 错误: 未配置OPENAI_API_KEY环境变量');
+      return res.status(500).json({
+        error: 'API key not configured',
+        debug: isProduction ? undefined : 'OPENAI_API_KEY environment variable is missing'
+      });
     }
 
     // 🛡️ 安全检查：严格验证请求体，拒绝包含敏感参数的请求
@@ -76,19 +86,30 @@ export default async function handler(req, res) {
     }
 
     // 根据业务类型构建不同的OpenAI请求体
+    log('🔨 开始构建OpenAI请求，类型:', type);
+    log('🔨 业务参数:', JSON.stringify(businessParams, null, 2));
+
     const openaiRequestBody = buildRequestByType(type, businessParams, MODEL_VERSION);
 
     if (!openaiRequestBody) {
-      return res.status(400).json({ error: `Unsupported request type: ${type}` });
+      logError('❌ 构建请求失败，不支持的请求类型:', type);
+      return res.status(400).json({
+        error: `Unsupported request type: ${type}`,
+        debug: isProduction ? undefined : `Available types: nameGeneration, nameAnalysis, zodiacAnalysis, characterAnalysis, nameTranslation, chineseToEnglish`
+      });
     }
 
-    // 记录请求信息（仅在非生产环境中输出）
-    log('代理请求到:', API_URL);
-    log('使用模型:', openaiRequestBody.model);
-    log('消息数量:', messages.length);
-    log('温度参数:', openaiRequestBody.temperature);
+    // 记录请求信息
+    log('✅ 请求构建成功');
+    log('🚀 代理请求到:', API_URL);
+    log('🤖 使用模型:', openaiRequestBody.model);
+    log('💬 消息数量:', openaiRequestBody.messages?.length || 0);
+    log('🌡️ 温度参数:', openaiRequestBody.temperature);
+    log('📝 完整请求体:', JSON.stringify(openaiRequestBody, null, 2));
 
     // 发送请求到OpenAI API
+    log('📡 发送请求到OpenAI API...');
+
     const openaiResponse = await fetch(API_URL, {
       method: 'POST',
       headers: {
@@ -98,28 +119,71 @@ export default async function handler(req, res) {
       body: JSON.stringify(openaiRequestBody)
     });
 
+    log('📡 OpenAI响应状态:', openaiResponse.status);
+    log('📡 OpenAI响应头:', JSON.stringify([...openaiResponse.headers.entries()], null, 2));
+
     // 检查响应状态
     if (!openaiResponse.ok) {
-      const errorData = await openaiResponse.json().catch(() => ({}));
-      logError('OpenAI API错误:', openaiResponse.status, errorData);
+      const errorText = await openaiResponse.text();
+      let errorData = {};
+
+      try {
+        errorData = JSON.parse(errorText);
+      } catch (e) {
+        errorData = { message: errorText };
+      }
+
+      logError('❌ OpenAI API错误:', openaiResponse.status, openaiResponse.statusText);
+      logError('❌ 错误详情:', errorData);
+
       return res.status(openaiResponse.status).json({
         error: 'OpenAI API error',
         status: openaiResponse.status,
-        details: errorData
+        statusText: openaiResponse.statusText,
+        details: errorData,
+        debug: isProduction ? undefined : {
+          url: API_URL,
+          requestBody: openaiRequestBody
+        }
       });
     }
 
     // 获取响应数据
-    const data = await openaiResponse.json();
+    const responseText = await openaiResponse.text();
+    log('📡 OpenAI原始响应长度:', responseText.length);
+    log('📡 OpenAI原始响应前500字符:', responseText.substring(0, 500));
+
+    let data;
+    try {
+      data = JSON.parse(responseText);
+      log('✅ OpenAI响应解析成功');
+    } catch (parseError) {
+      logError('❌ OpenAI响应JSON解析失败:', parseError);
+      logError('❌ 原始响应内容:', responseText);
+
+      return res.status(500).json({
+        error: 'Failed to parse OpenAI response',
+        message: parseError.message,
+        debug: isProduction ? undefined : {
+          responseText: responseText.substring(0, 1000)
+        }
+      });
+    }
 
     // 返回OpenAI的响应
+    log('🎉 请求处理成功，返回数据');
     return res.status(200).json(data);
   } catch (error) {
     // 错误日志在生产环境中也需要记录，便于问题排查
-    logError('代理请求错误:', error);
+    logError('❌ 代理请求错误:', error);
+    logError('❌ 错误堆栈:', error.stack);
+    logError('❌ 请求体:', JSON.stringify(req.body, null, 2));
+
     return res.status(500).json({
       error: 'Proxy request failed',
-      message: isProduction ? 'Internal server error' : error.message
+      message: isProduction ? 'Internal server error' : error.message,
+      stack: isProduction ? undefined : error.stack,
+      requestBody: isProduction ? undefined : req.body
     });
   }
 }
@@ -562,9 +626,21 @@ ${text}
  * 构建自定义请求（智能识别业务类型并使用对应的系统提示词）
  */
 function buildCustomRequest(baseRequest, params) {
-  const { messages, temperature, max_tokens, top_p, response_format, frequency_penalty, presence_penalty, stop, stream } = params;
+  // 安全地提取参数，避免解构赋值错误
+  const messages = params.messages;
+  const temperature = params.temperature;
+  const max_tokens = params.max_tokens;
+  const top_p = params.top_p;
+  const response_format = params.response_format;
+  const frequency_penalty = params.frequency_penalty;
+  const presence_penalty = params.presence_penalty;
+  const stop = params.stop;
+  const stream = params.stream;
+
+  log('🔧 buildCustomRequest 被调用，参数:', JSON.stringify(params, null, 2));
 
   if (!messages || !Array.isArray(messages) || messages.length === 0) {
+    log('❌ buildCustomRequest: messages 参数无效或为空');
     return null;
   }
 
