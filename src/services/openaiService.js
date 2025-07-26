@@ -107,7 +107,7 @@ export const generateAIObject = async (options) => {
   try {
     // 获取模型配置
     const modelCfg = getModel(model);
-    
+
     // 创建OpenAI API请求体
     const openaiRequestBody = customRequestBody || {
       model: modelCfg.modelName || model || aiConfig.models.default,
@@ -118,64 +118,30 @@ export const generateAIObject = async (options) => {
       ],
       response_format: { type: 'json_object' }
     };
-    
-    // 创建请求头
-    const headers = {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${modelCfg.apiKey || aiConfig.baseConfig.apiKey}`
-    };
-    
-    // 目标API地址
-    const targetUrl = modelCfg.baseURL || aiConfig.baseConfig.apiUrl;
-    
+
     let response;
-    
-    // 根据环境选择请求方式
-    if (isDevelopment) {
-      // 开发环境：使用本地代理
-      // 创建代理请求
-      const proxyUrl = 'http://localhost:3001/api/openai';
-      const proxyRequestBody = {
-        url: targetUrl,
-        headers: headers,
-        body: openaiRequestBody
-      };
-      
-      // 打印请求信息
-      log('==== 发送到本地代理的请求 ====');
-      log('请求体:', openaiRequestBody);
-      
-      // 发送请求到本地代理服务器
-      response = await fetch(proxyUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(proxyRequestBody)
-      });
-    } else {
-      // 生产环境：使用Vercel Serverless Function作为代理
-      log('==== 通过Vercel Serverless Function代理请求OpenAI API ====');
-      
-      // 创建代理请求
-      const proxyUrl = '/api/openai'; // Vercel Serverless Function路径
-      const proxyRequestBody = {
-        url: targetUrl,
-        headers: headers,
-        body: openaiRequestBody
-      };
-      
-      log('请求体:', openaiRequestBody);
-      
-      // 通过Vercel Serverless Function发送请求
-      response = await fetch(proxyUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(proxyRequestBody)
-      });
-    }
+
+    // 统一使用代理方式，不再传递敏感信息
+    const proxyUrl = aiConfig.baseConfig.proxyUrl;
+
+    // 创建代理请求 - 只传递请求体，敏感信息由后端处理
+    const proxyRequestBody = {
+      body: openaiRequestBody
+    };
+
+    // 打印请求信息
+    log('==== 发送到代理的请求 ====');
+    log('代理URL:', proxyUrl);
+    log('请求体:', openaiRequestBody);
+
+    // 发送请求到代理服务器
+    response = await fetch(proxyUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(proxyRequestBody)
+    });
     
     // 检查响应状态
     if (!response.ok) {

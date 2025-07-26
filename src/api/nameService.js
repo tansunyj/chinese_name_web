@@ -1,11 +1,9 @@
 import axios from 'axios';
 
-// AI代理配置
+// AI代理配置 - 移除了敏感信息，现在由后端处理
 const AI_CONFIG = {
-  proxyURL: (window.__env && window.__env.VUE_APP_AI_PROXY_URL) || 'https://ai-proxy.chinesename.com',
-  apiKey: (window.__env && window.__env.VUE_APP_AI_API_KEY) || '',
-  modelVersion: (window.__env && window.__env.VUE_APP_AI_MODEL_VERSION) || 'gpt-4',
-  useProxy: (window.__env && window.__env.VUE_APP_USE_AI_PROXY === 'true') || false
+  proxyURL: '/api/openai', // 统一使用Vercel API路由
+  useProxy: true // 始终使用代理以确保安全
 };
 
 // 创建API基础配置
@@ -17,12 +15,11 @@ const apiClient = axios.create({
   timeout: 10000
 });
 
-// 创建AI代理客户端
+// 创建AI代理客户端 - 移除了Authorization头，现在由后端处理
 const aiProxyClient = axios.create({
   baseURL: AI_CONFIG.proxyURL,
   headers: {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${AI_CONFIG.apiKey}`
+    'Content-Type': 'application/json'
   },
   timeout: 30000  // AI请求可能需要更长的超时时间
 });
@@ -34,19 +31,18 @@ apiClient.interceptors.request.use(config => {
   return config;
 });
 
-// AI代理请求拦截器
+// AI代理请求拦截器 - 移除了敏感信息的设置
 aiProxyClient.interceptors.request.use(config => {
   const locale = localStorage.getItem('locale') || 'zh';
   config.headers['Accept-Language'] = locale;
-  config.headers['X-Model-Version'] = AI_CONFIG.modelVersion;
   return config;
 });
 
 // 生成中文名字
 export const generateChineseName = async (params) => {
   try {
-    // 判断是否使用AI代理
-    if (AI_CONFIG.useProxy && AI_CONFIG.apiKey) {
+    // 现在统一使用AI代理，敏感信息由后端处理
+    if (AI_CONFIG.useProxy) {
       return await generateChineseNameWithAI(params);
     } else {
       const response = await apiClient.post('/generate', params);
@@ -61,19 +57,23 @@ export const generateChineseName = async (params) => {
 // 使用AI代理生成中文名字
 async function generateChineseNameWithAI(params) {
   try {
-    const aiParams = {
-      prompt: createNameGenerationPrompt(params),
+    // 创建OpenAI API请求体
+    const openaiRequestBody = {
+      model: 'gpt-4o-mini',
+      messages: [
+        { role: 'system', content: '你是一个专业的中文名字生成助手。' },
+        { role: 'user', content: createNameGenerationPrompt(params) }
+      ],
       max_tokens: 1000,
       temperature: 0.7,
-      top_p: 0.9,
-      metadata: {
-        requestType: 'nameGeneration',
-        userParams: params
-      }
+      top_p: 0.9
     };
-    
-    const response = await aiProxyClient.post('/generate', aiParams);
-    
+
+    // 发送到代理，只传递请求体
+    const response = await aiProxyClient.post('', {
+      body: openaiRequestBody
+    });
+
     // 解析AI返回的文本内容为结构化数据
     return parseAINameResponse(response.data, params);
   } catch (error) {
@@ -194,7 +194,7 @@ async function getConstellationWithAI(birthDate) {
 // 获取生肖分析
 export const getZodiacAnalysis = async (birthYear) => {
   try {
-    if (AI_CONFIG.useProxy && AI_CONFIG.apiKey) {
+    if (AI_CONFIG.useProxy) {
       return await getZodiacWithAI(birthYear);
     } else {
       const response = await apiClient.get('/zodiac', {
@@ -212,18 +212,22 @@ export const getZodiacAnalysis = async (birthYear) => {
 async function getZodiacWithAI(birthYear) {
   try {
     const locale = localStorage.getItem('locale') || 'zh';
-    
-    const aiParams = {
-      prompt: `请根据农历出生年份${birthYear}详细分析对应的中国生肖，包括生肖特点、五行属性、性格特点、相配生肖，以及幸运数字和颜色。请使用${locale === 'zh' ? '中文' : '英文'}回答。`,
+
+    // 创建OpenAI API请求体
+    const openaiRequestBody = {
+      model: 'gpt-4o-mini',
+      messages: [
+        { role: 'system', content: '你是一个专业的中国生肖分析师。' },
+        { role: 'user', content: `请根据农历出生年份${birthYear}详细分析对应的中国生肖，包括生肖特点、五行属性、性格特点、相配生肖，以及幸运数字和颜色。请使用${locale === 'zh' ? '中文' : '英文'}回答。` }
+      ],
       max_tokens: 600,
-      temperature: 0.7,
-      metadata: {
-        requestType: 'zodiacAnalysis',
-        birthYear: birthYear
-      }
+      temperature: 0.7
     };
-    
-    const response = await aiProxyClient.post('/generate', aiParams);
+
+    // 发送到代理，只传递请求体
+    const response = await aiProxyClient.post('', {
+      body: openaiRequestBody
+    });
     
     // 返回简化的模拟数据，实际应用需解析AI响应
     return {
@@ -265,7 +269,7 @@ export const convertToPinyin = async (name) => {
 // 分析现有名字
 export const analyzeExistingName = async (name, birthDate) => {
   try {
-    if (AI_CONFIG.useProxy && AI_CONFIG.apiKey) {
+    if (AI_CONFIG.useProxy) {
       return await analyzeNameWithAI(name, birthDate);
     } else {
       const response = await apiClient.post('/analyze', {
@@ -284,25 +288,28 @@ export const analyzeExistingName = async (name, birthDate) => {
 async function analyzeNameWithAI(name, birthDate) {
   try {
     const locale = localStorage.getItem('locale') || 'zh';
-    
-    const aiParams = {
-      prompt: `请详细分析这个中文名字: ${name}。出生日期: ${birthDate}。
+
+    // 创建OpenAI API请求体
+    const openaiRequestBody = {
+      model: 'gpt-4o-mini',
+      messages: [
+        { role: 'system', content: '你是一个专业的中文名字分析师。' },
+        { role: 'user', content: `请详细分析这个中文名字: ${name}。出生日期: ${birthDate}。
 分析应包括:
 1. 笔画数和五行属性
 2. 音义分析
 3. 姓氏和名字分别的含义
 4. 与生日的匹配度
-请使用${locale === 'zh' ? '中文' : '英文'}回答。`,
+请使用${locale === 'zh' ? '中文' : '英文'}回答。` }
+      ],
       max_tokens: 800,
-      temperature: 0.7,
-      metadata: {
-        requestType: 'nameAnalysis',
-        name: name,
-        birthDate: birthDate
-      }
+      temperature: 0.7
     };
-    
-    const response = await aiProxyClient.post('/generate', aiParams);
+
+    // 发送到代理，只传递请求体
+    const response = await aiProxyClient.post('', {
+      body: openaiRequestBody
+    });
     
     // 简化处理，返回基本分析结果
     return {
