@@ -3,9 +3,10 @@
  * 为不同功能提供专门的系统指令，使AI更好地理解其角色
  */
 
-// 名字生成系统提示词
-export const nameGenerationSystemPrompt = 
-  "你是一位精通中国传统文化和姓名学的专家，擅长根据用户需求创建有文化内涵的中文名字。请根据用户提供的信息，生成具有深度含义和文化背景的中文名字。";
+// 名字生成系统提示词 - 已迁移到 api/promptTemplates.js
+// 请使用 nameGenerationPrompts.system 替代
+export const nameGenerationSystemPrompt =
+  "⚠️ 此提示词已废弃，请使用 api/promptTemplates.js 中的 nameGenerationPrompts.system";
 
 // 名字翻译系统提示词
 export const nameTranslationSystemPrompt = 

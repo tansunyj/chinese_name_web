@@ -5,18 +5,21 @@ import axios from 'axios';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 
-// 导入提示词模板
+// 注意：提示词模板已迁移到 api/openai.js 中保密处理
+// 此开发代理服务器不再直接使用提示词模板
+
+// 🔒 导入完整的提示词模板
 import {
   nameGenerationPrompts,
+  nameTranslationPrompts,
   nameAnalysisPrompts,
-  zodiacAnalysisPrompts
-} from '../services/promptTemplates.js';
+  zodiacAnalysisPrompts,
+  chineseToEnglishPrompts,
+  characterAnalysisPrompts,
+  generalTranslationPrompts
+} from '../../api/promptTemplates.js';
 
-import {
-  nameGenerationSystemPrompt,
-  nameAnalysisSystemPrompt,
-  zodiacAnalysisSystemPrompt
-} from '../config/systemPrompts.js';
+// 所有提示词已迁移到 promptTemplates.js，不再需要旧的系统提示词
 
 // 加载环境变量
 dotenv.config();
@@ -181,9 +184,6 @@ function buildNameGenerationRequest(baseRequest, params) {
 
   console.log('🎯 构建名字生成请求，参数:', params);
 
-  // 使用现有的系统提示词
-  const systemPrompt = nameGenerationSystemPrompt;
-
   // 构建参数对象，匹配提示词模板的期望格式
   const templateParams = {
     lastName: inputName,
@@ -193,12 +193,27 @@ function buildNameGenerationRequest(baseRequest, params) {
     birthDateTime: birthDateTime || ''
   };
 
+  // 🔒 使用 promptTemplates.js 中的系统提示词
+  let systemPrompt = nameGenerationPrompts.system;
+
+  // 替换占位符
+  const genderText = templateParams.gender === 'male' ? '男性' : templateParams.gender === 'female' ? '女性' : '中性';
+  const characteristicsText = templateParams.characteristics.join('、');
+  const zodiac = extractZodiacFromDate(templateParams.birthDateTime) || '未知';
+  const lunarDate = extractLunarDate(templateParams.birthDateTime) || '未知';
+
+  systemPrompt = systemPrompt
+    .replace(/\{\{GENDER_TEXT\}\}/g, genderText)
+    .replace(/\{\{LAST_NAME\}\}/g, templateParams.lastName)
+    .replace(/\{\{CHARACTERISTICS\}\}/g, characteristicsText)
+    .replace(/\{\{DESIRED_MEANING\}\}/g, templateParams.desiredMeaning || '美好寓意')
+    .replace(/\{\{ZODIAC\}\}/g, zodiac)
+    .replace(/\{\{LUNAR_DATE\}\}/g, lunarDate);
+
   console.log('📝 提示词模板参数:', templateParams);
 
-  // 使用提示词模板生成用户提示词
-  const userPrompt = locale === 'zh'
-    ? nameGenerationPrompts.zh(templateParams)
-    : nameGenerationPrompts.en(templateParams);
+  // 🔒 使用 promptTemplates.js 中的用户提示词
+  const userPrompt = nameGenerationPrompts.user(templateParams);
 
   console.log('✅ 生成的用户提示词:', userPrompt.substring(0, 200) + '...');
 
@@ -234,15 +249,22 @@ function buildCustomRequest(baseRequest, params) {
 
   let systemPrompt = messages.find(msg => msg.role === 'system')?.content || '';
 
-  // 根据检测到的业务类型替换系统提示词
+  // 根据检测到的业务类型替换系统提示词 - 🔒 使用 promptTemplates.js 中的完整专业提示词
   if (detectedType === 'nameGeneration') {
-    systemPrompt = nameGenerationSystemPrompt;
-    console.log('🎯 检测到名字生成请求，已替换系统提示词');
+    // 🔒 强制使用完整的系统提示词，替换占位符为默认值
+    systemPrompt = nameGenerationPrompts.system
+      .replace(/\{\{GENDER_TEXT\}\}/g, '用户')
+      .replace(/\{\{LAST_NAME\}\}/g, '未知')
+      .replace(/\{\{CHARACTERISTICS\}\}/g, '传统')
+      .replace(/\{\{DESIRED_MEANING\}\}/g, '美好寓意')
+      .replace(/\{\{ZODIAC\}\}/g, '未知')
+      .replace(/\{\{LUNAR_DATE\}\}/g, '未知');
+    console.log('🎯 检测到名字生成请求，已替换为完整的专业提示词');
   } else if (detectedType === 'nameAnalysis') {
-    systemPrompt = nameAnalysisSystemPrompt;
+    systemPrompt = nameAnalysisPrompts.system;
     console.log('🎯 检测到名字分析请求，已替换系统提示词');
   } else if (detectedType === 'zodiacAnalysis') {
-    systemPrompt = zodiacAnalysisSystemPrompt;
+    systemPrompt = zodiacAnalysisPrompts.system;
     console.log('🎯 检测到生肖分析请求，已替换系统提示词');
   } else {
     console.log('⚠️ 未能识别具体业务类型，使用原始系统提示词');
@@ -309,8 +331,8 @@ function buildNameAnalysisRequest(baseRequest, params) {
 
   console.log('🎯 构建名字分析请求，参数:', params);
 
-  // 使用现有的系统提示词和模板
-  const systemPrompt = nameAnalysisSystemPrompt;
+  // 🔒 使用 promptTemplates.js 中的提示词
+  const systemPrompt = nameAnalysisPrompts.system;
   const templateParams = { name, birthDate };
   const userPrompt = locale === 'zh'
     ? nameAnalysisPrompts.zh(templateParams)
@@ -339,8 +361,8 @@ function buildZodiacAnalysisRequest(baseRequest, params) {
 
   console.log('🎯 构建生肖分析请求，参数:', params);
 
-  // 使用现有的系统提示词和模板
-  const systemPrompt = zodiacAnalysisSystemPrompt;
+  // 🔒 使用 promptTemplates.js 中的提示词
+  const systemPrompt = zodiacAnalysisPrompts.system;
   const templateParams = { birthYear };
   const userPrompt = locale === 'zh'
     ? zodiacAnalysisPrompts.zh(templateParams)
@@ -361,14 +383,18 @@ function buildZodiacAnalysisRequest(baseRequest, params) {
 }
 
 function buildCharacterAnalysisRequest(baseRequest, params) {
-  const { character, locale = 'zh' } = params;
+  const { character } = params;
   if (!character) return null;
+
+  // 🔒 使用 promptTemplates.js 中的提示词
+  const systemPrompt = characterAnalysisPrompts.system;
+  const userPrompt = characterAnalysisPrompts.user(character);
 
   return {
     ...baseRequest,
     messages: [
-      { role: 'system', content: '你是一个专业的汉字分析师。' },
-      { role: 'user', content: `请分析汉字：${character}` }
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: userPrompt }
     ],
     temperature: 0.2,
     max_tokens: 1000,
@@ -389,39 +415,9 @@ function buildNameTranslationRequest(baseRequest, params) {
 
   console.log('🎯 构建名字翻译请求，参数:', params);
 
-  const systemPrompt = "你是一个专业的名字翻译专家，精通多种语言的名字翻译，能够准确地将外文名字翻译成中文，同时保持发音的准确性和文化的适应性。";
-
-  const languageNames = {
-    en: '英文',
-    ja: '日文',
-    ko: '韩文',
-    fr: '法文',
-    de: '德文',
-    ru: '俄文',
-    es: '西班牙文',
-    ar: '阿拉伯文',
-    pt: '葡萄牙文',
-    it: '意大利文',
-    hi: '印地文'
-  };
-
-  const userPrompt = `请将${languageNames[sourceLanguage] || sourceLanguage}名字"${name}"翻译成中文，
-使用音义结合（同时考虑发音和含义）方法，并以JSON格式返回结果。
-
-请提供3-5个翻译选项，每个选项包含：
-1. 翻译后的中文名字
-2. 拼音发音指南
-3. 详细的含义解释
-4. 文化适应性说明
-5. 推荐度评分(1-10)
-
-请确保翻译结果：
-- 发音接近原名
-- 具有美好的中文含义
-- 符合中文命名习惯
-- 考虑性别特征
-
-返回JSON格式，包含translations数组。`;
+  // 🔒 使用 promptTemplates.js 中的提示词
+  const systemPrompt = nameTranslationPrompts.system;
+  const userPrompt = nameTranslationPrompts.user.replace('{name}', name);
 
   console.log('✅ 生成的用户提示词:', userPrompt.substring(0, 200) + '...');
 
@@ -450,25 +446,9 @@ function buildChineseToEnglishRequest(baseRequest, params) {
 
   console.log('🎯 构建中文转英文请求，参数:', params);
 
-  const systemPrompt = "你是一个专业的中英文名字翻译专家，精通中文名字的英文化处理，能够准确地将中文名字转换为合适的英文名字，同时保持发音的准确性和文化的适应性。";
-
-  const userPrompt = `请将中文名字"${name}"转换为英文名字，并以JSON格式返回结果。
-
-请提供3-5个转换选项，每个选项包含：
-1. 英文名字
-2. 发音指南（音标或拼音）
-3. 转换方法说明（音译/意译/组合）
-4. 文化背景解释
-5. 适用场合建议
-6. 推荐度评分(1-10)
-
-请确保转换结果：
-- 发音接近中文原名
-- 符合英文命名习惯
-- 易于外国人理解和发音
-- 保持原名的文化特色
-
-返回JSON格式，包含translations数组。`;
+  // 🔒 使用 promptTemplates.js 中的提示词
+  const systemPrompt = chineseToEnglishPrompts.system;
+  const userPrompt = chineseToEnglishPrompts.user(name);
 
   console.log('✅ 生成的用户提示词:', userPrompt.substring(0, 200) + '...');
 
@@ -484,16 +464,20 @@ function buildChineseToEnglishRequest(baseRequest, params) {
   };
 }
 
-// 保留原有的通用翻译函数作为备用
+// 通用翻译函数
 function buildTranslationRequest(baseRequest, params) {
   const { text, fromLang = 'auto', toLang = 'zh' } = params;
   if (!text) return null;
 
+  // 🔒 使用 promptTemplates.js 中的提示词
+  const systemPrompt = generalTranslationPrompts.system;
+  const userPrompt = generalTranslationPrompts.user(text, fromLang, toLang);
+
   return {
     ...baseRequest,
     messages: [
-      { role: 'system', content: '你是一个专业的翻译助手。' },
-      { role: 'user', content: `请将"${text}"从${fromLang}翻译为${toLang}` }
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: userPrompt }
     ],
     temperature: 0.3,
     max_tokens: 800,
@@ -642,6 +626,46 @@ function validateRequestSecurity(requestBody) {
   }
 
   return { isValid: true };
+}
+
+/**
+ * 从出生日期提取生肖
+ */
+function extractZodiacFromDate(birthDateTime) {
+  if (!birthDateTime) return '未知';
+
+  try {
+    // 简单的生肖计算（基于公历年份）
+    const year = parseInt(birthDateTime.match(/(\d{4})/)?.[1]);
+    if (!year) return '未知';
+
+    const zodiacs = ['鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪'];
+    const zodiacIndex = (year - 1900) % 12;
+    return zodiacs[zodiacIndex] || '未知';
+  } catch (error) {
+    console.log('提取生肖时出错:', error);
+    return '未知';
+  }
+}
+
+/**
+ * 从出生日期提取农历日期（简化版）
+ */
+function extractLunarDate(birthDateTime) {
+  if (!birthDateTime) return '未知';
+
+  try {
+    // 简化处理，实际项目中应该使用专业的农历转换库
+    const match = birthDateTime.match(/(\d{4})[-年](\d{1,2})[-月](\d{1,2})/);
+    if (match) {
+      const [, year, month, day] = match;
+      return `农历${year}年${month}月${day}日`;
+    }
+    return birthDateTime;
+  } catch (error) {
+    console.log('提取农历日期时出错:', error);
+    return '未知';
+  }
 }
 
 // 启动服务器

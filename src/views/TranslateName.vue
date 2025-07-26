@@ -145,7 +145,7 @@ import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { message } from 'ant-design-vue';
 import { translateName } from '@/services/openaiService';
 import * as openaiService from '@/services/openaiService';
-import { nameTranslationPrompts } from '@/services/promptTemplates';
+// 移除了对 promptTemplates 的引用，现在提示词在后端保密处理
 import LoadingIndicator from '@/components/LoadingIndicator.vue';
 import { useI18n } from 'vue-i18n';
 import aiConfig from '@/config/aiConfig';
@@ -482,16 +482,22 @@ export default {
           return;
         }
 
-        // 直接使用解析后的数据，进行简单的字段映射
+        // 直接使用解析后的数据，进行详细的字段映射
         const normalizedResults = parsedData.translations.map(item => {
           if (!item) return null;
 
-          return {
-            translate: item.translate || item.translatedName || item.characters || item.name || item.chineseName || '',
+          log('🔄 处理翻译项:', item);
+
+          const normalized = {
+            translate: item.translate || item.translatedName || item.characters || item.name || item.chineseName || item.chinese_name || '',
             pronunciation: item.pronunciation || item.pronunciationGuide || item.pinyin || '',
             explanation: item.explanation || item.meaning || item.description || '',
-            cultural: item.cultural || item.culturalMeaning || item.culture || ''
+            cultural: item.cultural || item.culturalMeaning || item.culture || item.cultural_adaptability || '',
+            score: item.score || item.recommendation_score || 0
           };
+
+          log('✅ 标准化后的翻译项:', normalized);
+          return normalized;
         }).filter(item => item && item.translate); // 过滤掉空项和没有翻译名称的项
 
         // 如果没有有效结果，使用后备方案

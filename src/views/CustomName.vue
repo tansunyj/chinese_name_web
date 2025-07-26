@@ -427,8 +427,8 @@
 import { reactive, ref, computed, onMounted, watch } from 'vue';
 import LoadingIndicator from '@/components/LoadingIndicator.vue';
 import { useI18n } from 'vue-i18n';
-import { nameGenerationPrompts } from '@/services/promptTemplates';
-import { nameGenerationSystemPrompt } from '@/config/systemPrompts';
+// 提示词已完全迁移到后端 api/promptTemplates.js，前端不再需要导入
+// import { nameGenerationSystemPrompt } from '@/config/systemPrompts'; // 已废弃
 import aiConfig from '@/config/aiConfig';
 import chineseSurnames from '@/data/ChineseSurnames.js';
 import openaiService from '@/services/openaiService';
@@ -780,16 +780,20 @@ export default {
         if (parsedData && parsedData.names && Array.isArray(parsedData.names) && parsedData.names.length > 0) {
           log('成功获取名字数据:', parsedData.names);
 
-          // 确保所有结果都使用正确计算的农历日期信息
+          // 转换AI返回的数据格式为前端期望的格式
           this.results = parsedData.names.map((name, idx) => {
-            // 使用我们计算的正确农历信息替换生成的信息
+            // 处理不同的数据格式
+            const normalizedName = this.normalizeNameData(name);
+
             return {
-              ...name,
+              ...normalizedName,
               birthInfo: correctBirthInfo, // 强制使用我们正确计算的农历日期
               showAnalysis: true, // 全部展开
               activeTab: 0
             };
           });
+
+          log('转换后的结果数据:', this.results);
 
           // 滚动到结果区域
           this.scrollToResults();
@@ -843,7 +847,93 @@ export default {
         this.isLoading = false;
       }
     },
-    
+
+    // 标准化AI返回的名字数据格式
+    normalizeNameData(nameData) {
+      log('🔄 标准化名字数据:', nameData);
+
+      // 处理不同的数据格式
+      let normalized = {};
+
+      // 处理新格式 (fullName + analysis)
+      if (nameData.fullName && nameData.analysis) {
+        normalized = {
+          characters: nameData.fullName,
+          pinyin: this.generatePinyin(nameData.fullName), // 生成拼音
+          explanation: this.extractExplanation(nameData.analysis),
+          cultural: nameData.analysis.culturalBackground || '',
+          fiveElements: 'Wood', // 默认值
+          score: 85, // 默认评分
+          analysis: nameData.analysis
+        };
+      }
+      // 处理标准格式 (characters + pinyin)
+      else if (nameData.characters) {
+        normalized = {
+          characters: nameData.characters,
+          pinyin: nameData.pinyin || this.generatePinyin(nameData.characters),
+          explanation: nameData.explanation || '',
+          cultural: nameData.cultural || '',
+          fiveElements: nameData.fiveElements || 'Wood',
+          score: nameData.score || 85,
+          analysis: nameData.analysis || {}
+        };
+      }
+      // 处理其他格式
+      else {
+        logWarn('⚠️ 未知的名字数据格式，使用默认处理:', nameData);
+        normalized = {
+          characters: nameData.name || nameData.fullName || '未知',
+          pinyin: nameData.pinyin || this.generatePinyin(nameData.name || nameData.fullName || '未知'),
+          explanation: nameData.explanation || nameData.meaning || '暂无解释',
+          cultural: nameData.cultural || nameData.culturalBackground || '',
+          fiveElements: nameData.fiveElements || 'Wood',
+          score: nameData.score || 85,
+          analysis: nameData.analysis || {}
+        };
+      }
+
+      // 确保pinyin字段不为空且格式正确
+      if (!normalized.pinyin || normalized.pinyin.trim() === '') {
+        normalized.pinyin = this.generatePinyin(normalized.characters);
+      }
+
+      log('✅ 标准化后的数据:', normalized);
+      return normalized;
+    },
+
+    // 生成拼音（简单实现）
+    generatePinyin(characters) {
+      if (!characters) return '';
+
+      // 简单的拼音映射（实际项目中应该使用专业的拼音库）
+      const pinyinMap = {
+        '胡': 'hú', '智': 'zhì', '创': 'chuàng', '思': 'sī', '乐': 'lè',
+        '哲': 'zhé', '新': 'xīn', '明': 'míng', '轩': 'xuān', '宇': 'yǔ',
+        '涵': 'hán', '博': 'bó', '文': 'wén', '武': 'wǔ', '雅': 'yǎ',
+        '静': 'jìng', '美': 'měi', '丽': 'lì', '华': 'huá', '强': 'qiáng'
+      };
+
+      const pinyin = characters.split('').map(char => pinyinMap[char] || char).join(' ');
+      log('🔤 生成拼音:', characters, '->', pinyin);
+      return pinyin;
+    },
+
+    // 从analysis对象中提取解释
+    extractExplanation(analysis) {
+      if (!analysis) return '';
+
+      if (analysis.meaning) {
+        // 处理meaning对象格式
+        const meanings = Object.entries(analysis.meaning)
+          .map(([char, meaning]) => `${char}: ${meaning}`)
+          .join('；');
+        return meanings;
+      }
+
+      return analysis.explanation || analysis.culturalBackground || '';
+    },
+
     // 从非结构化文本中提取名字数据
     extractStructuredData(text) {
       try {

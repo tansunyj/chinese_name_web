@@ -18,12 +18,16 @@ const logError = (...args) => {
   }
 };
 
-// 创建axios实例 - 直接访问AI接口
+// 注意：此文件已废弃，不再直接访问AI接口
+// 所有AI请求现在都通过代理服务器处理，以确保API密钥安全
+// 如果需要AI功能，请使用 aiConfig.baseConfig.proxyUrl
+
+// 创建代理客户端 - 不包含敏感信息
 const aiClient = axios.create({
-  baseURL: aiConfig.baseConfig.apiUrl,
+  baseURL: '/api/openai', // 使用代理端点
   headers: {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${aiConfig.baseConfig.apiKey}`
+    'Content-Type': 'application/json'
+    // 移除了Authorization头，现在由后端处理
   },
   timeout: aiConfig.baseConfig.timeout
 });

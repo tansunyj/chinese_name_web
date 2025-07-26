@@ -1,6 +1,17 @@
 // Vercel Serverless Function作为OpenAI API的代理
 // 该函数将在Vercel平台上运行，解决跨域问题
 
+// 导入完整的提示词模板
+import {
+  nameGenerationPrompts,
+  nameTranslationPrompts,
+  nameAnalysisPrompts,
+  zodiacAnalysisPrompts,
+  chineseToEnglishPrompts,
+  characterAnalysisPrompts,
+  generalTranslationPrompts
+} from './promptTemplates.js';
+
 // 判断当前是否为生产环境
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -401,40 +412,35 @@ function buildNameGenerationRequest(baseRequest, params) {
 
   log('🎯 构建名字生成请求，参数:', params);
 
-  // 生产环境使用内联的系统提示词
-  const systemPrompt = "你是一位精通中国传统文化和姓名学的专家，擅长根据用户需求创建有文化内涵的中文名字。请根据用户提供的信息，生成具有深度含义和文化背景的中文名字。";
+  // 🔒 使用 promptTemplates.js 中的融合系统提示词
+  let systemPrompt = nameGenerationPrompts.system;
 
-  // 生产环境使用内联的提示词模板
-  const genderText = gender === '男' ? '男性' : gender === '女' ? '女性' : '中性';
-  const traits = Array.isArray(characteristics) ? characteristics.join('、') : (characteristics || '传统');
-  const meaningText = desiredMeaning || '';
+  // 构建参数对象
+  const templateParams = {
+    gender: gender === '男' ? 'male' : gender === '女' ? 'female' : 'neutral',
+    lastName: inputName,
+    characteristics: Array.isArray(characteristics) ? characteristics : [characteristics || '传统'],
+    desiredMeaning: desiredMeaning || '',
+    birthDateTime: birthDateTime || ''
+  };
 
-  const userPrompt = locale === 'zh'
-    ? `请为一位${genderText}用户创建三个中文名字。
-姓氏: ${inputName}
-性格特点: ${traits}
-期望含义: ${meaningText}
-出生信息: ${birthDateTime || ''}
+  // 替换系统提示词中的占位符
+  const genderText = templateParams.gender === 'male' ? '男性' : templateParams.gender === 'female' ? '女性' : '中性';
+  const characteristicsText = templateParams.characteristics.join('、');
+  const zodiac = extractZodiacFromDate(templateParams.birthDateTime) || '未知';
+  const lunarDate = extractLunarDate(templateParams.birthDateTime) || '未知';
 
-请创建三个独特的中文名字，要求：
-1. 名字符合中国传统命名习惯，音律和谐
-2. 提供每个名字的中文字符、拼音标注
-3. 详细解释每个字的含义和文化背景
-4. 分析名字与出生八字的匹配度
-5. 提供五行分析和姓名学评分
-6. 每个字的五行属性
-7. 各项评分子项(五行八字、音律字形、格局寓意、生肖属相、生辰八字、国学应用)
-8. 各分析项目的详细解释(八字用字分析、五行用字分析、周易用字分析、生肖用字分析、姓名分析)
-9. 每个字的文化意义和性格特点对应
+  systemPrompt = systemPrompt
+    .replace(/\{\{GENDER_TEXT\}\}/g, genderText)
+    .replace(/\{\{LAST_NAME\}\}/g, templateParams.lastName)
+    .replace(/\{\{CHARACTERISTICS\}\}/g, characteristicsText)
+    .replace(/\{\{DESIRED_MEANING\}\}/g, templateParams.desiredMeaning)
+    .replace(/\{\{ZODIAC\}\}/g, zodiac)
+    .replace(/\{\{LUNAR_DATE\}\}/g, lunarDate);
 
-请以JSON格式返回结果。`
-    : `Please create three Chinese names for a ${gender || 'neutral'} user.
-Last name: ${inputName}
-Personality traits: ${traits}
-Desired meaning: ${meaningText}
-Birth information: ${birthDateTime || ''}
+  // 使用简化的用户提示词
+  const userPrompt = nameGenerationPrompts.user(templateParams);
 
-Please create three unique Chinese names with detailed analysis and return in JSON format.`;
 
   log('✅ 生成的用户提示词:', userPrompt.substring(0, 200) + '...');
 
@@ -460,31 +466,14 @@ function buildNameAnalysisRequest(baseRequest, params) {
     return null;
   }
 
-  const systemPrompt = locale === 'zh'
-    ? '你是一个专业的中文名字分析师。请详细分析中文名字的含义、五行、笔画等信息。'
-    : 'You are a professional Chinese name analyst. Please analyze Chinese names in detail including meanings, five elements, strokes, etc.';
+  // 🔒 使用 promptTemplates.js 中的系统提示词
+  const systemPrompt = nameAnalysisPrompts.system;
 
+  // 🔒 使用 promptTemplates.js 中的用户提示词
+  const templateParams = { name, birthDate };
   const userPrompt = locale === 'zh'
-    ? `请详细分析这个中文名字：${name}
-出生日期：${birthDate || '未提供'}
-
-请分析：
-1. 笔画数和五行属性
-2. 音义分析
-3. 姓氏和名字分别的含义
-4. 与生日的匹配度
-
-请返回JSON格式的分析结果。`
-    : `Please analyze this Chinese name in detail: ${name}
-Birth date: ${birthDate || 'Not provided'}
-
-Please analyze:
-1. Stroke count and five elements
-2. Sound and meaning analysis
-3. Meanings of surname and given name
-4. Compatibility with birth date
-
-Please return analysis results in JSON format.`;
+    ? nameAnalysisPrompts.zh(templateParams)
+    : nameAnalysisPrompts.en(templateParams);
 
   return {
     ...baseRequest,
@@ -508,27 +497,13 @@ function buildZodiacAnalysisRequest(baseRequest, params) {
     return null;
   }
 
-  const systemPrompt = locale === 'zh'
-    ? '你是一个专业的中国生肖分析师。请根据出生年份分析对应的生肖特点。'
-    : 'You are a professional Chinese zodiac analyst. Please analyze zodiac characteristics based on birth year.';
+  // 🔒 使用 promptTemplates.js 中的提示词
+  const systemPrompt = zodiacAnalysisPrompts.system;
 
+  const templateParams = { birthYear };
   const userPrompt = locale === 'zh'
-    ? `请根据农历出生年份${birthYear}详细分析对应的中国生肖，包括：
-1. 生肖特点
-2. 五行属性
-3. 性格特点
-4. 相配生肖
-5. 幸运数字和颜色
-
-请返回JSON格式的分析结果。`
-    : `Please analyze the Chinese zodiac for lunar birth year ${birthYear} in detail, including:
-1. Zodiac characteristics
-2. Five elements attributes
-3. Personality traits
-4. Compatible zodiac signs
-5. Lucky numbers and colors
-
-Please return analysis results in JSON format.`;
+    ? zodiacAnalysisPrompts.zh(templateParams)
+    : zodiacAnalysisPrompts.en(templateParams);
 
   return {
     ...baseRequest,
@@ -552,31 +527,9 @@ function buildCharacterAnalysisRequest(baseRequest, params) {
     return null;
   }
 
-  const systemPrompt = locale === 'zh'
-    ? '你是一个专业的汉字分析师。请详细分析汉字的笔顺、结构、含义等信息。'
-    : 'You are a professional Chinese character analyst. Please analyze characters in detail including stroke order, structure, meanings, etc.';
-
-  const userPrompt = locale === 'zh'
-    ? `请详细分析这个汉字：${character}
-
-请分析：
-1. 笔画数和笔顺
-2. 字体结构
-3. 五行属性
-4. 字义和文化背景
-5. 常用词组
-
-请返回JSON格式的分析结果。`
-    : `Please analyze this Chinese character in detail: ${character}
-
-Please analyze:
-1. Stroke count and stroke order
-2. Character structure
-3. Five elements attribute
-4. Meaning and cultural background
-5. Common word combinations
-
-Please return analysis results in JSON format.`;
+  // 🔒 使用 promptTemplates.js 中的提示词
+  const systemPrompt = characterAnalysisPrompts.system;
+  const userPrompt = characterAnalysisPrompts.user(character);
 
   return {
     ...baseRequest,
@@ -600,15 +553,9 @@ function buildTranslationRequest(baseRequest, params) {
     return null;
   }
 
-  const systemPrompt = locale === 'zh'
-    ? '你是一个专业的翻译助手。请准确翻译用户提供的文本。'
-    : 'You are a professional translation assistant. Please accurately translate the text provided by the user.';
-
-  const userPrompt = `请将以下文本从${fromLang}翻译为${toLang}：
-
-${text}
-
-请返回JSON格式的翻译结果，包含原文、译文和解释。`;
+  // 🔒 使用 promptTemplates.js 中的提示词
+  const systemPrompt = generalTranslationPrompts.system;
+  const userPrompt = generalTranslationPrompts.user(text, fromLang, toLang);
 
   return {
     ...baseRequest,
@@ -620,6 +567,152 @@ ${text}
     max_tokens: 800,
     response_format: { type: 'json_object' }
   };
+}
+
+/**
+ * 从出生日期提取生肖
+ */
+function extractZodiacFromDate(birthDateTime) {
+  if (!birthDateTime) return '未知';
+
+  try {
+    // 简单的生肖计算（基于公历年份）
+    const year = parseInt(birthDateTime.match(/(\d{4})/)?.[1]);
+    if (!year) return '未知';
+
+    const zodiacs = ['鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪'];
+    const zodiacIndex = (year - 1900) % 12;
+    return zodiacs[zodiacIndex] || '未知';
+  } catch (error) {
+    log('提取生肖时出错:', error);
+    return '未知';
+  }
+}
+
+/**
+ * 从出生日期提取农历日期（简化版）
+ */
+function extractLunarDate(birthDateTime) {
+  if (!birthDateTime) return '未知';
+
+  try {
+    // 简化处理，实际项目中应该使用专业的农历转换库
+    const match = birthDateTime.match(/(\d{4})[-年](\d{1,2})[-月](\d{1,2})/);
+    if (match) {
+      const [, year, month, day] = match;
+      return `农历${year}年${month}月${day}日`;
+    }
+    return birthDateTime;
+  } catch (error) {
+    log('提取农历日期时出错:', error);
+    return '未知';
+  }
+}
+
+/**
+ * 从用户消息中提取名字生成参数
+ */
+function extractNameGenerationParams(userContent) {
+  try {
+    log('🔍 开始提取名字生成参数，用户内容:', userContent);
+
+    // 初始化参数对象
+    const params = {
+      gender: 'neutral',
+      lastName: '',
+      characteristics: ['传统'],
+      desiredMeaning: '',
+      birthDateTime: ''
+    };
+
+    // 提取姓氏 - 匹配多种模式
+    const lastNamePatterns = [
+      /姓氏[：:]\s*([^\s，,。.]+)/,
+      /姓[：:]\s*([^\s，,。.]+)/,
+      /Last\s*name[：:]\s*([^\s，,。.]+)/i,
+      /Surname[：:]\s*([^\s，,。.]+)/i,
+      /为.*?([^\s，,。.]{1,2}).*?用户/,
+      /给.*?([^\s，,。.]{1,2}).*?起名/
+    ];
+
+    for (const pattern of lastNamePatterns) {
+      const match = userContent.match(pattern);
+      if (match && match[1]) {
+        params.lastName = match[1].trim();
+        break;
+      }
+    }
+
+    // 提取性别
+    if (/男性|男|male/i.test(userContent)) {
+      params.gender = 'male';
+    } else if (/女性|女|female/i.test(userContent)) {
+      params.gender = 'female';
+    }
+
+    // 提取性格特点
+    const characteristicsPatterns = [
+      /性格特点[：:]\s*([^。.]+)/,
+      /特点[：:]\s*([^。.]+)/,
+      /性格[：:]\s*([^。.]+)/,
+      /Personality[：:]\s*([^。.]+)/i,
+      /traits[：:]\s*([^。.]+)/i
+    ];
+
+    for (const pattern of characteristicsPatterns) {
+      const match = userContent.match(pattern);
+      if (match && match[1]) {
+        params.characteristics = match[1].split(/[，,、]/).map(s => s.trim()).filter(s => s);
+        break;
+      }
+    }
+
+    // 提取期望含义
+    const meaningPatterns = [
+      /期望含义[：:]\s*([^。.]+)/,
+      /含义[：:]\s*([^。.]+)/,
+      /寓意[：:]\s*([^。.]+)/,
+      /Meaning[：:]\s*([^。.]+)/i,
+      /希望.*?([^。.]+)/
+    ];
+
+    for (const pattern of meaningPatterns) {
+      const match = userContent.match(pattern);
+      if (match && match[1]) {
+        params.desiredMeaning = match[1].trim();
+        break;
+      }
+    }
+
+    // 提取出生信息
+    const birthPatterns = [
+      /出生[：:]?\s*(\d{4}[-年]\d{1,2}[-月]\d{1,2}[日]?)/,
+      /生日[：:]?\s*(\d{4}[-年]\d{1,2}[-月]\d{1,2}[日]?)/,
+      /Birth[：:]?\s*(\d{4}[-/]\d{1,2}[-/]\d{1,2})/i,
+      /(\d{4}[-年]\d{1,2}[-月]\d{1,2}[日]?)/
+    ];
+
+    for (const pattern of birthPatterns) {
+      const match = userContent.match(pattern);
+      if (match && match[1]) {
+        params.birthDateTime = match[1].trim();
+        break;
+      }
+    }
+
+    // 验证是否提取到了关键信息
+    if (!params.lastName) {
+      log('⚠️ 未能提取到姓氏信息');
+      return null;
+    }
+
+    log('✅ 成功提取参数:', params);
+    return params;
+
+  } catch (error) {
+    log('❌ 提取名字生成参数时出错:', error);
+    return null;
+  }
 }
 
 /**
@@ -644,30 +737,76 @@ function buildCustomRequest(baseRequest, params) {
     return null;
   }
 
-  // 智能识别业务类型并替换系统提示词
+  // 智能识别业务类型并替换系统提示词和用户提示词
   const userMessage = messages.find(msg => msg.role === 'user');
   const detectedType = detectBusinessType(userMessage?.content || '');
 
   let systemPrompt = messages.find(msg => msg.role === 'system')?.content || '';
+  let userPrompt = userMessage?.content || '';
 
-  // 根据检测到的业务类型替换系统提示词
+  // 🔍 详细调试日志
+  log('🔍 buildCustomRequest 调试信息:');
+  log('📝 原始用户消息:', userPrompt);
+  log('🎯 检测到的业务类型:', detectedType);
+  log('📋 原始系统提示词长度:', systemPrompt.length);
+  log('📋 原始系统提示词前100字符:', systemPrompt.substring(0, 100));
+
+  // 根据检测到的业务类型替换提示词 - 🔒 使用 promptTemplates.js 中的完整专业提示词
   if (detectedType === 'nameGeneration') {
-    systemPrompt = "你是一位精通中国传统文化和姓名学的专家，擅长根据用户需求创建有文化内涵的中文名字。请根据用户提供的信息，生成具有深度含义和文化背景的中文名字。";
-    log('🎯 检测到名字生成请求，已替换系统提示词');
+    log('🎯 检测到名字生成请求，开始替换为完整的专业提示词');
+
+    // 🔒 强制使用完整的系统提示词（不管原始系统提示词是什么）
+    systemPrompt = nameGenerationPrompts.system;
+
+    // 从用户消息中提取参数来构建完整的名字生成提示词
+    const extractedParams = extractNameGenerationParams(userPrompt);
+    if (extractedParams) {
+      // 替换系统提示词中的占位符
+      const genderText = extractedParams.gender === 'male' ? '男性' : extractedParams.gender === 'female' ? '女性' : '中性';
+      const characteristicsText = extractedParams.characteristics.join('、');
+      const zodiac = extractZodiacFromDate(extractedParams.birthDateTime) || '未知';
+      const lunarDate = extractLunarDate(extractedParams.birthDateTime) || '未知';
+
+      systemPrompt = systemPrompt
+        .replace(/\{\{GENDER_TEXT\}\}/g, genderText)
+        .replace(/\{\{LAST_NAME\}\}/g, extractedParams.lastName || '未知')
+        .replace(/\{\{CHARACTERISTICS\}\}/g, characteristicsText)
+        .replace(/\{\{DESIRED_MEANING\}\}/g, extractedParams.desiredMeaning || '美好寓意')
+        .replace(/\{\{ZODIAC\}\}/g, zodiac)
+        .replace(/\{\{LUNAR_DATE\}\}/g, lunarDate);
+
+      // 使用简化的用户提示词
+      userPrompt = nameGenerationPrompts.user(extractedParams);
+      log('✅ 已替换为完整的专业提示词');
+      log('📝 提取的参数:', extractedParams);
+      log('🔍 替换后的系统提示词长度:', systemPrompt.length);
+    } else {
+      log('⚠️ 无法提取名字生成参数，但仍使用完整系统提示词');
+      // 即使无法提取参数，也要使用完整的系统提示词，只是用默认值替换占位符
+      systemPrompt = systemPrompt
+        .replace(/\{\{GENDER_TEXT\}\}/g, '用户')
+        .replace(/\{\{LAST_NAME\}\}/g, '未知')
+        .replace(/\{\{CHARACTERISTICS\}\}/g, '传统')
+        .replace(/\{\{DESIRED_MEANING\}\}/g, '美好寓意')
+        .replace(/\{\{ZODIAC\}\}/g, '未知')
+        .replace(/\{\{LUNAR_DATE\}\}/g, '未知');
+    }
   } else if (detectedType === 'nameAnalysis') {
-    systemPrompt = "你是一位专业的中文姓名分析师，精通五行八字、音律字形、传统文化等姓名学知识。请对用户提供的中文名字进行全面深入的分析。";
+    systemPrompt = nameAnalysisPrompts.system;
     log('🎯 检测到名字分析请求，已替换系统提示词');
   } else if (detectedType === 'zodiacAnalysis') {
-    systemPrompt = "你是一位精通中国传统生肖文化的专家，对十二生肖的特点、五行属性、性格分析等有深入研究。请根据用户提供的信息进行专业的生肖分析。";
+    systemPrompt = zodiacAnalysisPrompts.system;
     log('🎯 检测到生肖分析请求，已替换系统提示词');
   } else {
-    log('⚠️ 未能识别具体业务类型，使用原始系统提示词');
+    log('⚠️ 未能识别具体业务类型，使用原始提示词');
   }
 
-  // 构建新的messages数组，替换系统提示词
+  // 构建新的messages数组，替换系统提示词和用户提示词
   const updatedMessages = messages.map(msg => {
     if (msg.role === 'system') {
       return { ...msg, content: systemPrompt };
+    } else if (msg.role === 'user' && detectedType === 'nameGeneration') {
+      return { ...msg, content: userPrompt };
     }
     return msg;
   });
@@ -690,7 +829,7 @@ function buildCustomRequest(baseRequest, params) {
  * 构建名字翻译请求（外文名转中文名）- 生产环境
  */
 function buildNameTranslationRequest(baseRequest, params) {
-  const { name, sourceLanguage, targetLanguage = 'zh', method = 'combined', locale = 'zh' } = params;
+  const { name } = params;
 
   if (!name) {
     log('❌ 名字翻译请求缺少必需参数: name');
@@ -699,39 +838,10 @@ function buildNameTranslationRequest(baseRequest, params) {
 
   log('🎯 构建名字翻译请求，参数:', params);
 
-  const systemPrompt = "你是一个专业的名字翻译专家，精通多种语言的名字翻译，能够准确地将外文名字翻译成中文，同时保持发音的准确性和文化的适应性。";
+  // 🔒 使用 promptTemplates.js 中的完整翻译提示词
+  const systemPrompt = nameTranslationPrompts.system;
 
-  const languageNames = {
-    en: '英文',
-    ja: '日文',
-    ko: '韩文',
-    fr: '法文',
-    de: '德文',
-    ru: '俄文',
-    es: '西班牙文',
-    ar: '阿拉伯文',
-    pt: '葡萄牙文',
-    it: '意大利文',
-    hi: '印地文'
-  };
-
-  const userPrompt = `请将${languageNames[sourceLanguage] || sourceLanguage}名字"${name}"翻译成中文，
-使用音义结合（同时考虑发音和含义）方法，并以JSON格式返回结果。
-
-请提供3-5个翻译选项，每个选项包含：
-1. 翻译后的中文名字
-2. 拼音发音指南
-3. 详细的含义解释
-4. 文化适应性说明
-5. 推荐度评分(1-10)
-
-请确保翻译结果：
-- 发音接近原名
-- 具有美好的中文含义
-- 符合中文命名习惯
-- 考虑性别特征
-
-返回JSON格式，包含translations数组。`;
+  const userPrompt = nameTranslationPrompts.user.replace('{name}', name);
 
   log('✅ 生成的用户提示词:', userPrompt.substring(0, 200) + '...');
 
@@ -751,7 +861,7 @@ function buildNameTranslationRequest(baseRequest, params) {
  * 构建中文名转英文名请求 - 生产环境
  */
 function buildChineseToEnglishRequest(baseRequest, params) {
-  const { name, method = 'combined', locale = 'zh' } = params;
+  const { name } = params;
 
   if (!name) {
     log('❌ 中文转英文请求缺少必需参数: name');
@@ -760,25 +870,10 @@ function buildChineseToEnglishRequest(baseRequest, params) {
 
   log('🎯 构建中文转英文请求，参数:', params);
 
-  const systemPrompt = "你是一个专业的中英文名字翻译专家，精通中文名字的英文化处理，能够准确地将中文名字转换为合适的英文名字，同时保持发音的准确性和文化的适应性。";
+  // 🔒 使用 promptTemplates.js 中的提示词
+  const systemPrompt = chineseToEnglishPrompts.system;
 
-  const userPrompt = `请将中文名字"${name}"转换为英文名字，并以JSON格式返回结果。
-
-请提供3-5个转换选项，每个选项包含：
-1. 英文名字
-2. 发音指南（音标或拼音）
-3. 转换方法说明（音译/意译/组合）
-4. 文化背景解释
-5. 适用场合建议
-6. 推荐度评分(1-10)
-
-请确保转换结果：
-- 发音接近中文原名
-- 符合英文命名习惯
-- 易于外国人理解和发音
-- 保持原名的文化特色
-
-返回JSON格式，包含translations数组。`;
+  const userPrompt = chineseToEnglishPrompts.user(name);
 
   log('✅ 生成的用户提示词:', userPrompt.substring(0, 200) + '...');
 

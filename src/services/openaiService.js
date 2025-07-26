@@ -35,14 +35,20 @@ const logError = (...args) => {
  * @returns {Function} - 配置好的openai模型函数
  */
 const getModel = (modelName) => {
-  // 使用配置文件中的API密钥
-  const modelConfig = {
-    apiKey: aiConfig.baseConfig.apiKey,
-    // 只在开发环境中使用代理
-    baseURL: isDevelopment && aiConfig.baseConfig.useProxy ? aiConfig.baseConfig.proxyUrl : undefined
+  // 注意：此函数已废弃，不再直接访问OpenAI API
+  // 所有AI请求现在都通过代理服务器处理，以确保API密钥安全
+  console.warn('⚠️ getModel函数已废弃，请使用代理API: ' + aiConfig.baseConfig.proxyUrl);
+
+  // 返回一个空的模拟对象，避免错误
+  return {
+    chat: {
+      completions: {
+        create: () => {
+          throw new Error('直接OpenAI访问已禁用，请使用代理API');
+        }
+      }
+    }
   };
-  
-  return openai(modelName || aiConfig.models.default, modelConfig);
 };
 
 /**
