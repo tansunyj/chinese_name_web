@@ -170,7 +170,22 @@ function buildRequestByType(type, params, modelVersion) {
  * 🛡️ 安全验证函数：检查请求体是否包含敏感参数
  */
 function validateRequestSecurity(requestBody) {
-  // 危险参数列表 - 这些参数可能被恶意用户用来绕过限制
+  // 允许的业务参数列表 - 只有这些参数是合法的
+  const allowedBusinessParams = [
+    // 业务类型
+    'type',
+
+    // 名字生成相关参数
+    'inputName', 'gender', 'characteristics', 'desiredMeaning', 'birthDateTime',
+
+    // 名字翻译相关参数
+    'name', 'sourceLanguage', 'targetLanguage', 'method',
+
+    // 通用业务参数
+    'locale', 'language'
+  ];
+
+  // 危险参数列表 - 这些参数绝对不允许出现
   const dangerousParams = [
     // OpenAI API相关敏感参数
     'api_key', 'apiKey', 'api-key', 'openai_api_key', 'openaiApiKey',
@@ -179,8 +194,6 @@ function validateRequestSecurity(requestBody) {
 
     // 模型相关参数 - 防止指定昂贵模型
     'model', 'Model', 'MODEL', 'engine', 'Engine',
-    'gpt-4', 'gpt-4-turbo', 'gpt-4-32k', 'gpt-3.5-turbo-16k',
-    'claude', 'Claude', 'anthropic',
 
     // Token和成本相关参数
     'max_tokens', 'maxTokens', 'max-tokens', 'maximum_tokens',
@@ -215,11 +228,10 @@ function validateRequestSecurity(requestBody) {
     for (const [key, value] of Object.entries(obj)) {
       const currentPath = path ? `${path}.${key}` : key;
 
-      // 检查键名是否包含危险参数
+      // 检查键名是否为危险参数
       const lowerKey = key.toLowerCase();
       for (const dangerousParam of dangerousParams) {
-        if (lowerKey.includes(dangerousParam.toLowerCase()) ||
-            dangerousParam.toLowerCase().includes(lowerKey)) {
+        if (lowerKey === dangerousParam.toLowerCase()) {
           return {
             isValid: false,
             reason: `Dangerous parameter detected in key: ${currentPath}`,
