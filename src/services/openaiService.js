@@ -104,15 +104,41 @@ export const generateAIObject = async (options) => {
   }
   
   try {
-    // 只传递业务参数，不传递任何敏感配置
-    const requestParams = customRequestBody || {
-      messages: [
-        { role: 'system', content: '你是一个专业的结构化数据生成助手。请按照用户提供的JSON Schema格式返回数据。' },
-        { role: 'user', content: prompt }
-      ],
-      temperature: temperature,
-      response_format: { type: 'json_object' }
-    };
+    // 智能检测业务类型或使用自定义请求体
+    let requestParams;
+
+    if (customRequestBody) {
+      // 如果提供了自定义请求体，直接使用
+      requestParams = customRequestBody;
+    } else {
+      // 根据提示词内容智能检测业务类型
+      const detectedType = detectBusinessTypeFromPrompt(prompt);
+
+      if (detectedType === 'nameGeneration') {
+        // 如果检测到是名字生成，使用nameGeneration类型
+        // 从prompt中提取参数（这是一个简化的实现）
+        requestParams = {
+          type: 'nameGeneration',
+          inputName: extractInputNameFromPrompt(prompt),
+          gender: extractGenderFromPrompt(prompt),
+          style: extractStyleFromPrompt(prompt),
+          meaning: extractMeaningFromPrompt(prompt),
+          birthDate: extractBirthDateFromPrompt(prompt),
+          locale: 'zh'
+        };
+      } else {
+        // 其他情况使用custom类型
+        requestParams = {
+          type: 'custom',
+          messages: [
+            { role: 'system', content: '你是一个专业的结构化数据生成助手。请按照用户提供的JSON Schema格式返回数据。' },
+            { role: 'user', content: prompt }
+          ],
+          temperature: temperature,
+          response_format: { type: 'json_object' }
+        };
+      }
+    }
 
     let response;
 
@@ -122,9 +148,10 @@ export const generateAIObject = async (options) => {
     // 打印请求信息
     log('==== 发送到代理的请求 ====');
     log('代理URL:', proxyUrl);
+    log('请求类型:', requestParams.type);
     log('请求参数:', requestParams);
 
-    // 直接发送业务参数到后端，后端负责构建完整的OpenAI请求
+    // 发送类型化请求到后端，后端根据类型构建OpenAI请求
     response = await fetch(proxyUrl, {
       method: 'POST',
       headers: {
@@ -541,6 +568,90 @@ export const convertPinyinToChinese = async (options) => {
   });
 };
 
+/**
+ * 从提示词中智能检测业务类型
+ */
+function detectBusinessTypeFromPrompt(prompt) {
+  if (!prompt) return 'unknown';
+
+  const content = prompt.toLowerCase();
+
+  // 检测名字生成请求
+  if (content.includes('create') && content.includes('chinese names') ||
+      content.includes('生成') && content.includes('名字') ||
+      content.includes('请为') && content.includes('创建') ||
+      content.includes('姓氏') || content.includes('性格特点')) {
+    return 'nameGeneration';
+  }
+
+  return 'unknown';
+}
+
+/**
+ * 从提示词中提取输入名字
+ */
+function extractInputNameFromPrompt(prompt) {
+  // 匹配 "姓氏: xxx" 或 "Last name: xxx" 格式
+  const zhMatch = prompt.match(/姓氏[：:]\s*([^\n\r]+)/);
+  const enMatch = prompt.match(/Last name[：:]\s*([^\n\r]+)/);
+
+  if (zhMatch) return zhMatch[1].trim();
+  if (enMatch) return enMatch[1].trim();
+
+  return '';
+}
+
+/**
+ * 从提示词中提取性别
+ */
+function extractGenderFromPrompt(prompt) {
+  if (prompt.includes('男性') || prompt.includes('male')) return '男';
+  if (prompt.includes('女性') || prompt.includes('female')) return '女';
+  return '';
+}
+
+/**
+ * 从提示词中提取风格
+ */
+function extractStyleFromPrompt(prompt) {
+  // 匹配 "性格特点: xxx" 格式
+  const zhMatch = prompt.match(/性格特点[：:]\s*([^\n\r]+)/);
+  const enMatch = prompt.match(/Personality traits[：:]\s*([^\n\r]+)/);
+
+  if (zhMatch) return zhMatch[1].trim();
+  if (enMatch) return enMatch[1].trim();
+
+  return '传统';
+}
+
+/**
+ * 从提示词中提取期望含义
+ */
+function extractMeaningFromPrompt(prompt) {
+  // 匹配 "期望含义: xxx" 格式
+  const zhMatch = prompt.match(/期望含义[：:]\s*([^\n\r]+)/);
+  const enMatch = prompt.match(/Desired meaning[：:]\s*([^\n\r]+)/);
+
+  if (zhMatch) return zhMatch[1].trim();
+  if (enMatch) return enMatch[1].trim();
+
+  return '';
+}
+
+/**
+ * 从提示词中提取出生日期
+ */
+function extractBirthDateFromPrompt(prompt) {
+  // 匹配 "出生信息: xxx" 格式
+  const zhMatch = prompt.match(/出生信息[：:]\s*([^\n\r]+)/);
+  const enMatch = prompt.match(/Birth information[：:]\s*([^\n\r]+)/);
+
+  if (zhMatch) return zhMatch[1].trim();
+  if (enMatch) return enMatch[1].trim();
+
+  return '';
+}
+
 export default {
   generateAIText,
   generateAIObject,
@@ -549,4 +660,4 @@ export default {
   translateName,
   convertToPinyin,
   convertPinyinToChinese
-}; 
+};

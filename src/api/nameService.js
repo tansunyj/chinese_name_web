@@ -57,18 +57,18 @@ export const generateChineseName = async (params) => {
 // 使用AI代理生成中文名字
 async function generateChineseNameWithAI(params) {
   try {
-    // 只传递业务参数，后端负责构建完整请求
+    // 使用类型化的请求参数
     const requestParams = {
-      messages: [
-        { role: 'system', content: '你是一个专业的中文名字生成助手。' },
-        { role: 'user', content: createNameGenerationPrompt(params) }
-      ],
-      max_tokens: 1000,
-      temperature: 0.7,
-      top_p: 0.9
+      type: 'nameGeneration',
+      inputName: params.inputName || params.name,
+      gender: params.gender,
+      style: params.style,
+      meaning: params.meaning,
+      birthDate: params.birthDate,
+      locale: localStorage.getItem('locale') || 'zh'
     };
 
-    // 直接发送业务参数到后端
+    // 发送类型化请求到后端
     const response = await aiProxyClient.post('', requestParams);
 
     // 解析AI返回的文本内容为结构化数据
@@ -210,17 +210,14 @@ async function getZodiacWithAI(birthYear) {
   try {
     const locale = localStorage.getItem('locale') || 'zh';
 
-    // 只传递业务参数，后端负责构建完整请求
+    // 使用类型化的请求参数
     const requestParams = {
-      messages: [
-        { role: 'system', content: '你是一个专业的中国生肖分析师。' },
-        { role: 'user', content: `请根据农历出生年份${birthYear}详细分析对应的中国生肖，包括生肖特点、五行属性、性格特点、相配生肖，以及幸运数字和颜色。请使用${locale === 'zh' ? '中文' : '英文'}回答。` }
-      ],
-      max_tokens: 600,
-      temperature: 0.7
+      type: 'zodiacAnalysis',
+      birthYear: birthYear,
+      locale: locale
     };
 
-    // 直接发送业务参数到后端
+    // 发送类型化请求到后端
     await aiProxyClient.post('', requestParams);
     
     // 返回简化的模拟数据，实际应用需解析AI响应
@@ -283,23 +280,15 @@ async function analyzeNameWithAI(name, birthDate) {
   try {
     const locale = localStorage.getItem('locale') || 'zh';
 
-    // 只传递业务参数，后端负责构建完整请求
+    // 使用类型化的请求参数
     const requestParams = {
-      messages: [
-        { role: 'system', content: '你是一个专业的中文名字分析师。' },
-        { role: 'user', content: `请详细分析这个中文名字: ${name}。出生日期: ${birthDate}。
-分析应包括:
-1. 笔画数和五行属性
-2. 音义分析
-3. 姓氏和名字分别的含义
-4. 与生日的匹配度
-请使用${locale === 'zh' ? '中文' : '英文'}回答。` }
-      ],
-      max_tokens: 800,
-      temperature: 0.7
+      type: 'nameAnalysis',
+      name: name,
+      birthDate: birthDate,
+      locale: locale
     };
 
-    // 直接发送业务参数到后端
+    // 发送类型化请求到后端
     await aiProxyClient.post('', requestParams);
     
     // 简化处理，返回基本分析结果

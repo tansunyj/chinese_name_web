@@ -170,6 +170,7 @@ import { translateName } from '@/services/openaiService';
 import LoadingIndicator from '@/components/LoadingIndicator.vue';
 import { useI18n } from 'vue-i18n';
 import { chineseToEnglishNamePrompt } from '@/config/systemPrompts';
+import aiConfig from '@/config/aiConfig';
 
 // 判断当前是否为开发环境
 const isDevelopment = process.env.NODE_ENV === 'development';
@@ -255,44 +256,53 @@ export default {
       this.results = [];
       
       try {
-        // 调用API翻译名字
-        const response = await translateName({
-          name: this.formData.chineseName,
-          sourceLanguage: 'zh',
-          targetLanguage: 'en',
-          method: 'combined',
-          systemPrompt: chineseToEnglishNamePrompt,
-          options: {
-            includeExplanation: true,
-            includeCultural: true
-          }
+        // 使用新的类型化API直接发送请求
+        const response = await fetch(aiConfig.baseConfig.proxyUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            type: 'chineseToEnglish',
+            name: this.formData.chineseName,
+            method: 'combined',
+            locale: this.locale
+          })
         });
-        
-        if (response && response.object) {
-          let translationsData = response.object;
-          
-          // 如果返回的是OpenAI完整响应格式
-          if (translationsData.choices && translationsData.choices[0] && translationsData.choices[0].message) {
-            try {
-              const contentStr = translationsData.choices[0].message.content;
-              console.log('API返回的原始内容:', contentStr); // 添加调试日志
-              
-              const contentObj = JSON.parse(contentStr);
-              if (contentObj.translations) {
-                translationsData = contentObj.translations;
-              }
-            } catch (parseError) {
-              console.error('解析OpenAI响应内容失败:', parseError);
-              message.error(this.locale === 'zh' ? '解析翻译结果失败' : 'Failed to parse translation results');
-              return;
-            }
+
+        const responseData = await response.json();
+        console.log('AI原始响应:', responseData);
+
+        let parsedData = null;
+
+        // 处理OpenAI的响应格式：提取choices[0].message.content中的JSON字符串
+        if (responseData && responseData.choices && responseData.choices[0] && responseData.choices[0].message) {
+          try {
+            const contentString = responseData.choices[0].message.content;
+            console.log('提取的content字符串:', contentString);
+
+            // 解析JSON字符串
+            parsedData = JSON.parse(contentString);
+            console.log('解析后的JSON数据:', parsedData);
+          } catch (parseError) {
+            console.error('解析choices[0].message.content中的JSON失败:', parseError);
+            console.error('原始content内容:', responseData.choices[0].message.content);
           }
-          
+        }
+        // 如果不是OpenAI格式，直接使用responseData
+        else if (responseData && responseData.translations) {
+          parsedData = responseData;
+          console.log('直接使用响应数据:', parsedData);
+        }
+
+        if (parsedData && parsedData.translations) {
+          let translationsData = parsedData.translations;
+
           // 处理翻译数据
           if (Array.isArray(translationsData)) {
             console.log('处理数组数据:', translationsData); // 添加调试日志
             this.results = translationsData.map(item => ({
-              translated_name: item.translated_name || item.translated,
+              translated_name: item.translated_name || item.translated || item.name,
               pronunciation: item.pronunciation_guide || item.pronunciation,
               explanation: item.translation_explanation || item.explanation,
               cultural: item.cultural_background || item.cultural || ''

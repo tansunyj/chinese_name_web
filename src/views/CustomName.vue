@@ -711,100 +711,56 @@ export default {
         const correctBirthInfo = this.createBirthInfo(apiParams.birthDateTime);
         log("已计算的农历日期：", correctBirthInfo.lunarDate);
         
-        // 构建提示词
-        const promptTemplate = nameGenerationPrompts[this.locale] || nameGenerationPrompts.zh;
-        const prompt = promptTemplate(apiParams);
-        
-        // 定义JSON Schema，用于结构化返回数据
-        const nameSchema = {
-          type: "object",
-          properties: {
-            names: {
-              type: "array",
-              items: {
-                type: "object",
-                properties: {
-                  characters: { type: "string" },
-                  pinyin: { type: "string" },
-                  explanation: { type: "string" },
-                  cultural: { type: "string" },
-                  birthInfo: {
-                    type: "object",
-                    properties: {
-                      solarDate: { type: "string" },
-                      lunarDate: { type: "string" },
-                      zodiac: { type: "string" },
-                      eightChar: {
-                        type: "object",
-                        properties: {
-                          year: { type: "string" },
-                          month: { type: "string" },
-                          day: { type: "string" },
-                          hour: { type: "string" }
-                        }
-                      },
-                      fiveElements: {
-                        type: "object",
-                        properties: {
-                          year: { type: "string" },
-                          month: { type: "string" },
-                          day: { type: "string" },
-                          hour: { type: "string" }
-                        }
-                      }
-                    }
-                  },
-                  analysis: {
-                    type: "object",
-                    properties: {
-                      strokes: { type: "number" },
-                      characterElements: { type: "array", items: { type: "string" } },
-                      fiveElementsBalance: { type: "string" },
-                      soundMeaning: { type: "string" },
-                      compatibility: { type: "string" },
-                      score: { type: "number" },
-                      subscores: {
-                        type: "object",
-                        properties: {
-                          fiveElements: { type: "number" },
-                          soundShape: { type: "number" },
-                          meaning: { type: "number" },
-                          zodiac: { type: "number" },
-                          birthChart: { type: "number" },
-                          classical: { type: "number" }
-                        }
-                      },
-                      eightCharacterAnalysis: { type: "string" },
-                      fiveElementsAnalysis: { type: "string" },
-                      iChingAnalysis: { type: "string" },
-                      zodiacAnalysis: { type: "string" },
-                      nameAnalysis: { type: "string" }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        };
-        
-        // 使用openaiService生成JSON结构化数据
+        // 直接发送业务类型和原始参数到后端，让后端完整构建请求
         log('发送AI请求...');
-        const response = await openaiService.generateAIObject({
-          prompt: prompt,
-          schema: nameSchema,
-          model: aiConfig.models.nameGeneration,
-          temperature: aiConfig.temperatures.nameGeneration,
-          metadata: { type: 'name_generation' }
+        const response = await fetch(aiConfig.baseConfig.proxyUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            type: 'nameGeneration',
+            // 传递原始用户输入参数，不传递拼接好的prompt
+            inputName: apiParams.lastName,
+            gender: apiParams.gender === 'male' ? '男' : apiParams.gender === 'female' ? '女' : '中性',
+            characteristics: apiParams.characteristics,
+            desiredMeaning: apiParams.desiredMeaning,
+            birthDateTime: apiParams.birthDateTime,
+            locale: this.locale
+          })
         });
-        
-        log('AI响应:', response);
-        
-        // 从响应中提取名字数据 - 使用更安全的方式检查数据
-        if (response && response.object && Array.isArray(response.object.names) && response.object.names.length > 0) {
-          log('成功获取名字数据:', response.object.names);
-          
+
+        const responseData = await response.json();
+        log('AI原始响应:', responseData);
+
+        let parsedData = null;
+
+        // 处理OpenAI的响应格式：提取choices[0].message.content中的JSON字符串
+        if (responseData && responseData.choices && responseData.choices[0] && responseData.choices[0].message) {
+          try {
+            const contentString = responseData.choices[0].message.content;
+            log('提取的content字符串:', contentString);
+
+            // 解析JSON字符串
+            parsedData = JSON.parse(contentString);
+            log('解析后的JSON数据:', parsedData);
+          } catch (parseError) {
+            logError('解析choices[0].message.content中的JSON失败:', parseError);
+            logError('原始content内容:', responseData.choices[0].message.content);
+          }
+        }
+        // 如果不是OpenAI格式，直接使用responseData
+        else if (responseData && responseData.names) {
+          parsedData = responseData;
+          log('直接使用响应数据:', parsedData);
+        }
+
+        // 从解析后的数据中提取名字数据
+        if (parsedData && parsedData.names && Array.isArray(parsedData.names) && parsedData.names.length > 0) {
+          log('成功获取名字数据:', parsedData.names);
+
           // 确保所有结果都使用正确计算的农历日期信息
-          this.results = response.object.names.map((name, idx) => {
+          this.results = parsedData.names.map((name, idx) => {
             // 使用我们计算的正确农历信息替换生成的信息
             return {
               ...name,
@@ -813,11 +769,12 @@ export default {
               activeTab: 0
             };
           });
-          
+
           // 滚动到结果区域
           this.scrollToResults();
         } else {
-          logWarn('AI返回的数据结构不符合预期或为空:', response);
+          logWarn('AI返回的数据结构不符合预期或为空:', responseData);
+          logWarn('解析后的数据:', parsedData);
           // 使用模拟数据作为备用
           this.results = this.createMockNames(apiParams).map((name, idx) => ({
             ...name,

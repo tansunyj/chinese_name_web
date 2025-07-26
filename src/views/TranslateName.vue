@@ -148,6 +148,7 @@ import * as openaiService from '@/services/openaiService';
 import { nameTranslationPrompts } from '@/services/promptTemplates';
 import LoadingIndicator from '@/components/LoadingIndicator.vue';
 import { useI18n } from 'vue-i18n';
+import aiConfig from '@/config/aiConfig';
 
 // 判断当前是否为开发环境
 const isDevelopment = process.env.NODE_ENV === 'development';
@@ -423,150 +424,77 @@ export default {
   ]
 }`;
 
-        // 使用 openaiService 生成 JSON 结构化数据
-        log('发送AI请求:', prompt);
-        const response = await translateName({
-          name: this.formData.fullName,
-          sourceLanguage: sourceLanguage,
-          targetLanguage: 'zh',
-          prompt: prompt,
-          schema: nameSchema,
-          model: 'gpt-4o',  // 使用高级模型确保更好的结构化输出
-          temperature: 0.8,
-          metadata: { type: 'name_translation' }
+        // 使用新的类型化API直接发送请求
+        log('发送AI请求...');
+        const response = await fetch(aiConfig.baseConfig.proxyUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            type: 'nameTranslation',
+            name: this.formData.fullName,
+            sourceLanguage: sourceLanguage,
+            targetLanguage: 'zh',
+            method: 'combined',
+            locale: this.locale
+          })
         });
 
-        log('原始响应数据:', response);
+        const responseData = await response.json();
+        log('AI原始响应:', responseData);
 
-        // 检查并处理返回数据
-        if (!response?.object?.translations || !Array.isArray(response.object.translations)) {
-          throw new Error('translations 数据格式不正确');
+        let parsedData = null;
+
+        // 处理OpenAI的响应格式：提取choices[0].message.content中的JSON字符串
+        if (responseData && responseData.choices && responseData.choices[0] && responseData.choices[0].message) {
+          try {
+            const contentString = responseData.choices[0].message.content;
+            log('提取的content字符串:', contentString);
+
+            // 解析JSON字符串
+            parsedData = JSON.parse(contentString);
+            log('解析后的JSON数据:', parsedData);
+          } catch (parseError) {
+            logError('解析choices[0].message.content中的JSON失败:', parseError);
+            logError('原始content内容:', responseData.choices[0].message.content);
+          }
+        }
+        // 如果不是OpenAI格式，直接使用responseData
+        else if (responseData && responseData.translations) {
+          parsedData = responseData;
+          log('直接使用响应数据:', parsedData);
         }
 
-        // 规范化结果字段名 (即使字段名已经很明确，仍保留这步作为保险)
-        const normalizedResults = response.object.translations.map(item => {
-          if (!item) return null; // 跳过空项
-          
-          try {
-            // 智能匹配字段名称：查找包含指定子字符串的字段
-            const findField = (obj, substrings, defaultValue = '') => {
-              // 首先检查直接匹配
-              for (const substr of substrings) {
-                if (obj[substr]) return obj[substr];
-              }
-              
-              // 然后查找包含子字符串的字段
-              const keys = Object.keys(obj);
-              for (const substr of substrings) {
-                const matchedKey = keys.find(key => key.toLowerCase().includes(substr.toLowerCase()));
-                if (matchedKey) return obj[matchedKey];
-              }
-              
-              return defaultValue;
-            };
-            
-            // 查找翻译名字字段
-            const translate = findField(
-              item, 
-              ['translate', 'translatedName', 'characters', 'name', 'chineseName']
-            );
-            
-            // 查找发音指南字段
-            const pronunciation = findField(
-              item, 
-              ['pronunciation', 'pronunciationGuide', 'pinyin']
-            );
-            
-            // 查找解释字段
-            const explanation = findField(
-              item, 
-              ['explanation', 'meaning', 'meanings', 'description']
-            );
-            
-            // 查找文化含义字段
-            const cultural = findField(
-              item, 
-              ['cultural', 'culturalMeaning', 'culture']
-            );
-            
-            // 如果没有翻译名称，跳过此项
-            if (!translate) {
-              logWarn('跳过没有翻译名称的结果项:', item);
-              return null;
-            }
-            
-            // 创建标准化的结果对象
-            const translatedName = translate;
-            
-            // 确保explanation是从源语言视角解释的格式
-            let formattedExplanation = explanation;
-            if (explanation) {
-              // 判断是否已经是从源语言视角解释的格式
-              const hasSourceLanguageFormat = 
-                // 检查是否已包含明显的源语言特征
-                (sourceLanguage === 'en' && explanation.match(/^(The|This|In Chinese|When translated|Your name)/i)) ||
-                (sourceLanguage === 'ja' && (explanation.includes('という名前') || explanation.includes('翻訳されます') || explanation.includes('中国語で'))) ||
-                (sourceLanguage === 'ko' && (explanation.includes('이름은') || explanation.includes('번역됩니다') || explanation.includes('중국어로'))) ||
-                (sourceLanguage === 'fr' && explanation.match(/^(Le nom|En chinois|Votre nom|Cette traduction)/i)) ||
-                (sourceLanguage === 'de' && explanation.match(/^(Der Name|Im Chinesischen|Ihr Name|Diese Übersetzung)/i)) ||
-                (sourceLanguage === 'ru' && explanation.match(/^(Имя|В китайском|Ваше имя|Этот перевод)/i)) ||
-                (sourceLanguage === 'es' && explanation.match(/^(El nombre|En chino|Su nombre|Esta traducción)/i)) ||
-                (sourceLanguage === 'pt' && explanation.match(/^(O nome|Em chinês|Seu nome|Esta tradução)/i)) ||
-                (sourceLanguage === 'it' && explanation.match(/^(Il nome|In cinese|Il tuo nome|Questa traduzione)/i)) ||
-                (sourceLanguage === 'ar' && explanation.match(/^(الاسم|في الصينية|اسمك|هذه الترجمة)/i)) ||
-                (sourceLanguage === 'hi' && explanation.match(/^(नाम|चीनी में|आपका नाम|यह अनुवाद)/i)) ||
-                (sourceLanguage === 'zh' && /[\u4e00-\u9fa5]/.test(explanation.substring(0, 10)));
-              
-              if (!hasSourceLanguageFormat) {
-                // 根据当前选择的语言设置从该语言视角的解释格式
-                const sourceLangPerspectives = {
-                  'en': (name, chinese, expl) => `The name "${name}" is translated to "${chinese}" in Chinese. This translation is based on phonetic similarity between the languages. ${expl.replace(/意为|象征/g, 'The characters mean').replace(/，/g, ' and ')}. In Chinese culture, these characters are considered to have positive connotations and create a name that sounds pleasant to the ear.`,
-                  'fr': (name, chinese, expl) => `Le nom "${name}" est traduit en chinois par "${chinese}". Cette traduction est basée sur la similitude phonétique entre les langues. ${expl.replace(/意为|象征/g, 'Les caractères signifient').replace(/，/g, ' et ')}. Dans la culture chinoise, ces caractères sont considérés comme ayant des connotations positives et créent un nom agréable à l'oreille.`,
-                  'de': (name, chinese, expl) => `Der Name "${name}" wird im Chinesischen als "${chinese}" übersetzt. Diese Übersetzung basiert auf der phonetischen Ähnlichkeit zwischen den Sprachen. ${expl.replace(/意为|象征/g, 'Die Zeichen bedeuten').replace(/，/g, ' und ')}. In der chinesischen Kultur werden diese Zeichen als positiv angesehen und ergeben einen Namen, der angenehm klingt.`,
-                  'ru': (name, chinese, expl) => `Имя "${name}" переводится на китайский как "${chinese}". Этот перевод основан на фонетическом сходстве между языками. ${expl.replace(/意为|象征/g, 'Эти иероглифы означают').replace(/，/g, ' и ')}. В китайской культуре эти иероглифы считаются имеющими положительные коннотации и создают имя, которое приятно звучит.`,
-                  'ja': (name, chinese, expl) => `"${name}"という名前は中国語で"${chinese}"と翻訳されます。この翻訳は言語間の音声的な類似性に基づいています。${expl.replace(/意为|象征/g, 'これらの漢字は').replace(/，/g, '、')}という意味があります。中国文化ではこれらの漢字はポジティブな意味を持ち、耳に心地よい名前になります。`,
-                  'ko': (name, chinese, expl) => `"${name}" 이름은 중국어로 "${chinese}"로 번역됩니다. 이 번역은 언어 간의 음성적 유사성을 기반으로 합니다. ${expl.replace(/意为|象征/g, '이 한자들은').replace(/，/g, ', ')} 의미가 있습니다. 중국 문화에서 이 한자들은 긍정적인 의미를 가지며 듣기 좋은 이름을 만듭니다.`,
-                  'es': (name, chinese, expl) => `El nombre "${name}" se traduce al chino como "${chinese}". Esta traducción se basa en la similitud fonética entre los idiomas. ${expl.replace(/意为|象征/g, 'Los caracteres significan').replace(/，/g, ' y ')}. En la cultura china, estos caracteres se consideran que tienen connotaciones positivas y crean un nombre que suena agradable.`,
-                  'pt': (name, chinese, expl) => `O nome "${name}" é traduzido para chinês como "${chinese}". Esta tradução é baseada na similaridade fonética entre os idiomas. ${expl.replace(/意为|象征/g, 'Os caracteres significam').replace(/，/g, ' e ')}. Na cultura chinesa, estes caracteres são considerados como tendo conotações positivas e criam um nome que soa agradável.`,
-                  'it': (name, chinese, expl) => `Il nome "${name}" viene tradotto in cinese come "${chinese}". Questa traduzione si basa sulla somiglianza fonetica tra le lingue. ${expl.replace(/意为|象征/g, 'I caratteri significano').replace(/，/g, ' e ')}. Nella cultura cinese, questi caratteri sono considerati avere connotazioni positive e creano un nome dal suono gradevole.`,
-                  'ar': (name, chinese, expl) => `يتم ترجمة الاسم "${name}" إلى الصينية كـ "${chinese}". تعتمد هذه الترجمة على التشابه الصوتي بين اللغات. ${expl.replace(/意为|象征/g, 'تعني هذه الأحرف').replace(/，/g, ' و ')}. في الثقافة الصينية، تعتبر هذه الأحرف ذات دلالات إيجابية وتخلق اسمًا يبدو جميلًا عند النطق.`,
-                  'hi': (name, chinese, expl) => `नाम "${name}" का चीनी में अनुवाद "${chinese}" है। यह अनुवाद भाषाओं के बीच ध्वनि समानता पर आधारित है। ${expl.replace(/意为|象征/g, 'इन अक्षरों का अर्थ है').replace(/，/g, ' और ')}। चीनी संस्कृति में, इन अक्षरों को सकारात्मक अर्थ वाला माना जाता है और वे एक नाम बनाते हैं जो सुनने में सुखद लगता है।`,
-                  'zh': (name, chinese, expl) => `"${name}"翻译成中文是"${chinese}"。这个翻译基于语言之间的发音相似性。${expl}。在中国文化中，这些汉字被认为具有积极的含义，并创造了一个听起来悦耳的名字。`
-                };
-                
-                const formatFn = sourceLangPerspectives[sourceLanguage] || sourceLangPerspectives['en'];
-                
-                // 使用原名、中文翻译和解释，从源语言视角生成解释文本
-                const originalName = this.formData.fullName;
-                formattedExplanation = formatFn(originalName, translatedName, explanation);
-              }
-            }
-            
-            return {
-              translate,
-              pronunciation: pronunciation || `${translate}的拼音`, // 提供默认值
-              explanation: formattedExplanation || this.formatExplanation(translate, pronunciation || '拼音', `${translate}是一个优美的中文名字`, this.currentLanguage),
-              cultural: cultural || '',
-              // 保留其他可能的字段
-              ...(item.analysis ? { analysis: item.analysis } : {})
-            };
-          } catch (e) {
-            logError('处理翻译结果项时出错:', e);
-            return null;
-          }
-        }).filter(Boolean); // 过滤掉null项
+        // 检查并处理解析后的数据
+        if (!parsedData?.translations || !Array.isArray(parsedData.translations)) {
+          log('解析后的数据格式不正确，使用后备结果');
+          this.results = this.getFallbackResults();
+          this.errorMessage = this.$t('translate.errors.usingFallback');
+          return;
+        }
 
-        // 如果没有有效结果，使用后备方案并显示友好提示
+        // 直接使用解析后的数据，进行简单的字段映射
+        const normalizedResults = parsedData.translations.map(item => {
+          if (!item) return null;
+
+          return {
+            translate: item.translate || item.translatedName || item.characters || item.name || item.chineseName || '',
+            pronunciation: item.pronunciation || item.pronunciationGuide || item.pinyin || '',
+            explanation: item.explanation || item.meaning || item.description || '',
+            cultural: item.cultural || item.culturalMeaning || item.culture || ''
+          };
+        }).filter(item => item && item.translate); // 过滤掉空项和没有翻译名称的项
+
+        // 如果没有有效结果，使用后备方案
         if (normalizedResults.length === 0) {
-          logWarn('没有有效的翻译结果，使用后备结果');
-          const fallbackResults = this.getFallbackResults();
-          this.results = fallbackResults;
-          
-          // 设置友好的提示信息
+          log('没有有效的翻译结果，使用后备结果');
+          this.results = this.getFallbackResults();
           this.errorMessage = this.$t('translate.errors.usingFallback');
         } else {
-          // 使用标准化后的数据
+          // 使用处理后的数据
           this.results = normalizedResults;
+          this.errorMessage = ''; // 清除错误信息
         }
 
         log('最终处理后的结果:', this.results);
