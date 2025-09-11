@@ -576,32 +576,6 @@ export default {
     // 根据当前语言设置返回日期选择器的区域设置
     datepickerLocale() {
       return this.locale === 'zh' ? zhCN : enUS;
-    },
-    
-    // 构建名字分析文本（字符含义 + 整体分析）
-    buildNameAnalysisText(analysis, result) {
-      let fullText = '';
-      
-      // 1. 优先使用 analysis.meaning 中的字符含义
-      if (analysis.meaning && typeof analysis.meaning === 'object') {
-        const characterMeanings = Object.values(analysis.meaning).map(meaning => {
-          // 清理含义文本，移除可能的前缀
-          return meaning.replace(/^字[\d]+[:：]?\s*/, '').trim();
-        });
-        
-        if (characterMeanings.length > 0) {
-          fullText += characterMeanings.join('；') + '。';
-        }
-      }
-      
-      // 2. 添加整体的名字分析
-      const nameAnalysis = analysis.nameAnalysis || analysis.compatibility || result.explanation;
-      if (nameAnalysis && nameAnalysis.trim()) {
-        if (fullText) fullText += ' ';
-        fullText += nameAnalysis;
-      }
-      
-      return fullText;
     }
   },
   mounted() {
@@ -633,6 +607,32 @@ export default {
     this.addStructuredData();
   },
   methods: {
+    // 构建名字分析文本（字符含义 + 整体分析）
+    buildNameAnalysisText(analysis, result) {
+      let fullText = '';
+      
+      // 1. 优先使用 analysis.meaning 中的字符含义
+      if (analysis && analysis.meaning && typeof analysis.meaning === 'object') {
+        const characterMeanings = Object.values(analysis.meaning).map(meaning => {
+          // 清理含义文本，移除可能的前缀
+          return meaning.replace(/^字[\d]+[:：]?\s*/, '').trim();
+        });
+        
+        if (characterMeanings.length > 0) {
+          fullText += characterMeanings.join('；') + '。';
+        }
+      }
+      
+      // 2. 添加整体的名字分析
+      const nameAnalysis = analysis?.nameAnalysis || analysis?.compatibility || result?.explanation;
+      if (nameAnalysis && nameAnalysis.trim()) {
+        if (fullText) fullText += ' ';
+        fullText += nameAnalysis;
+      }
+      
+      return fullText || '综合分析显示，这是一个具有美好寓意的名字。';
+    },
+    
     // 添加结构化数据到head
     addStructuredData() {
       const structuredData = {
