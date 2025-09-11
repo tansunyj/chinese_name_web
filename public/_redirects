@@ -1,5 +1,5 @@
-# API路由
-/api/*            /api/:splat  200
+# API路由 - 使用Cloudflare Pages Functions
+# /api/openai 会自动路由到 /functions/api/openai.js
 
-# 所有其他路由（除了静态资源）交由 SPA 处理
+# 所有其他路由（除了静态资源和API）交由 SPA 处理
 /*                /index.html   200 

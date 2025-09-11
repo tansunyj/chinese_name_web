@@ -935,7 +935,7 @@ export default {
     },
 
     // 从非结构化文本中提取名字数据
-    extractStructuredData(text) {
+    extractStructuredData(text, apiParams = null) {
       try {
         const names = [];
         // 移除markdown格式
@@ -961,7 +961,7 @@ export default {
                 cultural: this.locale === 'zh' ? 
                   '这个名字体现了中国传统命名的文化价值观。' : 
                   'This name reflects traditional Chinese naming cultural values.',
-                birthInfo: this.createBirthInfo(apiParams.birthDateTime),
+                birthInfo: apiParams ? this.createBirthInfo(apiParams.birthDateTime) : this.createBirthInfo(new Date().toISOString()),
                 analysis: this.createAnalysis(nameMatch[1])
               });
             }
