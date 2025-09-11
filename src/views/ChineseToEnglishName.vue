@@ -40,7 +40,7 @@
             <div class="result-card" v-for="(result, index) in results" :key="index">
               <div class="result-header">
                 <div class="result-original">{{ formData.chineseName }}</div>
-                <div class="result-pinyin">{{ result.pronunciation }}</div>
+                <!--div class="result-pinyin">{{ result.pronunciation }}</div-->
               </div>
               <div class="result-english">
                 <h3>English Translation: {{ result.translated_name }}</h3>
