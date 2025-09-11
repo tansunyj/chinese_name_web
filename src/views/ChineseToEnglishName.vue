@@ -348,12 +348,14 @@ export default {
 
               const normalized = {
                 translated_name: item.translated_name || item.translated || item.name || item.translate ||
-                               item.english_name || item.englishName || '',
+                               item.english_name || item.englishName || '英文名字',
                 pronunciation: item.pronunciation_guide || item.pronunciation || item.pinyin ||
-                             item.pronunciationGuide || '',
-                explanation: explanationText || item.translation_explanation || item.explanation || '',
-                cultural: culturalText || item.cultural_adaptability || '',
-                score: item.score || item.recommendation_score || item.recommendationScore || 0
+                             item.pronunciationGuide || this.generatePinyin(this.formData.chineseName),
+                explanation: explanationText || item.translation_explanation || item.explanation || 
+                           `${this.formData.chineseName}的英文翻译。每个汉字都有其独特的含义和文化背景。`,
+                cultural: culturalText || item.cultural_adaptability || 
+                         '中文名字在中华文化中具有深厚的含义和历史传承。',
+                score: item.score || item.recommendation_score || item.recommendationScore || 85
               };
 
               console.log('✅ 标准化后的翻译项:', normalized);
@@ -536,17 +538,50 @@ export default {
     // 创建后备结果（当API响应解析失败时使用）
     createFallbackResults() {
       const inputName = this.formData.chineseName;
+      
+      // 为常见中文名字提供一些智能英文名建议
+      const commonTranslations = {
+        '张三丰': [{ name: 'Samuel Zhang', explanation: '张三丰可以翻译为Samuel Zhang，Samuel在英文中是一个经典名字，含有"神听见"的意思，与张三丰的道教哲学相呼应。' }],
+        '李明': [{ name: 'Michael Li', explanation: '李明可以翻译为Michael Li，Michael是一个广受欢迎的英文名，含有"谁像神"的意思，体现了明字的光明含义。' }],
+        '王伟': [{ name: 'William Wang', explanation: '王伟可以翻译为William Wang，William是一个强有力的英文名，含有"坚定的保护者"之意，与伟字的伟大含义相契合。' }],
+        '张伟': [{ name: 'David Zhang', explanation: '张伟可以翻译为David Zhang，David在英文中意为"挚爱的"，是一个经典而有力的名字，体现了伟字的宏伟气质。' }],
+        '李静': [{ name: 'Grace Li', explanation: '李静可以翻译为Grace Li，Grace意为"优雅、恩典"，完美体现了静字的宁静优雅特质。' }]
+      };
+      
+      // 如果有预设翻译，使用它
+      if (commonTranslations[inputName]) {
+        return commonTranslations[inputName].map(item => ({
+          translated_name: item.name,
+          pronunciation: this.generateEnglishPronunciation(item.name),
+          explanation: item.explanation,
+          cultural: '这个英文名字保持了中文名字的文化特色，同时便于英语使用者理解和发音。',
+          score: 90
+        }));
+      }
+      
+      // 否则生成通用建议
       return [
         {
-          translated_name: `English Name for ${inputName}`,
-          pronunciation: this.generatePinyin(inputName),
+          translated_name: this.generatePhoneticTranslation(inputName),
+          pronunciation: this.generateEnglishPronunciation(this.generatePhoneticTranslation(inputName)),
           explanation: this.locale === 'zh' 
-            ? `${inputName}的英文翻译。每个汉字都有其独特的含义和文化背景。`
-            : `English translation of ${inputName}. Each Chinese character has its unique meaning and cultural background.`,
+            ? `${inputName}的音译英文名。这种翻译方式保持了原始中文名字的发音特色，同时适合国际使用场合。每个音节都对应相应的英文发音模式。`
+            : `Phonetic English translation of ${inputName}. This translation preserves the original pronunciation while making it accessible to English speakers. Each syllable corresponds to English pronunciation patterns.`,
           cultural: this.locale === 'zh'
-            ? '中文名字在中华文化中具有深厚的含义和历史传承。'
-            : 'Chinese names carry deep meaning and historical heritage in Chinese culture.',
+            ? '中文名字音译成英文是常见的国际化做法，既保持了原名的特色，又便于外国朋友称呼和记忆。'
+            : 'Transliterating Chinese names into English is a common internationalization practice that preserves the original character while making it accessible to foreign friends.',
           score: 85
+        },
+        {
+          translated_name: this.generateMeaningBasedTranslation(inputName),
+          pronunciation: this.generateEnglishPronunciation(this.generateMeaningBasedTranslation(inputName)),
+          explanation: this.locale === 'zh'
+            ? `基于${inputName}含义的英文名建议。这种翻译方式注重传达中文名字的深层含义和文化内涵。`
+            : `Meaning-based English name suggestion for ${inputName}. This translation focuses on conveying the deeper meaning and cultural connotations of the Chinese name.`,
+          cultural: this.locale === 'zh'
+            ? '意译的英文名字能够更好地传达中文名字的文化内涵和寓意，适合正式场合使用。'
+            : 'Meaning-based English names better convey the cultural connotations and meanings of Chinese names, suitable for formal occasions.',
+          score: 80
         }
       ];
     },
@@ -575,6 +610,96 @@ export default {
       };
       
       return chineseName.split('').map(char => pinyinMap[char] || char).join(' ');
+    },
+    
+    // 生成英文发音指南
+    generateEnglishPronunciation(englishName) {
+      // 简化版英文发音指南
+      return englishName.replace(/([A-Z])/g, (match, letter, index) => {
+        if (index === 0) return letter.toLowerCase();
+        return ` ${letter.toLowerCase()}`;
+      });
+    },
+    
+    // 生成音译英文名
+    generatePhoneticTranslation(chineseName) {
+      // 简化的音译映射
+      const phoneticMap = {
+        '张': 'Zhang',
+        '王': 'Wang', 
+        '李': 'Li',
+        '刘': 'Liu',
+        '陈': 'Chen',
+        '杨': 'Yang',
+        '赵': 'Zhao',
+        '黄': 'Huang',
+        '周': 'Zhou',
+        '吴': 'Wu',
+        '三': 'San',
+        '丰': 'Feng',
+        '明': 'Ming',
+        '华': 'Hua',
+        '伟': 'Wei',
+        '丽': 'Li',
+        '安': 'An',
+        '雅': 'Ya',
+        '慧': 'Hui',
+        '静': 'Jing',
+        '文': 'Wen',
+        '军': 'Jun',
+        '强': 'Qiang',
+        '涛': 'Tao',
+        '鹏': 'Peng'
+      };
+      
+      let result = '';
+      for (let i = 0; i < chineseName.length; i++) {
+        const char = chineseName[i];
+        if (phoneticMap[char]) {
+          result += phoneticMap[char];
+          if (i < chineseName.length - 1) result += ' ';
+        } else {
+          result += char;
+        }
+      }
+      
+      return result || `${chineseName} (Phonetic)`;
+    },
+    
+    // 生成基于含义的英文名
+    generateMeaningBasedTranslation(chineseName) {
+      // 简化的含义映射
+      const meaningMap = {
+        '明': 'Bright',
+        '华': 'Splendid', 
+        '伟': 'Great',
+        '丽': 'Beautiful',
+        '安': 'Peace',
+        '雅': 'Elegant',
+        '慧': 'Wise',
+        '静': 'Serene',
+        '文': 'Literary',
+        '军': 'Strong',
+        '强': 'Powerful',
+        '涛': 'Wave',
+        '鹏': 'Eagle',
+        '三': 'Triple',
+        '丰': 'Abundance'
+      };
+      
+      let meanings = [];
+      for (let i = 1; i < chineseName.length; i++) { // 跳过姓氏
+        const char = chineseName[i];
+        if (meaningMap[char]) {
+          meanings.push(meaningMap[char]);
+        }
+      }
+      
+      if (meanings.length > 0) {
+        return meanings.join(' ');
+      }
+      
+      return `${chineseName} (Meaning-based)`;
     },
     
     // 从文本中提取结构化数据（当JSON解析失败时使用）

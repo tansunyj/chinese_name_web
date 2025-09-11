@@ -92,8 +92,38 @@ export const zodiacAnalysisPrompts = {
 };
 
 export const chineseToEnglishPrompts = {
-  system: `你是一个专业的中文名字转英文专家。请以JSON格式返回翻译结果。`,
-  user: (name) => `请将中文名字"${name}"转换为合适的英文名字。`
+  // 系统提示词
+  system: "你是一个专业的中英文名字翻译专家，精通中文名字的英文化处理，能够准确地将中文名字转换为合适的英文名字，同时保持发音的准确性和文化的适应性。",
+
+  // 用户提示词
+  user: (name) => `请将中文名字"${name}"转换为英文名字，严格按照以下JSON格式返回结果：
+
+{
+  "translations": [
+    {
+      "translated_name": "英文名字",
+      "pronunciation": "发音指南",
+      "explanation": "转换方法说明和含义解释",
+      "cultural": "文化背景和适用场合",
+      "score": 9
+    }
+  ]
+}
+
+请提供3-5个转换选项，每个选项必须包含：
+1. translated_name: 英文名字
+2. pronunciation: 发音指南（音标或拼音）
+3. explanation: 转换方法说明（音译/意译/组合）和含义解释
+4. cultural: 文化背景解释和适用场合建议
+5. score: 推荐度评分(1-10)
+
+请确保转换结果：
+- 发音接近中文原名
+- 符合英文命名习惯
+- 易于外国人理解和发音
+- 保持原名的文化特色
+
+严格按照上述JSON格式返回，字段名必须完全匹配。`
 };
 
 export const characterAnalysisPrompts = {
