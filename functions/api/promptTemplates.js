@@ -25,7 +25,12 @@ export const nameGenerationPrompts = {
         "culturalBackground": "文化背景和寓意",
         "pronunciation": "拼音标注",
         "compatibility": "与用户需求的匹配度分析",
-        "score": 95
+        "score": 95,
+        "eightCharacterAnalysis": "根据八字喜用神分析，详细说明此名字与命格的匹配情况",
+        "fiveElementsAnalysis": "从五行角度分析名字的平衡性和互补性",
+        "iChingAnalysis": "根据周易理念分析名字的哲学内涵和寓意",
+        "zodiacAnalysis": "结合生肖属相分析名字的适配性",
+        "nameAnalysis": "综合分析名字的整体价值和个人发展意义"
       }
     }
   ]
@@ -36,7 +41,8 @@ export const nameGenerationPrompts = {
 2. 音韵和谐，朗朗上口
 3. 字形美观，笔画适中
 4. 寓意美好，符合现代审美
-5. 必须返回有效的JSON格式`,
+5. 所有分析字段都必须提供具体内容
+6. 必须返回有效的JSON格式`,
 
   user: (params) => {
     return `请为姓氏"${params.lastName}"的${params.gender === 'male' ? '男性' : params.gender === 'female' ? '女性' : ''}用户生成3个中文名字。

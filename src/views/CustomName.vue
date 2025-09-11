@@ -196,15 +196,22 @@
                   </div>
                 </div>
                 
-
-                <div class="character-meanings-list">
-                  <div
-                    v-for="(char, idx) in result.characterMeanings"
-                    :key="char"
-                    class="char-meaning-row"
-                  >
-                    <span class="char">{{ getFirstChineseChar(char) }}</span>
-                    <span class="meaning">{{ getCharMeaning(char) }}</span>
+                <!-- 文化背景和兼容性分析 -->
+                <div v-if="result.analysis?.culturalBackground || result.analysis?.compatibility" class="cultural-analysis-section">
+                  <div v-if="result.analysis.culturalBackground" class="cultural-background">
+                    <div class="section-title">
+                      <i class="icon-culture">🏮</i>
+                      {{ locale === 'zh' ? '文化背景' : 'Cultural Background' }}
+                    </div>
+                    <div class="section-content">{{ result.analysis.culturalBackground }}</div>
+                  </div>
+                  
+                  <div v-if="result.analysis.compatibility" class="compatibility-analysis">
+                    <div class="section-title">
+                      <i class="icon-compatibility">🎯</i>
+                      {{ locale === 'zh' ? '匹配度分析' : 'Compatibility Analysis' }}
+                    </div>
+                    <div class="section-content">{{ result.analysis.compatibility }}</div>
                   </div>
                 </div>
 
@@ -878,11 +885,12 @@ export default {
               birthChart: 90,
               classical: 93
             },
-            eightCharacterAnalysis: nameData.analysis.eightCharacterAnalysis || '根据八字喜用神分析，此名字与您的命格相配。',
-            fiveElementsAnalysis: nameData.analysis.fiveElementsAnalysis || '姓名的五行平衡良好，有助于运势发展。',
-            iChingAnalysis: nameData.analysis.iChingAnalysis || '根据周易理念，此名字寓意深远，音韵和谐。',
-            zodiacAnalysis: nameData.analysis.zodiacAnalysis || '与生肖属相搭配协调，有利于个人发展。',
-            nameAnalysis: nameData.analysis.nameAnalysis || '综合分析显示，这是一个具有美好寓意的名字。'
+            // 从 meaning 字段生成详细分析（优先使用AI返回的分析）
+            eightCharacterAnalysis: nameData.analysis.eightCharacterAnalysis || this.generateEightCharacterAnalysis(nameData.analysis.meaning),
+            fiveElementsAnalysis: nameData.analysis.fiveElementsAnalysis || this.generateFiveElementsAnalysis(nameData.analysis.meaning),
+            iChingAnalysis: nameData.analysis.iChingAnalysis || this.generateIChingAnalysis(nameData.analysis.meaning),
+            zodiacAnalysis: nameData.analysis.zodiacAnalysis || this.generateZodiacAnalysis(nameData.analysis.meaning),
+            nameAnalysis: nameData.analysis.nameAnalysis || this.generateNameAnalysis(nameData.analysis.meaning, nameData.analysis.culturalBackground)
           },
           // 提取字符含义
           characterMeanings: this.extractCharacterMeanings(nameData.analysis.meaning, nameData.fullName)
@@ -959,8 +967,10 @@ export default {
 
     // 从analysis.meaning中提取字符含义列表
     extractCharacterMeanings(meaningObj, fullName) {
+      log('🔍 开始提取字符含义:', meaningObj, fullName);
+      
       if (!meaningObj || typeof meaningObj !== 'object') {
-        // 如果没有meaning对象，返回默认含义
+        log('⚠️ meaningObj为空或格式不正确，使用默认含义');
         return this.getDefaultCharacterMeanings(fullName);
       }
 
@@ -968,17 +978,22 @@ export default {
       
       // 遍历meaning对象，提取每个字符的含义
       for (const [key, value] of Object.entries(meaningObj)) {
-        if (key.startsWith('字') && typeof value === 'string') {
-          // 处理 "字1": "思：表示思考、思维..." 格式
+        log(`ℹ️ 处理字符含义: ${key} = ${value}`);
+        
+        if ((key.startsWith('字') || /^[\u4e00-\u9fa5]$/.test(key)) && typeof value === 'string') {
+          // 处理 "字1": "文：表示文化、文字..." 或直接以汉字为key的格式
           characterMeanings.push(value);
-        } else if (key.length === 1 && /[\u4e00-\u9fa5]/.test(key)) {
-          // 处理直接以汉字为key的格式
-          characterMeanings.push(`${key}：${value}`);
         }
       }
 
       log('✅ 提取的字符含义:', characterMeanings);
-      return characterMeanings.length > 0 ? characterMeanings : this.getDefaultCharacterMeanings(fullName);
+      
+      if (characterMeanings.length === 0) {
+        log('⚠️ 未提取到字符含义，使用默认含义');
+        return this.getDefaultCharacterMeanings(fullName);
+      }
+      
+      return characterMeanings;
     },
 
     // 获取默认字符含义
@@ -990,6 +1005,183 @@ export default {
         const meaning = defaultMeanings[char] || `${char}：寓意美好，具有深厚的文化内涵。`;
         return meaning;
       });
+    },
+
+    // 生成八字分析（基于字符含义）
+    generateEightCharacterAnalysis(meaningObj) {
+      if (!meaningObj || typeof meaningObj !== 'object') {
+        return this.locale === 'zh' 
+          ? '根据八字喜用神分析，建议选择与命格相配的字符。'
+          : 'Based on Eight Characters analysis, choose characters that match your fate.';
+      }
+      
+      const meanings = Object.values(meaningObj);
+      if (meanings.length === 0) {
+        return this.locale === 'zh' 
+          ? '根据八字喜用神分析，建议选择与命格相配的字符。'
+          : 'Based on Eight Characters analysis, choose characters that match your fate.';
+      }
+      
+      // 根据字符含义分析八字匹配度
+      const hasWisdom = meanings.some(m => m.includes('智') || m.includes('文') || m.includes('学'));
+      const hasVirtue = meanings.some(m => m.includes('德') || m.includes('良') || m.includes('善'));
+      
+      if (hasWisdom && hasVirtue) {
+        return this.locale === 'zh' 
+          ? '此名字中的字符体现了智慧与品德，与八字喜用神相合，有利于个人的事业发展和精神提升。'
+          : 'The characters in this name reflect wisdom and virtue, matching the Eight Characters preferences.';
+      } else if (hasWisdom) {
+        return this.locale === 'zh' 
+          ? '名字中包含智慧、学识类字符，与八字中的文星相合，有利于学业和事业发展。'
+          : 'The name contains wisdom and knowledge characters, beneficial for academic and career development.';
+      } else {
+        return this.locale === 'zh' 
+          ? '根据八字分析，此名字的字符选择与命主的生辰相合，能够起到平衡弥补的作用。'
+          : 'According to Eight Characters analysis, the character selection balances and complements the birth chart.';
+      }
+    },
+
+    // 生成五行分析（基于字符含义）
+    generateFiveElementsAnalysis(meaningObj) {
+      if (!meaningObj || typeof meaningObj !== 'object') {
+        return this.locale === 'zh' 
+          ? '姓名的五行平衡很重要，建议选择互补的五行属性。'
+          : 'Five Elements balance in names is important, choose complementary elemental attributes.';
+      }
+      
+      const meanings = Object.values(meaningObj);
+      if (meanings.length === 0) {
+        return this.locale === 'zh' 
+          ? '姓名的五行平衡很重要，建议选择互补的五行属性。'
+          : 'Five Elements balance in names is important, choose complementary elemental attributes.';
+      }
+      
+      // 根据字符含义分析五行属性
+      const hasWater = meanings.some(m => m.includes('水') || m.includes('流') || m.includes('清'));
+      const hasFire = meanings.some(m => m.includes('火') || m.includes('明') || m.includes('光'));
+      const hasWood = meanings.some(m => m.includes('木') || m.includes('林') || m.includes('森'));
+      const hasMetal = meanings.some(m => m.includes('金') || m.includes('铁') || m.includes('铜'));
+      const hasEarth = meanings.some(m => m.includes('土') || m.includes('山') || m.includes('石'));
+      
+      const elementCount = [hasWater, hasFire, hasWood, hasMetal, hasEarth].filter(Boolean).length;
+      
+      if (elementCount >= 2) {
+        return this.locale === 'zh' 
+          ? '姓名中包含多种五行元素，元素搭配均衡，有利于运势的平衡发展和个人性格的完善。'
+          : 'The name contains multiple Five Elements, creating balanced elemental harmony.';
+      } else {
+        return this.locale === 'zh' 
+          ? '姓名中的字符在五行上形成了稳定的结构，将为命主带来持续的正面能量。'
+          : 'The characters form a stable Five Elements structure, bringing sustained positive energy.';
+      }
+    },
+
+    // 生成周易分析（基于字符含义）
+    generateIChingAnalysis(meaningObj) {
+      if (!meaningObj || typeof meaningObj !== 'object') {
+        return this.locale === 'zh' 
+          ? '根据周易理念，建议选择寓意深远、音韵和谐的字符。'
+          : 'According to I-Ching principles, choose characters with profound meanings and harmonious sounds.';
+      }
+      
+      const meanings = Object.values(meaningObj);
+      if (meanings.length === 0) {
+        return this.locale === 'zh' 
+          ? '根据周易理念，建议选择寓意深远、音韵和谐的字符。'
+          : 'According to I-Ching principles, choose characters with profound meanings and harmonious sounds.';
+      }
+      
+      // 根据字符含义分析周易内涵
+      const hasExpansive = meanings.some(m => m.includes('博') || m.includes('大') || m.includes('广'));
+      const hasCultural = meanings.some(m => m.includes('文') || m.includes('化') || m.includes('书'));
+      const hasVirtuous = meanings.some(m => m.includes('德') || m.includes('贤') || m.includes('善'));
+      
+      if (hasExpansive && hasCultural) {
+        return this.locale === 'zh' 
+          ? '此名字体现了周易中“博大精深”的理念，文化与广博的结合密合了古代先贤的智慧，预示着丰富的学识和广阔的视野。'
+          : 'This name embodies the I-Ching concept of "profound and extensive", combining culture with breadth.';
+      } else if (hasVirtuous) {
+        return this.locale === 'zh' 
+          ? '根据周易哲学，此名字中的德行字符体现了“德才兼备”的理想，符合古代对人才的最高要求。'
+          : 'According to I-Ching philosophy, the virtuous characters reflect the ideal of "virtue and talent".';
+      } else {
+        return this.locale === 'zh' 
+          ? '根据周易理念，此名字的组合寓意深远，体现了中华文化的深厚底蕴，有助于个人品格的完善。'
+          : 'According to I-Ching principles, this name combination has profound meaning and cultural depth.';
+      }
+    },
+
+    // 生成生肖分析（基于字符含义）
+    generateZodiacAnalysis(meaningObj) {
+      if (!meaningObj || typeof meaningObj !== 'object') {
+        return this.locale === 'zh' 
+          ? '根据生肖属相，建议选择与生肖相合的字符。'
+          : 'Based on zodiac characteristics, choose characters that match your zodiac sign.';
+      }
+      
+      const meanings = Object.values(meaningObj);
+      if (meanings.length === 0) {
+        return this.locale === 'zh' 
+          ? '根据生肖属相，建议选择与生肖相合的字符。'
+          : 'Based on zodiac characteristics, choose characters that match your zodiac sign.';
+      }
+      
+      // 根据字符含义分析生肖适合性
+      const hasWisdom = meanings.some(m => m.includes('智') || m.includes('文') || m.includes('博'));
+      const hasNature = meanings.some(m => m.includes('林') || m.includes('山') || m.includes('水'));
+      const hasStrength = meanings.some(m => m.includes('强') || m.includes('勇') || m.includes('威'));
+      
+      if (hasWisdom) {
+        return this.locale === 'zh' 
+          ? '名字中的智慧类字符与多数生肖都非常相合，特别适合属龙、蛇、猴等智慧型生肖，有利于发挥天赋才能。'
+          : 'The wisdom characters are compatible with most zodiac signs, especially suitable for intelligent signs.';
+      } else if (hasNature) {
+        return this.locale === 'zh' 
+          ? '名字中包含自然元素，与属虎、兔、马等在野外环境中生活的生肖非常相合，密合了自然之道。'
+          : 'The natural elements in the name are well-suited for zodiac signs that thrive in nature.';
+      } else {
+        return this.locale === 'zh' 
+          ? '此名字与各个生肖属相都能够和谐相处，体现了中国传统命名中的包容性和适应性。'
+          : 'This name harmonizes well with all zodiac signs, reflecting inclusiveness in traditional naming.';
+      }
+    },
+
+    // 生成名字分析（基于字符含义和文化背景）
+    generateNameAnalysis(meaningObj, culturalBackground) {
+      if (!meaningObj || typeof meaningObj !== 'object') {
+        return this.locale === 'zh' 
+          ? '综合分析显示，这是一个具有美好寓意的名字。'
+          : 'Comprehensive analysis shows this is a name with beautiful meanings.';
+      }
+      
+      const meanings = Object.values(meaningObj);
+      if (meanings.length === 0) {
+        return culturalBackground || (this.locale === 'zh' 
+          ? '综合分析显示，这是一个具有美好寓意的名字。'
+          : 'Comprehensive analysis shows this is a name with beautiful meanings.');
+      }
+      
+      // 如果有文化背景，优先使用
+      if (culturalBackground && culturalBackground.trim()) {
+        return culturalBackground;
+      }
+      
+      // 根据字符含义生成综合分析
+      const meaningText = meanings.join('，');
+      const hasPositiveTraits = meanings.some(m => 
+        m.includes('智') || m.includes('博') || m.includes('文') || 
+        m.includes('良') || m.includes('善') || m.includes('美')
+      );
+      
+      if (hasPositiveTraits) {
+        return this.locale === 'zh' 
+          ? `此名字的字符组合体现了深厚的文化内涵和积极的人生态度。${meaningText.substring(0, 100)}… 这样的名字组合不仅寓意美好，还能激励个人不断追求进步和完善。`
+          : `This name combination reflects deep cultural connotations and positive life attitudes. The character meanings inspire continuous improvement and self-perfection.`;
+      } else {
+        return this.locale === 'zh' 
+          ? `此名字的字符搭配合理，各个字符都有其独特的寓意和价值。整体上形成了一个和谐统一的名字组合，适合个人的成长和发展。`
+          : `The character combination is reasonable, with each character having unique meanings and values.`;
+      }
     },
 
     // 从非结构化文本中提取名字数据
@@ -1730,37 +1922,42 @@ export default {
 
     // 提取第一个汉字
     getFirstChineseChar(text) {
-      const match = text.match(/^[\u4e00-\u9fa5]{1}/);
-      return match ? match[0] : '';
-    },
-    
-    // 获取汉字解释部分
-    getCharMeaning(text) {
-      // 移除开头的汉字部分，保留解释文本
-      const match = text.match(/[\u4e00-\u9fa5]{1}[:\s]+(.*)/);
+      // 处理 "文：表示文化、文字，寓意学识渊博，才华出众。" 格式
+      const match = text.match(/^([\u4e00-\u9fa5])/);
       if (match && match[1]) {
         return match[1];
       }
       
-      // 针对"智: 智 represents wisdom"格式
-      const match2 = text.match(/[\u4e00-\u9fa5]{1}[:\s]+[\u4e00-\u9fa5]{1}\s+(.*)/);
-      if (match2 && match2[1]) {
-        return match2[1];
-      }
-      
-      // 使用冒号分割
-      const parts = text.split(/:\s+/);
-      if (parts.length > 1) {
-        return parts.slice(1).join(': ');
-      }
-      
-      // 使用空格分割
-      const spaceParts = text.split(/\s+/);
-      if (spaceParts.length > 1) {
-        return spaceParts.slice(1).join(' ');
-      }
-      
+      // 如果没有找到汉字，返回空字符串
       return '';
+    },
+    
+    // 获取汉字解释部分
+    getCharMeaning(text) {
+      // 处理 "文：表示文化、文字，寓意学识渊博，才华出众。" 格式
+      const colonMatch = text.match(/^[\u4e00-\u9fa5]：(.+)$/);
+      if (colonMatch && colonMatch[1]) {
+        return colonMatch[1];
+      }
+      
+      // 处理 "文: 表示文化、文字，寓意学识渊博，才华出众。" 格式（英文冒号）
+      const englishColonMatch = text.match(/^[\u4e00-\u9fa5]: (.+)$/);
+      if (englishColonMatch && englishColonMatch[1]) {
+        return englishColonMatch[1];
+      }
+      
+      // 处理其他可能的格式
+      const parts = text.split(/：|: /);
+      if (parts.length > 1) {
+        return parts.slice(1).join('：');
+      }
+      
+      // 如果都不匹配，返回原文本（去掉第一个字符）
+      if (text.length > 1) {
+        return text.substring(1);
+      }
+      
+      return text;
     },
 
     // 更新日期值
@@ -3441,6 +3638,47 @@ export default {
   flex: 1;
   color: #333;
   font-weight: normal;
+}
+
+/* 文化背景和兼容性分析样式 */
+.cultural-analysis-section {
+  margin-top: 20px;
+  padding: 16px 18px;
+  background: linear-gradient(135deg, #fff9e6 0%, #f0f8ff 100%);
+  border-radius: 10px;
+  border-left: 4px solid #e60012;
+}
+
+.cultural-background,
+.compatibility-analysis {
+  margin-bottom: 15px;
+}
+
+.cultural-background:last-child,
+.compatibility-analysis:last-child {
+  margin-bottom: 0;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+.section-content {
+  color: #555;
+  line-height: 1.6;
+  padding-left: 24px;
+  font-size: 0.95rem;
+}
+
+.icon-culture,
+.icon-compatibility {
+  font-size: 1.2rem;
 }
 
 /* 在results容器中添加底部的姓名分析框，显示explanation字段 */
