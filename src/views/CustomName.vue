@@ -576,6 +576,32 @@ export default {
     // 根据当前语言设置返回日期选择器的区域设置
     datepickerLocale() {
       return this.locale === 'zh' ? zhCN : enUS;
+    },
+    
+    // 构建名字分析文本（字符含义 + 整体分析）
+    buildNameAnalysisText(analysis, result) {
+      let fullText = '';
+      
+      // 1. 优先使用 analysis.meaning 中的字符含义
+      if (analysis.meaning && typeof analysis.meaning === 'object') {
+        const characterMeanings = Object.values(analysis.meaning).map(meaning => {
+          // 清理含义文本，移除可能的前缀
+          return meaning.replace(/^字[\d]+[:：]?\s*/, '').trim();
+        });
+        
+        if (characterMeanings.length > 0) {
+          fullText += characterMeanings.join('；') + '。';
+        }
+      }
+      
+      // 2. 添加整体的名字分析
+      const nameAnalysis = analysis.nameAnalysis || analysis.compatibility || result.explanation;
+      if (nameAnalysis && nameAnalysis.trim()) {
+        if (fullText) fullText += ' ';
+        fullText += nameAnalysis;
+      }
+      
+      return fullText;
     }
   },
   mounted() {
@@ -1161,13 +1187,28 @@ export default {
           : 'Comprehensive analysis shows this is a name with beautiful meanings.');
       }
       
-      // 如果有文化背景，优先使用
-      if (culturalBackground && culturalBackground.trim()) {
-        return culturalBackground;
+      // 构建完整的名字分析：字符含义 + 整体分析
+      let fullAnalysis = '';
+      
+      // 1. 先添加每个字的含义
+      const characterMeanings = meanings.map(meaning => {
+        // 清理含义文本，移除可能的前缀
+        return meaning.replace(/^字[\d]+[:：]?\s*/, '').trim();
+      });
+      
+      if (characterMeanings.length > 0) {
+        fullAnalysis += characterMeanings.join('；') + '。';
       }
       
-      // 根据字符含义生成综合分析
-      const meaningText = meanings.join('，');
+      // 2. 然后添加整体分析
+      if (culturalBackground && culturalBackground.trim()) {
+        if (fullAnalysis) fullAnalysis += ' ';
+        fullAnalysis += culturalBackground;
+      }
+      
+      return fullAnalysis || (this.locale === 'zh' 
+        ? '综合分析显示，这是一个具有美好寓意的名字。'
+        : 'Comprehensive analysis shows this is a name with beautiful meanings.');
       const hasPositiveTraits = meanings.some(m => 
         m.includes('智') || m.includes('博') || m.includes('文') || 
         m.includes('良') || m.includes('善') || m.includes('美')
@@ -1883,7 +1924,7 @@ export default {
         },
         {
           label: this.analysisTabs[4].name[this.locale],
-          value: analysis.nameAnalysis || analysis.compatibility || result.explanation || (this.locale === 'zh'
+          value: this.buildNameAnalysisText(analysis, result) || (this.locale === 'zh'
             ? '理想的姓名会令人感受到美好的期望，体现个人的品格和志向。'
             : 'An ideal name should convey positive expectations and reflect personal character and aspirations.')
         }
