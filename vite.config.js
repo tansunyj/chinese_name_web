@@ -36,7 +36,7 @@ export default defineConfig(({ command, mode }) => {
       // 生产环境会压缩，开发环境不压缩以便调试
       minify: mode === 'production',
       outDir: 'dist',
-      assetsDir: '_assets',
+      assetsDir: 'assets',
       // 确保生成 source map
       sourcemap: true,
       // 确保复制 public 目录下的文件
@@ -49,9 +49,9 @@ export default defineConfig(({ command, mode }) => {
             'ant-design': ['ant-design-vue'],
           },
           // 确保静态资源使用正确的命名
-          chunkFileNames: '_assets/js/[name]-[hash].js',
-          entryFileNames: '_assets/js/[name]-[hash].js',
-          assetFileNames: '_assets/[ext]/[name]-[hash].[ext]'
+          chunkFileNames: 'assets/js/[name]-[hash].js',
+          entryFileNames: 'assets/js/[name]-[hash].js',
+          assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
         }
       },
       // 确保正确处理 CSS
