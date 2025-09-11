@@ -859,12 +859,33 @@ export default {
       if (nameData.fullName && nameData.analysis) {
         normalized = {
           characters: nameData.fullName,
-          pinyin: this.generatePinyin(nameData.fullName), // 生成拼音
+          pinyin: nameData.analysis.pronunciation || this.generatePinyin(nameData.fullName),
           explanation: this.extractExplanation(nameData.analysis),
           cultural: nameData.analysis.culturalBackground || '',
           fiveElements: 'Wood', // 默认值
-          score: 85, // 默认评分
-          analysis: nameData.analysis
+          score: nameData.analysis.score || 85,
+          analysis: {
+            score: nameData.analysis.score || 85,
+            meaning: nameData.analysis.meaning || {},
+            culturalBackground: nameData.analysis.culturalBackground || '',
+            pronunciation: nameData.analysis.pronunciation || this.generatePinyin(nameData.fullName),
+            compatibility: nameData.analysis.compatibility || '',
+            subscores: {
+              fiveElements: 92,
+              soundShape: 97,
+              meaning: 95,
+              zodiac: 88,
+              birthChart: 90,
+              classical: 93
+            },
+            eightCharacterAnalysis: nameData.analysis.eightCharacterAnalysis || '根据八字喜用神分析，此名字与您的命格相配。',
+            fiveElementsAnalysis: nameData.analysis.fiveElementsAnalysis || '姓名的五行平衡良好，有助于运势发展。',
+            iChingAnalysis: nameData.analysis.iChingAnalysis || '根据周易理念，此名字寓意深远，音韵和谐。',
+            zodiacAnalysis: nameData.analysis.zodiacAnalysis || '与生肖属相搭配协调，有利于个人发展。',
+            nameAnalysis: nameData.analysis.nameAnalysis || '综合分析显示，这是一个具有美好寓意的名字。'
+          },
+          // 提取字符含义
+          characterMeanings: this.extractCharacterMeanings(nameData.analysis.meaning, nameData.fullName)
         };
       }
       // 处理标准格式 (characters + pinyin)
@@ -876,7 +897,8 @@ export default {
           cultural: nameData.cultural || '',
           fiveElements: nameData.fiveElements || 'Wood',
           score: nameData.score || 85,
-          analysis: nameData.analysis || {}
+          analysis: nameData.analysis || {},
+          characterMeanings: nameData.characterMeanings || []
         };
       }
       // 处理其他格式
@@ -889,7 +911,8 @@ export default {
           cultural: nameData.cultural || nameData.culturalBackground || '',
           fiveElements: nameData.fiveElements || 'Wood',
           score: nameData.score || 85,
-          analysis: nameData.analysis || {}
+          analysis: nameData.analysis || {},
+          characterMeanings: []
         };
       }
 
@@ -932,6 +955,41 @@ export default {
       }
 
       return analysis.explanation || analysis.culturalBackground || '';
+    },
+
+    // 从analysis.meaning中提取字符含义列表
+    extractCharacterMeanings(meaningObj, fullName) {
+      if (!meaningObj || typeof meaningObj !== 'object') {
+        // 如果没有meaning对象，返回默认含义
+        return this.getDefaultCharacterMeanings(fullName);
+      }
+
+      const characterMeanings = [];
+      
+      // 遍历meaning对象，提取每个字符的含义
+      for (const [key, value] of Object.entries(meaningObj)) {
+        if (key.startsWith('字') && typeof value === 'string') {
+          // 处理 "字1": "思：表示思考、思维..." 格式
+          characterMeanings.push(value);
+        } else if (key.length === 1 && /[\u4e00-\u9fa5]/.test(key)) {
+          // 处理直接以汉字为key的格式
+          characterMeanings.push(`${key}：${value}`);
+        }
+      }
+
+      log('✅ 提取的字符含义:', characterMeanings);
+      return characterMeanings.length > 0 ? characterMeanings : this.getDefaultCharacterMeanings(fullName);
+    },
+
+    // 获取默认字符含义
+    getDefaultCharacterMeanings(fullName) {
+      if (!fullName || fullName.length < 2) return [];
+      
+      const characters = fullName.slice(1); // 去掉姓氏
+      return characters.split('').map((char, index) => {
+        const meaning = defaultMeanings[char] || `${char}：寓意美好，具有深厚的文化内涵。`;
+        return meaning;
+      });
     },
 
     // 从非结构化文本中提取名字数据
@@ -1603,36 +1661,39 @@ export default {
       }
     },
     getAnalysisDisplayList(result) {
+      // 使用AI返回的实际分析数据，如果没有则使用默认值
+      const analysis = result.analysis || {};
+      
       return [
         {
           label: this.analysisTabs[0].name[this.locale],
-          value: result.analysis.eightCharacterAnalysis || (this.locale === 'zh'
+          value: analysis.eightCharacterAnalysis || (this.locale === 'zh'
             ? '根据八字喜用神，建议起名用带有木、金、土等属性的字，避开水、火属性。'
             : 'Based on the Eight Characters analysis, we recommend characters with Wood, Metal, and Earth attributes, avoiding Water and Fire.')
         },
         {
           label: this.analysisTabs[1].name[this.locale],
-          value: result.analysis.fiveElementsAnalysis || (this.locale === 'zh'
+          value: analysis.fiveElementsAnalysis || (this.locale === 'zh'
             ? '姓名的五行平衡很重要，姓名宜包含互补的五行属性。'
-            : 'Balance in the Five Elements is important...')
+            : 'Balance in the Five Elements is important, the name should contain complementary elemental attributes.')
         },
         {
           label: this.analysisTabs[2].name[this.locale],
-          value: result.analysis.iChingAnalysis || (this.locale === 'zh'
+          value: analysis.iChingAnalysis || (this.locale === 'zh'
             ? '根据周易理念，起名宜用风雅和谐、山高水长、寓意深远的字。'
-            : 'According to I-Ching philosophy...')
+            : 'According to I-Ching philosophy, names should use characters that are elegant, harmonious, and have profound meanings.')
         },
         {
           label: this.analysisTabs[3].name[this.locale],
-          value: result.analysis.zodiacAnalysis || (this.locale === 'zh'
+          value: analysis.zodiacAnalysis || (this.locale === 'zh'
             ? '生肖属性为' + (result.birthInfo?.zodiac || '蛇') + '，起名宜用有"月"、"山"等部首的字。'
-            : 'Your zodiac sign is ' + (result.birthInfo?.zodiac || 'Snake') + '...')
+            : 'Your zodiac sign is ' + (result.birthInfo?.zodiac || 'Snake') + ', names should use characters with radicals like moon and mountain.')
         },
         {
           label: this.analysisTabs[4].name[this.locale],
-          value: result.analysis.nameAnalysis || (this.locale === 'zh'
-            ? '理想的姓名会令人感受到美好的期望...'
-            : 'An ideal name should convey positive expectations...')
+          value: analysis.nameAnalysis || analysis.compatibility || result.explanation || (this.locale === 'zh'
+            ? '理想的姓名会令人感受到美好的期望，体现个人的品格和志向。'
+            : 'An ideal name should convey positive expectations and reflect personal character and aspirations.')
         }
       ]
     },

@@ -328,31 +328,162 @@ function extractLunarDate(birthDateTime) {
   }
 }
 
-// 其他构建函数的简化实现
+// 其他构建函数的实现
+function buildNameTranslationRequest(baseRequest, params) {
+  const { name, sourceLanguage, targetLanguage, method, locale = 'zh' } = params;
+
+  if (!name) {
+    log('❌ 名字翻译请求缺少必需参数: name');
+    return null;
+  }
+
+  log('🎯 构建名字翻译请求，参数:', params);
+
+  // 使用提示词模板
+  const systemPrompt = nameTranslationPrompts.system;
+  const userPrompt = nameTranslationPrompts.user.replace('{name}', name);
+
+  return {
+    ...baseRequest,
+    messages: [
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: userPrompt }
+    ],
+    temperature: 0.8,
+    max_tokens: 1500,
+    response_format: { type: 'json_object' }
+  };
+}
+
 function buildNameAnalysisRequest(baseRequest, params) {
-  return null; // 简化实现
+  const { name, birthDate, locale = 'zh' } = params;
+
+  if (!name) {
+    return null;
+  }
+
+  const systemPrompt = nameAnalysisPrompts.system;
+  const userPrompt = locale === 'zh' 
+    ? nameAnalysisPrompts.zh({ name, birthDate })
+    : nameAnalysisPrompts.en({ name, birthDate });
+
+  return {
+    ...baseRequest,
+    messages: [
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: userPrompt }
+    ],
+    temperature: 0.3,
+    max_tokens: 1200,
+    response_format: { type: 'json_object' }
+  };
 }
 
 function buildZodiacAnalysisRequest(baseRequest, params) {
-  return null; // 简化实现
+  const { birthYear, locale = 'zh' } = params;
+
+  if (!birthYear) {
+    return null;
+  }
+
+  const systemPrompt = zodiacAnalysisPrompts.system;
+  const userPrompt = locale === 'zh'
+    ? zodiacAnalysisPrompts.zh({ birthYear })
+    : zodiacAnalysisPrompts.en({ birthYear });
+
+  return {
+    ...baseRequest,
+    messages: [
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: userPrompt }
+    ],
+    temperature: 0.5,
+    max_tokens: 800,
+    response_format: { type: 'json_object' }
+  };
 }
 
 function buildCharacterAnalysisRequest(baseRequest, params) {
-  return null; // 简化实现
-}
+  const { character, locale = 'zh' } = params;
 
-function buildNameTranslationRequest(baseRequest, params) {
-  return null; // 简化实现
+  if (!character) {
+    return null;
+  }
+
+  const systemPrompt = characterAnalysisPrompts.system;
+  const userPrompt = characterAnalysisPrompts.user(character);
+
+  return {
+    ...baseRequest,
+    messages: [
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: userPrompt }
+    ],
+    temperature: 0.2,
+    max_tokens: 1000,
+    response_format: { type: 'json_object' }
+  };
 }
 
 function buildChineseToEnglishRequest(baseRequest, params) {
-  return null; // 简化实现
+  const { name, locale = 'zh' } = params;
+
+  if (!name) {
+    log('❌ 中文转英文请求缺少必需参数: name');
+    return null;
+  }
+
+  log('🎯 构建中文转英文请求，参数:', params);
+
+  const systemPrompt = chineseToEnglishPrompts.system;
+  const userPrompt = chineseToEnglishPrompts.user(name);
+
+  return {
+    ...baseRequest,
+    messages: [
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: userPrompt }
+    ],
+    temperature: 0.8,
+    max_tokens: 1500,
+    response_format: { type: 'json_object' }
+  };
 }
 
 function buildTranslationRequest(baseRequest, params) {
-  return null; // 简化实现
+  const { text, fromLang = 'auto', toLang = 'zh', locale = 'zh' } = params;
+
+  if (!text) {
+    return null;
+  }
+
+  const systemPrompt = generalTranslationPrompts.system;
+  const userPrompt = generalTranslationPrompts.user(text, fromLang, toLang);
+
+  return {
+    ...baseRequest,
+    messages: [
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: userPrompt }
+    ],
+    temperature: 0.3,
+    max_tokens: 800,
+    response_format: { type: 'json_object' }
+  };
 }
 
 function buildCustomRequest(baseRequest, params) {
-  return null; // 简化实现
+  const { messages, temperature, max_tokens } = params;
+
+  if (!messages || !Array.isArray(messages) || messages.length === 0) {
+    log('❌ buildCustomRequest: messages 参数无效或为空');
+    return null;
+  }
+
+  return {
+    ...baseRequest,
+    messages: messages,
+    temperature: temperature || 0.7,
+    max_tokens: max_tokens || 1000
+  };
 }
