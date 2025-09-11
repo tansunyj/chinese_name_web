@@ -13,10 +13,10 @@
                 id="birthYear" 
                 v-model.number="formData.birthYear" 
                 required
-                min="1990"
+                min="1900"
                 max="2100"
                 class="form-input"
-                placeholder="1990"
+                placeholder="1900"
               />
             </div>
             
