@@ -442,7 +442,8 @@ function buildNameGenerationRequest(baseRequest, params) {
   const userPrompt = nameGenerationPrompts.user(templateParams);
 
 
-  log('✅ 生成的用户提示词:', userPrompt.substring(0, 200) + '...');
+  log('✅ 生成中文名字：生成的用户提示词:', userPrompt);
+  log('✅ 生成中文名字：生成的系统提示词:', systemPrompt);
 
   return {
     ...baseRequest,
@@ -475,6 +476,9 @@ function buildNameAnalysisRequest(baseRequest, params) {
     ? nameAnalysisPrompts.zh(templateParams)
     : nameAnalysisPrompts.en(templateParams);
 
+    log('✅ 分析中文名字：生成的用户提示词:', userPrompt);
+    log('✅ 分析中文名字：生成的系统提示词:', systemPrompt);
+
   return {
     ...baseRequest,
     messages: [
@@ -505,6 +509,9 @@ function buildZodiacAnalysisRequest(baseRequest, params) {
     ? zodiacAnalysisPrompts.zh(templateParams)
     : zodiacAnalysisPrompts.en(templateParams);
 
+    log('✅ 分析生肖：生成的用户提示词:', userPrompt);
+    log('✅ 分析生肖：生成的系统提示词:', systemPrompt);
+
   return {
     ...baseRequest,
     messages: [
@@ -531,6 +538,9 @@ function buildCharacterAnalysisRequest(baseRequest, params) {
   const systemPrompt = characterAnalysisPrompts.system;
   const userPrompt = characterAnalysisPrompts.user(character);
 
+  log('✅ 分析构建汉字：生成的用户提示词:', userPrompt);
+  log('✅ 分析构建汉字：生成的系统提示词:', systemPrompt);
+
   return {
     ...baseRequest,
     messages: [
@@ -556,6 +566,9 @@ function buildTranslationRequest(baseRequest, params) {
   // 🔒 使用 promptTemplates.js 中的提示词
   const systemPrompt = generalTranslationPrompts.system;
   const userPrompt = generalTranslationPrompts.user(text, fromLang, toLang);
+
+  log('✅ 分析翻译名字：生成的用户提示词:', userPrompt);
+  log('✅ 分析翻译名字：生成的系统提示词:', systemPrompt);
 
   return {
     ...baseRequest,
@@ -745,11 +758,8 @@ function buildCustomRequest(baseRequest, params) {
   let userPrompt = userMessage?.content || '';
 
   // 🔍 详细调试日志
-  log('🔍 buildCustomRequest 调试信息:');
-  log('📝 原始用户消息:', userPrompt);
-  log('🎯 检测到的业务类型:', detectedType);
-  log('📋 原始系统提示词长度:', systemPrompt.length);
-  log('📋 原始系统提示词前100字符:', systemPrompt.substring(0, 100));
+  log('✅ 自定义中文名：生成的用户提示词:', userPrompt);
+  log('✅ 自定义中文名：生成的系统提示词:', systemPrompt);
 
   // 根据检测到的业务类型替换提示词 - 🔒 使用 promptTemplates.js 中的完整专业提示词
   if (detectedType === 'nameGeneration') {
@@ -843,8 +853,8 @@ function buildNameTranslationRequest(baseRequest, params) {
 
   const userPrompt = nameTranslationPrompts.user.replace('{name}', name);
 
-  log('✅ 生成的用户提示词是:', userPrompt.substring(0, 200) + '...');
-  log('✅ 生成的系统提示词是:', systemPrompt);
+  log('✅ 外文名字翻译成中文名:生成的用户提示词是:', userPrompt.substring(0, 200) + '...');
+  log('✅ 外文名字翻译成中文名:生成的系统提示词是:', systemPrompt);
 
   return {
     ...baseRequest,
@@ -876,7 +886,8 @@ function buildChineseToEnglishRequest(baseRequest, params) {
 
   const userPrompt = chineseToEnglishPrompts.user(name);
 
-  log('✅ 生成的用户提示词:', userPrompt.substring(0, 200) + '...');
+  log('✅ 中文名翻译成英文名：生成的用户提示词:', userPrompt);
+  log('✅ 中文名翻译成英文名：生成的系统提示词:', systemPrompt);
 
   return {
     ...baseRequest,
