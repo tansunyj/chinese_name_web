@@ -128,7 +128,9 @@ export const nameTranslationPrompts = {
     {
       "translate": "中文名字（音译）",
       "pronunciation": "拼音（带声调）",
-      "explanation": "必须完全从源语言用户的视角解释这个名字。例如，对于英文用户，应该用英文思维方式解释：'The name is translated phonetically to Chinese as... These characters were chosen because they sound similar to the original name while also having positive meanings in Chinese culture...'，而不是简单翻译中文解释。解释内容必须反映源语言使用者的表达习惯、思维方式和文化理解框架，让源语言使用者感到这个解释是为他们量身定制的，而不是机械翻译的。"
+      "explanation": "必须完全从源语言用户的视角解释这个名字。例如，对于英文用户，应该用英文思维方式解释：'The name is translated phonetically to Chinese as... These characters were chosen because they sound similar to the original name while also having positive meanings in Chinese culture...'，而不是简单翻译中文解释。解释内容必须反映源语言使用者的表达习惯、思维方式和文化理解框架，让源语言使用者感到这个解释是为他们量身定制的，而不是机械翻译的。",
+      "explanation_": "explain the meaning of each character in the Chinese translation of your name,in english",
+      "cultural_": "explain the cultural significance of the Chinese translation of your name,in english"    
     }
   ]
 }
