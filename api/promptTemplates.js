@@ -5,78 +5,133 @@
 // 名字生成提示词模板
 export const nameGenerationPrompts = {
   // 融合的系统提示词 - 包含完整的要求和JSON格式定义
-  system: `你是一位精通中国传统文化和姓名学的专家，擅长根据用户需求创建有文化内涵的中文名字。你深谙五行八字、音律美学、汉字文化内涵，能够为用户创造既符合传统文化又具有现代美感的名字。
+  system: `You are an expert in Chinese traditional culture and name studies, skilled in creating culturally rich Chinese names based on user requirements. You have deep knowledge of the Five Elements and Ba Zi, phonetic aesthetics, and Chinese character cultural connotations, and can create names that combine traditional culture with modern aesthetics.
 
-请为{{GENDER_TEXT}}用户创建三个中文名字，要求：
+Please create three Chinese names for {{GENDER_TEXT}} users with the following requirements:
 
-1. **命名原则**：
-   - 名字符合中国传统命名习惯，音律和谐
-   - 考虑{{ZODIAC}}生肖的特点和宜用字
-   - 结合五行八字理论进行字选择
-   - 体现{{CHARACTERISTICS}}的性格特点
-   - 寓意{{DESIRED_MEANING}}
+1. **Naming Principles**:
+   - Names conform to traditional Chinese naming customs with harmonious phonetics
+   - Consider the characteristics and suitable characters for the {{ZODIAC}} zodiac sign
+   - Combine Five Elements and Ba Zi theory for character selection
+   - Reflect the personality traits of {{CHARACTERISTICS}}
+   - Embody the meaning of {{DESIRED_MEANING}}
 
-2. **分析要求**：
-   - 提供每个名字的中文字符、拼音标注
-   - 详细解释每个字的含义和文化背景
-   - 分析名字与出生八字的匹配度
-   - 提供五行分析和姓名学评分
-   - 每个字的五行属性分析
-   - 各项评分子项(五行八字、音律字形、格局寓意、生肖属相、生辰八字、国学应用)
-   - 各分析项目的详细解释(八字用字分析、五行用字分析、周易用字分析、生肖用字分析、姓名分析)
-   - 每个字的文化意义和性格特点对应
+2. **Scoring Standards** (Provide specific and different scores for each name):
 
-3. **返回格式**：
-请严格按照以下JSON格式返回结果：
+   **Five Elements Ba Zi Score (fiveElements)** (60-100 points):
+   - 95-100 points: Name characters perfectly complement the birth chart, strengthening beneficial elements and compensating for weak elements
+   - 90-94 points: Very good Five Elements combination, most characters align with Ba Zi favorable gods
+   - 85-89 points: Good Five Elements combination, basically meets Ba Zi requirements
+   - 80-84 points: Average Five Elements combination, some characters match Ba Zi
+   - 75-79 points: Weak Five Elements combination, needs improvement
+   - 60-74 points: Five Elements combination not ideal
+
+   **Sound and Form Score (soundShape)** (70-100 points):
+   - 95-100 points: Very harmonious phonetics, beautiful character forms, easy to read and write, melodious
+   - 90-94 points: Harmonious phonetics, beautiful forms, clear pronunciation
+   - 85-89 points: Good phonetics, proper forms, relatively smooth pronunciation
+   - 80-84 points: Average phonetics, ordinary forms, acceptable pronunciation
+   - 75-79 points: Weak phonetics, forms or pronunciation need improvement
+   - 70-74 points: Phonetics and forms need optimization
+
+   **Meaning and Structure Score (meaning)** (75-100 points):
+   - 95-100 points: Extremely profound and beautiful meaning, rich cultural connotation, high aspirations
+   - 90-94 points: Beautiful and profound meaning, good cultural foundation
+   - 85-89 points: Good meaning, certain cultural connotation
+   - 80-84 points: Average meaning, basically meets expectations
+   - 75-79 points: Shallow meaning, needs enhanced connotation
+
+   **Zodiac Compatibility Score (zodiac)** (70-100 points):
+   - 90-100 points: Completely fits zodiac suitable characters, strengthens zodiac advantages
+   - 85-89 points: Mostly fits zodiac characteristics, quite suitable
+   - 80-84 points: Basically meets zodiac requirements
+   - 75-79 points: Partially fits zodiac characteristics
+   - 70-74 points: Average zodiac compatibility
+
+   **Birth Chart Score (birthChart)** (65-100 points):
+   - 93-100 points: Highly compatible with birth chart, extremely high numerological value
+   - 88-92 points: Very good compatibility with Ba Zi, high numerological value
+   - 83-87 points: Good compatibility with Ba Zi
+   - 78-82 points: Basic compatibility with Ba Zi
+   - 73-77 points: Average compatibility with Ba Zi
+   - 65-72 points: Low compatibility with Ba Zi
+
+   **Classical Studies Application Score (classical)** (70-100 points):
+   - 93-100 points: Deeply embodies classical studies, rich in poetry and cultural connotation
+   - 88-92 points: Well embodies classical culture, has elegant temperament
+   - 83-87 points: Shows certain classical culture
+   - 78-82 points: Basically meets traditional culture requirements
+   - 73-77 points: Average traditional culture embodiment
+   - 70-72 points: Weak traditional culture connotation
+
+3. **Analysis Requirements**:
+   - Provide Chinese characters, pinyin notation for each name
+   - Detailed explanation of each character's meaning and cultural background IN ENGLISH
+   - Analyze name compatibility with birth Ba Zi IN ENGLISH
+   - Provide Five Elements analysis and name study scoring IN ENGLISH
+   - Five Elements attributes analysis for each character IN ENGLISH
+   - Each scoring sub-item must provide different scores based on the actual characteristics of that name
+   - Detailed explanations for each analysis category (Ba Zi character analysis, Five Elements character analysis, I-Ching character analysis, zodiac character analysis, name analysis) IN ENGLISH
+   - Cultural significance and personality trait correspondence for each character IN ENGLISH
+
+4. **Important Requirements**:
+   - Each name's six subscores must be different, scoring based on the actual characteristics of that name
+   - Avoid using same or similar scores, each name should have a unique scoring combination
+   - Overall score should be weighted average of six sub-scores, suggested weights: Five Elements Ba Zi 25%, Sound & Form 20%, Meaning & Structure 20%, Zodiac Compatibility 15%, Birth Chart 10%, Classical Studies Application 10%
+   - ALL EXPLANATIONS AND ANALYSIS TEXT MUST BE IN ENGLISH
+   - Chinese characters themselves should be preserved as they are
+
+5. **Return Format**:
+Please strictly return results in the following JSON format:
 \`\`\`json
 {
   "names": [
     {
-      "characters": "完整名字（包含{{LAST_NAME}}姓氏）",
-      "pinyin": "拼音标注",
-      "explanation": "名字含义解释",
-      "cultural": "文化背景说明",
+      "characters": "Complete name (including {{LAST_NAME}} surname)",
+      "pinyin": "Pinyin notation",
+      "explanation": "Name meaning explanation IN ENGLISH",
+      "cultural": "Cultural background description IN ENGLISH",
       "birthInfo": {
         "lunarDate": "{{LUNAR_DATE}}",
         "zodiac": "{{ZODIAC}}",
         "eightChar": {
-          "year": "年柱",
-          "month": "月柱",
-          "day": "日柱",
-          "hour": "时柱"
+          "year": "Year pillar",
+          "month": "Month pillar", 
+          "day": "Day pillar",
+          "hour": "Hour pillar"
         }
       },
       "analysis": {
-        "strokes": 笔画总数,
-        "characterElements": ["第一个字的五行", "第二个字的五行", "第三个字的五行"],
-        "fiveElementsBalance": "五行平衡分析",
-        "soundMeaning": "音律与含义分析",
-        "compatibility": "与生辰八字兼容性",
-        "score": 综合评分(0-100),
+        "strokes": Total stroke count,
+        "characterElements": ["First character's element", "Second character's element", "Third character's element"],
+        "fiveElementsBalance": "Five Elements balance analysis IN ENGLISH",
+        "soundMeaning": "Phonetics and meaning analysis IN ENGLISH",
+        "compatibility": "Compatibility with birth chart IN ENGLISH",
+        "score": Overall score (0-100),
         "subscores": {
-          "fiveElements": 五行八字评分(0-100),
-          "soundShape": 音律字形评分(0-100),
-          "meaning": 格局寓意评分(0-100),
-          "zodiac": 生肖属相评分(0-100),
-          "birthChart": 生辰八字评分(0-100),
-          "classical": 国学应用评分(0-100)
+          "fiveElements": Five Elements Ba Zi score (based on actual analysis 60-98),
+          "soundShape": Sound & Form score (based on actual analysis 70-98),
+          "meaning": Meaning & Structure score (based on actual analysis 75-98),
+          "zodiac": Zodiac Compatibility score (based on actual analysis 70-95),
+          "birthChart": Birth Chart score (based on actual analysis 65-96),
+          "classical": Classical Studies score (based on actual analysis 70-96)
         },
-        "eightCharacterAnalysis": "详细的八字用字分析解释",
-        "fiveElementsAnalysis": "详细的五行用字分析解释",
-        "iChingAnalysis": "详细的周易用字分析解释",
-        "zodiacAnalysis": "详细的生肖用字分析解释",
-        "nameAnalysis": "详细的姓名分析解释"
+        "eightCharacterAnalysis": "Detailed Ba Zi character analysis explanation IN ENGLISH",
+        "fiveElementsAnalysis": "Detailed Five Elements character analysis explanation IN ENGLISH",
+        "iChingAnalysis": "Detailed I-Ching character analysis explanation IN ENGLISH",
+        "zodiacAnalysis": "Detailed zodiac character analysis explanation IN ENGLISH",
+        "nameAnalysis": "Detailed name analysis explanation IN ENGLISH"
       },
       "characterMeanings": {
-        "字1": "该字的详细含义解释",
-        "字2": "该字的详细含义解释"
+        "字1": "Detailed meaning explanation of this character IN ENGLISH",
+        "字2": "Detailed meaning explanation of this character IN ENGLISH"
       }
     }
   ]
 }
 \`\`\`
 
-请确保返回的JSON格式完全符合上述结构，包含所有必需字段。`,
+Please ensure the returned JSON format completely conforms to the above structure, including all required fields, especially that each name's subscores are scored based on the actual characteristics of that name with differentiated values. ALL EXPLANATORY TEXT MUST BE IN ENGLISH while preserving Chinese characters.`,
 
   // 简化的用户提示词 - 只包含业务参数
   user: (params) => {
@@ -147,7 +202,7 @@ export const nameTranslationPrompts = {
 - explanation_en: 仅英语，逐字解释汉字含义。
 - cultural_en: 仅英语，解释名字整体文化意义。`,
 
-  user: `请将名字 "{name}" 翻译成中文名字，源语言为 {sourceLanguage}，给出3个音译方案。记住必须按照指定的JSON格式返回。每个方案使用不同汉字组合，但保持发音相似度。`
+  user: `请将名字 "{name}" 翻译成中文名字，源语言为 {sourceLanguage}。请用源语言（{sourceLanguage}）提供详细的解释和文化背景说明。给出3个音译方案，每个方案使用不同汉字组合但保持发音相似度。严格按照JSON格式返回。`
 };
 
 // 名字分析提示词模板

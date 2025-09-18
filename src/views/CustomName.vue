@@ -903,14 +903,7 @@ export default {
             culturalBackground: nameData.analysis.culturalBackground || '',
             pronunciation: nameData.analysis.pronunciation || this.generatePinyin(nameData.fullName),
             compatibility: nameData.analysis.compatibility || '',
-            subscores: {
-              fiveElements: 92,
-              soundShape: 97,
-              meaning: 95,
-              zodiac: 88,
-              birthChart: 90,
-              classical: 93
-            },
+            subscores: nameData.analysis.subscores || this.generateRandomSubscores(),
             // 从 meaning 字段生成详细分析（优先使用AI返回的分析）
             eightCharacterAnalysis: nameData.analysis.eightCharacterAnalysis || this.generateEightCharacterAnalysis(nameData.analysis.meaning),
             fiveElementsAnalysis: nameData.analysis.fiveElementsAnalysis || this.generateFiveElementsAnalysis(nameData.analysis.meaning),
@@ -957,6 +950,21 @@ export default {
 
       log('✅ 标准化后的数据:', normalized);
       return normalized;
+    },
+
+    // 生成随机的差异化评分
+    generateRandomSubscores() {
+      // 为每个维度生成不同范围的随机评分，确保分值有差异
+      const getRandomInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+      
+      return {
+        fiveElements: getRandomInRange(75, 96),    // 五行八字：75-96
+        soundShape: getRandomInRange(80, 98),      // 音律字形：80-98
+        meaning: getRandomInRange(78, 97),         // 格局寓意：78-97
+        zodiac: getRandomInRange(72, 93),          // 生肖属相：72-93
+        birthChart: getRandomInRange(70, 94),      // 生辰八字：70-94
+        classical: getRandomInRange(74, 95)        // 国学应用：74-95
+      };
     },
 
     // 生成拼音（简单实现）
@@ -1036,78 +1044,58 @@ export default {
     // 生成八字分析（基于字符含义）
     generateEightCharacterAnalysis(meaningObj) {
       if (!meaningObj || typeof meaningObj !== 'object') {
-        return this.locale === 'zh' 
-          ? '根据八字喜用神分析，建议选择与命格相配的字符。'
-          : 'Based on Eight Characters analysis, choose characters that match your fate.';
+        return 'Based on Eight Characters analysis, choose characters that match your fate and strengthen favorable elements.';
       }
       
       const meanings = Object.values(meaningObj);
       if (meanings.length === 0) {
-        return this.locale === 'zh' 
-          ? '根据八字喜用神分析，建议选择与命格相配的字符。'
-          : 'Based on Eight Characters analysis, choose characters that match your fate.';
+        return 'Based on Eight Characters analysis, choose characters that match your fate and strengthen favorable elements.';
       }
       
       // 根据字符含义分析八字匹配度
-      const hasWisdom = meanings.some(m => m.includes('智') || m.includes('文') || m.includes('学'));
-      const hasVirtue = meanings.some(m => m.includes('德') || m.includes('良') || m.includes('善'));
+      const hasWisdom = meanings.some(m => m.includes('智') || m.includes('文') || m.includes('学') || m.includes('wisdom') || m.includes('intelligence'));
+      const hasVirtue = meanings.some(m => m.includes('德') || m.includes('良') || m.includes('善') || m.includes('virtue') || m.includes('moral'));
       
       if (hasWisdom && hasVirtue) {
-        return this.locale === 'zh' 
-          ? '此名字中的字符体现了智慧与品德，与八字喜用神相合，有利于个人的事业发展和精神提升。'
-          : 'The characters in this name reflect wisdom and virtue, matching the Eight Characters preferences.';
+        return 'The characters in this name reflect wisdom and virtue, perfectly matching the Eight Characters favorable gods. This combination is beneficial for career development and spiritual elevation, as it aligns with the person\'s destined path toward intellectual and moral excellence.';
       } else if (hasWisdom) {
-        return this.locale === 'zh' 
-          ? '名字中包含智慧、学识类字符，与八字中的文星相合，有利于学业和事业发展。'
-          : 'The name contains wisdom and knowledge characters, beneficial for academic and career development.';
+        return 'The name contains wisdom and knowledge characters that align with the intellectual stars in the Ba Zi chart, promoting academic achievement and career advancement in fields requiring mental acuity.';
       } else {
-        return this.locale === 'zh' 
-          ? '根据八字分析，此名字的字符选择与命主的生辰相合，能够起到平衡弥补的作用。'
-          : 'According to Eight Characters analysis, the character selection balances and complements the birth chart.';
+        return 'According to Eight Characters analysis, the character selection harmonizes with the birth chart elements, providing balance and complementing the person\'s natural tendencies while strengthening weak aspects of their destiny.';
       }
     },
 
     // 生成五行分析（基于字符含义）
     generateFiveElementsAnalysis(meaningObj) {
       if (!meaningObj || typeof meaningObj !== 'object') {
-        return this.locale === 'zh' 
-          ? '姓名的五行平衡很重要，建议选择互补的五行属性。'
-          : 'Five Elements balance in names is important, choose complementary elemental attributes.';
+        return 'Five Elements balance in names is crucial for harmonizing personal energy. Choose characters with complementary elemental attributes to strengthen your natural constitution.';
       }
       
       const meanings = Object.values(meaningObj);
       if (meanings.length === 0) {
-        return this.locale === 'zh' 
-          ? '姓名的五行平衡很重要，建议选择互补的五行属性。'
-          : 'Five Elements balance in names is important, choose complementary elemental attributes.';
+        return 'Five Elements balance in names is crucial for harmonizing personal energy. Choose characters with complementary elemental attributes to strengthen your natural constitution.';
       }
       
       // 根据字符含义分析五行属性
-      const hasWater = meanings.some(m => m.includes('水') || m.includes('流') || m.includes('清'));
-      const hasFire = meanings.some(m => m.includes('火') || m.includes('明') || m.includes('光'));
-      const hasWood = meanings.some(m => m.includes('木') || m.includes('林') || m.includes('森'));
-      const hasMetal = meanings.some(m => m.includes('金') || m.includes('铁') || m.includes('铜'));
-      const hasEarth = meanings.some(m => m.includes('土') || m.includes('山') || m.includes('石'));
+      const hasWater = meanings.some(m => m.includes('水') || m.includes('流') || m.includes('清') || m.includes('water') || m.includes('flow'));
+      const hasFire = meanings.some(m => m.includes('火') || m.includes('明') || m.includes('光') || m.includes('bright') || m.includes('fire'));
+      const hasWood = meanings.some(m => m.includes('木') || m.includes('林') || m.includes('森') || m.includes('wood') || m.includes('tree'));
+      const hasMetal = meanings.some(m => m.includes('金') || m.includes('铁') || m.includes('铜') || m.includes('metal') || m.includes('gold'));
+      const hasEarth = meanings.some(m => m.includes('土') || m.includes('山') || m.includes('石') || m.includes('earth') || m.includes('mountain'));
       
       const elementCount = [hasWater, hasFire, hasWood, hasMetal, hasEarth].filter(Boolean).length;
       
       if (elementCount >= 2) {
-        return this.locale === 'zh' 
-          ? '姓名中包含多种五行元素，元素搭配均衡，有利于运势的平衡发展和个人性格的完善。'
-          : 'The name contains multiple Five Elements, creating balanced elemental harmony.';
+        return 'The name contains multiple Five Elements, creating a balanced elemental harmony that promotes holistic personal development. This diverse elemental composition supports both career success and personal growth by ensuring no single element dominates, allowing for adaptability and resilience in various life situations.';
       } else {
-        return this.locale === 'zh' 
-          ? '姓名中的字符在五行上形成了稳定的结构，将为命主带来持续的正面能量。'
-          : 'The characters form a stable Five Elements structure, bringing sustained positive energy.';
+        return 'The characters form a stable Five Elements structure that provides sustained positive energy flow. This focused elemental approach strengthens specific aspects of the personality while creating a solid foundation for consistent progress and achievement.';
       }
     },
 
     // 生成周易分析（基于字符含义）
     generateIChingAnalysis(meaningObj) {
       if (!meaningObj || typeof meaningObj !== 'object') {
-        return this.locale === 'zh' 
-          ? '根据周易理念，建议选择寓意深远、音韵和谐的字符。'
-          : 'According to I-Ching principles, choose characters with profound meanings and harmonious sounds.';
+        return 'According to I-Ching principles, choose characters with profound meanings and harmonious sounds that resonate with universal cosmic patterns.';
       }
       
       const meanings = Object.values(meaningObj);
@@ -1623,26 +1611,22 @@ export default {
         {
           characters: params.lastName ? params.lastName + '智明' : '李智明',
           pinyin: params.lastName ? this.getPinyin(params.lastName) + ' Zhì Míng' : 'Lǐ Zhì Míng',
-          explanation: this.locale === 'zh' ? 
-            '智(zhì)意为"聪明、有智慧"，明(míng)意为"明亮、清晰、光明"。与姓氏组合，寓意一个既聪明又有光明前途的人。' : 
-            'Zhi (智) means "wisdom, intelligence" and Ming (明) means "bright, clear, brilliant". Together with the surname, this name suggests a person who is both intelligent and has a bright future.',
-          cultural: this.locale === 'zh' ? 
-            '在中国文化中，智慧和光明是非常重视的品质。这个名字适合珍视知识和思想清晰的人。' : 
-            'In Chinese culture, intelligence and brightness are highly valued traits. This name would be suitable for someone who values knowledge and clarity of thought.',
+          explanation: 'Zhi (智) means "wisdom, intelligence" and Ming (明) means "bright, clear, brilliant". Together with the surname, this name suggests a person who is both intelligent and has a bright future.',
+          cultural: 'In Chinese culture, intelligence and brightness are highly valued traits. This name would be suitable for someone who values knowledge and clarity of thought.',
           birthInfo: birthInfo, // 使用实时计算的农历信息
           analysis: {
             strokes: 23,
             fiveElementsBalance: 'Metal[2] Wood[0] Water[1] Fire[1] Earth[2]',
-            soundMeaning: this.locale === 'zh' ? '音韵和谐，寓意深远' : 'Harmonious pronunciation with deep meaning',
-            compatibility: this.locale === 'zh' ? '与命主八字五行搭配协调' : 'Well balanced with birth chart elements',
+            soundMeaning: 'Harmonious pronunciation with deep meaning',
+            compatibility: 'Well balanced with birth chart elements',
             score: 92,
             subscores: {
-              fiveElements: 92,
-              soundShape: 97,
-              meaning: 95,
-              zodiac: 88,
-              birthChart: 90,
-              classical: 93
+              fiveElements: 94,  // 智明两字五行搭配很好
+              soundShape: 96,    // 音律非常和谐
+              meaning: 97,       // 寓意极其深刻
+              zodiac: 85,        // 生肖匹配度较好
+              birthChart: 89,    // 八字契合度良好
+              classical: 91      // 体现传统文化较好
             }
           },
           showAnalysis: false,
@@ -1651,26 +1635,22 @@ export default {
         {
           characters: params.lastName ? params.lastName + '安德' : '李安德',
           pinyin: params.lastName ? this.getPinyin(params.lastName) + ' Ān Dé' : 'Lǐ Ān Dé',
-          explanation: this.locale === 'zh' ? 
-            '安(ān)意为"平安、安宁"，德(dé)意为"品德、道德"。与姓氏组合，寓意一个带来平安并拥有道德品质的人。' : 
-            'An (安) means "peace, security" and De (德) means "virtue, morality". Combined with the surname, this name suggests a person who brings peace and embodies moral virtue.',
-          cultural: this.locale === 'zh' ? 
-            '和平与美德是中国传统儒家思想中的重要价值观。这个名字会与那些欣赏传统伦理原则的人产生共鸣。' : 
-            'Peace and virtue are traditional Confucian values in Chinese culture. This name would resonate with those who appreciate traditional ethical principles.',
+          explanation: 'An (安) means "peace, security" and De (德) means "virtue, morality". Combined with the surname, this name suggests a person who brings peace and embodies moral virtue.',
+          cultural: 'Peace and virtue are traditional Confucian values in Chinese culture. This name would resonate with those who appreciate traditional ethical principles.',
           birthInfo: birthInfo, // 使用相同的实时计算的农历信息
           analysis: {
             strokes: 20,
             fiveElementsBalance: 'Metal[1] Wood[0] Water[1] Fire[0] Earth[3]',
-            soundMeaning: this.locale === 'zh' ? '音韵平稳，寓意美好' : 'Balanced pronunciation with auspicious meaning',
-            compatibility: this.locale === 'zh' ? '与命主八字五行搭配良好' : 'Good compatibility with birth chart elements',
-            score: 88,
+            soundMeaning: 'Balanced pronunciation with auspicious meaning',
+            compatibility: 'Good compatibility with birth chart elements',
+            score: 87,
             subscores: {
-              fiveElements: 85,
-              soundShape: 90,
-              meaning: 92,
-              zodiac: 86,
-              birthChart: 88,
-              classical: 89
+              fiveElements: 83,  // 安德两字五行搭配较好
+              soundShape: 88,    // 音律和谐度良好
+              meaning: 95,       // 寓意非常美好（和平与品德）
+              zodiac: 82,        // 生肖匹配度中等
+              birthChart: 84,    // 八字契合度较好
+              classical: 92      // 体现儒家文化很好
             }
           },
           showAnalysis: false,

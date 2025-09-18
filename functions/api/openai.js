@@ -341,7 +341,9 @@ function buildNameTranslationRequest(baseRequest, params) {
 
   // 使用提示词模板
   const systemPrompt = nameTranslationPrompts.system;
-  const userPrompt = nameTranslationPrompts.user.replace('{name}', name);
+  const userPrompt = nameTranslationPrompts.user
+    .replace('{name}', name)
+    .replace(/{sourceLanguage}/g, sourceLanguage);
 
   return {
     ...baseRequest,

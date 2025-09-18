@@ -417,9 +417,12 @@ function buildNameTranslationRequest(baseRequest, params) {
 
   // 🔒 使用 promptTemplates.js 中的提示词
   const systemPrompt = nameTranslationPrompts.system;
-  const userPrompt = nameTranslationPrompts.user.replace('{name}', name);
+  const userPrompt = nameTranslationPrompts.user
+    .replace('{name}', name)
+    .replace(/{sourceLanguage}/g, sourceLanguage);
 
   console.log('✅ 生成的用户提示词:', userPrompt.substring(0, 200) + '...');
+  console.log('🌐 源语言:', sourceLanguage);
 
   return {
     ...baseRequest,

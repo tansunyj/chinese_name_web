@@ -839,19 +839,21 @@ function buildCustomRequest(baseRequest, params) {
  * 构建名字翻译请求（外文名转中文名）- 生产环境
  */
 function buildNameTranslationRequest(baseRequest, params) {
-  const { name } = params;
+  const { name, sourceLanguage } = params;
 
   if (!name) {
     log('❌ 名字翻译请求缺少必需参数: name');
     return null;
   }
 
-  log('🎯 构建名字翻译请求，参数:', params);
+  log('🎯 构建名字翻译请求，参数2:', params);
 
   // 🔒 使用 promptTemplates.js 中的完整翻译提示词
   const systemPrompt = nameTranslationPrompts.system;
 
-  const userPrompt = nameTranslationPrompts.user.replace('{name}', name);
+  const userPrompt = nameTranslationPrompts.user
+    .replace('{name}', name)
+    .replace(/{sourceLanguage}/g, sourceLanguage);
 
   log('✅ 外文名字翻译成中文名:生成的用户提示词是:', userPrompt.substring(0, 200) + '...');
   log('✅ 外文名字翻译成中文名:生成的系统提示词是:', systemPrompt);
