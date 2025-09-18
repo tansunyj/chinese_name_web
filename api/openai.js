@@ -843,7 +843,8 @@ function buildNameTranslationRequest(baseRequest, params) {
 
   const userPrompt = nameTranslationPrompts.user.replace('{name}', name);
 
-  log('✅ 生成的用户提示词:', userPrompt.substring(0, 200) + '...');
+  log('✅ 生成的用户提示词是:', userPrompt.substring(0, 200) + '...');
+  log('✅ 生成的系统提示词是:', systemPrompt);
 
   return {
     ...baseRequest,

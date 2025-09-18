@@ -310,38 +310,6 @@ export default {
       this.errorMessage = ''; // 清除之前的错误信息
       
       try {
-        // 定义 JSON Schema，用于结构化返回数据
-        const nameSchema = {
-          type: "object",
-          properties: {
-            translations: {
-              type: "array",
-              items: {
-                type: "object",
-                properties: {
-                  translate: { type: "string" },        // 中文名字
-                  pronunciation: { type: "string" },    // 拼音
-                  explanation: { type: "string" },           // 含义解释
-                  cultural: { type: "string" },              // 文化含义
-                  analysis: {
-                    type: "object",
-                    properties: {
-                      strokes: { type: "number" },           // 笔画数
-                      characterElements: {                    // 字的五行属性
-                        type: "array", 
-                        items: { type: "string" }
-                      },
-                      soundMeaning: { type: "string" },      // 音律含义
-                      compatibility: { type: "string" }       // 匹配度
-                    }
-                  }
-                },
-                required: ["translate", "pronunciation", "explanation"]
-              }
-            }
-          }
-        };
-
         // 根据当前选择的语言设置源语言 - 支持中英文名字互译 (Chinese names into English and English to Chinese translation)
         const sourceLanguageMap = {
           us: 'en', // 美国英语 - English name to Chinese translation
@@ -375,7 +343,7 @@ export default {
           hi: '印地文',
           zh: '中文'
         };
-        
+
         // 使用新的类型化API直接发送请求
         log('发送AI请求...');
         const response = await fetch(aiConfig.baseConfig.proxyUrl, {
