@@ -407,19 +407,25 @@ export default {
       "translate": "中文名字1",
       "pronunciation": "拼音1",
       "explanation": "完全以${sourceLanguage}语言用户视角的解释1",
-      "cultural": "以${sourceLanguage}语言为主的文化含义解释1"
+      "cultural": "以${sourceLanguage}语言为主的文化含义解释1",
+      "explanation_": "explain the meaning of each character in the Chinese translation of your name,in the ${sourceLanguage} language",
+      "cultural_": "explain the cultural significance of the Chinese translation of your name,in the ${sourceLanguage} language"    
     },
     {
       "translate": "中文名字2",
       "pronunciation": "拼音2",
       "explanation": "完全以${sourceLanguage}语言用户视角的解释2",
-      "cultural": "以${sourceLanguage}语言为主的文化含义解释2"
+      "cultural": "以${sourceLanguage}语言为主的文化含义解释2",
+      "explanation_": "explain the meaning of each character in the Chinese translation of your name,in the ${sourceLanguage} language",
+      "cultural_": "explain the cultural significance of the Chinese translation of your name,in the ${sourceLanguage} language"          
     },
     {
       "translate": "中文名字3",
       "pronunciation": "拼音3",
       "explanation": "完全以${sourceLanguage}语言用户视角的解释3",
-      "cultural": "以${sourceLanguage}语言为主的文化含义解释3"
+      "cultural": "以${sourceLanguage}语言为主的文化含义解释3",
+      "explanation_": "explain the meaning of each character in the Chinese translation of your name,in the ${sourceLanguage} language",
+      "cultural_": "explain the cultural significance of the Chinese translation of your name,in the ${sourceLanguage} language"         
     }
   ]
 }`;
