@@ -376,60 +376,6 @@ export default {
           zh: '中文'
         };
         
-        const prompt = `请将${languageNames[sourceLanguage] || sourceLanguage}名字"${this.formData.fullName}"翻译成中文，
-使用音义结合（同时考虑发音和含义）方法，并以JSON格式返回结果。
-
-请提供3个不同的翻译方案，每个方案包括:
-1. 翻译后的中文名字 (translate字段)
-2. 拼音发音指南 (pronunciation字段)
-3. 含义解释 (explanation字段)，**这是最重要的部分，必须严格遵守以下要求**：
-   - 你必须完全站在${sourceLanguage}语言使用者的视角，以其母语思维方式来思考和表达
-   - 使用${sourceLanguage}语言的表达习惯、思维方式和文化视角解释名字的意义和选字原因
-   - 绝对不能简单地将中文思维方式的解释翻译成${sourceLanguage}语言
-   - 要像对一个只懂${sourceLanguage}语言且不了解中文的人解释这个中文名字一样去撰写解释
-   - 解释应包含音译对应关系、汉字含义以及中国文化背景，但表达方式必须符合${sourceLanguage}语言的习惯
-   - 撰写时应该思考：如果${sourceLanguage}语言的专业翻译者来解释这个名字，他们会怎么表达
-   - 整体解释应当让${sourceLanguage}语言的原生使用者感到自然流畅，没有翻译腔
-
-针对不同语言的示例：
-- 英语："The name 'John' is translated to '约翰' (Yuē Hàn) in Chinese. This translation was chosen to match the sound of the original name. In Chinese naming culture, they look for characters that not only sound similar, but also carry positive meanings. Here, '约' suggests 'promise' or 'appointment', while '翰' refers to a 'writing brush' - a symbol of scholarship in traditional Chinese culture."
-
-- 日语："「Suzuki」という名前は中国語で「铃木」(Líng Mù)と翻訳されます。これは音の類似性に基づいた翻訳で、「铃」は「鈴、ベル」を意味し、「木」は「木、自然」を表します。この名前は日本語の「鈴木」と同じ漢字を使っていますが、発音が若干異なります。中国では外国人の名前を翻訳する際、良い意味を持つ漢字を選ぶことが重視されます。"
-
-- 法语："Le nom 'Pierre' est traduit en chinois comme '皮埃尔' (Pí Āi Ěr). Cette traduction est basée sur la similarité phonétique, où chaque caractère chinois représente une partie du son original. En chinois, '皮' (pí) évoque la 'peau' ou 'surface', '埃' (āi) est souvent utilisé pour les sons étrangers, et '尔' (ěr) est un caractère élégant utilisé dans de nombreux noms. Dans la culture chinoise, on choisit des caractères qui non seulement reproduisent la sonorité du nom original, mais qui portent aussi des connotations positives."
-
-4. 文化含义 (cultural字段，也必须完全从${sourceLanguage}语言视角出发描述，比解释更侧重于文化内涵)
-
-请严格按照以下JSON结构返回，确保字段名称完全一致：
-{
-  "translations": [
-    {
-      "translate": "中文名字1",
-      "pronunciation": "拼音1",
-      "explanation": "完全以${sourceLanguage}语言用户视角的解释1",
-      "cultural": "以${sourceLanguage}语言为主的文化含义解释1",
-      "explanation_": "explain the meaning of each character in the Chinese translation of your name,in the ${sourceLanguage} language",
-      "cultural_": "explain the cultural significance of the Chinese translation of your name,in the ${sourceLanguage} language"    
-    },
-    {
-      "translate": "中文名字2",
-      "pronunciation": "拼音2",
-      "explanation": "完全以${sourceLanguage}语言用户视角的解释2",
-      "cultural": "以${sourceLanguage}语言为主的文化含义解释2",
-      "explanation_": "explain the meaning of each character in the Chinese translation of your name,in the ${sourceLanguage} language",
-      "cultural_": "explain the cultural significance of the Chinese translation of your name,in the ${sourceLanguage} language"          
-    },
-    {
-      "translate": "中文名字3",
-      "pronunciation": "拼音3",
-      "explanation": "完全以${sourceLanguage}语言用户视角的解释3",
-      "cultural": "以${sourceLanguage}语言为主的文化含义解释3",
-      "explanation_": "explain the meaning of each character in the Chinese translation of your name,in the ${sourceLanguage} language",
-      "cultural_": "explain the cultural significance of the Chinese translation of your name,in the ${sourceLanguage} language"         
-    }
-  ]
-}`;
-
         // 使用新的类型化API直接发送请求
         log('发送AI请求...');
         const response = await fetch(aiConfig.baseConfig.proxyUrl, {

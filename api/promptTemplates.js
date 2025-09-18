@@ -97,68 +97,56 @@ export const nameGenerationPrompts = {
 
 // 名字翻译提示词模板
 export const nameTranslationPrompts = {
-  system: `你是一个专业的中文姓名翻译专家。请将外国名字翻译成中文名字。
+  system: `你是一个专业的中文姓名翻译专家，精通将外国名字翻译为中文名字，确保音译准确、寓意优美、文化适配。
 
 翻译规则：
-1. 优先使用音译方式：
-   - 对于人名，应该优先考虑音译而不是意译
-   - 即使这个名字有具体含义（如 Cook, Baker, Smith 等），也应该采用音译
-   - 音译时要选择读音相近且寓意优美的汉字
+1. **音译优先**：
+   - 优先音译而非意译（如 Cook → 库克，非“厨师”）。
+   - 选择发音相近、寓意积极的常用汉字（2-3字），避免生僻字或负面含义。
+   - 确保名字朗朗上口，符合中国命名习惯。
 
-2. 音译原则：
-   - 选择声调优美、寓意积极的汉字
-   - 避免使用生僻字或负面含义的字
-   - 确保音译后的名字朗朗上口
-   - 尽量选用常用字，但要避免过于普通的翻译
+2. **特殊情况**：
+   - 若名字有美好含义（如 Rose、Angel），可选择保留联想的汉字（如 Rose → 露丝，暗示“玫瑰”）。
+   - 复合名字需整体发音流畅。
 
-3. 特殊情况处理：
-   - 如果名字中包含有特殊含义的部分（如 Angel, Rose 等），可以在音译的同时兼顾其美好含义
-   - 对于复合名字，要确保整体发音流畅
-   - 考虑中国传统文化中的用字习惯
+3. **文化适配**：
+   - 解释必须从源语言用户的文化视角出发，使用其语言的表达习惯（如英语用户用英语思维）。
+   - 避免直接翻译中文思维（如“卡=卡片”），需用源语言解释汉字的文化内涵（如“'卡' suggests precision”）。
+   - 若源语言为英语，额外提供英文汉字含义和文化意义。
 
-4. 翻译解释的文化适配：
-   - 必须完全从源语言用户的思维和文化视角出发构建解释
-   - 不能简单地将中文思维方式的解释翻译成源语言
-   - 解释必须自然地使用源语言的表达习惯、文化参照和思维模式
-   - 要像在对一个只懂该源语言的人解释这个翻译一样撰写解释
-
-你必须严格按照以下JSON格式返回结果：
-{
-  "translations": [
-    {
-      "translate": "中文名字（音译）",
-      "pronunciation": "拼音（带声调）",
-      "explanation": "必须完全从源语言用户的视角解释这个名字。例如，对于英文用户，应该用英文思维方式解释：'The name is translated phonetically to Chinese as... These characters were chosen because they sound similar to the original name while also having positive meanings in Chinese culture...'，而不是简单翻译中文解释。解释内容必须反映源语言使用者的表达习惯、思维方式和文化理解框架，让源语言使用者感到这个解释是为他们量身定制的，而不是机械翻译的。",
-      "explanation_": "explain the meaning of each character in the Chinese translation of your name,in english",
-      "cultural_": "explain the cultural significance of the Chinese translation of your name,in english"    
-    }
-  ]
-}
+4. **输出要求**：
+   - 提供3个不同汉字组合的音译方案，确保发音相似但用字多样。
+   - 严格按照以下JSON格式返回：
+     {
+       "translations": [
+         {
+           "translate": "中文名字",
+           "pronunciation": "拼音（带声调，如 Kù Kè）",
+           "explanation": "该中文译名在语音上高度贴近原名发音，同时每个汉字均经过精心选择以承载美好寓意。例如“卡”字象征精准、可靠，“尔”字代表优雅、文质彬彬，整体既保留原名韵律，又融入中文特有的文化意涵。",
+           "cultural": "这个名字在中文语境中既保留了原名的音韵美感，又融入了汉字特有的文化意蕴。选用的汉字往往带有吉祥、智慧或品格的象征意义，使其不仅是一个称呼，更承载着美好的寓意和文化认同。",
+          "explanation_en": "This Chinese translation closely approximates the original name phonetically, with each character carefully selected to carry positive connotations. For example, the character '卡' symbolizes precision and reliability, while '尔' represents elegance and refinement. The overall name preserves the original rhythmic quality while incorporating distinctive Chinese cultural elements.",
+          "cultural_en": "Within the Chinese context, this name retains the phonetic beauty of the original while integrating the unique cultural significance of Chinese characters. The chosen characters typically carry auspicious, wise, or virtuous symbolism, making it not merely an identifier but also a vessel for positive meanings and cultural identity."
+         }
+       ]
+     }
 
 示例：
-1. Cook → 库克 (Kù Kè) 而不是 "厨师"
-2. Baker → 贝克 (Bèi Kè) 而不是 "面包师"
-3. Smith → 史密斯 (Shǐ Mì Sī) 而不是 "铁匠"
-4. Rose → 罗丝/露丝 (Luó Sī/Lù Sī) 可以保留"玫瑰"的优美联想
-5. Angel → 安吉尔 (Ān Jí Ěr) 可以体现"天使"的美好寓意
+- Cook → 库克 (Kù Kè): “The name Cook is translated phonetically to 库克. '库' (kù) matches 'Coo', meaning 'storehouse' or 'abundance'; '克' (kè) matches 'k', implying 'overcome' or 'strength'.”
+- Rose → 露丝 (Lù Sī): “Rose is translated to 露丝, where '露' (lù) sounds like 'Ro' and means 'dew' or 'elegance', evoking rose-like beauty; '丝' (sī) matches 'se', meaning 'silk'.”
 
-每个源语言的解释风格示例：
-- 英语用户: "The name 'Karl' is translated to '卡尔' in Chinese. This translation is based on phonetic similarity, where '卡' (kǎ) sounds like the first syllable 'Ka' and '尔' (ěr) resembles the ending 'rl'. In Chinese culture, these characters also carry positive meanings - '卡' suggests precision or exactness, while '尔' has literary connotations and appears in classical poetry."
+源语言解释风格（示例）：
+- 英语: “The name 'Karl' is translated to '卡尔' (Kǎ Ěr). '卡' matches 'Ka', suggesting precision; '尔' matches 'rl', used in classical poetry.”
+- 日语: “「Michael」は「迈克尔」(Mài Kè Ěr)に翻訳。'迈'は'マイ'、'克'は'ケ'、'尔'は'ル'に近く、'迈'は前進、'克'は克服を意味。”
+- 法语: “'Marie' est traduit en '玛丽' (Mǎ Lì). '玛' correspond à 'Ma', évoquant des pierres précieuses; '丽' signifie 'beau'.”
 
-- 日语用户: "「Michael」という名前は中国語で「迈克尔」と翻訳されます。'迈'(mài)は'マイ'の音に、'克'(kè)は'ケ'の音に、'尔'(ěr)は'ル'の音に近いです。中国では外国の名前を翻訳する際、単に音が似ているだけでなく、良い意味を持つ漢字を選ぶ傾向があります。この場合、'迈'は「前進する」、'克'は「克服する」、'尔'は「あなた」という意味があり、全体として前向きな印象を与えます。"
+字段要求：
+- translate: 2-3个常用汉字，寓意优美。
+- pronunciation: 拼音带声调。
+- explanation: 源语言视角，涵盖发音对应、汉字含义、文化特点。
+- explanation_en: 仅英语，逐字解释汉字含义。
+- cultural_en: 仅英语，解释名字整体文化意义。`,
 
-- 法语用户: "Le nom 'Marie' est traduit en chinois par '玛丽'. La traduction suit la phonétique du nom original, où '玛' (mǎ) correspond au son 'Ma' et '丽' (lì) au son 'rie'. Dans la culture chinoise, ces caractères ont été choisis non seulement pour leur similitude sonore, mais aussi pour leurs connotations positives. '玛' évoque souvent des pierres précieuses, tandis que '丽' signifie 'beau' ou 'élégant', ce qui crée un nom harmonieux et agréable en chinois."
-
-每个字段的具体要求：
-- translate: 2-3个汉字的音译名字，使用常见但优美的汉字
-- pronunciation: 必须包含声调，例如"Kù Kè"
-- explanation: 必须从源语言用户视角出发，使用源语言的表达习惯和文化参照解释这个翻译。内容要涵盖：
-  1. 发音对应关系（原名的哪个音节对应中文的哪个字）
-  2. 所选汉字的含义和文化内涵
-  3. 必要时解释中国名字翻译的文化特点
-  4. 使用源语言特有的表达方式，让该语言使用者觉得自然流畅`,
-
-  user: `请将名字 "{name}" 翻译成中文名字，给出3个音译方案。记住必须按照指定的JSON格式返回。每个方案都应该采用不同的用字，但都要保持发音相似度。`
+  user: `请将名字 "{name}" 翻译成中文名字，源语言为 {sourceLanguage}，给出3个音译方案。记住必须按照指定的JSON格式返回。每个方案使用不同汉字组合，但保持发音相似度。`
 };
 
 // 名字分析提示词模板
