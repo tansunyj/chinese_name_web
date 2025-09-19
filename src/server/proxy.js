@@ -166,6 +166,9 @@ function buildRequestByType(type, params, modelVersion) {
     case 'custom':
       return buildCustomRequest(baseRequest, params);
 
+    case 'fantasyChineseName':
+      return buildFantasyChineseNameRequest(baseRequest, params);
+
     default:
       return null;
   }
@@ -605,7 +608,7 @@ function validateRequestSecurity(requestBody) {
   // 额外检查：确保只包含允许的业务类型
   const allowedTypes = [
     'nameGeneration', 'nameAnalysis', 'zodiacAnalysis',
-    'characterAnalysis', 'nameTranslation', 'chineseToEnglish'
+    'characterAnalysis', 'nameTranslation', 'chineseToEnglish', 'fantasyChineseName'
   ];
 
   if (requestBody.type && !allowedTypes.includes(requestBody.type)) {
@@ -671,9 +674,78 @@ function extractLunarDate(birthDateTime) {
   }
 }
 
+/**
+ * 构建奇幻中文名字生成请求
+ */
+function buildFantasyChineseNameRequest(baseRequest, params) {
+  const { fantasyTheme, characterType, gender, powerLevel, locale = 'en' } = params;
+
+  if (!fantasyTheme) {
+    console.log('❌ 奇幻名字生成请求缺少必需参数: fantasyTheme');
+    return null;
+  }
+
+  console.log('🎯 构建奇幻中文名字生成请求，参数:', params);
+
+  // 🔒 使用 promptTemplates.js 中的提示词 (开发环境专用)
+  // 注意：这个函数仅在开发环境使用，生产环境会使用Cloudflare Functions
+  const systemPrompt = `You are a professional fantasy Chinese name creator with deep knowledge of Chinese culture, mythology, and fantasy elements. Create 3 unique fantasy Chinese names based on the user's requirements.
+
+Instructions:
+1. Create names that blend traditional Chinese naming conventions with fantasy elements
+2. Each name should reflect the chosen theme and character type
+3. Include mystical meanings and supernatural associations
+4. Ensure cultural authenticity while incorporating fantasy aspects
+5. Provide detailed explanations in English
+
+Return the response in the following JSON format:
+{
+  "fantasy_names": [
+    {
+      "chinese_name": "Complete Chinese name",
+      "pinyin": "Pinyin pronunciation", 
+      "english_meaning": "English translation/meaning",
+      "mystical_meaning": "Detailed mystical significance and fantasy elements",
+      "fantasy_background": "Cultural background and fantasy context",
+      "powers": "Associated supernatural abilities or powers",
+      "cultural_origin": "Traditional Chinese cultural elements incorporated",
+      "theme_compatibility": "How well the name fits the requested theme",
+      "character_suitability": "Why this name suits the character type"
+    }
+  ]
+}
+
+Focus on creating names for ${characterType} characters in ${fantasyTheme} settings, suitable for ${gender} characters at ${powerLevel} power level.`;
+
+  const userPrompt = `Generate 3 fantasy Chinese names for a ${characterType} character with ${fantasyTheme} theme, ${gender} gender, and ${powerLevel} power level.`;
+
+  console.log('✅ 生成的奇幻名字系统提示词:', systemPrompt.substring(0, 200) + '...');
+  console.log('✅ 生成的用户提示词:', userPrompt);
+
+  return {
+    ...baseRequest,
+    messages: [
+      {
+        role: 'system',
+        content: systemPrompt
+      },
+      {
+        role: 'user', 
+        content: userPrompt
+      }
+    ],
+    max_tokens: 2000,
+    temperature: 0.8,
+    top_p: 0.9,
+    frequency_penalty: 0.3,
+    presence_penalty: 0.1,
+    response_format: { type: 'json_object' }
+  };
+}
+
 // 启动服务器
 app.listen(PORT, () => {
   console.log(`OpenAI代理服务器运行在 http://localhost:${PORT}`);
   console.log(`请使用 http://localhost:${PORT}/api/openai 作为代理端点`);
-  console.log('支持的请求类型: nameGeneration, nameAnalysis, zodiacAnalysis, characterAnalysis, translation, custom');
+  console.log('支持的请求类型: nameGeneration, nameAnalysis, zodiacAnalysis, characterAnalysis, nameTranslation, chineseToEnglish, fantasyChineseName, custom');
 });

@@ -9,7 +9,8 @@ import {
   zodiacAnalysisPrompts,
   chineseToEnglishPrompts,
   characterAnalysisPrompts,
-  generalTranslationPrompts
+  generalTranslationPrompts,
+  fantasyChineseNamePrompts
 } from './promptTemplates.js';
 
 // 定义日志函数
@@ -209,6 +210,10 @@ function buildRequestByType(type, params, modelVersion) {
       return buildTranslationRequest(baseRequest, params);
     case 'custom':
       return buildCustomRequest(baseRequest, params);
+
+    case 'fantasyChineseName':
+      return buildFantasyChineseNameRequest(baseRequest, params);
+
     default:
       return null;
   }
@@ -275,7 +280,7 @@ function validateRequestSecurity(requestBody) {
   // 基本安全检查
   const allowedTypes = [
     'nameGeneration', 'nameAnalysis', 'zodiacAnalysis',
-    'characterAnalysis', 'nameTranslation', 'chineseToEnglish'
+    'characterAnalysis', 'nameTranslation', 'chineseToEnglish', 'fantasyChineseName'
   ];
 
   if (requestBody.type && !allowedTypes.includes(requestBody.type)) {
@@ -487,5 +492,51 @@ function buildCustomRequest(baseRequest, params) {
     messages: messages,
     temperature: temperature || 0.7,
     max_tokens: max_tokens || 1000
+  };
+}
+
+/**
+ * 构建奇幻中文名字生成请求
+ */
+function buildFantasyChineseNameRequest(baseRequest, params) {
+  const { fantasyTheme, characterType, gender, powerLevel, locale = 'en' } = params;
+
+  if (!fantasyTheme) {
+    log('❌ 奇幻名字生成请求缺少必需参数: fantasyTheme');
+    return null;
+  }
+
+  log('🎯 构建奇幻中文名字生成请求，参数:', params);
+
+  // 🔒 使用 promptTemplates.js 中的提示词
+  const systemPrompt = fantasyChineseNamePrompts.system;
+  const userPrompt = fantasyChineseNamePrompts.user({
+    fantasyTheme,
+    characterType,
+    gender,
+    powerLevel
+  });
+
+  log('✅ 生成的奇幻名字系统提示词:', systemPrompt.substring(0, 200) + '...');
+  log('✅ 生成的用户提示词:', userPrompt);
+
+  return {
+    ...baseRequest,
+    messages: [
+      {
+        role: 'system',
+        content: systemPrompt
+      },
+      {
+        role: 'user', 
+        content: userPrompt
+      }
+    ],
+    max_tokens: 2000,
+    temperature: 0.8,
+    top_p: 0.9,
+    frequency_penalty: 0.3,
+    presence_penalty: 0.1,
+    response_format: { type: 'json_object' }
   };
 }

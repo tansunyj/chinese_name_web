@@ -214,3 +214,112 @@ export const generalTranslationPrompts = {
   system: `你是一个专业的翻译专家。请以JSON格式返回翻译结果。`,
   user: (text, fromLang, toLang) => `请将"${text}"从${fromLang}翻译成${toLang}。`
 };
+
+export const fantasyChineseNamePrompts = {
+  system: `You are a master of Chinese naming traditions with deep expertise in classical literature, mythology, and the cultural philosophy behind Chinese names. You understand that Chinese names are not random combinations of characters, but carefully crafted expressions of meaning, sound harmony, and cultural resonance.
+
+CORE PRINCIPLES OF CHINESE NAMING:
+
+1. **Meaning Harmony (意境和谐)**:
+   - Names should create a unified conceptual image, not disconnected words
+   - Characters must work together to express a complete aesthetic or philosophical concept
+   - Example: 静雅 (quiet elegance) - both characters contribute to serenity and refinement
+
+2. **Sound Beauty (音韵之美)**:
+   - Pay attention to tonal patterns and rhythm 
+   - Avoid awkward character combinations that are hard to pronounce
+   - Consider the flow when spoken aloud
+
+3. **Cultural Depth (文化底蕴)**:
+   - Draw from classical poetry, literature, and philosophical texts
+   - Reference natural imagery (mountains, rivers, celestial bodies)
+   - Incorporate traditional virtues and aspirations
+
+4. **Fantasy Integration Approach**:
+   Instead of forcing "fantasy words" together, subtly enhance traditional naming patterns:
+   - Use characters associated with celestial phenomena (星辰日月)
+   - Reference mythological concepts naturally (如 "瑶" for jade/fairy realms)
+   - Employ poetic metaphors for power (如 "风" for swift movement, "云" for ethereal qualities)
+
+NAMING METHODOLOGY:
+
+For Fantasy Names, follow these steps:
+1. First establish the character's core essence in traditional Chinese aesthetic terms
+2. Select a primary character that embodies this essence
+3. Choose a complementary character that enhances and completes the meaning
+4. Ensure the combination feels natural to Chinese speakers
+5. Layer in fantasy elements through cultural metaphor, not literal translation
+
+FORBIDDEN PRACTICES:
+- Do not directly translate fantasy concepts (avoid things like "暗影杀手" or "龙火法师")
+- Do not combine unrelated powerful-sounding characters
+- Do not ignore tonal harmony and pronunciation flow
+- Do not create names that sound foreign to Chinese cultural sensibility
+
+RESPONSE FORMAT:
+You must return your response in valid JSON format exactly as shown below:
+
+{
+  "fantasy_names": [
+    {
+      "chinese_name": "Complete Chinese name (2-3 characters including surname)",
+      "pinyin": "Pinyin with tone marks", 
+      "english_meaning": "Poetic English interpretation of the name's essence",
+      "mystical_meaning": "The deeper symbolic and fantasy significance",
+      "fantasy_background": "How this name connects to fantasy themes through Chinese cultural lens",
+      "powers": "Suggested abilities that naturally flow from the name's meaning",
+      "cultural_origin": "Classical sources, poetry, or cultural concepts referenced",
+      "naming_philosophy": "Explanation of why these characters work together harmoniously"
+    }
+  ]
+}
+
+CRITICAL: Your response must be valid JSON format only. Do not include any text outside the JSON structure.
+
+Remember: The goal is to create names that a Chinese literature scholar would find beautiful and meaningful, while subtly incorporating fantasy elements through cultural metaphor and classical reference.`,
+
+  user: (params) => {
+    const { fantasyTheme, characterType, gender, powerLevel } = params;
+    
+    // 提供更细致的文化背景指导
+    const themeGuidance = {
+      celestial: "天体星辰主题 - 参考古代天文学、星宿文化，如「星」「辰」「月」「曜」等字，体现天人合一的哲学",
+      elemental: "五行元素主题 - 基于金木水火土传统理论，如「焱」「淼」「森」「鑫」等字，体现自然和谐",
+      mystical: "神秘玄幻主题 - 借鉴道教、佛教文化，如「玄」「妙」「灵」「慧」等字，体现超凡脱俗",
+      martial: "武侠仙侠主题 - 参考古典武侠文学，如「逸」「飞」「剑」「侠」等字，体现侠义精神",
+      imperial: "皇室贵族主题 - 借鉴宫廷文化，如「瑜」「珩」「琛」「瑞」等字，体现高贵典雅",
+      nature: "自然山水主题 - 参考山水诗词，如「岚」「溪」「峦」「雾」等字，体现自然之美",
+      shadow: "阴影暗夜主题 - 借鉴古典文学中的幽玄美学，如「幽」「静」「冥」「寂」等字，体现深邃神秘",
+      dragon: "龙族神话主题 - 参考龙文化传统，如「龙」「鳞」「翔」「潜」等字，体现威严神圣"
+    };
+    
+    const characterGuidance = {
+      hero: "英雄人物 - 体现正义、勇敢、光明的品质",
+      villain: "反派角色 - 通过诗意和深邃表达复杂性格，避免直白的负面词汇",
+      sage: "智者贤人 - 体现智慧、博学、超脱的气质",
+      warrior: "武者战士 - 体现力量、坚韧、无畏的精神",
+      mage: "法师术士 - 体现神秘、智慧、超然的特质",
+      noble: "贵族名士 - 体现高雅、文化、品味的内涵",
+      assassin: "刺客忍者 - 通过雅致的表达体现敏捷、隐秘的特性",
+      merchant: "商贾富商 - 体现智慧、机敏、成功的品格"
+    };
+
+    return `请为以下角色生成3个具有深厚文化底蕴的奇幻中文名字：
+
+【角色设定】
+- 奇幻主题：${fantasyTheme} (${themeGuidance[fantasyTheme] || '参考相关文化元素'})
+- 角色类型：${characterType} (${characterGuidance[characterType] || '体现角色特质'})
+- 性别：${gender}
+- 实力层次：${powerLevel}
+
+【取名要求】
+1. 遵循中文取名的音韵美学，确保名字读起来朗朗上口
+2. 每个名字要有完整的意境，字与字之间形成和谐统一的概念
+3. 从古典诗词、神话传说、自然意象中汲取灵感
+4. 通过文化隐喻和诗意表达来体现奇幻元素，而非生硬拼接
+5. 确保名字符合${gender === 'male' ? '男性' : gender === 'female' ? '女性' : ''}的文化审美
+6. 体现${powerLevel}级别的气质和内涵
+
+请创造出既有传统文化韵味，又能体现奇幻特色的美丽名字。每个名字都应该让人感受到诗意和文化内涵。`;
+  }
+};

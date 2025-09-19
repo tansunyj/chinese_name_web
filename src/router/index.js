@@ -46,6 +46,16 @@ const routes = [
     }
   },
   {
+    path: '/fantasy-chinese-name-generator',
+    name: 'FantasyChineseNameGenerator',
+    component: () => import('../views/FantasyChineseNameGenerator.vue'),
+    meta: {
+      title: 'Fantasy Chinese Name Generator | Create Magical Chinese Names for Fantasy Characters',
+      canonicalPath: '/fantasy-chinese-name-generator',
+      description: 'Generate enchanting fantasy Chinese names for your characters, stories, and creative projects. Create mystical names with authentic Chinese culture and magical elements. Perfect for fantasy novels, games, and role-playing.'
+    }
+  },
+  {
     path: '/custom',
     name: 'CustomName',
     component: () => import('../views/CustomName.vue'),
