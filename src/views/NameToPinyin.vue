@@ -27,9 +27,10 @@
             </form>
           </div>
           
-          <!-- 加载指示器 -->
+                    <!-- 加载指示器 -->
           <MysticalLoader v-if="isLoading" />
           
+          <!-- 结果显示区域 -->
           <div v-if="results.withTones" class="results-section">
             <h2 class="section-title">{{ $t('nameToPinyin.results.title') }}</h2>
             
@@ -101,6 +102,16 @@
           </div>
         </div>
         
+        
+        <!-- 使用指南 -->
+        <UsageGuide 
+          title="Chinese Name to Pinyin Guide"
+          :steps="usageSteps"
+        />
+        
+        <!-- Explore More 组件 -->
+        <ExploreMore :currentPath="$route.path" />
+
         <!-- 添加底部说明部分 -->
         <div class="guide-section">
           <h2 class="guide-title">Chinese Name Pinyin Guide</h2>
@@ -155,6 +166,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -167,10 +179,14 @@ import { useI18n } from 'vue-i18n';
 import * as pinyinPro from 'pinyin-pro';
 import { message } from "ant-design-vue";
 import MysticalLoader from '@/components/MysticalLoader.vue';
+import UsageGuide from '@/components/UsageGuide.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
 
 export default {
   components: {
-    MysticalLoader
+    MysticalLoader,
+    UsageGuide,
+    ExploreMore
   },
   setup() {
     const { t } = useI18n();
@@ -322,6 +338,22 @@ export default {
         });
     };
 
+    // 使用指南步骤
+    const usageSteps = [
+      {
+        title: 'Enter Chinese Name',
+        description: 'Type your Chinese name'
+      },
+      {
+        title: 'Convert to Pinyin',
+        description: 'Click "Convert to Pinyin" button'
+      },
+      {
+        title: 'Get Results',
+        description: 'Check the pinyin in the results'
+      }
+    ];
+
     return {
       formData,
       isLoading,
@@ -330,7 +362,8 @@ export default {
       playPronunciation,
       playFullPronunciation,
       downloadPronunciation,
-      copyToClipboard
+      copyToClipboard,
+      usageSteps
     };
   }
 }

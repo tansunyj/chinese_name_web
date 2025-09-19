@@ -3,8 +3,8 @@
     <div class="mystical-loader">
       <div class="loader-symbol">☯</div>
       <div class="loader-text">
-        <p class="loading-title">{{ title || '✨ 正在处理中...' }}</p>
-        <p class="loading-subtitle">{{ subtitle || '数据返回中，请稍后...' }}</p>
+        <p class="loading-title">{{ title || '✨ Processing...' }}</p>
+        <p class="loading-subtitle">{{ subtitle || 'Please wait while we process your request' }}</p>
       </div>
     </div>
   </div>
@@ -16,11 +16,11 @@ export default {
   props: {
     title: {
       type: String,
-      default: '✨ 正在处理中...'
+      default: '✨ Processing...'
     },
     subtitle: {
       type: String,
-      default: '数据返回中，请稍后...'
+      default: 'Please wait while we process your request'
     }
   }
 }

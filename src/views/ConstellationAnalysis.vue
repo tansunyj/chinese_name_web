@@ -29,9 +29,10 @@
           </form>
         </div>
         
-        <!-- 加载指示器 -->
+                <!-- 加载指示器 -->
         <MysticalLoader v-if="isLoading" />
         
+        <!-- 结果显示区域 -->
         <div v-if="results" class="results-section">
           <div class="results-header">
             <div class="zodiac-image">
@@ -99,6 +100,16 @@
             </div>
           </div>
         </div>
+        
+                
+        <!-- 使用指南 -->
+        <UsageGuide 
+          title="Constellation Analysis & Naming Guide"
+          :steps="usageSteps"
+        />
+        
+        <!-- Explore More 组件 -->
+        <ExploreMore :currentPath="$route.path" />
         
         <!-- 添加星座指南部分 -->
         <div class="constellation-guide">
@@ -223,11 +234,15 @@ import AquariusImg from '@/assets/images/constellations/Aquarius.png';
 import PiscesImg from '@/assets/images/constellations/Pisc1es.png';
 import { useI18n } from 'vue-i18n';
 import MysticalLoader from '@/components/MysticalLoader.vue';
+import UsageGuide from '@/components/UsageGuide.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
 
 export default {
   name: 'ConstellationAnalysis',
   components: {
-    MysticalLoader
+    MysticalLoader,
+    UsageGuide,
+    ExploreMore
   },
   setup() {
     const { t, locale } = useI18n();
@@ -242,6 +257,21 @@ export default {
       },
       isLoading: false,
       results: null,
+      // 使用指南步骤
+      usageSteps: [
+        {
+          title: 'Select Birth Date',
+          description: 'Choose your accurate birth date'
+        },
+        {
+          title: 'Analyze Constellation',
+          description: 'Click "Analyze Constellation" for analysis'
+        },
+        {
+          title: 'Get Name Suggestions',
+          description: 'Check the constellation in the results'
+        }
+      ],
       // 将图片映射到每个星座名称
       constellationImages: {
         aries: AriesImg,

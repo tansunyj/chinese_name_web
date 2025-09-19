@@ -30,9 +30,10 @@
           </form>
         </div>
         
-        <!-- 加载指示器 -->
+                <!-- 加载指示器 -->
         <MysticalLoader v-if="isLoading" />
-        
+
+        <!-- 结果显示区域 -->
         <div v-if="results.length" class="results-section">
           <h2>Your Chinese to English Name Translation Results</h2>
           
@@ -72,6 +73,16 @@
           </div>
         </div>
         
+        
+        <!-- 使用指南 -->
+        <UsageGuide 
+          title="Chinese to English Name Translation Guide"
+          :steps="usageSteps"
+        />
+        
+        <!-- Explore More 组件 -->
+        <ExploreMore :currentPath="$route.path" />
+                
         <div class="translation-guide">
           <h2>How Our Chinese to English Name Translation Works</h2>
           <p>Our Chinese to English name translation service uses advanced linguistic analysis to convert Chinese names into appropriate English equivalents. We focus on preserving both the meaning and phonetic qualities of the original Chinese name when creating an English translation.</p>
@@ -167,8 +178,9 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { message } from 'ant-design-vue';
 import { translateName } from '@/services/openaiService';
-import LoadingIndicator from '@/components/LoadingIndicator.vue';
 import MysticalLoader from '@/components/MysticalLoader.vue';
+import UsageGuide from '@/components/UsageGuide.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
 import { useI18n } from 'vue-i18n';
 import { chineseToEnglishNamePrompt } from '@/config/systemPrompts';
 import aiConfig from '@/config/aiConfig';
@@ -186,8 +198,9 @@ const log = (...args) => {
 export default {
   name: 'ChineseToEnglishName',
   components: {
-    LoadingIndicator,
-    MysticalLoader
+    MysticalLoader,
+    UsageGuide,
+    ExploreMore
   },
   setup() {
     const { locale } = useI18n();
@@ -244,7 +257,22 @@ export default {
       },
       isLoading: false,
       results: [],
-      errorMessage: ''
+      errorMessage: '',
+      // 使用指南步骤
+      usageSteps: [
+        {
+          title: 'Enter Chinese Name',
+          description: 'Type your complete Chinese name'
+        },
+        {
+          title: 'Press the Button',
+          description: 'Press the "Convert Chinese Name to English" button'
+        },
+        {
+          title: 'Get English Name',
+          description: 'Check the English Name in the results'
+        }
+      ]
     }
   },
   methods: {

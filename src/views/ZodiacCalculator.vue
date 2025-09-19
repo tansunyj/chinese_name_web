@@ -27,9 +27,10 @@
           </form>
         </div>
         
-        <!-- 加载指示器 -->
+                <!-- 加载指示器 -->
         <MysticalLoader v-if="isLoading" />
         
+        <!-- 结果显示区域 -->
         <div v-if="results.sign" class="results-section">
           <h2>{{ $t('zodiac.results.title') }}</h2>
           
@@ -108,6 +109,16 @@
           </div>
         </div>
         
+        
+        <!-- 使用指南 -->
+        <UsageGuide 
+          title="Chinese Zodiac Calculator Guide"
+          :steps="usageSteps"
+        />
+        
+        <!-- Explore More 组件 -->
+        <ExploreMore :currentPath="$route.path" />
+                
         <!-- 添加文字说明部分 -->
         <div class="zodiac-guide-section">
           <h2 class="guide-title">Chinese Zodiac Culture and Astrology</h2>
@@ -194,10 +205,14 @@ import ZhuImg from '@/assets/images/zodiac/zhu.png';
 import { useI18n } from 'vue-i18n';
 
 import MysticalLoader from '@/components/MysticalLoader.vue';
+import UsageGuide from '@/components/UsageGuide.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
 
 export default {
   components: {
-    MysticalLoader
+    MysticalLoader,
+    UsageGuide,
+    ExploreMore
   },
   name: 'ZodiacCalculator',
   setup() {
@@ -220,6 +235,21 @@ export default {
         luckyNumbers: [],
         luckyColors: []
       },
+      // 使用指南步骤
+      usageSteps: [
+        {
+          title: 'Enter Birth Year',
+          description: 'Input your birth year in the field'
+        },
+        {
+          title: 'Calculate Zodiac',
+          description: 'Click "Calculate My Zodiac" button'
+        },
+        {
+          title: 'Get Results',
+          description: 'Check your Zodiac in the results'
+        }
+      ],
       // 中国生肖数据
       zodiacData: {
         'Rat': {

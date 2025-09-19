@@ -140,14 +140,12 @@
 <script>
 import { message, Empty, Button, Card, Tag, Progress } from 'ant-design-vue';
 import { convertPinyinToChinese } from '@/services/openaiService';
-import LoadingIndicator from '@/components/LoadingIndicator.vue';
 import MysticalLoader from '@/components/MysticalLoader.vue';
 import { CopyOutlined, ReloadOutlined, ShareAltOutlined } from '@ant-design/icons-vue';
 
 export default {
   name: 'PinyinToName',
   components: {
-    LoadingIndicator,
     MysticalLoader,
     CopyOutlined,
     ReloadOutlined,

@@ -39,7 +39,7 @@ export default {
     },
     progressSteps: {
       type: Array,
-      default: () => ['获取数据', '生成名字', '分析结果']
+      default: () => ['Fetching Data', 'Generating Names', 'Analyzing Results']
     },
     currentStep: {
       type: Number,
@@ -48,7 +48,7 @@ export default {
   },
   computed: {
     defaultText() {
-      return '正在处理，请稍候...';
+      return 'Processing, please wait...';
     }
   }
 }

@@ -82,10 +82,10 @@
           </form>
         </div>
         
-              <!-- 加载指示器 -->
-      <MysticalLoader v-if="isLoading" />
-        
-        <!-- 错误信息显示 -->
+                        <!-- 加载指示器 -->
+          <MysticalLoader v-if="isLoading" />
+          
+          <!-- 错误信息显示 -->
         <div v-if="errorMessage && !isLoading" class="error-container">
           <div class="error-card">
             <div class="error-icon">⚠️</div>
@@ -155,6 +155,16 @@
           </div>
         </div>
         
+        
+        <!-- 使用指南 -->
+        <UsageGuide 
+          title="Fantasy Chinese Name Generator Guide"
+          :steps="usageSteps"
+        />
+        
+        <!-- Explore More 组件 -->
+        <ExploreMore :currentPath="$route.path" />
+
         <div class="fantasy-guide">
           <h2>Fantasy Chinese Name Generator Guide</h2>
           <p>Our Fantasy Chinese Name Generator creates authentic mystical names that blend traditional Chinese naming conventions with fantastical elements. Perfect for writers, gamers, and creators who need compelling Chinese fantasy character names.</p>
@@ -300,8 +310,9 @@
 <script>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { message } from 'ant-design-vue';
-import LoadingIndicator from '@/components/LoadingIndicator.vue';
 import MysticalLoader from '@/components/MysticalLoader.vue';
+import UsageGuide from '@/components/UsageGuide.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
 import { useI18n } from 'vue-i18n';
 import aiConfig from '@/config/aiConfig';
 
@@ -318,8 +329,9 @@ const log = (...args) => {
 export default {
   name: 'FantasyChineseNameGenerator',
   components: {
-    LoadingIndicator,
-    MysticalLoader
+    MysticalLoader,
+    UsageGuide,
+    ExploreMore
   },
   setup() {
     const { locale } = useI18n();
@@ -384,7 +396,22 @@ export default {
       },
       isLoading: false,
       results: [],
-      errorMessage: ''
+      errorMessage: '',
+      // 使用指南步骤
+      usageSteps: [
+        {
+          title: 'Set Fantasy Theme,Character Type,Gender,Power Level',
+          description: 'select some Theme,type,gender,level from the selectors'
+        },     
+        {
+          title: 'Generate Fantasy Name',
+          description: 'Click generate to get magical Chinese character names'
+        },
+        {
+          title: 'Get Results',
+          description: 'Check your Names in the results'
+        }        
+      ]
     }
   },
   methods: {

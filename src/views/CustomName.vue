@@ -118,9 +118,9 @@
           </form>
         </div>
         
-        <!-- 加载指示器（只有在isLoading为true时才显示） -->
+                <!-- 加载指示器（只有在isLoading为true时才显示） -->
         <MysticalLoader v-if="isLoading" />
-        
+
         <!-- 当没有结果且不在加载状态时显示的提示，但只有在用户已经点击过生成按钮后才显示 -->
         <div v-if="!results.length && !isLoading && formData.submitted" class="empty-results-hint">
           <div class="hint-icon">
@@ -289,6 +289,16 @@
         </transition>
       </div>
       
+        
+      <!-- 使用指南 -->
+      <UsageGuide 
+        title="Custom Chinese Name Generator Guide"
+        :steps="usageSteps"
+      />
+      
+      <!-- Explore More 组件 -->
+      <ExploreMore :currentPath="$route.path" />
+
       <!-- 添加常见问题FAQ部分 -->
       <div class="custom-name-faq">
         <h2>Frequently Asked Questions About Chinese Name Creation</h2>
@@ -432,8 +442,9 @@
 
 <script>
 import { reactive, ref, computed, onMounted, watch } from 'vue';
-import LoadingIndicator from '@/components/LoadingIndicator.vue';
 import MysticalLoader from '@/components/MysticalLoader.vue';
+import UsageGuide from '@/components/UsageGuide.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
 import { useI18n } from 'vue-i18n';
 // 提示词已完全迁移到后端 api/promptTemplates.js，前端不再需要导入
 // import { nameGenerationSystemPrompt } from '@/config/systemPrompts'; // 已废弃
@@ -486,8 +497,9 @@ const defaultMeanings = {
 export default {
   name: 'CustomName',
   components: {
-    LoadingIndicator,
-    MysticalLoader
+    MysticalLoader,
+    UsageGuide,
+    ExploreMore
   },
   setup() {
     const { t, locale } = useI18n();
@@ -538,6 +550,21 @@ export default {
       selectedTraits: [],
       isLoading: false,
       results: [],
+      // 使用指南步骤
+      usageSteps: [
+        {
+          title: 'Enter Basic Info',
+          description: 'Fill in last name, gender, birth date ,Desired Meaning and Personal Characteristics'
+        },
+        {
+          title: 'Generate the Names',
+          description: 'Press the "Generate Names" button'
+        },
+        {
+          title: 'Get Results',
+          description: 'Check your Chinese name in the results'
+        }
+      ],
       showSurnameSelector: false,
       surnameSearch: '',
       selectedStroke: null,

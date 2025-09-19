@@ -44,9 +44,10 @@
           </form>
         </div>
         
-        <!-- 加载指示器 -->
+                <!-- 加载指示器 -->
         <MysticalLoader v-if="isLoading" />
-        
+
+        <!-- 结果显示区域 -->
         <div v-if="results.length" class="results-section">
           <h2>Your Chinese Name Translation Results</h2>
           
@@ -87,6 +88,16 @@
           </div>
         </div>
         
+        
+        <!-- 使用指南 -->
+        <UsageGuide 
+          title="English to Chinese Name Translation Guide"
+          :steps="usageSteps"
+        />
+        
+        <!-- Explore More 组件 -->
+        <ExploreMore :currentPath="$route.path" />
+                
         <div class="translation-guide">
           <h2>How Our English to Chinese Name Translation Works</h2>
           <p>Our name translation service uses advanced linguistic algorithms to convert your English name into an authentic Chinese name that preserves both pronunciation and meaning. Unlike simple phonetic transliteration, we consider cultural context and character meanings to create a name that sounds natural to Chinese speakers.</p>
@@ -135,6 +146,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -146,8 +158,9 @@ import { message } from 'ant-design-vue';
 import { translateName } from '@/services/openaiService';
 import * as openaiService from '@/services/openaiService';
 // 移除了对 promptTemplates 的引用，现在提示词在后端保密处理
-import LoadingIndicator from '@/components/LoadingIndicator.vue';
 import MysticalLoader from '@/components/MysticalLoader.vue';
+import UsageGuide from '@/components/UsageGuide.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
 import { useI18n } from 'vue-i18n';
 import aiConfig from '@/config/aiConfig';
 
@@ -178,8 +191,9 @@ const logError = (...args) => {
 export default {
   name: 'TranslateName',
   components: {
-    LoadingIndicator,
-    MysticalLoader
+    MysticalLoader,
+    UsageGuide,
+    ExploreMore
   },
   setup() {
     const { locale } = useI18n();
@@ -237,6 +251,25 @@ export default {
       isLoading: false,
       results: [],
       errorMessage: '',
+      // 使用指南步骤
+      usageSteps: [
+        {
+          title: 'Select Language',
+          description: 'Choose your name\'s original language'
+        },
+        {
+          title: 'Enter Name',
+          description: 'Type your name in the input field'
+        },
+        {
+          title: 'Click Translate',
+          description: 'Press the "Translate" button'
+        },
+        {
+          title: 'Get Results',
+          description: 'Check your Chinese name in the results'
+        }
+      ],
       languageOptions: [
         { code: 'us', displayCode: 'US', text: 'Translate English name to Chinese', title: 'Translate Your Name to Chinese', fullName: '美国英语 (American English)' },
         { code: 'fr', displayCode: 'FR', text: 'Traduire un nom français en chinois', title: 'Traduisez Votre Nom en Chinois', fullName: '法语 (French)' },
