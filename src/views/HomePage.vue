@@ -24,15 +24,15 @@
         <div class="feature-grid naming-services-grid">
 
           <!-- 名字翻译 -->
-          <router-link to="/translate" class="feature-card-link">
+                          <router-link to="/english-to-chinese-translator" class="feature-card-link">
             <div class="feature-card">
               <div class="header-row">
-                <div class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
-                  </svg>
-                </div>
-                <h3>{{ $t('home.features.translateName.title') }}</h3>
+              <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                </svg>
+              </div>
+              <h3>{{ $t('home.features.translateName.title') }}</h3>
               </div>
               <p>{{ $t('home.features.translateName.description') }}</p>
               <div class="feature-link">
@@ -42,15 +42,15 @@
           </router-link>
 
           <!-- 中文名转英文名 -->
-          <router-link to="/chinese-to-english" class="feature-card-link">
+                      <router-link to="/chinese-to-english-translator" class="feature-card-link">
             <div class="feature-card">
               <div class="header-row">
-                <div class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
-                  </svg>
-                </div>
-                <h3>Chinese to English Name</h3>
+              <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                </svg>
+              </div>
+              <h3>Chinese to English Name</h3>
               </div>
               <p>Convert your Chinese name to English with accurate pronunciation and cultural meaning</p>
               <div class="feature-link">
@@ -60,14 +60,14 @@
           </router-link>
 
           <!-- 自定义中文名 -->
-          <router-link to="/custom" class="feature-card-link">
+                      <router-link to="/custom-chinese-name-generator" class="feature-card-link">
             <div class="feature-card">
               <div class="header-row">
-                <div class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4" />
-                  </svg>
-                </div>
+                </svg>
+              </div>
                 <h3>{{ $t('home.features.namingService.custom.title') }}</h3>
               </div>
               <p>{{ $t('home.features.namingService.custom.description') }}</p>
@@ -76,16 +76,16 @@
               </div>
             </div>
           </router-link>
- 
+          
           <!-- Fantasy Chinese Name Generator -->
-          <router-link to="/fantasy-chinese-name-generator" class="feature-card-link">
+                      <router-link to="/fantasy-chinese-name-generator" class="feature-card-link">
             <div class="feature-card">
               <div class="header-row">
-                <div class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                  </svg>
-                </div>
+                </svg>
+              </div>
                 <h3>Fantasy Chinese Name Generator</h3>
               </div>
               <p>Create magical and mystical Chinese names for fantasy characters, stories, and creative projects with cultural authenticity</p>
@@ -94,17 +94,17 @@
               </div>
             </div>
           </router-link>
-
+          
           <!-- 姓名转拼音 -->
           <router-link to="/name-to-pinyin" class="feature-card-link">
             <div class="feature-card">
               <div class="header-row">
-                <div class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
-                  </svg>
-                </div>
-                <h3>{{ $t('home.features.nameToPinyin.title') }}</h3>
+              <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+                </svg>
+              </div>
+              <h3>{{ $t('home.features.nameToPinyin.title') }}</h3>
               </div>
               <p>{{ $t('home.features.nameToPinyin.description') }}</p>
               <div class="feature-link">
@@ -132,7 +132,7 @@
           </router-link>
           
           <!-- 星座计算器 -->
-          <router-link to="/constellation" class="feature-card-link">
+                      <router-link to="/blog/constellation-analysis" class="feature-card-link">
             <div class="feature-card">
               <div class="header-row">
                 <div class="icon">
@@ -174,7 +174,7 @@
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                     </svg>
                   </div>
-                  Understanding Chinese Name Structure
+                Understanding Chinese Name Structure
                 </div>
                 <span class="toggle-icon">{{ isExpanded.nameStructure ? '−' : '+' }}</span>
               </h3>
@@ -191,7 +191,7 @@
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4 4 4 0 004-4V5z" />
                     </svg>
                   </div>
-                  The Significance of Chinese Characters in Names
+                The Significance of Chinese Characters in Names
                 </div>
                 <span class="toggle-icon">{{ isExpanded.characterMeaning ? '−' : '+' }}</span>
               </h3>
@@ -206,6 +206,30 @@
                 </ul>
               </div>
             </div>
+            
+            <div class="collapsible-section">
+              <h3 class="collapsible-title" @click="toggleSection('modernTrends')">
+                <div class="title-with-icon">
+                  <div class="section-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                  </div>
+                  Modern Chinese Naming Trends
+                </div>
+                <span class="toggle-icon">{{ isExpanded.modernTrends ? '−' : '+' }}</span>
+              </h3>
+              <div class="collapsible-content" v-show="isExpanded.modernTrends">
+                <p>Contemporary Chinese naming has evolved while maintaining cultural roots:</p>
+                <ul>
+                  <li><strong>International Appeal</strong> - Names that work well in both Chinese and international contexts are increasingly popular.</li>
+                  <li><strong>Unique Characters</strong> - Parents seek distinctive characters to help their children stand out.</li>
+                  <li><strong>Gender-Neutral Options</strong> - Growing interest in names that work for any gender.</li>
+                  <li><strong>Pop Culture Influence</strong> - Names inspired by literature, films, and historical figures gain popularity.</li>
+                  <li><strong>Simplified Choices</strong> - Preference for names with fewer strokes for easier writing and recognition.</li>
+                </ul>
+              </div>
+            </div>
           </div>
           
           <div class="column">
@@ -217,7 +241,7 @@
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
                     </svg>
                   </div>
-                  Translating English Names to Chinese
+                Translating English Names to Chinese
                 </div>
                 <span class="toggle-icon">{{ isExpanded.nameTranslation ? '−' : '+' }}</span>
               </h3>
@@ -232,6 +256,30 @@
             </div>
             
             <div class="collapsible-section">
+              <h3 class="collapsible-title" @click="toggleSection('traditionalElements')">
+                <div class="title-with-icon">
+                  <div class="section-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  Traditional Elements in Chinese Naming
+                </div>
+                <span class="toggle-icon">{{ isExpanded.traditionalElements ? '−' : '+' }}</span>
+              </h3>
+              <div class="collapsible-content" v-show="isExpanded.traditionalElements">
+                <p>Chinese naming traditions incorporate several cultural and philosophical elements:</p>
+                <ul>
+                  <li><strong>Zodiac Animals (生肖)</strong> - Names may reflect characteristics of the birth year's zodiac animal.</li>
+                  <li><strong>Birth Date & Time</strong> - The Eight Characters (Ba Zi) system considers exact birth timing for name compatibility.</li>
+                  <li><strong>Generational Names</strong> - Many families use specific characters or patterns for each generation.</li>
+                  <li><strong>Regional Traditions</strong> - Different regions of China have unique naming customs and preferences.</li>
+                  <li><strong>Classical Literature</strong> - Names often reference poetry, historical figures, or philosophical concepts.</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="collapsible-section">
               <h3 class="collapsible-title" @click="toggleSection('namingService')">
                 <div class="title-with-icon">
                   <div class="section-icon">
@@ -239,7 +287,7 @@
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                     </svg>
                   </div>
-                  Our Chinese Name Translation Services
+                Our Chinese Name Translation Services
                 </div>
                 <span class="toggle-icon">{{ isExpanded.namingService ? '−' : '+' }}</span>
               </h3>
@@ -259,27 +307,83 @@
       </div>
     </section>
 
-    <!-- 中文名资源与指南 -->
-    <section class="features resources-section">
+    <!-- 用户好评和体验 -->
+    <section class="testimonials-section">
       <div class="container">
-        <h2 class="section-title">Chinese Name Resources & Guides</h2>
-        <div class="feature-grid">
-          <router-link to="/knowledge" class="feature-card-link">
-            <div class="feature-card">
-              <div class="header-row">
-                <div class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                  </svg>
+        <h2 class="section-title">What Our Users Say</h2>
+        <p class="section-subtitle">Discover how our Chinese naming tools have helped people around the world find meaningful names</p>
+        
+        <div class="testimonials-carousel" @mouseenter="stopAutoSlide" @mouseleave="startAutoSlide">
+          <div class="testimonials-track" :style="{ transform: `translateX(-${currentSlide * slideWidth}%)` }">
+            <div v-for="(slide, slideIndex) in groupedTestimonials" :key="slideIndex" class="testimonial-slide">
+              <div v-for="(testimonial, index) in slide" :key="index" class="testimonial-card">
+                <div class="testimonial-header">
+                  <div class="user-info">
+                    <div class="user-avatar">
+                      <span class="avatar-initial">{{ testimonial.name.charAt(0) }}</span>
+                    </div>
+                    <div class="user-details">
+                      <h4 class="user-name">{{ testimonial.name }}</h4>
+                      <p class="user-location">{{ testimonial.location }}</p>
+                    </div>
+                  </div>
+                  <div class="stars">
+                    <span v-for="n in 5" :key="n" class="star">★</span>
+                  </div>
                 </div>
-                <h3>{{ $t('home.features.knowledge.title') }}</h3>
-              </div>
-              <p>{{ $t('home.features.knowledge.description') }}</p>
-              <div class="feature-link">
-                <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
+                <blockquote class="testimonial-text">
+                  "{{ testimonial.text }}"
+                </blockquote>
+                <div class="testimonial-footer">
+                  <span class="service-tag">{{ testimonial.service }}</span>
+                  <span class="user-context">{{ testimonial.context }}</span>
+                </div>
               </div>
             </div>
-          </router-link>
+          </div>
+          
+                    <!-- 轮播控制按钮 -->
+          <button class="carousel-btn prev-btn" @click="prevSlide">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button class="carousel-btn next-btn" @click="nextSlide">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+              </div>
+        
+                <!-- 轮播指示器 -->
+        <div class="carousel-indicators">
+          <button 
+            v-for="(slide, index) in groupedTestimonials" 
+            :key="index"
+            class="indicator"
+            :class="{ active: currentSlide === index }"
+            @click="goToSlide(index)"
+          ></button>
+        </div>
+        
+        <!-- 统计数据 -->
+        <div class="stats-section">
+                    <div class="stat-item">
+            <div class="stat-number">75,000+</div>
+            <div class="stat-label">Names Generated</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">4.9/5</div>
+            <div class="stat-label">Average Rating</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">120+</div>
+            <div class="stat-label">Countries Served</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">99%</div>
+            <div class="stat-label">User Satisfaction</div>
+          </div>
         </div>
       </div>
     </section>
@@ -347,6 +451,87 @@
                 <p><span class="faq-a-marker">A:</span> You can use the same Chinese name for both personal and business contexts, but it's worth considering whether different names might be advantageous. Business names in Chinese might prioritize professional qualities or industry relevance, while personal names might focus more on individual characteristics. Many foreigners doing business in China choose Chinese names that reflect professionalism while maintaining personal identity. Our service can help you generate appropriate options for both contexts.</p>
               </div>
             </div>
+            
+            <div class="faq-item" :class="{'faq-expanded': isExpanded.faq6}" @click="toggleFaq('faq6')">
+              <h3 class="faq-question">
+                <span class="faq-q-marker">Q:</span>
+                What is the Five Elements (Wu Xing) theory and how does it affect Chinese naming?
+                <span class="faq-toggle">{{ isExpanded.faq6 ? '−' : '+' }}</span>
+              </h3>
+              <div class="faq-answer" v-show="isExpanded.faq6">
+                <p><span class="faq-a-marker">A:</span> The Five Elements (Wu Xing) theory is a fundamental concept in Chinese philosophy that categorizes all things into five elements: Wood (木), Fire (火), Earth (土), Metal (金), and Water (水). In Chinese naming, this theory is used to create balance and harmony. Each element has associated characteristics and can complement or conflict with others. Traditional Chinese naming considers a person's birth date to determine which elements are strong or weak in their destiny, then chooses name characters that help balance these elements for better fortune and harmony.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="faq-column">
+            <div class="faq-item" :class="{'faq-expanded': isExpanded.faq7}" @click="toggleFaq('faq7')">
+              <h3 class="faq-question">
+                <span class="faq-q-marker">Q:</span>
+                How do Chinese zodiac animals influence name selection?
+                <span class="faq-toggle">{{ isExpanded.faq7 ? '−' : '+' }}</span>
+              </h3>
+              <div class="faq-answer" v-show="isExpanded.faq7">
+                <p><span class="faq-a-marker">A:</span> Chinese zodiac animals play a significant role in traditional naming practices. Each of the 12 zodiac animals (Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, Pig) has associated characteristics, preferences, and taboos. For example, people born in the Year of the Tiger might benefit from names with characters related to mountains or forests, while avoiding characters associated with small spaces. Our zodiac naming tools consider these traditional associations to suggest characters that harmonize with your birth year animal.</p>
+              </div>
+            </div>
+            
+            <div class="faq-item" :class="{'faq-expanded': isExpanded.faq8}" @click="toggleFaq('faq8')">
+              <h3 class="faq-question">
+                <span class="faq-q-marker">Q:</span>
+                What's the difference between traditional and simplified Chinese characters in names?
+                <span class="faq-toggle">{{ isExpanded.faq8 ? '−' : '+' }}</span>
+              </h3>
+              <div class="faq-answer" v-show="isExpanded.faq8">
+                <p><span class="faq-a-marker">A:</span> Traditional Chinese characters are the original complex forms used for thousands of years, while simplified characters were introduced in mainland China in the 1950s to improve literacy. In naming, traditional characters are often preferred for their cultural depth and aesthetic appeal, especially in Taiwan, Hong Kong, and overseas Chinese communities. Simplified characters are standard in mainland China. The choice depends on your target audience and personal preference. Our tools provide both versions and explain the cultural context of each option.</p>
+              </div>
+            </div>
+            
+            <div class="faq-item" :class="{'faq-expanded': isExpanded.faq9}" @click="toggleFaq('faq9')">
+              <h3 class="faq-question">
+                <span class="faq-q-marker">Q:</span>
+                Can I create fantasy Chinese names for creative projects like novels or games?
+                <span class="faq-toggle">{{ isExpanded.faq9 ? '−' : '+' }}</span>
+              </h3>
+              <div class="faq-answer" v-show="isExpanded.faq9">
+                <p><span class="faq-a-marker">A:</span> Absolutely! Our Fantasy Chinese Name Generator is specifically designed for creative projects. It creates mystical and enchanting names suitable for fantasy characters, novels, games, and role-playing scenarios. These names blend traditional Chinese cultural elements with fantastical themes like celestial powers, elemental magic, martial arts, and mythical creatures. Each generated name includes detailed explanations of its mystical meaning, cultural background, and associated supernatural abilities, perfect for world-building and character development.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="faq-column">
+            <div class="faq-item" :class="{'faq-expanded': isExpanded.faq10}" @click="toggleFaq('faq10')">
+              <h3 class="faq-question">
+                <span class="faq-q-marker">Q:</span>
+                How do I convert Chinese names to pinyin and why is it important?
+                <span class="faq-toggle">{{ isExpanded.faq10 ? '−' : '+' }}</span>
+              </h3>
+              <div class="faq-answer" v-show="isExpanded.faq10">
+                <p><span class="faq-a-marker">A:</span> Pinyin is the official romanization system for Chinese characters, essential for pronunciation guidance. Our Name to Pinyin tool converts Chinese names to accurate pinyin with tone marks, helping you learn correct pronunciation. This is crucial for international communication, language learning, and ensuring your Chinese name is pronounced correctly. Pinyin also helps in typing Chinese characters on computers and phones, making it an essential skill for anyone with a Chinese name.</p>
+              </div>
+            </div>
+            
+            <div class="faq-item" :class="{'faq-expanded': isExpanded.faq11}" @click="toggleFaq('faq11')">
+              <h3 class="faq-question">
+                <span class="faq-q-marker">Q:</span>
+                What are Chinese character stroke orders and why should I learn them?
+                <span class="faq-toggle">{{ isExpanded.faq11 ? '−' : '+' }}</span>
+              </h3>
+              <div class="faq-answer" v-show="isExpanded.faq11">
+                <p><span class="faq-a-marker">A:</span> Chinese character stroke order refers to the specific sequence in which strokes should be written to form a character correctly. Learning proper stroke order is important for several reasons: it makes handwriting more legible and aesthetically pleasing, helps with character recognition and memorization, and is essential for using handwriting input methods on digital devices. Our Character Stroke Order tool shows you the correct sequence for writing any Chinese character, making it easier to learn and practice Chinese calligraphy.</p>
+              </div>
+            </div>
+            
+            <div class="faq-item" :class="{'faq-expanded': isExpanded.faq12}" @click="toggleFaq('faq12')">
+              <h3 class="faq-question">
+                <span class="faq-q-marker">Q:</span>
+                Are there naming taboos or characters I should avoid in Chinese names?
+                <span class="faq-toggle">{{ isExpanded.faq12 ? '−' : '+' }}</span>
+              </h3>
+              <div class="faq-answer" v-show="isExpanded.faq12">
+                <p><span class="faq-a-marker">A:</span> Yes, Chinese naming has several traditional taboos to consider. These include avoiding characters with negative meanings, death-related connotations, or those that sound like unlucky words. It's also traditional to avoid using the same characters as living elders in the family, and some characters may be inappropriate due to historical or political associations. Additionally, certain character combinations might create unintended meanings or sound awkward when spoken. Our naming tools are designed to help you avoid these pitfalls while suggesting culturally appropriate alternatives.</p>
+              </div>
+            </div>
           </div>
         </div>
         
@@ -365,15 +550,15 @@
           <h2 class="cta-title">Ready to Find Your Perfect Chinese Name?</h2>
           <p class="cta-subtitle">Start your journey to discover a meaningful Chinese name that reflects your identity and connects you to Chinese culture.</p>
           <div class="cta-buttons">
-            <router-link to="/custom" class="cta-button primary">
+                          <router-link to="/custom-chinese-name-generator" class="cta-button primary">
               Create Your Custom Name
             </router-link>
-            <router-link to="/translate" class="cta-button secondary">
+            <router-link to="/english-to-chinese-translator" class="cta-button secondary">
               Translate Your Name
             </router-link>
-          </div>
         </div>
-      </div>
+        </div>
+        </div>
     </section>
 
   </div>
@@ -390,26 +575,222 @@ export default {
       isExpanded: {
         nameStructure: false,
         characterMeaning: false,
+        modernTrends: false,
         nameTranslation: false,
+        traditionalElements: false,
         namingService: false,
         faq1: false,
         faq2: false,
         faq3: false,
         faq4: false,
-        faq5: false
-      }
+        faq5: false,
+        faq6: false,
+        faq7: false,
+        faq8: false,
+        faq9: false,
+        faq10: false,
+        faq11: false,
+        faq12: false
+      },
+      currentSlide: 0,
+      itemsPerSlide: 4, // 每页显示4个评价
+      isMobile: false,
+      testimonials: [
+        {
+          name: "Michael Chen",
+          location: "San Francisco, USA",
+          context: "Business Professional",
+          service: "Name Translation",
+          text: "I needed a Chinese name for my business dealings in China. The translation service provided me with '陈明轩' which not only sounds similar to my name but has beautiful meanings of brightness and elegance. My Chinese colleagues were impressed!"
+        },
+        {
+          name: "Sarah Johnson",
+          location: "London, UK",
+          context: "Study Abroad Student",
+          service: "Custom Name Generator",
+          text: "Before studying in Beijing, I used the custom name generator to find '沈雅文' - a name that reflects my love for literature and arts. It's been perfect for making connections with local students and professors."
+        },
+        {
+          name: "David Rodriguez",
+          location: "Madrid, Spain",
+          context: "Cultural Enthusiast",
+          service: "Fantasy Name Generator",
+          text: "As a fantasy writer, I was amazed by the fantasy Chinese name generator. It created '龙飞宇' for my novel's protagonist - meaning 'dragon soaring through the universe'. The cultural depth and mystical meaning are exactly what I needed!"
+        },
+        {
+          name: "Emily Wang",
+          location: "Toronto, Canada",
+          context: "Heritage Explorer",
+          service: "Zodiac Naming",
+          text: "Born in the Year of the Tiger, I wanted a name that honored my zodiac. The service suggested '王虎威' which perfectly captures the tiger's strength and nobility. I feel more connected to my Chinese heritage now."
+        },
+        {
+          name: "James Thompson",
+          location: "Sydney, Australia",
+          context: "Tech Entrepreneur",
+          service: "Professional Consultation",
+          text: "Starting a tech company in Shanghai required a professional Chinese name. The detailed analysis provided '汤明智' - combining innovation with wisdom. It's been instrumental in building trust with investors and partners."
+        },
+        {
+          name: "Maria Gonzalez",
+          location: "Barcelona, Spain",
+          context: "Language Teacher",
+          service: "Cultural Analysis",
+          text: "Teaching Chinese culture to Spanish students, I needed authentic examples. The cultural analysis tool helped me understand the deeper meanings behind names like '高美云' - showing my students the poetry within Chinese naming."
+        },
+        {
+          name: "Ryan O'Connor",
+          location: "Dublin, Ireland",
+          context: "Martial Arts Practitioner",
+          service: "Traditional Naming",
+          text: "Practicing Tai Chi for years, I wanted a name reflecting inner peace. '欧阳静' was suggested, meaning 'tranquil like still water'. Every time I introduce myself at the dojo, it reminds me of my martial arts philosophy."
+        },
+        {
+          name: "Lisa Kim",
+          location: "Seoul, South Korea",
+          context: "International Relations",
+          service: "Diplomatic Naming",
+          text: "Working in China-Korea diplomatic affairs, having a proper Chinese name was essential. '金丽华' bridges my Korean heritage with Chinese elegance. It's opened doors in my diplomatic career that I never expected."
+        },
+        {
+          name: "Alexandra Petrov",
+          location: "Moscow, Russia",
+          context: "Fashion Designer",
+          service: "Creative Naming",
+          text: "As a fashion designer expanding into Asian markets, I needed a name that reflects creativity. '佩美娜' combines my Russian roots with artistic elegance. Chinese clients love the sophisticated sound and meaning."
+        },
+        {
+          name: "Carlos Martinez",
+          location: "Mexico City, Mexico",
+          context: "Chef & Restaurateur",
+          service: "Business Naming",
+          text: "Opening a fusion restaurant in Beijing required an authentic Chinese name. '马天厨' represents my culinary passion and sky-high ambitions. It's been perfect for building local customer trust."
+        },
+        {
+          name: "Priya Sharma",
+          location: "Mumbai, India",
+          context: "Software Engineer",
+          service: "Tech Professional",
+          text: "Working for a Chinese tech company, I wanted a name that sounds natural. '夏美雅' reflects both my Indian heritage and professional elegance. Colleagues appreciate the thoughtful cultural bridge."
+        },
+        {
+          name: "Jean-Pierre Dubois",
+          location: "Paris, France",
+          context: "Wine Merchant",
+          service: "Luxury Business",
+          text: "Importing French wines to China, my Chinese name '杜品酒' directly reflects my profession. The character for 'wine tasting' makes my expertise immediately clear to Chinese wine enthusiasts."
+        },
+        {
+          name: "Hassan Al-Rahman",
+          location: "Dubai, UAE",
+          context: "Investment Banker",
+          service: "Financial Sector",
+          text: "In international finance, having a Chinese name builds trust. '拉曼富' combines my Arabic heritage with prosperity symbolism. It's essential for my work with Chinese investment partners."
+        },
+        {
+          name: "Anna Kowalski",
+          location: "Warsaw, Poland",
+          context: "Medical Researcher",
+          service: "Academic Naming",
+          text: "Collaborating with Chinese medical institutions, '柯安娜' makes introductions smoother. The name suggests safety and femininity, perfect for building professional relationships in healthcare."
+        },
+        {
+          name: "Benjamin Taylor",
+          location: "Manchester, UK",
+          context: "Football Coach",
+          service: "Sports Industry",
+          text: "Coaching in Chinese football academies, '泰勇' represents strength and courage. Young players connect with the name immediately, and it reflects the warrior spirit I bring to training."
+        },
+        {
+          name: "Isabella Rossi",
+          location: "Milan, Italy",
+          context: "Luxury Brand Manager",
+          service: "Fashion Industry",
+          text: "Managing luxury brands in China, '罗美丽' captures Italian elegance with universal beauty. The name opens doors in high-end fashion circles and resonates with sophisticated Chinese consumers."
+        },
+        {
+          name: "Ahmed Hassan",
+          location: "Cairo, Egypt",
+          context: "Archaeologist",
+          service: "Cultural Exchange",
+          text: "Leading archaeological expeditions between Egypt and China, '哈圣文' honors my cultural background while emphasizing scholarly wisdom. It's perfect for academic and cultural collaborations."
+        },
+        {
+          name: "Svetlana Volkov",
+          location: "St. Petersburg, Russia",
+          context: "Classical Musician",
+          service: "Arts & Culture",
+          text: "Performing classical music in China, '沃美音' reflects my Russian heritage and musical talent. Concert audiences immediately understand my artistic identity through this beautiful name."
+        },
+        {
+          name: "Roberto Silva",
+          location: "São Paulo, Brazil",
+          context: "Environmental Scientist",
+          service: "Academic Research",
+          text: "Researching sustainable development with Chinese universities, '席绿华' combines my Brazilian connection to nature with academic excellence. It perfectly represents my environmental mission."
+        },
+        {
+          name: "Fatima Al-Zahra",
+          location: "Casablanca, Morocco",
+          context: "Textile Artist",
+          service: "Creative Arts",
+          text: "Showcasing Moroccan textiles in Chinese art galleries, '法美花' blends my cultural heritage with artistic beauty. The name creates instant connections with Chinese art collectors and enthusiasts."
+        },
+        {
+          name: "Thomas Anderson",
+          location: "Stockholm, Sweden",
+          context: "Green Technology",
+          service: "Innovation Sector",
+          text: "Developing clean energy solutions for China, '安德森' maintains my Swedish identity while being pronounceable in Chinese. It's helped establish trust in the competitive renewable energy market."
+        },
+        {
+          name: "Chiara Bianchi",
+          location: "Rome, Italy",
+          context: "Art Historian",
+          service: "Cultural Studies",
+          text: "Studying Chinese-Italian art exchange, '白佳雅' represents purity and scholarly elegance. The name facilitates academic discussions and cultural research collaborations with Chinese institutions."
+        },
+        {
+          name: "Yuki Tanaka",
+          location: "Tokyo, Japan",
+          context: "Technology Translator",
+          service: "Language Services",
+          text: "Translating technical documents between Japanese and Chinese, '田雪智' honors my Japanese roots while emphasizing wisdom. It builds trust in complex technical translation projects."
+        }
+      ]
     };
   },
   
   computed: {
     allSectionsExpanded() {
-      return ['nameStructure', 'characterMeaning', 'nameTranslation', 'namingService']
+      return ['nameStructure', 'characterMeaning', 'modernTrends', 'nameTranslation', 'traditionalElements', 'namingService']
         .every(section => this.isExpanded[section] === true);
     },
     
     allFaqsExpanded() {
-      return ['faq1', 'faq2', 'faq3', 'faq4', 'faq5']
+      return ['faq1', 'faq2', 'faq3', 'faq4', 'faq5', 'faq6', 'faq7', 'faq8', 'faq9', 'faq10', 'faq11', 'faq12']
         .every(faq => this.isExpanded[faq] === true);
+    },
+    
+    groupedTestimonials() {
+      const items = this.isMobile ? 2 : this.itemsPerSlide; // 移动端每页显示2个
+      const groups = [];
+      for (let i = 0; i < this.testimonials.length; i += items) {
+        groups.push(this.testimonials.slice(i, i + items));
+      }
+      return groups;
+    },
+    
+    slidesCount() {
+      return this.groupedTestimonials.length;
+    },
+    
+    slideWidth() {
+      return this.isMobile ? 8.333 : 16.666; // 移动端8.333%（12页），桌面端16.666%（6页）
+    },
+    
+    maxSlides() {
+      return this.slidesCount - 1;
     }
   },
   
@@ -420,7 +801,7 @@ export default {
     
     toggleAllSections() {
       const newValue = !this.allSectionsExpanded;
-      ['nameStructure', 'characterMeaning', 'nameTranslation', 'namingService']
+      ['nameStructure', 'characterMeaning', 'modernTrends', 'nameTranslation', 'traditionalElements', 'namingService']
         .forEach(key => {
           this.isExpanded[key] = newValue;
         });
@@ -432,10 +813,59 @@ export default {
     
     toggleAllFaqs() {
       const newValue = !this.allFaqsExpanded;
-      ['faq1', 'faq2', 'faq3', 'faq4', 'faq5']
+      ['faq1', 'faq2', 'faq3', 'faq4', 'faq5', 'faq6', 'faq7', 'faq8', 'faq9', 'faq10', 'faq11', 'faq12']
         .forEach(key => {
           this.isExpanded[key] = newValue;
         });
+    },
+    
+    // 轮播控制方法
+    nextSlide() {
+      if (this.currentSlide >= this.maxSlides) {
+        this.currentSlide = 0; // 到达最后一页时回到第一页
+      } else {
+        this.currentSlide++;
+      }
+    },
+    
+    prevSlide() {
+      if (this.currentSlide <= 0) {
+        this.currentSlide = this.maxSlides; // 在第一页时回到最后一页
+      } else {
+        this.currentSlide--;
+      }
+    },
+    
+    goToSlide(index) {
+      this.currentSlide = index;
+    },
+    
+    startAutoSlide() {
+      this.autoSlideTimer = setInterval(() => {
+        this.nextSlide(); // 使用相同的循环逻辑
+      }, 8000); // 每8秒自动切换，放慢速度
+    },
+    
+    stopAutoSlide() {
+      if (this.autoSlideTimer) {
+        clearInterval(this.autoSlideTimer);
+        this.autoSlideTimer = null;
+      }
+    },
+    
+    checkMobile() {
+      this.isMobile = window.innerWidth <= 768;
+    },
+    
+    handleResize() {
+      this.checkMobile();
+      // 重置轮播到第一页
+      this.currentSlide = 0;
+      // 重新启动自动轮播
+      this.stopAutoSlide();
+      this.$nextTick(() => {
+        this.startAutoSlide();
+      });
     },
     
     // 添加JSON-LD结构化数据
@@ -495,6 +925,14 @@ export default {
   // 添加FAQ结构化数据
   mounted() {
     this.addJsonLdScript();
+    this.checkMobile();
+    this.startAutoSlide();
+    window.addEventListener('resize', this.handleResize);
+  },
+  
+  beforeUnmount() {
+    this.stopAutoSlide();
+    window.removeEventListener('resize', this.handleResize);
   }
 }
 </script>
@@ -611,10 +1049,284 @@ export default {
   border-radius: 12px;
 }
 
-.features.resources-section {
+/* 用户评价轮播样式 - 竖向卡片布局 */
+.testimonials-section {
+  padding: 60px 0; /* 减少高度 */
   background-color: #F5F5F5;
   position: relative;
   overflow: hidden;
+  border: 1px solid #E0E0E0;
+  margin: 20px 0;
+  border-radius: 12px;
+}
+
+.testimonials-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(209,10,17,0.04) 0%, rgba(209,10,17,0) 70%);
+  transform: rotate(15deg);
+}
+
+.section-subtitle {
+  text-align: center;
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 40px; /* 减少间距 */
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.testimonials-carousel {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px; /* 减少间距 */
+}
+
+.testimonials-track {
+  display: flex;
+  transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  width: 600%; /* 6 slides * 100% */
+}
+
+.testimonial-slide {
+  width: 16.666%; /* 6 slides, each takes 16.666% (100%/6) */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 桌面端4列 */
+  gap: 20px;
+  padding: 0 15px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.testimonial-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px; /* 减少padding */
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.06);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 280px; /* 设置最小高度保持一致 */
+}
+
+.testimonial-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(135deg, #d10a11, #f05252);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+}
+
+.testimonial-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d10a11, #f05252);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.avatar-initial {
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.user-details h4 {
+  margin: 0 0 2px 0;
+  color: #333;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.user-location {
+  margin: 0;
+  color: #666;
+  font-size: 0.8rem;
+  line-height: 1.2;
+}
+
+.stars {
+  display: flex;
+  gap: 1px;
+  flex-shrink: 0;
+}
+
+.star {
+  color: #ffc107;
+  font-size: 0.9rem;
+}
+
+.testimonial-text {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #444;
+  margin: 0 0 15px 0;
+  font-style: italic;
+  flex: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* 限制显示4行 */
+  -webkit-box-orient: vertical;
+}
+
+.testimonial-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.service-tag {
+  background: rgba(209,10,17,0.1);
+  color: #d10a11;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  flex-shrink: 0;
+}
+
+.user-context {
+  color: #888;
+  font-size: 0.75rem;
+  font-style: italic;
+  text-align: right;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #e0e0e0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.carousel-btn:hover {
+  border-color: #d10a11;
+  background: #d10a11;
+  color: white;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.prev-btn {
+  left: -25px;
+}
+
+.next-btn {
+  right: -25px;
+}
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px; /* 减少间距 */
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.indicator:hover {
+  background: #bbb;
+  transform: scale(1.1);
+}
+
+.indicator.active {
+  background: #d10a11;
+  transform: scale(1.3);
+  box-shadow: 0 0 10px rgba(209,10,17,0.3);
+}
+
+.stats-section {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+  margin-top: 30px; /* 减少间距 */
+}
+
+.stat-item {
+  text-align: center;
+  min-width: 120px;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #d10a11;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.stat-label {
+  color: #666;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 
@@ -1287,6 +1999,87 @@ export default {
   
   .features, .features-alt, .about-chinese-names, .faq-section, .cta-section {
     padding: 70px 0;
+  }
+  
+  .testimonials-section {
+    padding: 50px 0; /* 用户评价区域更紧凑 */
+  }
+  
+  /* 用户评价轮播移动端样式 */
+  .testimonials-track {
+    width: 1200%; /* 12 slides for mobile */
+  }
+  
+  .testimonial-slide {
+    width: 8.333%; /* 12 slides, each takes 8.333% (100%/12) */
+    grid-template-columns: repeat(2, 1fr); /* 移动端2列 */
+    padding: 0 10px;
+    gap: 15px;
+  }
+  
+  .testimonial-card {
+    padding: 15px;
+    min-height: 240px;
+  }
+  
+  .testimonial-text {
+    font-size: 0.85rem;
+    -webkit-line-clamp: 3; /* 移动端限制3行 */
+  }
+  
+  .user-avatar {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .avatar-initial {
+    font-size: 0.9rem;
+  }
+  
+  .user-details h4 {
+    font-size: 0.9rem;
+  }
+  
+  .user-location {
+    font-size: 0.75rem;
+  }
+  
+  .stars {
+    gap: 0;
+  }
+  
+  .star {
+    font-size: 0.8rem;
+  }
+  
+  .service-tag {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+  }
+  
+  .user-context {
+    font-size: 0.7rem;
+  }
+  
+  .carousel-btn {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .prev-btn {
+    left: -22px;
+  }
+  
+  .next-btn {
+    right: -22px;
+  }
+  
+  .stats-section {
+    gap: 30px;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
   }
   
   .cta-title {

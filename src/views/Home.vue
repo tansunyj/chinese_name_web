@@ -78,7 +78,7 @@
             <div class="feature-link">{{ $t('common.goto') || "前往" }} →</div>
           </router-link>
           
-          <router-link to="/character-strokes" class="feature-card">
+          <router-link to="/blog/character-strokes" class="feature-card">
             <div class="feature-icon">
               <i class="icon-brush"></i>
             </div>

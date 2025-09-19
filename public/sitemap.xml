@@ -163,7 +163,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/multilingual-name</loc>
+    <loc>https://www.chinesename.us/multilingual</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -203,6 +203,36 @@
     <lastmod>2024-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.chinesename.us/login</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.chinesename.us/signup</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.chinesename.us/multilingual-name</loc>
+    <lastmod>2024-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.chinesename.us/privacy</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.chinesename.us/terms</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.chinesename.us/about</loc>

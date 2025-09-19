@@ -211,7 +211,7 @@ export default {
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "Chinese to English Name Translator",
-        "url": "https://chinesename.us/chinese-to-english",
+        "url": "https://chinesename.us/chinese-to-english-translator",
         "applicationCategory": "UtilityApplication",
         "offers": {
           "@type": "Offer",
@@ -743,15 +743,6 @@ export default {
         console.error('从文本提取数据失败:', error);
         return null;
       }
-    }
-  },
-  metaInfo() {
-    return {
-      title: 'Chinese to English Name Translator | Convert Chinese Names to English',
-      meta: [
-        { name: 'description', content: 'Translate Chinese names to English with our professional name translation tool. Get accurate English translations of Chinese names with proper pronunciation and meaning.' },
-        { name: 'keywords', content: 'chinese to english name, chinese name to english, chinese name translation to english, translate chinese name to english, chinese to english name translator, chinese to english name converter, convert chinese name to english, chinese name into english' }
-      ]
     }
   }
 }

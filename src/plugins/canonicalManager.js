@@ -66,6 +66,51 @@ function addSEOMetaTags(routeMeta) {
     metaDescription.content = routeMeta.description;
   }
   
+  // 添加或更新keywords元标签
+  if (routeMeta.keywords) {
+    let metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (!metaKeywords) {
+      metaKeywords = document.createElement('meta');
+      metaKeywords.name = 'keywords';
+      document.head.appendChild(metaKeywords);
+    }
+    metaKeywords.content = routeMeta.keywords;
+  }
+  
+  // 添加Open Graph标签（如果提供）
+  if (routeMeta.ogTitle) {
+    updateMetaTag('property', 'og:title', routeMeta.ogTitle);
+  }
+  
+  if (routeMeta.ogDescription) {
+    updateMetaTag('property', 'og:description', routeMeta.ogDescription);
+  }
+  
+  if (routeMeta.ogImage) {
+    updateMetaTag('property', 'og:image', routeMeta.ogImage);
+  }
+  
+  if (routeMeta.ogUrl) {
+    updateMetaTag('property', 'og:url', routeMeta.ogUrl);
+  }
+  
+  // 添加Twitter Card标签（如果提供）
+  if (routeMeta.twitterCard) {
+    updateMetaTag('name', 'twitter:card', routeMeta.twitterCard);
+  }
+  
+  if (routeMeta.twitterTitle) {
+    updateMetaTag('name', 'twitter:title', routeMeta.twitterTitle);
+  }
+  
+  if (routeMeta.twitterDescription) {
+    updateMetaTag('name', 'twitter:description', routeMeta.twitterDescription);
+  }
+  
+  if (routeMeta.twitterImage) {
+    updateMetaTag('name', 'twitter:image', routeMeta.twitterImage);
+  }
+  
   // 添加移动设备视口元标签（如果不存在）
   if (!document.querySelector('meta[name="viewport"]')) {
     const viewport = document.createElement('meta');
@@ -73,6 +118,22 @@ function addSEOMetaTags(routeMeta) {
     viewport.content = 'width=device-width, initial-scale=1.0';
     document.head.appendChild(viewport);
   }
+}
+
+/**
+ * 更新或创建meta标签的辅助函数
+ * @param {string} attribute - 属性名称 ('name' 或 'property')
+ * @param {string} value - 属性值
+ * @param {string} content - 内容
+ */
+function updateMetaTag(attribute, value, content) {
+  let metaTag = document.querySelector(`meta[${attribute}="${value}"]`);
+  if (!metaTag) {
+    metaTag = document.createElement('meta');
+    metaTag.setAttribute(attribute, value);
+    document.head.appendChild(metaTag);
+  }
+  metaTag.content = content;
 }
 
 /**

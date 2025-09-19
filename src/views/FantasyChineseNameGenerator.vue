@@ -93,6 +93,26 @@
           </div>
         </div>
         
+        <!-- 错误信息显示 -->
+        <div v-if="errorMessage && !isLoading" class="error-container">
+          <div class="error-card">
+            <div class="error-icon">⚠️</div>
+            <div class="error-content">
+              <h3>Generation Error</h3>
+              <p>{{ errorMessage }}</p>
+              <div class="error-help">
+                <p><strong>Troubleshooting Tips:</strong></p>
+                <ul>
+                  <li>Make sure the proxy server is running on port 8788</li>
+                  <li>Check your internet connection</li>
+                  <li>Verify OpenAI API configuration in .env file</li>
+                  <li>Try refreshing the page and generating again</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
         <div v-if="results.length" class="results-section">
           <div class="results-header">
             <h2>✨ Your Mystical Chinese Name Collection</h2>
@@ -388,8 +408,20 @@ export default {
     async generateFantasyName() {
       this.isLoading = true;
       this.results = [];
+      this.errorMessage = '';
       
       try {
+        console.log('🚀 开始生成奇幻名字...');
+        console.log('📋 请求参数:', {
+          type: 'fantasyChineseName',
+          fantasyTheme: this.formData.fantasyTheme,
+          characterType: this.formData.characterType,
+          gender: this.formData.gender,
+          powerLevel: this.formData.powerLevel,
+          locale: this.locale
+        });
+        console.log('🌐 API端点:', aiConfig.baseConfig.proxyUrl);
+
         // 使用类型化API发送请求
         const response = await fetch(aiConfig.baseConfig.proxyUrl, {
           method: 'POST',
@@ -405,6 +437,12 @@ export default {
             locale: this.locale
           })
         });
+
+        console.log('📡 响应状态:', response.status, response.statusText);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
 
         const responseData = await response.json();
         console.log('🔍 AI原始响应:', responseData);
@@ -450,11 +488,24 @@ export default {
             this.results = this.createFallbackResults();
           }
         } else {
+          console.log('⚠️ 无法从响应中提取名字数据，使用备用结果');
           this.results = this.createFallbackResults();
         }
+        
+        console.log('✅ 生成完成，结果数量:', this.results.length);
       } catch (error) {
-        console.error('生成失败:', error);
-        message.error('Generation failed, please try again');
+        console.error('❌ 生成失败:', error);
+        this.errorMessage = `生成失败: ${error.message}`;
+        
+        if (error.message.includes('HTTP 500')) {
+          message.error('服务器内部错误，请检查API配置');
+        } else if (error.message.includes('Failed to fetch')) {
+          message.error('网络连接失败，请检查代理服务器是否运行');
+        } else {
+          message.error('Generation failed, please try again');
+        }
+        
+        // 使用备用结果以确保用户仍能看到一些名字
         this.results = this.createFallbackResults();
       } finally {
         this.isLoading = false;
@@ -620,22 +671,6 @@ export default {
         console.error('提取数据失败:', error);
         return null;
       }
-    }
-  },
-  metaInfo() {
-    return {
-      title: 'Fantasy Chinese Name Generator for Games, Novels & Characters | ChineseName.us',
-      meta: [
-        { name: 'description', content: 'Generate enchanting fantasy Chinese names for your characters, stories, and creative projects. Create mystical names with authentic Chinese culture and magical elements. Perfect for fantasy novels, games, wuxia, xianxia, and role-playing characters.' },
-        { name: 'keywords', content: 'fantasy chinese name generator, fantasy chinese names, mystical chinese names, chinese fantasy character names, magical chinese names, wuxia name generator, xianxia name generator, ancient chinese name generator, chinese cultivator names, fantasy name generator chinese, chinese fantasy names generator, mystical name generator chinese, create fantasy name, chinese character names with meaning, martial arts names, cultivation novel names' },
-        { property: 'og:title', content: 'Fantasy Chinese Name Generator for Games & Novels | ChineseName.us' },
-        { property: 'og:description', content: 'Generate authentic fantasy Chinese names with mystical meanings. Perfect for characters, stories, games, wuxia, xianxia, and creative projects.' },
-        { property: 'og:type', content: 'website' },
-        { property: 'og:url', content: 'https://chinesename.us/fantasy-chinese-name-generator' },
-        { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: 'Fantasy Chinese Name Generator | Magical Chinese Names' },
-        { name: 'twitter:description', content: 'Create mystical Chinese names for fantasy characters with authentic cultural elements.' }
-      ]
     }
   }
 }
@@ -1042,6 +1077,63 @@ label {
   line-height: 1.6;
   color: #666;
   margin: 0;
+}
+
+/* 错误信息样式 */
+.error-container {
+  margin: 20px 0;
+}
+
+.error-card {
+  background-color: #fff5f5;
+  border: 1px solid #feb2b2;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  box-shadow: 0 2px 8px rgba(254, 178, 178, 0.2);
+}
+
+.error-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.error-content h3 {
+  color: #c53030;
+  margin: 0 0 10px 0;
+  font-size: 18px;
+}
+
+.error-content p {
+  color: #742a2a;
+  margin: 0 0 15px 0;
+  line-height: 1.5;
+}
+
+.error-help {
+  background-color: #fed7d7;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.error-help p {
+  margin: 0 0 10px 0;
+  font-weight: 600;
+  color: #742a2a;
+}
+
+.error-help ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #742a2a;
+}
+
+.error-help li {
+  margin-bottom: 5px;
+  line-height: 1.4;
 }
 
 @media (max-width: 768px) {

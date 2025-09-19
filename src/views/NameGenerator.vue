@@ -291,15 +291,6 @@ export default {
       totalPages: 1
     }
   },
-  metaInfo() {
-    return {
-      title: 'Chinese Name Generator | Create Your Authentic Chinese Name',
-      meta: [
-        { name: 'description', content: 'Generate authentic Chinese names with our free Chinese name generator. Create personalized Chinese names with proper meanings and cultural significance based on your preferences.' },
-        { name: 'keywords', content: 'chinese name generator, chinese name, generate chinese name, chinese name maker, chinese name creator, mandarin name generator, chinese name with meaning' }
-      ]
-    }
-  },
   methods: {
     toggleMeaning(value) {
       const index = this.formData.meanings.indexOf(value)

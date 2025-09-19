@@ -1,6 +1,6 @@
 # SEO URL 重定向 - 301永久重定向
-/translate                              /english-to-chinese-translator          301
-/chinese-to-english                     /chinese-to-english-translator          301
+/translate                              /english-to-chinese-translator           301
+/chinese-to-english                     /chinese-to-english-translator           301
 /custom                                 /custom-chinese-name-generator           301
 /knowledge                              /blog                                    301
 /ai-chinese-name                        /ai-chinese-name-generator               301
@@ -28,6 +28,9 @@
 /constellation                          /blog/constellation-analysis             301
 /character-strokes                      /blog/character-strokes                  301
 /fantasy-chinese-names-guide            /blog/fantasy-chinese-names-guide        301
+
+# 其他可能的重定向
+/multilingual-name                      /multilingual                            301
 
 # API路由 - 使用Cloudflare Pages Functions
 # /api/openai 会自动路由到 /functions/api/openai.js
