@@ -13,7 +13,7 @@ const defaultUseProxy = true;
 // 默认代理URL，根据部署平台选择不同的API端点
 let defaultProxyUrl;
 if (isDevelopment) {
-  defaultProxyUrl = 'http://localhost:3001/api/openai';
+  defaultProxyUrl = 'http://localhost:8788/api/openai';
 } else if (isCloudflarePages) {
   // Cloudflare Pages使用Functions
   defaultProxyUrl = '/api/openai';

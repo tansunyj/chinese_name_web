@@ -7,9 +7,9 @@
       <nav class="nav">
         <ul class="nav-list">
           <li class="nav-item"><router-link to="/">首页</router-link></li>
-          <li class="nav-item"><router-link to="/translate">名字翻译</router-link></li>
-          <li class="nav-item"><router-link to="/custom">定制名字</router-link></li>
-          <li class="nav-item"><router-link to="/knowledge">命名知识</router-link></li>
+          <li class="nav-item"><router-link to="/english-to-chinese-translator">名字翻译</router-link></li>
+          <li class="nav-item"><router-link to="/custom-chinese-name-generator">定制名字</router-link></li>
+          <li class="nav-item"><router-link to="/blog">命名知识</router-link></li>
           <li class="nav-item"><router-link to="/chinese-surnames">中国姓氏</router-link></li>
           <li class="nav-item"><router-link to="/naming-traditions">命名传统</router-link></li>
         </ul>

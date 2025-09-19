@@ -11,10 +11,10 @@
       <nav class="main-nav">
         <ul>
           <li><router-link to="/">Home</router-link></li>
-          <li><router-link to="/custom">{{ $t('header.customName') }} Generator</router-link></li>
-          <li><router-link to="/translate">Translate to Chinese</router-link></li>
+          <li><router-link to="/english-to-chinese-translator">Translate to Chinese</router-link></li>
+          <li><router-link to="/custom-chinese-name-generator">{{ $t('header.customName') }} Chinese Name</router-link></li>
           <!--li><router-link to="/multilingual">{{ $t('header.multilingualName') }}</router-link></li-->
-          <li><router-link to="/knowledge">Chinese Name Guide</router-link></li>
+          <li><router-link to="/blog">Blog</router-link></li>
           <li><router-link to="/about">{{ $t('header.aboutUs') }}</router-link></li>
         </ul>
       </nav>

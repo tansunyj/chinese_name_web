@@ -203,7 +203,7 @@ export default {
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "English to Chinese Name Translator",
-        "url": "https://chinesename.us/translate",
+        "url": "https://chinesename.us/english-to-chinese-translator",
         "applicationCategory": "UtilityApplication",
         "offers": {
           "@type": "Offer",

@@ -1,3 +1,34 @@
+# SEO URL 重定向 - 301永久重定向
+/translate                              /english-to-chinese-translator          301
+/chinese-to-english                     /chinese-to-english-translator          301
+/custom                                 /custom-chinese-name-generator           301
+/knowledge                              /blog                                    301
+/ai-chinese-name                        /ai-chinese-name-generator               301
+
+# Blog文章重定向 - 301永久重定向
+/popular-chinese-names                  /blog/popular-chinese-names              301
+/chinese-surnames                       /blog/chinese-surnames                   301
+/baijiaxing                             /blog/baijiaxing                         301
+/naming-traditions                      /blog/naming-traditions                  301
+/historical-names                       /blog/historical-names                   301
+/regional-naming-differences            /blog/regional-naming-differences        301
+/naming-taboos                          /blog/naming-taboos                      301
+/wuxing-bazi                            /blog/wuxing-bazi                        301
+/name-numerology                        /blog/name-numerology                    301
+/sound-harmony                          /blog/sound-harmony                      301
+/seasonal-characters                    /blog/seasonal-characters                301
+/form-meaning                           /blog/form-meaning                       301
+/classical-characters                   /blog/classical-characters               301
+/family-naming-rules                    /blog/family-naming-rules                301
+/zodiac-naming                          /blog/zodiac-naming                      301
+/naming-sound-form-taboos               /blog/naming-sound-form-taboos           301
+/modern-traditional                     /blog/modern-traditional                 301
+/era-naming-styles                      /blog/era-naming-styles                  301
+/professional-considerations            /blog/professional-considerations        301
+/constellation                          /blog/constellation-analysis             301
+/character-strokes                      /blog/character-strokes                  301
+/fantasy-chinese-names-guide            /blog/fantasy-chinese-names-guide        301
+
 # API路由 - 使用Cloudflare Pages Functions
 # /api/openai 会自动路由到 /functions/api/openai.js
 

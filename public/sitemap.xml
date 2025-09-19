@@ -7,14 +7,14 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/translate</loc>
-    <lastmod>2024-05-01</lastmod>
+    <loc>https://www.chinesename.us/english-to-chinese-translator</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/chinese-to-english</loc>
-    <lastmod>2024-05-01</lastmod>
+    <loc>https://www.chinesename.us/chinese-to-english-translator</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -25,80 +25,86 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/custom</loc>
-    <lastmod>2024-05-01</lastmod>
+    <loc>https://www.chinesename.us/fantasy-chinese-name-generator</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/ai-chinese-name</loc>
-    <lastmod>2024-05-01</lastmod>
+    <loc>https://www.chinesename.us/custom-chinese-name-generator</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/popular-chinese-names</loc>
-    <lastmod>2024-05-01</lastmod>
+    <loc>https://www.chinesename.us/ai-chinese-name-generator</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.chinesename.us/blog/popular-chinese-names</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/knowledge</loc>
-    <lastmod>2024-05-01</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://www.chinesename.us/blog</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/chinese-surnames</loc>
-    <lastmod>2024-05-01</lastmod>
+    <loc>https://www.chinesename.us/blog/chinese-surnames</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/baijiaxing</loc>
-    <lastmod>2024-05-01</lastmod>
+    <loc>https://www.chinesename.us/blog/baijiaxing</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/naming-traditions</loc>
-    <lastmod>2024-05-01</lastmod>
+    <loc>https://www.chinesename.us/blog/naming-traditions</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/historical-names</loc>
-    <lastmod>2024-05-01</lastmod>
+    <loc>https://www.chinesename.us/blog/historical-names</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/regional-naming-differences</loc>
-    <lastmod>2024-05-01</lastmod>
+    <loc>https://www.chinesename.us/blog/regional-naming-differences</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/naming-taboos</loc>
-    <lastmod>2024-05-01</lastmod>
+    <loc>https://www.chinesename.us/blog/naming-taboos</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/wuxing-bazi</loc>
-    <lastmod>2024-05-01</lastmod>
+    <loc>https://www.chinesename.us/blog/wuxing-bazi</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/name-numerology</loc>
-    <lastmod>2024-05-01</lastmod>
+    <loc>https://www.chinesename.us/blog/name-numerology</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/sound-harmony</loc>
-    <lastmod>2024-05-01</lastmod>
+    <loc>https://www.chinesename.us/blog/sound-harmony</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -121,37 +127,37 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/constellation-analysis</loc>
+    <loc>https://www.chinesename.us/blog/constellation-analysis</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/zodiac-naming</loc>
+    <loc>https://www.chinesename.us/blog/zodiac-naming</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/seasonal-characters</loc>
+    <loc>https://www.chinesename.us/blog/seasonal-characters</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/professional-considerations</loc>
+    <loc>https://www.chinesename.us/blog/professional-considerations</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/name-sound-form-taboos</loc>
+    <loc>https://www.chinesename.us/blog/naming-sound-form-taboos</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/modern-traditional</loc>
+    <loc>https://www.chinesename.us/blog/modern-traditional</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -163,31 +169,37 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/family-naming-rules</loc>
+    <loc>https://www.chinesename.us/blog/family-naming-rules</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/form-meaning</loc>
+    <loc>https://www.chinesename.us/blog/form-meaning</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/era-naming-styles</loc>
+    <loc>https://www.chinesename.us/blog/era-naming-styles</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/classical-characters</loc>
+    <loc>https://www.chinesename.us/blog/fantasy-chinese-names-guide</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.chinesename.us/blog/classical-characters</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/character-strokes</loc>
+    <loc>https://www.chinesename.us/blog/character-strokes</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

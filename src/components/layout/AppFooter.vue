@@ -15,9 +15,9 @@
             <h3>{{ $t('header.siteName') }}</h3>
             <ul>
               <li><router-link to="/">{{ $t('header.home') }}</router-link></li>
-              <li><router-link to="/translate">{{ $t('header.translateName') }}</router-link></li>
-              <li><router-link to="/custom">{{ $t('header.customName') }}</router-link></li>
-              <li><router-link to="/knowledge">{{ $t('header.knowledgeBase') }}</router-link></li>
+              <li><router-link to="/english-to-chinese-translator">{{ $t('header.translateName') }}</router-link></li>
+              <li><router-link to="/custom-chinese-name-generator">{{ $t('header.customName') }}</router-link></li>
+              <li><router-link to="/blog">Blog</router-link></li>
             </ul>
           </div>
           

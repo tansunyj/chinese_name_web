@@ -6,7 +6,7 @@
       
       <div class="knowledge-grid">
         <!-- 新增热门中文名字卡片 -->
-        <router-link to="/popular-chinese-names" class="category-card">
+        <router-link to="/blog/popular-chinese-names" class="category-card">
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
@@ -16,7 +16,7 @@
           <p>Discover the most popular Chinese names with their meanings and pronunciations for both boys and girls.</p>
         </router-link>
         
-        <router-link to="/chinese-surnames" class="category-card">
+        <router-link to="/blog/chinese-surnames" class="category-card">
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -27,7 +27,7 @@
         </router-link>
         
         <!-- 百家姓卡片 -->
-        <router-link to="/baijiaxing" class="category-card baijiaxing-card">
+        <router-link to="/blog/baijiaxing" class="category-card baijiaxing-card">
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -37,7 +37,7 @@
           <p>Explore the origins, history and detailed sources of ancient Chinese "Hundred Family Surnames", including the origins of major surnames such as Zhao, Qian, Sun, Li, etc.</p>
         </router-link>
         
-        <router-link to="/naming-traditions" class="category-card">
+        <router-link to="/blog/naming-traditions" class="category-card">
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -47,7 +47,7 @@
           <p>Learn about Chinese naming traditions, generational naming practices, and how names reflect cultural values.</p>
         </router-link>
         
-        <router-link to="/historical-names" class="category-card">
+        <router-link to="/blog/historical-names" class="category-card">
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -57,7 +57,7 @@
           <p>Explore the names of famous historical figures in Chinese culture and their meanings.</p>
         </router-link>
         
-        <router-link to="/regional-naming-differences" class="category-card">
+        <router-link to="/blog/regional-naming-differences" class="category-card">
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -67,7 +67,7 @@
           <p>Explore naming customs differences across various regions and ethnic minorities in China.</p>
         </router-link>
         
-        <router-link to="/naming-taboos" class="category-card">
+        <router-link to="/blog/naming-taboos" class="category-card">
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
@@ -78,7 +78,7 @@
         </router-link>
 
         <!-- 修改五行八字理论卡片 -->
-        <router-link to="/wuxing-bazi" class="category-card">
+        <router-link to="/blog/wuxing-bazi" class="category-card">
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -89,7 +89,7 @@
         </router-link>
 
         <!-- 修改姓名学数理卡片 -->
-        <router-link to="/name-numerology" class="category-card">
+        <router-link to="/blog/name-numerology" class="category-card">
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
@@ -100,7 +100,7 @@
         </router-link>
 
         <!-- 新增音韵和谐卡片 -->
-        <router-link to="/sound-harmony" class="category-card">
+        <router-link to="/blog/sound-harmony" class="category-card">
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
@@ -111,7 +111,7 @@
         </router-link>
 
         <!-- 新增形义结合卡片 -->
-        <router-link to="/form-meaning" class="category-card">
+        <router-link to="/blog/form-meaning" class="category-card">
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -122,7 +122,7 @@
         </router-link>
 
         <!-- 新增典籍用字卡片 -->
-        <router-link to="/classical-characters" class="category-card">
+        <router-link to="/blog/classical-characters" class="category-card">
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -133,7 +133,7 @@
         </router-link>
 
         <!-- 新增季节时令用字卡片 -->
-        <router-link to="/seasonal-characters" class="category-card">
+        <router-link to="/blog/seasonal-characters" class="category-card">
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
@@ -144,7 +144,7 @@
         </router-link>
 
         <!-- 新增家族命名规则卡片 -->
-        <router-link to="/family-naming-rules" class="category-card">
+        <router-link to="/blog/family-naming-rules" class="category-card">
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -155,7 +155,7 @@
         </router-link>
 
         <!-- 新增生肖属相相配卡片 -->
-        <router-link to="/zodiac-naming" class="category-card">
+        <router-link to="/blog/zodiac-naming" class="category-card">
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -166,7 +166,7 @@
         </router-link>
 
         <!-- 新增字音字形避讳卡片 -->
-        <router-link to="/naming-sound-form-taboos" class="category-card">
+        <router-link to="/blog/naming-sound-form-taboos" class="category-card">
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -177,7 +177,7 @@
         </router-link>
 
         <!-- 新增现代与传统的结合卡片 -->
-        <router-link to="/modern-traditional" class="category-card">
+        <router-link to="/blog/modern-traditional" class="category-card">
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
@@ -188,7 +188,7 @@
         </router-link>
 
         <!-- 新增时代取名风格卡片 -->
-        <router-link to="/era-naming-styles" class="category-card">
+        <router-link to="/blog/era-naming-styles" class="category-card">
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -196,6 +196,17 @@
           </div>
           <h2>Era Naming Styles</h2>
           <p>Explore popular naming styles and era characteristics from different historical periods in China.</p>
+        </router-link>
+
+        <!-- 新增奇幻中文名字知识指南卡片 -->
+        <router-link to="/blog/fantasy-chinese-names-guide" class="category-card fantasy-card">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+            </svg>
+          </div>
+          <h2>Fantasy Chinese Names Guide</h2>
+          <p>Learn about mystical Chinese naming traditions, fantasy character naming conventions, and cultural elements in wuxia, xianxia, and fantasy literature.</p>
         </router-link>
       </div>
       
@@ -593,6 +604,59 @@ export default {
 
 .baijiaxing-card:hover {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* 奇幻中文名字生成器卡片特殊样式 */
+.fantasy-card {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.fantasy-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(230, 0, 18, 0.05) 0%, rgba(138, 43, 226, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.fantasy-card:hover::before {
+  opacity: 1;
+}
+
+.fantasy-card .card-icon {
+  background: linear-gradient(135deg, rgba(230, 0, 18, 0.1) 0%, rgba(138, 43, 226, 0.1) 100%);
+  border: 2px solid rgba(230, 0, 18, 0.2);
+}
+
+.fantasy-card .card-icon svg {
+  color: #8a2be2;
+  filter: drop-shadow(0 0 3px rgba(138, 43, 226, 0.3));
+}
+
+.fantasy-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(138, 43, 226, 0.15);
+}
+
+.fantasy-card h2 {
+  background: linear-gradient(135deg, #e60012 0%, #8a2be2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+}
+
+.fantasy-card p {
+  color: #555;
 }
 
 .category-card h2 {

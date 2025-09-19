@@ -82,7 +82,44 @@ export default defineConfig(({ command, mode }) => {
       // 添加 CORS 头
       cors: true,
       // 添加 SPA 回退
-      historyApiFallback: true
+      historyApiFallback: {
+        rewrites: [
+          // SEO URL 重定向规则
+          { from: /^\/translate$/, to: '/english-to-chinese-translator' },
+          { from: /^\/chinese-to-english$/, to: '/chinese-to-english-translator' },
+          { from: /^\/fantasy-chinese-name-generator$/, to: '/fantasy-chinese-name-generator' },
+          { from: /^\/custom$/, to: '/custom-chinese-name-generator' },
+          { from: /^\/knowledge$/, to: '/blog' },
+          { from: /^\/ai-chinese-name$/, to: '/ai-chinese-name-generator' },
+
+                    // Blog文章重定向规则
+          { from: /^\/popular-chinese-names$/, to: '/blog/popular-chinese-names' },
+          { from: /^\/chinese-surnames$/, to: '/blog/chinese-surnames' },
+          { from: /^\/baijiaxing$/, to: '/blog/baijiaxing' },
+          { from: /^\/naming-traditions$/, to: '/blog/naming-traditions' },
+          { from: /^\/historical-names$/, to: '/blog/historical-names' },
+          { from: /^\/regional-naming-differences$/, to: '/blog/regional-naming-differences' },
+          { from: /^\/naming-taboos$/, to: '/blog/naming-taboos' },
+          { from: /^\/wuxing-bazi$/, to: '/blog/wuxing-bazi' },
+          { from: /^\/name-numerology$/, to: '/blog/name-numerology' },
+          { from: /^\/sound-harmony$/, to: '/blog/sound-harmony' },
+          { from: /^\/seasonal-characters$/, to: '/blog/seasonal-characters' },
+          { from: /^\/form-meaning$/, to: '/blog/form-meaning' },
+          { from: /^\/classical-characters$/, to: '/blog/classical-characters' },
+          { from: /^\/family-naming-rules$/, to: '/blog/family-naming-rules' },
+          { from: /^\/zodiac-naming$/, to: '/blog/zodiac-naming' },
+          { from: /^\/naming-sound-form-taboos$/, to: '/blog/naming-sound-form-taboos' },
+          { from: /^\/modern-traditional$/, to: '/blog/modern-traditional' },
+          { from: /^\/era-naming-styles$/, to: '/blog/era-naming-styles' },
+          { from: /^\/professional-considerations$/, to: '/blog/professional-considerations' },
+          { from: /^\/constellation$/, to: '/blog/constellation-analysis' },
+          { from: /^\/character-strokes$/, to: '/blog/character-strokes' },
+          { from: /^\/fantasy-chinese-names-guide$/, to: '/blog/fantasy-chinese-names-guide' },
+          
+          // 默认SPA回退
+          { from: /.*/, to: '/index.html' }
+        ]
+      }
     }
   }
 })

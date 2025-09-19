@@ -2,7 +2,7 @@
   <div class="professional-page">
     <div class="container">
       <div class="back-link">
-        <router-link to="/knowledge">
+        <router-link to="/blog">
           <i class="arrow-left"></i> 返回知识库
         </router-link>
       </div>

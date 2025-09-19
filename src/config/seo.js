@@ -13,7 +13,7 @@ export const DEFAULT_TITLE = 'Free Chinese Name Generator | Chinese Name Transla
 export const DEFAULT_DESCRIPTION = 'Transform your name into Chinese with our free name generator. Get personalized Chinese names with meanings and learn how to translate Chinese names into English.';
 
 // 网站的默认关键词
-export const DEFAULT_KEYWORDS = 'chinese name translator, english to chinese name, chinese name generator, name translation chinese, mandarin chinese names, chinese name meaning';
+export const DEFAULT_KEYWORDS = 'chinese name translator, english to chinese name, chinese name generator, name translation chinese, mandarin chinese names, chinese name meaning, translate name to chinese, chinese to english name translator, free chinese name generator, chinese name pronunciation, chinese character meaning, chinese surname translator, pinyin converter, chinese zodiac names, five elements naming, traditional chinese names, fantasy chinese names, wuxia name generator, xianxia name generator, chinese naming traditions, ba zi chinese names, chinese name analysis, multilingual chinese name translator';
 
 // 规范链接配置
 export const canonicalConfig = {

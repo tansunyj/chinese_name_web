@@ -10,10 +10,10 @@
         <h3 class="footer-title">快速链接</h3>
         <ul class="footer-links">
           <li><router-link to="/">首页</router-link></li>
-          <li><router-link to="/translate">名字翻译</router-link></li>
-          <li><router-link to="/custom">定制名字</router-link></li>
-          <li><router-link to="/ai-chinese-name">AI智能生成</router-link></li>
-          <li><router-link to="/knowledge">命名知识</router-link></li>
+                      <li><router-link to="/english-to-chinese-translator">名字翻译</router-link></li>
+                      <li><router-link to="/custom-chinese-name-generator">定制名字</router-link></li>
+                      <li><router-link to="/ai-chinese-name-generator">AI智能生成</router-link></li>
+                      <li><router-link to="/blog">命名知识</router-link></li>
         </ul>
       </div>
       
