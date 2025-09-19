@@ -27,6 +27,9 @@
           </form>
         </div>
         
+        <!-- 加载指示器 -->
+        <MysticalLoader v-if="isLoading" />
+        
         <div v-if="results.sign" class="results-section">
           <h2>{{ $t('zodiac.results.title') }}</h2>
           
@@ -190,7 +193,12 @@ import GouImg from '@/assets/images/zodiac/gou.png';
 import ZhuImg from '@/assets/images/zodiac/zhu.png';
 import { useI18n } from 'vue-i18n';
 
+import MysticalLoader from '@/components/MysticalLoader.vue';
+
 export default {
+  components: {
+    MysticalLoader
+  },
   name: 'ZodiacCalculator',
   setup() {
     const { t, locale } = useI18n();

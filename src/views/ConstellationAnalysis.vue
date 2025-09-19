@@ -29,6 +29,9 @@
           </form>
         </div>
         
+        <!-- 加载指示器 -->
+        <MysticalLoader v-if="isLoading" />
+        
         <div v-if="results" class="results-section">
           <div class="results-header">
             <div class="zodiac-image">
@@ -219,9 +222,13 @@ import CapricornImg from '@/assets/images/constellations/Capricorn.png';
 import AquariusImg from '@/assets/images/constellations/Aquarius.png';
 import PiscesImg from '@/assets/images/constellations/Pisc1es.png';
 import { useI18n } from 'vue-i18n';
+import MysticalLoader from '@/components/MysticalLoader.vue';
 
 export default {
   name: 'ConstellationAnalysis',
+  components: {
+    MysticalLoader
+  },
   setup() {
     const { t, locale } = useI18n();
     // 确保使用英文

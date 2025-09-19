@@ -82,16 +82,8 @@
           </form>
         </div>
         
-        <!-- 加载指示器 -->
-        <div v-if="isLoading" class="loading-container">
-          <div class="mystical-loader">
-            <div class="loader-symbol">☯</div>
-            <div class="loader-text">
-              <p class="loading-title">✨ Channeling Ancient Wisdom...</p>
-              <p class="loading-subtitle">Creating your mystical fantasy names</p>
-            </div>
-          </div>
-        </div>
+              <!-- 加载指示器 -->
+      <MysticalLoader v-if="isLoading" />
         
         <!-- 错误信息显示 -->
         <div v-if="errorMessage && !isLoading" class="error-container">
@@ -157,17 +149,6 @@
                     <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                   </svg>
                   Copy Name
-                </button>
-                <button 
-                  class="action-btn copy-btn" 
-                  @click.prevent="copyToClipboard(`${result.chinese_name} (${result.pinyin}) - ${result.english_meaning}`)"
-                  type="button"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                  </svg>
-                  Copy Full
                 </button>
               </div>
             </div>
@@ -320,6 +301,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { message } from 'ant-design-vue';
 import LoadingIndicator from '@/components/LoadingIndicator.vue';
+import MysticalLoader from '@/components/MysticalLoader.vue';
 import { useI18n } from 'vue-i18n';
 import aiConfig from '@/config/aiConfig';
 
@@ -336,7 +318,8 @@ const log = (...args) => {
 export default {
   name: 'FantasyChineseNameGenerator',
   components: {
-    LoadingIndicator
+    LoadingIndicator,
+    MysticalLoader
   },
   setup() {
     const { locale } = useI18n();
@@ -921,45 +904,7 @@ label {
   background-color: #1991db;
 }
 
-/* 加载动画样式 */
-.loading-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 60px 20px;
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  margin: 40px 0;
-}
-
-.mystical-loader {
-  text-align: center;
-}
-
-.loader-symbol {
-  font-size: 3rem;
-  color: #e60012;
-  animation: spin 2s linear infinite;
-  margin-bottom: 20px;
-}
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.loading-title {
-  font-size: 1.3rem;
-  color: #333;
-  margin-bottom: 8px;
-  font-weight: 600;
-}
-
-.loading-subtitle {
-  color: #666;
-  margin: 0;
-}
+/* 移除了加载动画样式，现在使用公共组件 MysticalLoader */
 
 .fantasy-guide {
   margin-top: 60px;

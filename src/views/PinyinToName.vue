@@ -37,7 +37,7 @@
           </form>
         </div>
         
-        <LoadingIndicator v-if="isLoading" :text="$t('common.searching')" />
+        <MysticalLoader v-if="isLoading" />
         
         <div v-if="showResults" class="result-section">
           <h2 class="section-title">{{ $t('pinyinToName.results.title') }}</h2>
@@ -141,12 +141,14 @@
 import { message, Empty, Button, Card, Tag, Progress } from 'ant-design-vue';
 import { convertPinyinToChinese } from '@/services/openaiService';
 import LoadingIndicator from '@/components/LoadingIndicator.vue';
+import MysticalLoader from '@/components/MysticalLoader.vue';
 import { CopyOutlined, ReloadOutlined, ShareAltOutlined } from '@ant-design/icons-vue';
 
 export default {
   name: 'PinyinToName',
   components: {
     LoadingIndicator,
+    MysticalLoader,
     CopyOutlined,
     ReloadOutlined,
     ShareAltOutlined,

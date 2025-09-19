@@ -39,6 +39,9 @@
           </form>
         </div>
         
+        <!-- 加载指示器 -->
+        <MysticalLoader v-if="isLoading" />
+        
         <div v-if="results.length" class="results-section">
           <h2>{{ $t('multilingual.results.title') }}</h2>
           
@@ -109,7 +112,12 @@
 </template>
 
 <script>
+import MysticalLoader from '@/components/MysticalLoader.vue';
+
 export default {
+  components: {
+    MysticalLoader
+  },
   name: 'MultilingualName',
   data() {
     return {

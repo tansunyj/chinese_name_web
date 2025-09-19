@@ -27,6 +27,9 @@
             </form>
           </div>
           
+          <!-- 加载指示器 -->
+          <MysticalLoader v-if="isLoading" />
+          
           <div v-if="results.withTones" class="results-section">
             <h2 class="section-title">{{ $t('nameToPinyin.results.title') }}</h2>
             
@@ -163,8 +166,12 @@ import axios from 'axios';
 import { useI18n } from 'vue-i18n';
 import * as pinyinPro from 'pinyin-pro';
 import { message } from "ant-design-vue";
+import MysticalLoader from '@/components/MysticalLoader.vue';
 
 export default {
+  components: {
+    MysticalLoader
+  },
   setup() {
     const { t } = useI18n();
     const formData = ref({

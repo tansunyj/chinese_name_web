@@ -119,7 +119,7 @@
         </div>
         
         <!-- 加载指示器（只有在isLoading为true时才显示） -->
-        <LoadingIndicator v-if="isLoading" :text="$t('common.generatingNames')" />
+        <MysticalLoader v-if="isLoading" />
         
         <!-- 当没有结果且不在加载状态时显示的提示，但只有在用户已经点击过生成按钮后才显示 -->
         <div v-if="!results.length && !isLoading && formData.submitted" class="empty-results-hint">
@@ -433,6 +433,7 @@
 <script>
 import { reactive, ref, computed, onMounted, watch } from 'vue';
 import LoadingIndicator from '@/components/LoadingIndicator.vue';
+import MysticalLoader from '@/components/MysticalLoader.vue';
 import { useI18n } from 'vue-i18n';
 // 提示词已完全迁移到后端 api/promptTemplates.js，前端不再需要导入
 // import { nameGenerationSystemPrompt } from '@/config/systemPrompts'; // 已废弃
@@ -485,7 +486,8 @@ const defaultMeanings = {
 export default {
   name: 'CustomName',
   components: {
-    LoadingIndicator
+    LoadingIndicator,
+    MysticalLoader
   },
   setup() {
     const { t, locale } = useI18n();

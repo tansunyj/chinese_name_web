@@ -45,7 +45,7 @@
         </div>
         
         <!-- 加载指示器 -->
-        <LoadingIndicator v-if="isLoading" :text="$t('common.translatingName')" />
+        <MysticalLoader v-if="isLoading" />
         
         <div v-if="results.length" class="results-section">
           <h2>Your Chinese Name Translation Results</h2>
@@ -147,6 +147,7 @@ import { translateName } from '@/services/openaiService';
 import * as openaiService from '@/services/openaiService';
 // 移除了对 promptTemplates 的引用，现在提示词在后端保密处理
 import LoadingIndicator from '@/components/LoadingIndicator.vue';
+import MysticalLoader from '@/components/MysticalLoader.vue';
 import { useI18n } from 'vue-i18n';
 import aiConfig from '@/config/aiConfig';
 
@@ -177,7 +178,8 @@ const logError = (...args) => {
 export default {
   name: 'TranslateName',
   components: {
-    LoadingIndicator
+    LoadingIndicator,
+    MysticalLoader
   },
   setup() {
     const { locale } = useI18n();

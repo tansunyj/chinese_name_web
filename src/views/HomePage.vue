@@ -24,7 +24,7 @@
         <div class="feature-grid naming-services-grid">
 
           <!-- 名字翻译 -->
-                          <router-link to="/english-to-chinese-translator" class="feature-card-link">
+          <router-link to="/english-to-chinese-translator" class="feature-card-link">
             <div class="feature-card">
               <div class="header-row">
               <div class="icon">
@@ -42,7 +42,7 @@
           </router-link>
 
           <!-- 中文名转英文名 -->
-                      <router-link to="/chinese-to-english-translator" class="feature-card-link">
+          <router-link to="/chinese-to-english-translator" class="feature-card-link">
             <div class="feature-card">
               <div class="header-row">
               <div class="icon">
@@ -60,7 +60,7 @@
           </router-link>
 
           <!-- 自定义中文名 -->
-                      <router-link to="/custom-chinese-name-generator" class="feature-card-link">
+          <router-link to="/custom-chinese-name-generator" class="feature-card-link">
             <div class="feature-card">
               <div class="header-row">
               <div class="icon">
@@ -78,7 +78,7 @@
           </router-link>
           
           <!-- Fantasy Chinese Name Generator -->
-                      <router-link to="/fantasy-chinese-name-generator" class="feature-card-link">
+          <router-link to="/fantasy-chinese-name-generator" class="feature-card-link">
             <div class="feature-card">
               <div class="header-row">
               <div class="icon">
@@ -132,7 +132,7 @@
           </router-link>
           
           <!-- 星座计算器 -->
-                      <router-link to="/blog/constellation-analysis" class="feature-card-link">
+          <router-link to="/blog/constellation-analysis" class="feature-card-link">
             <div class="feature-card">
               <div class="header-row">
                 <div class="icon">

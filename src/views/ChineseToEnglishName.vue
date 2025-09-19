@@ -31,7 +31,7 @@
         </div>
         
         <!-- 加载指示器 -->
-        <LoadingIndicator v-if="isLoading" :text="$t('common.translatingName')" />
+        <MysticalLoader v-if="isLoading" />
         
         <div v-if="results.length" class="results-section">
           <h2>Your Chinese to English Name Translation Results</h2>
@@ -168,6 +168,7 @@ import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { message } from 'ant-design-vue';
 import { translateName } from '@/services/openaiService';
 import LoadingIndicator from '@/components/LoadingIndicator.vue';
+import MysticalLoader from '@/components/MysticalLoader.vue';
 import { useI18n } from 'vue-i18n';
 import { chineseToEnglishNamePrompt } from '@/config/systemPrompts';
 import aiConfig from '@/config/aiConfig';
@@ -185,7 +186,8 @@ const log = (...args) => {
 export default {
   name: 'ChineseToEnglishName',
   components: {
-    LoadingIndicator
+    LoadingIndicator,
+    MysticalLoader
   },
   setup() {
     const { locale } = useI18n();
