@@ -301,9 +301,7 @@ export default {
         });
 
         const responseData = await response.json();
-        console.log('🔍 AI原始响应:', responseData);
-        console.log('🔍 响应数据类型:', typeof responseData);
-        console.log('🔍 响应数据键:', Object.keys(responseData || {}));
+        log('🔍 AI原始响应:', responseData);
 
         let parsedData = null;
 
@@ -311,104 +309,42 @@ export default {
         if (responseData && responseData.choices && responseData.choices[0] && responseData.choices[0].message) {
           try {
             const contentString = responseData.choices[0].message.content;
-            console.log('🎯 提取的content字符串:', contentString);
-            console.log('🎯 content字符串长度:', contentString?.length);
+            log('🎯 提取的content字符串:', contentString);
 
             // 解析JSON字符串
             parsedData = JSON.parse(contentString);
-            console.log('✅ 解析后的JSON数据:', parsedData);
-            console.log('✅ 解析后数据键:', Object.keys(parsedData || {}));
+            log('✅ 解析后的JSON数据:', parsedData);
           } catch (parseError) {
-            console.error('❌ 解析choices[0].message.content中的JSON失败:', parseError);
-            console.error('❌ 原始content内容:', responseData.choices[0].message.content);
-            
-            // 尝试从文本中提取结构化数据
-            const extractedData = this.extractDataFromText(responseData.choices[0].message.content);
-            if (extractedData) {
-              parsedData = extractedData;
-              console.log('🔄 从文本中提取的数据:', parsedData);
-            }
+            console.error('❌ 解析JSON失败:', parseError);
+            // 解析失败时使用后备方案
+            this.results = this.createFallbackResults();
+            return;
           }
         }
         // 如果不是OpenAI格式，直接使用responseData
         else if (responseData && responseData.translations) {
           parsedData = responseData;
-          console.log('📋 直接使用响应数据:', parsedData);
+          log('📋 直接使用响应数据:', parsedData);
         }
         else {
-          console.warn('⚠️ 响应数据格式不符合预期');
-          console.warn('⚠️ 响应数据结构:', JSON.stringify(responseData, null, 2));
-          
-          // 尝试从响应中提取有用信息
-          const extractedData = this.extractDataFromText(JSON.stringify(responseData));
-          if (extractedData) {
-            parsedData = extractedData;
-            console.log('🔄 从响应中提取的数据:', parsedData);
-          }
+          console.warn('⚠️ 响应数据格式不符合预期，使用后备方案');
+          this.results = this.createFallbackResults();
+          return;
         }
 
-        if (parsedData && parsedData.translations) {
-          let translationsData = parsedData.translations;
-
-          // 处理翻译数据
-          if (Array.isArray(translationsData)) {
-            console.log('处理数组数据:', translationsData); // 添加调试日志
-            this.results = translationsData.map(item => {
-              console.log('🔄 处理翻译项:', item);
-
-              // 构建详细的解释信息
-              let explanationText = '';
-              if (item.conversionMethod || item.conversion_method) {
-                explanationText += `转换方法: ${item.conversionMethod || item.conversion_method}`;
-              }
-              if (item.translation_explanation || item.explanation || item.meaning) {
-                if (explanationText) explanationText += '; ';
-                explanationText += item.translation_explanation || item.explanation || item.meaning;
-              }
-
-              // 构建文化背景信息
-              let culturalText = '';
-              if (item.culturalBackground || item.cultural_background || item.cultural) {
-                culturalText += item.culturalBackground || item.cultural_background || item.cultural;
-              }
-              if (item.suitableOccasions || item.suitable_occasions) {
-                if (culturalText) culturalText += '; ';
-                culturalText += `适用场合: ${item.suitableOccasions || item.suitable_occasions}`;
-              }
-
-              const normalized = {
-                translated_name: item.translated_name || item.translated || item.name || item.translate ||
-                               item.english_name || item.englishName || '英文名字',
-                pronunciation: item.pronunciation_guide || item.pronunciation || item.pinyin ||
-                             item.pronunciationGuide || this.generatePinyin(this.formData.chineseName),
-                explanation: explanationText || item.translation_explanation || item.explanation || 
-                           `${this.formData.chineseName}的英文翻译。每个汉字都有其独特的含义和文化背景。`,
-                cultural: culturalText || item.cultural_adaptability || 
-                         '中文名字在中华文化中具有深厚的含义和历史传承。',
-                score: item.score || item.recommendation_score || item.recommendationScore || 85
-              };
-
-              console.log('✅ 标准化后的翻译项:', normalized);
-              return normalized;
-            });
-          } else if (translationsData.translations && Array.isArray(translationsData.translations)) {
-            console.log('处理嵌套数组数据:', translationsData.translations); // 添加调试日志
-            this.results = translationsData.translations.map(item => ({
-              translated_name: item.translated_name || item.translated,
-              pronunciation: item.pronunciation_guide || item.pronunciation,
-              explanation: item.translation_explanation || item.explanation,
-              cultural: item.cultural_background || item.cultural || ''
-            }));
-          } else {
-            console.error('未知的响应数据格式:', translationsData);
-            // 提供后备方案：使用模拟数据
-            this.results = this.createFallbackResults();
-          }
+        // 处理标准格式的返回数据
+        if (parsedData && parsedData.translations && Array.isArray(parsedData.translations)) {
+          this.results = parsedData.translations.map(item => ({
+            translated_name: item.english_name || '英文名字',
+            pronunciation: parsedData.analysis?.pronunciation || this.generatePinyin(this.formData.chineseName),
+            explanation: item.explanation || `${this.formData.chineseName}的英文翻译。每个汉字都有其独特的含义和文化背景。`,
+            cultural: item.cultural_fit || '中文名字在中华文化中具有深厚的含义和历史传承。',
+            score: item.score || 85
+          }));
           
-          console.log('最终处理后的结果:', this.results); // 添加调试日志
+          log('✅ 处理后的结果:', this.results);
         } else {
           console.warn('⚠️ 没有找到有效的翻译数据，使用后备方案');
-          // 当解析失败或数据格式不正确时，提供后备方案
           this.results = this.createFallbackResults();
         }
       } catch (error) {
@@ -732,48 +668,7 @@ export default {
       return `${chineseName} (Meaning-based)`;
     },
     
-    // 从文本中提取结构化数据（当JSON解析失败时使用）
-    extractDataFromText(text) {
-      try {
-        // 尝试从文本中提取英文名字
-        const englishNamePattern = /(?:English.*?name|translated.*?name)[:\s]*([A-Za-z\s]+)/gi;
-        const pinyinPattern = /(?:pinyin|pronunciation)[:\s]*([A-Za-z\u00c0-\u017f\s]+)/gi;
-        const explanationPattern = /(?:explanation|meaning|character)[:\s]*([^\n]+)/gi;
-        
-        const englishMatches = text.match(englishNamePattern);
-        const pinyinMatches = text.match(pinyinPattern);
-        const explanationMatches = text.match(explanationPattern);
-        
-        if (englishMatches && englishMatches.length > 0) {
-          const translations = [];
-          
-          englishMatches.forEach((match, index) => {
-            const englishName = match.replace(/(?:English.*?name|translated.*?name)[:\s]*/, '').trim();
-            const pinyin = pinyinMatches && pinyinMatches[index] 
-              ? pinyinMatches[index].replace(/(?:pinyin|pronunciation)[:\s]*/, '').trim()
-              : this.generatePinyin(this.formData.chineseName);
-            const explanation = explanationMatches && explanationMatches[index]
-              ? explanationMatches[index].replace(/(?:explanation|meaning|character)[:\s]*/, '').trim()
-              : `Translation of ${this.formData.chineseName}`;
-            
-            translations.push({
-              translated_name: englishName,
-              pronunciation: pinyin,
-              explanation: explanation,
-              cultural: 'Chinese names carry cultural significance and meaning.',
-              score: 85
-            });
-          });
-          
-          return { translations };
-        }
-        
-        return null;
-      } catch (error) {
-        console.error('从文本提取数据失败:', error);
-        return null;
-      }
-    }
+
   }
 }
 </script>
