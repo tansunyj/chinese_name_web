@@ -817,15 +817,28 @@ export default {
             log('🎯 content字符串长度:', contentString?.length);
             log('🎯 content字符串类型:', typeof contentString);
 
-            // 解析JSON字符串
-            parsedData = JSON.parse(contentString);
-            log('✅ 解析后的JSON数据:', parsedData);
-            log('✅ 解析后数据类型:', typeof parsedData);
-            log('✅ 解析后数据键:', Object.keys(parsedData || {}));
+            // 尝试解析JSON字符串
+            try {
+              parsedData = JSON.parse(contentString);
+              log('✅ 解析后的JSON数据:', parsedData);
+              log('✅ 解析后数据类型:', typeof parsedData);
+              log('✅ 解析后数据键:', Object.keys(parsedData || {}));
+            } catch (jsonError) {
+              // JSON解析失败，尝试修复被截断的JSON
+              logWarn('⚠️ JSON解析失败，尝试修复被截断的JSON:', jsonError.message);
+              parsedData = this.attemptJsonRepair(contentString);
+              
+              if (parsedData && parsedData.names && parsedData.names.length > 0) {
+                log('✅ JSON修复成功，获得了', parsedData.names.length, '个名字');
+              } else {
+                throw new Error('JSON修复失败');
+              }
+            }
           } catch (parseError) {
-            logError('❌ 解析choices[0].message.content中的JSON失败:', parseError);
+            logError('❌ 解析和修复choices[0].message.content中的JSON都失败:', parseError);
             logError('❌ 原始content内容:', responseData.choices[0].message.content);
             logError('❌ content内容前500字符:', responseData.choices[0].message.content?.substring(0, 500));
+            logError('❌ content内容后100字符:', responseData.choices[0].message.content?.substring(responseData.choices[0].message.content.length - 100));
           }
         }
         // 如果不是OpenAI格式，直接使用responseData
@@ -910,6 +923,125 @@ export default {
       }
     },
 
+    // 尝试修复被截断的JSON字符串
+    attemptJsonRepair(jsonString) {
+      try {
+        log('🔧 开始尝试修复JSON...');
+        
+        // 策略1: 尝试找到最后一个完整的name对象
+        let repairedJson = jsonString;
+        
+        // 找到所有完整的 fullName 出现位置
+        const fullNameMatches = [];
+        const regex = /"fullName":\s*"[^"]+"/g;
+        let match;
+        while ((match = regex.exec(jsonString)) !== null) {
+          fullNameMatches.push(match.index);
+        }
+        
+        if (fullNameMatches.length > 0) {
+          log(`📍 找到 ${fullNameMatches.length} 个fullName标记`);
+          
+          // 从每个fullName位置向前找到对应的 { 开始位置
+          // 然后尝试从那里开始提取完整的对象
+          let successfulNames = [];
+          
+          for (let i = 0; i < fullNameMatches.length; i++) {
+            const startPos = fullNameMatches[i];
+            let braceCount = 0;
+            let objStart = -1;
+            
+            // 向前查找对象开始的 {
+            for (let j = startPos; j >= 0; j--) {
+              if (jsonString[j] === '}') braceCount++;
+              if (jsonString[j] === '{') {
+                braceCount--;
+                if (braceCount < 0) {
+                  objStart = j;
+                  break;
+                }
+              }
+            }
+            
+            if (objStart === -1) continue;
+            
+            // 从objStart开始，尝试找到对象的结束位置
+            braceCount = 0;
+            let objEnd = -1;
+            for (let j = objStart; j < jsonString.length; j++) {
+              if (jsonString[j] === '{') braceCount++;
+              if (jsonString[j] === '}') {
+                braceCount--;
+                if (braceCount === 0) {
+                  objEnd = j;
+                  break;
+                }
+              }
+            }
+            
+            if (objEnd > objStart) {
+              // 提取这个对象
+              const objString = jsonString.substring(objStart, objEnd + 1);
+              try {
+                const obj = JSON.parse(objString);
+                if (obj.fullName && obj.analysis) {
+                  successfulNames.push(obj);
+                  log(`✅ 成功提取名字 ${i + 1}: ${obj.fullName}`);
+                }
+              } catch (e) {
+                log(`⚠️ 名字 ${i + 1} 解析失败:`, e.message);
+              }
+            }
+          }
+          
+          if (successfulNames.length > 0) {
+            log(`✅ 总共成功提取了 ${successfulNames.length} 个名字`);
+            return {
+              names: successfulNames
+            };
+          }
+        }
+        
+        // 策略2: 尝试简单地关闭JSON结构
+        // 移除最后一个不完整的名字对象
+        const lastCompleteCloseBrace = jsonString.lastIndexOf('}');
+        if (lastCompleteCloseBrace > 0) {
+          // 检查在最后一个}之后是否还有逗号
+          let truncatePos = lastCompleteCloseBrace + 1;
+          
+          // 跳过空白字符
+          while (truncatePos < jsonString.length && /\s/.test(jsonString[truncatePos])) {
+            truncatePos++;
+          }
+          
+          // 如果有逗号，包含它
+          if (truncatePos < jsonString.length && jsonString[truncatePos] === ',') {
+            truncatePos++;
+          }
+          
+          // 截断并尝试闭合
+          repairedJson = jsonString.substring(0, truncatePos) + '\n]\n}';
+          
+          try {
+            const parsed = JSON.parse(repairedJson);
+            if (parsed.names && parsed.names.length > 0) {
+              log(`✅ 策略2成功: 通过截断并闭合JSON获得了 ${parsed.names.length} 个名字`);
+              return parsed;
+            }
+          } catch (e) {
+            logWarn('策略2失败:', e.message);
+          }
+        }
+        
+        logError('❌ 所有JSON修复策略都失败了');
+        return null;
+        
+      } catch (error) {
+        logError('❌ JSON修复过程出错:', error);
+        return null;
+      }
+    },
+    
     // 标准化AI返回的名字数据格式
     normalizeNameData(nameData) {
       log('🔄 标准化名字数据:', nameData);

@@ -7,7 +7,9 @@ export const nameGenerationPrompts = {
   // 融合的系统提示词 - 包含完整的要求和JSON格式定义
   system: `You are an expert in Chinese traditional culture and name studies, skilled in creating culturally rich Chinese names based on user requirements. You have deep knowledge of the Five Elements and Ba Zi, phonetic aesthetics, and Chinese character cultural connotations, and can create names that combine traditional culture with modern aesthetics.
 
-Please create three Chinese names for {{GENDER_TEXT}} users with the following requirements:
+IMPORTANT: Keep your response concise and within reasonable length. Focus on quality over quantity in explanations.
+
+Please create two Chinese names for {{GENDER_TEXT}} users with the following requirements:
 
 1. **Naming Principles**:
    - Names conform to traditional Chinese naming customs with harmonious phonetics
@@ -64,15 +66,14 @@ Please create three Chinese names for {{GENDER_TEXT}} users with the following r
    - 73-77 points: Average traditional culture embodiment
    - 70-72 points: Weak traditional culture connotation
 
-3. **Analysis Requirements**:
+3. **Analysis Requirements** (Keep concise):
    - Provide Chinese characters, pinyin notation for each name
-   - Detailed explanation of each character's meaning and cultural background IN ENGLISH
-   - Analyze name compatibility with birth Ba Zi IN ENGLISH
+   - Concise explanation of each character's meaning and cultural background IN ENGLISH (2-3 sentences max)
+   - Brief analysis of name compatibility with birth Ba Zi IN ENGLISH (2-3 sentences max)
    - Provide Five Elements analysis and name study scoring IN ENGLISH
-   - Five Elements attributes analysis for each character IN ENGLISH
+   - Five Elements attributes for each character IN ENGLISH
    - Each scoring sub-item must provide different scores based on the actual characteristics of that name
-   - Detailed explanations for each analysis category (Ba Zi character analysis, Five Elements character analysis, I-Ching character analysis, zodiac character analysis, name analysis) IN ENGLISH
-   - Cultural significance and personality trait correspondence for each character IN ENGLISH
+   - Concise explanations for each analysis category IN ENGLISH (1-2 sentences each)
 
 4. **Important Requirements**:
    - Each name's six subscores must be different, scoring based on the actual characteristics of that name
@@ -116,11 +117,11 @@ Please strictly return results in the following JSON format:
           "birthChart": Birth Chart score (based on actual analysis 65-96),
           "classical": Classical Studies score (based on actual analysis 70-96)
         },
-        "eightCharacterAnalysis": "Detailed Ba Zi character analysis explanation IN ENGLISH",
-        "fiveElementsAnalysis": "Detailed Five Elements character analysis explanation IN ENGLISH",
-        "iChingAnalysis": "Detailed I-Ching character analysis explanation IN ENGLISH",
-        "zodiacAnalysis": "Detailed zodiac character analysis explanation IN ENGLISH",
-        "nameAnalysis": "Detailed name analysis explanation IN ENGLISH"
+        "eightCharacterAnalysis": "Concise Ba Zi analysis IN ENGLISH (1-2 sentences)",
+        "fiveElementsAnalysis": "Concise Five Elements analysis IN ENGLISH (1-2 sentences)",
+        "iChingAnalysis": "Concise I-Ching analysis IN ENGLISH (1-2 sentences)",
+        "zodiacAnalysis": "Concise zodiac analysis IN ENGLISH (1-2 sentences)",
+        "nameAnalysis": "Concise overall analysis IN ENGLISH (2-3 sentences)"
       },
       "characterMeanings": {
         "字1": "Detailed meaning explanation of this character IN ENGLISH",
@@ -146,7 +147,7 @@ Please ensure the returned JSON format completely conforms to the above structur
 期望含义: ${meaning}
 出生信息: ${params.birthDateTime || ''}
 
-请根据以上信息创建三个符合要求的中文名字。`;
+请根据以上信息创建2个符合要求的中文名字。`;
   }
 };
 

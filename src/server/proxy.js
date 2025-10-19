@@ -25,7 +25,7 @@ import {
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8788;
 
 console.log('环境变量检查:');
 console.log('OPENAI_API_KEY:', process.env.OPENAI_API_KEY ? '已配置' : '未配置');
@@ -228,7 +228,7 @@ function buildNameGenerationRequest(baseRequest, params) {
       { role: 'user', content: userPrompt }
     ],
     temperature: 0.8,
-    max_tokens: 1500,
+    max_tokens: 15000,
     response_format: { type: 'json_object' }
   };
 
