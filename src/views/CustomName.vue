@@ -61,6 +61,7 @@
                     :locale="datepickerLocale"
                     :placeholder="'YYYY-MM-DD'"
                     format="YYYY-MM-DD"
+                    :disabledDate="disabledDate"
                     @change="updateBirthdate"
                     aria-label="Your birth date"
                   />
@@ -608,14 +609,13 @@ export default {
     }
   },
   mounted() {
-    // 初始化日期和时间
-    const today = new Date();
-    this.formData.birthdate = today.toISOString().slice(0, 10);
+    // 初始化日期和时间 - 默认为2000-01-01 12:00
+    this.formData.birthdate = '2000-01-01';
     this.formData.birthtime = '12:00';
     
     // 设置日期选择器和时间选择器的初始值
     this.birthDate = dayjs(this.formData.birthdate);
-    this.birthTime = dayjs(`2000-01-01T${this.formData.birthtime}`);
+    this.birthTime = dayjs(`${this.formData.birthdate}T${this.formData.birthtime}`);
     
     // 设置文本格式的日期时间
     this.formData.birthdateText = this.formData.birthdate;
@@ -636,6 +636,16 @@ export default {
     this.addStructuredData();
   },
   methods: {
+    // 禁用日期函数 - 限制可选日期范围为1900-01-01到当前日期
+    disabledDate(current) {
+      // 禁用1900年1月1日之前的日期和未来的日期
+      const minDate = new Date('1900-01-01');
+      const today = new Date();
+      today.setHours(23, 59, 59, 999); // 设置为今天的最后一刻
+      
+      return current && (current < minDate || current > today);
+    },
+    
     // 构建名字分析文本（字符含义 + 整体分析）
     buildNameAnalysisText(analysis, result) {
       let fullText = '';
@@ -726,14 +736,13 @@ export default {
       
       // 确保日期和时间值有效
       if (!this.birthDate || !this.birthTime) {
-        // 如果日期或时间未选择，使用当前日期和默认时间
-        const today = new Date();
-        this.formData.birthdate = today.toISOString().slice(0, 10);
+        // 如果日期或时间未选择，使用默认日期和时间（2000-01-01 12:00）
+        this.formData.birthdate = '2000-01-01';
         this.formData.birthtime = '12:00';
         
         // 更新选择器的值
         this.birthDate = dayjs(this.formData.birthdate);
-        this.birthTime = dayjs(`2000-01-01T${this.formData.birthtime}`);
+        this.birthTime = dayjs(`${this.formData.birthdate}T${this.formData.birthtime}`);
       } else {
         // 确保使用选择器中的值
         this.formData.birthdate = this.birthDate.format('YYYY-MM-DD');
