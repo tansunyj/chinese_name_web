@@ -42,10 +42,7 @@
           <div class="links-group">
             <h3>{{ $t('footer.friendlyLinks') }}</h3>
             <ul>
-              <li><a href="https://toolkit-hub-liard.vercel.app/#/" target="_blank">Toolkit Hub</a></li>
-              <li><a href="https://www.baixarvideoyoutube.video/" target="_blank">Baixar Video</a></li>
-              <li><a href="https://www.j10c.net/" target="_blank">J10C</a></li>
-              <li><a href="https://kontext-ai.com/">Kontext AI</a></li>
+              <li><a href="https://365coloringpages.com/">365 Coloring Pages</a></li>
             </ul>
           </div>
         </div>

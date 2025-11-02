@@ -16,23 +16,24 @@
           <!--li><router-link to="/multilingual">{{ $t('header.multilingualName') }}</router-link></li-->
           <li><router-link to="/blog">Blog</router-link></li>
           <li><router-link to="/about">{{ $t('header.aboutUs') }}</router-link></li>
+          <li class="telegram-nav-item">
+            <a 
+              href="https://t.me/Chinesename_us_Official_Communit" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="telegram-link"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" class="telegram-icon-small">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+              </svg>
+              Join Telegram
+            </a>
+          </li>
         </ul>
       </nav>
       
       <div class="actions">
-        <!--div class="language-switcher">
-          <select v-model="currentLanguage" @change="changeLanguage">
-            <option value="en">English</option>
-            <option value="zh">中文</option>
-            <option value="es">Español</option>
-          </select>
-        </div-->
-        
-        <!-- 暂时移除登录和注册按钮 -->
-        <!-- <div class="auth-buttons">
-          <router-link to="/login" class="btn btn-login">{{ $t('header.login') }}</router-link>
-          <router-link to="/signup" class="btn btn-signup">{{ $t('header.signup') }}</router-link>
-        </div> -->
+        <!-- 保留空的actions以保持布局 -->
       </div>
     </div>
   </header>
@@ -164,6 +165,40 @@ export default {
   color: #e60012;
 }
 
+/* Telegram导航项样式 */
+.telegram-nav-item {
+  margin-left: 10px;
+}
+
+.telegram-link {
+  display: flex !important;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #229ED9 0%, #0088cc 100%);
+  color: white !important;
+  padding: 8px 16px !important;
+  border-radius: 20px;
+  font-weight: 600 !important;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(34, 158, 217, 0.3);
+}
+
+.telegram-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(34, 158, 217, 0.5);
+  background: linear-gradient(135deg, #0088cc 0%, #006699 100%);
+}
+
+.telegram-link::after {
+  display: none !important;
+}
+
+.telegram-icon-small {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
 .actions {
   display: flex;
   align-items: center;
@@ -254,6 +289,17 @@ export default {
   
   .logo, .actions {
     flex: 0 0 auto;
+  }
+  
+  /* 移动端Telegram链接 */
+  .telegram-link {
+    padding: 6px 12px !important;
+    font-size: 13px;
+  }
+  
+  .telegram-icon-small {
+    width: 16px;
+    height: 16px;
   }
 }
 
