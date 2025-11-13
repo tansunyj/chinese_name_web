@@ -879,8 +879,15 @@ export default {
     
     // 获取宝石图片
     getGemImage(gem) {
-      // 使用相对路径来访问图片资源
-      return `/src/assets/images/gems/${gem}.png`;
+      // 使用正确的资源导入路径，让Vite正确处理资源
+      try {
+        // 使用动态导入语法，让Vite在构建时可以识别并打包这些图片
+        return new URL(`../assets/images/gems/${gem}.png`, import.meta.url).href;
+      } catch (e) {
+        console.error(`Failed to load gem image for ${gem}:`, e);
+        // 回退到相对路径，为了开发时调试
+        return `/assets/images/gems/${gem}.png`;
+      }
     },
     
     // 获取进度条颜色
