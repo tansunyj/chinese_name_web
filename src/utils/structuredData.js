@@ -13,8 +13,8 @@ export function createWebsiteSchema(options = {}) {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "url": options.url || "https://chinesename.us/",
-    "name": options.name || "ChineseName.us | Chinese Name Generator & Translator",
-    "description": options.description || "Generate authentic Chinese names with meanings and proper pronunciation. Translate your English name to Chinese characters.",
+    "name": options.name || "Chinese Name Generator & Translator | Free English to Chinese | ChineseName.us",
+    "description": options.description || "Get your accurate Chinese name translation with our free generator. Personalized Chinese names with authentic pronunciation, cultural meanings and significance for English names.",
     "potentialAction": {
       "@type": "SearchAction",
       "target": {

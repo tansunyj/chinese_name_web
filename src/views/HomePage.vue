@@ -113,167 +113,41 @@
             </div>
           </router-link>
 
-          <!-- 生肖计算器 -->
-          <router-link to="/zodiac-calculator" class="feature-card-link">
+          <!-- 生肖计算器已移至OTHERS菜单 -->
+          
+          <!-- 星座计算器已移至OTHERS菜单 -->
+          
+          <!-- 数字命理计算器 -->
+          <router-link to="/name-numerology-calculator" class="feature-card-link">
             <div class="feature-card">
               <div class="header-row">
                 <div class="icon">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <h3>{{ $t('home.features.zodiacCalculator.title') }}</h3>
+                <h3>{{ $t('home.features.namingService.numerology.title') }}</h3>
               </div>
-              <p>{{ $t('home.features.zodiacCalculator.description') }}</p>
+              <p>{{ $t('home.features.namingService.numerology.description') }}</p>
               <div class="feature-link">
                 <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
               </div>
             </div>
           </router-link>
           
-          <!-- 星座计算器 -->
-          <router-link to="/constellation-analysis" class="feature-card-link">
-            <div class="feature-card">
-              <div class="header-row">
-                <div class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                  </svg>
-                </div>
-                <h3>{{ $t('home.features.constellation.title') }}</h3>
-              </div>
-              <p>{{ $t('home.features.constellation.description') }}</p>
-              <div class="feature-link">
-                <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
-              </div>
-            </div>
-          </router-link>
+          <!-- Chinese Girl Names已移至OTHERS菜单 -->
           
-          <!-- Chinese Girl Names -->
-          <router-link to="/chinese-girl-names" class="feature-card-link">
-            <div class="feature-card">
-              <div class="header-row">
-                <div class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                </div>
-                <h3>Chinese Girl Names</h3>
-              </div>
-              <p>Browse popular Chinese names for girls with meanings, pronunciations, and cultural significance</p>
-              <div class="feature-link">
-                <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
-              </div>
-            </div>
-          </router-link>
+          <!-- Chinese Boy Names已移至OTHERS菜单 -->
           
-          <!-- Chinese Boy Names -->
-          <router-link to="/chinese-boy-names" class="feature-card-link">
-            <div class="feature-card">
-              <div class="header-row">
-                <div class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                </div>
-                <h3>Chinese Boy Names</h3>
-              </div>
-              <p>Discover meaningful Chinese names for boys with pronunciations and cultural significance</p>
-              <div class="feature-link">
-                <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
-              </div>
-            </div>
-          </router-link>
+          <!-- Chinese Last Names已移至OTHERS菜单 -->
           
-          <!-- Chinese Last Names -->
-          <router-link to="/chinese-last-names" class="feature-card-link">
-            <div class="feature-card">
-              <div class="header-row">
-                <div class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
-                <h3>Chinese Last Names</h3>
-              </div>
-              <p>Explore common Chinese surnames and family names with origins, meanings, and cultural significance</p>
-              <div class="feature-link">
-                <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
-              </div>
-            </div>
-          </router-link>
+          <!-- Chinese Names and Meanings已移至OTHERS菜单 -->
           
-          <!-- Chinese Names and Meanings -->
-          <router-link to="/chinese-names-and-meanings" class="feature-card-link">
-            <div class="feature-card">
-              <div class="header-row">
-                <div class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                  </svg>
-                </div>
-                <h3>Chinese Names and Meanings</h3>
-              </div>
-              <p>Understand the cultural significance of Chinese names and the profound meaning behind Chinese characters</p>
-              <div class="feature-link">
-                <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
-              </div>
-            </div>
-          </router-link>
+          <!-- Funny Chinese Names已移至OTHERS菜单 -->
           
-          <!-- 有趣中文名字 -->
-          <router-link to="/funny-chinese-names" class="feature-card-link">
-            <div class="feature-card">
-              <div class="header-row">
-                <div class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3>Funny Chinese Names</h3>
-              </div>
-              <p>Discover humorous Chinese name translations and linguistic wordplay with cultural explanations</p>
-              <div class="feature-link">
-                <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
-              </div>
-            </div>
-          </router-link>
+          <!-- Chinese Dog Names已移至OTHERS菜单 -->
           
-          <!-- 中文狗名 -->
-          <router-link to="/chinese-dog-names" class="feature-card-link">
-            <div class="feature-card">
-              <div class="header-row">
-                <div class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
-                  </svg>
-                </div>
-                <h3>Chinese Dog Names</h3>
-              </div>
-              <p>Find authentic Chinese names for your canine companion with meanings and cultural significance</p>
-              <div class="feature-link">
-                <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
-              </div>
-            </div>
-          </router-link>
-          
-          <!-- 中文猫名 -->
-          <router-link to="/chinese-cat-names" class="feature-card-link">
-            <div class="feature-card">
-              <div class="header-row">
-                <div class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                  </svg>
-                </div>
-                <h3>Chinese Cat Names</h3>
-              </div>
-              <p>Explore elegant and meaningful Chinese names for your feline friend with proper pronunciations</p>
-              <div class="feature-link">
-                <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
-              </div>
-            </div>
-          </router-link>
+          <!-- Chinese Cat Names已移至OTHERS菜单 -->
 
         </div>
       </div>
@@ -927,8 +801,8 @@ export default {
     addWebsiteStructuredData() {
       const websiteSchema = createWebsiteSchema({
         url: 'https://chinesename.us/',
-        name: 'ChineseName.us | Chinese Name Generator & Translator',
-        description: 'Generate authentic Chinese names with meanings and proper pronunciation. Translate your English name to Chinese characters.'
+        name: 'Chinese Name Generator & Translator | Free English to Chinese | ChineseName.us',
+        description: 'Get your accurate Chinese name translation with our free generator. Personalized Chinese names with authentic pronunciation, cultural meanings and significance for English names.'
       });
       
       this.structuredDataScript = addStructuredDataToPage(websiteSchema, 'website-structured-data');
@@ -1340,6 +1214,7 @@ export default {
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 4; /* 限制显示4行 */
+  line-clamp: 4; /* 标准属性 */
   -webkit-box-orient: vertical;
 }
 
@@ -1678,6 +1553,7 @@ export default {
   min-height: 50px;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3; /* 标准属性 */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1688,6 +1564,7 @@ export default {
 
 .naming-services-grid .feature-card:hover p {
   -webkit-line-clamp: unset;
+  line-clamp: unset; /* 标准属性 */
   overflow: visible;
   background-color: transparent;
   box-shadow: none;
@@ -2166,6 +2043,7 @@ export default {
   .testimonial-text {
     font-size: 0.85rem;
     -webkit-line-clamp: 3; /* 移动端限制3行 */
+    line-clamp: 3; /* 标准属性 */
   }
   
   .user-avatar {
@@ -2282,6 +2160,7 @@ export default {
   .naming-services-grid .feature-card p {
     min-height: 40px;
     -webkit-line-clamp: 3;
+    line-clamp: 3; /* 标准属性 */
     line-height: 1.4;
     margin-bottom: 10px;
   }

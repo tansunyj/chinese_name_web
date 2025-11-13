@@ -59,6 +59,10 @@ export default {
         constellation: {
           title: '星座分析',
           description: '根据您的公历生日分析星座特质，提供详细的星座解读和命名建议'
+        },
+        numerology: {
+          title: '名字数字命理计算器',
+          description: '通过数字揭示您名字中隐藏的含义，了解您的性格特质和命运'
         }
       },
       multilingualName: {
@@ -362,7 +366,7 @@ export default {
     birthYear: '出生年份',
     calculateButton: '计算生肖',
     results: {
-      title: '您的生肖信息',
+      title: '您的生肖结果',
       personality: '性格特点',
       compatibility: '相合与相冲',
       luckyNumbers: '幸运数字',
@@ -488,5 +492,58 @@ export default {
     noRelatedData: '暂无相关汉字数据',
     errorTitle: '查询出错',
     noData: '暂无数据'
+  },
+  numerology: {
+    title: '名字数字命理计算器',
+    fullName: '全名',
+    fullNamePlaceholder: '请输入您的全名',
+    selectSystem: '命理系统',
+    pythagorean: '毕达哥拉斯',
+    chaldean: '迦勒底',
+    calculateButton: '计算数字命理',
+    guideTitle: '如何使用名字数字命理计算器',
+    results: {
+      title: '您的数字命理分析',
+      expressionNumber: '表达数',
+      soulUrgeNumber: '灵魂渴望数',
+      personalityNumber: '个性数',
+      meaningTitle: '数字含义',
+      traits: '关键特质',
+      luckyColors: '幸运色彩',
+      luckyGems: '幸运宝石',
+      coreNumbers: '您的核心数字',
+      calculationDetails: '计算详情',
+      expressionCalculation: '表达数计算',
+      soulUrgeCalculation: '灵魂渴望数计算',
+      personalityCalculation: '个性数计算',
+      sum: '总和',
+      reduction: '化简'
+    },
+    guide: {
+      title: '理解名字数字命理学',
+      intro: '名字数字命理学是一种古老的实践，通过给名字中的字母赋予数值来揭示关于您个性、优势和人生路径的洞见。数字命理学在各种文化中已有几千年的历史，帮助人们更好地理解自己和人际关系。',
+      systems: {
+        title: '数字命理系统',
+        content: '全球使用的数字命理系统主要有两种，每种系统对字母赋值和解读结果的方法都有所不同：',
+        pythagoreanDesc: '最广泛使用的系统，由希腊数学家毕达哥拉斯发展而来。它按照顺序模式将数字1-9分配给字母，被认为更现代、更易于理解。',
+        chaldeanDesc: '源自巴比伦的古老系统，基于字母的振动价值将数字1-8分配给字母。传统数字命理学家认为它更准确但也更复杂。'
+      },
+      coreNumbers: {
+        title: '数字命理学中的核心数字',
+        content: '您的名字包含几个关键的数值，揭示了您个性和生活的不同方面：',
+        expressionDesc: '代表您的整体潜能、自然能力和人生目的。通过计算全名中所有字母的数值得出。',
+        soulUrgeDesc: '揭示您内在的愿望、动机和内心真正的渴望。通过计算名字中所有元音的数值得出。',
+        personalityDesc: '展示他人如何看待您以及您如何向世界呈现自己。通过计算名字中所有辅音的数值得出。'
+      },
+      faq: {
+        title: '常见问题',
+        q1: '数字命理学有多准确？',
+        a1: '数字命理学被视为一种解释性艺术而非精确科学。许多人发现他们的数字命理解读提供了对其个性和人生路径的有价值洞见，而其他人则将其视为自我反思的有趣工具。准确性常常取决于个人信念以及信息与您的共鸣程度。',
+        q2: '毕达哥拉斯系统和迦勒底系统哪个更好？',
+        a2: '没有哪个系统明确比另一个"更好"。毕达哥拉斯系统在西方世界更为常用，通常更容易理解。一些传统数字命理学家认为迦勒底系统更准确，因为它基于振动频率而非顺序排列。我们建议您尝试两种系统，看看哪一种与您更有共鸣。',
+        q3: '计算时应该使用出生名还是现用名？',
+        a3: '为了进行最全面的分析，如果您的出生名和现用名不同，您可以计算两者的数字命理。您的出生名揭示了天生的品质和原始人生路径，而现用名则反映了您不断发展的身份和当前投射的能量。'
+      }
+    }
   }
-} 
+}

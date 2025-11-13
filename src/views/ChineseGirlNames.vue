@@ -3,10 +3,10 @@
     <div class="container">
       <!-- 面包屑导航 -->
       <BreadcrumbNav />
-      <h1 class="page-title">Chinese Girl Names with Meanings (2025) | 400+ Beautiful Female Names</h1>
+      <h1 class="page-title">Chinese Girl Names with Meanings (2025) | 350+ Beautiful Female Names</h1>
       
       <div class="seo-intro">
-        <p class="seo-description">Explore 400+ beautiful Chinese girl names with meanings, pronunciations, and cultural significance. Find popular and unique female Chinese names for your baby with our comprehensive guide to traditional and modern Chinese girl names.</p>
+        <p class="seo-description">Explore 350+ beautiful Chinese girl names with meanings, pronunciations, and cultural significance. Find popular and unique female Chinese names for your baby with our comprehensive guide to traditional and modern Chinese girl names.</p>
       </div>
       
       <!-- 内容容器开始 -->
@@ -14,7 +14,7 @@
         <div class="content">
         <!-- 表单部分 -->
         <div class="form-section">
-          <h2 class="section-title">Find Beautiful Chinese Girl Names (400+ Options)</h2>
+          <h2 class="section-title">Find Beautiful Chinese Girl Names (350+ Options)</h2>
           
           <div class="search-filters">
             <div class="search-box">
@@ -168,7 +168,8 @@
 <script>
 import ExploreMore from '@/components/ExploreMore.vue';
 import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
-import { allGirlNames, filterNames, paginateNames } from '@/data/allChineseNames';
+import { uniqueGirlNames } from '@/data/uniqueChineseGirlNames';
+import { filterNames, paginateNames } from '@/data/allChineseNames';
 import { onMounted, onBeforeUnmount } from 'vue';
 import { createItemListSchema, addStructuredDataToPage } from '@/utils/structuredData';
 
@@ -197,7 +198,7 @@ export default {
     // 添加ItemList结构化数据
     const addItemListStructuredData = () => {
       // 创建ItemList结构化数据
-      const itemListItems = allGirlNames.slice(0, 10).map((name, index) => ({
+      const itemListItems = uniqueGirlNames.slice(0, 10).map((name, index) => ({
         name: `${name.chinese} (${name.pinyin})`,
         description: name.meaning,
         url: `https://chinesename.us/chinese-girl-names#${name.chinese}`,
@@ -309,8 +310,8 @@ export default {
       
       // 模拟异步加载
       setTimeout(() => {
-        // 设置所有名字数据
-        this.allNames = allGirlNames;
+        // 设置所有名字数据 - 使用去重后的数据
+        this.allNames = uniqueGirlNames;
         this.totalItems = this.allNames.length;
         
         // 初始过滤和分页
@@ -375,9 +376,9 @@ export default {
   },
   head() {
     return {
-      title: "Chinese Girl Names with Meanings (2025) | 400+ Beautiful Female Names",
+      title: "Chinese Girl Names with Meanings (2025) | 350+ Beautiful Female Names",
       meta: [
-        { name: 'description', content: 'Explore 400+ beautiful Chinese girl names with meanings, pronunciations, and cultural significance. Find popular, unique and modern female Chinese names for your baby girl.' },
+        { name: 'description', content: 'Explore 350+ beautiful Chinese girl names with meanings, pronunciations, and cultural significance. Find popular, unique and modern female Chinese names for your baby girl.' },
         { name: 'keywords', content: 'chinese girl names,chinese names for girls,female chinese names,beautiful chinese girl names,chinese female names meaning,chinese baby girl names' }
       ]
     };

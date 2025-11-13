@@ -158,16 +158,521 @@ export const nameTranslationPrompts = {
   user: `请将名字 "{name}" 翻译成中文名字，源语言为 {sourceLanguage}。请用源语言（{sourceLanguage}）提供详细的解释和文化背景说明。给出3个音译方案，每个方案使用不同汉字组合但保持发音相似度。严格按照JSON格式返回。`
 };
 
+
+// 名字分析提示词模板
 export const nameAnalysisPrompts = {
-  system: `你是一个专业的姓名学分析师，擅长分析中文名字的各个维度。请以JSON格式返回分析结果。`,
-  zh: (params) => `请分析中文名字"${params.name}"的含义、五行属性、文化背景等。${params.birthDate ? `出生日期：${params.birthDate}` : ''}`,
-  en: (params) => `Please analyze the Chinese name "${params.name}" including its meaning, five elements, and cultural background. ${params.birthDate ? `Birth date: ${params.birthDate}` : ''}`
+  // 系统提示词 - 优化后的专业命名分析
+  system: `You are the world's foremost expert on Chinese naming analysis with decades of experience and deep knowledge of character etymology, cultural symbolism, Five Elements theory, and traditional naming principles. Your task is to provide a singular, comprehensive, and expert analysis of ONE Chinese name.  
+  
+**CRITICAL INSTRUCTION: You MUST ONLY analyze the ONE name provided by the user. Do NOT generate or suggest alternative names.**
+  
+Your expert analysis must cover these key dimensions:
+
+1. **Character Etymology & Cultural Significance**:
+   - Historical origins and evolution of each character
+   - Usage in classical literature and historical contexts
+   - Modern interpretations and cultural associations
+   - Poetic and literary qualities embodied in each character
+
+2. **Traditional Chinese Naming Science Analysis**:
+   - **Phonetic Harmony**: Tonal patterns, rhythm, melodic qualities and pronunciation flow
+   - **Five Elements Theory**: Element attributes of each character and their dynamic interactions
+   - **Stroke Structure**: Balance, symmetry, character complexity and aesthetic composition
+   - **Cultural Symbolism**: References to classical motifs, symbolic meanings and cultural connotations
+   - **Numerological Significance**: Stroke count meaning and symbolic number patterns
+
+3. **Integrated Rating System**: 
+   Your expert assessment must include differentiated scores (0-100) for:
+   - **Linguistic Beauty** (音韵美): Sound harmony, tonal flow, pronunciation aesthetics
+   - **Character Harmony** (字形美): Visual balance, stroke aesthetics, structural elegance
+   - **Meaning Depth** (寓意深度): Cultural richness, aspirational qualities, philosophical depth
+   - **Five Elements Balance** (五行平衡): Element interactions and life force harmony
+   - **Social Impression** (社会印象): Modern perception and societal impressions
+   - **Overall Score** (综合评分): Weighted average with justification
+
+**ABSOLUTELY CRITICAL: RETURN ONE NAME ANALYSIS ONLY**
+You must return your analysis in the EXACT JSON format shown below:
+
+{
+  "names": [
+    {
+      "fullName": "[The exact Chinese name being analyzed]", 
+      "analysis": {
+        "meaning": {
+          "[first character]": "[Detailed meaning explanation of first character in English]",
+          "[second character]": "[Detailed meaning explanation of second character in English]"
+        },
+        "pronunciation": "[Pinyin with tone marks]",
+        "culturalBackground": "[Cultural context and significance of the name in English]",
+        "scores": {
+          "linguisticBeauty": 85,
+          "characterHarmony": 88,
+          "meaningDepth": 92,
+          "fiveElementsBalance": 80,
+          "socialImpression": 90,
+          "overall": 87
+        },
+        "fiveElementsAnalysis": "[Analysis of elements and their interactions in English]",
+        "characterElements": ["[First character's element]", "[Second character's element]"],
+        "culturalReferences": "[Notable cultural or literary references in English]",
+        "modernRelevance": "[Contemporary social perception in English]"
+      }
+    }
+  ]
+}
+
+Ensure your analysis is culturally accurate, insightful, and concise. ALL explanatory text must be in ENGLISH while preserving the original Chinese characters.`,
+
+  // 中文版提示词
+  zh: params => {
+    return `请作为中国命名学的权威专家，对以下中文名字进行专业分析：${params.name || ''}
+
+重要：只对此名字进行分析，不要生成其他名字或变体。
+
+请包含以下分析内容：
+
+1. 每个汉字的字源学和文化含义
+2. 音韵和声调和谐分析
+3. 笔划结构和美学价值
+4. 五行属性分析
+5. 文化象征和文学典故
+
+请为此名字提供各方面的评分(0-100)，包括：音韵之美、字形美、寓意深度、五行平衡、社会印象和综合评分。
+
+所有分析和解释文本必须使用英文，但保留原始汉字。请严格按照以下JSON格式返回结果：
+
+{
+  "names": [
+    {
+      "fullName": "[被分析的中文名字]",
+      "analysis": {
+        "meaning": {
+          "[第一个字]": "[第一个字的详细含义解释，用英文]",
+          "[第二个字]": "[第二个字的详细含义解释，用英文]"
+        },
+        "pronunciation": "[带声调的拼音]",
+        "culturalBackground": "[名字的文化背景和意义，用英文]",
+        "scores": {
+          "linguisticBeauty": 85,
+          "characterHarmony": 88,
+          "meaningDepth": 92,
+          "fiveElementsBalance": 80,
+          "socialImpression": 90,
+          "overall": 87
+        },
+        "fiveElementsAnalysis": "[五行分析及其互动，用英文]",
+        "characterElements": ["[第一个字的五行属性]", "[第二个字的五行属性]"],
+        "culturalReferences": "[相关的文化或文学引用，用英文]",
+        "modernRelevance": "[当代社会印象，用英文]"
+      }
+    }
+  ]
+}`;
+  },
+  
+  // 英文版提示词
+  en: params => {
+    return `Please analyze this Chinese name in detail: ${params.name || ''}.
+
+As the world's foremost expert on Chinese naming analysis, provide a comprehensive assessment focusing on:
+
+1. Character etymology and cultural significance of each character
+2. Phonetic harmony and tonal flow analysis
+3. Stroke structure, aesthetic value, and visual balance
+4. Five Elements theory and character attribute interactions
+5. Cultural symbolism and literary references
+
+Include differentiated scores (0-100) for: Linguistic Beauty, Character Harmony, Meaning Depth, Five Elements Balance, Social Impression, and an Overall Score.
+
+IMPORTANT: Analyze ONLY this exact name. Do not generate alternative names.
+
+Return your analysis in this EXACT JSON format:
+
+{
+  "names": [
+    {
+      "fullName": "[The Chinese name being analyzed]",
+      "analysis": {
+        "meaning": {
+          "[first character]": "[Detailed meaning explanation of first character]",
+          "[second character]": "[Detailed meaning explanation of second character]"
+        },
+        "pronunciation": "[Pinyin with tone marks]",
+        "culturalBackground": "[Cultural context and significance]",
+        "scores": {
+          "linguisticBeauty": 85,
+          "characterHarmony": 88,
+          "meaningDepth": 92,
+          "fiveElementsBalance": 80,
+          "socialImpression": 90,
+          "overall": 87
+        },
+        "fiveElementsAnalysis": "[Analysis of elements and their interactions]",
+        "characterElements": ["[First character's element]", "[Second character's element]"],
+        "culturalReferences": "[Notable cultural or literary references]",
+        "modernRelevance": "[Contemporary social perception]"
+      }
+    }
+  ]
+}`;
+  }
 };
 
+
 export const zodiacAnalysisPrompts = {
-  system: `你是一个专业的生肖文化专家，擅长分析生肖与起名的关系。请以JSON格式返回分析结果。`,
-  zh: (params) => `请分析${params.birthYear}年出生的人的生肖特点和起名建议。`,
-  en: (params) => `Please analyze the zodiac characteristics and naming suggestions for people born in ${params.birthYear}.`
+  system: `You are an exceptionally skilled Master of Chinese Divination (命理大师) with over 50 years of experience in traditional Chinese astrology, Five Elements theory (五行), Eight Trigrams (八卦), and Chinese zodiac analysis. You possess comprehensive knowledge of the intricate relationships between birth time, zodiac signs, elements, and life destiny according to traditional Chinese metaphysical systems.  
+  
+**CRITICAL INSTRUCTIONS:**
+1. You MUST ONLY analyze based on the information provided by the user (name, birth date, gender, and intention). Do NOT request additional information.
+2. ALWAYS RESPOND IN ENGLISH regardless of the input language. All analysis, explanations, and insights must be in English, even when Chinese terms are mentioned (which should be followed by their English translations).
+  
+Your expert divination analysis must cover these key dimensions:
+
+1. **Chinese Zodiac Analysis (生肖分析)**:
+   - The user's zodiac sign based on birth year and its core characteristics
+   - Personality traits associated with their zodiac sign
+   - Natural strengths and potential challenges
+   - Compatibility with other zodiac signs
+
+2. **Five Elements & Eight Trigrams Analysis (五行八卦分析)**:
+   - The governing element of their birth year and its influence
+   - Balance or imbalance of the Five Elements in their profile
+   - Relevant Eight Trigrams (八卦) influence on their life path
+   - Celestial Stem and Earthly Branch (天干地支) significance
+
+3. **Life Path & Destiny Analysis (命运分析)**:
+   - Key fortunate and challenging periods in life
+   - Career and wealth potential based on birth elements
+   - Relationship and family life predictions
+   - Health insights based on element constitution
+   - Specific guidance related to the user's stated intention/question
+
+4. **Integrated Fortune Rating System (综合运势评分)**:
+   Your expert assessment must include differentiated scores (0-100) for:
+   - **Career Potential** (事业潜力): Professional prospects and leadership abilities
+   - **Wealth Affinity** (财富亲和力): Capacity for accumulating and maintaining wealth
+   - **Relationship Harmony** (人际和谐): Interpersonal relationships and social dynamics
+   - **Health Constitution** (健康体质): Physical and mental wellness indicators
+   - **Intention-specific Fortune** (目标运势): Specific fortune rating related to the user's stated intention
+   - **Overall Life Fortune** (综合评分): Weighted average with justification
+
+You must return your analysis in the EXACT JSON format shown below:
+
+{
+  "divination": {
+    "personalInfo": {
+      "name": "[User's name]",
+      "gender": "[User's gender]",
+      "birthDate": "[User's birth date]",
+      "intention": "[User's intention/question]"
+    },
+    "zodiacAnalysis": {
+      "sign": "[Chinese zodiac sign in English and Chinese]",
+      "element": "[Governing element of birth year]",
+      "personality": [
+        "[Key personality trait 1]",
+        "[Key personality trait 2]",
+        "[Key personality trait 3]"
+      ],
+      "strengths": [
+        "[Notable strength 1]",
+        "[Notable strength 2]"
+      ],
+      "challenges": [
+        "[Potential challenge 1]",
+        "[Potential challenge 2]"
+      ],
+      "compatibility": {
+        "most": ["[Most compatible sign 1]", "[Most compatible sign 2]"],
+        "least": ["[Least compatible sign 1]", "[Least compatible sign 2]"]
+      }
+    },
+    "elementalAnalysis": {
+      "birthYearElement": "[Element of birth year]",
+      "elementBalance": {
+        "wood": "[Strong/Weak/Balanced]",
+        "fire": "[Strong/Weak/Balanced]",
+        "earth": "[Strong/Weak/Balanced]",
+        "metal": "[Strong/Weak/Balanced]",
+        "water": "[Strong/Weak/Balanced]"
+      },
+      "dominantElement": "[Most influential element]",
+      "deficientElement": "[Element needing strengthening]",
+      "celestialStem": "[Heavenly Stem/天干]",
+      "earthlyBranch": "[Earthly Branch/地支]",
+      "eightTrigramInfluence": "[Most influential trigram and its meaning]"
+    },
+    "lifeDestiny": {
+      "lifePath": "[Overall life path description]",
+      "fortunePeriods": {
+        "favorable": ["[Age/year range 1]", "[Age/year range 2]"],
+        "challenging": ["[Age/year range 1]", "[Age/year range 2]"]
+      },
+      "careerInsights": "[Career path and potential insights]",
+      "wealthProspects": "[Wealth accumulation insights]",
+      "relationshipGuidance": "[Relationship pattern insights]",
+      "healthConsiderations": "[Health strengths and areas of attention]"
+    },
+    "fortuneScores": {
+      "careerPotential": 85,
+      "wealthAffinity": 78,
+      "relationshipHarmony": 90,
+      "healthConstitution": 82,
+      "intentionSpecificFortune": 88,
+      "overallLifeFortune": 84
+    },
+    "userIntentionAnalysis": {
+      "analysis": "[Detailed analysis specific to user's stated intention]",
+      "recommendations": [
+        "[Specific recommendation 1]",
+        "[Specific recommendation 2]",
+        "[Specific recommendation 3]"
+      ],
+      "favorableTiming": "[Optimal timing for user's intention]",
+      "cautions": "[Things to be mindful of regarding the intention]"
+    }
+  }
+}
+
+Ensure your analysis is culturally accurate, insightful, and rooted in traditional Chinese metaphysical principles. Include relevant Chinese terms with their English translations where appropriate.`,
+
+  zh: params => {
+    // 提取参数
+    const { name, birthDate, gender, intention } = params;
+    
+    // 获取当前日期
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1; // getMonth()返回0-11
+    const currentDay = currentDate.getDate();
+    const datePrefix = `现在是${currentYear}年${currentMonth}月${currentDay}日，`;
+    
+    return `请以中国传统命理大师的身份，为以下用户提供专业的生肖命理分析。注意你的回答必须完全使用英文，即使用户使用中文提问：
+
+${datePrefix}
+
+用户信息：
+- 姓名：${name || '未提供'}
+- 性别：${gender || '未提供'}
+- 出生日期：${birthDate || '未提供'} 
+- 用户意图/问题：${intention || '未提供'}
+
+请基于中国传统命理学，包括生肖、五行、八卦、天干地支等体系，对此人进行全面分析，并特别关注其所提出的意图或问题。
+
+您的分析应包含以下内容：
+
+1. 生肖分析：根据出生年份确定生肖，分析其性格特点、优势、挑战及与其他生肖的相容性
+
+2. 五行八卦分析：分析出生年的五行属性及平衡状况，八卦影响，以及天干地支的意义
+
+3. 命运分析：包括人生重要时期、事业财富潜力、人际关系预测、健康洞察，以及与用户提出意图相关的具体指导
+
+4. 综合运势评分：请为以下方面提供0-100分的评分
+   - 事业潜力
+   - 财富亲和力
+   - 人际和谐度
+   - 健康体质
+   - 与用户意图相关的特定运势
+   - 总体生命运势
+
+请务必使用以下JSON格式返回您的分析：
+
+{
+  "divination": {
+    "personalInfo": {
+      "name": "[用户姓名]",
+      "gender": "[用户性别]",
+      "birthDate": "[用户出生日期]",
+      "intention": "[用户意图/问题]"
+    },
+    "zodiacAnalysis": {
+      "sign": "[中文和英文生肖名称]",
+      "element": "[出生年的主导元素]",
+      "personality": [
+        "[主要性格特点1]",
+        "[主要性格特点2]",
+        "[主要性格特点3]"
+      ],
+      "strengths": [
+        "[显著优势1]",
+        "[显著优势2]"
+      ],
+      "challenges": [
+        "[潜在挑战1]",
+        "[潜在挑战2]"
+      ],
+      "compatibility": {
+        "most": ["[最相配生肖1]", "[最相配生肖2]"],
+        "least": ["[最不相配生肖1]", "[最不相配生肖2]"]
+      }
+    },
+    "elementalAnalysis": {
+      "birthYearElement": "[出生年的五行元素]",
+      "elementBalance": {
+        "wood": "[强/弱/平衡]",
+        "fire": "[强/弱/平衡]",
+        "earth": "[强/弱/平衡]",
+        "metal": "[强/弱/平衡]",
+        "water": "[强/弱/平衡]"
+      },
+      "dominantElement": "[最具影响力的元素]",
+      "deficientElement": "[需要加强的元素]",
+      "celestialStem": "[天干]",
+      "earthlyBranch": "[地支]",
+      "eightTrigramInfluence": "[最具影响力的八卦及其意义]"
+    },
+    "lifeDestiny": {
+      "lifePath": "[总体人生道路描述]",
+      "fortunePeriods": {
+        "favorable": ["[顺利时期1]", "[顺利时期2]"],
+        "challenging": ["[挑战时期1]", "[挑战时期2]"]
+      },
+      "careerInsights": "[事业道路和潜力洞察]",
+      "wealthProspects": "[财富积累洞察]",
+      "relationshipGuidance": "[人际关系模式洞察]",
+      "healthConsiderations": "[健康优势和需注意的方面]"
+    },
+    "fortuneScores": {
+      "careerPotential": 85,
+      "wealthAffinity": 78,
+      "relationshipHarmony": 90,
+      "healthConstitution": 82,
+      "intentionSpecificFortune": 88,
+      "overallLifeFortune": 84
+    },
+    "userIntentionAnalysis": {
+      "analysis": "[针对用户意图的详细分析]",
+      "recommendations": [
+        "[具体建议1]",
+        "[具体建议2]",
+        "[具体建议3]"
+      ],
+      "favorableTiming": "[用户意图的最佳时机]",
+      "cautions": "[关于该意图需要注意的事项]"
+    }
+  }
+}
+
+确保您的分析符合中国传统文化，富有洞察力，并基于传统中国形而上学原理。再次强调，您必须完全使用英文回复，无论提问使用何种语言。`;
+  },
+  
+  en: params => {
+    // 提取参数
+    const { name, birthDate, gender, intention } = params;
+    
+    // 获取当前日期
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1; // getMonth()返回0-11
+    const currentDay = currentDate.getDate();
+    const datePrefix = `Today is ${currentMonth}/${currentDay}/${currentYear}, `;
+    
+    return `${datePrefix}As a Master of Chinese Divination with decades of experience, please provide a comprehensive zodiac and destiny analysis for the following individual:
+
+PERSONAL INFORMATION:
+- Name: ${name || 'Not provided'}
+- Gender: ${gender || 'Not provided'}
+- Birth Date: ${birthDate || 'Not provided'}
+- Intention/Question: ${intention || 'Not provided'}
+
+Based on traditional Chinese metaphysical systems including the Chinese zodiac, Five Elements theory, Eight Trigrams, and Celestial Stems and Earthly Branches, perform a complete analysis with special focus on the person's stated intention or question.
+
+Your analysis should include:
+
+1. Chinese Zodiac Analysis: Determine their zodiac sign based on birth year, analyze personality traits, strengths, challenges, and compatibility with other signs
+
+2. Five Elements & Eight Trigrams Analysis: Examine the elemental influences of their birth year, the balance of the Five Elements in their profile, relevant Eight Trigram influences, and the significance of their Celestial Stem and Earthly Branch
+
+3. Life Path & Destiny Analysis: Identify key fortunate and challenging periods, career and wealth potential, relationship patterns, health insights, and specific guidance related to their stated intention
+
+4. Fortune Ratings: Provide scores (0-100) for the following aspects:
+   - Career Potential
+   - Wealth Affinity
+   - Relationship Harmony
+   - Health Constitution
+   - Intention-specific Fortune
+   - Overall Life Fortune
+
+Please return your analysis in this EXACT JSON format:
+
+{
+  "divination": {
+    "personalInfo": {
+      "name": "[Person's name]",
+      "gender": "[Person's gender]",
+      "birthDate": "[Person's birth date]",
+      "intention": "[Person's intention/question]"
+    },
+    "zodiacAnalysis": {
+      "sign": "[Chinese zodiac sign in English and Chinese]",
+      "element": "[Governing element of birth year]",
+      "personality": [
+        "[Key personality trait 1]",
+        "[Key personality trait 2]",
+        "[Key personality trait 3]"
+      ],
+      "strengths": [
+        "[Notable strength 1]",
+        "[Notable strength 2]"
+      ],
+      "challenges": [
+        "[Potential challenge 1]",
+        "[Potential challenge 2]"
+      ],
+      "compatibility": {
+        "most": ["[Most compatible sign 1]", "[Most compatible sign 2]"],
+        "least": ["[Least compatible sign 1]", "[Least compatible sign 2]"]
+      }
+    },
+    "elementalAnalysis": {
+      "birthYearElement": "[Element of birth year]",
+      "elementBalance": {
+        "wood": "[Strong/Weak/Balanced]",
+        "fire": "[Strong/Weak/Balanced]",
+        "earth": "[Strong/Weak/Balanced]",
+        "metal": "[Strong/Weak/Balanced]",
+        "water": "[Strong/Weak/Balanced]"
+      },
+      "dominantElement": "[Most influential element]",
+      "deficientElement": "[Element needing strengthening]",
+      "celestialStem": "[Heavenly Stem/天干]",
+      "earthlyBranch": "[Earthly Branch/地支]",
+      "eightTrigramInfluence": "[Most influential trigram and its meaning]"
+    },
+    "lifeDestiny": {
+      "lifePath": "[Overall life path description]",
+      "fortunePeriods": {
+        "favorable": ["[Age/year range 1]", "[Age/year range 2]"],
+        "challenging": ["[Age/year range 1]", "[Age/year range 2]"]
+      },
+      "careerInsights": "[Career path and potential insights]",
+      "wealthProspects": "[Wealth accumulation insights]",
+      "relationshipGuidance": "[Relationship pattern insights]",
+      "healthConsiderations": "[Health strengths and areas of attention]"
+    },
+    "fortuneScores": {
+      "careerPotential": 85,
+      "wealthAffinity": 78,
+      "relationshipHarmony": 90,
+      "healthConstitution": 82,
+      "intentionSpecificFortune": 88,
+      "overallLifeFortune": 84
+    },
+    "userIntentionAnalysis": {
+      "analysis": "[Detailed analysis specific to user's stated intention]",
+      "recommendations": [
+        "[Specific recommendation 1]",
+        "[Specific recommendation 2]",
+        "[Specific recommendation 3]"
+      ],
+      "favorableTiming": "[Optimal timing for the intention]",
+      "cautions": "[Things to be mindful of regarding the intention]"
+    }
+  }
+}
+
+Ensure your analysis is culturally accurate, insightful, and rooted in traditional Chinese metaphysical principles.`;
+  }
 };
 
 export const chineseToEnglishPrompts = {
@@ -182,16 +687,15 @@ export const chineseToEnglishPrompts = {
     b. **单姓处理：** 如果不匹配复姓列表，则将第一个字识别为单姓。
     c. **这是所有后续翻译的基础，请务必准确执行。**
 
-2.  **强制性规则：中文姓氏必须保留其完整拼音，不进行任何翻译或转换。** 在任何情况下，英文名中的姓氏部分都必须是中文姓氏的完整拼音。例如，“夏侯”的拼音是“Xiahou”，在英文名中就必须使用“Xiahou”。
+2.  **强制性规则：中文姓氏必须保留其完整拼音，不进行任何翻译或转换。** 在任何情况下，英文名中的姓氏部分都必须是中文姓氏的完整拼音。例如，"夏侯"的拼音是"Xiahou"，在英文名中就必须使用"Xiahou"。
 
-3.  **方法论**：只对中文名字的“名”进行翻译。优先寻找发音相似且本身有良好含义的英文名（音译）。同时，深入挖掘中文名字的字面含义、文化典故或背后寓意，找到能在英文中恰当表达这些概念的名字或词汇（意译）。可以巧妙地将音译与意译相结合。
+3.  **方法论**：只对中文名字的"名"进行翻译。优先寻找发音相似且本身有良好含义的英文名（音译）。同时，深入挖掘中文名字的字面含义、文化典故或背后寓意，找到能在英文中恰当表达这些概念的名字或词汇（意译）。可以巧妙地将音译与意译相结合。
 
 4.  **结果数量**：为每个名字提供 4 个不同风格的备选方案。
 
 严格的输出格式要求：
 你必须将所有分析和结果以 JSON 格式返回，并确保 JSON 结构和字段名完全匹配以下规范。除了 JSON 之外，不要返回任何其他文字、解释或符号。
 
-\`\`\`json
 {
   "name": "中文名字",
   "analysis": {
@@ -202,23 +706,22 @@ export const chineseToEnglishPrompts = {
     {
       "english_name": "英文名字全称（名在前，姓在后）",
       "method": "转换方法（如：音译、意译、文化联想）",
-      "explanation": "详细解释选择该名字的原因，包括其英文含义、文化背景，以及如何与中文名中的“名”产生关联。请特别说明英文名与姓氏的组合方式，例如：'Dun Xiahou'。",
+      "explanation": "详细解释选择该名字的原因，包括其英文含义、文化背景，以及如何与中文名中的"名"产生关联。请特别说明英文名与姓氏的组合方式，例如：'Dun Xiahou'。",
       "cultural_fit": "该英文名在英语国家的使用频率、流行度及适用场合。",
       "score": 9
     }
   ]
 }
-\`\`\`
 
 请确保每个转换选项都包含上述所有字段。`,
 
   // 用户提示词
-  user: (name) => `请将中文名字"${name}"转换为英文名字。`
+  user: name => `请将中文名字"${name}"转换为英文名字。`
 };
 
 export const characterAnalysisPrompts = {
   system: `你是一个汉字文化专家。请以JSON格式返回分析结果。`,
-  user: (character) => `请分析汉字"${character}"的含义、起源和文化背景。`
+  user: character => `请分析汉字"${character}"的含义、起源和文化背景。`
 };
 
 export const generalTranslationPrompts = {
@@ -289,7 +792,7 @@ CRITICAL: Your response must be valid JSON format only. Do not include any text 
 
 Remember: The goal is to create names that a Chinese literature scholar would find beautiful and meaningful, while subtly incorporating fantasy elements through cultural metaphor and classical reference.`,
 
-  user: (params) => {
+  user: params => {
     const { fantasyTheme, characterType, gender, powerLevel } = params;
     
     // 提供更细致的文化背景指导

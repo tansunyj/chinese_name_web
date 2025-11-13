@@ -580,9 +580,15 @@ export default {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              type: 'nameGeneration',
-              // 传递原始用户输入参数，不传递拼接好的prompt
-              inputName: apiParams.lastName
+              type: 'nameAnalysis',
+              // 同时使用多个参数名传递姓氏，增加兼容性
+              name: apiParams.lastName,
+              lastName: apiParams.lastName,
+              inputName: apiParams.lastName,
+              // 添加locale参数
+              locale: this.locale || 'zh',
+              // 添加调试标记
+              debug: true
             }),
             signal: controller.signal
           });
@@ -686,7 +692,12 @@ export default {
           logWarn('AI返回的数据结构不符合预期或为空:', responseData);
           logWarn('解析后的数据:', parsedData);
           // 使用模拟数据作为备用
-          this.results = this.createMockNames(apiParams).map((name, idx) => ({
+          // 使用当前表单数据作为参数，而不是apiParams
+          const mockParams = {
+            lastName: this.formData.lastName || '李'
+          };
+          
+          this.results = this.createMockNames(mockParams).map((name, idx) => ({
             ...name,
             showAnalysis: true,
             activeTab: 0
@@ -708,7 +719,12 @@ export default {
           }
 
           // 使用模拟数据作为备用
-          this.results = this.createMockNames(apiParams).map((name, idx) => ({
+          // 使用当前表单数据作为参数，而不是apiParams
+          const mockParams = {
+            lastName: this.formData.lastName || '李'
+          };
+          
+          this.results = this.createMockNames(mockParams).map((name, idx) => ({
             ...name,
             showAnalysis: true,
             activeTab: 0
@@ -720,7 +736,12 @@ export default {
       } catch (error) {
         logError('AI名字生成错误:', error);
         // 使用模拟数据作为备用
-        this.results = this.createMockNames(apiParams).map((name, idx) => ({
+        // 使用当前表单数据作为参数，而不是apiParams
+        const mockParams = {
+          lastName: this.formData.lastName || '李'
+        };
+        
+        this.results = this.createMockNames(mockParams).map((name, idx) => ({
           ...name,
           showAnalysis: true,
           activeTab: 0
@@ -1574,9 +1595,18 @@ export default {
     
     // 创建模拟名字数据(原mockNameGenerationAPI方法的逻辑)
     createMockNames(params) {
-      // 为模拟数据添加出生信息
-      const birthInfo = this.createBirthInfo(params.birthDateTime);
-      log("模拟数据中的农历日期:", birthInfo.lunarDate);
+      // 为模拟数据创建默认化的出生信息
+      // 不再依赖params.birthDateTime
+      const birthInfo = {
+        solarDate: '2023-01-01 12:00:00',
+        lunarDate: '癸卫年正月初一',
+        zodiac: this.locale === 'zh' ? '兔' : 'Rabbit',
+        eightChar: { year: '癸卫', month: '甲子', day: '丁巳', hour: '丙子' },
+        fiveElements: { year: '水木', month: '水水', day: '火火', hour: '火水' },
+        naYin: { year: '山泉水', month: '海中金', day: '望天火', hour: '露水金' }
+      };
+      log("模拟数据使用默认出生信息");
+      
       
       return [
         {

@@ -13,14 +13,26 @@
           <li><router-link to="/">Home</router-link></li>
           <li><router-link to="/english-to-chinese-translator">Translate to Chinese</router-link></li>
           <li><router-link to="/custom-chinese-name-generator">{{ $t('header.customName') }} Chinese Name</router-link></li>
-          <!-- Names 下拉菜单 -->
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" @click.prevent="toggleDropdown('names')">Names <span class="dropdown-icon" :class="{ 'rotated': activeDropdown === 'names' }">▼</span></a>
-            <ul class="dropdown-menu" :class="{ 'show': activeDropdown === 'names' }">
-              <li><router-link to="/chinese-girl-names" @click="closeDropdown">Chinese Girl Names</router-link></li>
-              <li><router-link to="/chinese-boy-names" @click="closeDropdown">Chinese Boy Names</router-link></li>
-              <li><router-link to="/chinese-last-names" @click="closeDropdown">Chinese Last Names</router-link></li>
-              <li><router-link to="/chinese-names-and-meanings" @click="closeDropdown">Chinese Names and Meanings</router-link></li>
+          <!-- Others 合并菜单 - 添加others-link类以便特别处理 -->
+          <li class="dropdown others-dropdown">
+            <a href="#" class="dropdown-toggle others-link" style="color: #333 !important;" @click.prevent="toggleDropdown('others')">Others <span class="dropdown-icon" :class="{ 'rotated': activeDropdown === 'others' }">▼</span></a>
+            <ul class="dropdown-menu"><!-- 移除v-bind:class绑定，完全通过DOM操作控制 -->
+              <!-- Names 的子菜单 -->
+              <li class="dropdown-subtitle names-section">Chinese Names</li>
+              <li class="names-item"><router-link to="/chinese-girl-names" @click="closeDropdown">Chinese Girl Names</router-link></li>
+              <li class="names-item"><router-link to="/chinese-boy-names" @click="closeDropdown">Chinese Boy Names</router-link></li>
+              <li class="names-item"><router-link to="/chinese-last-names" @click="closeDropdown">Chinese Last Names</router-link></li>
+              <li class="names-item"><router-link to="/chinese-names-and-meanings" @click="closeDropdown">Chinese Names and Meanings</router-link></li>
+              <li class="names-item"><router-link to="/funny-chinese-names" @click="closeDropdown">Funny Chinese Names</router-link></li>
+              <li class="names-item"><router-link to="/chinese-dog-names" @click="closeDropdown">Chinese Dog Names</router-link></li>
+              <li class="names-item"><router-link to="/chinese-cat-names" @click="closeDropdown">Chinese Cat Names</router-link></li>
+              
+              <!-- Name Destiny 的子菜单 -->
+              <li class="dropdown-divider"></li>
+              <li class="dropdown-subtitle destiny-section">Name Destiny</li>
+              <li class="destiny-item"><router-link to="/zodiac-calculator" @click="closeDropdown">Chinese Zodiac & Elements</router-link></li>
+              <li class="destiny-item"><router-link to="/constellation-analysis" @click="closeDropdown">Constellation Analysis</router-link></li>
+              <li class="destiny-item"><router-link to="/name-numerology-calculator" @click="closeDropdown">Name Numerology Calculator</router-link></li>
             </ul>
           </li>
           <li><router-link to="/blog">Blog</router-link></li>
@@ -63,6 +75,29 @@ export default {
       activeDropdown: null
     }
   },
+  created() {
+    // 初始化时确保所有菜单关闭
+    this.activeDropdown = null;
+    
+    // 添加路由变化前置监听器，确保在页面切换时关闭菜单
+    this.$router.beforeEach((to, from, next) => {
+      this.closeAllMenus();
+      next();
+    });
+    
+    // 添加路由变化后置监听器，确保在页面加载完成后修正OTHERS菜单的颜色
+    this.$router.afterEach(() => {
+      // 延时确保所有DOM已更新
+      setTimeout(() => {
+        const othersLink = document.querySelector('.others-link');
+        if (othersLink) {
+          othersLink.style.color = '#333';
+          othersLink.classList.remove('router-link-active');
+        }
+      }, 50);
+    });
+  },
+  
   mounted() {
     // 强制使用英文
     this.locale = 'en';
@@ -71,11 +106,47 @@ export default {
     
     // 添加点击其他区域关闭下拉菜单的监听器
     document.addEventListener('click', this.handleOutsideClick);
+
+    // 添加页面滚动监听器，确保滚动时关闭菜单
+    window.addEventListener('scroll', this.closeAllMenus);
+    
+    // 为OTHERS菜单项添加颜色强制处理
+    const othersLink = document.querySelector('.others-link');
+    if (othersLink) {
+      othersLink.style.color = '#333';
+      othersLink.classList.remove('router-link-active'); // 确保没有活动类
+    }
+    
+    // 立即强制关闭菜单，不等待nextTick
+    this.forceCloseAllMenus();
+    
+    // 延时再次确认所有菜单关闭，双重保险
+    setTimeout(() => {
+      this.forceCloseAllMenus();
+      
+      // 再次强制OTHERS菜单颜色
+      const othersLink = document.querySelector('.others-link');
+      if (othersLink) {
+        othersLink.style.color = '#333';
+        othersLink.classList.remove('router-link-active');
+      }
+    }, 200);
+    
+    // 重写原生的classList.toggle方法，防止意外的类添加
+    const originalToggle = DOMTokenList.prototype.toggle;
+    DOMTokenList.prototype.toggle = function(token, force) {
+      // 如果是下拉菜单元素且要添加show类，先检查是否有意外操作
+      if (token === 'show' && this.contains('dropdown-menu') && force !== true) {
+        return false; // 阻止意外的toggle调用
+      }
+      return originalToggle.apply(this, arguments);
+    };
   },
   
   beforeUnmount() {
-    // 移除事件监听器以避免内存泄漏
+    // 移除所有事件监听器以避免内存泄漏
     document.removeEventListener('click', this.handleOutsideClick);
+    window.removeEventListener('scroll', this.closeAllMenus);
   },
   methods: {
     changeLanguage() {
@@ -85,19 +156,90 @@ export default {
       this.$root.$forceUpdate();
     },
     
+    // 强制关闭所有菜单的方法，完全通过DOM操作
+    forceCloseAllMenus() {
+      // 重置状态
+      this.activeDropdown = null;
+      
+      // 强制移除所有菜单的show类
+      const allMenus = document.querySelectorAll('.dropdown-menu');
+      allMenus.forEach(menu => {
+        menu.classList.remove('show');
+      });
+      
+      // 重置所有下拉图标
+      const dropdownIcons = document.querySelectorAll('.dropdown-icon');
+      dropdownIcons.forEach(icon => {
+        icon.classList.remove('rotated');
+      });
+      
+      // 确保下拉菜单按钮的颜色正确
+      const othersLink = document.querySelector('.others-dropdown .dropdown-toggle');
+      if (othersLink) {
+        // 强制设置颜色并移除任何可能的router-link-active类
+        othersLink.style.color = '#333';
+        othersLink.classList.remove('router-link-active');
+      }
+    },
+    
+    // 对外暴露的关闭菜单方法
+    closeAllMenus() {
+      this.forceCloseAllMenus();
+    },
+    
     toggleDropdown(menuId) {
-      this.activeDropdown = this.activeDropdown === menuId ? null : menuId;
+      // 每次切换前都强制移除所有show类
+      const allMenus = document.querySelectorAll('.dropdown-menu');
+      allMenus.forEach(menu => {
+        menu.classList.remove('show');
+      });
+      
+      if (this.activeDropdown === menuId) {
+        // 如果当前菜单已经打开，则关闭它
+        this.activeDropdown = null;
+      } else {
+        // 否则打开当前菜单
+        this.activeDropdown = menuId;
+        
+        // 直接操作DOM添加show类
+        if (menuId === 'others') {
+          const menu = document.querySelector('.others-dropdown .dropdown-menu');
+          if (menu) {
+            menu.classList.add('show');
+          }
+        }
+      }
     },
     
     closeDropdown() {
-      this.activeDropdown = null;
+      this.forceCloseAllMenus();
     },
     
     handleOutsideClick(event) {
-      // 检查点击是否在下拉菜单内部
-      const dropdown = document.querySelector('.dropdown');
-      if (dropdown && !dropdown.contains(event.target) && this.activeDropdown !== null) {
+      // 检查点击是否在任意下拉菜单内部
+      const dropdowns = document.querySelectorAll('.dropdown');
+      let isClickInside = false;
+      
+      // 检查点击是否在任何一个下拉菜单内部
+      dropdowns.forEach(dropdown => {
+        if (dropdown.contains(event.target)) {
+          isClickInside = true;
+        }
+      });
+      
+      // 如果点击在所有下拉菜单外部，则关闭当前激活的下拉菜单
+      if (!isClickInside && this.activeDropdown !== null) {
+        // 重置状态
         this.activeDropdown = null;
+        
+        // 立即强制清除所有菜单的show类
+        const allDropdownMenus = document.querySelectorAll('.dropdown-menu');
+        allDropdownMenus.forEach(menu => {
+          menu.classList.remove('show');
+        });
+        
+        // 确保视图更新
+        this.$forceUpdate();
       }
     }
   }
@@ -191,12 +333,37 @@ export default {
 }
 
 .main-nav a:hover::after,
-.main-nav a.router-link-active::after {
+.main-nav a.router-link-active:not(.dropdown-toggle):not(.others-link)::after {
   width: 100%;
 }
 
-.main-nav a.router-link-active {
+/* 只为直接的路由链接应用活动样式，而不是下拉菜单的触发器 */
+.main-nav a.router-link-active:not(.dropdown-toggle):not(.others-link) {
   color: #e60012;
+}
+
+/* 防止子项活动状态影响OTHERS菜单 - 最强力的选择器规则 */
+.main-nav a.others-link, 
+.main-nav a.others-link:hover, 
+.main-nav a.others-link:active, 
+.main-nav a.others-link:focus, 
+.main-nav a.others-link:visited, 
+.main-nav li a.others-link.router-link-active, 
+.main-nav li a.others-link.router-link-exact-active,
+html body .main-nav a.dropdown-toggle.others-link,
+body .main-nav a.dropdown-toggle.others-link.router-link-active,
+body .main-nav a.dropdown-toggle.others-link.router-link-exact-active,
+body nav.main-nav ul li a.dropdown-toggle.others-link,
+body nav.main-nav ul li a.dropdown-toggle.others-link:not([href]),
+body nav.main-nav ul li a.dropdown-toggle.others-link[href="#"] {
+  color: #333 !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+}
+
+/* 防止任何继承或覆盖 */
+.dropdown-toggle.others-link {
+  color: #333 !important;
 }
 
 /* 下拉菜单样式 */
@@ -208,6 +375,9 @@ export default {
   display: flex;
   align-items: center;
   cursor: pointer;
+  position: relative;
+  font-weight: 600 !important;
+  color: #333 !important; /* 确保颜色不受router-link-active影响 */
 }
 
 .dropdown-icon {
@@ -228,21 +398,25 @@ export default {
   background-color: white;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
-  min-width: 200px;
-  display: none;
+  min-width: 220px;
+  display: none; /* 默认不显示 */
   flex-direction: column;
   z-index: 1001;
   padding: 5px 0;
   margin-top: 5px;
   opacity: 0;
   transform: translateY(-10px);
-  transition: opacity 0.3s, transform 0.3s;
+  transition: all 0.3s ease;
+  pointer-events: none; /* 确保默认情况下不响应鼠标事件 */
+  visibility: hidden; /* 将菜单设置为隐藏状态 */
 }
 
 .dropdown-menu.show {
   display: flex;
   opacity: 1;
   transform: translateY(0);
+  pointer-events: auto; /* 显示时允许鼠标交互 */
+  visibility: visible; /* 显示时设置为可见 */
 }
 
 .dropdown-menu li {
@@ -257,11 +431,29 @@ export default {
   text-decoration: none;
   text-transform: none;
   font-weight: 400;
+  transition: all 0.2s ease;
 }
 
-.dropdown-menu a:hover {
-  background-color: #f8f8f8;
-  color: #e60012;
+.names-item a {
+  color: #2c6b96;
+  border-left: 2px solid transparent;
+}
+
+.names-item a:hover {
+  color: #1d4d6d;
+  border-left: 2px solid #2c6b96;
+  padding-left: 18px;
+}
+
+.destiny-item a {
+  color: #aa3939;
+  border-left: 2px solid transparent;
+}
+
+.destiny-item a:hover {
+  color: #8e2626;
+  border-left: 2px solid #aa3939;
+  padding-left: 18px;
 }
 
 .dropdown-menu a::after {
@@ -288,6 +480,76 @@ export default {
 
 .telegram-link:hover {
   transform: translateY(-2px);
+}
+
+/* OTHERS菜单特殊样式 */
+.others-dropdown .dropdown-toggle {
+  color: #e60012 !important;
+  font-weight: 600 !important;
+}
+
+.others-dropdown .dropdown-menu {
+  border-top: 3px solid #e60012;
+  animation: fadeInDown 0.3s ease-out;
+  min-width: 240px;
+  padding: 10px 0;
+}
+
+.dropdown-subtitle {
+  font-weight: 600;
+  color: #333;
+  padding: 10px 15px;
+  font-size: 0.9rem;
+}
+
+/* Chinese Names分类样式 */
+.names-section {
+  background-color: rgba(84, 153, 199, 0.15);
+  color: #2c6b96;
+  border-left: 3px solid #2c6b96;
+}
+
+.names-item {
+  background-color: rgba(84, 153, 199, 0.05);
+}
+
+.names-item:hover {
+  background-color: rgba(84, 153, 199, 0.1);
+}
+
+/* Name Destiny分类样式 */
+.destiny-section {
+  background-color: rgba(228, 92, 92, 0.15);
+  color: #aa3939;
+  border-left: 3px solid #aa3939;
+}
+
+.destiny-item {
+  background-color: rgba(228, 92, 92, 0.05);
+}
+
+.destiny-item:hover {
+  background-color: rgba(228, 92, 92, 0.1);
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: #e5e5e5;
+  margin: 10px 0;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.telegram-link:hover {
   box-shadow: 0 4px 12px rgba(34, 158, 217, 0.5);
   background: linear-gradient(135deg, #0088cc 0%, #006699 100%);
 }

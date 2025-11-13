@@ -3,10 +3,10 @@
     <div class="container">
       <!-- 面包屑导航 -->
       <BreadcrumbNav />
-      <h1 class="page-title">Chinese Boy Names with Meanings (2025) | 700+ Strong Male Names</h1>
+      <h1 class="page-title">Chinese Boy Names with Meanings (2025) | Authentic Male Names</h1>
       
       <div class="seo-intro">
-        <p class="seo-description">Discover meaningful Chinese names for boys with pronunciations and cultural significance. Explore our collection of 700+ strong, traditional and modern Chinese male names with their authentic meanings and origins.</p>
+        <p class="seo-description">Discover meaningful Chinese names for boys with pronunciations and cultural significance. Explore our collection of authentic strong, traditional and modern Chinese male names with their meanings and origins.</p>
       </div>
       
       <!-- 内容容器开始 -->
@@ -14,7 +14,7 @@
         <div class="content">
         <!-- 表单部分 -->
         <div class="form-section">
-          <h2 class="section-title">Find Meaningful Chinese Boy Names (700+ Options)</h2>
+          <h2 class="section-title">Find Meaningful Chinese Boy Names</h2>
           
           <div class="search-filters">
             <div class="search-box">
@@ -168,7 +168,8 @@
 <script>
 import ExploreMore from '@/components/ExploreMore.vue';
 import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
-import { allBoyNames, filterNames, paginateNames } from '@/data/allChineseNames';
+import { uniqueBoyNames } from '@/data/uniqueChineseBoyNames';
+import { filterNames, paginateNames } from '@/data/allChineseNames';
 
 export default {
   name: 'ChineseBoyNames',
@@ -272,8 +273,8 @@ export default {
       
       // 模拟异步加载
       setTimeout(() => {
-        // 设置所有名字数据
-        this.allNames = allBoyNames;
+        // 设置所有名字数据 - 使用去重后的数据
+        this.allNames = uniqueBoyNames;
         this.totalItems = this.allNames.length;
         
         // 初始过滤和分页
@@ -338,9 +339,9 @@ export default {
   },
   head() {
     return {
-      title: "Chinese Boy Names with Meanings (2025) | 700+ Strong Male Names",
+      title: "Chinese Boy Names with Meanings (2025) | Authentic Male Names",
       meta: [
-        { name: 'description', content: 'Discover meaningful Chinese names for boys with pronunciations and cultural significance. Explore our collection of 700+ strong, traditional and modern Chinese male names with their authentic meanings.' },
+        { name: 'description', content: 'Discover meaningful Chinese names for boys with pronunciations and cultural significance. Explore our collection of authentic strong, traditional and modern Chinese male names with their meanings.' },
         { name: 'keywords', content: 'chinese boy names,chinese names for boys,male chinese names,strong chinese boy names,chinese male names meaning,chinese baby boy names' }
       ],
       // 结构化数据

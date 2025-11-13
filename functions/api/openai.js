@@ -363,16 +363,23 @@ function buildNameTranslationRequest(baseRequest, params) {
 }
 
 function buildNameAnalysisRequest(baseRequest, params) {
-  const { name, birthDate, locale = 'zh' } = params;
-
-  if (!name) {
+  console.log('Building name analysis request with params:', JSON.stringify(params));
+  const { name, inputName, lastName, locale = 'zh' } = params;
+  
+  // 支持多种可能的参数名称
+  const actualName = name || inputName || lastName;
+  
+  console.log('Using name:', actualName);
+  
+  if (!actualName) {
+    console.error('No name parameter found. Required: name, inputName, or lastName');
     return null;
   }
 
   const systemPrompt = nameAnalysisPrompts.system;
   const userPrompt = locale === 'zh' 
-    ? nameAnalysisPrompts.zh({ name, birthDate })
-    : nameAnalysisPrompts.en({ name, birthDate });
+    ? nameAnalysisPrompts.zh({ name: actualName })
+    : nameAnalysisPrompts.en({ name: actualName });
 
   return {
     ...baseRequest,
@@ -387,16 +394,21 @@ function buildNameAnalysisRequest(baseRequest, params) {
 }
 
 function buildZodiacAnalysisRequest(baseRequest, params) {
-  const { birthYear, locale = 'zh' } = params;
-
-  if (!birthYear) {
+  const { birthYear, birthDate, name, gender, intention, locale = 'en' } = params;
+  
+  // 检查是否提供了出生日期信息
+  if (!birthDate && !birthYear) {
+    log('❌ 生肖分析请求缺少必需参数: birthYear 或 birthDate');
     return null;
   }
 
+  // 使用promptTemplates.js中定义的提示词模板
   const systemPrompt = zodiacAnalysisPrompts.system;
-  const userPrompt = locale === 'zh'
-    ? zodiacAnalysisPrompts.zh({ birthYear })
-    : zodiacAnalysisPrompts.en({ birthYear });
+  
+  // 使用模板中的用户提示词，并传入完整参数
+  const userPrompt = locale === 'zh' 
+    ? zodiacAnalysisPrompts.zh({ name, birthDate, gender, intention }) 
+    : zodiacAnalysisPrompts.en({ name, birthDate, gender, intention });
 
   return {
     ...baseRequest,
@@ -405,7 +417,7 @@ function buildZodiacAnalysisRequest(baseRequest, params) {
       { role: 'user', content: userPrompt }
     ],
     temperature: 0.5,
-    max_tokens: 800,
+    max_tokens: 1200,
     response_format: { type: 'json_object' }
   };
 }

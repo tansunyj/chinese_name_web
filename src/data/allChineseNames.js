@@ -35,6 +35,8 @@ import chineseCatNames from './chineseCatNames';
 // 使用完整处理过的女孩名字数据，所有名字都有详细的英文解释
 export const allGirlNames = allProcessedGirlNames;
 
+// 使用uniqueGirlNames时需直接䳎 './uniqueChineseGirlNames' 导入
+
 // 合并所有男孩名字数据
 // 使用优化后的名字数据，如需使用原数据可以取消注释下面一行
 // export const allBoyNames = [...chineseBoyNames, ...chineseBoyNames2, ...chineseBoyNames3];

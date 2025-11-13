@@ -54,27 +54,6 @@ export default {
           emoji: '🔄'
         },
         {
-          id: 'girl-names',
-          title: 'Chinese Girl Names',
-          description: 'Browse beautiful female Chinese names',
-          path: '/chinese-girl-names',
-          emoji: '👧'
-        },
-        {
-          id: 'boy-names',
-          title: 'Chinese Boy Names',
-          description: 'Discover meaningful male Chinese names',
-          path: '/chinese-boy-names',
-          emoji: '👦'
-        },
-        {
-          id: 'write-my-name',
-          title: 'Write My Name in Chinese',
-          description: 'Learn how to write your name in Chinese',
-          path: '/write-my-name-in-chinese',
-          emoji: '✍️'
-        },
-        {
           id: 'custom',
           title: 'Custom Generator',
           description: 'Create personalized Chinese names',
@@ -96,13 +75,6 @@ export default {
           emoji: '🄤'
         },
         {
-          id: 'last-names',
-          title: 'Chinese Last Names',
-          description: 'Explore common Chinese surnames',
-          path: '/chinese-last-names',
-          emoji: '👨‍👩‍👧‍👦'
-        },        
-        {
           id: 'zodiac',
           title: 'Zodiac Calculator',
           description: 'Find your Chinese zodiac sign',
@@ -115,11 +87,74 @@ export default {
           description: 'Analyze your star sign for naming',
           path: '/constellation-analysis',
           emoji: '⭐'
+        },
+        {
+          id: 'numerology',
+          title: 'Name Numerology',
+          description: 'Calculate the numerology of Chinese names',
+          path: '/name-numerology-calculator',
+          emoji: '🔢'
+        },
+        {
+          id: 'girl-names',
+          title: 'Chinese Girl Names',
+          description: 'Browse beautiful female Chinese names',
+          path: '/chinese-girl-names',
+          emoji: '👧'
+        },
+        {
+          id: 'boy-names',
+          title: 'Chinese Boy Names',
+          description: 'Discover meaningful male Chinese names',
+          path: '/chinese-boy-names',
+          emoji: '👦'
+        },
+        {
+          id: 'last-names',
+          title: 'Chinese Last Names',
+          description: 'Explore common Chinese surnames',
+          path: '/chinese-last-names',
+          emoji: '👨‍👩‍👧‍👦'
+        },
+        {
+          id: 'names-meanings',
+          title: 'Names and Meanings',
+          description: 'Understand the cultural significance of Chinese names',
+          path: '/chinese-names-and-meanings',
+          emoji: '📚'
+        },
+        {
+          id: 'funny-names',
+          title: 'Funny Chinese Names',
+          description: 'Discover humorous Chinese name translations',
+          path: '/funny-chinese-names',
+          emoji: '😄'
+        },
+        {
+          id: 'dog-names',
+          title: 'Chinese Dog Names',
+          description: 'Find authentic Chinese names for your dog',
+          path: '/chinese-dog-names',
+          emoji: '🐕'
+        },
+        {
+          id: 'cat-names',
+          title: 'Chinese Cat Names',
+          description: 'Explore Chinese names for your feline friend',
+          path: '/chinese-cat-names',
+          emoji: '🐈'
+        },
+        {
+          id: 'write-my-name',
+          title: 'Write My Name in Chinese',
+          description: 'Learn how to write your name in Chinese',
+          path: '/write-my-name-in-chinese',
+          emoji: '✍️'
         }
       ];
       
-      // 过滤掉当前页面，只显示其他6个功能
-      return allTools.filter(tool => tool.path !== this.currentPath).slice(0, 6);
+      // 过滤掉当前页面，显示所有其他功能
+      return allTools.filter(tool => tool.path !== this.currentPath);
     }
   }
 }

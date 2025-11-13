@@ -70,6 +70,10 @@ export default {
         constellation: {
           title: 'Constellation Analysis',
           description: 'Analyze your constellation traits based on your birth date, providing detailed interpretation and naming suggestions'
+        },
+        numerology: {
+          title: 'Name Numerology Calculator',
+          description: 'Discover the hidden meaning in your name through numbers and understand your personality traits and destiny'
         }
       },
       translateName: {
@@ -434,7 +438,7 @@ export default {
     birthYear: 'Birth Year',
     calculateButton: 'Calculate Zodiac',
     results: {
-      title: 'Your Zodiac Information',
+      title: 'Your Zodiac Result',
       personality: 'Personality Traits',
       compatibility: 'Compatibility',
       luckyNumbers: 'Lucky Numbers',
@@ -518,6 +522,59 @@ export default {
       surname: 'Surname Analysis',
       givenName: 'Given Name Analysis',
       compatibility: 'Compatibility with Birth Date'
+    }
+  },
+  numerology: {
+    title: 'Name Numerology Calculator',
+    fullName: 'Full Name',
+    fullNamePlaceholder: 'Enter your full name',
+    selectSystem: 'Numerology System',
+    pythagorean: 'Pythagorean',
+    chaldean: 'Chaldean',
+    calculateButton: 'Calculate Numerology',
+    guideTitle: 'How to Use the Name Numerology Calculator',
+    results: {
+      title: 'Your Numerology Analysis',
+      expressionNumber: 'Expression Number',
+      soulUrgeNumber: 'Soul Urge Number',
+      personalityNumber: 'Personality Number',
+      meaningTitle: 'Number Meaning',
+      traits: 'Key Traits',
+      luckyColors: 'Lucky Colors',
+      luckyGems: 'Lucky Gemstones',
+      coreNumbers: 'Your Core Numbers',
+      calculationDetails: 'Calculation Details',
+      expressionCalculation: 'Expression Number Calculation',
+      soulUrgeCalculation: 'Soul Urge Number Calculation',
+      personalityCalculation: 'Personality Number Calculation',
+      sum: 'Sum',
+      reduction: 'Reduction'
+    },
+    guide: {
+      title: 'Understanding Name Numerology',
+      intro: 'Name numerology is the ancient practice of assigning numerical values to letters in your name to reveal insights about your personality, strengths, and life path. Numerology has been used for thousands of years across various cultures to help people understand themselves and their relationships better.',
+      systems: {
+        title: 'Numerology Systems',
+        content: 'There are two primary numerology systems used around the world, each with their own unique approach to assigning values to letters and interpreting the resulting numbers:',
+        pythagoreanDesc: 'The most widely used system, developed by Greek mathematician Pythagoras. It assigns numbers 1-9 to letters in a sequential pattern and is considered more modern and accessible.',
+        chaldeanDesc: 'An ancient system originating from Babylon that assigns numbers 1-8 to letters based on their vibrational value. It is considered more accurate by traditional numerologists but more complex.'
+      },
+      coreNumbers: {
+        title: 'Core Numbers in Numerology',
+        content: 'Your name contains several key numerical values that reveal different aspects of your personality and life:',
+        expressionDesc: 'Represents your overall potential, natural abilities, and life purpose. It is calculated using all the letters in your full name.',
+        soulUrgeDesc: 'Reveals your inner desires, motivations, and what your heart truly yearns for. It is calculated using only the vowels in your name.',
+        personalityDesc: 'Shows how others perceive you and how you present yourself to the world. It is calculated using only the consonants in your name.'
+      },
+      faq: {
+        title: 'Frequently Asked Questions',
+        q1: 'How accurate is numerology?',
+        a1: 'Numerology is considered an interpretive art rather than an exact science. Many find that their numerology readings provide valuable insights into their personality and life path, while others view it as a fun tool for self-reflection. The accuracy often depends on personal beliefs and how the information resonates with you.',
+        q2: 'Which numerology system is better, Pythagorean or Chaldean?',
+        a2: 'Neither system is definitively "better" than the other. The Pythagorean system is more commonly used in the Western world and is generally easier to understand. The Chaldean system is considered by some traditional numerologists to be more accurate as it is based on vibrational frequencies rather than sequential ordering. We recommend trying both to see which resonates more with you.',
+        q3: 'Do I use my birth name or current name for calculations?',
+        a3: 'For the most comprehensive analysis, you can calculate the numerology for both your birth name and your current name if they differ. Your birth name reveals innate qualities and your original life path, while your current name reflects your evolving identity and the energies you now project.'
+      }
     }
   },
   common: {

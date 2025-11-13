@@ -1,8 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3542330353041693"
-     crossorigin="anonymous"></script>
+    <!-- 环境检测脚本 - 必须在所有其他脚本之前 -->
+    <script>
+      // 检查是否为开发环境
+      function isDevEnvironment() {
+        // 检查URL是否为localhost或IP地址
+        return window.location.hostname === 'localhost' || 
+               window.location.hostname === '127.0.0.1' ||
+               window.location.hostname.match(/^192\.168\./) ||
+               window.location.hostname.match(/^172\.(1[6-9]|2[0-9]|3[0-1])\./); // 检查私有IP
+      };
+      
+      // 在控制台显示环境信息
+      console.log('当前环境:', isDevEnvironment() ? '开发环境' : '生产环境');
+      console.log('主机名:', window.location.hostname);
+    </script>
+    
+    <!-- Google AdSense - only loads in production -->
+    <script>
+      // 只在生产环境中加载 AdSense
+      if (!isDevEnvironment()) {
+        const adsenseScript = document.createElement('script');
+        adsenseScript.async = true;
+        adsenseScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3542330353041693';
+        adsenseScript.setAttribute('crossorigin', 'anonymous');
+        document.head.appendChild(adsenseScript);
+        console.log('Google AdSense已加载 (生产环境)');
+      } else {
+        console.log('Google AdSense已禁用 (开发环境)');
+      }
+    </script>
     <meta charset="UTF-8">
     <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,14 +38,32 @@
     <link rel="canonical" href="https://www.chinesename.us" />
     <!-- 合并Google站点验证标签 -->
     <meta name="google-site-verification" content="yewL8Nj8G-6i9MgsNOrBvmHITSniD8RxVHIoKP_APro, google327d3a41a389f4ee" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N0N9ZBKHYN"></script>
+    <!-- Google tag (gtag.js) - only loads in production -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      // 只在生产环境中加载GA
+      if (!isDevEnvironment()) {
+        // 加载GA脚本
+        const gaScript = document.createElement('script');
+        gaScript.async = true;
+        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-N0N9ZBKHYN';
+        document.head.appendChild(gaScript);
 
-      gtag('config', 'G-N0N9ZBKHYN');
+        // 配置GA
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-N0N9ZBKHYN');
+        
+        console.log('Google Analytics已加载 (生产环境)');
+      } else {
+        // 在开发环境中，提供一个模拟的gtag函数，以防止代码错误
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function() {
+          console.log('Google Analytics已禁用 (开发环境)', arguments);
+        };
+        
+        console.log('Google Analytics已禁用 (开发环境)');
+      }
     </script>
     <title>Translate Names to Chinese: Free Generator & Meanings</title>
     <meta name="description" content="Transform your English name into a unique Chinese name! Our free online generator provides accurate translations, meanings, and pronunciations. Convert names to Chinese effortlessly." />
