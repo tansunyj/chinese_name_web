@@ -48,11 +48,12 @@ export default {
 
 <style scoped>
 .usage-guide {
-  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-  border-radius: 12px;
+  background-color: #ffffff;
+  border-radius: 8px;
   padding: 20px 25px;
-  margin: 20px 0;
-  border: 1px solid #e9ecef;
+  margin: 30px 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  width: 100%;
   position: relative;
 }
 

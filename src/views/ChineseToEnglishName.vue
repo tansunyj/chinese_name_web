@@ -1,13 +1,18 @@
 <template>
   <div class="chinese-to-english-page">
     <div class="container">
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
       <h1 class="page-title">Chinese to English Name Translator | Convert Chinese Names to English</h1>
       
       <div class="seo-intro">
         <p class="seo-description">Translate Chinese names to English with our professional Chinese to English name translation tool. Get accurate English translations of Chinese names with proper pronunciation and cultural meaning. Our free Chinese to English name converter helps you understand the cultural significance behind Chinese names and find the perfect English equivalent. Convert Chinese name to English name easily with our advanced name translation technology.</p>
       </div>
       
-      <div class="content">
+      <!-- 内容容器开始 -->
+      <div class="content-container">
+      
+        <div class="content">
         <div class="form-section">
           <form @submit.prevent="translateName">
             <div class="form-group fullWidth">
@@ -83,6 +88,7 @@
         <!-- Explore More 组件 -->
         <ExploreMore :currentPath="$route.path" />
                 
+        <!-- Translation Guide -->
         <div class="translation-guide">
           <h2>How Our Chinese to English Name Translation Works</h2>
           <p>Our Chinese to English name translation service uses advanced linguistic analysis to convert Chinese names into appropriate English equivalents. We focus on preserving both the meaning and phonetic qualities of the original Chinese name when creating an English translation.</p>
@@ -169,7 +175,9 @@
             </div>
           </div>
         </div>
+        </div>
       </div>
+      <!-- 内容容器结束 -->
     </div>
   </div>
 </template>
@@ -181,6 +189,7 @@ import { translateName } from '@/services/openaiService';
 import MysticalLoader from '@/components/MysticalLoader.vue';
 import UsageGuide from '@/components/UsageGuide.vue';
 import ExploreMore from '@/components/ExploreMore.vue';
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
 import { useI18n } from 'vue-i18n';
 import { chineseToEnglishNamePrompt } from '@/config/systemPrompts';
 import aiConfig from '@/config/aiConfig';
@@ -200,7 +209,8 @@ export default {
   components: {
     MysticalLoader,
     UsageGuide,
-    ExploreMore
+    ExploreMore,
+    BreadcrumbNav
   },
   setup() {
     const { locale } = useI18n();

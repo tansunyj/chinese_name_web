@@ -1,12 +1,16 @@
 <template>
   <div class="constellation-page">
-    <div class="constellation-container">
+    <div class="container">
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
       <div class="header">
         <h1>{{ t('constellation.title') }}</h1>
         <p>{{ t('constellation.subtitle') }}</p>
       </div>
       
-      <div class="content">
+      <!-- 内容容器开始 -->
+      <div class="content-container">
+        <div class="content">
         <div class="form-section">
           <form @submit.prevent="calculateConstellation">
             <div class="input-group">
@@ -213,7 +217,9 @@
             </div>
           </div>
         </div>
+        </div>
       </div>
+      <!-- 内容容器结束 -->
     </div>
   </div>
 </template>
@@ -236,13 +242,15 @@ import { useI18n } from 'vue-i18n';
 import MysticalLoader from '@/components/MysticalLoader.vue';
 import UsageGuide from '@/components/UsageGuide.vue';
 import ExploreMore from '@/components/ExploreMore.vue';
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
 
 export default {
   name: 'ConstellationAnalysis',
   components: {
     MysticalLoader,
     UsageGuide,
-    ExploreMore
+    ExploreMore,
+    BreadcrumbNav
   },
   setup() {
     const { t, locale } = useI18n();
@@ -696,14 +704,7 @@ export default {
   overflow: hidden;
 }
 
-.constellation-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f8f9fb;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
+/* 使用全局容器样式替代 */
 
 .header {
   text-align: center;

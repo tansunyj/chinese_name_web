@@ -1,0 +1,689 @@
+<template>
+  <div class="translate-page chinese-girl-names-page">
+    <div class="container">
+      <h1 class="page-title">Chinese Girl Names with Meanings (2025) | Beautiful Female Names</h1>
+      
+      <div class="seo-intro">
+        <p class="seo-description">Explore 200+ beautiful Chinese girl names with meanings, pronunciations, and cultural significance. Find popular and unique female Chinese names for your baby with our comprehensive guide to traditional and modern Chinese girl names.</p>
+      </div>
+      
+      <div class="content">
+        <!-- 表单部分 -->
+        <div class="form-section">
+          <h2 class="section-title">Find Beautiful Chinese Girl Names</h2>
+          
+          <div class="search-filters">
+            <div class="search-box">
+              <input type="text" v-model="searchQuery" placeholder="Search Chinese girl names..." @input="filterNames" class="form-input" />
+              <button class="search-btn" @click="filterNames">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </button>
+            </div>
+            
+            <div class="filter-groups">
+              <div class="filter-group">
+                <label for="meaningFilter">Filter by meaning:</label>
+                <select id="meaningFilter" v-model="meaningFilter" @change="filterNames" class="form-select">
+                  <option value="">All meanings</option>
+                  <option value="beauty">Beauty & Elegance</option>
+                  <option value="wisdom">Wisdom & Intelligence</option>
+                  <option value="strength">Strength & Courage</option>
+                  <option value="nature">Nature & Elements</option>
+                  <option value="virtue">Virtue & Character</option>
+                </select>
+              </div>
+              
+              <div class="filter-group">
+                <label for="letterFilter">First letter:</label>
+                <select id="letterFilter" v-model="letterFilter" @change="filterNames" class="form-select">
+                  <option value="">All letters</option>
+                  <option v-for="letter in alphabet" :key="letter" :value="letter">{{ letter }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 结果部分 -->
+        <div class="results-section">
+          <h2>Top Chinese Girl Names</h2>
+          <p class="results-description">These beautiful Chinese female names are selected for their pleasant sounds, meaningful characters, and cultural significance.</p>
+          
+          <div class="results-grid">
+            <div v-for="name in topNames" :key="name.id" class="result-card">
+              <div class="result-header">
+                <div class="result-characters">{{ name.chinese }}</div>
+                <div class="result-pinyin">{{ name.pinyin }}</div>
+              </div>
+              <div class="result-details">
+                <div class="result-item">
+                  <h4>Meaning</h4>
+                  <p>{{ name.meaning }}</p>
+                </div>
+                <div class="result-item">
+                  <h4>Popularity</h4>
+                  <div class="popularity-stars">
+                    <span v-for="n in 5" :key="n" class="star" :class="{ 'filled': n <= name.popularity }">★</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 名字分类 -->
+        <div class="name-categories-section">
+          <h2>Chinese Girl Names by Category</h2>
+          <p class="section-description">Browse names grouped by their meanings and characteristics</p>
+          
+          <div class="category-tabs">
+            <button 
+              v-for="category in categories" 
+              :key="category.id"
+              class="tab-button" 
+              :class="{ active: activeCategory === category.id }"
+              @click="activeCategory = category.id"
+            >
+              {{ category.name }}
+            </button>
+          </div>
+          
+          <div class="category-content">
+            <div v-for="category in categories" :key="category.id" v-show="activeCategory === category.id" class="names-list">
+              <div v-for="name in category.names" :key="name.id" class="name-item">
+                <div class="name-chinese">{{ name.chinese }}</div>
+                <div class="name-details">
+                  <div class="name-pinyin">{{ name.pinyin }}</div>
+                  <div class="name-meaning">{{ name.meaning }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 使用指南 -->
+        <div class="usage-guide">
+          <h2>Understanding Chinese Girl Names</h2>
+          
+          <div class="guide-grid">
+            <div class="guide-card">
+              <h3>Character Selection</h3>
+              <p>In Chinese culture, female names often use characters that represent beauty, grace, elegance, and virtues. Characters associated with flowers, light, jade, and artistic qualities are particularly popular for girls.</p>
+            </div>
+            
+            <div class="guide-card">
+              <h3>Tonal Beauty</h3>
+              <p>Chinese is a tonal language, and the musical quality of a name is highly valued. Names for girls often use characters with lighter, rising tones (the 1st and 2nd tones) which create a softer, more feminine sound.</p>
+            </div>
+            
+            <div class="guide-card">
+              <h3>Meaning Layers</h3>
+              <p>Chinese names can have multiple layers of meaning through visual composition, homophonic wordplay, historical allusions, and cultural references, creating rich and nuanced names.</p>
+            </div>
+            
+            <div class="guide-card">
+              <h3>Modern Trends</h3>
+              <p>Contemporary Chinese girl names often blend traditional values with modern aspirations, incorporating characters related to uniqueness, global perspective, and personal achievement.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- FAQ 部分 -->
+        <div class="faq-section">
+          <h2>Frequently Asked Questions</h2>
+          
+          <div class="faq-list">
+            <div v-for="(faq, index) in faqs" :key="index" class="faq-item" :class="{'expanded': expandedFaqs[index]}" @click="toggleFaq(index)">
+              <div class="faq-question">
+                <h3>{{ faq.question }}</h3>
+                <span class="toggle-icon">{{ expandedFaqs[index] ? '−' : '+' }}</span>
+              </div>
+              <div class="faq-answer" v-show="expandedFaqs[index]">
+                <p>{{ faq.answer }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Explore More 组件 -->
+        <ExploreMore :currentPath="$route.path" />
+        
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import ExploreMore from '@/components/ExploreMore.vue';
+
+export default {
+  name: 'ChineseGirlNames',
+  components: {
+    ExploreMore
+  },
+  data() {
+    return {
+      searchQuery: '',
+      meaningFilter: '',
+      letterFilter: '',
+      activeCategory: 'beautiful',
+      expandedFaqs: Array(5).fill(false),
+      alphabet: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''),
+      
+      // 示例数据 - 实际应用中可从API或数据库获取
+      topNames: [
+        {
+          id: 1,
+          chinese: '雅琳',
+          pinyin: 'Yǎ Lín',
+          meaning: 'Elegant jade',
+          popularity: 5
+        },
+        {
+          id: 2,
+          chinese: '美慧',
+          pinyin: 'Měi Huì',
+          meaning: 'Beautiful wisdom',
+          popularity: 5
+        },
+        {
+          id: 3,
+          chinese: '诗怡',
+          pinyin: 'Shī Yí',
+          meaning: 'Poetry and joy',
+          popularity: 4
+        },
+        {
+          id: 4,
+          chinese: '晓梦',
+          pinyin: 'Xiǎo Mèng',
+          meaning: 'Dawn dream',
+          popularity: 4
+        },
+        {
+          id: 5,
+          chinese: '嘉欣',
+          pinyin: 'Jiā Xīn',
+          meaning: 'Auspicious happiness',
+          popularity: 5
+        },
+        {
+          id: 6,
+          chinese: '芸芸',
+          pinyin: 'Yún Yún',
+          meaning: 'Elegant and refined',
+          popularity: 3
+        },
+        // 添加更多名字数据...
+      ],
+      
+      categories: [
+        {
+          id: 'beautiful',
+          name: 'Beauty & Elegance',
+          names: [
+            { id: 1, chinese: '美丽', pinyin: 'Měi Lì', meaning: 'Beautiful and pretty' },
+            { id: 2, chinese: '婉婷', pinyin: 'Wǎn Tíng', meaning: 'Graceful and elegant' },
+            { id: 3, chinese: '倩雅', pinyin: 'Qiàn Yǎ', meaning: 'Pretty and refined' },
+            // 更多相关名字...
+          ]
+        },
+        {
+          id: 'wisdom',
+          name: 'Wisdom & Intelligence',
+          names: [
+            { id: 1, chinese: '智慧', pinyin: 'Zhì Huì', meaning: 'Wisdom and intelligence' },
+            { id: 2, chinese: '思颖', pinyin: 'Sī Yǐng', meaning: 'Thoughtful and talented' },
+            { id: 3, chinese: '哲雅', pinyin: 'Zhé Yǎ', meaning: 'Philosophy and elegance' },
+            // 更多相关名字...
+          ]
+        },
+        {
+          id: 'nature',
+          name: 'Nature & Elements',
+          names: [
+            { id: 1, chinese: '荷雨', pinyin: 'Hé Yǔ', meaning: 'Lotus and rain' },
+            { id: 2, chinese: '雪琳', pinyin: 'Xuě Lín', meaning: 'Snow jade' },
+            { id: 3, chinese: '云霞', pinyin: 'Yún Xiá', meaning: 'Clouds and sunset glow' },
+            // 更多相关名字...
+          ]
+        },
+      ],
+      
+      faqs: [
+        {
+          question: 'What are popular characters for Chinese girl names?',
+          answer: 'Popular characters for Chinese girl names include 雅 (elegant), 美 (beautiful), 慧 (wise), 婷 (graceful), 琳 (jade), 芳 (fragrant), 静 (peaceful), 怡 (joyful), 诗 (poetry), and 雪 (snow). These characters are chosen for their positive meanings and feminine qualities.'
+        },
+        {
+          question: 'How do Chinese names for girls differ from names for boys?',
+          answer: 'Chinese girl names typically use characters associated with beauty, gentleness, elegance, and positive virtues like kindness and wisdom. They often incorporate elements like flowers, jade, or literary references. Boy names tend to use characters suggesting strength, ambition, and moral character. Girl names might have softer tones, while boy names might have stronger sounds.'
+        },
+        {
+          question: 'Are there gender-neutral Chinese names?',
+          answer: 'Yes, many Chinese names are gender-neutral. Characters like 楠 (Nán, sturdy wood), 瑞 (Ruì, auspicious), 宇 (Yǔ, universe), and 雨 (Yǔ, rain) can be used for both boys and girls. Some characters have traditionally been used for both genders, while others have become more gender-neutral in modern naming practices.'
+        },
+        {
+          question: 'How important is the sound of a Chinese girl name?',
+          answer: 'The sound of a Chinese name is very important for girls. Parents often select characters with pleasing, melodious pronunciations. Names with soft sounds and rising tones are particularly popular. The combination of tones between the first and last name is also considered for overall harmony and flow when the full name is pronounced.'
+        },
+        {
+          question: 'Can I combine English and Chinese naming practices?',
+          answer: 'Absolutely! Many multicultural families choose a Chinese name that complements an English name, either phonetically or in meaning. For example, a girl named "Lily" might have a Chinese name with characters related to flowers. Some families use the Chinese name as a middle name or vice versa, creating a meaningful connection between different cultural naming traditions.'
+        }
+      ]
+    };
+  },
+  methods: {
+    filterNames() {
+      // 实现名字筛选逻辑
+      console.log('Filtering with query:', this.searchQuery, 'meaning:', this.meaningFilter, 'letter:', this.letterFilter);
+      // 在实际应用中，这里应该过滤topNames和categories中的名字
+    },
+    toggleFaq(index) {
+      this.$set(this.expandedFaqs, index, !this.expandedFaqs[index]);
+    }
+  },
+  head() {
+    return {
+      title: "Chinese Girl Names with Meanings (2025) | Beautiful Female Names",
+      meta: [
+        { name: 'description', content: 'Explore 200+ beautiful Chinese girl names with meanings, pronunciations, and cultural significance. Find popular, unique and modern female Chinese names for your baby girl.' },
+        { name: 'keywords', content: 'chinese girl names,chinese names for girls,female chinese names,beautiful chinese girl names,chinese female names meaning,chinese baby girl names' }
+      ],
+      // 结构化数据
+      script: [
+        { type: 'application/ld+json', json: {
+          '@context': 'https://schema.org',
+          '@type': 'ItemList',
+          'itemListElement': [
+            // 这里会动态填充名字列表
+          ],
+          'numberOfItems': this.topNames.length
+        }},
+        { type: 'application/ld+json', json: {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          'mainEntity': this.faqs.map((faq, index) => ({
+            '@type': 'Question',
+            'name': faq.question,
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': faq.answer
+            }
+          }))
+        }}
+      ]
+    };
+  }
+}
+</script>
+
+<style scoped>
+/* 页面基础样式 */
+.chinese-girl-names-page {
+  padding-bottom: 60px;
+}
+
+.page-title {
+  font-size: 2rem;
+  color: #333;
+  margin: 1.5rem 0 1rem;
+  text-align: center;
+}
+
+.seo-intro {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.seo-description {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 表单部分样式 */
+.form-section {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.search-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.search-box {
+  display: flex;
+  max-width: 100%;
+}
+
+.form-input {
+  flex-grow: 1;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.search-btn {
+  background-color: #e60012;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  padding: 0 15px;
+  cursor: pointer;
+}
+
+.search-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.filter-groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 200px;
+}
+
+.filter-group label {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.form-select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+/* 结果部分样式 */
+.results-section {
+  margin-bottom: 40px;
+}
+
+.results-section h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.results-description {
+  text-align: center;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.result-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.result-card:hover {
+  transform: translateY(-5px);
+}
+
+.result-header {
+  background-color: #f8f8f8;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.result-characters {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #e60012;
+}
+
+.result-pinyin {
+  font-size: 1rem;
+  color: #666;
+  margin-top: 5px;
+}
+
+.result-details {
+  padding: 15px;
+}
+
+.result-item {
+  margin-bottom: 15px;
+}
+
+.result-item:last-child {
+  margin-bottom: 0;
+}
+
+.result-item h4 {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.popularity-stars {
+  display: flex;
+}
+
+.star {
+  color: #ddd;
+  font-size: 1.2rem;
+}
+
+.star.filled {
+  color: #ffb400;
+}
+
+/* 名字分类部分 */
+.name-categories-section {
+  margin-bottom: 40px;
+}
+
+.name-categories-section h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.section-description {
+  text-align: center;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.category-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.tab-button {
+  background: none;
+  border: 1px solid #e60012;
+  color: #e60012;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+.tab-button.active {
+  background-color: #e60012;
+  color: white;
+}
+
+.names-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 15px;
+}
+
+.name-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  background-color: white;
+}
+
+.name-chinese {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #e60012;
+  margin-right: 15px;
+  min-width: 60px;
+  text-align: center;
+}
+
+.name-details {
+  flex-grow: 1;
+}
+
+.name-pinyin {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.name-meaning {
+  font-size: 0.9rem;
+  color: #444;
+}
+
+/* 使用指南 */
+.usage-guide {
+  margin-bottom: 40px;
+}
+
+.usage-guide h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.guide-card {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.guide-card h3 {
+  color: #e60012;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.guide-card p {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* FAQ部分 */
+.faq-section {
+  margin-bottom: 40px;
+}
+
+.faq-section h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.faq-item {
+  border-bottom: 1px solid #eee;
+  padding: 15px 0;
+  cursor: pointer;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-question h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+  margin: 0;
+}
+
+.toggle-icon {
+  font-size: 1.5rem;
+  color: #e60012;
+}
+
+.faq-answer {
+  padding-top: 15px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .results-grid, .guide-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .filter-groups {
+    flex-direction: column;
+  }
+  
+  .filter-group {
+    min-width: 100%;
+  }
+}
+</style>

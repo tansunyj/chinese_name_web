@@ -1,6 +1,8 @@
 <template>
   <div class="wuxing-page">
     <div class="container">
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
       <h1 class="page-title">Five Elements and Eight Characters Theory (五行八字理论)</h1>
       
       <div class="content-wrapper">
@@ -193,8 +195,13 @@
 </template>
 
 <script>
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
+
 export default {
   name: 'WuXingBaZi',
+  components: {
+    BreadcrumbNav
+  },
   data() {
     return {
       // Page data

@@ -1,6 +1,8 @@
 <template>
   <div class="zodiac-compatibility-page">
     <div class="container">
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
       <h1 class="page-title">Chinese Zodiac Compatibility (生肖属相相配)</h1>
       
       <div class="content">
@@ -103,6 +105,7 @@
 // 生肖相关图片导入
 import ShuImg from '@/assets/images/zodiac/shu.png';
 import NiuImg from '@/assets/images/zodiac/niu.png';
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
 import HuImg from '@/assets/images/zodiac/hu.png';
 import TuImg from '@/assets/images/zodiac/tu.png';
 import LongImg from '@/assets/images/zodiac/long.png';
@@ -116,6 +119,9 @@ import ZhuImg from '@/assets/images/zodiac/zhu.png';
 
 export default {
   name: 'ZodiacNaming',
+  components: {
+    BreadcrumbNav
+  },
   data() {
     return {
       // 生肖图片映射

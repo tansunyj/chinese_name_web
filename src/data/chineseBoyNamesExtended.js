@@ -1,0 +1,60 @@
+// 扩展的中文男孩名字数据 - 包含更多优质名字
+export const extendedBoyNames = [
+  // 51-100: 意境诗意类名字
+  { id: 51, chinese: '云起', pinyin: 'Yún Qǐ', meaning: '云彩升起，前途无量', popularity: 4, categories: ['自然', '前程'] },
+  { id: 52, chinese: '雨林', pinyin: 'Yǔ Lín', meaning: '雨水滋润森林，生机勃勃', popularity: 4, categories: ['自然', '生机'] },
+  { id: 53, chinese: '昊天', pinyin: 'Hào Tiān', meaning: '广阔的天空，胸怀宽广', popularity: 5, categories: ['广阔', '胸怀'] },
+  { id: 54, chinese: '清风', pinyin: 'Qīng Fēng', meaning: '清爽的风，正直高洁', popularity: 5, categories: ['清爽', '高洁'] },
+  { id: 55, chinese: '明月', pinyin: 'Míng Yuè', meaning: '明亮的月光，光明磊落', popularity: 5, categories: ['光明', '磊落'] },
+  { id: 56, chinese: '山河', pinyin: 'Shān Hé', meaning: '江山如画，气势磅礴', popularity: 4, categories: ['壮美', '气势'] },
+  { id: 57, chinese: '鹏飞', pinyin: 'Péng Fēi', meaning: '大鹏展翅，高飞远翔', popularity: 5, categories: ['远大', '飞翔'] },
+  { id: 58, chinese: '子墨', pinyin: 'Zǐ Mò', meaning: '文采斐然，内涵丰富', popularity: 4, categories: ['文采', '内涵'] },
+  { id: 59, chinese: '天翊', pinyin: 'Tiān Yì', meaning: '如天空般广阔，有翱翔之意', popularity: 4, categories: ['广阔', '翱翔'] },
+  { id: 60, chinese: '海阔', pinyin: 'Hǎi Kuò', meaning: '海阔天空，胸怀宽广', popularity: 4, categories: ['宽广', '胸怀'] },
+  
+  // 61-80: 儒雅博学类名字
+  { id: 61, chinese: '睿智', pinyin: 'Ruì Zhì', meaning: '聪明智慧，明达通达', popularity: 5, categories: ['聪明', '智慧'] },
+  { id: 62, chinese: '博文', pinyin: 'Bó Wén', meaning: '博学多闻，学识渊博', popularity: 5, categories: ['博学', '学识'] },
+  { id: 63, chinese: '修文', pinyin: 'Xiū Wén', meaning: '修养文学，温文尔雅', popularity: 4, categories: ['修养', '文学'] },
+  { id: 64, chinese: '哲明', pinyin: 'Zhé Míng', meaning: '哲学明理，思想深刻', popularity: 4, categories: ['哲学', '明理'] },
+  { id: 65, chinese: '宏儒', pinyin: 'Hóng Rú', meaning: '宏大的儒者，学识广博', popularity: 4, categories: ['宏大', '学识'] },
+  { id: 66, chinese: '经纶', pinyin: 'Jīng Lún', meaning: '经世济民，治国安邦', popularity: 4, categories: ['治世', '济民'] },
+  { id: 67, chinese: '文轩', pinyin: 'Wén Xuān', meaning: '文采飞扬，气宇轩昂', popularity: 5, categories: ['文采', '气宇'] },
+  { id: 68, chinese: '书怀', pinyin: 'Shū Huái', meaning: '喜爱书籍，胸怀天下', popularity: 4, categories: ['书籍', '胸怀'] },
+  { id: 69, chinese: '思源', pinyin: 'Sī Yuán', meaning: '思考源头，饮水思源', popularity: 5, categories: ['思考', '感恩'] },
+  { id: 70, chinese: '致远', pinyin: 'Zhì Yuǎn', meaning: '志向远大，一往无前', popularity: 5, categories: ['志向', '远大'] },
+  { id: 71, chinese: '博雅', pinyin: 'Bó Yǎ', meaning: '博学文雅，知识渊博', popularity: 4, categories: ['博学', '文雅'] },
+  { id: 72, chinese: '君道', pinyin: 'Jūn Dào', meaning: '君子之道，正直高尚', popularity: 4, categories: ['君子', '正直'] },
+  { id: 73, chinese: '明哲', pinyin: 'Míng Zhé', meaning: '明白哲理，通达事理', popularity: 5, categories: ['明白', '哲理'] },
+  { id: 74, chinese: '子健', pinyin: 'Zǐ Jiàn', meaning: '如君子般健康茁壮', popularity: 5, categories: ['君子', '健康'] },
+  { id: 75, chinese: '弘文', pinyin: 'Hóng Wén', meaning: '弘扬文化，博学多识', popularity: 4, categories: ['文化', '博学'] },
+  { id: 76, chinese: '鸿熙', pinyin: 'Hóng Xī', meaning: '鸿鹄之志，前程似锦', popularity: 4, categories: ['志向', '前程'] },
+  { id: 77, chinese: '景行', pinyin: 'Jǐng Xíng', meaning: '景仰行走，取自诗经', popularity: 4, categories: ['景仰', '行走'] },
+  { id: 78, chinese: '修杰', pinyin: 'Xiū Jié', meaning: '修养高尚，卓越杰出', popularity: 5, categories: ['修养', '卓越'] },
+  { id: 79, chinese: '伟泽', pinyin: 'Wěi Zé', meaning: '伟大的恩泽，宏伟的气度', popularity: 5, categories: ['伟大', '恩泽'] },
+  { id: 80, chinese: '嘉树', pinyin: 'Jiā Shù', meaning: '美好的大树，栋梁之才', popularity: 4, categories: ['美好', '栋梁'] },
+  
+  // 81-100: 阳刚气质类名字
+  { id: 81, chinese: '钢毅', pinyin: 'Gāng Yì', meaning: '钢铁般的意志，坚毅不拔', popularity: 4, categories: ['钢铁', '坚毅'] },
+  { id: 82, chinese: '峻熙', pinyin: 'Jùn Xī', meaning: '高大挺拔，光明盛大', popularity: 5, categories: ['高大', '光明'] },
+  { id: 83, chinese: '强宁', pinyin: 'Qiáng Níng', meaning: '强大而宁静，内外兼修', popularity: 4, categories: ['强大', '宁静'] },
+  { id: 84, chinese: '刚健', pinyin: 'Gāng Jiàn', meaning: '刚强健壮，意志坚定', popularity: 5, categories: ['刚强', '健壮'] },
+  { id: 85, chinese: '壮志', pinyin: 'Zhuàng Zhì', meaning: '壮志凌云，志向远大', popularity: 5, categories: ['壮志', '远大'] },
+  { id: 86, chinese: '雄鹰', pinyin: 'Xióng Yīng', meaning: '如雄鹰般翱翔于天际', popularity: 4, categories: ['雄壮', '翱翔'] },
+  { id: 87, chinese: '凌云', pinyin: 'Líng Yún', meaning: '凌云壮志，直上云霄', popularity: 5, categories: ['壮志', '高远'] },
+  { id: 88, chinese: '霆锋', pinyin: 'Tíng Fēng', meaning: '如雷霆般威猛，如锋刃般锐利', popularity: 5, categories: ['威猛', '锐利'] },
+  { id: 89, chinese: '强军', pinyin: 'Qiáng Jūn', meaning: '强壮如军队，威武不屈', popularity: 4, categories: ['强壮', '威武'] },
+  { id: 90, chinese: '嘉骏', pinyin: 'Jiā Jùn', meaning: '美好俊秀，如骏马般奔腾', popularity: 5, categories: ['美好', '奔腾'] },
+  { id: 91, chinese: '勇毅', pinyin: 'Yǒng Yì', meaning: '勇敢坚毅，无所畏惧', popularity: 5, categories: ['勇敢', '坚毅'] },
+  { id: 92, chinese: '鹏程', pinyin: 'Péng Chéng', meaning: '如大鹏一样，前程远大', popularity: 5, categories: ['远大', '前程'] },
+  { id: 93, chinese: '浩然', pinyin: 'Hào Rán', meaning: '浩然正气，磊落坦荡', popularity: 5, categories: ['正气', '坦荡'] },
+  { id: 94, chinese: '泰山', pinyin: 'Tài Shān', meaning: '如泰山一般沉稳厚重', popularity: 4, categories: ['沉稳', '厚重'] },
+  { id: 95, chinese: '文韬', pinyin: 'Wén Tāo', meaning: '文韬武略，才华横溢', popularity: 4, categories: ['才华', '智谋'] },
+  { id: 96, chinese: '武略', pinyin: 'Wǔ Lüè', meaning: '武艺谋略，英勇善战', popularity: 4, categories: ['武艺', '谋略'] },
+  { id: 97, chinese: '俊杰', pinyin: 'Jùn Jié', meaning: '俊美杰出，出类拔萃', popularity: 5, categories: ['俊美', '杰出'] },
+  { id: 98, chinese: '煜城', pinyin: 'Yù Chéng', meaning: '光耀城邦，前途光明', popularity: 4, categories: ['光耀', '光明'] },
+  { id: 99, chinese: '擎宇', pinyin: 'Qíng Yǔ', meaning: '托起宇宙，志向远大', popularity: 4, categories: ['志向', '远大'] },
+  { id: 100, chinese: '英豪', pinyin: 'Yīng Háo', meaning: '英勇豪迈，气概不凡', popularity: 5, categories: ['英勇', '豪迈'] }
+];
+
+export default extendedBoyNames;

@@ -82,57 +82,64 @@ Please create two Chinese names for {{GENDER_TEXT}} users with the following req
    - ALL EXPLANATIONS AND ANALYSIS TEXT MUST BE IN ENGLISH
    - Chinese characters themselves should be preserved as they are
 
-5. **Return Format**:
-Please strictly return results in the following JSON format:
+5. **CRITICAL REQUIREMENT - EXACT JSON FORMAT**:
+YOU MUST RETURN EXACTLY THIS JSON STRUCTURE. NO OTHER FORMAT IS ACCEPTABLE. DO NOT RETURN ANY OTHER JSON STRUCTURE LIKE {"name": "...", "meaning": "...", "five_elements": "..."}.
 \`\`\`json
 {
   "names": [
     {
-      "characters": "Complete name (including {{LAST_NAME}} surname)",
-      "pinyin": "Pinyin notation",
-      "explanation": "Name meaning explanation IN ENGLISH",
-      "cultural": "Cultural background description IN ENGLISH",
-      "birthInfo": {
-        "lunarDate": "{{LUNAR_DATE}}",
-        "zodiac": "{{ZODIAC}}",
-        "eightChar": {
-          "year": "Year pillar",
-          "month": "Month pillar", 
-          "day": "Day pillar",
-          "hour": "Hour pillar"
-        }
-      },
+      "fullName": "The analyzed Chinese name", 
       "analysis": {
-        "strokes": Total stroke count,
-        "characterElements": ["First character's element", "Second character's element", "Third character's element"],
-        "fiveElementsBalance": "Five Elements balance analysis IN ENGLISH",
-        "soundMeaning": "Phonetics and meaning analysis IN ENGLISH",
-        "compatibility": "Compatibility with birth chart IN ENGLISH",
-        "score": Overall score (0-100),
+        "meaning": {
+          "字1": "Detailed meaning explanation of first character IN ENGLISH",
+          "字2": "Detailed meaning explanation of second character IN ENGLISH"
+        },
+        "culturalBackground": "Cultural background description IN ENGLISH (2-3 sentences)",
+        "pronunciation": "Pinyin with tone marks",
+        "compatibility": "Compatibility analysis with birth info IN ENGLISH (2-3 sentences)",
+        "score": 90,
         "subscores": {
-          "fiveElements": Five Elements Ba Zi score (based on actual analysis 60-98),
-          "soundShape": Sound & Form score (based on actual analysis 70-98),
-          "meaning": Meaning & Structure score (based on actual analysis 75-98),
-          "zodiac": Zodiac Compatibility score (based on actual analysis 70-95),
-          "birthChart": Birth Chart score (based on actual analysis 65-96),
-          "classical": Classical Studies score (based on actual analysis 70-96)
+          "fiveElements": 92,
+          "soundShape": 88,
+          "meaning": 95,
+          "zodiac": 85,
+          "birthChart": 89,
+          "classical": 91
         },
         "eightCharacterAnalysis": "Concise Ba Zi analysis IN ENGLISH (1-2 sentences)",
         "fiveElementsAnalysis": "Concise Five Elements analysis IN ENGLISH (1-2 sentences)",
         "iChingAnalysis": "Concise I-Ching analysis IN ENGLISH (1-2 sentences)",
         "zodiacAnalysis": "Concise zodiac analysis IN ENGLISH (1-2 sentences)",
-        "nameAnalysis": "Concise overall analysis IN ENGLISH (2-3 sentences)"
-      },
-      "characterMeanings": {
-        "字1": "Detailed meaning explanation of this character IN ENGLISH",
-        "字2": "Detailed meaning explanation of this character IN ENGLISH"
+        "nameAnalysis": "Overall name analysis IN ENGLISH (2-3 sentences)",
+        "characterElements": ["First character's element", "Second character's element"]
       }
     }
   ]
 }
 \`\`\`
 
-Please ensure the returned JSON format completely conforms to the above structure, including all required fields, especially that each name's subscores are scored based on the actual characteristics of that name with differentiated values. ALL EXPLANATORY TEXT MUST BE IN ENGLISH while preserving Chinese characters.`,
+CRITICAL: You MUST return the exact JSON structure shown above. DO NOT return any other format such as:
+- {"name": "...", "meaning": "...", "five_elements": "..."}
+- {"analysis": {...}} without "names" array
+- Any flat structure without nested "analysis" object
+
+REQUIRED STRUCTURE REMINDER:
+{
+  "names": [
+    {
+      "fullName": "...",
+      "analysis": {
+        "meaning": {...},
+        "culturalBackground": "...",
+        "score": ...,
+        "subscores": {...},
+        ...
+      }
+    }
+  ]
+}
+
+ALL EXPLANATORY TEXT MUST BE IN ENGLISH while preserving Chinese characters.`,
 
   // 简化的用户提示词 - 只包含业务参数
   user: (params) => {
@@ -208,8 +215,121 @@ export const nameTranslationPrompts = {
 
 // 名字分析提示词模板
 export const nameAnalysisPrompts = {
-  // 系统提示词
-  system: "你是一位专业的中文姓名分析师，精通姓氏来源、历史文化、五行八字、音律字形、传统命理等姓名学知识。你能够从姓氏分析（来源、历史和文化意义）、名字字音分析（韵律、音调和谐度）、名字字形分析（笔画、结构美感）、名字含义分析（字义、典故引用）、五行分析（各字五行属性、相生相克关系）、八字命理分析（与生辰八字搭配）、社会印象分析（名字给人的第一印象）等多个维度对中文名字进行全面深入的专业分析，并提供综合评分。",
+  // 系统提示词 - 参考nameGenerationPrompts的格式
+  system: `You are a master of Chinese name analysis with deep expertise in name etymology, character meanings, Five Elements theory, and cultural significance. Analyze names with precision and cultural sensitivity.
+
+IMPORTANT: Keep your response concise and focus on quality over quantity in explanations.
+
+Please provide a comprehensive analysis of the Chinese name, including:
+
+1. **Naming Principles**:
+   - Names conform to traditional Chinese naming customs with harmonious phonetics
+   - Consider the characteristics and suitable characters for the {{ZODIAC}} zodiac sign
+   - Combine Five Elements and Ba Zi theory for character selection
+   - Reflect the personality traits of {{CHARACTERISTICS}}
+   - Embody the meaning of {{DESIRED_MEANING}}
+
+2. **Scoring Standards** (Provide specific and different scores for each name):
+
+   **Five Elements Ba Zi Score (fiveElements)** (60-100 points):
+   - 95-100 points: Name characters perfectly complement the birth chart, strengthening beneficial elements and compensating for weak elements
+   - 90-94 points: Very good Five Elements combination, most characters align with Ba Zi favorable gods
+   - 85-89 points: Good Five Elements combination, basically meets Ba Zi requirements
+   - 80-84 points: Average Five Elements combination, some characters match Ba Zi
+   - 75-79 points: Weak Five Elements combination, needs improvement
+   - 60-74 points: Five Elements combination not ideal
+
+   **Sound and Form Score (soundShape)** (70-100 points):
+   - 95-100 points: Very harmonious phonetics, beautiful character forms, easy to read and write, melodious
+   - 90-94 points: Harmonious phonetics, beautiful forms, clear pronunciation
+   - 85-89 points: Good phonetics, proper forms, relatively smooth pronunciation
+   - 80-84 points: Average phonetics, ordinary forms, acceptable pronunciation
+   - 75-79 points: Weak phonetics, forms or pronunciation need improvement
+   - 70-74 points: Phonetics and forms need optimization
+
+   **Meaning and Structure Score (meaning)** (75-100 points):
+   - 95-100 points: Extremely profound and beautiful meaning, rich cultural connotation, high aspirations
+   - 90-94 points: Beautiful and profound meaning, good cultural foundation
+   - 85-89 points: Good meaning, certain cultural connotation
+   - 80-84 points: Average meaning, basically meets expectations
+   - 75-79 points: Shallow meaning, needs enhanced connotation
+
+   **Zodiac Compatibility Score (zodiac)** (70-100 points):
+   - 90-100 points: Completely fits zodiac suitable characters, strengthens zodiac advantages
+   - 85-89 points: Mostly fits zodiac characteristics, quite suitable
+   - 80-84 points: Basically meets zodiac requirements
+   - 75-79 points: Partially fits zodiac characteristics
+   - 70-74 points: Average zodiac compatibility
+
+   **Birth Chart Score (birthChart)** (65-100 points):
+   - 93-100 points: Highly compatible with birth chart, extremely high numerological value
+   - 88-92 points: Very good compatibility with Ba Zi, high numerological value
+   - 83-87 points: Good compatibility with Ba Zi
+   - 78-82 points: Basic compatibility with Ba Zi
+   - 73-77 points: Average compatibility with Ba Zi
+   - 65-72 points: Low compatibility with Ba Zi
+
+   **Classical Studies Application Score (classical)** (70-100 points):
+   - 93-100 points: Deeply embodies classical studies, rich in poetry and cultural connotation
+   - 88-92 points: Well embodies classical culture, has elegant temperament
+   - 83-87 points: Shows certain classical culture
+   - 78-82 points: Basically meets traditional culture requirements
+   - 73-77 points: Average traditional culture embodiment
+   - 70-72 points: Weak traditional culture connotation
+
+3. **Analysis Requirements** (Keep concise):
+   - Provide Chinese characters, pinyin notation for each name
+   - Concise explanation of each character's meaning and cultural background IN ENGLISH (2-3 sentences max)
+   - Brief analysis of name compatibility with birth Ba Zi IN ENGLISH (2-3 sentences max)
+   - Provide Five Elements analysis and name study scoring IN ENGLISH
+   - Five Elements attributes for each character IN ENGLISH
+   - Each scoring sub-item must provide different scores based on the actual characteristics of that name
+   - Concise explanations for each analysis category IN ENGLISH (1-2 sentences each)
+
+4. **Important Requirements**:
+   - Each name's six subscores must be different, scoring based on the actual characteristics of that name
+   - Avoid using same or similar scores, each name should have a unique scoring combination
+   - Overall score should be weighted average of six sub-scores, suggested weights: Five Elements Ba Zi 25%, Sound & Form 20%, Meaning & Structure 20%, Zodiac Compatibility 15%, Birth Chart 10%, Classical Studies Application 10%
+   - ALL EXPLANATIONS AND ANALYSIS TEXT MUST BE IN ENGLISH
+   - Chinese characters themselves should be preserved as they are
+
+5. **CRITICAL REQUIREMENT - EXACT JSON FORMAT**:
+YOU MUST RETURN EXACTLY THIS JSON STRUCTURE. NO OTHER FORMAT IS ACCEPTABLE. DO NOT RETURN ANY OTHER JSON STRUCTURE LIKE {"name": "...", "meaning": "...", "five_elements": "..."}.
+\`\`\`json
+{
+  "names": [
+    {
+      "fullName": "The analyzed Chinese name", 
+      "analysis": {
+        "meaning": {
+          "字1": "Detailed meaning explanation of first character IN ENGLISH",
+          "字2": "Detailed meaning explanation of second character IN ENGLISH"
+        },
+        "culturalBackground": "Cultural background description IN ENGLISH (2-3 sentences)",
+        "pronunciation": "Pinyin with tone marks",
+        "compatibility": "Compatibility analysis with birth info IN ENGLISH (2-3 sentences)",
+        "score": 90,
+        "subscores": {
+          "fiveElements": 92,
+          "soundShape": 88,
+          "meaning": 95,
+          "zodiac": 85,
+          "birthChart": 89,
+          "classical": 91
+        },
+        "eightCharacterAnalysis": "Concise Ba Zi analysis IN ENGLISH (1-2 sentences)",
+        "fiveElementsAnalysis": "Concise Five Elements analysis IN ENGLISH (1-2 sentences)",
+        "iChingAnalysis": "Concise I-Ching analysis IN ENGLISH (1-2 sentences)",
+        "zodiacAnalysis": "Concise zodiac analysis IN ENGLISH (1-2 sentences)",
+        "nameAnalysis": "Overall name analysis IN ENGLISH (2-3 sentences)",
+        "characterElements": ["First character's element", "Second character's element"]
+      }
+    }
+  ]
+}
+\`\`\`
+
+Ensure your analysis is culturally accurate, balanced, and informative without being excessively lengthy.`,
 
   // 中文版提示词
   zh: (params) => {
@@ -226,37 +346,38 @@ export const nameAnalysisPrompts = {
 7. 社会印象分析（名字给人的第一印象）
 8. 综合评分（0-100）
 
-请以JSON格式返回结果：
+必须严格按照以下JSON格式返回结果。禁止使用{"name": "...", "meaning": "...", "five_elements": "..."}等其他格式：
 \`\`\`json
 {
-  "name": "分析的名字",
-  "surname": {
-    "origin": "姓氏起源",
-    "history": "历史背景",
-    "cultural": "文化意义"
-  },
-  "givenName": {
-    "characters": ["名字第一字", "名字第二字"],
-    "meanings": ["第一字含义", "第二字含义"]
-  },
-  "pronunciation": {
-    "pinyin": "完整拼音",
-    "tones": "声调组合",
-    "harmony": "音韵和谐度评分(1-10)"
-  },
-  "strokes": {
-    "total": 总笔画数,
-    "distribution": [第一字笔画, 第二字笔画, ...],
-    "balance": "笔画平衡性评价"
-  },
-  "fiveElements": {
-    "elements": ["第一字五行", "第二字五行", ...],
-    "relationship": "五行关系分析",
-    "compatibility": "与生辰八字的兼容性"
-  },
-  "impressions": ["社会印象关键词1", "社会印象关键词2", ...],
-  "overallScore": 综合评分(0-100),
-  "recommendations": ["改进建议1", "改进建议2", ...]
+  "names": [
+    {
+      "fullName": "分析的中文名字", 
+      "analysis": {
+        "meaning": {
+          "字1": "第一个字的详细含义解释（英文）",
+          "字2": "第二个字的详细含义解释（英文）"
+        },
+        "culturalBackground": "文化背景描述（英文，2-3句）",
+        "pronunciation": "带声调的拼音",
+        "compatibility": "与生辰八字的兼容性分析（英文，2-3句）",
+        "score": 90,
+        "subscores": {
+          "fiveElements": 92,
+          "soundShape": 88,
+          "meaning": 95,
+          "zodiac": 85,
+          "birthChart": 89,
+          "classical": 91
+        },
+        "eightCharacterAnalysis": "简明的八字分析（英文，1-2句）",
+        "fiveElementsAnalysis": "简明的五行分析（英文，1-2句）",
+        "iChingAnalysis": "简明的易经分析（英文，1-2句）",
+        "zodiacAnalysis": "简明的生肖分析（英文，1-2句）",
+        "nameAnalysis": "整体名字分析（英文，2-3句）",
+        "characterElements": ["第一个字的五行属性", "第二个字的五行属性"]
+      }
+    }
+  ]
 }
 \`\`\``;
   },
@@ -276,37 +397,38 @@ Please provide a comprehensive name analysis, including:
 7. Social impression analysis (first impressions given by the name)
 8. Overall score (0-100)
 
-Please return the result in JSON format:
+CRITICAL: You MUST use this exact JSON format. DO NOT use {"name": "...", "meaning": "...", "five_elements": "..."} or any other structure:
 \`\`\`json
 {
-  "name": "analyzed name",
-  "surname": {
-    "origin": "surname origin",
-    "history": "historical background",
-    "cultural": "cultural significance"
-  },
-  "givenName": {
-    "characters": ["first character", "second character"],
-    "meanings": ["first character meaning", "second character meaning"]
-  },
-  "pronunciation": {
-    "pinyin": "complete pinyin",
-    "tones": "tone pattern",
-    "harmony": "phonetic harmony score(1-10)"
-  },
-  "strokes": {
-    "total": totalStrokeCount,
-    "distribution": [firstCharStrokes, secondCharStrokes, ...],
-    "balance": "stroke balance evaluation"
-  },
-  "fiveElements": {
-    "elements": ["first char element", "second char element", ...],
-    "relationship": "five elements relationship analysis",
-    "compatibility": "compatibility with birth chart"
-  },
-  "impressions": ["social impression keyword1", "social impression keyword2", ...],
-  "overallScore": overallScore(0-100),
-  "recommendations": ["improvement suggestion1", "improvement suggestion2", ...]
+  "names": [
+    {
+      "fullName": "The analyzed Chinese name", 
+      "analysis": {
+        "meaning": {
+          "字1": "Detailed meaning explanation of first character IN ENGLISH",
+          "字2": "Detailed meaning explanation of second character IN ENGLISH"
+        },
+        "culturalBackground": "Cultural background description IN ENGLISH (2-3 sentences)",
+        "pronunciation": "Pinyin with tone marks",
+        "compatibility": "Compatibility analysis with birth info IN ENGLISH (2-3 sentences)",
+        "score": 90,
+        "subscores": {
+          "fiveElements": 92,
+          "soundShape": 88,
+          "meaning": 95,
+          "zodiac": 85,
+          "birthChart": 89,
+          "classical": 91
+        },
+        "eightCharacterAnalysis": "Concise Ba Zi analysis IN ENGLISH (1-2 sentences)",
+        "fiveElementsAnalysis": "Concise Five Elements analysis IN ENGLISH (1-2 sentences)",
+        "iChingAnalysis": "Concise I-Ching analysis IN ENGLISH (1-2 sentences)",
+        "zodiacAnalysis": "Concise zodiac analysis IN ENGLISH (1-2 sentences)",
+        "nameAnalysis": "Overall name analysis IN ENGLISH (2-3 sentences)",
+        "characterElements": ["First character's element", "Second character's element"]
+      }
+    }
+  ]
 }
 \`\`\``;
   }

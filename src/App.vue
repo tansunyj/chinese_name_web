@@ -107,10 +107,11 @@ img {
 }
 
 .container {
-  width: 100%;
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 0 30px;
+  width: 100% !important;
+  max-width: 1600px !important;
+  margin: 0 auto !important;
+  padding: 0 30px !important;
+  box-sizing: border-box !important;
 }
 
 /* SEO优化相关样式 */

@@ -1,13 +1,17 @@
 <template>
   <div class="fantasy-chinese-name-page">
     <div class="container">
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
       <h1 class="page-title">Fantasy Chinese Name Generator for Games, Novels & Characters | ChineseName.us</h1>
       
       <div class="seo-intro">
         <p class="seo-description">Generate enchanting fantasy Chinese names for your characters, stories, and creative projects. Our advanced fantasy Chinese name generator creates authentic mystical names combining traditional Chinese culture with magical elements. Perfect for fantasy novels, games, role-playing characters, wuxia stories, xianxia cultivation novels, and creative writing. Get unique fantasy Chinese names with deep cultural meaning, mystical significance, and supernatural powers.</p>
       </div>
       
-      <div class="content">
+      <!-- 内容容器开始 -->
+      <div class="content-container">
+        <div class="content">
         <div class="form-section">
           <form @submit.prevent="generateFantasyName">
             <div class="form-row">
@@ -302,18 +306,21 @@
             </div>
           </div>
         </div>
+        </div>
       </div>
+      <!-- 内容容器结束 -->
     </div>
   </div>
 </template>
 
 <script>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { message } from 'ant-design-vue';
 import MysticalLoader from '@/components/MysticalLoader.vue';
 import UsageGuide from '@/components/UsageGuide.vue';
 import ExploreMore from '@/components/ExploreMore.vue';
-import { useI18n } from 'vue-i18n';
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
 import aiConfig from '@/config/aiConfig';
 
 // 判断当前是否为开发环境
@@ -331,7 +338,8 @@ export default {
   components: {
     MysticalLoader,
     UsageGuide,
-    ExploreMore
+    ExploreMore,
+    BreadcrumbNav
   },
   setup() {
     const { locale } = useI18n();

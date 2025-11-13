@@ -1,13 +1,17 @@
 <template>
   <div class="translate-page">
     <div class="container">
-      <h1 class="page-title">English to Chinese Name Translator | Translate Your Name to Chinese Characters</h1>
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
+      <h1 class="page-title">Write My Name in Chinese | English to Chinese Name Translator</h1>
       
       <div class="seo-intro">
-        <p class="seo-description">Translate your English name to Chinese characters with our professional name translation tool. Get accurate Chinese name translations with proper pronunciation and cultural meaning. Our free English to Chinese name translator creates names that sound natural to native speakers while preserving your name's essence.</p>
+        <p class="seo-description">Learn how to write your name in Chinese with our professional name translator. Our tool helps you translate your English name to Chinese characters with accurate pronunciation and cultural meaning. Whether you want to write your name in Chinese for business cards, tattoos, or cultural appreciation, our free translator creates names that sound natural to native speakers while preserving your name's essence.</p>
       </div>
       
-      <div class="content">
+      <!-- 内容容器开始 -->
+      <div class="content-container">
+        <div class="content">
         <div class="form-section">
           <div class="language-select-buttons">
             <a 
@@ -98,6 +102,7 @@
         <!-- Explore More 组件 -->
         <ExploreMore :currentPath="$route.path" />
                 
+        <!-- Translation Guide -->
         <div class="translation-guide">
           <h2>How Our English to Chinese Name Translation Works</h2>
           <p>Our name translation service uses advanced linguistic algorithms to convert your English name into an authentic Chinese name that preserves both pronunciation and meaning. Unlike simple phonetic transliteration, we consider cultural context and character meanings to create a name that sounds natural to Chinese speakers.</p>
@@ -112,6 +117,81 @@
           
           <h3>Why Proper Name Translation Matters</h3>
           <p>In Chinese culture, names carry significant meaning. The characters used in your Chinese name can influence how you're perceived. Our translation service ensures your Chinese name has positive connotations and sounds natural to native speakers.</p>
+          
+          <h3>How to Write Your Name in Chinese</h3>
+          <p>Writing your name in Chinese involves choosing characters that match both sound and meaning. There are three main approaches to consider:</p>
+          
+          <div class="translation-methods">
+            <div class="method-card">
+              <h4>1. Phonetic Translation</h4>
+              <p>Characters are selected to sound like your original name when pronounced in Chinese. This is the most common approach for translating foreign names to Chinese.</p>
+              <p><strong>Example:</strong> "John" → "约翰" (Yuē hàn)</p>
+            </div>
+            
+            <div class="method-card">
+              <h4>2. Meaning-based Translation</h4>
+              <p>Characters are chosen based on the meaning of your original name, if your name has a translatable meaning.</p>
+              <p><strong>Example:</strong> "Rose" → "玫瑰" (Méi guī) - directly translating the flower name</p>
+            </div>
+            
+            <div class="method-card">
+              <h4>3. Combined Approach</h4>
+              <p>A balance of sound and meaning for the most culturally appropriate name.</p>
+              <p><strong>Example:</strong> "Grace" → "格蕾丝" (Gé lěi sī) - sounds like "Grace" while using characters with elegant meanings</p>
+            </div>
+          </div>
+          
+          <h3>Common English Names Written in Chinese</h3>
+          <div class="common-names-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>English Name</th>
+                  <th>Chinese Characters</th>
+                  <th>Pinyin</th>
+                  <th>Meaning Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Michael</td>
+                  <td>迈克尔</td>
+                  <td>Mài kè ěr</td>
+                  <td>Characters suggest "striding forward" and "overcoming challenges"</td>
+                </tr>
+                <tr>
+                  <td>Emma</td>
+                  <td>艾玛</td>
+                  <td>Ài mǎ</td>
+                  <td>Characters suggest "loving" and "agate/beautiful stone"</td>
+                </tr>
+                <tr>
+                  <td>David</td>
+                  <td>大卫</td>
+                  <td>Dà wèi</td>
+                  <td>Characters suggest "big" and "guard/protect"</td>
+                </tr>
+                <tr>
+                  <td>Sophia</td>
+                  <td>索菲亚</td>
+                  <td>Suǒ fēi yà</td>
+                  <td>Characters suggest "searching", "fragrant plant" and "elegance"</td>
+                </tr>
+                <tr>
+                  <td>William</td>
+                  <td>威廉</td>
+                  <td>Wēi lián</td>
+                  <td>Characters suggest "power/prestige" and "honest/upright"</td>
+                </tr>
+                <tr>
+                  <td>Olivia</td>
+                  <td>奥利维亚</td>
+                  <td>Ào lì wéi yà</td>
+                  <td>Phonetic translation with characters suggesting "profound" and "beautiful"</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           
           <!-- 添加常见问题FAQ部分 -->
           <h3>Frequently Asked Questions About Chinese Name Translation</h3>
@@ -144,10 +224,26 @@
                 <p itemprop="text">A good Chinese name should have positive meanings, pleasing sounds, appropriate character combinations, and balanced elements according to Chinese tradition. It should also be easy for Chinese speakers to pronounce and remember, while reflecting personal qualities or aspirations.</p>
               </div>
             </div>
+
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <h4 itemprop="name">How can I write my name in Chinese characters?</h4>
+              <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">To write your name in Chinese characters, simply enter your name in our translator above, select your gender if applicable, and our AI will generate appropriate Chinese characters that match your name's pronunciation while carrying positive meanings. The result will include the characters, their pronunciation (pinyin), and explanations of their meanings.</p>
+              </div>
+            </div>
+
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <h4 itemprop="name">Will my name in Chinese characters have a meaningful translation?</h4>
+              <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">Yes, our translator carefully selects Chinese characters that not only match the sounds of your name but also carry positive and meaningful connotations. Unlike mechanical transliteration, our system considers the cultural significance of each character to ensure your Chinese name has depth and meaning that resonates with native speakers.</p>
+              </div>
+            </div>
           </div>
         </div>
 
+        </div>
       </div>
+      <!-- 内容容器结束 -->
     </div>
   </div>
 </template>
@@ -158,10 +254,13 @@ import { message } from 'ant-design-vue';
 import { translateName } from '@/services/openaiService';
 import * as openaiService from '@/services/openaiService';
 // 移除了对 promptTemplates 的引用，现在提示词在后端保密处理
-import MysticalLoader from '@/components/MysticalLoader.vue';
-import UsageGuide from '@/components/UsageGuide.vue';
-import ExploreMore from '@/components/ExploreMore.vue';
+import MysticalLoader from '../components/MysticalLoader.vue';
+import BreadcrumbNav from '../components/BreadcrumbNav.vue';
+import UsageGuide from '../components/UsageGuide.vue';
+import ExploreMore from '../components/ExploreMore.vue';
 import { useI18n } from 'vue-i18n';
+import axios from 'axios';
+import { createWebApplicationSchema, createHowToSchema, addStructuredDataToPage } from '../utils/structuredData';
 import aiConfig from '@/config/aiConfig';
 
 // 判断当前是否为开发环境
@@ -193,7 +292,8 @@ export default {
   components: {
     MysticalLoader,
     UsageGuide,
-    ExploreMore
+    ExploreMore,
+    BreadcrumbNav
   },
   setup() {
     const { locale } = useI18n();
@@ -215,30 +315,44 @@ export default {
     
     // 添加结构化数据到head
     const addStructuredData = () => {
-      const structuredData = {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "English to Chinese Name Translator",
-        "url": "https://chinesename.us/english-to-chinese-translator",
-        "applicationCategory": "UtilityApplication",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
+      // 创建WebApplication结构化数据
+      const webAppSchema = createWebApplicationSchema({
+        name: "Write My Name in Chinese | English to Chinese Name Translator",
+        url: "https://chinesename.us/english-to-chinese-translator",
+        category: "UtilityApplication",
+        description: "Learn how to write your name in Chinese with our professional name translator. Get your English name written in authentic Chinese characters with accurate pronunciation."
+      });
+      
+      // 创建HowTo结构化数据
+      const howToSchema = createHowToSchema(
+        {
+          name: "How to Write My Name in Chinese",
+          description: "Learn how to write your name in Chinese characters with our professional translator."
         },
-        "description": "Translate your English name to Chinese characters with our professional name translation tool. Get accurate Chinese name translations with proper pronunciation and cultural meaning."
+        [
+          {
+            name: "Enter your name",
+            text: "Type your English or other language name into the translator field"
+          },
+          {
+            name: "Select preferences",
+            text: "Choose your language from the language selection options"
+          },
+          {
+            name: "Get your Chinese name",
+            text: "Click translate and view your name written in Chinese characters with pronunciation and meaning"
+          }
+        ]
+      );
+      
+      // 合并两种结构化数据
+      const combinedSchema = {
+        "@context": "https://schema.org",
+        "@graph": [webAppSchema, howToSchema]
       };
       
-      // 创建script元素
-      const script = document.createElement('script');
-      script.type = 'application/ld+json';
-      script.textContent = JSON.stringify(structuredData);
-      
-      // 添加到head
-      document.head.appendChild(script);
-      
-      // 保存引用以便在组件卸载时移除
-      structuredDataScript = script;
+      // 添加结构化数据到页面
+      structuredDataScript = addStructuredDataToPage(combinedSchema, 'translate-page-structured-data');
     };
     
     return { locale };
@@ -1429,6 +1543,78 @@ export default {
 
 .usage-tips li:last-child {
   margin-bottom: 0;
+}
+
+/* 添加翻译方法卡片样式 */
+.translation-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 25px 0;
+}
+
+.method-card {
+  flex: 1;
+  min-width: 250px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid #3aa757;
+}
+
+.method-card h4 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.method-card p {
+  color: #555;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.method-card p:last-child {
+  margin-bottom: 0;
+}
+
+/* 常见名字表格样式 */
+.common-names-table {
+  margin: 25px 0 35px;
+  overflow-x: auto;
+}
+
+.common-names-table table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #e0e0e0;
+}
+
+.common-names-table th,
+.common-names-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.common-names-table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  color: #333;
+}
+
+.common-names-table td {
+  color: #444;
+}
+
+.common-names-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.common-names-table tr:hover {
+  background-color: #f0f7ff;
 }
 
 /* 修正五行元素标签的颜色 */

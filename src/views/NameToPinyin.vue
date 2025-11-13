@@ -1,10 +1,13 @@
 <template>
   <div class="name-to-pinyin-page">
-    <div class="content">
-      <div class="container">
-        <h1 class="page-title">{{ $t('nameToPinyin.title') }} | Chinese Name Translation | Traduction de Nom Chinois | 中国語名前翻訳 | Транскрипция Китайских Имен</h1>
-        <p class="seo-description">Convert Chinese names to pinyin with accurate pronunciation guides. Learn how to say your name in Chinese. Convertir les noms chinois en pinyin. Chinesische Namen in Pinyin umwandeln. Преобразование китайских имен в пиньинь. 中国語の名前をピンインに変換。</p>
-        
+    <div class="container">
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
+      <h1 class="page-title">{{ $t('nameToPinyin.title') }} | Chinese Name Translation | Traduction de Nom Chinois | 中国語名前翻訳 | Транскрипция Китайских Имен</h1>
+      <p class="seo-description">Convert Chinese names to pinyin with accurate pronunciation guides. Learn how to say your name in Chinese. Convertir les noms chinois en pinyin. Chinesische Namen in Pinyin umwandeln. Преобразование китайских имен в пиньинь. 中国語の名前をピンインに変換。</p>
+      
+      <!-- 内容容器开始 -->
+      <div class="content-container">
         <div class="main-content">
           <div class="form-section">
             <form @submit.prevent="convertToPinyin">
@@ -166,8 +169,8 @@
             </div>
           </div>
         </div>
-
       </div>
+      <!-- 内容容器结束 -->
     </div>
   </div>
 </template>
@@ -181,12 +184,14 @@ import { message } from "ant-design-vue";
 import MysticalLoader from '@/components/MysticalLoader.vue';
 import UsageGuide from '@/components/UsageGuide.vue';
 import ExploreMore from '@/components/ExploreMore.vue';
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
 
 export default {
   components: {
     MysticalLoader,
     UsageGuide,
-    ExploreMore
+    ExploreMore,
+    BreadcrumbNav
   },
   setup() {
     const { t } = useI18n();

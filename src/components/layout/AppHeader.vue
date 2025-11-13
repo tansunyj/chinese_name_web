@@ -13,7 +13,16 @@
           <li><router-link to="/">Home</router-link></li>
           <li><router-link to="/english-to-chinese-translator">Translate to Chinese</router-link></li>
           <li><router-link to="/custom-chinese-name-generator">{{ $t('header.customName') }} Chinese Name</router-link></li>
-          <!--li><router-link to="/multilingual">{{ $t('header.multilingualName') }}</router-link></li-->
+          <!-- Names 下拉菜单 -->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" @click.prevent="toggleDropdown('names')">Names <span class="dropdown-icon" :class="{ 'rotated': activeDropdown === 'names' }">▼</span></a>
+            <ul class="dropdown-menu" :class="{ 'show': activeDropdown === 'names' }">
+              <li><router-link to="/chinese-girl-names" @click="closeDropdown">Chinese Girl Names</router-link></li>
+              <li><router-link to="/chinese-boy-names" @click="closeDropdown">Chinese Boy Names</router-link></li>
+              <li><router-link to="/chinese-last-names" @click="closeDropdown">Chinese Last Names</router-link></li>
+              <li><router-link to="/chinese-names-and-meanings" @click="closeDropdown">Chinese Names and Meanings</router-link></li>
+            </ul>
+          </li>
           <li><router-link to="/blog">Blog</router-link></li>
           <li><router-link to="/about">{{ $t('header.aboutUs') }}</router-link></li>
           <li class="telegram-nav-item">
@@ -50,7 +59,8 @@ export default {
   },
   data() {
     return {
-      currentLanguage: 'en'
+      currentLanguage: 'en',
+      activeDropdown: null
     }
   },
   mounted() {
@@ -58,6 +68,14 @@ export default {
     this.locale = 'en';
     this.currentLanguage = 'en';
     localStorage.setItem('userLanguage', 'en');
+    
+    // 添加点击其他区域关闭下拉菜单的监听器
+    document.addEventListener('click', this.handleOutsideClick);
+  },
+  
+  beforeUnmount() {
+    // 移除事件监听器以避免内存泄漏
+    document.removeEventListener('click', this.handleOutsideClick);
   },
   methods: {
     changeLanguage() {
@@ -65,6 +83,22 @@ export default {
       localStorage.setItem('userLanguage', this.currentLanguage);
       this.$forceUpdate();
       this.$root.$forceUpdate();
+    },
+    
+    toggleDropdown(menuId) {
+      this.activeDropdown = this.activeDropdown === menuId ? null : menuId;
+    },
+    
+    closeDropdown() {
+      this.activeDropdown = null;
+    },
+    
+    handleOutsideClick(event) {
+      // 检查点击是否在下拉菜单内部
+      const dropdown = document.querySelector('.dropdown');
+      if (dropdown && !dropdown.contains(event.target) && this.activeDropdown !== null) {
+        this.activeDropdown = null;
+      }
     }
   }
 }
@@ -163,6 +197,75 @@ export default {
 
 .main-nav a.router-link-active {
   color: #e60012;
+}
+
+/* 下拉菜单样式 */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.dropdown-icon {
+  font-size: 10px;
+  margin-left: 5px;
+  transition: transform 0.3s;
+  display: inline-block;
+}
+
+.dropdown-icon.rotated {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  min-width: 200px;
+  display: none;
+  flex-direction: column;
+  z-index: 1001;
+  padding: 5px 0;
+  margin-top: 5px;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.dropdown-menu.show {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown-menu li {
+  margin: 0;
+  width: 100%;
+}
+
+.dropdown-menu a {
+  padding: 10px 15px;
+  display: block;
+  color: #333;
+  text-decoration: none;
+  text-transform: none;
+  font-weight: 400;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f8f8f8;
+  color: #e60012;
+}
+
+.dropdown-menu a::after {
+  display: none;
 }
 
 /* Telegram导航项样式 */
@@ -289,6 +392,20 @@ export default {
   
   .logo, .actions {
     flex: 0 0 auto;
+  }
+  
+  /* 移动端下拉菜单样式 */
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    min-width: 180px;
+    max-width: 250px;
+  }
+  
+  .dropdown {
+    position: relative;
   }
   
   /* 移动端Telegram链接 */

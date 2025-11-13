@@ -18,12 +18,15 @@ export default defineConfig(({ command, mode }) => {
     publicDir: 'public', // 明确指定 public 目录
     plugins: [
       vue(),
-      vueDevTools(),
+      vueDevTools()
     ],
+    ssgOptions: {
+      entry: 'src/main-ssg.js'
+    },
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url))
-      },
+      }
     },
     // 定义环境变量
     define: {
@@ -44,10 +47,6 @@ export default defineConfig(({ command, mode }) => {
       // 优化构建选项
       rollupOptions: {
         output: {
-          manualChunks: {
-            'vue-vendor': ['vue', 'vue-router', 'vue-i18n'],
-            'ant-design': ['ant-design-vue'],
-          },
           // 确保静态资源使用正确的命名
           chunkFileNames: 'assets/js/[name]-[hash].js',
           entryFileNames: 'assets/js/[name]-[hash].js',
@@ -91,8 +90,9 @@ export default defineConfig(({ command, mode }) => {
           { from: /^\/custom$/, to: '/custom-chinese-name-generator' },
           { from: /^\/knowledge$/, to: '/blog' },
           { from: /^\/ai-chinese-name$/, to: '/ai-chinese-name-generator' },
+          { from: /^\/write-my-name-in-chinese$/, to: '/english-to-chinese-translator' },
 
-                    // Blog文章重定向规则
+          // Blog文章重定向规则
           { from: /^\/popular-chinese-names$/, to: '/blog/popular-chinese-names' },
           { from: /^\/chinese-surnames$/, to: '/blog/chinese-surnames' },
           { from: /^\/baijiaxing$/, to: '/blog/baijiaxing' },
@@ -112,7 +112,7 @@ export default defineConfig(({ command, mode }) => {
           { from: /^\/modern-traditional$/, to: '/blog/modern-traditional' },
           { from: /^\/era-naming-styles$/, to: '/blog/era-naming-styles' },
           { from: /^\/professional-considerations$/, to: '/blog/professional-considerations' },
-          { from: /^\/constellation$/, to: '/blog/constellation-analysis' },
+          { from: /^\/constellation$/, to: '/constellation-analysis' },
           { from: /^\/character-strokes$/, to: '/blog/character-strokes' },
           { from: /^\/fantasy-chinese-names-guide$/, to: '/blog/fantasy-chinese-names-guide' },
           
@@ -120,6 +120,45 @@ export default defineConfig(({ command, mode }) => {
           { from: /.*/, to: '/index.html' }
         ]
       }
+    },
+  
+    // vite-ssg 配置
+    ssg: {
+      includedRoutes(paths) {
+        // 定义需要预渲染的重要路由
+        const importantRoutes = [
+          '/',
+          '/english-to-chinese-translator',
+          '/write-my-name-in-chinese', // 这会被301重定向
+          '/chinese-names-and-meanings',
+          '/chinese-boy-names',
+          '/chinese-girl-names',
+          '/chinese-last-names',
+          '/name-generator',
+          '/fantasy-chinese-name-generator',
+          '/custom-chinese-name-generator',
+          '/funny-chinese-names', // 有趣中文名字页面
+          '/chinese-dog-names', // 中文狗名页面
+          '/chinese-cat-names', // 中文猫名页面
+          '/constellation-analysis', // 星座分析页面
+          '/tools/structured-data-test', // 结构化数据测试页面
+          '/blog'
+        ];
+        
+        // 返回需要预渲染的路由
+        return paths.filter(path => 
+          importantRoutes.includes(path) || 
+          path.startsWith('/blog/')
+        );
+      },
+      format: 'csr',
+      outDir: 'dist',
+      dirStyle: 'nested',
+      script: 'async',
+      crittersOptions: {
+        preload: 'swap',
+        inlineFonts: true
+      }
     }
-  }
+  };
 })

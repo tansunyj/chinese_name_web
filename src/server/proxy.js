@@ -101,21 +101,55 @@ app.post('/api/openai', async (req, res) => {
     console.log('构建的OpenAI请求体:', JSON.stringify(openaiRequestBody, null, 2));
 
     // 发送代理请求到OpenAI API
-    const response = await axios({
-      method: 'POST',
-      url: API_URL,
+    console.log('❗❗❗ [执行路径] 发送请求到OpenAI API...');
+    
+    const response = await axios.post(API_URL, openaiRequestBody, {
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${API_KEY}`
-      },
-      data: openaiRequestBody,
-      timeout: 120000
+        'Authorization': `Bearer ${API_KEY}`,
+        'Content-Type': 'application/json'
+      }
     });
+    
+    console.log('❗❗❗ [执行路径] 收到OpenAI响应!');
+    console.log('✅ 响应状态码:', response.status);
+    
+    // 分析响应数据结构
+    const data = response.data;
+    console.log('✅ 响应包含choices:', !!data.choices);
+    console.log('✅ choices长度:', data.choices ? data.choices.length : 0);
+    
+    // 提取实际的内容
+    if (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
+      const messageContent = data.choices[0].message.content;
+      console.log('❗❗❗ [执行路径] API返回的内容类型:', typeof messageContent);
+      console.log('✅ 内容长度:', messageContent.length);
+      
+      // 尝试解析JSON
+      try {
+        console.log('❗❗❗ [执行路径] 尝试解析JSON内容:');
+        const parsedContent = JSON.parse(messageContent);
+        console.log('✅ JSON解析成功!');
+        console.log('✅ 实际返回的JSON字段:', Object.keys(parsedContent));
+        console.log('✅ 完整JSON内容:', JSON.stringify(parsedContent, null, 2));
+        
+        // 检查是否与您期望的格式匹配
+        if (parsedContent.name && parsedContent.meaning && parsedContent.five_elements) {
+          console.log('⚠️ 返回的是旧格式! 与您期望的格式类似');
+        } else if (parsedContent.names && parsedContent.names[0] && parsedContent.names[0].analysis) {
+          console.log('✅ 返回的是新格式! 与提示词中定义的一致');
+        } else {
+          console.log('⚠️ 返回的格式与提示词中的不匹配!');
+        }
+      } catch (parseError) {
+        console.log('⛔ JSON解析失败:', parseError.message);
+        console.log('原始内容前500字符:', messageContent.substring(0, 500));
+      }
+    } else {
+      console.log('⚠️ 无法找到message.content!');
+      console.log('原始响应数据:', JSON.stringify(data, null, 2));
+    }
 
-    console.log('OpenAI API响应状态:', response.status);
-    console.log('OpenAI API响应头:', response.headers);
-
-    // 返回OpenAI的响应
+    // 返回OpenAI API响应
     return res.status(response.status).json(response.data);
   } catch (error) {
     console.error('代理请求错误:', error.message);
@@ -323,25 +357,82 @@ function detectBusinessType(userContent) {
 
   return 'unknown';
 }
-
-// 其他构建函数 - 根据业务类型完整构建OpenAI请求
 function buildNameAnalysisRequest(baseRequest, params) {
   const { name, birthDate, locale = 'zh' } = params;
   if (!name) {
-    console.log('❌ 名字分析请求缺少必需参数: name');
+    console.log('❔ 名字分析请求缺少必需参数: name');
     return null;
   }
 
-  console.log('🎯 构建名字分析请求，参数:', params);
+  console.log('❗❗❗ [执行路径] 1. 开始构建名字分析请求，参数:', JSON.stringify(params));
+
+  // 先打印nameAnalysisPrompts对象的结构
+  console.log('❗❗❗ [执行路径] 2. nameAnalysisPrompts对象结构:');
+  console.log('系统提示词存在:', !!nameAnalysisPrompts.system);
+  console.log('中文提示词存在:', typeof nameAnalysisPrompts.zh === 'function');
+  console.log('英文提示词存在:', typeof nameAnalysisPrompts.en === 'function');
+  console.log('提示词对象的完整键:', Object.keys(nameAnalysisPrompts));
 
   // 🔒 使用 promptTemplates.js 中的提示词
+  console.log('❗❗❗ [执行路径] 3. 提取系统提示词');
   const systemPrompt = nameAnalysisPrompts.system;
+  console.log('✅ 获取的系统提示词长度:', systemPrompt.length);
+  
+  console.log('❗❗❗ [执行路径] 4. 准备模板参数和选择提示词语言');
   const templateParams = { name, birthDate };
+  console.log('语言选择:', locale);
+  
+  console.log('❗❗❗ [执行路径] 5. 生成用户提示词');
   const userPrompt = locale === 'zh'
     ? nameAnalysisPrompts.zh(templateParams)
     : nameAnalysisPrompts.en(templateParams);
+  console.log('✅ 用户提示词生成完成，长度:', userPrompt.length);
 
-  console.log('✅ 生成的用户提示词:', userPrompt.substring(0, 200) + '...');
+  // 打印完整系统提示词
+  console.log('❗❗❗ [执行路径] 6. 打印完整系统提示词:');
+  console.log('========== 系统提示词开始 ==========');
+  console.log(systemPrompt);
+  console.log('========== 系统提示词结束 ==========');
+  
+  // 提取和打印JSON格式部分
+  console.log('❗❗❗ [执行路径] 7. 分析提示词中的JSON格式定义');
+  console.log('尝试查找“Return Format”部分...');
+  const formatMatch = systemPrompt.match(/Return Format[\s\S]*?```json([\s\S]*?)```/m);
+  
+  if (formatMatch && formatMatch[1]) {
+    console.log('✅ 成功找到JSON格式定义!');
+    console.log('========== JSON格式要求开始 ==========');
+    console.log(formatMatch[1]);
+    console.log('========== JSON格式要求结束 ==========');
+  } else {
+    console.log('⚠️ 未找到JSON格式定义！尝试其他匹配方式...');
+    // 尝试其他可能的格式定义方式
+    const otherFormatMatches = [
+      systemPrompt.match(/```json([\s\S]*?)```/m),
+      systemPrompt.match(/FORMAT:([\s\S]*?)(?:\n\n|$)/mi),
+      systemPrompt.match(/\{\s*"names"[\s\S]*?\}/m)
+    ];
+    
+    for (let i = 0; i < otherFormatMatches.length; i++) {
+      if (otherFormatMatches[i] && otherFormatMatches[i][1]) {
+        console.log(`✅ 使用备选方法 ${i+1} 找到格式定义:`);
+        console.log(otherFormatMatches[i][1]);
+        break;
+      }
+    }
+  }
+
+  // 打印用户提示词
+  console.log('❗❗❗ [执行路径] 8. 完整用户提示词:');
+  console.log('========== 用户提示词开始 ==========');
+  console.log(userPrompt);
+  console.log('========== 用户提示词结束 ==========');
+  
+  // 检查用户提示词中是否有JSON格式指定
+  const userPromptFormatMatch = userPrompt.match(/JSON\s+format|\{\s*"[a-zA-Z_]+"\s*:/m);
+  if (userPromptFormatMatch) {
+    console.log('❗ 注意: 用户提示词中也包含JSON格式相关指示!');
+  }
 
   return {
     ...baseRequest,

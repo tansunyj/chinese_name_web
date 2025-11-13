@@ -91,10 +91,39 @@ export default async function handler(req, res) {
     }
 
     // 从请求体中获取业务类型和参数
-    const { type, ...businessParams } = req.body;
+    const { type, debug, showPrompts, ...businessParams } = req.body;
 
     if (!type) {
       return res.status(400).json({ error: 'Missing request type parameter' });
+    }
+    
+    // 如果请求是调试模式并要求显示提示词
+    if (debug && showPrompts) {
+      log('📣 检测到调试请求，将返回提示词');
+      
+      // 获取指定类型的提示词
+      let systemPrompt = '';
+      let userPrompt = '';
+      let expectedFormat = '';
+      
+      switch (type) {
+        case 'nameAnalysis':
+          systemPrompt = nameAnalysisPrompts.system;
+          userPrompt = nameAnalysisPrompts[businessParams.locale || 'en'](businessParams);
+          // 从系统提示词中提取JSON格式定义
+          const formatMatch = systemPrompt.match(/Return Format[\s\S]*?```json([\s\S]*?)```/m);
+          expectedFormat = formatMatch ? formatMatch[1] : '';
+          break;
+        // 可以根据需要添加更多类型
+      }
+      
+      return res.status(200).json({
+        debug: true,
+        type,
+        systemPrompt,
+        userPrompt,
+        expectedFormat
+      });
     }
 
     // 根据业务类型构建不同的OpenAI请求体
@@ -253,6 +282,9 @@ function validateRequestSecurity(requestBody) {
   const allowedBusinessParams = [
     // 业务类型
     'type',
+    
+    // 调试相关参数
+    'debug', 'showPrompts',
 
     // 名字生成相关参数
     'inputName', 'gender', 'characteristics', 'desiredMeaning', 'birthDateTime',
@@ -261,7 +293,7 @@ function validateRequestSecurity(requestBody) {
     'name', 'sourceLanguage', 'targetLanguage', 'method',
 
     // 通用业务参数
-    'locale', 'language'
+    'locale', 'language', 'model'
   ];
 
   // 危险参数列表 - 这些参数绝对不允许出现

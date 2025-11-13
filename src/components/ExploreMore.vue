@@ -54,6 +54,27 @@ export default {
           emoji: '🔄'
         },
         {
+          id: 'girl-names',
+          title: 'Chinese Girl Names',
+          description: 'Browse beautiful female Chinese names',
+          path: '/chinese-girl-names',
+          emoji: '👧'
+        },
+        {
+          id: 'boy-names',
+          title: 'Chinese Boy Names',
+          description: 'Discover meaningful male Chinese names',
+          path: '/chinese-boy-names',
+          emoji: '👦'
+        },
+        {
+          id: 'write-my-name',
+          title: 'Write My Name in Chinese',
+          description: 'Learn how to write your name in Chinese',
+          path: '/write-my-name-in-chinese',
+          emoji: '✍️'
+        },
+        {
           id: 'custom',
           title: 'Custom Generator',
           description: 'Create personalized Chinese names',
@@ -72,8 +93,15 @@ export default {
           title: 'Name to Pinyin',
           description: 'Convert Chinese names to pinyin',
           path: '/name-to-pinyin',
-          emoji: '🔤'
+          emoji: '🄤'
         },
+        {
+          id: 'last-names',
+          title: 'Chinese Last Names',
+          description: 'Explore common Chinese surnames',
+          path: '/chinese-last-names',
+          emoji: '👨‍👩‍👧‍👦'
+        },        
         {
           id: 'zodiac',
           title: 'Zodiac Calculator',
@@ -85,7 +113,7 @@ export default {
           id: 'constellation',
           title: 'Constellation Analysis',
           description: 'Analyze your star sign for naming',
-          path: '/blog/constellation-analysis',
+          path: '/constellation-analysis',
           emoji: '⭐'
         }
       ];
@@ -99,11 +127,12 @@ export default {
 
 <style scoped>
 .explore-more {
-  background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
-  border-radius: 12px;
-  padding: 25px 20px;
-  margin: 25px 0;
-  border: 1px solid #e9ecef;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px 25px;
+  margin: 30px 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  width: 100%;
 }
 
 .explore-header {

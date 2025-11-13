@@ -4,7 +4,90 @@ import ModernTraditional from '../views/ModernTraditional.vue'
 import ProfessionalConsiderations from '../views/ProfessionalConsiderations.vue'
 import EraNamingStyles from '../views/EraNamingStyles.vue'
 
-const routes = [
+// 导出路由配置数组
+export const routes = [
+  // 临时路由用于检查姓氏重复
+  {
+    path: '/check-duplicates',
+    name: 'CheckDuplicates',
+    component: () => import('../components/DuplicateChecker.vue')
+  },
+  {
+    path: '/chinese-girl-names',
+    name: 'ChineseGirlNames',
+    component: () => import('../views/ChineseGirlNames.vue'),
+    meta: {
+      title: "Chinese Girl Names with Meanings (2025) | Beautiful Female Names",
+      canonicalPath: '/chinese-girl-names',
+      description: "Explore 200+ beautiful Chinese girl names with meanings, pronunciations, and cultural significance. Find popular, unique and modern female Chinese names for your baby girl.",
+      keywords: "chinese girl names,chinese names for girls,female chinese names,beautiful chinese girl names,chinese female names meaning,chinese baby girl names",
+      ogTitle: "Chinese Girl Names with Meanings | Top 200+ Female Names (2025)",
+      ogDescription: "Browse our collection of 200+ beautiful Chinese girl names complete with meanings, pronunciations and cultural significance. Find the perfect Chinese name for your baby girl.",
+      ogImage: "https://chinesename.us/images/chinese-girl-names-og.jpg",
+      ogUrl: "https://chinesename.us/chinese-girl-names",
+      twitterCard: "summary_large_image",
+      twitterTitle: "Chinese Girl Names with Meanings (2025)",
+      twitterDescription: "Discover 200+ beautiful Chinese girl names with meanings, pronunciations and cultural context. Find the perfect name for your daughter.",
+      twitterImage: "https://chinesename.us/images/chinese-girl-names-twitter.jpg"
+    }
+  },
+  {
+    path: '/chinese-boy-names',
+    name: 'ChineseBoyNames',
+    component: () => import('../views/ChineseBoyNames.vue'),
+    meta: {
+      title: "Chinese Boy Names with Meanings (2025) | Top Male Chinese Names",
+      canonicalPath: '/chinese-boy-names',
+      description: "Discover 200+ meaningful Chinese boy names with pronunciations and cultural significance. Find traditional, modern and popular male Chinese names for your baby boy.",
+      keywords: "chinese boy names,chinese names for boys,male chinese names,chinese male names,chinese baby boy names,strong chinese boy names",
+      ogTitle: "Chinese Boy Names with Meanings | Top 200+ Male Names (2025)",
+      ogDescription: "Browse our collection of 200+ strong Chinese boy names complete with meanings, pronunciations and cultural significance. Find the perfect Chinese name for your baby boy.",
+      ogImage: "https://chinesename.us/images/chinese-boy-names-og.jpg",
+      ogUrl: "https://chinesename.us/chinese-boy-names",
+      twitterCard: "summary_large_image",
+      twitterTitle: "Chinese Boy Names with Meanings (2025)",
+      twitterDescription: "Discover 200+ strong Chinese boy names with meanings, pronunciations and cultural context. Find the perfect name for your son.",
+      twitterImage: "https://chinesename.us/images/chinese-boy-names-twitter.jpg"
+    }
+  },
+  {
+    path: '/chinese-last-names',
+    name: 'ChineseLastNames',
+    component: () => import('../views/ChineseLastNames.vue'),
+    meta: {
+      title: "Chinese Last Names: 300+ Family Surnames & Meanings (2025)",
+      canonicalPath: '/chinese-last-names',
+      description: "Explore 300+ Chinese surnames and family names with meanings, origins, and pronunciation. Discover the most common Chinese last names and their historical significance.",
+      keywords: "chinese last names,chinese family names,common chinese surnames,chinese surnames,chinese surname meanings,list of chinese surnames",
+      ogTitle: "Chinese Last Names & Surnames | Top 300+ Family Names (2025)",
+      ogDescription: "Browse our comprehensive list of 300+ Chinese family names and surnames with meanings, historical origins, and pronunciation guide. Discover the story behind your Chinese surname.",
+      ogImage: "https://chinesename.us/images/chinese-surnames-og.jpg",
+      ogUrl: "https://chinesename.us/chinese-last-names",
+      twitterCard: "summary_large_image",
+      twitterTitle: "300+ Chinese Last Names & Family Surnames (2025)",
+      twitterDescription: "Explore Chinese surnames with meanings, origins, and pronunciation. Find famous figures who share these common Chinese family names.",
+      twitterImage: "https://chinesename.us/images/chinese-surnames-twitter.jpg"
+    }
+  },
+  {
+    path: '/chinese-names-and-meanings',
+    name: 'ChineseNamesAndMeanings',
+    component: () => import('../views/ChineseNamesAndMeanings.vue'),
+    meta: {
+      title: "Chinese Names and Meanings | Character Significance (2025)",
+      canonicalPath: '/chinese-names-and-meanings',
+      description: "Explore Chinese names and their profound meanings. Learn the cultural significance of Chinese characters, naming traditions, and find beautiful names with positive meanings.",
+      keywords: "chinese names and meanings,chinese name meaning,meaning of chinese names,chinese name significance,chinese character meanings,traditional chinese names",
+      ogTitle: "Chinese Names and Meanings | Character Significance Guide (2025)",
+      ogDescription: "Discover the profound meanings behind Chinese names and characters. Explore naming traditions, symbolism, and find beautiful Chinese names with positive cultural significance.",
+      ogImage: "https://chinesename.us/images/chinese-names-meanings-og.jpg",
+      ogUrl: "https://chinesename.us/chinese-names-and-meanings",
+      twitterCard: "summary_large_image",
+      twitterTitle: "Chinese Names and Their Meanings (2025)",
+      twitterDescription: "Learn the cultural significance and symbolism behind Chinese names and characters. Find names with beautiful meanings for yourself or your baby.",
+      twitterImage: "https://chinesename.us/images/chinese-names-meanings-twitter.jpg"
+    }
+  },
   {
     path: '/blog/popular-chinese-names',
     name: 'popular-chinese-names',
@@ -36,21 +119,27 @@ const routes = [
     }
   },
   {
+    path: '/write-my-name-in-chinese',
+    redirect: to => {
+      return { path: '/english-to-chinese-translator' }
+    }
+  },
+  {
     path: '/english-to-chinese-translator',
     name: 'TranslateName',
     component: () => import('../views/TranslateName.vue'),
     meta: {
-      title: 'English to Chinese Name Translator | Multilingual Name Translation | ChineseName.us',
+      title: 'English to Chinese Name Translator | Write My Name in Chinese | ChineseName.us',
       canonicalPath: '/english-to-chinese-translator',
-      description: 'Translate your English, Spanish, French, German, Japanese, Korean name to Chinese with our professional name translator. Convert foreign names to Chinese characters with accurate pronunciation and cultural meaning.',
-      keywords: 'english name to chinese translator, translate name to chinese, name translation online, foreign name to chinese, multilingual chinese translator, english to chinese name conversion, chinese name translation service, how to translate name to chinese',
-      ogTitle: 'English to Chinese Name Translator | Multilingual Name Translation',
-      ogDescription: 'Translate your name to Chinese from English, French, German, Spanish, Japanese, Korean and more languages. Get accurate Chinese name translations with cultural meanings.',
+      description: 'Learn how to write your name in Chinese with our professional translator. Translate your English, Spanish, French, German, Japanese, Korean name to Chinese characters with accurate pronunciation and cultural meaning.',
+      keywords: 'english name to chinese translator, write my name in chinese, my name in chinese characters, translate name to chinese, name translation online, foreign name to chinese, name in chinese writing, english to chinese name conversion, chinese name translation service, how to translate name to chinese',
+      ogTitle: 'English to Chinese Name Translator | Write My Name in Chinese',
+      ogDescription: 'Learn how to write your name in Chinese with our professional translator. Get accurate Chinese name translations with cultural meanings.',
       ogImage: 'https://chinesename.us/images/translate-name-og.jpg',
       ogUrl: 'https://chinesename.us/english-to-chinese-translator',
       twitterCard: 'summary_large_image',
-      twitterTitle: 'English to Chinese Name Translator | Multilingual Support',
-      twitterDescription: 'Translate your name to Chinese from multiple languages. Professional name translation with cultural context.',
+      twitterTitle: 'English to Chinese Name Translator | Write My Name in Chinese',
+      twitterDescription: 'Learn how to write your name in Chinese characters with our professional translator. Get culturally appropriate translations.',
       twitterImage: 'https://chinesename.us/images/translate-name-og.jpg'
     }
   },
@@ -269,17 +358,7 @@ const routes = [
       keywords: 'chinese naming taboos, chinese name restrictions, unlucky chinese characters, chinese naming rules, forbidden chinese names, chinese name cultural restrictions, what to avoid chinese names, chinese naming etiquette'
     }
   },
-  {
-    path: '/blog/wuxing-bazi',
-    name: 'WuXingBaZi',
-    component: () => import('../views/WuXingBaZi.vue'),
-    meta: {
-      title: 'Wu Xing and BaZi in Chinese Names - Five Elements Theory | ChineseName.us',
-      canonicalPath: '/blog/wuxing-bazi',
-      description: 'Learn about Wu Xing (Five Elements) and Ba Zi (Eight Characters) in Chinese naming. Discover how wood, fire, earth, metal, and water elements influence Chinese name selection and fortune.',
-      keywords: 'wu xing chinese names, ba zi chinese names, five elements chinese naming, chinese five elements theory, wood fire earth metal water names, chinese fortune naming, elemental chinese names, chinese astrology names'
-    }
-  },
+  // 移除重复路由定义 - 此处之前有重复的ChineseNamesAndMeanings路由
   {
     path: '/blog/name-numerology',
     name: 'NameNumerology',
@@ -415,12 +494,12 @@ const routes = [
     }
   },
   {
-    path: '/blog/constellation-analysis',
+    path: '/constellation-analysis',
     name: 'ConstellationAnalysis',
     component: () => import('../views/ConstellationAnalysis.vue'),
     meta: {
       title: 'Constellation Analysis for Chinese Names - Astrological Naming | ChineseName.us',
-      canonicalPath: '/blog/constellation-analysis',
+      canonicalPath: '/constellation-analysis',
       description: 'Analyze constellation influences on Chinese names. Learn how Western astrology and star signs can guide Chinese name selection with cultural harmony and celestial meaning.',
       keywords: 'constellation chinese names, astrological chinese naming, star sign chinese names, celestial chinese names, astrology chinese name analysis, zodiac constellation names, chinese astrology naming, constellation name meanings'
     }
@@ -552,6 +631,50 @@ const routes = [
       twitterTitle: 'Chinese Name Generator | Authentic Chinese Names',
       twitterDescription: 'Create personalized Chinese names with cultural significance and proper meanings.',
       twitterImage: 'https://chinesename.us/images/name-generator-og.jpg'
+    }
+  },
+  {
+    path: '/funny-chinese-names',
+    name: 'FunnyChineseNames',
+    component: () => import('../views/FunnyChineseNames.vue'),
+    meta: {
+      title: 'Funny Chinese Names and Meanings | Humorous Chinese Name Ideas',
+      canonicalPath: '/funny-chinese-names',
+      description: 'Discover funny Chinese names with meanings and cultural context. Learn about amusing Chinese name translations and naming jokes with respectful cultural explanations.',
+      keywords: 'funny chinese names, humorous chinese names, chinese name jokes, chinese name translation fails, chinese name humor, amusing chinese names, weird chinese names, silly chinese names'
+    }
+  },
+  {
+    path: '/chinese-dog-names',
+    name: 'ChineseDogNames',
+    component: () => import('../views/ChineseDogNames.vue'),
+    meta: {
+      title: 'Chinese Dog Names with Meanings (2025) | Traditional & Modern Pet Names',
+      canonicalPath: '/chinese-dog-names',
+      description: 'Discover 100+ authentic Chinese dog names with meanings, pronunciations, and cultural significance. Find the perfect traditional or modern Chinese name for your puppy.',
+      keywords: 'chinese dog names, chinese names for dogs, dog names in chinese, chinese puppy names, traditional chinese dog names, chinese dog naming, lucky chinese dog names, chinese pet names'
+    }
+  },
+  {
+    path: '/chinese-cat-names',
+    name: 'ChineseCatNames',
+    component: () => import('../views/ChineseCatNames.vue'),
+    meta: {
+      title: 'Chinese Cat Names with Meanings (2025) | Traditional & Modern Feline Names',
+      canonicalPath: '/chinese-cat-names',
+      description: 'Explore 100+ authentic Chinese cat names with meanings, pronunciations, and cultural significance. Find the perfect traditional or modern Chinese name for your feline friend.',
+      keywords: 'chinese cat names, chinese names for cats, cat names in chinese, chinese kitten names, traditional chinese cat names, chinese cat naming, female chinese cat names, male chinese cat names'
+    }
+  },
+  {
+    path: '/tools/structured-data-test',
+    name: 'StructuredDataTest',
+    component: () => import('../views/StructuredDataTest.vue'),
+    meta: {
+      title: 'Structured Data Test - ChineseName.us | SEO Testing Tool',
+      canonicalPath: '/tools/structured-data-test',
+      description: 'Test and verify structured data implementation for improved SEO. View all types of structured data including WebSite, WebApplication, HowTo, ItemList, FAQ, and BreadcrumbList schemas.',
+      keywords: 'structured data, json-ld, schema.org, seo testing, structured data testing, schema markup'
     }
   },
   {

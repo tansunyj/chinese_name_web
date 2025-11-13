@@ -1,6 +1,8 @@
 <template>
   <div class="name-generator-page">
     <div class="container">
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
       <div class="page-header">
         <h1 class="page-title">Chinese Name Generator | Create Your Authentic Chinese Name with Meaning</h1>
         <p class="page-description">Our intelligent Chinese name generator creates personalized Chinese names based on your preferences with proper cultural meanings and pronunciation</p>
@@ -163,6 +165,9 @@
         </div>
       </div>
       
+      <!-- Explore More 组件 -->
+      <ExploreMore :currentPath="$route.path" />
+
       <div class="name-generator-guide">
         <h2>How Our Chinese Name Generator with Meaning Works</h2>
         <p>Our advanced Chinese name generator creates authentic Chinese names based on cultural traditions and linguistic principles. Unlike simple transliteration tools, we consider the meaning, pronunciation, and cultural significance of each character to create a name that truly represents you. Our Chinese name generator with meaning ensures that your Chinese name will be both beautiful and culturally appropriate.</p>
@@ -257,8 +262,15 @@
 </template>
 
 <script>
+import ExploreMore from '@/components/ExploreMore.vue';
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
+
 export default {
   name: 'NameGenerator',
+  components: {
+    ExploreMore,
+    BreadcrumbNav
+  },
   data() {
     return {
       formData: {

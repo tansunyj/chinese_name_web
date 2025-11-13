@@ -1,10 +1,14 @@
 <template>
   <div class="custom-name-page">
     <div class="container">
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
       <h1 class="page-title">{{ $t('custom.title') }} | Chinese Name Generator with Meaning</h1>
       <p class="seo-description">Create your personalized Chinese name with our professional Chinese name generator. Get a meaningful Chinese name based on your preferences, personality traits, and birth information. Our custom Chinese name creator provides names with cultural significance and proper pronunciation. Perfect for English to Chinese name translation.</p>
       
-      <div class="content">
+      <!-- 内容容器开始 -->
+      <div class="content-container">
+        <div class="content">
         <div class="form-section">
           <form @submit.prevent="generateNames">
             <h3>{{ $t('custom.preferences') }}</h3>
@@ -436,22 +440,23 @@
             {{ locale === 'zh' ? '确定' : 'Confirm' }}
           </button>
         </div>
+        </div>
       </div>
+      <!-- 内容容器结束 -->
     </div>
   </div>
 </template>
 
 <script>
-import { reactive, ref, computed, onMounted, watch } from 'vue';
 import MysticalLoader from '@/components/MysticalLoader.vue';
 import UsageGuide from '@/components/UsageGuide.vue';
 import ExploreMore from '@/components/ExploreMore.vue';
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
 import { useI18n } from 'vue-i18n';
 // 提示词已完全迁移到后端 api/promptTemplates.js，前端不再需要导入
 // import { nameGenerationSystemPrompt } from '@/config/systemPrompts'; // 已废弃
 import aiConfig from '@/config/aiConfig';
 import chineseSurnames from '@/data/ChineseSurnames.js';
-import openaiService from '@/services/openaiService';
 import dayjs from 'dayjs';
 
 // 导入 Ant Design Vue 的区域设置
@@ -500,7 +505,8 @@ export default {
   components: {
     MysticalLoader,
     UsageGuide,
-    ExploreMore
+    ExploreMore,
+    BreadcrumbNav
   },
   setup() {
     const { t, locale } = useI18n();

@@ -1,6 +1,8 @@
 <template>
   <div class="popular-names-page">
     <div class="container">
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
       <h1 class="page-title">150 Popular Chinese Names for Boys and Girls</h1>
       <p class="seo-description">Discover the most popular Chinese names for boys and girls with their meanings and pronunciations. Find the perfect Chinese name for your child or yourself. Chinese name for boys, Chinese name for girls, Chinese names for male, Chinese names for female. 中文男孩名字, 中文女孩名字.</p>
       
@@ -125,8 +127,13 @@
 </template>
 
 <script>
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
+
 export default {
   name: 'PopularChineseNames',
+  components: {
+    BreadcrumbNav
+  },
   data() {
     return {
       activeTab: 'boys',

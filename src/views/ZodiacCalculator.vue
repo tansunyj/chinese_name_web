@@ -1,9 +1,13 @@
 <template>
   <div class="zodiac-page">
     <div class="container">
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
       <h1 class="page-title">{{ $t('zodiac.title') }}</h1>
       
-      <div class="content">
+      <!-- 内容容器开始 -->
+      <div class="content-container">
+        <div class="content">
         <div class="form-section">
           <form @submit.prevent="calculateZodiac">
             <div class="form-group">
@@ -183,7 +187,9 @@
             </div>
           </div>
         </div>
+        </div>
       </div>
+      <!-- 内容容器结束 -->
     </div>
   </div>
 </template>
@@ -205,12 +211,14 @@ import ZhuImg from '@/assets/images/zodiac/zhu.png';
 import { useI18n } from 'vue-i18n';
 
 import MysticalLoader from '@/components/MysticalLoader.vue';
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
 import UsageGuide from '@/components/UsageGuide.vue';
 import ExploreMore from '@/components/ExploreMore.vue';
 
 export default {
   components: {
     MysticalLoader,
+    BreadcrumbNav,
     UsageGuide,
     ExploreMore
   },
@@ -579,10 +587,10 @@ export default {
   background-color: #f8f9fa;
 }
 
+/* 容器样式现在由全局样式控制 */
 .container {
-  max-width: 1000px;
+  /* 重要：不再限制容器的宽度，由全局样式来管理 */
   margin: 0 auto;
-  padding: 0 20px;
 }
 
 .page-title {
@@ -604,8 +612,8 @@ export default {
   border-radius: 12px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
   padding: 30px;
-  max-width: 1000px;
-  margin: 0 auto 30px;
+  /* 移除max-width的限制，使用内容容器的宽度 */
+  margin: 0 0 30px;
   width: 100%;
 }
 
@@ -656,8 +664,9 @@ export default {
 
 .results-section {
   margin-top: 30px;
-  max-width: 1000px;
-  margin: 30px auto 0;
+  /* 移除max-width的限制，使用内容容器的宽度 */
+  margin: 30px 0 0;
+  width: 100%;
 }
 
 .results-section h2 {
@@ -907,10 +916,9 @@ export default {
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-  padding: 30px;
-  margin-top: 40px;
-  max-width: 1000px;
-  margin: 40px auto 0;
+  padding: 35px;
+  width: 100%;
+  margin: 40px 0 0;
 }
 
 .guide-title {
