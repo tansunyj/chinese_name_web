@@ -381,4 +381,21 @@ button:disabled {
   margin-top: 20px;
   text-align: center;
 }
-</style> 
+
+@media (max-width: 430px) {
+  .ai-name-generator {
+    width: min(95vw, 100%);
+    max-width: min(95vw, 100%);
+    padding: 12px 10px;
+  }
+
+  .form-container {
+    padding: 18px 14px;
+  }
+
+  .name-cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+</style>

@@ -1750,7 +1750,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
-  max-width: 1200px;
+  width: 100%;
   margin: 0 auto 30px;
 }
 
@@ -2241,7 +2241,213 @@ export default {
   .feature-card h3 {
     font-size: 1.3rem;
   }
+  
+}
+@media (max-width: 430px) {
+  /* 手机端（≤430px）将 Our Chinese Name Services 的网格改为两列，并缩小卡片尺寸 */
+  .features .container {
+    padding: 0 16px !important; /* 减小左右内边距，避免两列被挤出屏幕 */
+    box-sizing: border-box;
+  }
 
+  .naming-services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important; /* 防止列内部计算导致溢出 */
+    gap: 12px;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    box-sizing: border-box;
+  }
 
+  .naming-services-grid .feature-card {
+    min-height: 150px;
+    padding: 12px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .naming-services-grid .feature-card .header-row {
+    margin-bottom: 6px;
+  }
+
+  .naming-services-grid .feature-card .icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 10px;
+  }
+
+  .naming-services-grid .feature-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+    line-height: 1.3;
+    min-height: 2.6em; /* 保证两行高度，2 * 1.3em */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* 强制两行截断 */
+    line-clamp: 2; /* 标准属性 */
+    overflow: hidden;
+  }
+
+  .naming-services-grid .feature-card p {
+    font-size: 0.9rem;
+    line-height: 1.45;
+    min-height: 36px;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+
+  .feature-link {
+    font-size: 0.95rem;
+  }
+
+  /* 保证网格子项与链接也不制造溢出 */
+  .feature-card-link {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .feature-grid,
+  .naming-services-grid {
+    overflow-x: hidden;
+  }
+
+  /* Understanding Chinese Names & Cultural Background 区域，两列展示 */
+  .about-chinese-names .container {
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+
+  .about-chinese-names .two-column-content {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* 让列容器不参与尺寸，子级卡片成为网格项 */
+  .about-chinese-names .two-column-content > .column {
+    display: contents;
+    min-width: 0 !important;
+  }
+
+  .about-chinese-names .column {
+    flex: 0 0 auto;
+    width: 100%;
+    min-width: 0 !important; /* 覆盖全局的 min-width:300px，防止溢出 */
+  }
+
+  .about-chinese-names .collapsible-section {
+    border: 1px solid #E6E6E6;
+    border-radius: 10px;
+    padding: 12px;
+    background: #fff;
+    margin: 0; /* 使用grid gap，所以外边距设为0避免重叠/溢出 */
+    box-sizing: border-box;
+  }
+
+  .about-chinese-names .collapsible-title {
+    font-size: 1rem;
+    padding: 10px 12px;
+  }
+
+  .about-chinese-names .collapsible-content {
+    padding: 0 10px 10px;
+  }
+
+  /* What Our Users Say 区块 - 统计数字在手机端横向排列（两列） */
+  .stats-section {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    align-items: stretch;
+    justify-items: center;
+  }
+
+  .stat-item {
+    min-width: 0; /* 防止min-width撑破布局 */
+  }
+
+  .stat-number {
+    font-size: 1.6rem; /* 更适合手机 */
+  }
+
+  /* FAQ 区块：两列网格 + 紧凑样式 */
+  .faq-section .container {
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+
+  .faq-columns {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 0 auto 16px;
+  }
+
+  .faq-column {
+    flex: 0 0 auto;
+    min-width: 0 !important; /* 覆盖300px最小宽度，防止挤出一列 */
+  }
+
+  .faq-item {
+    margin: 0; /* 使用grid gap控制间距 */
+    padding: 12px !important; /* 覆盖768px下的25px，卡片更紧凑 */
+    box-sizing: border-box;
+  }
+
+  .faq-question, .faq-answer {
+    padding: 12px !important;
+  }
+
+  .faq-question {
+    font-size: 1rem !important;
+  }
+
+  /* CTA 双按钮：手机端横向并列 */
+  .cta-buttons {
+    flex-direction: row !important;
+    justify-content: center;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .cta-button {
+    min-width: 0 !important; /* 覆盖在 <=480px 下的 280px 限制 */
+    flex: 1 1 0%;
+    padding: 12px 14px; /* 稍微收紧内边距以适配两列 */
+  }
+}
+@media (min-width: 981px) {
+  /* 桌面端：让FAQ边界与主题容器对齐（将边框应用在container上） */
+  .faq-section {
+    border: none; /* 移除section层级边框，避免与页面容器错位 */
+    padding: 100px 0; /* 保持原有上下间距 */
+  }
+
+  .faq-section > .container {
+    max-width: 1600px !important;
+    margin: 0 auto;
+    padding: 0 30px !important;
+    box-sizing: border-box;
+    position: relative;            /* 供伪元素定位 */
+    border: none;                  /* 由伪元素绘制边框，避免缩进 */
+    overflow: visible;
+  }
+
+  /* 用伪元素把边框扩展到容器padding之外，确保与页面主体对齐 */
+  .faq-section > .container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -30px;
+    right: -30px;
+    border: 1px solid #E0E0E0;
+    border-radius: 12px;
+    pointer-events: none;
+  }
 }
 </style>

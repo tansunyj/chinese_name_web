@@ -1115,4 +1115,43 @@ label {
     font-size: 1.2rem;
   }
 }
-</style> 
+
+@media (max-width: 430px) {
+  .chinese-to-english-page > .container {
+    padding: 0 !important;
+    width: 100%;
+  }
+
+  .content-container {
+    width: min(95vw, 100%) !important;
+    max-width: min(95vw, 100%) !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    box-sizing: border-box;
+  }
+
+  .content {
+    padding: 0 8px;
+    box-sizing: border-box;
+    gap: 28px;
+  }
+
+  .form-section {
+    width: min(95vw, 100%) !important;
+    max-width: min(95vw, 100%) !important;
+    padding: 18px 14px;
+    margin: 0 auto 24px;
+    box-sizing: border-box;
+  }
+
+  .results-section {
+    width: min(96vw, 100%);
+    margin: 20px auto 0;
+  }
+
+  .results-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+</style>

@@ -209,4 +209,28 @@ export default {
     margin-bottom: 20px;
   }
 }
+
+/* 手机（≤430px）：页脚四个标题两列两行显示 */
+@media (max-width: 430px) {
+  .app-footer .container {
+    padding: 0 16px; /* 收紧左右留白，避免换行拥挤 */
+    box-sizing: border-box;
+  }
+
+  .footer-links {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .links-group {
+    flex: 0 0 auto; /* 取消固定宽度，交给网格自适应 */
+    margin-bottom: 0;
+  }
+
+  .links-group h3 {
+    font-size: 1.05rem;
+    margin-bottom: 12px;
+  }
+}
 </style> 

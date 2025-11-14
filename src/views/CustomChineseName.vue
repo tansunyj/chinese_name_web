@@ -262,4 +262,30 @@ export default {
     bottom: 20px;
   }
 }
-</style> 
+
+@media (max-width: 430px) {
+  .custom-name-page {
+    width: min(95vw, 100%);
+    max-width: min(95vw, 100%);
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 auto;
+  }
+
+  .content {
+    padding: 0 8px;
+    box-sizing: border-box;
+  }
+
+  .intro-section,
+  .service-features,
+  .tips-section {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .service-features {
+    gap: 16px;
+  }
+}
+</style>

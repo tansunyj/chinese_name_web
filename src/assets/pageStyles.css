@@ -100,6 +100,24 @@
   justify-content: center !important;
 }
 
+/* 移动端全局容器宽度优化 */
+@media (max-width: 430px) {
+  .content-container {
+    width: 95% !important;
+    max-width: 95% !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+  }
+
+  .container {
+    padding: 0 12px !important;
+  }
+
+  .breadcrumb-nav {
+    margin: 3px 0 8px !important;
+  }
+}
+
 .page-button {
   min-width: 40px !important;
   height: 40px !important;
@@ -196,8 +214,7 @@
 .content-wrapper,
 .form-section,
 .names-section,
-.results-section,
-.faq-section {
+.results-section {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
@@ -282,7 +299,7 @@
 
 /* 统一面包屑样式 */
 .breadcrumb-nav {
-  margin: 10px 0 20px;
+  margin: 6px 0 14px;
   padding: 5px 0;
   border-bottom: 1px solid #eee;
   width: 100%;

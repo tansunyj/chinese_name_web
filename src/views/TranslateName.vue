@@ -1495,6 +1495,93 @@ export default {
   }
 }
 
+@media (max-width: 430px) {
+  /* 提升本页容器宽度到95% */
+  :deep(.content-container) {
+    width: 95% !important;
+    max-width: 95% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    box-sizing: border-box;
+  }
+
+  .container {
+    width: 95%;
+    padding: 0 8px;
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
+
+  /* 本页外层容器在手机端不留左右内边距，确保内部95%宽度生效 */
+  .translate-page > .container {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .form-section {
+    width: min(95vw, 100%) !important; /* 真实占屏幕95%宽度 */
+    max-width: min(95vw, 100%) !important;
+    padding: 14px 12px; /* 适配紧凑内边距 */
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+
+  .language-select-buttons {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    padding: 0;
+    justify-content: stretch;
+  }
+
+  .lang-button {
+    width: 100%;
+    height: 50px;
+    padding: 4px;
+    box-sizing: border-box;
+  }
+
+  .lang-icon {
+    width: 26px;
+    height: 18px;
+    margin-bottom: 2px;
+  }
+
+  .lang-code {
+    font-size: 0.72rem;
+  }
+
+  .results-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: min(96vw, 100%);
+    margin: 0 auto;
+  }
+
+  .result-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto;
+  }
+
+  .result-header {
+    padding: 24px;
+  }
+
+  .result-characters {
+    font-size: 2.8rem;
+  }
+
+  .result-pinyin {
+    font-size: 1.2rem;
+  }
+
+  .result-details {
+    padding: 20px;
+  }
+}
+
 .error-message {
   display: flex;
   align-items: center;

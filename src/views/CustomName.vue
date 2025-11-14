@@ -4171,4 +4171,66 @@ export default {
     font-size: 1.1rem;
   }
 }
+
+@media (max-width: 430px) {
+  .custom-name-page > .container {
+    padding: 0 !important;
+    width: 100%;
+  }
+
+  .content-container {
+    width: min(95vw, 100%) !important;
+    max-width: min(95vw, 100%) !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    box-sizing: border-box;
+  }
+
+  .content {
+    padding: 0 8px;
+    box-sizing: border-box;
+    gap: 28px;
+  }
+
+  .form-section {
+    width: min(95vw, 100%) !important;
+    max-width: min(95vw, 100%) !important;
+    padding: 18px 14px;
+    margin: 0 auto 24px;
+    box-sizing: border-box;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .results-section {
+    width: min(96vw, 100%);
+    margin: 20px auto 0;
+  }
+
+  .results-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .analysis-details .analysis-key-value-list .analysis-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .analysis-details .analysis-key {
+    width: 100%;
+    margin: 0 0 6px 0;
+  }
+  .analysis-details .analysis-value {
+    width: 100%;
+  }
+
+  .name-elements,
+  .result-elements {
+    gap: 9px;
+    flex-wrap: wrap;
+  }
+}
 </style>

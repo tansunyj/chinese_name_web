@@ -924,4 +924,59 @@ export default {
     font-size: 1.1rem;
   }
 }
-</style> 
+
+@media (max-width: 430px) {
+  .name-to-pinyin-page > .container {
+    padding: 0 !important;
+    width: 100%;
+  }
+
+  .content-container {
+    width: min(95vw, 100%) !important;
+    max-width: min(95vw, 100%) !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    box-sizing: border-box;
+  }
+
+  .main-content,
+  .form-section,
+  .results-section,
+  .guide-section {
+    width: min(95vw, 100%) !important;
+    max-width: min(95vw, 100%) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .form-section {
+    padding: 18px 14px;
+    margin-bottom: 24px;
+  }
+
+  .page-title {
+    width: min(95vw, 100%);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  :deep(.breadcrumb-list) {
+    flex-wrap: nowrap !important;
+    overflow: hidden;
+  }
+  :deep(.breadcrumb-item) {
+    white-space: nowrap;
+  }
+  :deep(.breadcrumb-item.active) {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+  }
+  :deep(.breadcrumb-item.active > span) {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+</style>
