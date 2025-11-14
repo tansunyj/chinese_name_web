@@ -2420,6 +2420,51 @@ export default {
     padding: 12px 14px; /* 稍微收紧内边距以适配两列 */
   }
 }
+
+/* 触摸设备禁用卡片的悬停展开，保证首次点击直接导航 */
+@media (hover: none) {
+  .feature-card-link:hover {
+    transform: none;
+  }
+
+  .feature-card:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border-color: rgba(0,0,0,0.06);
+  }
+
+  .feature-card:hover .icon {
+    background-color: rgba(209, 10, 17, 0.08);
+    transform: none;
+  }
+
+  .feature-card:hover .feature-link {
+    color: #d10a11;
+  }
+
+  .naming-services-grid .feature-card:hover p {
+    -webkit-line-clamp: 3;
+    line-clamp: 3; /* 标准属性 */
+    overflow: hidden;
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    z-index: auto;
+    position: static;
+    border: none;
+  }
+
+  .naming-services-grid .feature-card-link:hover {
+    z-index: auto;
+    position: static;
+  }
+
+  .naming-services-grid .feature-card:hover {
+    transform: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  }
+}
 @media (min-width: 981px) {
   /* 桌面端：让FAQ边界与主题容器对齐（将边框应用在container上） */
   .faq-section {
