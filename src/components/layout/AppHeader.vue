@@ -15,24 +15,64 @@
           <li><router-link to="/custom-chinese-name-generator">{{ $t('header.customName') }} Chinese Name</router-link></li>
           <!-- Others 合并菜单 - 添加others-link类以便特别处理 -->
           <li class="dropdown others-dropdown">
-            <a href="#" class="dropdown-toggle others-link" style="color: #333 !important;" @click.prevent="toggleDropdown('others')">Others <span class="dropdown-icon" :class="{ 'rotated': activeDropdown === 'others' }">▼</span></a>
-            <ul class="dropdown-menu"><!-- 移除v-bind:class绑定，完全通过DOM操作控制 -->
+            <a href="javascript:void(0);" class="dropdown-toggle others-link" style="color: #333 !important;" @click="toggleDropdown('others')" role="button" aria-haspopup="true" aria-expanded="false">Others <span class="dropdown-icon" :class="{ 'rotated': activeDropdown === 'others' }">▼</span></a>
+            <ul class="dropdown-menu" aria-labelledby="othersDropdown"><!-- 增加无障碍支持 -->
               <!-- Names 的子菜单 -->
               <li class="dropdown-subtitle names-section">Chinese Names</li>
-              <li class="names-item"><router-link to="/chinese-girl-names" @click="closeDropdown">Chinese Girl Names</router-link></li>
-              <li class="names-item"><router-link to="/chinese-boy-names" @click="closeDropdown">Chinese Boy Names</router-link></li>
-              <li class="names-item"><router-link to="/chinese-last-names" @click="closeDropdown">Chinese Last Names</router-link></li>
-              <li class="names-item"><router-link to="/chinese-names-and-meanings" @click="closeDropdown">Chinese Names and Meanings</router-link></li>
-              <li class="names-item"><router-link to="/funny-chinese-names" @click="closeDropdown">Funny Chinese Names</router-link></li>
-              <li class="names-item"><router-link to="/chinese-dog-names" @click="closeDropdown">Chinese Dog Names</router-link></li>
-              <li class="names-item"><router-link to="/chinese-cat-names" @click="closeDropdown">Chinese Cat Names</router-link></li>
+              <li class="names-item">
+                <router-link to="/chinese-girl-names" custom v-slot="{ navigate }">
+                  <a @click="navigate(); closeDropdown()" href="javascript:void(0);">Chinese Girl Names</a>
+                </router-link>
+              </li>
+              <li class="names-item">
+                <router-link to="/chinese-boy-names" custom v-slot="{ navigate }">
+                  <a @click="navigate(); closeDropdown()" href="javascript:void(0);">Chinese Boy Names</a>
+                </router-link>
+              </li>
+              <li class="names-item">
+                <router-link to="/chinese-last-names" custom v-slot="{ navigate }">
+                  <a @click="navigate(); closeDropdown()" href="javascript:void(0);">Chinese Last Names</a>
+                </router-link>
+              </li>
+              <li class="names-item">
+                <router-link to="/chinese-names-and-meanings" custom v-slot="{ navigate }">
+                  <a @click="navigate(); closeDropdown()" href="javascript:void(0);">Chinese Names and Meanings</a>
+                </router-link>
+              </li>
+              <li class="names-item">
+                <router-link to="/funny-chinese-names" custom v-slot="{ navigate }">
+                  <a @click="navigate(); closeDropdown()" href="javascript:void(0);">Funny Chinese Names</a>
+                </router-link>
+              </li>
+              <li class="names-item">
+                <router-link to="/chinese-dog-names" custom v-slot="{ navigate }">
+                  <a @click="navigate(); closeDropdown()" href="javascript:void(0);">Chinese Dog Names</a>
+                </router-link>
+              </li>
+              <li class="names-item">
+                <router-link to="/chinese-cat-names" custom v-slot="{ navigate }">
+                  <a @click="navigate(); closeDropdown()" href="javascript:void(0);">Chinese Cat Names</a>
+                </router-link>
+              </li>
               
               <!-- Name Destiny 的子菜单 -->
               <li class="dropdown-divider"></li>
               <li class="dropdown-subtitle destiny-section">Name Destiny</li>
-              <li class="destiny-item"><router-link to="/zodiac-calculator" @click="closeDropdown">Chinese Zodiac & Elements</router-link></li>
-              <li class="destiny-item"><router-link to="/constellation-analysis" @click="closeDropdown">Constellation Analysis</router-link></li>
-              <li class="destiny-item"><router-link to="/name-numerology-calculator" @click="closeDropdown">Name Numerology Calculator</router-link></li>
+              <li class="destiny-item">
+                <router-link to="/zodiac-calculator" custom v-slot="{ navigate }">
+                  <a @click="navigate(); closeDropdown()" href="javascript:void(0);">Chinese Zodiac & Elements</a>
+                </router-link>
+              </li>
+              <li class="destiny-item">
+                <router-link to="/constellation-analysis" custom v-slot="{ navigate }">
+                  <a @click="navigate(); closeDropdown()" href="javascript:void(0);">Constellation Analysis</a>
+                </router-link>
+              </li>
+              <li class="destiny-item">
+                <router-link to="/name-numerology-calculator" custom v-slot="{ navigate }">
+                  <a @click="navigate(); closeDropdown()" href="javascript:void(0);">Name Numerology Calculator</a>
+                </router-link>
+              </li>
             </ul>
           </li>
           <li><router-link to="/blog">Blog</router-link></li>
@@ -110,11 +150,30 @@ export default {
     // 添加页面滚动监听器，确保滚动时关闭菜单
     window.addEventListener('scroll', this.closeAllMenus);
     
+    // 添加窗口大小调整监听器，处理响应式布局变化
+    window.addEventListener('resize', this.handleResize);
+    
+    // 为移动设备做特殊处理
+    if (this.isMobileDevice()) {
+      // 移动端上不需要滚动关闭菜单
+      window.removeEventListener('scroll', this.closeAllMenus);
+      
+      // 直接绑定点击事件，而不是触摸事件
+      // 不再使用preventDefault和stopPropagation
+      const othersToggle = document.querySelector('.others-dropdown .dropdown-toggle');
+      if (othersToggle) {
+        othersToggle.setAttribute('data-menu-id', 'others');
+      }
+    }
+    
     // 为OTHERS菜单项添加颜色强制处理
     const othersLink = document.querySelector('.others-link');
     if (othersLink) {
       othersLink.style.color = '#333';
       othersLink.classList.remove('router-link-active'); // 确保没有活动类
+      
+      // 添加菜单ID标识，便于触摸事件处理
+      othersLink.setAttribute('data-menu-id', 'others');
     }
     
     // 立即强制关闭菜单，不等待nextTick
@@ -147,6 +206,15 @@ export default {
     // 移除所有事件监听器以避免内存泄漏
     document.removeEventListener('click', this.handleOutsideClick);
     window.removeEventListener('scroll', this.closeAllMenus);
+    window.removeEventListener('resize', this.handleResize);
+    
+    // 移除触摸事件监听器
+    if (this.isMobileDevice()) {
+      const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+      dropdownToggles.forEach(toggle => {
+        toggle.removeEventListener('touchend', this.handleTouchEnd);
+      });
+    }
   },
   methods: {
     changeLanguage() {
@@ -165,6 +233,20 @@ export default {
       const allMenus = document.querySelectorAll('.dropdown-menu');
       allMenus.forEach(menu => {
         menu.classList.remove('show');
+        menu.classList.remove('mobile-dropdown'); // 移除移动端特殊类
+        
+        // 重置所有内联样式，确保菜单完全隐藏
+        menu.style.display = 'none';
+        menu.style.opacity = '0';
+        menu.style.visibility = 'hidden';
+        menu.style.position = ''; // 重置定位
+        menu.style.top = '';
+        menu.style.left = '';
+        menu.style.width = '';
+        menu.style.zIndex = '';
+        menu.style.backdropFilter = '';
+        menu.style.backgroundColor = '';
+        menu.style.boxShadow = '';
       });
       
       // 重置所有下拉图标
@@ -179,12 +261,28 @@ export default {
         // 强制设置颜色并移除任何可能的router-link-active类
         othersLink.style.color = '#333';
         othersLink.classList.remove('router-link-active');
+        
+        // 确保 aria 属性也设置正确
+        othersLink.setAttribute('aria-expanded', 'false');
       }
     },
     
     // 对外暴露的关闭菜单方法
     closeAllMenus() {
       this.forceCloseAllMenus();
+    },
+    
+    // 检测是否为移动设备 - 强化检测逻辑
+    isMobileDevice() {
+      // 使用多种技术组合检测移动设备
+      const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
+      const isSmallScreen = window.innerWidth <= 980;
+      const isAndroid = /Android/i.test(navigator.userAgent);
+      const isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+      const isMobileUserAgent = /Mobile|Phone|Android|iOS|iPad|iPhone|iPod/i.test(navigator.userAgent);
+      
+      // 如果有下列情况之一则判断为移动设备
+      return isSmallScreen || (isTouchDevice && (isAndroid || isiOS || isMobileUserAgent));
     },
     
     toggleDropdown(menuId) {
@@ -206,39 +304,128 @@ export default {
           const menu = document.querySelector('.others-dropdown .dropdown-menu');
           if (menu) {
             menu.classList.add('show');
+            
+            // 直接设置菜单样式，不依赖事件
+            menu.style.display = 'flex';
+            menu.style.opacity = '1';
+            menu.style.visibility = 'visible';
+            menu.style.pointerEvents = 'auto';
+            menu.style.zIndex = '999999'; // 超高z-index确保始终在最上层
+
+            // 获取当前菜单存储是否是移动设备
+            const isMobile = this.isMobileDevice();
+            if (isMobile) {
+              // 在移动设备上添加额外的样式处理
+              menu.classList.add('mobile-dropdown');
+              
+              // 移动端使用fixed定位，确保始终显示在页面最上层
+              menu.style.position = 'fixed';
+              menu.style.top = '70px';
+              menu.style.left = '0';
+              menu.style.right = '0';
+              menu.style.width = 'calc(100% - 20px)';
+              menu.style.marginLeft = '10px';
+              menu.style.marginRight = '10px';
+              menu.style.maxWidth = '100%';
+              menu.style.zIndex = '999999';
+              menu.style.boxShadow = '0 10px 20px rgba(0,0,0,0.3)';
+              
+              // 添加额外的样式实现滤镜效果，增强分层感
+              menu.style.backdropFilter = 'blur(10px)';
+              menu.style.backgroundColor = 'rgba(255,255,255,0.97)';
+            }
           }
         }
       }
     },
     
     closeDropdown() {
-      this.forceCloseAllMenus();
+      // 立即隐藏菜单，不使用延时，直接操作DOM
+      // 使用最极端的方式隐藏
+      
+      try {
+        // 获取并隐藏所有菜单
+        const allMenus = document.querySelectorAll('.dropdown-menu');
+        if(allMenus) {
+          allMenus.forEach(menu => {
+            // 完全隐藏菜单
+            menu.style.cssText = 'display:none !important; visibility:hidden !important; opacity:0 !important; z-index:-1 !important;';
+            menu.classList.remove('show');
+            menu.classList.remove('mobile-dropdown');
+          });
+        }
+        
+        // 快速处理图标
+        const icons = document.querySelectorAll('.dropdown-icon');
+        if(icons) {
+          icons.forEach(icon => icon.classList.remove('rotated'));
+        }
+        
+        // 重置状态
+        this.activeDropdown = null;
+        
+        // 完全重置移动端的固定定位菜单
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+          menu.style.position = '';
+          menu.style.top = '';
+          menu.style.left = '';
+          menu.style.width = '';
+          menu.style.zIndex = '';
+        });
+      } catch (e) {
+        console.error('Error in closeDropdown:', e);
+        // 防止出错，使用备用方案
+        this.forceCloseAllMenus();
+      }
+    },
+    
+    handleResize() {
+      // 当窗口大小变化时处理响应式布局
+      this.forceCloseAllMenus(); // 先关闭所有菜单
+      
+      // 如果是移动设备状态变化，重新处理触摸事件
+      const isMobile = this.isMobileDevice();
+      const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+      
+      dropdownToggles.forEach(toggle => {
+        // 移除现有的触摸事件
+        toggle.removeEventListener('touchend', this.handleTouchEnd);
+        
+        // 如果是移动设备，重新添加触摸事件
+        if (isMobile) {
+          toggle.addEventListener('touchend', (e) => {
+            const menuId = toggle.getAttribute('data-menu-id') || 'others';
+            e.preventDefault();
+            e.stopPropagation();
+            this.toggleDropdown(menuId);
+          }, { passive: false });
+        }
+      });
+    },
+    
+    handleTouchEnd(e) {
+      // 处理触摸结束事件
+      const menuId = e.currentTarget.getAttribute('data-menu-id') || 'others';
+      e.preventDefault();
+      e.stopPropagation();
+      this.toggleDropdown(menuId);
     },
     
     handleOutsideClick(event) {
       // 检查点击是否在任意下拉菜单内部
       const dropdowns = document.querySelectorAll('.dropdown');
       let isClickInside = false;
-      
-      // 检查点击是否在任何一个下拉菜单内部
       dropdowns.forEach(dropdown => {
         if (dropdown.contains(event.target)) {
           isClickInside = true;
         }
       });
-      
-      // 如果点击在所有下拉菜单外部，则关闭当前激活的下拉菜单
       if (!isClickInside && this.activeDropdown !== null) {
-        // 重置状态
         this.activeDropdown = null;
-        
-        // 立即强制清除所有菜单的show类
         const allDropdownMenus = document.querySelectorAll('.dropdown-menu');
         allDropdownMenus.forEach(menu => {
           menu.classList.remove('show');
         });
-        
-        // 确保视图更新
         this.$forceUpdate();
       }
     }
@@ -401,7 +588,7 @@ body nav.main-nav ul li a.dropdown-toggle.others-link[href="#"] {
   min-width: 220px;
   display: none; /* 默认不显示 */
   flex-direction: column;
-  z-index: 1001;
+  z-index: 10000; /* 大幅提高z-index值，确保显示在最上层 */
   padding: 5px 0;
   margin-top: 5px;
   opacity: 0;
@@ -412,11 +599,12 @@ body nav.main-nav ul li a.dropdown-toggle.others-link[href="#"] {
 }
 
 .dropdown-menu.show {
-  display: flex;
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto; /* 显示时允许鼠标交互 */
-  visibility: visible; /* 显示时设置为可见 */
+  display: flex !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  pointer-events: auto !important; /* 显示时允许鼠标交互 */
+  visibility: visible !important; /* 显示时设置为可见 */
+  z-index: 10000 !important; /* 确保菜单显示在最顶层 */
 }
 
 .dropdown-menu li {
@@ -647,6 +835,30 @@ body nav.main-nav ul li a.dropdown-toggle.others-link[href="#"] {
     overflow-x: auto;
   }
   
+  /* 移动端下其他菜单特殊处理 */
+  .others-dropdown {
+    position: static; /* 特别重要！在移动端设置为static可以避免定位问题 */
+  }
+  
+  .others-dropdown .dropdown-menu {
+    position: fixed !important; /* 使用fixed定位确保始终在最上层 */
+    top: 70px !important; /* 顶部导航栏高度 */
+    left: 0 !important;
+    right: 0 !important;
+    width: calc(100% - 20px) !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    max-width: 100% !important;
+    z-index: 999999 !important; /* 超高z-index */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3) !important;
+    border-radius: 8px !important;
+  }
+  
+  /* 增加移动端点击区域 */
+  .dropdown-toggle {
+    padding: 12px 15px !important; /* 增大点击区域 */
+  }
+  
   .main-nav ul {
     width: max-content;
     padding-bottom: 5px;
@@ -664,10 +876,55 @@ body nav.main-nav ul li a.dropdown-toggle.others-link[href="#"] {
     width: 100%;
     min-width: 180px;
     max-width: 250px;
+    /* 移动端样式增强 */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    max-height: 80vh; /* 防止菜单内容过多时超出屏幕 */
+    overflow-y: auto; /* 允许菜单滚动 */
+    /* 解决触摸事件问题 */
+    touch-action: manipulation;
+  }
+  
+  /* 为移动端添加特殊的菜单类 */
+  .dropdown-menu.mobile-dropdown {
+    position: fixed !important; /* 使用fixed定位确保在页面滚动时也不受影响 */
+    z-index: 999999 !important; /* 超高z-index */
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    left: 0 !important;
+    top: 70px !important; /* 对应导航栏高度 */
+    transform: none !important;
+    transition: none !important;
+    pointer-events: auto !important;
+    background: rgba(255,255,255,0.97) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    max-height: 80vh !important; /* 限制高度防止内容过多 */
+    overflow-y: auto !important; /* 允许滚动 */
+  }
+  
+  /* 移动端页面全局设置，确保下拉菜单始终位于顶层 */
+  body {
+    position: relative;
+  }
+  
+  /* 防止其他元素遮挡菜单 */
+  body .dropdown-menu.show {
+    z-index: 999999 !important;
   }
   
   .dropdown {
     position: relative;
+  }
+  
+  /* 移动端下拉菜单显示时样式增强 */
+  .dropdown-menu.show {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    z-index: 99999 !important; /* 极高z-index值 */
   }
   
   /* 移动端Telegram链接 */
