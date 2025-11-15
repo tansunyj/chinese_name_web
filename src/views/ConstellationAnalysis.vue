@@ -696,12 +696,16 @@ export default {
 
 <style scoped>
 .constellation-page {
-  padding: 80px 0 60px;
+  padding: 40px 0 60px;
   min-height: 100vh;
   background-color: #f8f9fa;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   position: relative;
   overflow: hidden;
+}
+
+.constellation-page > .container {
+  padding-top: 0;
 }
 
 /* 使用全局容器样式替代 */
@@ -1376,4 +1380,45 @@ export default {
     font-size: 1rem;
   }
 }
-</style> 
+
+@media (max-width: 430px) {
+  .constellation-page > .container {
+    padding: 0 !important;
+    width: 100%;
+  }
+
+  .content-container,
+  .form-section,
+  .results-section,
+  .constellation-guide,
+  :deep(.usage-guide) {
+    width: min(95vw, 100%) !important;
+    max-width: min(95vw, 100%) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .content {
+    padding: 0 8px;
+    box-sizing: border-box;
+  }
+
+  .form-section {
+    padding: 18px 14px;
+    margin-bottom: 24px;
+  }
+
+  .results-section,
+  .constellation-guide {
+    margin-top: 24px;
+  }
+
+  .header,
+  .header h1,
+  .header p {
+    width: min(95vw, 100%) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+</style>

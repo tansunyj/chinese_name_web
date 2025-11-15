@@ -714,4 +714,41 @@ export default {
     padding: 20px;
   }
 }
+
+@media (max-width: 430px) {
+  .chinese-cat-names-page > .container {
+    padding: 0 !important;
+    width: 100%;
+  }
+
+  .content {
+    width: min(95vw, 100%) !important;
+    max-width: min(95vw, 100%) !important;
+    margin: 0 auto !important;
+    padding: 0 8px;
+    box-sizing: border-box;
+  }
+
+  .form-section,
+  .results-section,
+  .faq-section,
+  .info-section {
+    width: min(95vw, 100%) !important;
+    max-width: min(95vw, 100%) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .form-section {
+    padding: 18px 14px;
+    margin-bottom: 24px;
+  }
+
+  .page-title,
+  .seo-description {
+    width: min(95vw, 100%) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
 </style>

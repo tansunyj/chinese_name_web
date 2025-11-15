@@ -2420,8 +2420,7 @@ export default {
     padding: 12px 14px; /* 稍微收紧内边距以适配两列 */
   }
 }
-
-/* 触摸设备禁用卡片的悬停展开，保证首次点击直接导航 */
+ 
 @media (hover: none) {
   .feature-card-link:hover {
     transform: none;

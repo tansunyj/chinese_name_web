@@ -4002,4 +4002,45 @@ export default {
     font-size: 1.1rem;
   }
 }
+
+@media (max-width: 430px) {
+  .chinese-names-meanings-page > .container {
+    padding: 0 !important;
+    width: 100%;
+  }
+
+  .content-container {
+    width: min(95vw, 100%) !important;
+    max-width: min(95vw, 100%) !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    box-sizing: border-box;
+  }
+
+  .content {
+    padding: 0 8px;
+    box-sizing: border-box;
+  }
+
+  .form-section,
+  .results-section,
+  .custom-name-faq {
+    width: min(95vw, 100%) !important;
+    max-width: min(95vw, 100%) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .form-section {
+    padding: 18px 14px;
+    margin-bottom: 24px;
+  }
+
+  .page-title,
+  .seo-intro {
+    width: min(95vw, 100%) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
 </style>

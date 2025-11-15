@@ -2666,4 +2666,45 @@ input[type="datetime-local"] {
   font-size: 0.85rem;
   line-height: 20px;
 }
+
+@media (max-width: 430px) {
+  .zodiac-page > .container {
+    padding: 0 !important;
+    width: 100%;
+  }
+
+  .content-container,
+  .zodiac-guide-section,
+  :deep(.usage-guide) {
+    width: min(95vw, 100%) !important;
+    max-width: min(95vw, 100%) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .content {
+    padding: 0 8px;
+    box-sizing: border-box;
+  }
+
+  .form-section,
+  .results-section {
+    width: min(95vw, 100%) !important;
+    max-width: min(95vw, 100%) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .form-section {
+    padding: 18px 14px;
+    margin-bottom: 24px;
+  }
+
+  .page-title,
+  .intro-text {
+    width: min(95vw, 100%) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
 </style> 

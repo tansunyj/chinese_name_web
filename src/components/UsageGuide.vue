@@ -166,19 +166,26 @@ export default {
   .steps-container {
     flex-direction: column;
     gap: 12px;
+    align-items: stretch;
+    justify-content: flex-start;
+    width: 100%;
   }
-  
+
   .step-content {
     padding: 10px;
     max-width: none;
+    width: 100%;
+    justify-content: flex-start;
+    text-align: left;
   }
-  
+
   .step-arrow {
     transform: rotate(90deg);
-    margin: 5px 0;
+    margin: 8px 0;
     min-width: auto;
+    align-self: center;
   }
-  
+
   .step-title {
     font-size: 0.9rem;
   }
@@ -192,22 +199,22 @@ export default {
   .usage-guide {
     padding: 12px 15px;
   }
-  
+
   .guide-title {
     font-size: 1.1rem;
   }
-  
+
   .step-content {
     padding: 8px;
     gap: 6px;
+    width: 100%;
   }
-  
+
   .step-number {
     width: 20px;
     height: 20px;
     font-size: 0.8rem;
   }
-  
 
 }
 </style> 

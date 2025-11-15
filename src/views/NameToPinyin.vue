@@ -959,24 +959,5 @@ export default {
     margin-left: auto;
     margin-right: auto;
   }
-
-  :deep(.breadcrumb-list) {
-    flex-wrap: nowrap !important;
-    overflow: hidden;
-  }
-  :deep(.breadcrumb-item) {
-    white-space: nowrap;
-  }
-  :deep(.breadcrumb-item.active) {
-    flex: 1 1 auto;
-    min-width: 0;
-    overflow: hidden;
-  }
-  :deep(.breadcrumb-item.active > span) {
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
 }
 </style>

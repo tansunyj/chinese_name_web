@@ -147,6 +147,7 @@ export default {
 .breadcrumb-item {
   display: inline-flex;
   align-items: center;
+  min-width: auto;
 }
 
 .breadcrumb-item a {
@@ -173,8 +174,28 @@ export default {
     font-size: 0.8rem;
   }
   
+  .breadcrumb-list {
+    flex-wrap: nowrap;
+    overflow: hidden;
+  }
+
+  .breadcrumb-item {
+    min-width: 0;
+  }
+
+  .breadcrumb-item a,
+  .breadcrumb-item span {
+    display: inline-block;
+    max-width: 70vw;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+  }
+
   .separator {
     margin: 0 5px;
+    flex: 0 0 auto;
   }
 }
 </style>

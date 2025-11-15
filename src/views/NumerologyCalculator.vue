@@ -4,6 +4,10 @@
       <!-- 面包屑导航 -->
       <BreadcrumbNav />
       <h1 class="page-title">{{ $t('numerology.title') }}</h1>
+      <div class="intro-text">
+        <p>Name numerology analyzes the vibration of each letter in your full name to reveal personality traits, strengths, and growth potential.</p>
+        <p>Enter your name below to calculate key numerology numbers and receive tailored insights based on Pythagorean or Chaldean systems.</p>
+      </div>
       
       <!-- 内容容器开始 -->
       <div class="content-container">
@@ -1040,6 +1044,24 @@ export default {
   text-align: center;
 }
 
+.intro-text {
+  width: 80%;
+  max-width: 900px;
+  margin: 0 auto 36px;
+  text-align: left;
+  color: #4a4a4a;
+  line-height: 1.6;
+}
+
+.intro-text p {
+  margin-bottom: 14px;
+  font-size: 1.05rem;
+}
+
+.intro-text p:last-child {
+  margin-bottom: 0;
+}
+
 .content {
   display: flex;
   flex-direction: column;
@@ -1822,6 +1844,51 @@ export default {
   .content-container {
     width: 90%;
   }
+  
+  .intro-text {
+    width: min(90%, 640px);
+    padding: 0 12px;
+  }
+}
+
+@media (max-width: 430px) {
+  .numerology-page > .container {
+    padding: 0 !important;
+    width: 100%;
+  }
+
+  .content-container,
+  .form-section,
+  .results-section,
+  :deep(.usage-guide) {
+    width: min(95vw, 100%) !important;
+    max-width: min(95vw, 100%) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .form-section {
+    padding: 18px 14px;
+    margin-bottom: 24px;
+  }
+
+  .intro-text {
+    width: min(95vw, 100%);
+    text-align: center;
+    padding: 0;
+    margin: 0 auto 28px;
+  }
+
+  .intro-text p {
+    text-align: center;
+    font-size: 0.95rem;
+  }
+
+  .page-title {
+    width: min(95vw, 100%);
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 /* 幸运色和幸运石内联样式 */
@@ -1923,65 +1990,5 @@ export default {
   text-overflow: ellipsis;
   max-width: 100%;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-@media (max-width: 430px) {
-  .numerology-page > .container {
-    padding: 0 !important;
-    width: 100%;
-  }
-
-  .content-container {
-    width: min(95vw, 100%) !important;
-    max-width: min(95vw, 100%) !important;
-    margin: 0 auto !important;
-    padding: 0 !important;
-    box-sizing: border-box;
-  }
-
-  .content {
-    padding: 0 8px;
-    box-sizing: border-box;
-    gap: 28px;
-  }
-
-  .form-section,
-  .results-section,
-  .numerology-guide-section {
-    width: min(95vw, 100%) !important;
-    max-width: min(95vw, 100%) !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-
-  .form-section {
-    padding: 18px 14px;
-    margin-bottom: 24px;
-  }
-
-  .page-title {
-    width: min(95vw, 100%);
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  :deep(.breadcrumb-list) {
-    flex-wrap: nowrap !important;
-    overflow: hidden;
-  }
-  :deep(.breadcrumb-item) {
-    white-space: nowrap;
-  }
-  :deep(.breadcrumb-item.active) {
-    flex: 1 1 auto;
-    min-width: 0;
-    overflow: hidden;
-  }
-  :deep(.breadcrumb-item.active > span) {
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
 }
 </style>

@@ -905,15 +905,58 @@ export default {
 
 /* 响应式调整 */
 @media (max-width: 768px) {
-  .results-grid, .guide-grid {
+  .results-grid {
     grid-template-columns: 1fr;
   }
-  
+
+  .names-list {
+    grid-template-columns: 1fr;
+  }
+
   .filter-groups {
     flex-direction: column;
   }
-  
-  .filter-group {
+}
+
+@media (max-width: 430px) {
+  .chinese-last-names-page > .container {
+    padding: 0 !important;
+    width: 100%;
+  }
+
+  .content-container {
+    width: min(95vw, 100%) !important;
+    max-width: min(95vw, 100%) !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    box-sizing: border-box;
+  }
+
+  .content {
+    padding: 0 8px;
+    box-sizing: border-box;
+  }
+
+  .form-section,
+  .results-section,
+  .usage-guide,
+  .faq-section {
+    width: min(95vw, 100%) !important;
+    max-width: min(95vw, 100%) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .form-section {
+    padding: 18px 14px;
+    margin-bottom: 24px;
+  }
+
+  .page-title,
+  .seo-intro {
+    width: min(95vw, 100%) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
     min-width: 100%;
   }
 }
