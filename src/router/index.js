@@ -162,6 +162,127 @@ export const routes = [
       redirectCode: 301
     }
   },
+  // Old URL redirects for Google Search Console
+  {
+    path: '/translate',
+    redirect: to => ({ path: '/english-to-chinese-translator', query: to.query, hash: to.hash }),
+    meta: { redirectCode: 301 }
+  },
+  {
+    path: '/custom',
+    redirect: '/custom-chinese-name-generator',
+    meta: { redirectCode: 301 }
+  },
+  {
+    path: '/chinese-to-english',
+    redirect: '/chinese-to-english-translator',
+    meta: { redirectCode: 301 }
+  },
+  {
+    path: '/ai-chinese-name',
+    redirect: '/custom-chinese-name-generator',
+    meta: { redirectCode: 301 }
+  },
+  {
+    path: '/zodiac-naming',
+    redirect: '/blog/zodiac-naming',
+    meta: { redirectCode: 301 }
+  },
+  {
+    path: '/seasonal-characters',
+    redirect: '/blog/seasonal-characters',
+    meta: { redirectCode: 301 }
+  },
+  {
+    path: '/sound-harmony',
+    redirect: '/blog/sound-harmony',
+    meta: { redirectCode: 301 }
+  },
+  {
+    path: '/naming-taboos',
+    redirect: '/blog/naming-taboos',
+    meta: { redirectCode: 301 }
+  },
+  {
+    path: '/name-numerology',
+    redirect: '/blog/name-numerology',
+    meta: { redirectCode: 301 }
+  },
+  {
+    path: '/popular-chinese-names',
+    redirect: '/blog/popular-chinese-names',
+    meta: { redirectCode: 301 }
+  },
+  {
+    path: '/baijiaxing',
+    redirect: '/blog/baijiaxing',
+    meta: { redirectCode: 301 }
+  },
+  {
+    path: '/regional-naming-differences',
+    redirect: '/blog/regional-naming-differences',
+    meta: { redirectCode: 301 }
+  },
+  {
+    path: '/professional-considerations',
+    redirect: '/blog/professional-considerations',
+    meta: { redirectCode: 301 }
+  },
+  {
+    path: '/classical-characters',
+    redirect: '/blog/classical-characters',
+    meta: { redirectCode: 301 }
+  },
+  {
+    path: '/era-naming-styles',
+    redirect: '/blog/era-naming-styles',
+    meta: { redirectCode: 301 }
+  },
+  {
+    path: '/family-naming-rules',
+    redirect: '/blog/family-naming-rules',
+    meta: { redirectCode: 301 }
+  },
+  {
+    path: '/character-strokes',
+    redirect: '/blog/character-strokes',
+    meta: { redirectCode: 301 }
+  },
+  {
+    path: '/knowledge',
+    redirect: '/blog',
+    meta: { redirectCode: 301 }
+  },
+  {
+    path: '/constellation',
+    redirect: '/constellation-analysis',
+    meta: { redirectCode: 301 }
+  },
+  {
+    path: '/modern-traditional',
+    redirect: '/blog/modern-traditional',
+    meta: { redirectCode: 301 }
+  },
+  {
+    path: '/historical-names',
+    redirect: '/blog/historical-names',
+    meta: { redirectCode: 301 }
+  },
+  {
+    path: '/form-meaning',
+    redirect: '/blog/form-meaning',
+    meta: { redirectCode: 301 }
+  },
+  {
+    path: '/name-sound-form-taboos',
+    redirect: '/blog/naming-sound-form-taboos',
+    meta: { redirectCode: 301 }
+  },
+  {
+    path: '/multilingual-name',
+    redirect: '/english-to-chinese-translator',
+    meta: { redirectCode: 301 }
+  },
   {
     path: '/english-to-chinese-translator',
     name: 'TranslateName',
@@ -292,57 +413,17 @@ export const routes = [
       twitterImage: 'https://chinesename.us/images/custom-name-og.jpg'
     }
   },
+  // Deprecated: /ai-chinese-name-generator → redirect to /custom-chinese-name-generator
   {
     path: '/ai-chinese-name-generator',
-    name: 'AIChineseName',
-    component: () => import('../views/CustomChineseName.vue'),
-    meta: {
-      // Title: 59/60
-      title: 'AI Chinese Name Generator - Smart Name Creation Technology',
-      canonicalPath: '/ai-chinese-name-generator',
-      // Description: 160/160
-      description: 'Generate Chinese names using cutting-edge AI technology. Our smart system creates culturally appropriate names with personalized meanings, perfect pronunciation and Pinyin.',
-      // 关键词最大化
-      keywords: 'ai name generator,chinese name generator,artificial intelligence names,smart name creator,ai generator,personalized names,pinyin,cultural names',
-      // ogTitle: 60/60
-      ogTitle: 'AI Chinese Name Generator | Smart Name Creation with AI Technology',
-      // ogDescription: 156/160
-      ogDescription: 'Generate Chinese names using advanced AI technology. Our smart system creates culturally appropriate names with personalized meanings and accurate Pinyin.',
-      ogImage: 'https://chinesename.us/images/ai-generator-og.jpg',
-      ogUrl: 'https://chinesename.us/ai-chinese-name-generator',
-      twitterCard: 'summary_large_image',
-      // twitterTitle: 51/60
-      twitterTitle: 'AI Chinese Name Generator | Smart Naming Technology',
-      // twitterDescription: 116/160
-      twitterDescription: 'Create Chinese names with AI technology. Intelligent naming with cultural authenticity and smart generation.',
-      twitterImage: 'https://chinesename.us/images/ai-generator-og.jpg'
-    }
+    redirect: '/custom-chinese-name-generator',
+    meta: { redirectCode: 301 }
   },
+  // Deprecated: /multilingual → redirect to /english-to-chinese-translator
   {
     path: '/multilingual',
-    name: 'MultilingualName',
-    component: () => import('../views/MultilingualName.vue'),
-    meta: {
-      // Title: 60/60
-      title: 'Multilingual Chinese Names - International Name Translation Hub',
-      canonicalPath: '/multilingual',
-      // Description: 160/160
-      description: 'Translate names from multiple languages to Chinese including Spanish, French, German, Japanese, Korean, and more with cultural context and guaranteed accuracy.',
-      // 关键词最大化
-      keywords: 'multilingual names,international translation,spanish to chinese,french to chinese,japanese names,korean names,global name conversion,accurate translation',
-      // ogTitle: 60/60
-      ogTitle: 'Multilingual Chinese Names | International Name Translation Hub',
-      // ogDescription: 156/160
-      ogDescription: 'Translate names from multiple languages to Chinese with cultural context. Support for Spanish, French, German, Japanese, Korean and many more global languages.',
-      ogImage: 'https://chinesename.us/images/multilingual-og.jpg',
-      ogUrl: 'https://chinesename.us/multilingual',
-      twitterCard: 'summary_large_image',
-      // twitterTitle: 52/60
-      twitterTitle: 'Multilingual Chinese Names | International Translation',
-      // twitterDescription: 119/160
-      twitterDescription: 'Translate your name to Chinese from multiple languages with cultural context and guaranteed accuracy.',
-      twitterImage: 'https://chinesename.us/images/multilingual-og.jpg'
-    }
+    redirect: '/english-to-chinese-translator',
+    meta: { redirectCode: 301 }
   },
   {
     path: '/blog',
@@ -709,6 +790,25 @@ export const routes = [
     }
   },
   {
+    path: '/blog/wuxing-bazi',
+    name: 'WuXingBaZi',
+    component: () => import('../views/WuXingBaZi.vue'),
+    meta: {
+      // Title: 60/60
+      title: 'Five Elements and BaZi Theory - Chinese Naming Philosophy Guide',
+      canonicalPath: '/blog/wuxing-bazi',
+      // Description: 160/160
+      description: 'Learn about WuXing (Five Elements) and BaZi (Eight Characters) theory in Chinese naming. Understand how birth elements influence name selection and fortune.',
+      // 关键词最大化
+      keywords: 'wuxing,five elements,bazi,eight characters,chinese astrology,naming philosophy,birth elements,element theory,fortune naming',
+    }
+  },
+  {
+    path: '/wuxing-bazi',
+    redirect: '/blog/wuxing-bazi',
+    meta: { redirectCode: 301 }
+  },
+  {
     path: '/about',
     name: 'About',
     component: () => import('../views/pages/About.vue'),
@@ -834,31 +934,11 @@ export const routes = [
       keywords: 'professional chinese names,business names,career naming,international names,workplace names,global naming,name impact,cross-cultural communication',
     }
   },
+  // Deprecated: /name-generator → redirect to /custom-chinese-name-generator
   {
     path: '/name-generator',
-    name: 'NameGenerator',
-    component: () => import('../views/NameGenerator.vue'),
-    meta: {
-      // Title: 60/60
-      title: 'Chinese Name Generator | Create Authentic Chinese Names Free',
-      canonicalPath: '/name-generator',
-      // Description: 160/160
-      description: 'Generate authentic Chinese names with our free tool. Create personalized Chinese names with proper meanings and cultural significance based on your preferences and requirements.',
-      // 关键词最大化
-      keywords: 'chinese name generator,free name generator,authentic chinese names,translate name to chinese,personalized names,name creator,meaningful names,name tool',
-      // ogTitle: 60/60
-      ogTitle: 'Chinese Name Generator | Create Authentic Chinese Names Instantly',
-      // ogDescription: 159/160
-      ogDescription: 'Generate authentic Chinese names with cultural significance and proper meanings. Free Chinese name generator with personalization options for everyone.',
-      ogImage: 'https://chinesename.us/images/name-generator-og.jpg',
-      ogUrl: 'https://chinesename.us/name-generator',
-      twitterCard: 'summary_large_image',
-      // twitterTitle: 50/60
-      twitterTitle: 'Chinese Name Generator | Authentic Chinese Names Tool',
-      // twitterDescription: 129/160
-      twitterDescription: 'Create personalized Chinese names with cultural significance and proper meanings using our advanced generator.',
-      twitterImage: 'https://chinesename.us/images/name-generator-og.jpg'
-    }
+    redirect: '/custom-chinese-name-generator',
+    meta: { redirectCode: 301 }
   },
   {
     path: '/funny-chinese-names',

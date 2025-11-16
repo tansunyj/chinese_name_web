@@ -145,7 +145,8 @@ export default {
     localStorage.setItem('userLanguage', 'en');
     
     // 添加点击其他区域关闭下拉菜单的监听器
-    document.addEventListener('click', this.handleOutsideClick);
+    // 使用 capture 阶段捕获，确保在其他事件之前处理
+    document.addEventListener('click', this.handleOutsideClick, true);
 
     // 添加页面滚动监听器，确保滚动时关闭菜单
     window.addEventListener('scroll', this.closeAllMenus);
@@ -204,7 +205,7 @@ export default {
   
   beforeUnmount() {
     // 移除所有事件监听器以避免内存泄漏
-    document.removeEventListener('click', this.handleOutsideClick);
+    document.removeEventListener('click', this.handleOutsideClick, true);
     window.removeEventListener('scroll', this.closeAllMenus);
     window.removeEventListener('resize', this.handleResize);
     
@@ -412,21 +413,33 @@ export default {
     },
     
     handleOutsideClick(event) {
-      // 检查点击是否在任意下拉菜单内部
+      // 如果没有活动的下拉菜单，直接返回
+      if (this.activeDropdown === null) {
+        return;
+      }
+      
+      // 检查点击是否在任意下拉菜单容器内部
       const dropdowns = document.querySelectorAll('.dropdown');
       let isClickInside = false;
+      
       dropdowns.forEach(dropdown => {
         if (dropdown.contains(event.target)) {
           isClickInside = true;
         }
       });
-      if (!isClickInside && this.activeDropdown !== null) {
-        this.activeDropdown = null;
-        const allDropdownMenus = document.querySelectorAll('.dropdown-menu');
-        allDropdownMenus.forEach(menu => {
-          menu.classList.remove('show');
-        });
-        this.$forceUpdate();
+      
+      // 特别检查：点击的是否是下拉菜单的触发按钮
+      const isToggleButton = event.target.closest('.dropdown-toggle');
+      
+      // 如果点击在下拉菜单外部且不是触发按钮，立即关闭所有菜单
+      if (!isClickInside || isToggleButton) {
+        // 如果点击的是触发按钮，让 toggleDropdown 方法处理
+        if (isToggleButton) {
+          return;
+        }
+        
+        // 使用强制关闭方法，确保菜单完全隐藏
+        this.closeDropdown();
       }
     }
   }

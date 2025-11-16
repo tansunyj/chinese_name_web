@@ -19,12 +19,6 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/name-generator</loc>
-    <lastmod>2024-05-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://www.chinesename.us/fantasy-chinese-name-generator</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -32,12 +26,6 @@
   </url>
   <url>
     <loc>https://www.chinesename.us/custom-chinese-name-generator</loc>
-    <lastmod>2024-12-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.chinesename.us/ai-chinese-name-generator</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -127,7 +115,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinesename.us/blog/constellation-analysis</loc>
+    <loc>https://www.chinesename.us/constellation-analysis</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -158,12 +146,6 @@
   </url>
   <url>
     <loc>https://www.chinesename.us/blog/modern-traditional</loc>
-    <lastmod>2024-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.chinesename.us/multilingual</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -200,24 +182,6 @@
   </url>
   <url>
     <loc>https://www.chinesename.us/blog/character-strokes</loc>
-    <lastmod>2024-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.chinesename.us/login</loc>
-    <lastmod>2024-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.chinesename.us/signup</loc>
-    <lastmod>2024-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.chinesename.us/multilingual-name</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

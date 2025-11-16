@@ -8,6 +8,12 @@
         <p>{{ t('constellation.subtitle') }}</p>
       </div>
       
+      <!-- 页面介绍段落 -->
+      <div class="intro-text">
+        <p>Western astrology has been used for thousands of years to understand personality traits and life paths based on celestial positions. Each of the twelve zodiac signs carries unique characteristics that influence naming traditions and personal identity.</p>
+        <p>Discover your constellation's personality traits, strengths, and Chinese name suggestions that harmonize with your astrological profile. Enter your birth date below to unlock personalized insights.</p>
+      </div>
+      
       <!-- 内容容器开始 -->
       <div class="content-container">
         <div class="content">
@@ -729,6 +735,32 @@ export default {
   margin: 0 auto;
 }
 
+/* 介绍文本样式 */
+.intro-text {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto 30px;
+  padding: 20px 30px;
+}
+
+.intro-text p {
+  color: #555;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0;
+  text-align: center;
+}
+
+.intro-text p:first-child {
+  margin-bottom: 12px;
+  font-weight: 500;
+  color: #333;
+}
+
+.intro-text p:last-child {
+  color: #666;
+}
+
 .content {
   display: flex;
   flex-direction: column;
@@ -1387,6 +1419,7 @@ export default {
     width: 100%;
   }
 
+  .intro-text,
   .content-container,
   .form-section,
   .results-section,
@@ -1396,6 +1429,10 @@ export default {
     max-width: min(95vw, 100%) !important;
     margin-left: auto !important;
     margin-right: auto !important;
+  }
+  
+  .intro-text {
+    padding: 15px 20px !important;
   }
 
   .content {

@@ -3,7 +3,12 @@
 /chinese-to-english                     /chinese-to-english-translator           301
 /custom                                 /custom-chinese-name-generator           301
 /knowledge                              /blog                                    301
-/ai-chinese-name                        /ai-chinese-name-generator               301
+/ai-chinese-name                        /custom-chinese-name-generator           301
+
+# 废弃页面重定向
+/name-generator                         /custom-chinese-name-generator           301
+/ai-chinese-name-generator              /custom-chinese-name-generator           301
+/multilingual                           /english-to-chinese-translator           301
 
 # Blog文章重定向 - 301永久重定向
 /popular-chinese-names                  /blog/popular-chinese-names              301
@@ -25,12 +30,12 @@
 /modern-traditional                     /blog/modern-traditional                 301
 /era-naming-styles                      /blog/era-naming-styles                  301
 /professional-considerations            /blog/professional-considerations        301
-/constellation                          /blog/constellation-analysis             301
+/constellation                          /constellation-analysis                  301
 /character-strokes                      /blog/character-strokes                  301
 /fantasy-chinese-names-guide            /blog/fantasy-chinese-names-guide        301
 
 # 其他可能的重定向
-/multilingual-name                      /multilingual                            301
+/multilingual-name                      /english-to-chinese-translator           301
 
 # API路由 - 使用Cloudflare Pages Functions
 # /api/openai 会自动路由到 /functions/api/openai.js
