@@ -1,6 +1,8 @@
 <template>
   <div class="baijiaxing-page">
     <div class="container">
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
       <h1 class="page-title">百家姓 (Hundred Family Surnames)</h1>
       
       <div class="article-content">
@@ -246,12 +248,22 @@
         </section>
       </div>
     </div>
+    
+    <!-- Explore More 组件 -->
+    <ExploreMore :currentPath="$route.path" />
   </div>
 </template>
 
 <script>
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
+
 export default {
   name: 'BaijiaXing',
+  components: {
+    BreadcrumbNav,
+    ExploreMore
+  },
   data() {
     return {
       // 可以在这里添加页面所需的数据

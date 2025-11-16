@@ -1,6 +1,8 @@
 <template>
   <div class="fantasy-names-guide-page">
     <div class="container">
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
       <h1 class="page-title">Fantasy Chinese Names Guide | Mystical Naming Traditions & Cultural Elements</h1>
       
       <div class="seo-intro">
@@ -283,14 +285,23 @@
         </section>
       </div>
     </div>
+    
+    <!-- Explore More 组件 -->
+    <ExploreMore :currentPath="$route.path" />
   </div>
 </template>
 
 <script>
 import { onMounted, onBeforeUnmount } from 'vue';
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
 
 export default {
   name: 'FantasyChineseNamesGuide',
+  components: {
+    BreadcrumbNav,
+    ExploreMore
+  },
   setup() {
     // 结构化数据脚本引用
     let structuredDataScript = null;

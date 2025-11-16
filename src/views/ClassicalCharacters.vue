@@ -1,6 +1,8 @@
 <template>
   <div class="classical-characters-page">
     <div class="container">
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
       <h1 class="page-title">Characters from Classical Texts (典籍用字)</h1>
       
       <div class="content-wrapper">
@@ -301,12 +303,22 @@
         </section>
       </div>
     </div>
+    
+    <!-- Explore More 组件 -->
+    <ExploreMore :currentPath="$route.path" />
   </div>
 </template>
 
 <script>
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
+
 export default {
   name: 'ClassicalCharacters',
+  components: {
+    BreadcrumbNav,
+    ExploreMore
+  },
   data() {
     return {
       examples: [

@@ -133,21 +133,34 @@ export default {
   max-width: 100%;
   position: relative;
   left: 0;
+  overflow: hidden;
 }
 
 .breadcrumb-list {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* 不换行 */
   list-style: none;
   padding: 0;
   margin: 0;
   font-size: 0.9rem;
+  overflow: hidden;
 }
 
 .breadcrumb-item {
   display: inline-flex;
   align-items: center;
-  min-width: auto;
+  min-width: 0; /* 允许缩小 */
+  flex-shrink: 1;
+}
+
+.breadcrumb-item a,
+.breadcrumb-item span {
+  display: inline-block;
+  max-width: 300px; /* PC端最大宽度 */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  vertical-align: middle;
 }
 
 .breadcrumb-item a {
@@ -166,6 +179,18 @@ export default {
 .separator {
   margin: 0 8px;
   color: #999;
+  flex-shrink: 0; /* 分隔符不缩小 */
+}
+
+@media (max-width: 768px) {
+  .breadcrumb-nav {
+    margin: 8px 0 18px;
+  }
+  
+  .breadcrumb-item a,
+  .breadcrumb-item span {
+    max-width: 200px; /* 平板端 */
+  }
 }
 
 @media (max-width: 576px) {
@@ -174,28 +199,13 @@ export default {
     font-size: 0.8rem;
   }
   
-  .breadcrumb-list {
-    flex-wrap: nowrap;
-    overflow: hidden;
-  }
-
-  .breadcrumb-item {
-    min-width: 0;
-  }
-
   .breadcrumb-item a,
   .breadcrumb-item span {
-    display: inline-block;
-    max-width: 70vw;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    vertical-align: middle;
+    max-width: 150px; /* 移动端 */
   }
 
   .separator {
     margin: 0 5px;
-    flex: 0 0 auto;
   }
 }
 </style>

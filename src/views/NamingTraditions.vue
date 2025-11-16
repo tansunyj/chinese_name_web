@@ -1,6 +1,8 @@
 <template>
   <div class="naming-traditions-page">
     <div class="container">
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
       <h1 class="page-title">Chinese Naming Traditions | English to Chinese Name Translation Guide</h1>
       
       <div class="intro-section">
@@ -216,12 +218,22 @@
         <p>Whether you're seeking a Chinese name for business cards, academic exchange, or personal interest, understanding these naming traditions will help you appreciate the depth and significance of your translated Chinese name.</p>
       </div>
     </div>
+    
+    <!-- Explore More 组件 -->
+    <ExploreMore :currentPath="$route.path" />
   </div>
 </template>
 
 <script>
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
+
 export default {
   name: 'NamingTraditions',
+  components: {
+    BreadcrumbNav,
+    ExploreMore
+  },
   data() {
     return {
       // 数据可以在这里定义

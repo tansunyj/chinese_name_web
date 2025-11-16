@@ -98,6 +98,9 @@
         </div>
       </div>
     </div>
+    
+    <!-- Explore More 组件 -->
+    <ExploreMore :currentPath="$route.path" />
   </div>
 </template>
 
@@ -106,6 +109,7 @@
 import ShuImg from '@/assets/images/zodiac/shu.png';
 import NiuImg from '@/assets/images/zodiac/niu.png';
 import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
 import HuImg from '@/assets/images/zodiac/hu.png';
 import TuImg from '@/assets/images/zodiac/tu.png';
 import LongImg from '@/assets/images/zodiac/long.png';
@@ -120,7 +124,8 @@ import ZhuImg from '@/assets/images/zodiac/zhu.png';
 export default {
   name: 'ZodiacNaming',
   components: {
-    BreadcrumbNav
+    BreadcrumbNav,
+    ExploreMore
   },
   data() {
     return {

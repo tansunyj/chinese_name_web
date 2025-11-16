@@ -59,6 +59,58 @@ export const routes = [
     }
   },
   {
+    path: '/chinese-women-names',
+    name: 'ChineseWomenNames',
+    component: () => import('../views/ChineseWomenNames.vue'),
+    meta: {
+      // Title: 60/60
+      title: "Chinese Women Names & Meanings (2025) | Professional Female Names",
+      canonicalPath: '/chinese-women-names',
+      // Description: 160/160
+      description: "Discover 300+ elegant Chinese names for adult women. Perfect for professionals, expats, and anyone needing authentic Chinese women names for business and social occasions.",
+      // 关键词最大化
+      keywords: "chinese women names,chinese names for women,female chinese names,professional chinese names,adult chinese names,chinese woman names,business names",
+      // ogTitle: 60/60
+      ogTitle: "Chinese Women Names with Meanings | 300+ Professional Female Names (2025)",
+      // ogDescription: 160/160
+      ogDescription: "Browse our collection of 300+ elegant Chinese women names complete with meanings, pronunciations and cultural significance for professional and social contexts.",
+      ogImage: "https://chinesename.us/images/chinese-women-names-og.jpg",
+      ogUrl: "https://chinesename.us/chinese-women-names",
+      twitterCard: "summary_large_image",
+      // twitterTitle: 58/60
+      twitterTitle: "Chinese Women Names with Meanings (2025) - Professional Guide",
+      // twitterDescription: 160/160
+      twitterDescription: "Explore 300+ elegant Chinese women names with meanings and cultural context. Find the perfect professional name for business and social occasions in China.",
+      twitterImage: "https://chinesename.us/images/chinese-women-names-twitter.jpg"
+    }
+  },
+  {
+    path: '/chinese-men-names',
+    name: 'ChineseMenNames',
+    component: () => import('../views/ChineseMenNames.vue'),
+    meta: {
+      // Title: 60/60
+      title: "Chinese Men Names & Meanings (2025) | Professional Male Names Guide",
+      canonicalPath: '/chinese-men-names',
+      // Description: 160/160
+      description: "Discover 300+ professional Chinese names for adult men. Perfect for professionals, expats, and anyone needing authentic Chinese men names for business and social occasions.",
+      // 关键词最大化
+      keywords: "chinese men names,chinese names for men,male chinese names,professional chinese names,adult chinese names,chinese man names,business names",
+      // ogTitle: 60/60
+      ogTitle: "Chinese Men Names with Meanings | 300+ Professional Male Names (2025)",
+      // ogDescription: 160/160
+      ogDescription: "Browse our collection of 300+ professional Chinese men names complete with meanings, pronunciations and cultural significance for business and social contexts.",
+      ogImage: "https://chinesename.us/images/chinese-men-names-og.jpg",
+      ogUrl: "https://chinesename.us/chinese-men-names",
+      twitterCard: "summary_large_image",
+      // twitterTitle: 58/60
+      twitterTitle: "Chinese Men Names with Meanings (2025) - Professional Guide",
+      // twitterDescription: 160/160
+      twitterDescription: "Explore 300+ professional Chinese men names with meanings and cultural context. Find the perfect name for business and social occasions in China.",
+      twitterImage: "https://chinesename.us/images/chinese-men-names-twitter.jpg"
+    }
+  },
+  {
     path: '/chinese-last-names',
     name: 'ChineseLastNames',
     component: () => import('../views/ChineseLastNames.vue'),

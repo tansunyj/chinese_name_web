@@ -1,6 +1,8 @@
 <template>
   <div class="modern-traditional-page">
-    <div class="container">  
+    <div class="container">
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
       <h1 class="page-title">Blending Modern and Traditional Elements (现代与传统的结合)</h1>
       <div class="subtitle">Balancing traditional cultural elements with modern aesthetics in name selection</div>
       
@@ -241,12 +243,22 @@
         </div>
       </div>
     </div>
+    
+    <!-- Explore More 组件 -->
+    <ExploreMore :currentPath="$route.path" />
   </div>
 </template>
 
 <script>
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
+
 export default {
   name: 'ModernTraditional',
+  components: {
+    BreadcrumbNav,
+    ExploreMore
+  },
   data() {
     return {
       // Data directly used in template

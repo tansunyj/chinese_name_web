@@ -1,6 +1,8 @@
 <template>
   <div class="chinese-surnames-page">
     <div class="container">
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
       <h1 class="page-title">{{ $t('chineseSurnames.title') }} | Translating Chinese Names | Noms de Famille Chinois | 中国の姓 | Китайские Фамилии</h1>
       <p class="seo-description">Explore Chinese surnames, their meanings, and origins. Learn how to translate your name into Chinese. Explorez les noms de famille chinois. Entdecken Sie chinesische Nachnamen. Исследуйте китайские фамилии. 中国の姓の意味と起源を探りましょう。</p>
       
@@ -298,12 +300,22 @@
         </section>
       </div>
     </div>
+    
+    <!-- Explore More 组件 -->
+    <ExploreMore :currentPath="$route.path" />
   </div>
 </template>
 
 <script>
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
+
 export default {
   name: 'ChineseSurnames',
+  components: {
+    BreadcrumbNav,
+    ExploreMore
+  },
   data() {
     return {
       surnameInput: '',

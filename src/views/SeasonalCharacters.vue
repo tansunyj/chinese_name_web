@@ -1,5 +1,7 @@
 <template>
   <div class="seasonal-characters">
+    <!-- 面包屑导航 -->
+    <BreadcrumbNav />
     <header class="page-header">
       <h1>Seasonal Characters for Naming (季节时令用字)</h1>
       <p class="subtitle">Explore Chinese characters related to the four seasons and create a beautiful name for your child that matches their birth season</p>
@@ -352,12 +354,22 @@
         </div>
       </div>
     </section>
+  
+  <!-- Explore More 组件 -->
+  <ExploreMore :currentPath="$route.path" />
   </div>
 </template>
 
 <script>
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
+
 export default {
   name: 'SeasonalCharacters',
+  components: {
+    BreadcrumbNav,
+    ExploreMore
+  },
 }
 </script>
 

@@ -123,16 +123,21 @@
         </div>
       </div>
     </div>
+    
+    <!-- Explore More 组件 -->
+    <ExploreMore :currentPath="$route.path" />
   </div>
 </template>
 
 <script>
 import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
 
 export default {
   name: 'PopularChineseNames',
   components: {
-    BreadcrumbNav
+    BreadcrumbNav,
+    ExploreMore
   },
   data() {
     return {
@@ -546,6 +551,12 @@ export default {
 }
 
 @media (max-width: 768px) {
+  .container {
+    width: 95% !important;
+    max-width: 95% !important;
+    padding: 0 10px !important;
+  }
+  
   .intro-section {
     flex-direction: column;
   }
@@ -561,6 +572,25 @@ export default {
   
   .tips-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 95% !important;
+    max-width: 95% !important;
+    padding: 0 8px !important;
+  }
+  
+  .page-title {
+    font-size: 1.8rem;
+  }
+  
+  .intro-section,
+  .names-section,
+  .naming-tips,
+  .naming-resources {
+    padding: 20px 15px;
   }
 }
 </style>

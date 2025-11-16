@@ -191,16 +191,21 @@
         </section>
       </div>
     </div>
+    
+    <!-- Explore More 组件 -->
+    <ExploreMore :currentPath="$route.path" />
   </div>
 </template>
 
 <script>
 import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
 
 export default {
   name: 'WuXingBaZi',
   components: {
-    BreadcrumbNav
+    BreadcrumbNav,
+    ExploreMore
   },
   data() {
     return {

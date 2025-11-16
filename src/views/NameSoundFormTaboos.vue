@@ -1,11 +1,8 @@
 <template>
   <div class="taboos-page">
     <div class="container">
-      <div class="back-link">
-        <router-link to="/blog">
-          <i class="arrow-left"></i> Back to Knowledge Base
-        </router-link>
-      </div>
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
       
       <h1 class="page-title">Name Sound and Form Taboos (字音字形避讳)</h1>
       <div class="subtitle">Avoiding characters that sound like or have similar forms to names of elders, celebrities, or inauspicious meanings</div>
@@ -253,12 +250,22 @@
         </div>
       </div>
     </div>
+    
+    <!-- Explore More 组件 -->
+    <ExploreMore :currentPath="$route.path" />
   </div>
 </template>
 
 <script>
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
+
 export default {
   name: 'NameSoundFormTaboos',
+  components: {
+    BreadcrumbNav,
+    ExploreMore
+  },
   data() {
     return {
       // Data directly used in template
@@ -287,33 +294,6 @@ export default {
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 20px;
-}
-
-.back-link {
-  margin-bottom: 20px;
-}
-
-.back-link a {
-  display: inline-flex;
-  align-items: center;
-  text-decoration: none;
-  color: #555;
-  font-size: 1rem;
-  transition: color 0.3s;
-}
-
-.back-link a:hover {
-  color: #e60012;
-}
-
-.arrow-left {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23555555'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M10 19l-7-7m0 0l7-7m-7 7h18' /%3E%3C/svg%3E");
-  background-size: contain;
-  background-repeat: no-repeat;
-  margin-right: 5px;
 }
 
 .page-title {

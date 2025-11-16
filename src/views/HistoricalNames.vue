@@ -1,6 +1,8 @@
 <template>
   <div class="historical-names-page">
     <div class="container">
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
       <h1 class="page-title">Chinese Historical Figure Names</h1>
       
       <div class="intro-section">
@@ -310,12 +312,22 @@
       <!-- Continue with other sections... -->
       
     </div>
+    
+    <!-- Explore More 组件 -->
+    <ExploreMore :currentPath="$route.path" />
   </div>
 </template>
 
 <script>
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
+
 export default {
   name: 'HistoricalNames',
+  components: {
+    BreadcrumbNav,
+    ExploreMore
+  },
   data() {
     return {
       showMoreEmperors: false,

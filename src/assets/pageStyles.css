@@ -333,8 +333,35 @@
   }
   
   .content-container {
-    width: 95%;
-    padding: 0 10px;
+    width: 95% !important;
+    padding: 0 10px !important;
+  }
+  
+  /* 确保所有blog页面容器在移动端占95%宽度 */
+  .popular-names-page .container,
+  .knowledge-page .container,
+  .chinese-surnames-page .container,
+  .baijiaxing-page .container,
+  .fantasy-guide-page .container,
+  .naming-traditions-page .container,
+  .naming-taboos-page .container,
+  .zodiac-naming-page .container,
+  .seasonal-characters-page .container,
+  .sound-harmony-page .container,
+  .name-numerology-page .container,
+  .regional-differences-page .container,
+  .professional-page .container,
+  .classical-characters-page .container,
+  .era-naming-page .container,
+  .family-naming-page .container,
+  .character-strokes-page .container,
+  .modern-traditional-page .container,
+  .historical-names-page .container,
+  .form-meaning-page .container,
+  .taboos-page .container {
+    width: 95% !important;
+    max-width: 95% !important;
+    padding: 0 10px !important;
   }
   
   .page-title {
@@ -344,7 +371,38 @@
 
 @media (max-width: 480px) {
   .content-container {
-    width: 100%;
-    padding: 0 5px;
+    width: 95% !important;
+    padding: 0 5px !important;
+  }
+  
+  /* 确保所有blog页面容器在小屏移动端占95%宽度 */
+  .popular-names-page .container,
+  .knowledge-page .container,
+  .chinese-surnames-page .container,
+  .baijiaxing-page .container,
+  .fantasy-guide-page .container,
+  .naming-traditions-page .container,
+  .naming-taboos-page .container,
+  .zodiac-naming-page .container,
+  .seasonal-characters-page .container,
+  .sound-harmony-page .container,
+  .name-numerology-page .container,
+  .regional-differences-page .container,
+  .professional-page .container,
+  .classical-characters-page .container,
+  .era-naming-page .container,
+  .family-naming-page .container,
+  .character-strokes-page .container,
+  .modern-traditional-page .container,
+  .historical-names-page .container,
+  .form-meaning-page .container,
+  .taboos-page .container {
+    width: 95% !important;
+    max-width: 95% !important;
+    padding: 0 8px !important;
+  }
+  
+  .page-title {
+    font-size: 1.4rem;
   }
 }

@@ -1,6 +1,8 @@
 <template>
   <div class="regional-differences-page">
     <div class="container">
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
       <h1 class="page-title">Chinese Regional Naming Differences</h1>
       
       <div class="intro-section">
@@ -325,12 +327,22 @@
         <p class="final-note">Regardless of which regional naming style you choose, the most important aspect is to imbue the name with beautiful meanings and aspirations. We hope that the wisdom of these regional naming cultures will provide you with rich inspiration for your naming journey.</p>
       </div>
     </div>
+    
+    <!-- Explore More 组件 -->
+    <ExploreMore :currentPath="$route.path" />
   </div>
 </template>
 
 <script>
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
+
 export default {
   name: 'RegionalNamingDifferences',
+  components: {
+    BreadcrumbNav,
+    ExploreMore
+  },
   data() {
     return {
       // 数据

@@ -1,6 +1,8 @@
 <template>
   <div class="naming-taboos-page">
     <div class="container">
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
       <h1 class="page-title">Chinese Traditional Naming Taboos</h1>
       
       <div class="intro-section">
@@ -155,12 +157,22 @@
         <p class="final-note">Naming is the first gift parents give to their children. Understanding naming taboos is not only a respect for tradition but also a responsibility for the child's future. We hope that the various naming taboos introduced in this article will provide valuable reference for your naming journey.</p>
       </div>
     </div>
+    
+    <!-- Explore More 组件 -->
+    <ExploreMore :currentPath="$route.path" />
   </div>
 </template>
 
 <script>
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
+
 export default {
   name: 'NamingTaboos',
+  components: {
+    BreadcrumbNav,
+    ExploreMore
+  },
   data() {
     return {
       // Data

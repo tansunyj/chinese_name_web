@@ -1,6 +1,8 @@
 <template>
   <div class="family-naming-page">
     <div class="page-container">
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
       <header class="page-header">
         <h1 class="title">Family Naming Rules (家族命名规则)</h1>
         <p class="subtitle">Exploring Traditional Chinese Family Naming Systems and Heritage</p>
@@ -147,12 +149,22 @@
         <p>Family naming rules are a precious cultural heritage of the Chinese nation, connecting the past, present, and future, and carrying the historical memory and cultural values of families. Regardless of how times change, this tradition is worth cherishing and passing down. By respecting tradition while appropriately innovating, we can breathe new life into family naming culture in modern society.</p>
       </section>
     </div>
+    
+    <!-- Explore More 组件 -->
+    <ExploreMore :currentPath="$route.path" />
   </div>
 </template>
 
 <script>
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
+
 export default {
-  name: 'FamilyNamingRules'
+  name: 'FamilyNamingRules',
+  components: {
+    BreadcrumbNav,
+    ExploreMore
+  }
 }
 </script>
 

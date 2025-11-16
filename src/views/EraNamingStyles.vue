@@ -1,6 +1,8 @@
 <template>
   <div class="era-naming-page">
     <div class="container">
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
       <h1 class="page-title">Chinese Naming Styles Throughout History</h1>
       <p class="page-intro">
         Chinese naming styles have continuously evolved throughout history, with each era having its unique naming characteristics and popular trends.
@@ -389,12 +391,22 @@
         </p>
       </div>
     </div>
+    
+    <!-- Explore More 组件 -->
+    <ExploreMore :currentPath="$route.path" />
   </div>
 </template>
 
 <script>
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
+
 export default {
   name: 'EraNamingStyles',
+  components: {
+    BreadcrumbNav,
+    ExploreMore
+  },
   mounted() {
     window.scrollTo(0, 0);
   }

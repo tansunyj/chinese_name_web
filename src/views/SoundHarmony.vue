@@ -1,6 +1,8 @@
 <template>
   <div class="sound-harmony-page">
     <div class="container">
+      <!-- 面包屑导航 -->
+      <BreadcrumbNav />
       <h1 class="page-title">Sound Harmony in Names (音韵和谐)</h1>
       
       <div class="content-wrapper">
@@ -190,12 +192,22 @@
         </section>
       </div>
     </div>
+    
+    <!-- Explore More 组件 -->
+    <ExploreMore :currentPath="$route.path" />
   </div>
 </template>
 
 <script>
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
+import ExploreMore from '@/components/ExploreMore.vue';
+
 export default {
   name: 'SoundHarmony',
+  components: {
+    BreadcrumbNav,
+    ExploreMore
+  },
   data() {
     return {
       examples: [

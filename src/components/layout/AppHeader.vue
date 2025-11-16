@@ -30,6 +30,16 @@
                 </router-link>
               </li>
               <li class="names-item">
+                <router-link to="/chinese-women-names" custom v-slot="{ navigate }">
+                  <a @click="navigate(); closeDropdown()" href="javascript:void(0);">Chinese Women Names</a>
+                </router-link>
+              </li>
+              <li class="names-item">
+                <router-link to="/chinese-men-names" custom v-slot="{ navigate }">
+                  <a @click="navigate(); closeDropdown()" href="javascript:void(0);">Chinese Men Names</a>
+                </router-link>
+              </li>
+              <li class="names-item">
                 <router-link to="/chinese-last-names" custom v-slot="{ navigate }">
                   <a @click="navigate(); closeDropdown()" href="javascript:void(0);">Chinese Last Names</a>
                 </router-link>
