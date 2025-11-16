@@ -418,27 +418,36 @@ export default {
         return;
       }
       
-      // 检查点击是否在任意下拉菜单容器内部
-      const dropdowns = document.querySelectorAll('.dropdown');
-      let isClickInside = false;
+      // 特别检查：点击的是否是下拉菜单的触发按钮
+      const isToggleButton = event.target.closest('.dropdown-toggle');
+      if (isToggleButton) {
+        // 如果点击的是触发按钮，让 toggleDropdown 方法处理
+        return;
+      }
       
-      dropdowns.forEach(dropdown => {
-        if (dropdown.contains(event.target)) {
-          isClickInside = true;
+      // 检查点击是否在下拉菜单内部（包括桌面端和移动端）
+      // 移动端菜单使用 fixed 定位，需要直接检查 dropdown-menu 元素
+      const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+      let isClickInsideMenu = false;
+      
+      dropdownMenus.forEach(menu => {
+        if (menu.contains(event.target)) {
+          isClickInsideMenu = true;
         }
       });
       
-      // 特别检查：点击的是否是下拉菜单的触发按钮
-      const isToggleButton = event.target.closest('.dropdown-toggle');
+      // 桌面端还需要检查 dropdown 容器（包含触发按钮）
+      const dropdowns = document.querySelectorAll('.dropdown');
+      let isClickInsideDropdown = false;
       
-      // 如果点击在下拉菜单外部且不是触发按钮，立即关闭所有菜单
-      if (!isClickInside || isToggleButton) {
-        // 如果点击的是触发按钮，让 toggleDropdown 方法处理
-        if (isToggleButton) {
-          return;
+      dropdowns.forEach(dropdown => {
+        if (dropdown.contains(event.target)) {
+          isClickInsideDropdown = true;
         }
-        
-        // 使用强制关闭方法，确保菜单完全隐藏
+      });
+      
+      // 如果点击在菜单外部，关闭菜单
+      if (!isClickInsideMenu && !isClickInsideDropdown) {
         this.closeDropdown();
       }
     }
