@@ -106,35 +106,35 @@
               <h3>🔥 火 (Fire) - Huǒ</h3>
               <p><strong>Characteristics:</strong> Passion, power, destruction, purification</p>
               <p><strong>Common Characters:</strong> 炎 (Yán), 焱 (Yàn), 烈 (Liè), 焰 (Yàn)</p>
-              <p><strong>Example Names:</strong> 炎龙 (Yán Lóng) - Flame Dragon, 烈火 (Liè Huǒ) - Fierce Fire</p>
+              <p><strong>Example Names:</strong> 炎龙 (Yánlóng) - Flame Dragon, 烈火 (Lièhuǒ) - Fierce Fire</p>
             </div>
             
             <div class="element-detail">
               <h3>💧 水 (Water) - Shuǐ</h3>
               <p><strong>Characteristics:</strong> Wisdom, adaptability, healing, flow</p>
               <p><strong>Common Characters:</strong> 水 (Shuǐ), 波 (Bō), 流 (Liú), 润 (Rùn)</p>
-              <p><strong>Example Names:</strong> 水韵 (Shuǐ Yùn) - Water Harmony, 清流 (Qīng Liú) - Clear Stream</p>
+              <p><strong>Example Names:</strong> 水韵 (Shuǐyùn) - Water Harmony, 清流 (Qīngliú) - Clear Stream</p>
             </div>
             
             <div class="element-detail">
               <h3>🌳 木 (Wood) - Mù</h3>
               <p><strong>Characteristics:</strong> Growth, vitality, nature, flexibility</p>
               <p><strong>Common Characters:</strong> 木 (Mù), 林 (Lín), 森 (Sēn), 竹 (Zhú)</p>
-              <p><strong>Example Names:</strong> 青竹 (Qīng Zhú) - Green Bamboo, 森罗 (Sēn Luó) - Forest Array</p>
+              <p><strong>Example Names:</strong> 青竹 (Qīngzhú) - Green Bamboo, 竹影 (Zhúyǐng) - Bamboo Shadow</p>
             </div>
             
             <div class="element-detail">
               <h3>⚡ 金 (Metal) - Jīn</h3>
               <p><strong>Characteristics:</strong> Strength, precision, sharpness, nobility</p>
               <p><strong>Common Characters:</strong> 金 (Jīn), 银 (Yín), 铁 (Tiě), 钢 (Gāng)</p>
-              <p><strong>Example Names:</strong> 金刚 (Jīn Gāng) - Vajra/Diamond, 银月 (Yín Yuè) - Silver Moon</p>
+              <p><strong>Example Names:</strong> 金刚 (Jīngāng) - Vajra/Diamond, 银月 (Yínyuè) - Silver Moon</p>
             </div>
             
             <div class="element-detail">
               <h3>🏔️ 土 (Earth) - Tǔ</h3>
               <p><strong>Characteristics:</strong> Stability, endurance, nurturing, foundation</p>
               <p><strong>Common Characters:</strong> 土 (Tǔ), 山 (Shān), 石 (Shí), 岩 (Yán)</p>
-              <p><strong>Example Names:</strong> 山河 (Shān Hé) - Mountains and Rivers, 石破 (Shí Pò) - Stone Breaking</p>
+              <p><strong>Example Names:</strong> 山河 (Shānhé) - Mountains and Rivers, 石破 (Shípò) - Stone Breaking</p>
             </div>
           </div>
         </section>
@@ -147,22 +147,22 @@
           <div class="creatures-grid">
             <div class="creature-card">
               <h3>🐉 龙 (Dragon)</h3>
-              <p>Symbol of imperial power, wisdom, and control over water and weather. Names like 龙吟 (Lóng Yín) - Dragon's Chant, 青龙 (Qīng Lóng) - Azure Dragon.</p>
+              <p>Symbol of imperial power, wisdom, and control over water and weather. Names like 龙吟 (Lóngyín) - Dragon's Chant, 青龙 (Qīnglóng) - Azure Dragon.</p>
             </div>
             
             <div class="creature-card">
               <h3>🔥 凤 (Phoenix)</h3>
-              <p>Represents rebirth, beauty, and grace. Names like 凤鸣 (Fèng Míng) - Phoenix Song, 丹凤 (Dān Fèng) - Cinnabar Phoenix.</p>
+              <p>Represents rebirth, beauty, and grace. Names like 凤鸣 (Fèngmíng) - Phoenix Song, 丹凤 (Dānfèng) - Cinnabar Phoenix.</p>
             </div>
             
             <div class="creature-card">
               <h3>🦄 麒麟 (Qilin)</h3>
-              <p>Mythical creature symbolizing prosperity and serenity. Names like 麒麟子 (Qí Lín Zǐ) - Child of Qilin.</p>
+              <p>Mythical creature symbolizing prosperity and serenity. Names like 麒麟子 (Qílínzǐ) - Child of Qilin.</p>
             </div>
             
             <div class="creature-card">
               <h3>🐅 白虎 (White Tiger)</h3>
-              <p>Guardian of the west, representing courage and military prowess. Names like 虎啸 (Hǔ Xiào) - Tiger's Roar.</p>
+              <p>Guardian of the west, representing courage and military prowess. Names like 虎啸 (Hǔxiào) - Tiger's Roar.</p>
             </div>
           </div>
         </section>

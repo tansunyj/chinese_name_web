@@ -306,6 +306,22 @@
             </div>
           </div>
         </div>
+        
+        <!-- 经典名字展示 -->
+        <div class="classic-names-section">
+          <h2>✨ Classic Fantasy & Historical Names</h2>
+          <p class="section-subtitle">Draw inspiration from legendary names in Chinese martial arts novels and history</p>
+          
+          <div class="classic-names-grid">
+            <div class="classic-name-card" v-for="(name, index) in displayedClassicNames" :key="index">
+              <div class="classic-name-chinese">{{ name.chinese }}</div>
+              <div class="classic-name-pinyin">{{ name.pinyin }}</div>
+              <div class="classic-name-source">{{ name.source }}</div>
+              <div class="classic-name-meaning">{{ name.meaning }}</div>
+            </div>
+          </div>
+        </div>
+        
         </div>
       </div>
       <!-- 内容容器结束 -->
@@ -419,8 +435,39 @@ export default {
           title: 'Get Results',
           description: 'Check your Names in the results'
         }        
-      ]
+      ],
+      // 经典武侠和历史名字库
+      classicNames: [
+        // 金庸武侠小说
+        { chinese: '石破天', pinyin: 'Shípòtiān', source: 'Jin Yong\'s Novel', meaning: 'Hero who shatters heaven itself, breaking through all limitations with pure martial prowess' },
+        { chinese: '步惊云', pinyin: 'Bùjīngyún', source: 'Fengyun Comic', meaning: 'Steps that shock the clouds, his presence alone commands fear and respect across the martial world' },
+        { chinese: '令狐冲', pinyin: 'Línghúchōng', source: 'Jin Yong\'s Novel', meaning: 'Commanding fox who rushes forward, carefree swordsman of the Huashan Sect known for unorthodox brilliance' },
+        { chinese: '独孤求败', pinyin: 'Dúgūqiúbài', source: 'Jin Yong\'s Legend', meaning: 'Solitary seeking defeat, invincible swordsman who could find no worthy opponent in his lifetime' },
+        { chinese: '东方不败', pinyin: 'Dōngfāngbùbài', source: 'Jin Yong\'s Novel', meaning: 'Eastern Invincible, master of the Sunflower Manual whose martial arts reached supernatural levels' },
+        { chinese: '张无忌', pinyin: 'Zhāngwújì', source: 'Jin Yong\'s Novel', meaning: 'Without taboo, leader of Ming Cult who mastered supreme martial arts through extraordinary encounters' },
+        
+        // 古龙武侠小说
+        { chinese: '楚留香', pinyin: 'Chǔliúxiāng', source: 'Gu Long\'s Novel', meaning: 'Fragrance stays in Chu, legendary thief whose presence leaves only the scent of mystery and elegance' },
+        { chinese: '陆小凤', pinyin: 'Lùxiǎofèng', source: 'Gu Long\'s Novel', meaning: 'Little phoenix Lu, detective with four eyebrows whose wisdom and lightness skill are unmatched in jianghu' },
+        { chinese: '西门吹雪', pinyin: 'Xīménchūixuě', source: 'Gu Long\'s Novel', meaning: 'Blowing snow at western gate, peerless swordsman whose blade is as pure and cold as falling snow' },
+        { chinese: '李寻欢', pinyin: 'Lǐxúnhuān', source: 'Gu Long\'s Novel', meaning: 'Seeking joy Li, master of flying daggers who sacrifices personal happiness for righteousness' },
+        { chinese: '花满楼', pinyin: 'Huāmǎnlóu', source: 'Gu Long\'s Novel', meaning: 'Flowers fill the tower, blind swordsman whose inner vision sees deeper than any physical eyes' },
+        { chinese: '傅红雪', pinyin: 'Fùhóngxuě', source: 'Gu Long\'s Novel', meaning: 'Red snow Fu, tragic hero whose blade reflects the crimson path of vengeance painted on white snow' },
+
+        // 历史名人（有气势的名字）
+        { chinese: '刘寄奴', pinyin: 'Liújìnú', source: 'Historical (Liu Yu)', meaning: 'Orphan servant Liu, childhood name of Emperor Wu who rose from poverty to found the Liu Song Dynasty' },
+        { chinese: '赵破虏', pinyin: 'Zhàopòlǔ', source: 'Historical (Zhao Yun)', meaning: 'Zhao who breaks barbarians, childhood name of the legendary general known for valor and loyalty' },
+        { chinese: '霍去病', pinyin: 'Huòqùbìng', source: 'Han Dynasty General', meaning: 'Eliminate disease Huo, young general who defeated the Xiongnu and died at 24, name meaning to dispel illness' },
+        { chinese: '辛弃疾', pinyin: 'Xīnqìjí', source: 'Song Poet-Warrior', meaning: 'Abandon disease Xin, patriotic poet and warrior whose name reflects desire to expel invaders like disease' },
+        { chinese: '项羽', pinyin: 'Xiàngyǔ', source: 'Chu Hegemon', meaning: 'Yu of Xiang, legendary overlord known as the bravest warrior who could lift a massive bronze cauldron' },
+        { chinese: '冉闵', pinyin: 'Rǎnmǐn', source: 'Jin Dynasty Warrior', meaning: 'Compassionate Min, issued the famous Hu-Killing Order to save Han people, tragic hero who fought against overwhelming odds' },
+        { chinese: '陈庆之', pinyin: 'Chénqìngzhī', source: 'Liang Dynasty General', meaning: 'Celebrate this Chen, led 7000 white-robed soldiers to conquer 32 cities, name reflects the joy of victory against impossible odds' },
+       ],
+      displayedClassicNames: []
     }
+  },
+  mounted() {
+    this.refreshClassicNames();
   },
   methods: {
     async generateFantasyName() {
@@ -595,37 +642,130 @@ export default {
       }, 2000);
     },
     
+    refreshClassicNames() {
+      // 从 classicNames（武侠+历史）中随机选1个
+      const shuffledClassic = [...this.classicNames].sort(() => 0.5 - Math.random());
+      const selectedClassic = shuffledClassic.slice(0, 1);
+      
+      // 从 themeNames 中收集所有主题名字
+      const themeNames = {
+        celestial: [
+          { chinese: '云启', pinyin: 'Yúnqǐ', source: 'Celestial Theme', meaning: 'Opens the gates of heaven from within the clouds, their presence heralds the dawn of celestial enlightenment and cosmic awakening' },
+          { chinese: '星月儿', pinyin: 'Xīngyuè\'ér', source: 'Celestial Theme', meaning: 'Child of stars and moon, blessed with the innocent purity of celestial light that illuminates the darkness with gentle radiance' },
+          { chinese: '天羽', pinyin: 'Tiānyǔ', source: 'Celestial Theme', meaning: 'Heavenly feather that floats between realms, carrying the weightless grace of celestial beings across the infinite sky' },
+          { chinese: '星寒', pinyin: 'Xīnghán', source: 'Celestial Theme', meaning: 'Cold starlight that pierces through eternity, their essence crystallized from the frozen depths of cosmic space' },
+          { chinese: '云梦瑶', pinyin: 'Yúnmèngyáo', source: 'Celestial Theme', meaning: 'Dweller of celestial dreamscapes where clouds take form as precious jade, wandering through ethereal realms between sleep and cosmic consciousness' },
+          { chinese: '澜音', pinyin: 'Lányīn', source: 'Celestial Theme', meaning: 'Voice of celestial waves, their song carries the primordial harmonies that resonate through the fabric of the universe' }
+        ],
+        elemental: [
+          { chinese: '焰天', pinyin: 'Yàntiān', source: 'Elemental Theme', meaning: 'Commands flames that reach toward the heavens, their fire element mastery burns with intensity that illuminates the darkest realms' },
+          { chinese: '水无痕', pinyin: 'Shuǐwúhén', source: 'Elemental Theme', meaning: 'Flows like water through all obstacles, adapting to any situation while leaving no trace, embodying the highest level of water element control' },
+          { chinese: '雷无声', pinyin: 'Léiwúshēng', source: 'Elemental Theme', meaning: 'Thunder without sound, the most terrifying storm is the one that strikes in silence, their power transcends the need for announcement' },
+          { chinese: '风烈', pinyin: 'Fēngliè', source: 'Elemental Theme', meaning: 'Fierce wind that cuts through all barriers, their mastery over air transforms gentle breeze into blade-sharp gales' },
+          { chinese: '焰无心', pinyin: 'Yànwúxīn', source: 'Elemental Theme', meaning: 'Flames without attachment burn with pure intensity, their fire spirit transcends emotion to channel the primal essence of elemental destruction and rebirth' },
+          { chinese: '凝月', pinyin: 'Níngyuè', source: 'Elemental Theme', meaning: 'Crystallizes moonlight into eternal ice, their essence frozen in time like a perfect moment captured under the lunar glow' }
+        ],
+        mystical: [
+          { chinese: '玄尘子', pinyin: 'Xuánchénzǐ', source: 'Mystical Theme', meaning: 'Master of mysterious dust, perceiving profound truths within the ephemeral, understanding that all existence is but particles dancing in the cosmic void' },
+          { chinese: '道无心', pinyin: 'Dàowúxīn', source: 'Mystical Theme', meaning: 'Heartless Dao walker who transcends emotion and desire, their path aligned with the ultimate truth beyond mortal attachments' },
+          { chinese: '灵素', pinyin: 'Língsù', source: 'Mystical Theme', meaning: 'Pure spirit essence untainted by worldly corruption, embodying the original simplicity that existed before creation' },
+          { chinese: '灵虚子', pinyin: 'Língxūzǐ', source: 'Mystical Theme', meaning: 'Master of emptiness and void, understanding that true power lies in the space between existence and non-existence' },
+          { chinese: '道无念', pinyin: 'Dàowúniàn', source: 'Mystical Theme', meaning: 'Achieved the supreme state of thoughtless action, moving in perfect harmony with the Tao where intention and manifestation become one seamless flow' },
+          { chinese: '幻真子', pinyin: 'Huànzhēnzǐ', source: 'Mystical Theme', meaning: 'Master who perceives the illusion within reality and reality within illusion, understanding the paradox of existence' }
+        ],
+        wuxia: [
+          { chinese: '独孤剑', pinyin: 'Dúgūjiàn', source: 'Wuxia Theme', meaning: 'Lone sword standing against the world, their blade speaks louder than words in the silent language of martial mastery' },
+          { chinese: '令狐生', pinyin: 'Línghúshēng', source: 'Wuxia Theme', meaning: 'Born of the cunning fox lineage, their life dedicated to the pursuit of ultimate freedom in the martial world' },
+          { chinese: '慕容白', pinyin: 'Mùróngbái', source: 'Wuxia Theme', meaning: 'Pure as untouched snow, their martial arts embody clarity and transcendence, moving through the jianghu like moonlight on water' },
+          { chinese: '南宫雪', pinyin: 'Nángōngxuě', source: 'Wuxia Theme', meaning: 'Snow of the Southern Palace, elegant and cold, their sword techniques as pure and relentless as winter snowfall' },
+          { chinese: '欧阳成', pinyin: 'Ōuyángchéng', source: 'Wuxia Theme', meaning: 'Achievement of the Ouyang clan, their martial arts perfected through generations of dedication and unwavering discipline' },
+          { chinese: '东方淼', pinyin: 'Dōngfāngmiǎo', source: 'Wuxia Theme', meaning: 'Vast as eastern waters, their internal energy flows boundless and deep like the endless ocean' }
+        ],
+        xianxia: [
+          { chinese: '紫霄真人', pinyin: 'Zǐxiāozhēnrén', source: 'Xianxia Theme', meaning: 'An immortal cultivator who ascended to the Purple Heaven realm, commanding celestial qi and wielding powers that shake the nine heavens' },
+          { chinese: '逍遥子', pinyin: 'Xiāoyáozǐ', source: 'Xianxia Theme', meaning: 'A free-spirited immortal who transcended worldly attachments, wandering between realms with absolute freedom and unfettered cultivation' },
+          { chinese: '太虚道人', pinyin: 'Tàixūdàorén', source: 'Xianxia Theme', meaning: 'Master of the cosmic void who comprehends the mysteries of emptiness and existence, drawing power from the primordial nothingness' },
+          { chinese: '青云上人', pinyin: 'Qīngyúnshàngrén', source: 'Xianxia Theme', meaning: 'Venerable immortal who rides azure clouds between the mortal and immortal realms, their cultivation base as vast and profound as the endless sky' },
+          { chinese: '无尘道人', pinyin: 'Wúchéndàorén', source: 'Xianxia Theme', meaning: 'Dao master untouched by worldly dust, their cultivation pure and unblemished like jade formed in the heart of mountains' },
+          { chinese: '凌霄子', pinyin: 'Língxiāozǐ', source: 'Xianxia Theme', meaning: 'One who soars above the highest heavens, transcending the nine celestial layers to touch the realm beyond realms' }
+        ],
+        mythical: [
+          { chinese: '凤凰鸣', pinyin: 'Fènghuángmíng', source: 'Mythical Theme', meaning: 'Blessed with the rebirth power of the phoenix, their voice carries the melodic essence of nirvana flames and eternal resurrection' },
+          { chinese: '龙吟', pinyin: 'Lóngyín', source: 'Mythical Theme', meaning: 'Dragon chant that resonates through heaven and earth, their roar commands storms and awakens the primordial power sleeping in all things' },
+          { chinese: '麒天', pinyin: 'Qítiān', source: 'Mythical Theme', meaning: 'Qilin blessed by heaven, embodying both fortune and fierce protection, their presence heralds prosperity and wards off calamity' },
+          { chinese: '白虎', pinyin: 'Báihǔ', source: 'Mythical Theme', meaning: 'White tiger incarnate, guardian of the west, their power embodies the pure essence of martial might and righteous judgment' },
+          { chinese: '玄龟子', pinyin: 'Xuánguīzǐ', source: 'Mythical Theme', meaning: 'Master who inherited the wisdom of the black tortoise, their defense unbreakable and their patience eternal as the cosmic guardian' },
+          { chinese: '朱无雀', pinyin: 'Zhūwúquè', source: 'Mythical Theme', meaning: 'Vermillion bird without equal, their flames burn with such purity that even the phoenix bows to their transcendent fire' }
+        ]
+      };
+      
+      // 合并所有主题名字
+      const allThemeNames = [
+        ...themeNames.celestial,
+        ...themeNames.elemental,
+        ...themeNames.mystical,
+        ...themeNames.wuxia,
+        ...themeNames.xianxia,
+        ...themeNames.mythical
+      ];
+      
+      // 从主题名字中随机选2个
+      const shuffledTheme = [...allThemeNames].sort(() => 0.5 - Math.random());
+      const selectedTheme = shuffledTheme.slice(0, 2);
+      
+      // 合并并随机排序：1个经典名字 + 2个主题名字
+      this.displayedClassicNames = [...selectedClassic, ...selectedTheme].sort(() => 0.5 - Math.random());
+    },
+    
     createFallbackResults() {
       const themeNames = {
         celestial: [
-          { chinese: '星云', pinyin: 'Xīng Yún', english: 'Star Cloud', meaning: 'A mystical name representing the cosmic nebulae where stars are born' },
-          { chinese: '月灵', pinyin: 'Yuè Líng', english: 'Moon Spirit', meaning: 'Embodies the spiritual essence of lunar magic and celestial wisdom' },
-          { chinese: '天羽', pinyin: 'Tiān Yǔ', english: 'Heaven Feather', meaning: 'Symbolizes divine messenger with wings that touch the heavens' }
+          { chinese: '云启', pinyin: 'Yúnqǐ', english: 'Yúnqǐ', meaning: 'Opens the gates of heaven from within the clouds, their presence heralds the dawn of celestial enlightenment and cosmic awakening' },
+          { chinese: '星月儿', pinyin: 'Xīngyuè\'ér', english: 'Xīngyuè\'ér', meaning: 'Child of stars and moon, blessed with the innocent purity of celestial light that illuminates the darkness with gentle radiance' },
+          { chinese: '天羽', pinyin: 'Tiānyǔ', english: 'Tiānyǔ', meaning: 'Heavenly feather that floats between realms, carrying the weightless grace of celestial beings across the infinite sky' },
+          { chinese: '星寒', pinyin: 'Xīnghán', english: 'Xīnghán', meaning: 'Cold starlight that pierces through eternity, their essence crystallized from the frozen depths of cosmic space' },
+          { chinese: '云梦瑶', pinyin: 'Yúnmèngyáo', english: 'Yúnmèngyáo', meaning: 'Dweller of celestial dreamscapes where clouds take form as precious jade, wandering through ethereal realms between sleep and cosmic consciousness' },
+          { chinese: '澜音', pinyin: 'Lányīn', english: 'Lányīn', meaning: 'Voice of celestial waves, their song carries the primordial harmonies that resonate through the fabric of the universe' }
         ],
         elemental: [
-          { chinese: '炎龙', pinyin: 'Yán Lóng', english: 'Flame Dragon', meaning: 'Master of fire elements with the power of ancient dragons' },
-          { chinese: '水韵', pinyin: 'Shuǐ Yùn', english: 'Water Harmony', meaning: 'Flows with the rhythm of water, bringing balance and healing' },
-          { chinese: '雷峰', pinyin: 'Léi Fēng', english: 'Thunder Peak', meaning: 'Commands lightning from the highest mountain peaks' }
+          { chinese: '焰天', pinyin: 'Yàntiān', english: 'Yàntiān', meaning: 'Commands flames that reach toward the heavens, their fire element mastery burns with intensity that illuminates the darkest realms' },
+          { chinese: '水无痕', pinyin: 'Shuǐwúhén', english: 'Shuǐwúhén', meaning: 'Flows like water through all obstacles, adapting to any situation while leaving no trace, embodying the highest level of water element control' },
+          { chinese: '雷无声', pinyin: 'Léiwúshēng', english: 'Léiwúshēng', meaning: 'Thunder without sound, the most terrifying storm is the one that strikes in silence, their power transcends the need for announcement' },
+          { chinese: '风烈', pinyin: 'Fēngliè', english: 'Fēngliè', meaning: 'Fierce wind that cuts through all barriers, their mastery over air transforms gentle breeze into blade-sharp gales' },
+          { chinese: '焰无心', pinyin: 'Yànwúxīn', english: 'Yànwúxīn', meaning: 'Flames without attachment burn with pure intensity, their fire spirit transcends emotion to channel the primal essence of elemental destruction and rebirth' },
+          { chinese: '凝月', pinyin: 'Níngyuè', english: 'Níngyuè', meaning: 'Crystallizes moonlight into eternal ice, their essence frozen in time like a perfect moment captured under the lunar glow' }
         ],
         mystical: [
-          { chinese: '道心', pinyin: 'Dào Xīn', english: 'Tao Heart', meaning: 'Possesses a heart aligned with the mystical way of the universe' },
-          { chinese: '幻影', pinyin: 'Huàn Yǐng', english: 'Phantom Shadow', meaning: 'Master of illusions and ethereal magic' },
-          { chinese: '禅悟', pinyin: 'Chán Wù', english: 'Zen Enlightenment', meaning: 'Achieved spiritual awakening through meditation and wisdom' }
+          { chinese: '玄尘子', pinyin: 'Xuánchénzǐ', english: 'Xuánchénzǐ', meaning: 'Master of mysterious dust, perceiving profound truths within the ephemeral, understanding that all existence is but particles dancing in the cosmic void' },
+          { chinese: '道无心', pinyin: 'Dàowúxīn', english: 'Dàowúxīn', meaning: 'Heartless Dao walker who transcends emotion and desire, their path aligned with the ultimate truth beyond mortal attachments' },
+          { chinese: '灵素', pinyin: 'Língsù', english: 'Língsù', meaning: 'Pure spirit essence untainted by worldly corruption, embodying the original simplicity that existed before creation' },
+          { chinese: '灵虚子', pinyin: 'Língxūzǐ', english: 'Língxūzǐ', meaning: 'Master of emptiness and void, understanding that true power lies in the space between existence and non-existence' },
+          { chinese: '道无念', pinyin: 'Dàowúniàn', english: 'Dàowúniàn', meaning: 'Achieved the supreme state of thoughtless action, moving in perfect harmony with the Tao where intention and manifestation become one seamless flow' },
+          { chinese: '幻真子', pinyin: 'Huànzhēnzǐ', english: 'Huànzhēnzǐ', meaning: 'Master who perceives the illusion within reality and reality within illusion, understanding the paradox of existence' }
         ],
         wuxia: [
-          { chinese: '剑心', pinyin: 'Jiàn Xīn', english: 'Sword Heart', meaning: 'A warrior whose heart beats with the rhythm of righteous steel' },
-          { chinese: '风行', pinyin: 'Fēng Xíng', english: 'Wind Walker', meaning: 'Moves with the speed and grace of mountain winds' },
-          { chinese: '义侠', pinyin: 'Yì Xiá', english: 'Righteous Hero', meaning: 'Embodies the true spirit of martial arts chivalry' }
+          { chinese: '独孤剑', pinyin: 'Dúgūjiàn', english: 'Dúgūjiàn', meaning: 'Lone sword standing against the world, their blade speaks louder than words in the silent language of martial mastery' },
+          { chinese: '令狐生', pinyin: 'Línghúshēng', english: 'Línghúshēng', meaning: 'Born of the cunning fox lineage, their life dedicated to the pursuit of ultimate freedom in the martial world' },
+          { chinese: '慕容白', pinyin: 'Mùróngbái', english: 'Mùróngbái', meaning: 'Pure as untouched snow, their martial arts embody clarity and transcendence, moving through the jianghu like moonlight on water' },
+          { chinese: '南宫雪', pinyin: 'Nángōngxuě', english: 'Nángōngxuě', meaning: 'Snow of the Southern Palace, elegant and cold, their sword techniques as pure and relentless as winter snowfall' },
+          { chinese: '欧阳成', pinyin: 'Ōuyángchéng', english: 'Ōuyángchéng', meaning: 'Achievement of the Ouyang clan, their martial arts perfected through generations of dedication and unwavering discipline' },
+          { chinese: '东方淼', pinyin: 'Dōngfāngmiǎo', english: 'Dōngfāngmiǎo', meaning: 'Vast as eastern waters, their internal energy flows boundless and deep like the endless ocean' }
         ],
         xianxia: [
-          { chinese: '紫霄', pinyin: 'Zǐ Xiāo', english: 'Purple Heaven', meaning: 'Cultivator who has reached the purple realm of immortal ascension' },
-          { chinese: '逍遥', pinyin: 'Xiāo Yáo', english: 'Carefree Wanderer', meaning: 'Immortal who wanders freely between realms' },
-          { chinese: '玄机', pinyin: 'Xuán Jī', english: 'Mysterious Essence', meaning: 'Holds the secrets of celestial cultivation methods' }
+          { chinese: '紫霄真人', pinyin: 'Zǐxiāozhēnrén', english: 'Zǐxiāozhēnrén', meaning: 'An immortal cultivator who ascended to the Purple Heaven realm, commanding celestial qi and wielding powers that shake the nine heavens' },
+          { chinese: '逍遥子', pinyin: 'Xiāoyáozǐ', english: 'Xiāoyáozǐ', meaning: 'A free-spirited immortal who transcended worldly attachments, wandering between realms with absolute freedom and unfettered cultivation' },
+          { chinese: '太虚道人', pinyin: 'Tàixūdàorén', english: 'Tàixūdàorén', meaning: 'Master of the cosmic void who comprehends the mysteries of emptiness and existence, drawing power from the primordial nothingness' },
+          { chinese: '青云上人', pinyin: 'Qīngyúnshàngrén', english: 'Qīngyúnshàngrén', meaning: 'Venerable immortal who rides azure clouds between the mortal and immortal realms, their cultivation base as vast and profound as the endless sky' },
+          { chinese: '无尘道人', pinyin: 'Wúchéndàorén', english: 'Wúchéndàorén', meaning: 'Dao master untouched by worldly dust, their cultivation pure and unblemished like jade formed in the heart of mountains' },
+          { chinese: '凌霄子', pinyin: 'Língxiāozǐ', english: 'Língxiāozǐ', meaning: 'One who soars above the highest heavens, transcending the nine celestial layers to touch the realm beyond realms' }
         ],
         mythical: [
-          { chinese: '凤鸣', pinyin: 'Fèng Míng', english: 'Phoenix Song', meaning: 'Carries the melodic power of the legendary phoenix' },
-          { chinese: '龙吟', pinyin: 'Lóng Yín', english: 'Dragon Chant', meaning: 'Voice resonates with ancient dragon magic' },
-          { chinese: '麒麟', pinyin: 'Qí Lín', english: 'Qilin Guardian', meaning: 'Protected by the mythical beast of righteousness' }
+          { chinese: '凤凰鸣', pinyin: 'Fènghuángmíng', english: 'Fènghuángmíng', meaning: 'Blessed with the rebirth power of the phoenix, their voice carries the melodic essence of nirvana flames and eternal resurrection' },
+          { chinese: '龙吟', pinyin: 'Lóngyín', english: 'Lóngyín', meaning: 'Dragon chant that resonates through heaven and earth, their roar commands storms and awakens the primordial power sleeping in all things' },
+          { chinese: '麒天', pinyin: 'Qítiān', english: 'Qítiān', meaning: 'Qilin blessed by heaven, embodying both fortune and fierce protection, their presence heralds prosperity and wards off calamity' },
+          { chinese: '白虎', pinyin: 'Báihǔ', english: 'Báihǔ', meaning: 'White tiger incarnate, guardian of the west, their power embodies the pure essence of martial might and righteous judgment' },
+          { chinese: '玄龟子', pinyin: 'Xuánguīzǐ', english: 'Xuánguīzǐ', meaning: 'Master who inherited the wisdom of the black tortoise, their defense unbreakable and their patience eternal as the cosmic guardian' },
+          { chinese: '朱无雀', pinyin: 'Zhūwúquè', english: 'Zhūwúquè', meaning: 'Vermillion bird without equal, their flames burn with such purity that even the phoenix bows to their transcendent fire' }
         ]
       };
       
@@ -636,10 +776,50 @@ export default {
         pinyin: item.pinyin,
         english_meaning: item.english,
         mystical_meaning: item.meaning,
-        fantasy_background: 'This name draws from ancient Chinese mystical traditions and fantasy literature',
-        powers: 'Associated with supernatural abilities and mystical energy',
+        fantasy_background: this.getThemeBackground(this.formData.fantasyTheme),
+        powers: this.getThemePowers(this.formData.fantasyTheme),
         cultural_origin: 'Rooted in traditional Chinese philosophy and fantasy naming conventions'
       }));
+    },
+    
+    getThemeBackground(theme) {
+      const backgrounds = {
+        celestial: 'Draws from ancient Chinese astronomy and celestial mythology, where immortals reside in heavenly palaces among the stars',
+        elemental: 'Based on the Five Elements (Wu Xing) theory fundamental to Chinese cosmology and cultivation practices',
+        mystical: 'Inspired by Taoist mysticism and Buddhist enlightenment teachings that form the core of Chinese spiritual traditions',
+        wuxia: 'Rooted in the jianghu (martial world) tradition of Chinese literature, emphasizing honor, righteousness, and martial prowess',
+        xianxia: 'Derived from immortal cultivation novels where practitioners transcend mortality through spiritual refinement and cosmic understanding',
+        mythical: 'Connected to legendary creatures from Chinese mythology that embody virtues, powers, and cosmic principles',
+        martial: 'Grounded in centuries of Chinese martial arts philosophy, combining physical mastery with spiritual cultivation',
+        imperial: 'Reflects the grandeur and authority of Chinese imperial dynasties and the mandate of heaven',
+        nature: 'Embraces the harmony between humanity and nature emphasized in classical Chinese philosophy',
+        shadow: 'Explores the hidden aspects of cultivation, drawing from mysterious techniques passed through shadowy lineages',
+        dragon: 'Centered on the supreme mythical beast of Chinese culture, symbol of imperial power and cosmic forces',
+        ancient: 'Echoes the naming traditions of ancient Chinese legends, classical literature, and historical epics',
+        alchemy: 'Inspired by Taoist alchemy and the pursuit of immortality through elixir refinement and inner cultivation',
+        random: 'Blends diverse elements from across Chinese fantasy traditions to create unique combinations'
+      };
+      return backgrounds[theme] || backgrounds.celestial;
+    },
+    
+    getThemePowers(theme) {
+      const powers = {
+        celestial: 'Commands starlight, manipulates celestial qi, and draws power from cosmic phenomena to perform miracles',
+        elemental: 'Controls natural elements with supreme mastery, bending fire, water, earth, metal, and wood to their will',
+        mystical: 'Wields illusion magic, perceives hidden truths, and channels mystical energies beyond mortal comprehension',
+        wuxia: 'Possesses legendary martial skills, exceptional internal energy cultivation, and mastery over various weapon techniques',
+        xianxia: 'Cultivates immortal techniques, refines celestial qi, and commands powers that transcend the mortal realm',
+        mythical: 'Inherits abilities from legendary creatures, channeling their ancient power and supernatural essence',
+        martial: 'Demonstrates peak martial arts mastery, combining physical prowess with internal energy manipulation',
+        imperial: 'Wields authority blessed by heaven, commanding respect and supernatural legitimacy in their rule',
+        nature: 'Harmonizes with natural forces, communicating with beasts and drawing vitality from the earth itself',
+        shadow: 'Masters stealth arts, manipulation of darkness, and techniques hidden from conventional cultivation paths',
+        dragon: 'Controls storms, commands water, and possesses the overwhelming might and majesty of dragons',
+        ancient: 'Accesses forgotten techniques and lost arts from bygone eras of legendary cultivation',
+        alchemy: 'Refines spiritual elixirs, transmutes materials, and manipulates the fundamental principles of existence',
+        random: 'Demonstrates versatile abilities drawing from multiple cultivation paths and magical traditions'
+      };
+      return powers[theme] || powers.celestial;
     },
     
     generatePinyin(chineseName) {
@@ -647,10 +827,31 @@ export default {
         '星': 'Xīng', '云': 'Yún', '月': 'Yuè', '灵': 'Líng', '天': 'Tiān', '羽': 'Yǔ',
         '炎': 'Yán', '龙': 'Lóng', '水': 'Shuǐ', '韵': 'Yùn', '雷': 'Léi', '峰': 'Fēng',
         '道': 'Dào', '心': 'Xīn', '幻': 'Huàn', '影': 'Yǐng', '禅': 'Chán', '悟': 'Wù',
-        '魔': 'Mó', '幻': 'Huàn', '名': 'Míng', '字': 'Zì'
+        '魔': 'Mó', '名': 'Míng', '字': 'Zì', '辰': 'Chén', '仙': 'Xiān', '焚': 'Fén',
+        '无': 'Wú', '痕': 'Hén', '霆': 'Tíng', '怒': 'Nù', '玄': 'Xuán', '独': 'Dú',
+        '孤': 'Gū', '剑': 'Jiàn', '令': 'Lìng', '狐': 'Hú', '风': 'Fēng', '行': 'Xíng',
+        '慕': 'Mù', '容': 'Róng', '义': 'Yì', '侠': 'Xiá', '紫': 'Zǐ', '霄': 'Xiāo',
+        '真': 'Zhēn', '人': 'Rén', '逍': 'Xiāo', '遥': 'Yáo', '子': 'Zǐ', '太': 'Tài',
+        '虚': 'Xū', '凤': 'Fèng', '凰': 'Huáng', '鸣': 'Míng', '吟': 'Yín', '麒': 'Qí',
+        '麟': 'Lín', '瑞': 'Ruì', '寒': 'Hán', '霜': 'Shuāng', '梦': 'Mèng', '瑶': 'Yáo',
+        '澜': 'Lán', '音': 'Yīn', '絮': 'Xù', '冰': 'Bīng', '凝': 'Níng', '尘': 'Chén',
+        '念': 'Niàn', '魂': 'Hún', '南': 'Nán', '宫': 'Gōng', '雪': 'Xuě', '舞': 'Wǔ',
+        '欧': 'Ōu', '阳': 'Yáng', '碎': 'Suì', '东': 'Dōng', '方': 'Fāng', '绝': 'Jué',
+        '青': 'Qīng', '上': 'Shàng', '君': 'Jūn', '白': 'Bái', '神': 'Shén', '女': 'Nǚ',
+        '虎': 'Hǔ', '啸': 'Xiào', '武': 'Wǔ', '盾': 'Dùn', '朱': 'Zhū', '雀': 'Què',
+        '破': 'Pò', '焰': 'Yàn', '镇': 'Zhèn', '惊': 'Jīng', '夜': 'Yè', '启': 'Qǐ',
+        '儿': '\'ér', '烈': 'Liè', '素': 'Sù', '成': 'Chéng', '淼': 'Miǎo',
+        '凌': 'Líng', '龟': 'Guī', '声': 'Shēng', '生': 'Shēng', '楚': 'Chǔ',
+        '留': 'Liú', '香': 'Xiāng', '陆': 'Lù', '小': 'Xiǎo', '凤': 'Fèng',
+        '西': 'Xī', '门': 'Mén', '吹': 'Chūi', '李': 'Lǐ', '寻': 'Xún',
+        '欢': 'Huān', '花': 'Huā', '满': 'Mǎn', '楼': 'Lóu', '傅': 'Fù',
+        '红': 'Hóng', '光': 'Guāng', '班': 'Bān', '超': 'Chāo', '项': 'Xiàng',
+        '起': 'Qǐ', '韩': 'Hán', '信': 'Xìn', '广': 'Guǎng', '冉': 'Rǎn',
+        '闵': 'Mǐn', '陈': 'Chén', '庆': 'Qìng', '之': 'Zhī', '靖': 'Jìng',
+        '蒙': 'Méng', '恬': 'Tián', '王': 'Wáng', '翦': 'Jiǎn'
       };
       
-      return chineseName.split('').map(char => pinyinMap[char] || char).join(' ');
+      return chineseName.split('').map(char => pinyinMap[char] || char).join('');
     },
     
     extractDataFromText(text) {
@@ -1116,6 +1317,103 @@ label {
   line-height: 1.4;
 }
 
+/* 经典名字展示区域 */
+.classic-names-section {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  padding: 40px;
+  margin-top: 40px;
+}
+
+.classic-names-section h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: #666;
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+
+.classic-names-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.classic-name-card {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 12px;
+  padding: 25px;
+  border: 2px solid #e9ecef;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.classic-name-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(230, 0, 18, 0.03) 0%, rgba(138, 43, 226, 0.03) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.classic-name-card:hover::before {
+  opacity: 1;
+}
+
+.classic-name-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(138, 43, 226, 0.15);
+  border-color: #8a2be2;
+}
+
+.classic-name-chinese {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #e60012;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.classic-name-pinyin {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 12px;
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+
+.classic-name-source {
+  font-size: 0.9rem;
+  color: #8a2be2;
+  font-weight: 600;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.classic-name-meaning {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+  position: relative;
+  z-index: 1;
+}
+
 @media (max-width: 768px) {
   .page-title {
     font-size: 2rem;
@@ -1143,6 +1441,18 @@ label {
   
   .themes-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .classic-names-section {
+    padding: 25px;
+  }
+  
+  .classic-names-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .classic-name-chinese {
+    font-size: 1.8rem;
   }
 }
 
