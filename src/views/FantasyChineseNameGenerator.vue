@@ -165,7 +165,22 @@
           title="Fantasy Chinese Name Generator Guide"
           :steps="usageSteps"
         />
-        
+
+        <!-- 经典名字展示 -->
+        <div class="classic-names-section">
+          <h2>✨ Classic Fantasy & Historical Names</h2>
+          <p class="section-subtitle">Draw inspiration from legendary names in Chinese martial arts novels and history</p>
+          
+          <div class="classic-names-grid">
+            <div class="classic-name-card" v-for="(name, index) in displayedClassicNames" :key="index">
+              <div class="classic-name-chinese">{{ name.chinese }}</div>
+              <div class="classic-name-pinyin">{{ name.pinyin }}</div>
+              <div class="classic-name-source">{{ name.source }}</div>
+              <div class="classic-name-meaning">{{ name.meaning }}</div>
+            </div>
+          </div>
+        </div>
+
         <!-- Explore More 组件 -->
         <ExploreMore :currentPath="$route.path" />
 
@@ -303,21 +318,6 @@
               <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
                 <p itemprop="text">Each generated name includes pinyin pronunciation guide using tone marks. The pinyin follows standard Mandarin pronunciation: tones are crucial for authentic pronunciation. You can use online pinyin pronunciation tools or Chinese language learning apps to hear the correct pronunciation. For fantasy settings, slight variations in pronunciation are acceptable as long as they maintain the flow and musicality of the original Chinese sounds.</p>
               </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- 经典名字展示 -->
-        <div class="classic-names-section">
-          <h2>✨ Classic Fantasy & Historical Names</h2>
-          <p class="section-subtitle">Draw inspiration from legendary names in Chinese martial arts novels and history</p>
-          
-          <div class="classic-names-grid">
-            <div class="classic-name-card" v-for="(name, index) in displayedClassicNames" :key="index">
-              <div class="classic-name-chinese">{{ name.chinese }}</div>
-              <div class="classic-name-pinyin">{{ name.pinyin }}</div>
-              <div class="classic-name-source">{{ name.source }}</div>
-              <div class="classic-name-meaning">{{ name.meaning }}</div>
             </div>
           </div>
         </div>
@@ -652,7 +652,7 @@ export default {
         celestial: [
           { chinese: '云启', pinyin: 'Yúnqǐ', source: 'Celestial Theme', meaning: 'Opens the gates of heaven from within the clouds, their presence heralds the dawn of celestial enlightenment and cosmic awakening' },
           { chinese: '星月儿', pinyin: 'Xīngyuè\'ér', source: 'Celestial Theme', meaning: 'Child of stars and moon, blessed with the innocent purity of celestial light that illuminates the darkness with gentle radiance' },
-          { chinese: '天羽', pinyin: 'Tiānyǔ', source: 'Celestial Theme', meaning: 'Heavenly feather that floats between realms, carrying the weightless grace of celestial beings across the infinite sky' },
+          { chinese: '天养', pinyin: 'Tiānyǎng', source: 'Celestial Theme', meaning: 'Nourished by heaven itself, their essence cultivated by celestial energy, embodying the supreme vitality granted by the cosmic forces' },
           { chinese: '星寒', pinyin: 'Xīnghán', source: 'Celestial Theme', meaning: 'Cold starlight that pierces through eternity, their essence crystallized from the frozen depths of cosmic space' },
           { chinese: '云梦瑶', pinyin: 'Yúnmèngyáo', source: 'Celestial Theme', meaning: 'Dweller of celestial dreamscapes where clouds take form as precious jade, wandering through ethereal realms between sleep and cosmic consciousness' },
           { chinese: '澜音', pinyin: 'Lányīn', source: 'Celestial Theme', meaning: 'Voice of celestial waves, their song carries the primordial harmonies that resonate through the fabric of the universe' }
@@ -722,7 +722,7 @@ export default {
         celestial: [
           { chinese: '云启', pinyin: 'Yúnqǐ', english: 'Yúnqǐ', meaning: 'Opens the gates of heaven from within the clouds, their presence heralds the dawn of celestial enlightenment and cosmic awakening' },
           { chinese: '星月儿', pinyin: 'Xīngyuè\'ér', english: 'Xīngyuè\'ér', meaning: 'Child of stars and moon, blessed with the innocent purity of celestial light that illuminates the darkness with gentle radiance' },
-          { chinese: '天羽', pinyin: 'Tiānyǔ', english: 'Tiānyǔ', meaning: 'Heavenly feather that floats between realms, carrying the weightless grace of celestial beings across the infinite sky' },
+          { chinese: '天养', pinyin: 'Tiānyǎng', english: 'Tiānyǎng', meaning: 'Nourished by heaven itself, their essence cultivated by celestial energy, embodying the supreme vitality granted by the cosmic forces' },
           { chinese: '星寒', pinyin: 'Xīnghán', english: 'Xīnghán', meaning: 'Cold starlight that pierces through eternity, their essence crystallized from the frozen depths of cosmic space' },
           { chinese: '云梦瑶', pinyin: 'Yúnmèngyáo', english: 'Yúnmèngyáo', meaning: 'Dweller of celestial dreamscapes where clouds take form as precious jade, wandering through ethereal realms between sleep and cosmic consciousness' },
           { chinese: '澜音', pinyin: 'Lányīn', english: 'Lányīn', meaning: 'Voice of celestial waves, their song carries the primordial harmonies that resonate through the fabric of the universe' }
@@ -842,7 +842,7 @@ export default {
         '破': 'Pò', '焰': 'Yàn', '镇': 'Zhèn', '惊': 'Jīng', '夜': 'Yè', '启': 'Qǐ',
         '儿': '\'ér', '烈': 'Liè', '素': 'Sù', '成': 'Chéng', '淼': 'Miǎo',
         '凌': 'Líng', '龟': 'Guī', '声': 'Shēng', '生': 'Shēng', '楚': 'Chǔ',
-        '留': 'Liú', '香': 'Xiāng', '陆': 'Lù', '小': 'Xiǎo', '凤': 'Fèng',
+        '留': 'Liú', '香': 'Xiāng', '陆': 'Lù', '小': 'Xiǎo', '凤': 'Fèng', '养': 'Yǎng',
         '西': 'Xī', '门': 'Mén', '吹': 'Chūi', '李': 'Lǐ', '寻': 'Xún',
         '欢': 'Huān', '花': 'Huā', '满': 'Mǎn', '楼': 'Lóu', '傅': 'Fù',
         '红': 'Hóng', '光': 'Guāng', '班': 'Bān', '超': 'Chāo', '项': 'Xiàng',
