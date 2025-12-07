@@ -283,11 +283,13 @@
             </div>
           </div>
         </section>
+
+        <!-- Explore More 组件 -->
+        <ExploreMore :currentPath="$route.path" />
       </div>
     </div>
     
-    <!-- Explore More 组件 -->
-    <ExploreMore :currentPath="$route.path" />
+
   </div>
 </template>
 

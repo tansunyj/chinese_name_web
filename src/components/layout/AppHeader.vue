@@ -87,6 +87,17 @@
           </li>
           <li><router-link to="/blog">Blog</router-link></li>
           <li><router-link to="/about">{{ $t('header.aboutUs') }}</router-link></li>
+          <li class="support-nav-item">
+            <a 
+              href="https://ko-fi.com/yangjerry666" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="support-link"
+            >
+              <img src="@/assets/images/kofi_symbol.svg" alt="Ko-fi" class="support-icon-small" />
+              Support me
+            </a>
+          </li>
           <li class="telegram-nav-item">
             <a 
               href="https://t.me/Chinesename_us_Official_Communit" 
@@ -680,6 +691,43 @@ body nav.main-nav ul li a.dropdown-toggle.others-link[href="#"] {
   display: none;
 }
 
+/* Support Me导航项样式 */
+.support-nav-item {
+  margin-left: 10px;
+}
+
+.support-link {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  background-color: #ff5e5b !important;
+  color: #fff !important;
+  padding: 10px 20px !important;
+  border-radius: 28px;
+  font-weight: 600 !important;
+  transition: background-color 0.2s ease;
+  box-shadow: none;
+  border: none;
+  white-space: nowrap;
+}
+
+.support-link:hover {
+  background-color: #ff5e5b !important;
+  opacity: 0.85;
+  transform: none;
+  box-shadow: none;
+}
+
+.support-link::after {
+  display: none !important;
+}
+
+.support-icon-small {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
 /* Telegram导航项样式 */
 .telegram-nav-item {
   margin-left: 10px;
@@ -957,6 +1005,19 @@ body nav.main-nav ul li a.dropdown-toggle.others-link[href="#"] {
     visibility: visible !important;
     pointer-events: auto !important;
     z-index: 99999 !important; /* 极高z-index值 */
+  }
+  
+  /* 移动端Support Me链接 */
+  .support-link {
+    padding: 8px 16px !important;
+    font-size: 13px;
+    border-radius: 24px;
+    gap: 6px;
+  }
+  
+  .support-icon-small {
+    width: 16px;
+    height: 16px;
   }
   
   /* 移动端Telegram链接 */
