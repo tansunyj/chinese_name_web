@@ -118,7 +118,10 @@
           <div class="results-grid">
             <div class="result-card" v-for="(result, index) in results" :key="index">
               <div class="result-header">
-                <div class="result-chinese">{{ result.chinese_name }}</div>
+                <div class="result-name-row">
+                  <div class="result-chinese">{{ result.chinese_name }}</div>
+                  <KofiWidget />
+                </div>
                 <div class="result-pinyin">{{ result.pinyin }}</div>
               </div>
               <div class="result-english">
@@ -158,7 +161,6 @@
             </div>
           </div>
         </div>
-        
         
         <!-- 使用指南 -->
         <UsageGuide 
@@ -337,6 +339,8 @@ import MysticalLoader from '@/components/MysticalLoader.vue';
 import UsageGuide from '@/components/UsageGuide.vue';
 import ExploreMore from '@/components/ExploreMore.vue';
 import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
+import KofiWidget from '@/components/KofiWidget.vue';
+import KofiButton from '@/components/KofiButton.vue';
 import aiConfig from '@/config/aiConfig';
 
 // 判断当前是否为开发环境
@@ -355,7 +359,9 @@ export default {
     MysticalLoader,
     UsageGuide,
     ExploreMore,
-    BreadcrumbNav
+    BreadcrumbNav,
+    KofiWidget,
+    KofiButton
   },
   setup() {
     const { locale } = useI18n();
@@ -1055,11 +1061,26 @@ label {
   border-bottom: 1px solid #eee;
 }
 
+.result-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+/* 桌面端多列结果时（宽度>=900px），按钮改到姓名下方 */
+@media (min-width: 900px) {
+  .result-name-row {
+    flex-direction: column;
+  }
+}
+
 .result-chinese {
   font-size: 2.5rem;
   font-weight: 600;
   color: #e60012;
-  margin-bottom: 10px;
 }
 
 .result-pinyin {
@@ -1415,6 +1436,10 @@ label {
 }
 
 @media (max-width: 768px) {
+  .result-name-row {
+    flex-direction: column;
+    gap: 10px;
+  }
   .page-title {
     font-size: 2rem;
   }

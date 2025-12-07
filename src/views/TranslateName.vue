@@ -58,7 +58,10 @@
           <div class="results-grid">
             <div class="result-card" v-for="(result, index) in results" :key="index">
               <div class="result-header">
-                <div class="result-characters">{{ result.translate }}</div>
+                <div class="result-name-section">
+                  <div class="result-characters">{{ result.translate }}</div>
+                  <KofiWidget />
+                </div>
                 <div class="result-pinyin">{{ result.pronunciation }}</div>
               </div>
               <div class="result-details">
@@ -91,7 +94,6 @@
             </div>
           </div>
         </div>
-        
         
         <!-- 使用指南 -->
         <UsageGuide 
@@ -258,6 +260,8 @@ import MysticalLoader from '../components/MysticalLoader.vue';
 import BreadcrumbNav from '../components/BreadcrumbNav.vue';
 import UsageGuide from '../components/UsageGuide.vue';
 import ExploreMore from '../components/ExploreMore.vue';
+import KofiWidget from '../components/KofiWidget.vue';
+import KofiButton from '../components/KofiButton.vue';
 import { useI18n } from 'vue-i18n';
 import axios from 'axios';
 import { createWebApplicationSchema, createHowToSchema, addStructuredDataToPage } from '../utils/structuredData';
@@ -293,7 +297,9 @@ export default {
     MysticalLoader,
     UsageGuide,
     ExploreMore,
-    BreadcrumbNav
+    BreadcrumbNav,
+    KofiWidget,
+    KofiButton
   },
   setup() {
     const { locale } = useI18n();
@@ -1357,11 +1363,26 @@ export default {
   border-bottom: 1px solid #eee;
 }
 
+.result-name-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+/* 桌面端：当一行可能显示两个及以上卡片时（宽度>=900px），将按钮放到姓名下方 */
+@media (min-width: 900px) {
+  .result-name-section {
+    flex-direction: column;
+  }
+}
+
 .result-characters {
   font-size: 4rem;
   font-weight: 600;
   color: #e60012;
-  margin-bottom: 15px;
 }
 
 .result-pinyin {
@@ -1441,6 +1462,10 @@ export default {
 }
 
 @media (max-width: 768px) {
+  .result-name-section {
+    flex-direction: column;
+    gap: 10px;
+  }
   .page-title {
     font-size: 2rem;
   }

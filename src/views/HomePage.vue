@@ -12,6 +12,11 @@
             <h2 class="hero-subtitle">Translate Your Name to Chinese | Find Your Perfect Chinese Name</h2>
             <h2 class="hero-subtitle">中文起名 | 英文名翻译</h2>
             <p class="subtitle">{{ $t('home.hero.subtitle') }}</p>
+            <div class="hero-cta">
+              <router-link to="/english-to-chinese-translator" class="hero-try-button">
+                Get Your Chinese Name
+              </router-link>
+            </div>
           </div>
         </div>
       </div>
@@ -1055,6 +1060,38 @@ export default {
   line-height: 1.5;
 }
 
+.hero-cta {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.hero-try-button {
+  display: inline-block;
+  padding: 16px 40px;
+  background: linear-gradient(135deg, #e60012 0%, #ff0900 100%);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(230, 0, 18, 0.3);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hero-try-button:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(230, 0, 18, 0.5);
+  background: linear-gradient(135deg, #ff0900 0%, #e60012 100%);
+}
+
+.hero-try-button:active {
+  transform: translateY(-1px) scale(1);
+  box-shadow: 0 4px 15px rgba(230, 0, 18, 0.4);
+}
+
 .features {
   padding: 70px 0;
   background-color: #fff;
@@ -2003,6 +2040,10 @@ export default {
     gap: 30px;
   }
   
+  .hero-image {
+    display: none; /* 移动端隐藏大图片 */
+  }
+  
   .hero-image img {
     width: 160px;
   }
@@ -2013,6 +2054,17 @@ export default {
   
   .hero .subtitle {
     font-size: 1.1rem;
+  }
+  
+  .hero-cta {
+    justify-content: center;
+    margin-top: 25px;
+  }
+  
+  .hero-try-button {
+    padding: 14px 30px;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
   }
   
   .features, .features-alt, .about-chinese-names, .faq-section, .cta-section {
@@ -2030,7 +2082,7 @@ export default {
   
   .testimonial-slide {
     width: 8.333%; /* 12 slides, each takes 8.333% (100%/12) */
-    grid-template-columns: repeat(2, 1fr); /* 移动端2列 */
+    grid-template-columns: 1fr; /* 移动端1列 */
     padding: 0 10px;
     gap: 15px;
   }
@@ -2211,6 +2263,12 @@ export default {
     font-size: 1rem;
   }
   
+  .hero-try-button {
+    padding: 12px 25px;
+    font-size: 0.85rem;
+    letter-spacing: 0.3px;
+  }
+  
   .cta-title {
     font-size: 1.8rem;
   }
@@ -2251,7 +2309,7 @@ export default {
   }
 
   .naming-services-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important; /* 防止列内部计算导致溢出 */
+    grid-template-columns: 1fr !important; /* 移动端1列 */
     gap: 12px;
     width: 100%;
     margin-left: 0;
@@ -2321,7 +2379,7 @@ export default {
 
   .about-chinese-names .two-column-content {
     display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: 12px;
     width: 100%;
     box-sizing: border-box;
@@ -2357,10 +2415,10 @@ export default {
     padding: 0 10px 10px;
   }
 
-  /* What Our Users Say 区块 - 统计数字在手机端横向排列（两列） */
+  /* What Our Users Say 区块 - 统计数字在手机端纵向排列（一列） */
   .stats-section {
     display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: 16px;
     align-items: stretch;
     justify-items: center;
@@ -2382,7 +2440,7 @@ export default {
 
   .faq-columns {
     display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: 12px;
     margin: 0 auto 16px;
   }

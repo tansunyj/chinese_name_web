@@ -1,5 +1,7 @@
 <script>
 import MainLayout from '@/layouts/MainLayout.vue'
+import KofiFloatingWidget from '@/components/KofiFloatingWidget.vue'
+import KofiFixedButton from '@/components/KofiFixedButton.vue'
 import { useI18n } from 'vue-i18n'
 import { setCanonicalLink } from './plugins/canonicalManager'
 import { onMounted, watch } from 'vue'
@@ -8,7 +10,9 @@ import { useRoute } from 'vue-router'
 export default {
   name: 'App',
   components: {
-    MainLayout
+    MainLayout,
+    KofiFloatingWidget,
+    KofiFixedButton
   },
   setup() {
     const { locale } = useI18n();

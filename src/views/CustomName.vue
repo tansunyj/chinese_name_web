@@ -161,7 +161,6 @@
                   <span class="info-label">{{ locale === 'zh' ? '公历' : 'Solar Calendar' }}：</span>
                   <span class="info-value">{{ formData.birthdate }} {{ formData.birthtime }}</span>
                 </div>
-              </div>
             </div>
             
             <!-- 名字卡片列表 - 每个名字一个完整的卡片，包含分析和详细信息 -->
@@ -169,17 +168,25 @@
               <div v-for="(result, index) in results" :key="index" class="name-card">
                 <!-- 名字卡片头部 -->
                 <div class="name-card-header">
-                  <div class="name-pinyin">
-                    <span v-for="(py, i) in result.pinyin.split(' ')" :key="i" class="pinyin-item">{{ py }}</span>
+                  <div class="name-header-main-row">
+                    <div class="name-pinyin">
+                      <span v-for="(py, i) in result.pinyin.split(' ')" :key="i" class="pinyin-item">{{ py }}</span>
+                    </div>
+                    <div class="name-characters-row">
+                      <div class="name-characters">
+                        {{ result.characters }}
+                      </div>
+                      <button class="play-button" @click="playPronunciation(result.characters, result.pinyin)" title="播放发音">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#3aa757" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <polygon points="5 3 19 12 5 21 5 3" fill="#3aa757"></polygon>
+                        </svg>
+                      </button>
+                    </div>
                   </div>
-                  <div class="name-characters">
-                    {{ result.characters }}
-                    <button class="play-button" @click="playPronunciation(result.characters, result.pinyin)" title="播放发音">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#3aa757" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="5 3 19 12 5 21 5 3" fill="#3aa757"></polygon>
-                      </svg>
-                    </button>
+                  <div class="name-kofi-row">
+                    <KofiWidget />
                   </div>
+
                   <div class="name-elements">
                     <span v-for="(char, i) in result.characters" :key="i" 
                           class="element-tag"
@@ -290,11 +297,12 @@
                 </div>
               </div>
             </div>
+            </div>
           </div>
+          
         </transition>
       </div>
       
-        
       <!-- 使用指南 -->
       <UsageGuide 
         title="Custom Chinese Name Generator Guide"
@@ -452,6 +460,8 @@ import MysticalLoader from '@/components/MysticalLoader.vue';
 import UsageGuide from '@/components/UsageGuide.vue';
 import ExploreMore from '@/components/ExploreMore.vue';
 import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
+import KofiWidget from '@/components/KofiWidget.vue';
+import KofiButton from '@/components/KofiButton.vue';
 import { useI18n } from 'vue-i18n';
 // 提示词已完全迁移到后端 api/promptTemplates.js，前端不再需要导入
 // import { nameGenerationSystemPrompt } from '@/config/systemPrompts'; // 已废弃
@@ -506,7 +516,9 @@ export default {
     MysticalLoader,
     UsageGuide,
     ExploreMore,
-    BreadcrumbNav
+    BreadcrumbNav,
+    KofiWidget,
+    KofiButton
   },
   setup() {
     const { t, locale } = useI18n();
@@ -3587,6 +3599,14 @@ export default {
   border-bottom: 1px solid #eee;
 }
 
+.name-header-main-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
 .name-pinyin {
   display: flex;
   justify-content: center;
@@ -3599,15 +3619,13 @@ export default {
   font-size: 1.1rem;
 }
 
-.name-characters {
-  font-size: 3rem;
-  font-weight: 600;
-  color: #e60012;
-  margin-bottom: 12px;
-  letter-spacing: 5px;
+.name-characters-row {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
 }
 
 .name-characters .play-button {
@@ -3751,6 +3769,15 @@ export default {
 
 /* 响应式调整 */
 @media (max-width: 768px) {
+  .name-header-main-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .name-characters-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
   .name-characters {
     font-size: 2.5rem;
   }

@@ -45,7 +45,12 @@
           <div class="results-grid">
             <div class="result-card" v-for="(result, index) in results" :key="index">
               <div class="result-header">
-                <div class="result-original">{{ formData.chineseName }}</div>
+                <div class="result-original-row">
+                  <div class="result-original">{{ formData.chineseName }}</div>
+                  <div class="result-support">
+                    <KofiWidget />
+                  </div>
+                </div>
                 <!--div class="result-pinyin">{{ result.pronunciation }}</div-->
               </div>
               <div class="result-english">
@@ -77,7 +82,6 @@
             </div>
           </div>
         </div>
-        
         
         <!-- 使用指南 -->
         <UsageGuide 
@@ -175,6 +179,7 @@
             </div>
           </div>
         </div>
+        
         </div>
       </div>
       <!-- 内容容器结束 -->
@@ -190,6 +195,8 @@ import MysticalLoader from '@/components/MysticalLoader.vue';
 import UsageGuide from '@/components/UsageGuide.vue';
 import ExploreMore from '@/components/ExploreMore.vue';
 import BreadcrumbNav from '@/components/BreadcrumbNav.vue';
+import KofiWidget from '@/components/KofiWidget.vue';
+import KofiButton from '@/components/KofiButton.vue';
 import { useI18n } from 'vue-i18n';
 import { chineseToEnglishNamePrompt } from '@/config/systemPrompts';
 import aiConfig from '@/config/aiConfig';
@@ -210,7 +217,9 @@ export default {
     MysticalLoader,
     UsageGuide,
     ExploreMore,
-    BreadcrumbNav
+    BreadcrumbNav,
+    KofiWidget,
+    KofiButton
   },
   setup() {
     const { locale } = useI18n();
@@ -860,6 +869,22 @@ label {
   border-bottom: 1px solid #eee;
 }
 
+.result-original-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.result-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
 .result-original {
   font-size: 4rem;
   font-weight: 600;
@@ -1060,6 +1085,10 @@ label {
 }
 
 @media (max-width: 768px) {
+  .result-original-row {
+    flex-direction: column;
+    gap: 10px;
+  }
   .page-title {
     font-size: 1.8rem;
     margin-top: 40px;
