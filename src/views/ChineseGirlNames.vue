@@ -3,10 +3,10 @@
     <div class="container">
       <!-- 面包屑导航 -->
       <BreadcrumbNav />
-      <h1 class="page-title">Chinese Girl Names with Meanings (2025) | 350+ Beautiful Female Names</h1>
+      <h1 class="page-title">Chinese Names for Girls: 350+ Beautiful Female Names with Meanings (2025)</h1>
       
       <div class="seo-intro">
-        <p class="seo-description">Explore 350+ beautiful Chinese girl names with meanings, pronunciations, and cultural significance. Find popular and unique female Chinese names for your baby with our comprehensive guide to traditional and modern Chinese girl names.</p>
+        <p class="seo-description">Looking for <strong>Chinese names for girls</strong>? Explore our collection of 350+ beautiful Chinese girl names with meanings, pronunciations, and cultural significance. Find popular, unique, and cute female Chinese names for your baby with our comprehensive guide to traditional and modern Chinese girl names.</p>
       </div>
       
       <!-- 内容容器开始 -->
@@ -111,6 +111,17 @@
         </div>
         
         
+        <!-- CTA: 引导用户使用自定义生成器 -->
+        <div class="cta-section">
+          <div class="cta-content">
+            <h3>Want a Personalized Chinese Name?</h3>
+            <p>Can't find the perfect name? Create a unique Chinese name tailored to your preferences, personality, and cultural background.</p>
+            <router-link to="/custom-chinese-name-generator" class="cta-button">
+              Try Custom Name Generator →
+            </router-link>
+          </div>
+        </div>
+                
         <!-- 使用指南 -->
         <div class="usage-guide">
           <h2>Understanding Chinese Girl Names</h2>
@@ -376,10 +387,10 @@ export default {
   },
   head() {
     return {
-      title: "Chinese Girl Names with Meanings (2025) | 350+ Beautiful Female Names",
+      title: "Chinese Names for Girls: 350+ Beautiful Female Names with Meanings (2025)",
       meta: [
-        { name: 'description', content: 'Explore 350+ beautiful Chinese girl names with meanings, pronunciations, and cultural significance. Find popular, unique and modern female Chinese names for your baby girl.' },
-        { name: 'keywords', content: 'chinese girl names,chinese names for girls,female chinese names,beautiful chinese girl names,chinese female names meaning,chinese baby girl names' }
+        { name: 'description', content: 'Explore 350+ Chinese names for girls with meanings, Pinyin, and cultural insights. Find beautiful, popular, and unique female Chinese names for your baby girl today.' },
+        { name: 'keywords', content: 'chinese names for girls,chinese girl names,beautiful chinese names,female chinese names,baby girl names,cute chinese names for girls' }
       ]
     };
   }
@@ -935,6 +946,64 @@ export default {
     width: min(95vw, 100%) !important;
     margin-left: auto !important;
     margin-right: auto !important;
+  }
+}
+
+/* CTA Section - 引导用户使用生成器 */
+.cta-section {
+  margin: 40px 0;
+  padding: 40px;
+  background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(230, 0, 18, 0.1);
+  text-align: center;
+}
+
+.cta-content h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.cta-content p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 24px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #e60012 0%, #c00010 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(230, 0, 18, 0.3);
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(230, 0, 18, 0.4);
+}
+
+@media (max-width: 768px) {
+  .cta-section {
+    margin: 30px 0;
+    padding: 30px 20px;
+  }
+  
+  .cta-content h3 {
+    font-size: 1.25rem;
+  }
+  
+  .cta-content p {
+    font-size: 0.95rem;
   }
 }
 </style>

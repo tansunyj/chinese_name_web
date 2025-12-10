@@ -39,6 +39,21 @@ export default {
     tools() {
       // 所有工具列表
       const allTools = [
+        // 高优先级：Girl/Boy Names 放在最前面以获得更多内部链接权重
+        {
+          id: 'girl-names',
+          title: 'Chinese Names for Girls',
+          description: '350+ beautiful female names with meanings',
+          path: '/chinese-girl-names',
+          emoji: '👧'
+        },
+        {
+          id: 'boy-names',
+          title: 'Chinese Names for Boys',
+          description: '350+ strong male names with meanings',
+          path: '/chinese-boy-names',
+          emoji: '👦'
+        },
         {
           id: 'translate',
           title: 'Name Translator',
@@ -94,20 +109,6 @@ export default {
           description: 'Calculate the numerology of Chinese names',
           path: '/name-numerology-calculator',
           emoji: '🔢'
-        },
-        {
-          id: 'girl-names',
-          title: 'Chinese Girl Names',
-          description: 'Browse beautiful female Chinese names',
-          path: '/chinese-girl-names',
-          emoji: '👧'
-        },
-        {
-          id: 'boy-names',
-          title: 'Chinese Boy Names',
-          description: 'Discover meaningful male Chinese names',
-          path: '/chinese-boy-names',
-          emoji: '👦'
         },
         {
           id: 'last-names',

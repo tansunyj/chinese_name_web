@@ -12,12 +12,12 @@ export const routes = [
     component: () => import('../views/ChineseGirlNames.vue'),
     meta: {
       // Title: 58/60
-      title: "Top Chinese Girl Names & Meanings (2025) | Female Names Guide",
+      title: "Chinese Names for Girls: 350+ Beautiful Female Names (2025)",
       canonicalPath: '/chinese-girl-names',
       // Description: 158/160
-      description: "Explore 200+ beautiful Chinese girl names with meanings, Pinyin, and cultural insights. Find popular, unique, and modern female Chinese names for your baby girl today.",
+      description: "Explore 350+ Chinese names for girls with meanings, Pinyin, and cultural insights. Find beautiful, popular, and unique female Chinese names for your baby girl today.",
       // 关键词最大化
-      keywords: "chinese girl names,beautiful girl names,female chinese names,baby girl names,chinese baby names,popular chinese names,modern chinese names,name guide",
+      keywords: "chinese names for girls,chinese girl names,beautiful chinese names,female chinese names,baby girl names,chinese baby names,popular chinese names,cute chinese names for girls",
       // ogTitle: 60/60
       ogTitle: "Chinese Girl Names with Meanings | Top 200+ Female Names (2025) Guide",
       // ogDescription: 159/160
@@ -38,12 +38,12 @@ export const routes = [
     component: () => import('../views/ChineseBoyNames.vue'),
     meta: {
       // Title: 58/60
-      title: "Best Chinese Boy Names & Meanings (2025) | Male Names Guide",
+      title: "Chinese Names for Boys: 350+ Strong Male Names (2025)",
       canonicalPath: '/chinese-boy-names',
       // Description: 160/160
-      description: "Discover 200+ strong and meaningful Chinese boy names with Pinyin pronunciation. Find traditional, modern, and popular male Chinese names with authentic cultural meanings.",
+      description: "Discover 350+ Chinese names for boys with meanings and Pinyin pronunciation. Find strong, traditional, and popular male Chinese names with authentic cultural meanings.",
       // 关键词最大化
-      keywords: "chinese boy names,strong boy names,male chinese names,chinese baby boy names,popular chinese names,traditional chinese names,name guide",
+      keywords: "chinese names for boys,chinese boy names,strong chinese names,male chinese names,chinese baby boy names,popular chinese names,cool chinese names for boys",
       // ogTitle: 58/60
       ogTitle: "Chinese Boy Names with Meanings | Top 200+ Male Names (2025) Guide",
       // ogDescription: 158/160

@@ -28,7 +28,7 @@
         <h2 class="section-title">Our Chinese Name Services</h2>
         <div class="feature-grid naming-services-grid">
 
-          <!-- 名字翻译 -->
+          <!-- 1. 英转中翻译器 - GA4: 7,600+ 浏览量，核心功能 -->
           <router-link to="/english-to-chinese-translator" class="feature-card-link">
             <div class="feature-card">
               <div class="header-row">
@@ -46,7 +46,7 @@
             </div>
           </router-link>
 
-          <!-- 中文名转英文名 -->
+          <!-- 2. 中转英翻译器 - GA4: 3,400+ 浏览量 -->
           <router-link to="/chinese-to-english-translator" class="feature-card-link">
             <div class="feature-card">
               <div class="header-row">
@@ -64,7 +64,7 @@
             </div>
           </router-link>
 
-          <!-- 自定义中文名 -->
+          <!-- 3. 自定义中文名 - GA4: 1,960+ 浏览量，跳出率最低6% -->
           <router-link to="/custom-chinese-name-generator" class="feature-card-link">
             <div class="feature-card">
               <div class="header-row">
@@ -82,7 +82,7 @@
             </div>
           </router-link>
           
-          <!-- Fantasy Chinese Name Generator -->
+          <!-- 4. Fantasy Name Generator - GA4: 1,750 浏览量 -->
           <router-link to="/fantasy-chinese-name-generator" class="feature-card-link">
             <div class="feature-card">
               <div class="header-row">
@@ -99,60 +99,78 @@
               </div>
             </div>
           </router-link>
-          
-          <!-- 姓名转拼音 -->
-          <router-link to="/name-to-pinyin" class="feature-card-link">
+
+          <!-- 5. Chinese Girl Names - SEMrush: 6,600/月搜索量，高潜力 -->
+          <router-link to="/chinese-girl-names" class="feature-card-link">
             <div class="feature-card">
               <div class="header-row">
-              <div class="icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
-                </svg>
+                <div class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                </div>
+                <h3>Chinese Names for Girls</h3>
               </div>
-              <h3>{{ $t('home.features.nameToPinyin.title') }}</h3>
-              </div>
-              <p>{{ $t('home.features.nameToPinyin.description') }}</p>
+              <p>Browse 350+ beautiful Chinese girl names with meanings, pronunciations, and cultural significance</p>
               <div class="feature-link">
                 <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
               </div>
             </div>
           </router-link>
 
-          <!-- 生肖计算器已移至OTHERS菜单 -->
-          
-          <!-- 星座计算器已移至OTHERS菜单 -->
-          
-          <!-- 数字命理计算器 -->
-          <router-link to="/name-numerology-calculator" class="feature-card-link">
+          <!-- 6. Chinese Boy Names - SEMrush: 5,400/月搜索量，高潜力 -->
+          <router-link to="/chinese-boy-names" class="feature-card-link">
             <div class="feature-card">
               <div class="header-row">
                 <div class="icon">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                   </svg>
                 </div>
-                <h3>{{ $t('home.features.namingService.numerology.title') }}</h3>
+                <h3>Chinese Names for Boys</h3>
               </div>
-              <p>{{ $t('home.features.namingService.numerology.description') }}</p>
+              <p>Discover 350+ strong Chinese boy names with meanings, pronunciations, and cultural significance</p>
               <div class="feature-link">
                 <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
               </div>
             </div>
           </router-link>
           
-          <!-- Chinese Girl Names已移至OTHERS菜单 -->
+          <!-- 7. Chinese Dog Names - SEMrush: 140/月，跳出率15.8%极佳 -->
+          <router-link to="/chinese-dog-names" class="feature-card-link">
+            <div class="feature-card">
+              <div class="header-row">
+                <div class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                  </svg>
+                </div>
+                <h3>Chinese Dog Names</h3>
+              </div>
+              <p>Find authentic Chinese names for your dog with meanings and cultural significance</p>
+              <div class="feature-link">
+                <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
+              </div>
+            </div>
+          </router-link>
           
-          <!-- Chinese Boy Names已移至OTHERS菜单 -->
-          
-          <!-- Chinese Last Names已移至OTHERS菜单 -->
-          
-          <!-- Chinese Names and Meanings已移至OTHERS菜单 -->
-          
-          <!-- Funny Chinese Names已移至OTHERS菜单 -->
-          
-          <!-- Chinese Dog Names已移至OTHERS菜单 -->
-          
-          <!-- Chinese Cat Names已移至OTHERS菜单 -->
+          <!-- 8. Zodiac Calculator - GA4: 162浏览量，跳出率14.5%极佳 -->
+          <router-link to="/zodiac-calculator" class="feature-card-link">
+            <div class="feature-card">
+              <div class="header-row">
+                <div class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                  </svg>
+                </div>
+                <h3>Chinese Zodiac Calculator</h3>
+              </div>
+              <p>Find your Chinese zodiac sign and discover how it influences your name choices</p>
+              <div class="feature-link">
+                <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
+              </div>
+            </div>
+          </router-link>
 
         </div>
       </div>
