@@ -29,7 +29,7 @@
         <div class="feature-grid naming-services-grid">
 
           <!-- 1. 英转中翻译器 - GA4: 7,600+ 浏览量，核心功能 -->
-          <router-link to="/english-to-chinese-translator" class="feature-card-link">
+          <router-link to="/english-to-chinese-translator" class="feature-card-link" title="Translate your English name to Chinese characters">
             <div class="feature-card">
               <div class="header-row">
               <div class="icon">
@@ -47,7 +47,7 @@
           </router-link>
 
           <!-- 2. 中转英翻译器 - GA4: 3,400+ 浏览量 -->
-          <router-link to="/chinese-to-english-translator" class="feature-card-link">
+          <router-link to="/chinese-to-english-translator" class="feature-card-link" title="Convert Chinese names to English pronunciation">
             <div class="feature-card">
               <div class="header-row">
               <div class="icon">
@@ -65,7 +65,7 @@
           </router-link>
 
           <!-- 3. 自定义中文名 - GA4: 1,960+ 浏览量，跳出率最低6% -->
-          <router-link to="/custom-chinese-name-generator" class="feature-card-link">
+          <router-link to="/custom-chinese-name-generator" class="feature-card-link" title="Create a personalized Chinese name based on your preferences">
             <div class="feature-card">
               <div class="header-row">
               <div class="icon">
@@ -83,7 +83,7 @@
           </router-link>
           
           <!-- 4. Fantasy Name Generator - GA4: 1,750 浏览量 -->
-          <router-link to="/fantasy-chinese-name-generator" class="feature-card-link">
+          <router-link to="/fantasy-chinese-name-generator" class="feature-card-link" title="Generate mystical Wuxia and fantasy Chinese names">
             <div class="feature-card">
               <div class="header-row">
               <div class="icon">
@@ -101,7 +101,7 @@
           </router-link>
 
           <!-- 5. Chinese Girl Names - SEMrush: 6,600/月搜索量，高潜力 -->
-          <router-link to="/chinese-girl-names" class="feature-card-link">
+          <router-link to="/chinese-girl-names" class="feature-card-link" title="Browse 350+ beautiful Chinese names for girls with meanings">
             <div class="feature-card">
               <div class="header-row">
                 <div class="icon">
@@ -119,7 +119,7 @@
           </router-link>
 
           <!-- 6. Chinese Boy Names - SEMrush: 5,400/月搜索量，高潜力 -->
-          <router-link to="/chinese-boy-names" class="feature-card-link">
+          <router-link to="/chinese-boy-names" class="feature-card-link" title="Discover 350+ strong Chinese names for boys with meanings">
             <div class="feature-card">
               <div class="header-row">
                 <div class="icon">
@@ -137,7 +137,7 @@
           </router-link>
           
           <!-- 7. Chinese Dog Names - SEMrush: 140/月，跳出率15.8%极佳 -->
-          <router-link to="/chinese-dog-names" class="feature-card-link">
+          <router-link to="/chinese-dog-names" class="feature-card-link" title="Find authentic Chinese names for your dog">
             <div class="feature-card">
               <div class="header-row">
                 <div class="icon">
@@ -145,9 +145,9 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
                   </svg>
                 </div>
-                <h3>Chinese Dog Names</h3>
+                <h3>Chinese Names for Dogs</h3>
               </div>
-              <p>Find authentic Chinese names for your dog with meanings and cultural significance</p>
+              <p>Explore 100+ authentic Chinese dog names with meanings, pronunciations, and cultural background for your pet</p>
               <div class="feature-link">
                 <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
               </div>
@@ -155,7 +155,7 @@
           </router-link>
           
           <!-- 8. Zodiac Calculator - GA4: 162浏览量，跳出率14.5%极佳 -->
-          <router-link to="/zodiac-calculator" class="feature-card-link">
+          <router-link to="/zodiac-calculator" class="feature-card-link" title="Calculate your Chinese zodiac sign and element">
             <div class="feature-card">
               <div class="header-row">
                 <div class="icon">
@@ -165,7 +165,7 @@
                 </div>
                 <h3>Chinese Zodiac Calculator</h3>
               </div>
-              <p>Find your Chinese zodiac sign and discover how it influences your name choices</p>
+              <p>Discover your Chinese zodiac animal sign, element, and personality traits based on your birth year</p>
               <div class="feature-link">
                 <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
               </div>
