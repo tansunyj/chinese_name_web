@@ -33,7 +33,7 @@
           <div class="links-group">
             <h3>{{ $t('footer.contact') }}</h3>
             <ul>
-              <li><a href="mailto:591124281yj@gmail.com">591124281yj@gmail.com</a></li>
+              <li><a href="mailto:contact_us@chinesename.us">contact_us@chinesename.us</a></li>
               <li><a href="https://x.com/yangjerry666" target="_blank">Twitter</a></li>
               <li><a href="https://t.me/yangjerry666" target="_blank">Telegram</a></li>
             </ul>
