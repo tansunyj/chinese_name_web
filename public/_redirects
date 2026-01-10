@@ -12,7 +12,8 @@
 
 # Blog文章重定向 - 301永久重定向
 /popular-chinese-names                  /blog/popular-chinese-names              301
-/chinese-surnames                       /blog/chinese-surnames                   301
+/chinese-surnames                       /chinese-last-names                      301
+/blog/chinese-surnames                  /chinese-last-names                      301
 /baijiaxing                             /blog/baijiaxing                         301
 /naming-traditions                      /blog/naming-traditions                  301
 /historical-names                       /blog/historical-names                   301

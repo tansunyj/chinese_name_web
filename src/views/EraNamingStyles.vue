@@ -390,10 +390,12 @@
           while also providing rich reference and inspiration for modern naming practices.
         </p>
       </div>
+
+          <!-- Explore More 组件 -->
+    <ExploreMore :currentPath="$route.path" />
     </div>
     
-    <!-- Explore More 组件 -->
-    <ExploreMore :currentPath="$route.path" />
+
   </div>
 </template>
 

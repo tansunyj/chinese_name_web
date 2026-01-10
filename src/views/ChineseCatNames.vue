@@ -3,7 +3,7 @@
     <div class="container">
       <!-- 面包屑导航 -->
       <BreadcrumbNav />
-      <h1 class="page-title">Chinese Cat Names with Meanings (2025) | Traditional & Modern Feline Names</h1>
+      <h1 class="page-title">Chinese Cat Names with Meanings (2026) | Traditional & Modern Feline Names</h1>
       
       <div class="seo-intro">
         <p class="seo-description">Explore 100+ authentic Chinese cat names with meanings, pronunciations, and cultural significance. Find the perfect traditional or modern Chinese name for your feline friend with our comprehensive guide to male and female cat names.</p>
@@ -361,7 +361,7 @@ export default {
   },
   head() {
     return {
-      title: "Chinese Cat Names with Meanings (2025) | Traditional & Modern Feline Names",
+      title: "Chinese Cat Names with Meanings (2026) | Traditional & Modern Feline Names",
       meta: [
         { name: 'description', content: 'Explore 100+ authentic Chinese cat names with meanings, pronunciations, and cultural significance. Find the perfect traditional or modern Chinese name for your feline friend.' },
         { name: 'keywords', content: 'chinese cat names, chinese names for cats, cat names in chinese, chinese kitten names, traditional chinese cat names, chinese cat naming, female chinese cat names, male chinese cat names' }

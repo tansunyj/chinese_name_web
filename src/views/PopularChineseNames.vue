@@ -6,15 +6,16 @@
       <h1 class="page-title">150 Popular Chinese Names for Boys and Girls</h1>
       <p class="seo-description">Discover the most popular Chinese names for boys and girls with their meanings and pronunciations. Find the perfect Chinese name for your child or yourself. Chinese name for boys, Chinese name for girls, Chinese names for male, Chinese names for female. 中文男孩名字, 中文女孩名字.</p>
       
-      <div class="intro-section">
-        <div class="intro-text">
-          <h2>The Beauty of Chinese Names</h2>
-          <p>Chinese names are rich in cultural significance, combining beautiful sounds with meaningful characters. Unlike Western names, Chinese given names are chosen for their positive connotations and the aspirations parents have for their children.</p>
-          <p>Each Chinese character has its own meaning, pronunciation, and written form, allowing for names that are both phonetically pleasing and symbolically significant. The following collections showcase some of the most popular and beautiful Chinese names for both boys and girls.</p>
-        </div>
-        <div class="intro-image">
-          <img src="@/assets/images/all_name.png" alt="Chinese Names" />
-        </div>
+
+      <div class="names-section">
+              <div class="intro-text">
+                <h2>The Beauty of Chinese Names</h2>
+                <p>Chinese names are rich in cultural significance, combining beautiful sounds with meaningful characters. Unlike Western names, Chinese given names are chosen for their positive connotations and the aspirations parents have for their children.</p>
+                <p>Each Chinese character has its own meaning, pronunciation, and written form, allowing for names that are both phonetically pleasing and symbolically significant. The following collections showcase some of the most popular and beautiful Chinese names for both boys and girls.</p>
+              </div>
+              <div class="intro-image">
+                <img src="@/assets/images/all_name.png" alt="Chinese Names" />
+              </div>
       </div>
 
       <div class="names-section">
@@ -66,6 +67,7 @@
         </div>
       </div>
 
+      <div class="names-section">
       <div class="naming-tips">
         <h2>Tips for Choosing a Chinese Name</h2>
         <div class="tips-grid">
@@ -110,22 +112,28 @@
           </div>
         </div>
       </div>
-
-      <div class="naming-resources">
-        <h2>Further Resources</h2>
-        <p>Explore our other sections to learn more about Chinese naming traditions, surname origins, and cultural practices:</p>
-        
-        <div class="resources-links">
-          <router-link to="/naming-traditions" class="resource-link">Chinese Naming Traditions</router-link>
-          <router-link to="/chinese-surnames" class="resource-link">Chinese Surnames</router-link>
-          <router-link to="/wuxing-bazi" class="resource-link">Five Elements Theory</router-link>
-          <router-link to="/sound-harmony" class="resource-link">Sound Harmony in Names</router-link>
-        </div>
       </div>
-    </div>
-    
+
+      <div class="names-section">
+            <div class="naming-resources">
+              <h2>Further Resources</h2>
+              <p>Explore our other sections to learn more about Chinese naming traditions, surname origins, and cultural practices:</p>
+              
+              <div class="resources-links">
+                <router-link to="/naming-traditions" class="resource-link">Chinese Naming Traditions</router-link>
+                <router-link to="/chinese-surnames" class="resource-link">Chinese Surnames</router-link>
+                <router-link to="/wuxing-bazi" class="resource-link">Five Elements Theory</router-link>
+                <router-link to="/sound-harmony" class="resource-link">Sound Harmony in Names</router-link>
+              </div>
+            </div>
+          </div>
+      </div>
+
+    <div class="names-section">
     <!-- Explore More 组件 -->
     <ExploreMore :currentPath="$route.path" />
+    </div>
+
   </div>
 </template>
 

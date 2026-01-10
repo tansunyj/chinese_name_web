@@ -3,7 +3,7 @@
     <div class="container">
       <!-- 面包屑导航 -->
       <BreadcrumbNav />
-      <h1 class="page-title">Chinese Dog Names with Meanings (2025) | Traditional & Modern Pet Names</h1>
+      <h1 class="page-title">Chinese Dog Names with Meanings (2026) | Traditional & Modern Pet Names</h1>
       
       <div class="seo-intro">
         <p class="seo-description">Discover 100+ authentic Chinese dog names with meanings, pronunciations, and cultural significance. Find the perfect traditional or modern Chinese name for your puppy with our comprehensive guide to male and female dog names.</p>
@@ -361,7 +361,7 @@ export default {
   },
   head() {
     return {
-      title: "Chinese Dog Names with Meanings (2025) | Traditional & Modern Pet Names",
+      title: "Chinese Dog Names with Meanings (2026) | Traditional & Modern Pet Names",
       meta: [
         { name: 'description', content: 'Discover 100+ authentic Chinese dog names with meanings, pronunciations, and cultural significance. Find the perfect traditional or modern Chinese name for your puppy.' },
         { name: 'keywords', content: 'chinese dog names, chinese names for dogs, dog names in chinese, chinese puppy names, traditional chinese dog names, chinese dog naming, lucky chinese dog names, chinese pet names' }

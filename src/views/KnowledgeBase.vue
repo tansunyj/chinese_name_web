@@ -16,7 +16,7 @@
           <p>Discover the most popular Chinese names with their meanings and pronunciations for both boys and girls.</p>
         </router-link>
         
-        <router-link to="/blog/chinese-surnames" class="category-card">
+        <!--router-link to="/blog/chinese-surnames" class="category-card">
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -24,6 +24,30 @@
           </div>
           <h2>Chinese Surnames</h2>
           <p>Explore the origins, meanings, and geographical distribution of common Chinese surnames.</p>
+        </router-link-->
+
+        <!-- 卡片 1: How to Say My Name (自我介绍) -->
+        <router-link to="/blog/how-to-say-my-name-in-chinese" class="category-card">
+          <div class="card-icon">
+            <!-- 聊天/发音图标 -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+            </svg>
+          </div>
+          <h2>How to Say "My Name Is"</h2>
+          <p>Learn the 2 golden phrases for introductions and how to "spell" your English name in Chinese characters.</p>
+        </router-link>
+
+        <!-- 卡片 2: Cute Nicknames (昵称/Maomao) -->
+        <router-link to="/blog/cute-chinese-nicknames-maomao" class="category-card">
+          <div class="card-icon">
+            <!-- 爱心图标 (代表可爱/昵称) -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+          </div>
+          <h2>Cute Chinese Nicknames</h2>
+          <p>What does "Maomao" mean? Discover 50+ popular reduplicated nicknames for babies, pets, and loved ones.</p>
         </router-link>
         
         <!-- 百家姓卡片 -->
@@ -208,8 +232,19 @@
           <h2>Fantasy Chinese Names Guide</h2>
           <p>Learn about mystical Chinese naming traditions, fantasy character naming conventions, and cultural elements in wuxia, xianxia, and fantasy literature.</p>
         </router-link>
-      </div>
+
+        <router-link to="/blog/what-is-my-chinese-name" class="category-card identity-card">
+        <div class="card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+          </svg>
+        </div>
+        <h2>What Is My Chinese Name?</h2>
+        <p>Find your perfect Chinese identity. Explore professional naming methods, from phonetic translation to traditional Five Elements philosophy.</p>
+      </router-link>
+
       
+      </div>
       <div v-if="activeCategory" class="category-content">
         <div class="category-header">
           <button class="back-button" @click="activeCategory = null">

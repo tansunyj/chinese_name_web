@@ -3,7 +3,7 @@
     <div class="container">
       <!-- 面包屑导航 -->
       <BreadcrumbNav />
-      <h1 class="page-title">Chinese Names for Girls: 350+ Beautiful Female Names with Meanings (2025)</h1>
+      <h1 class="page-title">Chinese Names for Girls: 350+ Beautiful Female Names with Meanings (2026)</h1>
       
       <div class="seo-intro">
         <p class="seo-description">Looking for <strong>Chinese names for girls</strong>? Explore our collection of 350+ beautiful Chinese girl names with meanings, pronunciations, and cultural significance. Find popular, unique, and cute female Chinese names for your baby with our comprehensive guide to traditional and modern Chinese girl names.</p>
@@ -387,7 +387,7 @@ export default {
   },
   head() {
     return {
-      title: "Chinese Names for Girls: 350+ Beautiful Female Names with Meanings (2025)",
+      title: "Chinese Names for Girls: 350+ Beautiful Female Names with Meanings (2026)",
       meta: [
         { name: 'description', content: 'Explore 350+ Chinese names for girls with meanings, Pinyin, and cultural insights. Find beautiful, popular, and unique female Chinese names for your baby girl today.' },
         { name: 'keywords', content: 'chinese names for girls,chinese girl names,beautiful chinese names,female chinese names,baby girl names,cute chinese names for girls' }

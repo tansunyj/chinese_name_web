@@ -122,7 +122,7 @@
           Feel free to reach out to us at <a href="mailto:591124281yj@gmail.com">591124281yj@gmail.com</a>.
         </p>
         <div class="social-links">
-          <a href="https://x.com/yangjerry2025" target="_blank" class="social-link">Twitter</a>
+          <a href="https://x.com/yangjerry666" target="_blank" class="social-link">Twitter</a>
         </div>
       </section>
     </div>

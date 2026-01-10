@@ -326,10 +326,12 @@
         
         <p class="final-note">Regardless of which regional naming style you choose, the most important aspect is to imbue the name with beautiful meanings and aspirations. We hope that the wisdom of these regional naming cultures will provide you with rich inspiration for your naming journey.</p>
       </div>
+
+          <!-- Explore More 组件 -->
+    <ExploreMore :currentPath="$route.path" />
     </div>
     
-    <!-- Explore More 组件 -->
-    <ExploreMore :currentPath="$route.path" />
+
   </div>
 </template>
 

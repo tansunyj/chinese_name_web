@@ -3,7 +3,7 @@
     <div class="container">
       <!-- 面包屑导航 -->
       <BreadcrumbNav />
-      <h1 class="page-title">Chinese Names for Boys: 350+ Strong Male Names with Meanings (2025)</h1>
+      <h1 class="page-title">Chinese Names for Boys: 350+ Strong Male Names with Meanings (2026)</h1>
       
       <div class="seo-intro">
         <p class="seo-description">Looking for <strong>Chinese names for boys</strong>? Discover our collection of 350+ meaningful Chinese boy names with pronunciations and cultural significance. Explore authentic, strong, traditional and modern Chinese male names with their meanings and origins.</p>
@@ -349,7 +349,7 @@ export default {
   },
   head() {
     return {
-      title: "Chinese Names for Boys: 350+ Strong Male Names with Meanings (2025)",
+      title: "Chinese Names for Boys: 350+ Strong Male Names with Meanings (2026)",
       meta: [
         { name: 'description', content: 'Discover 350+ Chinese names for boys with meanings and Pinyin pronunciation. Find strong, traditional, and popular male Chinese names with authentic cultural meanings.' },
         { name: 'keywords', content: 'chinese names for boys,chinese boy names,strong chinese names,male chinese names,chinese baby boy names,cool chinese names for boys' }

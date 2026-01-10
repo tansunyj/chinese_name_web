@@ -172,6 +172,43 @@
             </div>
           </router-link>
 
+          <router-link to="/blog/how-to-say-my-name-in-chinese" class="feature-card-link" title="Learn how to say your name in Chinese">
+            <div class="feature-card">
+              <div class="header-row">
+                <div class="icon">
+                  <!-- 使用喇叭图标 -->
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                  </svg>
+                </div>
+                <h3>How to Say My Name</h3>
+              </div>
+              <p>Learn the pronunciation and phrases to introduce yourself in Mandarin like a local</p>
+              <div class="feature-link">
+                <!-- 保持你原有的 ming-icon -->
+                <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
+              </div>
+            </div>
+          </router-link>
+
+          <router-link to="/blog/cute-chinese-nicknames-maomao" class="feature-card-link" title="Discover cute Chinese nicknames like Maomao">
+            <div class="feature-card">
+              <div class="header-row">
+                <div class="icon">
+                  <!-- 使用笑脸图标 -->
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3>Cute Chinese Nicknames</h3>
+              </div>
+              <p>Discover meanings of "Maomao", "Doudou" & find cute names for babies, friends, and pets</p>
+              <div class="feature-link">
+                <img src="@/assets/images/ming.png" alt="ming" class="ming-icon" /> →
+              </div>
+            </div>
+          </router-link>
+
         </div>
       </div>
     </section>

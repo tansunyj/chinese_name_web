@@ -3,7 +3,7 @@
     <div class="container">
       <!-- 面包屑导航 -->
       <BreadcrumbNav />
-      <h1 class="page-title">Chinese Men Names with Meanings (2025) | Professional Male Names for Adults</h1>
+      <h1 class="page-title">Chinese Men Names with Meanings (2026) | Professional Male Names for Adults</h1>
       
       <div class="seo-intro">
         <p class="seo-description">Discover professional Chinese names for adult men. Whether you're learning Chinese, working in China, or need an authentic name for business and social occasions, explore our collection of 300+ Chinese men names with meanings, pronunciations, and cultural significance.</p>
@@ -339,7 +339,7 @@ export default {
   },
   head() {
     return {
-      title: "Chinese Men Names with Meanings (2025) | Professional Male Names for Adults",
+      title: "Chinese Men Names with Meanings (2026) | Professional Male Names for Adults",
       meta: [
         { name: 'description', content: 'Discover 300+ professional Chinese names for adult men. Perfect for professionals, expats, and anyone needing authentic Chinese men names for business and social occasions.' },
         { name: 'keywords', content: 'chinese men names,chinese names for men,male chinese names,chinese man names,professional chinese names,adult chinese male names' }

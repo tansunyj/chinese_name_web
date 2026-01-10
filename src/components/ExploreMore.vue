@@ -151,7 +151,22 @@ export default {
           description: 'Learn how to write your name in Chinese',
           path: '/write-my-name-in-chinese',
           emoji: '✍️'
+        },
+        {
+          id: 'say-my-name',
+          title: 'How to Say My Name',
+          description: 'Pronunciation & spelling guide for your name',
+          path: '/blog/how-to-say-my-name-in-chinese',
+          emoji: '🔊'
+        },
+        {
+          id: 'nicknames',
+          title: 'Cute Chinese Nicknames',
+          description: 'Meanings of Maomao, Doudou & more',
+          path: '/blog/cute-chinese-nicknames-maomao',
+          emoji: '🧸'
         }
+
       ];
       
       // 过滤掉当前页面，显示所有其他功能

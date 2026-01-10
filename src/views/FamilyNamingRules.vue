@@ -148,10 +148,12 @@
         <h2 class="section-title">Conclusion (结语)</h2>
         <p>Family naming rules are a precious cultural heritage of the Chinese nation, connecting the past, present, and future, and carrying the historical memory and cultural values of families. Regardless of how times change, this tradition is worth cherishing and passing down. By respecting tradition while appropriately innovating, we can breathe new life into family naming culture in modern society.</p>
       </section>
+
+          <!-- Explore More 组件 -->
+    <ExploreMore :currentPath="$route.path" />
     </div>
     
-    <!-- Explore More 组件 -->
-    <ExploreMore :currentPath="$route.path" />
+
   </div>
 </template>
 

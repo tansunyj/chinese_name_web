@@ -217,10 +217,12 @@
         <p>When translating your name to Chinese characters, it's important to work with experts who understand these traditional principles while adapting them to modern contexts. The goal is to create a Chinese name that not only sounds similar to your English name but also carries positive meanings and cultural resonance.</p>
         <p>Whether you're seeking a Chinese name for business cards, academic exchange, or personal interest, understanding these naming traditions will help you appreciate the depth and significance of your translated Chinese name.</p>
       </div>
+
+          <!-- Explore More 组件 -->
+    <ExploreMore :currentPath="$route.path" />
     </div>
     
-    <!-- Explore More 组件 -->
-    <ExploreMore :currentPath="$route.path" />
+
   </div>
 </template>
 

@@ -3,6 +3,8 @@ import NameSoundFormTaboos from '../views/NameSoundFormTaboos.vue'
 import ModernTraditional from '../views/ModernTraditional.vue'
 import ProfessionalConsiderations from '../views/ProfessionalConsiderations.vue'
 import EraNamingStyles from '../views/EraNamingStyles.vue'
+import WhatIsMyChineseName from '../views/WhatIsMyChineseName.vue'
+
 
 // 导出路由配置数组
 export const routes = [
@@ -12,21 +14,21 @@ export const routes = [
     component: () => import('../views/ChineseGirlNames.vue'),
     meta: {
       // Title: 58/60
-      title: "Chinese Names for Girls: 350+ Beautiful Female Names (2025)",
+      title: "Chinese Names for Girls: 350+ Beautiful Female Names (2026)",
       canonicalPath: '/chinese-girl-names',
       // Description: 158/160
       description: "Explore 350+ Chinese names for girls with meanings, Pinyin, and cultural insights. Find beautiful, popular, and unique female Chinese names for your baby girl today.",
       // 关键词最大化
       keywords: "chinese names for girls,chinese girl names,beautiful chinese names,female chinese names,baby girl names,chinese baby names,popular chinese names,cute chinese names for girls",
       // ogTitle: 60/60
-      ogTitle: "Chinese Girl Names with Meanings | Top 200+ Female Names (2025) Guide",
+      ogTitle: "Chinese Girl Names with Meanings | Top 200+ Female Names (2026) Guide",
       // ogDescription: 159/160
       ogDescription: "Browse our collection of 200+ beautiful Chinese girl names complete with meanings, pronunciations and cultural significance. Find the perfect Chinese name for your baby girl today.",
       ogImage: "https://chinesename.us/images/chinese-girl-names-og.jpg",
       ogUrl: "https://chinesename.us/chinese-girl-names",
       twitterCard: "summary_large_image",
       // twitterTitle: 55/60
-      twitterTitle: "Chinese Girl Names with Meanings (2025) - Female Names Guide",
+      twitterTitle: "Chinese Girl Names with Meanings (2026) - Female Names Guide",
       // twitterDescription: 157/160
       twitterDescription: "Discover 200+ beautiful Chinese girl names with meanings, pronunciations and cultural context. Find the perfect name for your daughter with our expert guide.",
       twitterImage: "https://chinesename.us/images/chinese-girl-names-twitter.jpg"
@@ -38,21 +40,21 @@ export const routes = [
     component: () => import('../views/ChineseBoyNames.vue'),
     meta: {
       // Title: 58/60
-      title: "Chinese Names for Boys: 350+ Strong Male Names (2025)",
+      title: "Chinese Names for Boys: 350+ Strong Male Names (2026)",
       canonicalPath: '/chinese-boy-names',
       // Description: 160/160
       description: "Discover 350+ Chinese names for boys with meanings and Pinyin pronunciation. Find strong, traditional, and popular male Chinese names with authentic cultural meanings.",
       // 关键词最大化
       keywords: "chinese names for boys,chinese boy names,strong chinese names,male chinese names,chinese baby boy names,popular chinese names,cool chinese names for boys",
       // ogTitle: 58/60
-      ogTitle: "Chinese Boy Names with Meanings | Top 200+ Male Names (2025) Guide",
+      ogTitle: "Chinese Boy Names with Meanings | Top 200+ Male Names (2026) Guide",
       // ogDescription: 158/160
       ogDescription: "Browse our collection of 200+ strong Chinese boy names complete with meanings, pronunciations and cultural significance. Find the perfect Chinese name for your baby boy today.",
       ogImage: "https://chinesename.us/images/chinese-boy-names-og.jpg",
       ogUrl: "https://chinesename.us/chinese-boy-names",
       twitterCard: "summary_large_image",
       // twitterTitle: 54/60
-      twitterTitle: "Chinese Boy Names with Meanings (2025) - Male Names Guide",
+      twitterTitle: "Chinese Boy Names with Meanings (2026) - Male Names Guide",
       // twitterDescription: 155/160
       twitterDescription: "Discover 200+ strong Chinese boy names with meanings, pronunciations and cultural context. Find the perfect name for your son with our comprehensive guide.",
       twitterImage: "https://chinesename.us/images/chinese-boy-names-twitter.jpg"
@@ -64,21 +66,21 @@ export const routes = [
     component: () => import('../views/ChineseWomenNames.vue'),
     meta: {
       // Title: 60/60
-      title: "Chinese Women Names & Meanings (2025) | Professional Female Names",
+      title: "Chinese Women Names & Meanings (2026) | Professional Female Names",
       canonicalPath: '/chinese-women-names',
       // Description: 160/160
       description: "Discover 300+ elegant Chinese names for adult women. Perfect for professionals, expats, and anyone needing authentic Chinese women names for business and social occasions.",
       // 关键词最大化
       keywords: "chinese women names,chinese names for women,female chinese names,professional chinese names,adult chinese names,chinese woman names,business names",
       // ogTitle: 60/60
-      ogTitle: "Chinese Women Names with Meanings | 300+ Professional Female Names (2025)",
+      ogTitle: "Chinese Women Names with Meanings | 300+ Professional Female Names (2026)",
       // ogDescription: 160/160
       ogDescription: "Browse our collection of 300+ elegant Chinese women names complete with meanings, pronunciations and cultural significance for professional and social contexts.",
       ogImage: "https://chinesename.us/images/chinese-women-names-og.jpg",
       ogUrl: "https://chinesename.us/chinese-women-names",
       twitterCard: "summary_large_image",
       // twitterTitle: 58/60
-      twitterTitle: "Chinese Women Names with Meanings (2025) - Professional Guide",
+      twitterTitle: "Chinese Women Names with Meanings (2026) - Professional Guide",
       // twitterDescription: 160/160
       twitterDescription: "Explore 300+ elegant Chinese women names with meanings and cultural context. Find the perfect professional name for business and social occasions in China.",
       twitterImage: "https://chinesename.us/images/chinese-women-names-twitter.jpg"
@@ -90,21 +92,21 @@ export const routes = [
     component: () => import('../views/ChineseMenNames.vue'),
     meta: {
       // Title: 60/60
-      title: "Chinese Men Names & Meanings (2025) | Professional Male Names Guide",
+      title: "Chinese Men Names & Meanings (2026) | Professional Male Names Guide",
       canonicalPath: '/chinese-men-names',
       // Description: 160/160
       description: "Discover 300+ professional Chinese names for adult men. Perfect for professionals, expats, and anyone needing authentic Chinese men names for business and social occasions.",
       // 关键词最大化
       keywords: "chinese men names,chinese names for men,male chinese names,professional chinese names,adult chinese names,chinese man names,business names",
       // ogTitle: 60/60
-      ogTitle: "Chinese Men Names with Meanings | 300+ Professional Male Names (2025)",
+      ogTitle: "Chinese Men Names with Meanings | 300+ Professional Male Names (2026)",
       // ogDescription: 160/160
       ogDescription: "Browse our collection of 300+ professional Chinese men names complete with meanings, pronunciations and cultural significance for business and social contexts.",
       ogImage: "https://chinesename.us/images/chinese-men-names-og.jpg",
       ogUrl: "https://chinesename.us/chinese-men-names",
       twitterCard: "summary_large_image",
       // twitterTitle: 58/60
-      twitterTitle: "Chinese Men Names with Meanings (2025) - Professional Guide",
+      twitterTitle: "Chinese Men Names with Meanings (2026) - Professional Guide",
       // twitterDescription: 160/160
       twitterDescription: "Explore 300+ professional Chinese men names with meanings and cultural context. Find the perfect name for business and social occasions in China.",
       twitterImage: "https://chinesename.us/images/chinese-men-names-twitter.jpg"
@@ -115,48 +117,60 @@ export const routes = [
     name: 'ChineseLastNames',
     component: () => import('../views/ChineseLastNames.vue'),
     meta: {
-      // Title: 60/60
-      title: "Chinese Last Names & Surnames (2025) | Top 300+ Family Guide",
+      // Title: 优化策略 -> "Top [数字] + [核心词] + [价值点] + [年份]"
+      // 把 "Surnames" 往后放，把宝贵的前面位置留给流量大词 "Last Names"
+      title: "Top 100+ Chinese Last Names with Meanings (2026) | Surnames Guide",
+      
       canonicalPath: '/chinese-last-names',
-      // Description: 158/160
-      description: "Explore over 300 Chinese surnames with meanings, historical origins, and pronunciation guides. Discover common Chinese family names and their deep cultural significance.",
-      // 关键词最大化
-      keywords: "chinese surnames,chinese last names,common chinese surnames,chinese family names,popular chinese surnames,surname origins,family guide",
-      // ogTitle: 60/60
-      ogTitle: "Chinese Last Names & Surnames | Top 300+ Family Names Guide (2025)",
-      // ogDescription: 159/160
-      ogDescription: "Browse our comprehensive list of 300+ Chinese family names and surnames with meanings, historical origins, and pronunciation guide. Discover the story behind your Chinese surname.",
+
+      // Description: 优化策略 -> 第一句话必须包含 "Chinese Last Names" 以匹配搜索意图
+      // 原版是以 "Chinese surnames" 开头的，这会降低 "Last Name" 搜索者的点击率
+      description: "Discover 100+ popular Chinese last names (surnames) with their meanings, origins, and pronunciation. Find the perfect translation for your family name here.",
+
+      // Keywords: 调整顺序，流量词在前
+      keywords: "chinese last names,chinese surnames,common chinese last names,chinese family names,chinese name meanings,surname list 2026",
+
+      // ogTitle: 社交媒体标题
+      ogTitle: "Top 100+ Chinese Last Names & Meanings | Ultimate Guide (2026)",
+
+      // ogDescription: 
+      ogDescription: "Looking for Chinese last names? Browse our comprehensive list of 100+ surnames with meanings, historical origins, and audio pronunciation guides.",
+
       ogImage: "https://chinesename.us/images/chinese-surnames-og.jpg",
       ogUrl: "https://chinesename.us/chinese-last-names",
       twitterCard: "summary_large_image",
-      // twitterTitle: 52/60
-      twitterTitle: "300+ Chinese Last Names & Family Surnames Guide (2025)",
-      // twitterDescription: 155/160
-      twitterDescription: "Explore Chinese surnames with meanings, origins, and pronunciation. Find famous figures who share these common Chinese family names and their history.",
+
+      // twitterTitle: 
+      twitterTitle: "Top 100+ Chinese Last Names & Surnames Guide (2026)",
+
+      // twitterDescription: 
+      twitterDescription: "Explore 100+ Chinese last names with meanings and origins. Discover the history behind the most common Chinese family names.",
+
       twitterImage: "https://chinesename.us/images/chinese-surnames-twitter.jpg"
     }
   },
+
   {
     path: '/chinese-names-and-meanings',
     name: 'ChineseNamesAndMeanings',
     component: () => import('../views/ChineseNamesAndMeanings.vue'),
     meta: {
       // Title: 60/60
-      title: "Chinese Names and Meanings - Character Guide & Traditions (2025)",
+      title: "Chinese Names and Meanings - Character Guide & Traditions (2026)",
       canonicalPath: '/chinese-names-and-meanings',
       // Description: 160/160
       description: "Dive deep into Chinese names and their profound meanings. Learn about character significance, traditional naming customs, and find beautiful Chinese names with positive cultural value.",
       // 关键词最大化
       keywords: "chinese names meanings,chinese name meaning,chinese character meanings,traditional chinese names,character significance,name meanings guide,cultural names",
       // ogTitle: 60/60
-      ogTitle: "Chinese Names and Meanings | Character Significance & Tradition Guide (2025)",
+      ogTitle: "Chinese Names and Meanings | Character Significance & Tradition Guide (2026)",
       // ogDescription: 160/160
       ogDescription: "Discover the profound meanings behind Chinese names and characters. Explore naming traditions, symbolism, and find beautiful Chinese names with positive cultural significance.",
       ogImage: "https://chinesename.us/images/chinese-names-meanings-og.jpg",
       ogUrl: "https://chinesename.us/chinese-names-and-meanings",
       twitterCard: "summary_large_image",
       // twitterTitle: 52/60
-      twitterTitle: "Chinese Names and Their Meanings & Traditions (2025)",
+      twitterTitle: "Chinese Names and Their Meanings & Traditions (2026)",
       // twitterDescription: 159/160
       twitterDescription: "Learn the cultural significance and symbolism behind Chinese names and characters. Find names with beautiful meanings for yourself or your baby today.",
       twitterImage: "https://chinesename.us/images/chinese-names-meanings-twitter.jpg"
@@ -503,6 +517,7 @@ export const routes = [
       twitterImage: 'https://chinesename.us/images/blog-og.jpg'
     }
   },
+  /*
   {
     path: '/blog/chinese-surnames',
     name: 'ChineseSurnames',
@@ -528,7 +543,7 @@ export const routes = [
       twitterDescription: 'Learn about the most common Chinese last names and their historical background and deep cultural significance.',
       twitterImage: 'https://chinesename.us/images/surnames-twitter.jpg'
     }
-  },
+  },*/
   {
     path: '/blog/baijiaxing',
     name: 'BaijiaXing',
@@ -555,6 +570,78 @@ export const routes = [
       twitterImage: 'https://chinesename.us/images/baijiaxing-twitter.jpg'
     }
   },
+  {
+    path: '/blog/how-to-say-my-name-in-chinese',
+    name: 'SayMyName',
+    component: () => import('../views/SayMyName.vue'),
+    meta: {
+      // Title: 60/60 [精准覆盖 "How to say" 和 "Pronunciation"]
+      title: 'How to Say "My Name Is" in Chinese: Pronunciation & Spelling Guide',
+      
+      canonicalPath: '/blog/how-to-say-my-name-in-chinese',
+
+      // Description: 156/160 [首句直接回答问题，增加点击率]
+      description: 'Learn the 2 golden phrases for "My name is" in Chinese (Mandarin). A complete guide on pronunciation, introductions, and how to spell English names in characters.',
+
+      // Keywords: [覆盖 PAA 核心问题]
+      keywords: 'how to say my name is in chinese,how to spell in chinese,how to write chinese in chinese,chinese introductions,chinese pronunciation guide,spell name in chinese',
+
+      // ogTitle: 58/60
+      ogTitle: 'How to Say "My Name Is" in Chinese | Pronunciation & Spelling',
+
+      // ogDescription: 155/160
+      ogDescription: 'Stop saying it wrong! Learn the standard way to say "My name is" in Mandarin Chinese, plus how to write and spell your English name in characters correctly.',
+
+      ogImage: 'https://chinesename.us/images/say-my-name-og.jpg',
+      ogUrl: 'https://chinesename.us/blog/how-to-say-my-name-in-chinese',
+      twitterCard: 'summary_large_image',
+
+      // twitterTitle: 55/60
+      twitterTitle: 'How to Say "My Name Is" in Chinese (Pronunciation Guide)',
+
+      // twitterDescription: 150/160
+      twitterDescription: 'Master the art of Chinese introductions. Learn the phrases for "My name is" and how to spell your English name in Chinese characters instantly.',
+
+      twitterImage: 'https://chinesename.us/images/say-my-name-twitter.jpg'
+    }
+  },
+
+  {
+    path: '/blog/cute-chinese-nicknames-maomao',
+    name: 'ChineseNicknames',
+    component: () => import('../views/ChineseNicknames.vue'),
+    meta: {
+      // Title: 60/60 [明确受众是 Babies & Couples，避免只被当成宠物页]
+      title: '50+ Cute Chinese Nicknames (Xiao Ming) for Babies & Couples (2026)',
+      
+      canonicalPath: '/blog/cute-chinese-nicknames-maomao',
+
+      // Description: 158/160 [强调 Xiao Ming 文化，涵盖人类和宠物]
+      description: 'What does "Maomao" mean? Discover 50+ cute Chinese nicknames (Xiao Ming) like Doudou & Tangyuan. Perfect for babies, boyfriends, girlfriends, and pets.',
+
+      // Keywords: [增加人类小名相关的词，降低宠物词权重]
+      keywords: 'chinese nicknames, xiao ming, cute chinese baby names, what does maomao mean, chinese food nicknames, nicknames for boyfriend, doudou meaning',
+
+      // ogTitle: 60/60
+      ogTitle: 'What Does "Maomao" Mean? 50+ Cute Chinese Nicknames (Xiao Ming)',
+
+      // ogDescription: 155/160
+      ogDescription: 'From "Maomao" to "Dumpling", explore the cutest Chinese nicknames for 2026. Find the sweetest Xiao Ming for your baby, partner, or furry friend.',
+
+      ogImage: 'https://chinesename.us/images/chinese-nicknames-og.jpg',
+      ogUrl: 'https://chinesename.us/blog/cute-chinese-nicknames-maomao',
+      twitterCard: 'summary_large_image',
+
+      // twitterTitle: 58/60
+      twitterTitle: '50+ Cute Chinese Nicknames & Xiao Ming Meanings (2026)',
+
+      // twitterDescription: 150/160
+      twitterDescription: 'Unlock the meanings behind popular Chinese nicknames like "Maomao". Find the perfect cute name for your baby or partner from our curated list.',
+
+      twitterImage: 'https://chinesename.us/images/chinese-nicknames-twitter.jpg'
+    }
+  },
+
   {
     path: '/blog/naming-traditions',
     name: 'NamingTraditions',
@@ -984,8 +1071,22 @@ export const routes = [
       description: 'Learn professional considerations when choosing Chinese names for business and international contexts. Understand how a name impacts your career development and cross-cultural communication.',
       // 关键词最大化
       keywords: 'professional chinese names,business names,career naming,international names,workplace names,global naming,name impact,cross-cultural communication',
-    }
+    }    
   },
+{
+    path: '/blog/what-is-my-chinese-name',
+    name: 'WhatIsMyChineseName',
+    component: WhatIsMyChineseName,
+    meta: {
+      // Title: 58/60 - 核心关键词：What Is My Chinese Name
+      title: 'What Is My Chinese Name? - Complete Naming & Identity Guide',
+      canonicalPath: '/blog/what-is-my-chinese-name',
+      // Description: 158/160 - 包含搜索意图词：methods, transliteration, traditions
+      description: 'Find out "What is my Chinese name?" with our expert guide. Explore 3 professional methods including phonetic transliteration, meaning-based naming, and cultural traditions.',
+      // 关键词最大化：覆盖了 Semrush 中的所有高频长尾词
+      keywords: 'what is my chinese name,how do chinese names work,choose chinese name,chinese naming traditions,spell in chinese,chinese name meaning,get a chinese name,naming guide',
+    }
+  },  
   // Deprecated: /name-generator → redirect to /custom-chinese-name-generator
   {
     path: '/name-generator',
@@ -1012,7 +1113,7 @@ export const routes = [
     component: () => import('../views/ChineseDogNames.vue'),
     meta: {
       // Title: 60/60
-      title: 'Chinese Dog Names with Meanings (2025) - Pet Naming Guide',
+      title: 'Chinese Dog Names with Meanings (2026) - Pet Naming Guide',
       canonicalPath: '/chinese-dog-names',
       // Description: 160/160
       description: 'Discover 100+ authentic Chinese dog names with meanings and pronunciations. Find the perfect traditional or modern Chinese pet name for your puppy today with our guide.',
@@ -1026,7 +1127,7 @@ export const routes = [
     component: () => import('../views/ChineseCatNames.vue'),
     meta: {
       // Title: 60/60
-      title: 'Chinese Cat Names with Meanings (2025) - Feline Naming Guide',
+      title: 'Chinese Cat Names with Meanings (2026) - Feline Naming Guide',
       canonicalPath: '/chinese-cat-names',
       // Description: 160/160
       description: 'Explore 100+ authentic Chinese cat names with meanings and pronunciations. Find the perfect traditional or modern name for your feline friend, along with naming tips.',

@@ -83,6 +83,27 @@
                   <a @click="navigate(); closeDropdown()" href="javascript:void(0);">Name Numerology Calculator</a>
                 </router-link>
               </li>
+
+              <!-- 插入点开始：新增 Pronunciation & Guides 分类 -->
+              <li class="dropdown-divider"></li>
+              <li class="dropdown-subtitle guide-section-title">Pronunciation & Guides</li>
+              
+              <li class="guide-item">
+                <router-link to="/blog/how-to-say-my-name-in-chinese" custom v-slot="{ navigate }">
+                  <a @click="navigate(); closeDropdown()" href="javascript:void(0);">
+                    🔊 How to Say My Name
+                  </a>
+                </router-link>
+              </li>
+              
+              <li class="guide-item">
+                <router-link to="/blog/cute-chinese-nicknames-maomao" custom v-slot="{ navigate }">
+                  <a @click="navigate(); closeDropdown()" href="javascript:void(0);">
+                    🧸 Cute Chinese Nicknames
+                  </a>
+                </router-link>
+              </li>
+              <!-- 插入点结束 -->
             </ul>
           </li>
           <li><router-link to="/blog">Blog</router-link></li>
@@ -1079,4 +1100,32 @@ body nav.main-nav ul li a.dropdown-toggle.others-link[href="#"] {
     padding: 6px 12px;
   }
 }
+
+/* Pronunciation & Guides 分类样式 */
+.guide-section-title {
+  background-color: rgba(255, 193, 7, 0.15); /* 浅黄色背景 */
+  color: #d97706; /* 深黄色文字 */
+  border-left: 3px solid #d97706;
+}
+
+.guide-item {
+  background-color: rgba(255, 193, 7, 0.05);
+}
+
+.guide-item:hover {
+  background-color: rgba(255, 193, 7, 0.1);
+}
+
+.guide-item a {
+  color: #b45309;
+  border-left: 2px solid transparent;
+}
+
+.guide-item a:hover {
+  color: #92400e;
+  border-left: 2px solid #d97706;
+  padding-left: 18px;
+}
+
+
 </style> 

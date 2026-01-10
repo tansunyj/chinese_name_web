@@ -26,7 +26,7 @@ const routes = [
     name: 'ChineseGirlNames',
     component: () => import('./views/ChineseGirlNames.vue'),
     meta: {
-      title: "Chinese Girl Names with Meanings (2025) | Beautiful Female Names",
+      title: "Chinese Girl Names with Meanings (2026) | Beautiful Female Names",
       canonicalPath: '/chinese-girl-names',
       description: 'Explore 200+ beautiful Chinese girl names with meanings, pronunciations, and cultural significance. Find popular and unique female Chinese names for your baby with our comprehensive guide to traditional and modern Chinese girl names.',
       keywords: 'chinese girl names,chinese names for girls,female chinese names,beautiful chinese girl names,chinese female names meaning,chinese baby girl names'
@@ -37,7 +37,7 @@ const routes = [
     name: 'ChineseBoyNames',
     component: () => import('./views/ChineseBoyNames.vue'),
     meta: {
-      title: "Chinese Boy Names with Meanings (2025) | Strong Male Names",
+      title: "Chinese Boy Names with Meanings (2026) | Strong Male Names",
       canonicalPath: '/chinese-boy-names',
       description: 'Discover 200+ meaningful Chinese boy names with proper pronunciations and cultural significance. Find strong, unique, and popular Chinese names for boys with our comprehensive guide.',
       keywords: 'chinese boy names,chinese names for boys,male chinese names,strong chinese boy names,chinese male names meaning,chinese baby boy names'
@@ -103,7 +103,7 @@ const routes = [
     name: 'ChineseDogNames',
     component: () => import('./views/ChineseDogNames.vue'),
     meta: {
-      title: 'Chinese Dog Names with Meanings (2025) | Traditional & Modern Pet Names',
+      title: 'Chinese Dog Names with Meanings (2026) | Traditional & Modern Pet Names',
       canonicalPath: '/chinese-dog-names',
       description: 'Discover 100+ authentic Chinese dog names with meanings, pronunciations, and cultural significance. Find the perfect traditional or modern Chinese name for your puppy.',
       keywords: 'chinese dog names, chinese names for dogs, dog names in chinese, chinese puppy names, traditional chinese dog names, chinese dog naming, lucky chinese dog names, chinese pet names'
@@ -114,7 +114,7 @@ const routes = [
     name: 'ChineseCatNames',
     component: () => import('./views/ChineseCatNames.vue'),
     meta: {
-      title: 'Chinese Cat Names with Meanings (2025) | Traditional & Modern Feline Names',
+      title: 'Chinese Cat Names with Meanings (2026) | Traditional & Modern Feline Names',
       canonicalPath: '/chinese-cat-names',
       description: 'Explore 100+ authentic Chinese cat names with meanings, pronunciations, and cultural significance. Find the perfect traditional or modern Chinese name for your feline friend.',
       keywords: 'chinese cat names, chinese names for cats, cat names in chinese, chinese kitten names, traditional chinese cat names, chinese cat naming, female chinese cat names, male chinese cat names'

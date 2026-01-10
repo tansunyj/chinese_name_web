@@ -156,10 +156,12 @@
         
         <p class="final-note">Naming is the first gift parents give to their children. Understanding naming taboos is not only a respect for tradition but also a responsibility for the child's future. We hope that the various naming taboos introduced in this article will provide valuable reference for your naming journey.</p>
       </div>
+
+          <!-- Explore More 组件 -->
+    <ExploreMore :currentPath="$route.path" />
     </div>
     
-    <!-- Explore More 组件 -->
-    <ExploreMore :currentPath="$route.path" />
+
   </div>
 </template>
 
